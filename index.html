@@ -335,7 +335,7 @@
         // Carregar dados do JSON
         async function loadCatalogData() {
             try {
-                const response = await fetch('C:\Users\tiago\OneDrive - Instituto Federal de Minas Gerais\Área de Trabalho\IFMG FILMES\catalogo.json');
+                const response = await fetch('catalogo.json');
                 if (!response.ok) {
                     throw new Error('Erro ao carregar o catálogo');
                 }
