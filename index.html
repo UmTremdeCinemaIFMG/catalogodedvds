@@ -334,26 +334,85 @@
 
         // Carregar dados do JSON
         async function loadCatalogData() {
-            try {
-                const response = await fetch('./catalogo.json');
-                if (!response.ok) {
-                    throw new Error('Erro ao carregar o catálogo');
-                }
-                const data = await response.json();
-                
-                films = data.films;
-                dvdCoverMap = data.dvdCovers || {};
-                
-                // Esconder mensagem de carregamento
-                document.getElementById('loadingMessage').style.display = 'none';
-                
-                // Inicializar o catálogo
-                initCatalog();
-            } catch (error) {
-                console.error('Erro:', error);
-                document.getElementById('loadingMessage').textContent = 'Erro ao carregar o catálogo. Por favor, recarregue a página.';
-            }
+    try {
+        const response = await fetch('catalogo.json');
+        if (!response.ok) throw new Error('Erro ao carregar o arquivo');
+        
+        const data = await response.json();
+        
+        // Transformação automática dos dados
+        films = data.Employees.Employee
+            .filter(film => film["Título do filme"] && film["Título do filme"].trim() !== '')
+            .map(film => ({
+                title: cleanField(film["Título do filme"]),
+                director: cleanField(film["Direção"]),
+                cast: cleanField(film["Elenco"]),
+                duration: parseDuration(film["Dur.(´)"]),
+                genre: cleanField(film["GEN."]),
+                year: parseYear(film["Ano"]),
+                imdb: cleanField(film["nota imdb/votantes"]),
+                state: cleanField(film["UF"]),
+                synopsis: combineSynopsis(film),
+                dvd: getDvdTitle(film),
+                classification: parseClassification(film["Classificação Indicativa POR PGM"])
+            }));
+        
+        // Funções auxiliares
+        function cleanField(value) {
+            if (!value) return '';
+            return String(value).replace(/^"|"$/g, '').trim();
         }
+        
+        function parseDuration(dur) {
+            const num = parseInt(dur) || 0;
+            return num > 300 ? 0 : num; // Filtra durações absurdas
+        }
+        
+        function parseYear(year) {
+            return parseInt(year) || 0;
+        }
+        
+        function combineSynopsis(film) {
+            return [film["Sinopse"], film["website"], film["tags"]]
+                .filter(Boolean)
+                .map(s => s.replace(/^"|"$/g, ''))
+                .join(' ');
+        }
+        
+        function getDvdTitle(film) {
+            return cleanField(film["Nome do Programa"]) || 'DVD Sem Nome';
+        }
+        
+        function parseClassification(classif) {
+            return parseInt(classif) || 0;
+        }
+        
+        // Gera mapeamento automático de capas (você pode complementar manualmente depois)
+        dvdCoverMap = {};
+        films.forEach(film => {
+            if (film.dvd && !dvdCoverMap[film.dvd.toLowerCase()]) {
+                dvdCoverMap[film.dvd.toLowerCase()] = `capas/${film.dvd.replace(/[^\w]/g, '_')}.jpg`;
+            }
+        });
+        
+        console.log('Dados convertidos:', {
+            filmCount: films.length,
+            sampleFilm: films[0],
+            dvdCount: Object.keys(dvdCoverMap).length
+        });
+        
+        document.getElementById('loadingMessage').style.display = 'none';
+        initCatalog();
+        
+    } catch (error) {
+        console.error('Erro na conversão:', error);
+        document.getElementById('loadingMessage').innerHTML = `
+            <p style="color: red">Erro ao processar os dados</p>
+            <p>${error.message}</p>
+            <p>Por favor verifique o console (F12) para detalhes</p>
+        `;
+    }
+}
 
         // Obter URL da capa com base no DVD
         function getCoverForDvd(dvdTitle) {
