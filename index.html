@@ -12,6 +12,11 @@
             --cinza-medio: #666666;
             --cinza-claro: #f2f2f2;
             --branco: #ffffff;
+            --azul: #0066cc;
+            --amarelo: #ffcc00;
+            --laranja: #ff9900;
+            --vermelho: #cc0000;
+            --preto: #000000;
         }
         
         body {
@@ -52,7 +57,6 @@
         .search-box {
             flex: 1;
             min-width: 250px;
-            margin-right: 15px;
         }
         
         .search-box input {
@@ -78,27 +82,11 @@
             white-space: nowrap;
         }
         
-        select, .items-per-page button {
+        select {
             padding: 8px 12px;
             border: 1px solid var(--cinza-medio);
             border-radius: 4px;
             background-color: var(--branco);
-        }
-        
-        .items-per-page {
-            display: flex;
-            gap: 5px;
-        }
-        
-        .items-per-page button {
-            cursor: pointer;
-            background-color: var(--branco);
-        }
-        
-        .items-per-page button.active {
-            background-color: var(--verde-ifmg);
-            color: var(--branco);
-            border-color: var(--verde-escuro);
         }
         
         .film-grid {
@@ -214,13 +202,20 @@
         
         .classification {
             display: inline-block;
-            background-color: var(--verde-ifmg);
             color: white;
             padding: 2px 8px;
             border-radius: 4px;
             font-size: 0.8em;
             margin-right: 10px;
+            font-weight: bold;
         }
+        
+        .classification.L { background-color: var(--verde-ifmg); }
+        .classification.10 { background-color: var(--azul); }
+        .classification.12 { background-color: var(--amarelo); color: var(--cinza-escuro); }
+        .classification.14 { background-color: var(--laranja); }
+        .classification.16 { background-color: var(--vermelho); }
+        .classification.18 { background-color: var(--preto); }
         
         .pagination {
             display: flex;
@@ -269,7 +264,7 @@
     <div class="container">
         <div class="controls">
             <div class="search-box">
-                <input type="text" id="searchInput" placeholder="Buscar filmes por título, diretor ou elenco...">
+                <input type="text" id="searchInput" placeholder="Buscar filmes por título ou diretor...">
             </div>
             
             <div class="filters">
@@ -277,15 +272,6 @@
                     <label for="genreFilter">Gênero:</label>
                     <select id="genreFilter">
                         <option value="">Todos</option>
-                        <!-- Gêneros serão preenchidos pelo JavaScript -->
-                    </select>
-                </div>
-                
-                <div class="filter-group">
-                    <label for="dvdFilter">DVD:</label>
-                    <select id="dvdFilter">
-                        <option value="">Todos</option>
-                        <!-- DVDs serão preenchidos pelo JavaScript -->
                     </select>
                 </div>
                 
@@ -300,13 +286,9 @@
         
         <div id="loadingMessage" class="loading">Carregando catálogo...</div>
         
-        <div class="film-grid" id="filmGrid">
-            <!-- Os filmes serão inseridos aqui pelo JavaScript -->
-        </div>
+        <div class="film-grid" id="filmGrid"></div>
         
-        <div class="pagination" id="pagination">
-            <!-- A paginação será inserida aqui pelo JavaScript -->
-        </div>
+        <div class="pagination" id="pagination"></div>
     </div>
     
     <div id="filmModal" class="modal">
@@ -324,224 +306,99 @@
     
     <script>
         // Variáveis globais
-        let films = [];
+        let allFilms = [];
+        let currentFilms = [];
         let currentPage = 1;
         let itemsPerPage = 10;
-        let filteredFilms = [];
         let allGenres = [];
-        let allDvds = [];
-        let dvdCoverMap = {}; // Mapeamento de DVD para capa
-
+        let dvdCoverMap = {};
+        
+        // Função para obter capa do DVD
+        function getCoverForDvd(dvdTitle) {
+            if (!dvdTitle) return 'capas/progbrasil.png';
+            
+            const normalizedName = dvdTitle
+                .toLowerCase()
+                .normalize('NFD').replace(/[\u0300-\u036f]/g, '')
+                .replace(/\s+/g, '_')
+                .replace(/[^\w_]/g, '');
+                
+            return `capas/${normalizedName}.png`;
+        }
+        
+        // Classificação indicativa
+        function getClassificationClass(age) {
+            if (!age || age <= 0) return 'L';
+            return age.toString();
+        }
+        
         // Carregar dados do JSON
         async function loadCatalogData() {
-    try {
-        const response = await fetch('catalogo.json');
-        if (!response.ok) throw new Error('Erro ao carregar o arquivo');
-        
-        const data = await response.json();
-        
-        // Transformação automática dos dados
-        films = data.Employees.Employee
-            .filter(film => film["Título do filme"] && film["Título do filme"].trim() !== '')
-            .map(film => ({
-                title: cleanField(film["Título do filme"]),
-                director: cleanField(film["Direção"]),
-                cast: cleanField(film["Elenco"]),
-                duration: parseDuration(film["Dur.(´)"]),
-                genre: cleanField(film["GEN."]),
-                year: parseYear(film["Ano"]),
-                imdb: cleanField(film["nota imdb/votantes"]),
-                state: cleanField(film["UF"]),
-                synopsis: combineSynopsis(film),
-                dvd: getDvdTitle(film),
-                classification: parseClassification(film["Classificação Indicativa POR PGM"])
-            }));
-        
-        // Funções auxiliares
-        function cleanField(value) {
-            if (!value) return '';
-            return String(value).replace(/^"|"$/g, '').trim();
-        }
-        
-        function parseDuration(dur) {
-            const num = parseInt(dur) || 0;
-            return num > 300 ? 0 : num; // Filtra durações absurdas
-        }
-        
-        function parseYear(year) {
-            return parseInt(year) || 0;
-        }
-        
-        function combineSynopsis(film) {
-            return [film["Sinopse"], film["website"], film["tags"]]
-                .filter(Boolean)
-                .map(s => s.replace(/^"|"$/g, ''))
-                .join(' ');
-        }
-        
-        function getDvdTitle(film) {
-            return cleanField(film["Nome do Programa"]) || 'DVD Sem Nome';
-        }
-        
-        function parseClassification(classif) {
-            return parseInt(classif) || 0;
-        }
-        
-        // Gera mapeamento automático de capas (você pode complementar manualmente depois)
-        dvdCoverMap = {};
-        films.forEach(film => {
-            if (film.dvd && !dvdCoverMap[film.dvd.toLowerCase()]) {
-                dvdCoverMap[film.dvd.toLowerCase()] = `capas/${film.dvd.replace(/[^\w]/g, '_')}.jpg`;
-            }
-        });
-        
-        console.log('Dados convertidos:', {
-            filmCount: films.length,
-            sampleFilm: films[0],
-            dvdCount: Object.keys(dvdCoverMap).length
-        });
-        
-        document.getElementById('loadingMessage').style.display = 'none';
-        initCatalog();
-        
-    } catch (error) {
-        console.error('Erro na conversão:', error);
-        document.getElementById('loadingMessage').innerHTML = `
-            <p style="color: red">Erro ao processar os dados</p>
-            <p>${error.message}</p>
-            <p>Por favor verifique o console (F12) para detalhes</p>
-        `;
-    }
-}
-
-        // Obter URL da capa com base no DVD
-        function getCoverForDvd(dvdTitle) {
-            if (!dvdTitle) return 'capas/default.png';
-            
-            // Verifica se há uma capa específica para este DVD
-            const normalizedDvdTitle = dvdTitle.trim().toLowerCase();
-            const cover = dvdCoverMap[normalizedDvdTitle];
-            
-            return cover || 'capas/default.png';
-        }
-
-        // Inicializar o catálogo
-        function initCatalog() {
-            // Extrair todos os gêneros únicos
-            allGenres = [...new Set(films.map(film => film.genre))].filter(Boolean);
-            
-            // Extrair todos os DVDs únicos
-            allDvds = [...new Set(films.map(film => film.dvd))].filter(Boolean);
-            
-            // Ordenar e popular filtros
-            populateFilters();
-            
-            // Configurar eventos
-            setupEventListeners();
-            
-            // Renderizar a primeira página
-            filterAndRenderFilms();
-        }
-
-        // Popular os filtros
-        function populateFilters() {
-            const genreFilter = document.getElementById('genreFilter');
-            const dvdFilter = document.getElementById('dvdFilter');
-            
-            // Limpar filtros existentes (mantendo a primeira opção)
-            while (genreFilter.options.length > 1) genreFilter.remove(1);
-            while (dvdFilter.options.length > 1) dvdFilter.remove(1);
-            
-            // Ordenar e adicionar gêneros
-            allGenres.sort();
-            allGenres.forEach(genre => {
-                const option = document.createElement('option');
-                option.value = genre;
-                option.textContent = genre;
-                genreFilter.appendChild(option);
-            });
-            
-            // Ordenar e adicionar DVDs
-            allDvds.sort();
-            allDvds.forEach(dvd => {
-                const option = document.createElement('option');
-                option.value = dvd;
-                option.textContent = dvd;
-                dvdFilter.appendChild(option);
-            });
-        }
-
-        // Configurar event listeners
-        function setupEventListeners() {
-            // Filtros
-            document.getElementById('genreFilter').addEventListener('change', filterAndRenderFilms);
-            document.getElementById('dvdFilter').addEventListener('change', filterAndRenderFilms);
-            
-            // Itens por página
-            document.querySelectorAll('.items-per-page button').forEach(button => {
-                button.addEventListener('click', () => {
-                    document.querySelectorAll('.items-per-page button').forEach(btn => btn.classList.remove('active'));
-                    button.classList.add('active');
-                    itemsPerPage = parseInt(button.dataset.items);
-                    currentPage = 1;
-                    filterAndRenderFilms();
+            try {
+                const response = await fetch('catalogo.json');
+                if (!response.ok) throw new Error('Erro ao carregar o arquivo');
+                
+                const data = await response.json();
+                allFilms = data.films || [];
+                
+                // Extrair gêneros únicos
+                allGenres = [...new Set(allFilms.map(film => film.genre).filter(Boolean))].sort();
+                
+                // Popular filtro de gêneros
+                const genreFilter = document.getElementById('genreFilter');
+                allGenres.forEach(genre => {
+                    const option = document.createElement('option');
+                    option.value = genre;
+                    option.textContent = genre;
+                    genreFilter.appendChild(option);
                 });
-            });
-            
-            // Barra de pesquisa
-            document.getElementById('searchInput').addEventListener('input', filterAndRenderFilms);
-            
-            // Fechar modal
-            document.querySelector('.close').addEventListener('click', () => {
-                document.getElementById('filmModal').style.display = 'none';
-            });
-            
-            // Fechar modal ao clicar fora
-            window.addEventListener('click', (event) => {
-                if (event.target === document.getElementById('filmModal')) {
-                    document.getElementById('filmModal').style.display = 'none';
-                }
-            });
+                
+                // Inicializar filmes visíveis
+                currentFilms = allFilms.slice(0, itemsPerPage);
+                
+                document.getElementById('loadingMessage').style.display = 'none';
+                renderFilms();
+                
+            } catch (error) {
+                console.error('Erro:', error);
+                document.getElementById('loadingMessage').innerHTML = `
+                    <p style="color: red">Erro ao carregar o catálogo</p>
+                    <p>${error.message}</p>
+                `;
+            }
         }
-
-        // Filtrar e renderizar filmes
+        
+        // Filtrar filmes
         function filterAndRenderFilms() {
             const searchTerm = document.getElementById('searchInput').value.toLowerCase();
             const genreFilter = document.getElementById('genreFilter').value;
-            const dvdFilter = document.getElementById('dvdFilter').value;
             
-            // Aplicar filtros
-            filteredFilms = films.filter(film => {
+            currentFilms = allFilms.filter(film => {
                 const matchesSearch = 
                     film.title.toLowerCase().includes(searchTerm) ||
-                    film.director.toLowerCase().includes(searchTerm) ||
-                    (film.cast && film.cast.toLowerCase().includes(searchTerm));
+                    (film.director && film.director.toLowerCase().includes(searchTerm));
                 
                 const matchesGenre = genreFilter === '' || film.genre === genreFilter;
-                const matchesDvd = dvdFilter === '' || film.dvd === dvdFilter;
                 
-                return matchesSearch && matchesGenre && matchesDvd;
+                return matchesSearch && matchesGenre;
             });
             
-            // Resetar para a primeira página
             currentPage = 1;
-            
-            // Renderizar filmes e paginação
-            renderFilms();
             renderPagination();
+            renderFilms();
         }
-
-        // Renderizar filmes na página atual
+        
+        // Renderizar filmes
         function renderFilms() {
             const filmGrid = document.getElementById('filmGrid');
             filmGrid.innerHTML = '';
             
             const startIndex = (currentPage - 1) * itemsPerPage;
             const endIndex = startIndex + itemsPerPage;
-            const filmsToShow = filteredFilms.slice(startIndex, endIndex);
+            const filmsToShow = currentFilms.slice(startIndex, endIndex);
             
             if (filmsToShow.length === 0) {
-                filmGrid.innerHTML = '<p style="grid-column: 1 / -1; text-align: center;">Nenhum filme encontrado com os critérios selecionados.</p>';
+                filmGrid.innerHTML = '<p style="grid-column: 1 / -1; text-align: center;">Nenhum filme encontrado.</p>';
                 return;
             }
             
@@ -552,10 +409,10 @@
                 const posterImg = document.createElement('img');
                 posterImg.className = 'film-poster';
                 posterImg.alt = film.title;
-                posterImg.onerror = function() {
-                    this.src = 'capas/default.png';
-                };
                 posterImg.src = getCoverForDvd(film.dvd);
+                posterImg.onerror = function() {
+                    this.src = 'capas/progbrasil.png';
+                };
                 
                 const filmInfo = document.createElement('div');
                 filmInfo.className = 'film-info';
@@ -568,13 +425,13 @@
                 meta.className = 'film-meta';
                 
                 const duration = document.createElement('span');
-                duration.textContent = `${film.duration} min`;
+                duration.textContent = film.duration ? `${film.duration} min` : '';
                 
-                const imdb = document.createElement('span');
-                imdb.textContent = film.imdb ? `IMDb: ${film.imdb}` : '';
+                const year = document.createElement('span');
+                year.textContent = film.year || '';
                 
                 meta.appendChild(duration);
-                meta.appendChild(imdb);
+                meta.appendChild(year);
                 
                 filmInfo.appendChild(title);
                 filmInfo.appendChild(meta);
@@ -583,18 +440,51 @@
                 filmCard.appendChild(filmInfo);
                 
                 filmCard.addEventListener('click', () => openModal(film));
-                
                 filmGrid.appendChild(filmCard);
             });
         }
-
-        // Renderizar controles de paginação
+        
+        // Abrir modal
+        function openModal(film) {
+            const modal = document.getElementById('filmModal');
+            const modalContent = document.getElementById('modalContent');
+            
+            const classification = film.classification || 0;
+            const classificationClass = getClassificationClass(classification);
+            const classificationText = classification <= 0 ? 'L' : classification;
+            
+            modalContent.innerHTML = `
+                <img src="${getCoverForDvd(film.dvd)}" alt="${film.title}" class="modal-poster" onerror="this.src='capas/progbrasil.png'">
+                <h2 class="modal-title">
+                    <span class="classification ${classificationClass}">${classificationText}</span>
+                    ${film.title}
+                </h2>
+                <div class="modal-details">
+                    ${film.director ? `<p><strong>Direção:</strong> ${film.director}</p>` : ''}
+                    ${film.cast ? `<p><strong>Elenco:</strong> ${film.cast}</p>` : ''}
+                    ${film.duration ? `<p><strong>Duração:</strong> ${film.duration} min</p>` : ''}
+                    ${film.genre ? `<p><strong>Gênero:</strong> ${film.genre}</p>` : ''}
+                    ${film.year ? `<p><strong>Ano:</strong> ${film.year}</p>` : ''}
+                    ${film.imdb ? `<p><strong>IMDb:</strong> ${film.imdb}</p>` : ''}
+                    ${film.dvd ? `<p><strong>DVD:</strong> ${film.dvd}</p>` : ''}
+                </div>
+                ${film.synopsis ? `
+                <div class="modal-synopsis">
+                    <h3>Sinopse</h3>
+                    <p>${film.synopsis}</p>
+                </div>
+                ` : ''}
+            `;
+            
+            modal.style.display = 'block';
+        }
+        
+        // Paginação
         function renderPagination() {
             const pagination = document.getElementById('pagination');
             pagination.innerHTML = '';
             
-            const totalPages = Math.ceil(filteredFilms.length / itemsPerPage);
-            
+            const totalPages = Math.ceil(currentFilms.length / itemsPerPage);
             if (totalPages <= 1) return;
             
             // Botão Anterior
@@ -609,7 +499,7 @@
             });
             pagination.appendChild(prevButton);
             
-            // Números das páginas (máximo 5 visíveis)
+            // Páginas
             const maxVisiblePages = 5;
             let startPage = Math.max(1, currentPage - Math.floor(maxVisiblePages / 2));
             let endPage = Math.min(totalPages, startPage + maxVisiblePages - 1);
@@ -618,7 +508,7 @@
                 startPage = Math.max(1, endPage - maxVisiblePages + 1);
             }
             
-            // Botão Página 1
+            // Primeira página
             if (startPage > 1) {
                 const firstButton = document.createElement('button');
                 firstButton.textContent = '1';
@@ -635,13 +525,11 @@
                 }
             }
             
-            // Botões das páginas
+            // Páginas intermediárias
             for (let i = startPage; i <= endPage; i++) {
                 const pageButton = document.createElement('button');
                 pageButton.textContent = i;
-                if (i === currentPage) {
-                    pageButton.classList.add('active');
-                }
+                if (i === currentPage) pageButton.classList.add('active');
                 pageButton.addEventListener('click', () => {
                     currentPage = i;
                     renderFilms();
@@ -649,7 +537,7 @@
                 pagination.appendChild(pageButton);
             }
             
-            // Botão Última Página
+            // Última página
             if (endPage < totalPages) {
                 if (endPage < totalPages - 1) {
                     const ellipsis = document.createElement('span');
@@ -678,38 +566,40 @@
             });
             pagination.appendChild(nextButton);
         }
-
-        // Abrir modal com detalhes do filme
-        function openModal(film) {
-            const modal = document.getElementById('filmModal');
-            const modalContent = document.getElementById('modalContent');
+        
+        // Event Listeners
+        function setupEventListeners() {
+            document.getElementById('searchInput').addEventListener('input', filterAndRenderFilms);
+            document.getElementById('genreFilter').addEventListener('change', filterAndRenderFilms);
             
-            let castContent = film.cast ? `<p><strong>Elenco:</strong> ${film.cast}</p>` : '';
-            let imdbContent = film.imdb ? `<p><strong>Nota IMDb:</strong> ${film.imdb}</p>` : '';
+            document.querySelectorAll('.items-per-page button').forEach(button => {
+                button.addEventListener('click', () => {
+                    document.querySelectorAll('.items-per-page button').forEach(btn => {
+                        btn.classList.remove('active');
+                    });
+                    button.classList.add('active');
+                    itemsPerPage = parseInt(button.dataset.items);
+                    currentPage = 1;
+                    filterAndRenderFilms();
+                });
+            });
             
-            modalContent.innerHTML = `
-                <img src="${getCoverForDvd(film.dvd)}" alt="${film.title}" class="modal-poster" onerror="this.src='capas/default.png'">
-                <h2 class="modal-title"><span class="classification">${film.classification || 'LIVRE'}</span>${film.title}</h2>
-                <div class="modal-details">
-                    <p><strong>Direção:</strong> ${film.director}</p>
-                    ${castContent}
-                    <p><strong>Duração:</strong> ${film.duration} min</p>
-                    <p><strong>Gênero:</strong> ${film.genre}</p>
-                    <p><strong>Ano:</strong> ${film.year}</p>
-                    ${imdbContent}
-                    <p><strong>DVD:</strong> ${film.dvd}</p>
-                </div>
-                <div class="modal-synopsis">
-                    <h3>Sinopse</h3>
-                    <p>${film.synopsis}</p>
-                </div>
-            `;
+            document.querySelector('.close').addEventListener('click', () => {
+                document.getElementById('filmModal').style.display = 'none';
+            });
             
-            modal.style.display = 'block';
+            window.addEventListener('click', (event) => {
+                if (event.target === document.getElementById('filmModal')) {
+                    document.getElementById('filmModal').style.display = 'none';
+                }
+            });
         }
-
-        // Inicializar quando a página carrega
-        window.addEventListener('DOMContentLoaded', loadCatalogData);
+        
+        // Inicialização
+        window.addEventListener('DOMContentLoaded', () => {
+            setupEventListeners();
+            loadCatalogData();
+        });
     </script>
 </body>
 </html>
