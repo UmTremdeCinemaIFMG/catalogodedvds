@@ -49,15 +49,13 @@
         .controls {
             display: flex;
             flex-wrap: wrap;
-            gap: 20px;
+            gap: 30px; /* Aumentado o espaço entre elementos */
             margin-bottom: 30px;
             align-items: flex-end;
         }
         
         .search-box {
-            flex: 1;
-            min-width: 300px;
-            max-width: 400px;
+            flex: 0 0 400px; /* Mantém o tamanho fixo */
         }
         
         .search-box input {
@@ -70,9 +68,10 @@
         
         .filters-container {
             display: flex;
-            gap: 20px;
+            gap: 30px; /* Aumentado o espaço entre elementos */
             flex-wrap: wrap;
             align-items: flex-end;
+            flex-grow: 1;
         }
         
         .filter-group {
@@ -128,47 +127,43 @@
             border-color: var(--verde-escuro);
         }
 
-        /* CLASSIFICAÇÃO INDICATIVA - NOVO ESTILO */
+        /* CLASSIFICAÇÃO INDICATIVA - NOVO ESTILO QUADRADO */
         .classification {
             display: inline-flex;
             align-items: center;
             justify-content: center;
             width: 24px;
             height: 24px;
-            border-radius: 50%;
+            border-radius: 4px; /* Cantos quadrados */
             font-weight: bold;
             font-size: 12px;
             margin-right: 10px;
+            color: white !important; /* Garante texto branco */
         }
         
         .classification.L { 
             background-color: var(--verde-ifmg);
-            color: white;
         }
         
         .classification.10 { 
             background-color: var(--azul);
-            color: white;
         }
         
         .classification.12 { 
             background-color: var(--amarelo);
-            color: var(--cinza-escuro);
+            color: var(--cinza-escuro) !important; /* Texto escuro apenas para 12 */
         }
         
         .classification.14 { 
             background-color: var(--laranja);
-            color: white;
         }
         
         .classification.16 { 
             background-color: var(--vermelho);
-            color: white;
         }
         
         .classification.18 { 
             background-color: var(--preto);
-            color: white;
         }
 
         /* [Manter o restante do CSS igual] */
@@ -350,14 +345,20 @@
             color: var(--cinza-medio);
         }
         
-        @media (max-width: 768px) {
+        @media (max-width: 900px) {
             .controls {
                 flex-direction: column;
                 gap: 15px;
             }
             
             .search-box {
+                flex: 1 1 100%;
                 max-width: 100%;
+            }
+            
+            .filters-container {
+                width: 100%;
+                gap: 15px;
             }
             
             .modal-content {
@@ -428,7 +429,7 @@
     </footer>
     
     <script>
-        // [Manter todo o JavaScript anterior igual]
+        // [Todo o JavaScript permanece exatamente igual ao código anterior]
         // Variáveis globais
         let allFilms = [];
         let currentFilms = [];
