@@ -146,24 +146,24 @@
             background-color: var(--verde-ifmg);
         }
         
-        .classification.10 { 
+        .classification.ten { 
             background-color: var(--azul);
         }
         
-        .classification.12 { 
+        .classification.twelve { 
             background-color: var(--amarelo);
             color: var(--cinza-escuro);
         }
         
-        .classification.14 { 
+        .classification.fourteen { 
             background-color: var(--laranja);
         }
         
-        .classification.16 { 
+        .classification.sixteen { 
             background-color: var(--vermelho);
         }
         
-        .classification.18 { 
+        .classification.eighteen { 
             background-color: var(--preto);
         }
 
@@ -455,10 +455,18 @@
             return `capas/${normalizedName}.png`;
         }
         
-        // Classificação por cores
+        // Classificação por cores - Retorna a classe CSS correspondente
         function getClassificationClass(age) {
             if (!age || age <= 0) return 'L';
-            return age.toString();
+            
+            switch(age) {
+                case 10: return 'ten';
+                case 12: return 'twelve';
+                case 14: return 'fourteen';
+                case 16: return 'sixteen';
+                case 18: return 'eighteen';
+                default: return 'L';
+            }
         }
         
         // Transformar dados do JSON
