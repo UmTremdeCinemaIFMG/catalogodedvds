@@ -49,13 +49,14 @@
         .controls {
             display: flex;
             flex-wrap: wrap;
-            gap: 30px;
+            gap: 20px;
             margin-bottom: 30px;
-            align-items: flex-end;
+            align-items: center;
         }
         
         .search-box {
-            flex: 0 0 400px;
+            flex: 1;
+            min-width: 300px;
         }
         
         .search-box input {
@@ -66,25 +67,18 @@
             font-size: 16px;
         }
         
-        .filters-container {
-            display: flex;
-            gap: 30px;
-            flex-wrap: wrap;
-            align-items: flex-end;
-            flex-grow: 1;
-        }
-        
         .filter-group {
             display: flex;
             flex-direction: column;
-            gap: 8px;
-            min-width: 200px;
+            gap: 5px;
+            min-width: 150px;
         }
         
         .filter-group label {
             font-weight: bold;
             font-size: 14px;
             color: var(--cinza-escuro);
+            white-space: nowrap;
         }
         
         select {
@@ -100,11 +94,11 @@
             display: flex;
             align-items: center;
             gap: 10px;
+            white-space: nowrap;
         }
         
         .items-per-page span {
             font-size: 14px;
-            white-space: nowrap;
         }
         
         .items-per-page button {
@@ -349,16 +343,19 @@
             .controls {
                 flex-direction: column;
                 gap: 15px;
+                align-items: stretch;
             }
             
             .search-box {
-                flex: 1 1 100%;
-                max-width: 100%;
+                min-width: 100%;
             }
             
-            .filters-container {
+            .filter-group {
                 width: 100%;
-                gap: 15px;
+            }
+            
+            .items-per-page {
+                justify-content: flex-start;
             }
             
             .modal-content {
@@ -389,22 +386,18 @@
                 <input type="text" id="searchInput" placeholder="Buscar filmes por título ou diretor...">
             </div>
             
-            <div class="filters-container">
-                <div class="filter-group">
-                    <label for="genreFilter">Gênero</label>
-                    <select id="genreFilter">
-                        <option value="">Todos os gêneros</option>
-                    </select>
-                </div>
-                
-                <div class="filter-group">
-                    <div class="items-per-page">
-                        <span>Itens por página:</span>
-                        <button class="active" data-items="10">10</button>
-                        <button data-items="20">20</button>
-                        <button data-items="30">30</button>
-                    </div>
-                </div>
+            <div class="filter-group">
+                <label for="genreFilter">Gênero</label>
+                <select id="genreFilter">
+                    <option value="">Todos os gêneros</option>
+                </select>
+            </div>
+            
+            <div class="items-per-page">
+                <span>Itens por página:</span>
+                <button class="active" data-items="10">10</button>
+                <button data-items="20">20</button>
+                <button data-items="30">30</button>
             </div>
         </div>
         
