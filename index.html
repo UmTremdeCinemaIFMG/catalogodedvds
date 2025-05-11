@@ -49,13 +49,13 @@
         .controls {
             display: flex;
             flex-wrap: wrap;
-            gap: 30px; /* Aumentado o espaço entre elementos */
+            gap: 30px;
             margin-bottom: 30px;
             align-items: flex-end;
         }
         
         .search-box {
-            flex: 0 0 400px; /* Mantém o tamanho fixo */
+            flex: 0 0 400px;
         }
         
         .search-box input {
@@ -68,7 +68,7 @@
         
         .filters-container {
             display: flex;
-            gap: 30px; /* Aumentado o espaço entre elementos */
+            gap: 30px;
             flex-wrap: wrap;
             align-items: flex-end;
             flex-grow: 1;
@@ -127,18 +127,19 @@
             border-color: var(--verde-escuro);
         }
 
-        /* CLASSIFICAÇÃO INDICATIVA - NOVO ESTILO QUADRADO */
+        /* CLASSIFICAÇÃO INDICATIVA - QUADRADOS COLORIDOS */
         .classification {
             display: inline-flex;
             align-items: center;
             justify-content: center;
             width: 24px;
             height: 24px;
-            border-radius: 4px; /* Cantos quadrados */
+            border-radius: 4px;
             font-weight: bold;
             font-size: 12px;
             margin-right: 10px;
-            color: white !important; /* Garante texto branco */
+            color: white;
+            border: 1px solid rgba(0,0,0,0.1);
         }
         
         .classification.L { 
@@ -151,7 +152,7 @@
         
         .classification.12 { 
             background-color: var(--amarelo);
-            color: var(--cinza-escuro) !important; /* Texto escuro apenas para 12 */
+            color: var(--cinza-escuro);
         }
         
         .classification.14 { 
@@ -166,7 +167,6 @@
             background-color: var(--preto);
         }
 
-        /* [Manter o restante do CSS igual] */
         .film-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
@@ -429,7 +429,6 @@
     </footer>
     
     <script>
-        // [Todo o JavaScript permanece exatamente igual ao código anterior]
         // Variáveis globais
         let allFilms = [];
         let currentFilms = [];
