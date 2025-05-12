@@ -1,1005 +1,553 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Catálogo de DVDs</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<html>
+  <head>
+    <title>Nome</title>
+    <link rel="manifest" href="manifest.webmanifest">
+    <meta name="viewport" content="width=device-width, initial-scale=0.5">
     <style>
-        :root {
-            --verde-ifmg: #009a44;
-            --verde-escuro: #007236;
-            --cinza-escuro: #333333;
-            --cinza-medio: #666666;
-            --cinza-claro: #f2f2f2;
-            --branco: #ffffff;
-            --azul: #0066cc;
-            --amarelo: #ffcc00;
-            --laranja: #ff9900;
-            --vermelho: #cc0000;
-            --preto: #000000;
-            --sombra: 0 4px 6px rgba(0, 0, 0, 0.1);
-            --transicao: all 0.3s ease;
-        }
-        
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: var(--cinza-claro);
-            color: var(--cinza-escuro);
-            line-height: 1.6;
-        }
-        
-        header {
-            background-color: var(--verde-ifmg);
-            color: var(--branco);
-            padding: 25px 0;
-            text-align: center;
-            margin-bottom: 30px;
-            box-shadow: var(--sombra);
-            position: relative;
-            overflow: hidden;
-        }
-        
-        header::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            height: 5px;
-            background: linear-gradient(90deg, var(--verde-ifmg), var(--verde-escuro));
-        }
-        
-        h1 {
-            margin: 0;
-            font-size: 2.5em;
-            font-weight: 700;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
-        }
-        
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
-        
-        .controls {
-            display: grid;
-            grid-template-columns: 1fr auto auto;
-            gap: 20px;
-            margin-bottom: 30px;
-            background: var(--branco);
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: var(--sombra);
-            align-items: flex-end;
-        }
-        
-        .search-box {
-            position: relative;
-            min-width: 250px;
-        }
-        
-        .search-box input {
-            width: 100%;
-            padding: 12px 15px 12px 40px;
-            border: 1px solid var(--cinza-medio);
-            border-radius: 6px;
-            font-size: 16px;
-            transition: var(--transicao);
-            box-shadow: inset 0 1px 3px rgba(0,0,0,0.1);
-        }
-        
-        .search-box input:focus {
-            border-color: var(--verde-ifmg);
-            outline: none;
-            box-shadow: 0 0 0 3px rgba(0, 154, 68, 0.2);
-        }
-        
-        .search-box i {
-            position: absolute;
-            left: 15px;
-            top: 50%;
-            transform: translateY(-50%);
-            color: var(--cinza-medio);
-        }
-        
-        .filter-group {
-            display: flex;
-            flex-direction: column;
-            gap: 8px;
-            min-width: 200px;
-        }
-        
-        .filter-group label {
-            font-weight: bold;
-            font-size: 14px;
-            color: var(--cinza-escuro);
-            margin-bottom: 4px;
-        }
-        
-        select {
-            padding: 12px;
-            border: 1px solid var(--cinza-medio);
-            border-radius: 6px;
-            background-color: var(--branco);
-            font-size: 14px;
-            width: 100%;
-            cursor: pointer;
-            transition: var(--transicao);
-            appearance: none;
-            background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
-            background-repeat: no-repeat;
-            background-position: right 10px center;
-            background-size: 16px;
-        }
-        
-        select:focus {
-            border-color: var(--verde-ifmg);
-            outline: none;
-            box-shadow: 0 0 0 3px rgba(0, 154, 68, 0.2);
-        }
-        
-        .items-per-page {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            white-space: nowrap;
-        }
-        
-        .items-per-page span {
-            font-size: 14px;
-            font-weight: 600;
-        }
-        
-        .items-per-page button {
-            padding: 8px 12px;
-            border: 1px solid var(--cinza-medio);
-            border-radius: 6px;
-            background-color: var(--branco);
-            cursor: pointer;
-            font-size: 14px;
-            transition: var(--transicao);
-            min-width: 40px;
-        }
-        
-        .items-per-page button:hover {
-            background-color: var(--cinza-claro);
-        }
-        
-        .items-per-page button.active {
-            background-color: var(--verde-ifmg);
-            color: var(--branco);
-            border-color: var(--verde-escuro);
-        }
+      h2:after,
+      .cards .card:after {
+        position: absolute;
+      }
 
-        /* CLASSIFICAÇÃO INDICATIVA - QUADRADOS COLORIDOS */
-        .classification {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            width: 24px;
-            height: 24px;
-            border-radius: 4px;
-            font-weight: bold;
-            font-size: 12px;
-            margin-right: 10px;
-            color: white;
-            border: 1px solid rgba(0,0,0,0.1);
-        }
-        
-        .classification.L { 
-            background-color: var(--verde-ifmg);
-        }
-        
-        .classification.ten { 
-            background-color: var(--azul);
-        }
-        
-        .classification.twelve { 
-            background-color: var(--amarelo);
-            color: var(--cinza-escuro);
-        }
-        
-        .classification.fourteen { 
-            background-color: var(--laranja);
-        }
-        
-        .classification.sixteen { 
-            background-color: var(--vermelho);
-        }
-        
-        .classification.eighteen { 
-            background-color: var(--preto);
-        }
+      h2,
+      h2 strong,
+      .cards .card {
+        position: relative;
+      }
 
-        .film-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-            gap: 30px;
-            margin-bottom: 30px;
-        }
-        
-        .film-card {
-            background-color: var(--branco);
-            border-radius: 8px;
-            overflow: hidden;
-            box-shadow: var(--sombra);
-            transition: var(--transicao);
-            cursor: pointer;
-            position: relative;
-        }
-        
-        .film-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 20px rgba(0,0,0,0.15);
-        }
-        
-        .film-poster {
-            width: 100%;
-            height: 350px;
-            object-fit: cover;
-            border-bottom: 3px solid var(--verde-ifmg);
-            transition: var(--transicao);
-        }
-        
-        .film-card:hover .film-poster {
-            opacity: 0.9;
-        }
-        
-        .film-info {
-            padding: 15px;
-        }
-        
-        .film-title {
-            font-weight: bold;
-            margin: 0 0 5px 0;
-            color: var(--verde-escuro);
-            font-size: 16px;
-            line-height: 1.3;
-            display: -webkit-box;
-            -webkit-line-clamp: 2;
-            -webkit-box-orient: vertical;
-            overflow: hidden;
-            min-height: 2.6em;
-        }
-        
-        .film-meta {
-            display: flex;
-            justify-content: space-between;
-            font-size: 14px;
-            color: var(--cinza-medio);
-        }
-        
-        .film-badge {
-            position: absolute;
-            top: 10px;
-            right: 10px;
-            background-color: rgba(0, 154, 68, 0.9);
-            color: white;
-            padding: 4px 8px;
-            border-radius: 4px;
-            font-size: 12px;
-            font-weight: bold;
-            z-index: 1;
-        }
-        
-        .modal {
-            display: none;
-            position: fixed;
-            z-index: 1000;
-            left: 0;
-            top: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0,0,0,0.8);
-            overflow: auto;
-            opacity: 0;
-            transition: opacity 0.3s ease;
-        }
-        
-        .modal.show {
-            opacity: 1;
-        }
-        
-        .modal-content {
-            background-color: var(--branco);
-            margin: 5% auto;
-            padding: 30px;
-            width: 70%;
-            max-width: 800px;
-            border-radius: 8px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
-            position: relative;
-            transform: translateY(-20px);
-            transition: transform 0.3s ease;
-        }
-        
-        .modal.show .modal-content {
-            transform: translateY(0);
-        }
-        
-        .close {
-            position: absolute;
-            top: 15px;
-            right: 25px;
-            font-size: 28px;
-            font-weight: bold;
-            color: var(--cinza-medio);
-            cursor: pointer;
-            transition: color 0.2s;
-        }
-        
-        .close:hover {
-            color: var(--verde-escuro);
-        }
-        
-        .modal-poster {
-            float: left;
-            width: 200px;
-            height: 280px;
-            object-fit: cover;
-            margin-right: 20px;
-            margin-bottom: 20px;
-            border: 3px solid var(--verde-ifmg);
-            border-radius: 4px;
-            box-shadow: var(--sombra);
-        }
-        
-        .modal-title {
-            color: var(--verde-escuro);
-            margin-top: 0;
-            border-bottom: 2px solid var(--cinza-claro);
-            padding-bottom: 10px;
-            margin-bottom: 15px;
-            font-size: 24px;
-        }
-        
-        .modal-details {
-            margin-bottom: 20px;
-        }
-        
-        .modal-details p {
-            margin: 8px 0;
-            font-size: 15px;
-            line-height: 1.5;
-        }
-        
-        .modal-details strong {
-            color: var(--cinza-escuro);
-        }
-        
-        .modal-synopsis {
-            clear: both;
-            line-height: 1.6;
-        }
-        
-        .modal-synopsis h3 {
-            color: var(--verde-escuro);
-            margin-bottom: 10px;
-        }
-        
-        .modal-synopsis p {
-            font-size: 15px;
-            line-height: 1.6;
-        }
-        
-        .pagination {
-            display: flex;
-            justify-content: center;
-            gap: 10px;
-            margin-bottom: 30px;
-            flex-wrap: wrap;
-        }
-        
-        .pagination button {
-            padding: 8px 12px;
-            border: 1px solid var(--cinza-medio);
-            border-radius: 4px;
-            background-color: var(--branco);
-            cursor: pointer;
-            transition: var(--transicao);
-            min-width: 40px;
-        }
-        
-        .pagination button:hover {
-            background-color: var(--cinza-claro);
-        }
-        
-        .pagination button.active {
-            background-color: var(--verde-ifmg);
-            color: var(--branco);
-            border-color: var(--verde-escuro);
-        }
-        
-        .pagination span {
-            padding: 8px 12px;
-            display: flex;
-            align-items: center;
-        }
-        
-        footer {
-            background-color: var(--verde-escuro);
-            color: var(--branco);
-            text-align: center;
-            padding: 20px;
-            margin-top: 30px;
-            box-shadow: 0 -2px 5px rgba(0,0,0,0.1);
-        }
-        
-        .loading {
-            text-align: center;
-            padding: 40px;
-            font-size: 1.2em;
-            color: var(--cinza-medio);
-        }
-        
-        .skeleton {
-            background-color: #e0e0e0;
-            border-radius: 4px;
-            overflow: hidden;
-            position: relative;
-        }
-        
-        .skeleton::after {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.5), transparent);
-            animation: shimmer 1.5s infinite;
-        }
-        
-        @keyframes shimmer {
-            0% { transform: translateX(-100%); }
-            100% { transform: translateX(100%); }
-        }
-        
-        .no-results {
-            grid-column: 1 / -1;
-            text-align: center;
-            padding: 40px;
-            background: var(--branco);
-            border-radius: 8px;
-            box-shadow: var(--sombra);
-        }
-        
-        .no-results i {
-            font-size: 40px;
-            color: var(--cinza-medio);
-            margin-bottom: 15px;
-        }
-        
-        .no-results p {
-            margin: 0;
-            font-size: 16px;
-        }
-        
-        @media (max-width: 900px) {
-            .controls {
-                grid-template-columns: 1fr;
-                gap: 15px;
-            }
-            
-            .search-box {
-                min-width: 100%;
-            }
-            
-            .filter-group {
-                width: 100%;
-            }
-            
-            .items-per-page {
-                justify-content: flex-start;
-            }
-            
-            .modal-content {
-                width: 90%;
-                padding: 20px;
-            }
-            
-            .modal-poster {
-                float: none;
-                width: 100%;
-                height: auto;
-                max-height: 400px;
-                margin-right: 0;
-                margin-bottom: 15px;
-            }
-            
-            .film-grid {
-                grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-                gap: 20px;
-            }
-            
-            .film-poster {
-                height: 280px;
-            }
-        }
-        
-        @media (max-width: 600px) {
-            h1 {
-                font-size: 2em;
-            }
-            
-            .film-grid {
-                grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-                gap: 15px;
-            }
-            
-            .film-poster {
-                height: 220px;
-            }
-            
-            .film-title {
-                font-size: 14px;
-            }
-            
-            .film-meta {
-                font-size: 12px;
-            }
-            
-            .pagination {
-                gap: 5px;
-            }
-            
-            .pagination button, 
-            .pagination span {
-                padding: 6px 8px;
-                min-width: 30px;
-            }
-        }
+      h2,
+      h2 strong,
+      h2 span {
+        vertical-align: middle;
+      }
+
+      body {
+        background: #24282f;
+        font-family: 'Arial';
+      }
+
+      .wrapper {
+        padding: 15px;
+      }
+
+      h2 {
+        padding: 10px;
+        padding-left: 25px;
+        color: #ccc;
+        margin: 0;
+        cursor: pointer;
+      }
+
+      h2 strong {
+        z-index: 2;
+        background: #24282f;
+        padding: 4px 8px;
+      }
+
+      h2 span {
+        font-size: 0.7em;
+        color: #aaa;
+        margin-left: 10px;
+      }
+
+      h2:after {
+        content: '';
+        z-index: 1;
+        bottom: 50%;
+        margin-bottom: -2px;
+        height: 2px;
+        left: 0;
+        right: 0;
+        background: #373d47;
+      }
+
+      #h2jscript {
+        cursor: pointer;
+      }
+
+      .quicklinks {
+        display: flex;
+        flex-flow: row wrap;
+        font-size: 24px;
+        font-weight: bold;
+      }
+
+      .quicklink {
+        margin: 10px;
+      }
+
+      /* link no underline */
+      a {
+        text-decoration: none;
+      }
+
+      /* unvisited link */
+      a:link {
+        color: #CCC;
+      }
+      /* visited link */
+      a:visited {
+        color: #CCC;
+      }
+      /* mouse over link */
+      a:hover {
+        color: #EEE;
+      }
+      /* selected link */
+      a:active {
+        color: #CCC;
+      }
+
+      .Menu {
+        display: flex;
+        flex-flow: row wrap;
+      }
+
+      #BackTopButton {
+        display: none;
+        position: fixed;
+        bottom: 20px;
+        right: 30px;
+        z-index: 99;
+        border: none;
+        outline: none;
+        background-color: red;
+        color: white;
+        cursor: pointer;
+        padding: 15px;
+        border-radius: 10px;
+        font-size: 20px;
+      }
+
+      .MenuButton {
+        border: none;
+        outline: none;
+        background-color: #555;
+        color: #ccc;
+        padding: 5px;
+        border-radius: 4px;
+        font-size: 20px;
+        margin-top: 10px;
+        margin-left: 15px;
+        cursor: pointer;
+        -webkit-appearance: button;
+        -moz-appearance: button;
+        appearance: button;
+        text-decoration: none;
+      }
+
+      .MenuButton:hover {
+        background-color: #666;
+        color: #eee;
+      }
+
+      #BackTopButton:hover {
+        background-color: #555;
+      }
+
+      #label {
+        font-size: 18px;
+        color: #CCC;
+        margin: 5px;
+      }
+
+      #label a {
+        color: #CCC;
+      }
+
+      /* unvisited link */
+      #label a:link {
+        color: #CCC;
+      }
+      /* visited link */
+      #label a:visited {
+        color: #CCC;
+      }
+      /* mouse over link */
+      #label a:hover {
+        color: #EEE;
+      }
+      /* selected link */
+      #label a:active {
+        color: #CCC;
+      }
+
+      /* scrollbars W3C standard that is currently Firefox-only */
+      * {
+        scrollbar-width: thin;
+        scrollbar-color: #888 transparent;
+      }
+
+      /* scrollbars on Chrome/Edge/Safari */
+      *::-webkit-scrollbar {
+        width: 12px;
+      }
+
+      *::-webkit-scrollbar-track {
+        background: transparent;
+      }
+
+      *::-webkit-scrollbar-thumb {
+        background-color: #AAA;
+        border-radius: 20px;
+        border: 3px solid #888;
+      }
+
+      /* New styles for game grid */
+      .games-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+        gap: 20px;
+        padding: 20px;
+      }
+
+      .game-card {
+        background: #373d47;
+        border-radius: 8px;
+        overflow: hidden;
+        transition: transform 0.2s;
+        cursor: pointer;
+        position: relative;
+      }
+
+      .game-card:hover {
+        transform: scale(1.05);
+      }
+
+      .game-cover {
+        width: 100%;
+        height: 250px;
+        object-fit: cover;
+      }
+
+      .game-info {
+        padding: 10px;
+        color: #ccc;
+      }
+
+      .game-title {
+        font-weight: bold;
+        margin-bottom: 5px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+
+      .game-meta {
+        font-size: 0.8em;
+        color: #aaa;
+        margin-bottom: 5px;
+      }
+
+      .game-details {
+        display: none;
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: rgba(36, 40, 47, 0.9);
+        padding: 15px;
+        overflow-y: auto;
+        z-index: 10;
+      }
+
+      .game-card:hover .game-details {
+        display: block;
+      }
+
+      .detail-item {
+        margin-bottom: 8px;
+        font-size: 0.9em;
+      }
+
+      .detail-label {
+        font-weight: bold;
+        color: #007962;
+      }
+
+      .detail-section {
+        margin-top: 10px;
+        border-top: 1px solid #007962;
+        padding-top: 5px;
+      }
+
+      .detail-section-title {
+        font-weight: bold;
+        color: #007962;
+        margin-bottom: 5px;
+      }
+
+      input {
+        display: block;
+        background: #fff;
+        padding: .6rem;
+        border-radius: 0.3rem;
+        width: 300px;
+        border: 0.1rem solid #BDBDBD;
+        outline: none;
+        height: 1rem;
+      }
+
+      input:hover {
+        border: 0.1rem solid #0F52BA !important;
+      }
+
+      #searchbutton {
+        display: block;
+        background: #fff;
+        padding: .6rem;
+        border-radius: 0.3rem;
+        width: 175px;
+        border: 0.1rem solid #BDBDBD;
+        outline: none;
+        height: 2rem;
+      }
+
+      #searchbutton:hover {
+        border: 0.1rem solid #0F52BA !important;
+      }
     </style>
-</head>
-<body>
-    <header>
-        <div class="container">
-            <h1><i class="fas fa-film"></i> Catálogo de DVDs</h1>
-        </div>
-    </header>
-    
-    <div class="container">
-        <div class="controls">
-            <div class="search-box">
-                <i class="fas fa-search"></i>
-                <input type="text" id="searchInput" placeholder="Buscar filmes por título, diretor ou gênero...">
-            </div>
-            
-            <div class="filter-group">
-                <label for="genreFilter"><i class="fas fa-tags"></i> Gênero</label>
-                <select id="genreFilter">
-                    <option value="">Todos os gêneros</option>
-                </select>
-            </div>
-            
-            <div class="items-per-page">
-                <span><i class="fas fa-list-ol"></i> Itens por página:</span>
-                <button class="active" data-items="10">10</button>
-                <button data-items="20">20</button>
-                <button data-items="30">30</button>
-            </div>
-        </div>
-        
-        <div id="loadingMessage" class="loading">
-            <div class="skeleton" style="width: 100%; height: 300px; margin-bottom: 20px;"></div>
-            <div class="skeleton" style="width: 80%; height: 20px; margin: 0 auto 10px;"></div>
-            <div class="skeleton" style="width: 60%; height: 20px; margin: 0 auto;"></div>
-        </div>
-        
-        <div class="film-grid" id="filmGrid"></div>
-        
-        <div class="pagination" id="pagination"></div>
-    </div>
-    
-    <div id="filmModal" class="modal">
-        <div class="modal-content">
-            <span class="close">&times;</span>
-            <div id="modalContent"></div>
-        </div>
-    </div>
-    
-    <footer>
-        <div class="container">
-            <p><i class="fas fa-train"></i> UM TREM DE CINEMA 2019-2021</p>
-        </div>
-    </footer>
-    
     <script>
-        // Variáveis globais
-        let allFilms = [];
-        let currentFilms = [];
-        let currentPage = 1;
-        let itemsPerPage = 10;
-        let allGenres = [];
-        let debounceTimer;
-        
-        // Função para limpar campos
-        function cleanField(value) {
-            if (!value) return '';
-            return String(value).replace(/^"|"$/g, '').trim();
+      // Sample game data with additional fields
+      const gameData = {
+        "52eb9c71-674a-4479-9dc2-69c87407a186": {
+          "Audiodescrição": "Disponível",
+          "Closed Caption": "Sim",
+          "tema (Programadora Brasil)": "Aventura, Comédia",
+          "tags": "Indie, Demo",
+          "website": "https://example.com/game1",
+          "Adoro Cinema": "4.5/5",
+          "festivais": "Festival Indie 2022",
+          "premios": "Melhor Jogo Demo",
+          "legendas_outras": "Inglês, Espanhol",
+          "material_outros": "Making of, Arte conceitual"
+        },
+        "462c9548-3c9b-435c-991d-dad21f5be89a": {
+          "Audiodescrição": "Não disponível",
+          "Closed Caption": "Sim",
+          "tema (Programadora Brasil)": "RPG, Fantasia",
+          "tags": "RPG, Pixel Art",
+          "website": "https://example.com/game2",
+          "premios": "Indie Award 2021"
         }
+        // Add more game data as needed
+      };
+
+      function search() {
+        var input, filter, games, game, i, txtValue, fragment, parentElement, wrapper, quicklinks, quicklink, quicklinkid, cards, needhide, numvisible, quicklinklinks, header;
+        input = document.getElementById("search");
+        filter = input.value.toUpperCase();
+        wrapper = document.getElementById("wrapper");
+        parentElement = wrapper.parentElement;
+        fragment = document.createDocumentFragment();
+        fragment.appendChild(wrapper.cloneNode(true));
+        wrapper.remove();
+        games = fragment.childNodes[0].getElementsByClassName("game-title");
+        i = games.length - 1;
         
-        // Função para obter capa do DVD
-        function getCoverForDvd(dvdTitle) {
-            if (!dvdTitle) return 'capas/progbrasil.png';
-            
-            const normalizedName = dvdTitle
-                .toLowerCase()
-                .normalize('NFD').replace(/[\u0300-\u036f]/g, '')
-                .replace(/\s+/g, '_')
-                .replace(/[^\w_]/g, '');
-                
-            return `capas/${normalizedName}.png`;
+        while (i >= 0 ) {
+          game = games[i];
+          txtValue = game.innerText;
+          if (txtValue.toUpperCase().indexOf(filter) > -1) {
+            game.closest('.game-card').style.display = "";
+          } else {
+            game.closest('.game-card').style.display = "none";
+          }
+          i--;
         }
-        
-        // Classificação por cores - Retorna a classe CSS correspondente
-        function getClassificationClass(age) {
-            if (!age || age <= 0) return 'L';
-            
-            switch(age) {
-                case 10: return 'ten';
-                case 12: return 'twelve';
-                case 14: return 'fourteen';
-                case 16: return 'sixteen';
-                case 18: return 'eighteen';
-                default: return 'L';
+
+        quicklinks = fragment.childNodes[0].querySelectorAll("tr[id^='quicklink-']")
+        i = quicklinks.length - 1;
+        while (i >= 0) {
+          quicklink = quicklinks[i];
+          quicklinkid = quicklink.id;
+          cards = fragment.getElementById(quicklinkid.replace("quicklink-", ""));
+          needhide = true;
+          if(cards) {
+            j = cards.children.length -1
+            numvisible = 0;
+            while (j >= 0) {
+              if (cards.children[j].style.display == "") {
+                needhide = false;
+                numvisible++;
+              }
+              j--;
             }
-        }
-        
-        // Transformar dados do JSON
-        function transformFilmData(originalFilm) {
-            return {
-                title: cleanField(originalFilm["Título do filme"]),
-                director: cleanField(originalFilm["Direção"]),
-                cast: cleanField(originalFilm["Elenco"]),
-                duration: parseInt(originalFilm["Dur.(´)"]) || 0,
-                genre: cleanField(originalFilm["GEN."]),
-                year: parseInt(originalFilm["Ano"]) || 0,
-                imdb: originalFilm["nota imdb"]?.votantes || '',
-                state: cleanField(originalFilm["UF"]),
-                synopsis: cleanField(originalFilm["Sinopse"]),
-                dvd: cleanField(originalFilm["Nome do Programa"]),
-                classification: parseInt(originalFilm["Classificação Indicativa POR PGM"]) || 0
-            };
-        }
-        
-        // Carregar dados do JSON com skeleton loading
-        async function loadCatalogData() {
-            try {
-                // Simular delay para mostrar o skeleton loading
-                await new Promise(resolve => setTimeout(resolve, 800));
-                
-                const response = await fetch('catalogo.json');
-                if (!response.ok) throw new Error('Erro ao carregar o arquivo');
-                
-                const data = await response.json();
-                allFilms = data.map(transformFilmData);
-                
-                // Extrair gêneros únicos
-                allGenres = [...new Set(allFilms.map(film => film.genre).filter(Boolean))].sort();
-                
-                // Popular filtro de gêneros
-                const genreFilter = document.getElementById('genreFilter');
-                allGenres.forEach(genre => {
-                    const option = document.createElement('option');
-                    option.value = genre;
-                    option.textContent = genre;
-                    genreFilter.appendChild(option);
-                });
-                
-                currentFilms = allFilms;
-                document.getElementById('loadingMessage').style.display = 'none';
-                renderFilms();
-                
-            } catch (error) {
-                console.error('Erro:', error);
-                document.getElementById('loadingMessage').innerHTML = `
-                    <div style="color: var(--vermelho); text-align: center;">
-                        <i class="fas fa-exclamation-triangle" style="font-size: 40px; margin-bottom: 15px;"></i>
-                        <p style="font-weight: bold;">Erro ao carregar o catálogo</p>
-                        <p>${error.message}</p>
-                        <button onclick="loadCatalogData()" style="margin-top: 15px; padding: 8px 15px; background-color: var(--verde-ifmg); color: white; border: none; border-radius: 4px; cursor: pointer;">
-                            <i class="fas fa-sync-alt"></i> Tentar novamente
-                        </button>
-                    </div>
-                `;
+
+            quicklinklinks = fragment.childNodes[0].querySelectorAll("a[href=\"#" + quicklinkid.replace(/["\\]/g, '\\$&') + "\"]")
+            if (needhide) {
+              cards.style.display = "none";
+              quicklink.style.display = "none";
+              quicklink.children[0].children[0].children[0].innerHTML = "&#x25BA;";
+              quicklink.children[0].children[0].children[0].style.color = "#790000";
+              quicklink.children[0].children[0].children[1].children[0].innerText = "( " + numvisible.toString() + " )";
+              if (quicklinklinks.length == 1) {                        
+                quicklinklinks[0].style.display = "none";
+              }
+            } else {
+              cards.style.display = "";
+              quicklink.style.display = "";
+              quicklink.children[0].children[0].children[0].innerHTML = "&#x25BC;";
+              quicklink.children[0].children[0].children[0].style.color = "#007962";
+              quicklink.children[0].children[0].children[1].children[0].innerText = "( " + numvisible.toString() + " )";
+              if (quicklinklinks.length == 1) {                        
+                quicklinklinks[0].style.display = "";
+              }
             }
+          }
+          i--;
         }
-        
-        // Filtrar filmes com debounce para melhor performance
-        function filterAndRenderFilms() {
-            clearTimeout(debounceTimer);
-            debounceTimer = setTimeout(() => {
-                const searchTerm = document.getElementById('searchInput').value.toLowerCase();
-                const genreFilter = document.getElementById('genreFilter').value;
-                
-                currentFilms = allFilms.filter(film => {
-                    const matchesSearch = 
-                        film.title.toLowerCase().includes(searchTerm) ||
-                        (film.director && film.director.toLowerCase().includes(searchTerm)) ||
-                        (film.genre && film.genre.toLowerCase().includes(searchTerm));
-                    
-                    const matchesGenre = genreFilter === '' || film.genre === genreFilter;
-                    
-                    return matchesSearch && matchesGenre;
-                });
-                
-                currentPage = 1;
-                renderPagination();
-                renderFilms();
-            }, 300);
-        }
-        
-        // Renderizar filmes com skeleton loading
-        function renderFilms() {
-            const filmGrid = document.getElementById('filmGrid');
-            filmGrid.innerHTML = '';
-            
-            const startIndex = (currentPage - 1) * itemsPerPage;
-            const endIndex = startIndex + itemsPerPage;
-            const filmsToShow = currentFilms.slice(startIndex, endIndex);
-            
-            if (filmsToShow.length === 0) {
-                filmGrid.innerHTML = `
-                    <div class="no-results">
-                        <i class="fas fa-film"></i>
-                        <p>Nenhum filme encontrado com os critérios selecionados.</p>
-                        <button onclick="resetFilters()" style="margin-top: 15px; padding: 8px 15px; background-color: var(--verde-ifmg); color: white; border: none; border-radius: 4px; cursor: pointer;">
-                            <i class="fas fa-undo"></i> Limpar filtros
-                        </button>
-                    </div>
-                `;
-                return;
-            }
-            
-            filmsToShow.forEach(film => {
-                const filmCard = document.createElement('div');
-                filmCard.className = 'film-card';
-                
-                // Badge para DVD
-                if (film.dvd) {
-                    const dvdBadge = document.createElement('div');
-                    dvdBadge.className = 'film-badge';
-                    dvdBadge.textContent = film.dvd;
-                    filmCard.appendChild(dvdBadge);
-                }
-                
-                const posterImg = document.createElement('img');
-                posterImg.className = 'film-poster';
-                posterImg.alt = film.title;
-                posterImg.src = getCoverForDvd(film.dvd);
-                posterImg.loading = "lazy";
-                posterImg.onerror = function() {
-                    this.src = 'capas/progbrasil.png';
-                };
-                
-                const filmInfo = document.createElement('div');
-                filmInfo.className = 'film-info';
-                
-                const title = document.createElement('h3');
-                title.className = 'film-title';
-                title.textContent = film.title;
-                
-                const meta = document.createElement('div');
-                meta.className = 'film-meta';
-                
-                const duration = document.createElement('span');
-                duration.textContent = film.duration ? `${film.duration} min` : '';
-                
-                const year = document.createElement('span');
-                year.textContent = film.year || '';
-                
-                meta.appendChild(duration);
-                meta.appendChild(year);
-                
-                filmInfo.appendChild(title);
-                filmInfo.appendChild(meta);
-                
-                filmCard.appendChild(posterImg);
-                filmCard.appendChild(filmInfo);
-                
-                filmCard.addEventListener('click', () => openModal(film));
-                filmGrid.appendChild(filmCard);
-            });
-        }
-        
-        // Resetar filtros
-        function resetFilters() {
-            document.getElementById('searchInput').value = '';
-            document.getElementById('genreFilter').value = '';
-            filterAndRenderFilms();
-        }
-        
-        // Abrir modal com animação
-        function openModal(film) {
-            const modal = document.getElementById('filmModal');
-            const modalContent = document.getElementById('modalContent');
-            
-            const classification = film.classification || 0;
-            const classificationClass = getClassificationClass(classification);
-            const classificationText = classification <= 0 ? 'L' : classification;
-            
-            modalContent.innerHTML = `
-                <img src="${getCoverForDvd(film.dvd)}" alt="${film.title}" class="modal-poster" onerror="this.src='capas/progbrasil.png'">
-                <h2 class="modal-title">
-                    <span class="classification ${classificationClass}">${classificationText}</span>
-                    ${film.title}
-                </h2>
-                <div class="modal-details">
-                    ${film.director ? `<p><strong><i class="fas fa-user"></i> Direção:</strong> ${film.director}</p>` : ''}
-                    ${film.cast ? `<p><strong><i class="fas fa-users"></i> Elenco:</strong> ${film.cast}</p>` : ''}
-                    ${film.duration ? `<p><strong><i class="fas fa-clock"></i> Duração:</strong> ${film.duration} min</p>` : ''}
-                    ${film.genre ? `<p><strong><i class="fas fa-tag"></i> Gênero:</strong> ${film.genre}</p>` : ''}
-                    ${film.year ? `<p><strong><i class="fas fa-calendar-alt"></i> Ano:</strong> ${film.year}</p>` : ''}
-                    ${film.imdb ? `<p><strong><i class="fab fa-imdb"></i> IMDb:</strong> ${film.imdb}</p>` : ''}
-                    ${film.dvd ? `<p><strong><i class="fas fa-compact-disc"></i> DVD:</strong> ${film.dvd}</p>` : ''}
-                </div>
-                ${film.synopsis ? `
-                <div class="modal-synopsis">
-                    <h3><i class="fas fa-align-left"></i> Sinopse</h3>
-                    <p>${film.synopsis}</p>
-                </div>
-                ` : ''}
-            `;
-            
-            modal.style.display = 'block';
-            setTimeout(() => {
-                modal.classList.add('show');
-            }, 10);
-            
-            // Adicionar evento de teclado para fechar com ESC
-            document.addEventListener('keydown', handleKeyDown);
-        }
-        
-        // Fechar modal
-        function closeModal() {
-            const modal = document.getElementById('filmModal');
-            modal.classList.remove('show');
-            
-            setTimeout(() => {
-                modal.style.display = 'none';
-            }, 300);
-            
-            // Remover evento de teclado
-            document.removeEventListener('keydown', handleKeyDown);
-        }
-        
-        // Handler para tecla ESC
-        function handleKeyDown(e) {
-            if (e.key === 'Escape') {
-                closeModal();
-            }
-        }
-        
-        // Paginação melhorada
-        function renderPagination() {
-            const pagination = document.getElementById('pagination');
-            pagination.innerHTML = '';
-            
-            const totalPages = Math.ceil(currentFilms.length / itemsPerPage);
-            if (totalPages <= 1) return;
-            
-            // Botão Anterior
-            const prevButton = document.createElement('button');
-            prevButton.innerHTML = '<i class="fas fa-chevron-left"></i> Anterior';
-            prevButton.disabled = currentPage === 1;
-            prevButton.addEventListener('click', () => {
-                if (currentPage > 1) {
-                    currentPage--;
-                    renderFilms();
-                    window.scrollTo({top: 0, behavior: 'smooth'});
-                }
-            });
-            pagination.appendChild(prevButton);
-            
-            // Páginas
-            const maxVisiblePages = 5;
-            let startPage = Math.max(1, currentPage - Math.floor(maxVisiblePages / 2));
-            let endPage = Math.min(totalPages, startPage + maxVisiblePages - 1);
-            
-            if (endPage - startPage + 1 < maxVisiblePages) {
-                startPage = Math.max(1, endPage - maxVisiblePages + 1);
-            }
-            
-            // Primeira página
-            if (startPage > 1) {
-                const firstButton = document.createElement('button');
-                firstButton.textContent = '1';
-                firstButton.addEventListener('click', () => {
-                    currentPage = 1;
-                    renderFilms();
-                    window.scrollTo({top: 0, behavior: 'smooth'});
-                });
-                pagination.appendChild(firstButton);
-                
-                if (startPage > 2) {
-                    const ellipsis = document.createElement('span');
-                    ellipsis.textContent = '...';
-                    pagination.appendChild(ellipsis);
-                }
-            }
-            
-            // Páginas intermediárias
-            for (let i = startPage; i <= endPage; i++) {
-                const pageButton = document.createElement('button');
-                pageButton.textContent = i;
-                if (i === currentPage) pageButton.classList.add('active');
-                pageButton.addEventListener('click', () => {
-                    currentPage = i;
-                    renderFilms();
-                    window.scrollTo({top: 0, behavior: 'smooth'});
-                });
-                pagination.appendChild(pageButton);
-            }
-            
-            // Última página
-            if (endPage < totalPages) {
-                if (endPage < totalPages - 1) {
-                    const ellipsis = document.createElement('span');
-                    ellipsis.textContent = '...';
-                    pagination.appendChild(ellipsis);
-                }
-                
-                const lastButton = document.createElement('button');
-                lastButton.textContent = totalPages;
-                lastButton.addEventListener('click', () => {
-                    currentPage = totalPages;
-                    renderFilms();
-                    window.scrollTo({top: 0, behavior: 'smooth'});
-                });
-                pagination.appendChild(lastButton);
-            }
-            
-            // Botão Próximo
-            const nextButton = document.createElement('button');
-            nextButton.innerHTML = 'Próximo <i class="fas fa-chevron-right"></i>';
-            nextButton.disabled = currentPage === totalPages;
-            nextButton.addEventListener('click', () => {
-                if (currentPage < totalPages) {
-                    currentPage++;
-                    renderFilms();
-                    window.scrollTo({top: 0, behavior: 'smooth'});
-                }
-            });
-            pagination.appendChild(nextButton);
-        }
-        
-        // Configurar eventos
-        function setupEventListeners() {
-            document.getElementById('searchInput').addEventListener('input', filterAndRenderFilms);
-            document.getElementById('genreFilter').addEventListener('change', filterAndRenderFilms);
-            
-            document.querySelectorAll('.items-per-page button').forEach(button => {
-                button.addEventListener('click', function() {
-                    document.querySelectorAll('.items-per-page button').forEach(btn => {
-                        btn.classList.remove('active');
-                    });
-                    this.classList.add('active');
-                    itemsPerPage = parseInt(this.dataset.items);
-                    currentPage = 1;
-                    filterAndRenderFilms();
-                    window.scrollTo({top: 0, behavior: 'smooth'});
-                });
-            });
-            
-            document.querySelector('.close').addEventListener('click', closeModal);
-            
-            window.addEventListener('click', function(event) {
-                if (event.target === document.getElementById('filmModal')) {
-                    closeModal();
-                }
-            });
-        }
-        
-        // Inicialização
-        window.addEventListener('DOMContentLoaded', function() {
-            setupEventListeners();
-            loadCatalogData();
+
+        parentElement.appendChild(fragment.childNodes[0]);
+
+        const observer = lozad(); // lazy loads elements with default selector as '.lozad'
+        observer.observe();
+
+        var input = document.getElementById("search");
+
+        input.addEventListener("keyup", function(event) {
+          if (event.keyCode === 13) {
+            event.preventDefault();
+            document.getElementById("searchbutton").click();
+          }
         });
+      }
+
+      // Function to create game cards from the existing table data
+      function createGameCards() {
+        const gamesGrid = document.querySelector('.games-grid');
+        const rows = document.querySelectorAll('tbody[id] tr');
+        
+        rows.forEach(row => {
+          if (row.id.startsWith('quicklink-')) return;
+          
+          const link = row.querySelector('.tdname a');
+          const title = link.textContent;
+          const href = link.getAttribute('href');
+          const gameId = href.split('/').pop().split('.')[0]; // Extract game ID from URL
+          const date = row.querySelector('td:nth-child(5)').textContent;
+          const platform = row.querySelector('td:last-child').textContent;
+          
+          // Get additional data from gameData
+          const additionalData = gameData[gameId] || {};
+          
+          // Create game card
+          const gameCard = document.createElement('div');
+          gameCard.className = 'game-card';
+          
+          // Create cover image (placeholder - you would replace with actual cover images)
+          const cover = document.createElement('img');
+          cover.className = 'game-cover';
+          cover.src = 'https://via.placeholder.com/200x250/373d47/cccccc?text=' + encodeURIComponent(title.substring(0, 20));
+          cover.alt = title;
+          
+          // Create game info
+          const info = document.createElement('div');
+          info.className = 'game-info';
+          
+          const titleElement = document.createElement('div');
+          titleElement.className = 'game-title';
+          titleElement.textContent = title;
+          
+          const meta = document.createElement('div');
+          meta.className = 'game-meta';
+          meta.textContent = `${date} • ${platform}`;
+          
+          // Create details panel
+          const details = document.createElement('div');
+          details.className = 'game-details';
+          
+          // Add basic info
+          const basicInfo = document.createElement('div');
+          basicInfo.className = 'detail-section';
+          basicInfo.innerHTML = `
+            <div class="detail-item"><span class="detail-label">Data:</span> ${date}</div>
+            <div class="detail-item"><span class="detail-label">Plataforma:</span> ${platform}</div>
+          `;
+          details.appendChild(basicInfo);
+          
+          // Add accessibility info if available
+          if (additionalData["Audiodescrição"] || additionalData["Closed Caption"]) {
+            const accessibility = document.createElement('div');
+            accessibility.className = 'detail-section';
+            accessibility.innerHTML = `
+              <div class="detail-section-title">Acessibilidade</div>
+              ${additionalData["Audiodescrição"] ? `<div class="detail-item"><span class="detail-label">Audiodescrição:</span> ${additionalData["Audiodescrição"]}</div>` : ''}
+              ${additionalData["Closed Caption"] ? `<div class="detail-item"><span class="detail-label">Closed Caption:</span> ${additionalData["Closed Caption"]}</div>` : ''}
+              ${additionalData["legendas_outras"] ? `<div class="detail-item"><span class="detail-label">Outras Legendas:</span> ${additionalData["legendas_outras"]}</div>` : ''}
+            `;
+            details.appendChild(accessibility);
+          }
+          
+          // Add themes and tags
+          if (additionalData["tema (Programadora Brasil)"] || additionalData["tags"]) {
+            const themes = document.createElement('div');
+            themes.className = 'detail-section';
+            themes.innerHTML = `
+              <div class="detail-section-title">Temas</div>
+              ${additionalData["tema (Programadora Brasil)"] ? `<div class="detail-item"><span class="detail-label">Temas:</span> ${additionalData["tema (Programadora Brasil)"]}</div>` : ''}
+              ${additionalData["tags"] ? `<div class="detail-item"><span class="detail-label">Tags:</span> ${additionalData["tags"]}</div>` : ''}
+            `;
+            details.appendChild(themes);
+          }
+          
+          // Add additional materials
+          if (additionalData["website"] || additionalData["Adoro Cinema"] || additionalData["festivais"] || additionalData["premios"] || additionalData["material_outros"]) {
+            const materials = document.createElement('div');
+            materials.className = 'detail-section';
+            materials.innerHTML = `
+              <div class="detail-section-title">Informações Adicionais</div>
+              ${additionalData["website"] ? `<div class="detail-item"><span class="detail-label">Website:</span> <a href="${additionalData["website"]}" target="_blank">Visitar</a></div>` : ''}
+              ${additionalData["Adoro Cinema"] ? `<div class="detail-item"><span class="detail-label">Avaliação Adoro Cinema:</span> ${additionalData["Adoro Cinema"]}</div>` : ''}
+              ${additionalData["festivais"] ? `<div class="detail-item"><span class="detail-label">Festivais:</span> ${additionalData["festivais"]}</div>` : ''}
+              ${additionalData["premios"] ? `<div class="detail-item"><span class="detail-label">Prêmios:</span> ${additionalData["premios"]}</div>` : ''}
+              ${additionalData["material_outros"] ? `<div class="detail-item"><span class="detail-label">Materiais Extras:</span> ${additionalData["material_outros"]}</div>` : ''}
+            `;
+            details.appendChild(materials);
+          }
+          
+          // Assemble the card
+          info.appendChild(titleElement);
+          info.appendChild(meta);
+          
+          gameCard.appendChild(cover);
+          gameCard.appendChild(info);
+          gameCard.appendChild(details);
+          
+          // Make the card clickable
+          gameCard.addEventListener('click', (e) => {
+            // Only navigate if not clicking on a link inside details
+            if (!e.target.closest('a')) {
+              window.location.href = href;
+            }
+          });
+          
+          gamesGrid.appendChild(gameCard);
+        });
+      }
     </script>
-</body>
+  </head>
+  <body>
+    <button onclick="topFunction()" id="BackTopButton" title="Go to top">Top</button>
+    <div class="wrapper" id="wrapper">
+      <h2><strong>MENU PRINCIPAL - Nome<span>(Nome ascendente / Nome ascendente)</span></strong></h2>
+      <div class="Menu"><a Class="MenuButton" href="index.html">Nome ▲</A><a Class="MenuButton" href="default%20list%20text%20combobox%20quicklinks_library_ascendente_name_ascendente.html">Biblioteca ▲</A><a Class="MenuButton" href="default%20list%20text%20combobox%20quicklinks_agerating_ascendente_name_ascendente.html">Classifica&#231;&#227;o Indicativa ▲</A><a Class="MenuButton" href="default%20list%20text%20combobox%20quicklinks_criticscore_descendente_name_ascendente.html">Avalia&#231;&#227;o da cr&#237;tica ▼</A><a Class="MenuButton" href="default%20list%20text%20combobox%20quicklinks_category_ascendente_name_ascendente.html">Categoria ▲</A><a Class="MenuButton" href="default%20list%20text%20combobox%20quicklinks_genre_ascendente_name_ascendente.html">G&#234;nero ▲</A><a Class="MenuButton" href="default%20list%20text%20combobox%20quicklinks_releasedate_descendente_name_ascendente.html">Data de Lan&#231;amento ▼</A><a Class="MenuButton" href="default%20list%20text%20combobox%20quicklinks_tag_ascendente_name_ascendente.html">Tag ▲</A><a Class="MenuButton" href="default%20list%20text%20combobox%20quicklinks_hidden_ascendente_name_ascendente.html">Oculto ▲</A></div>
+      <h2><strong>Buscar</strong></h2><input type="text" id="search" placeholder="Digite o nome de um jogo para pesquisar"><br/><button onclick="search()" id="searchbutton">Buscar</button>
+      <h2><strong>Links r&#225;pidos</strong></h2>
+      <div class="quicklinks"><a class="quicklink" href="#quicklink-#">#</A><a class="quicklink" href="#quicklink-A">A</A><a class="quicklink" href="#quicklink-#">#</A><a class="quicklink" href="#quicklink-A">A</A><a class="quicklink" href="#quicklink-B">B</A><a class="quicklink" href="#quicklink-C">C</A><a class="quicklink" href="#quicklink-D">D</A><a class="quicklink" href="#quicklink-E">E</A><a class="quicklink" href="#quicklink-F">F</A><a class="quicklink" href="#quicklink-G">G</A><a class="quicklink" href="#quicklink-H">H</A><a class="quicklink" href="#quicklink-I">I</A><a class="quicklink" href="#quicklink-J">J</A><a class="quicklink" href="#quicklink-K">K</A><a class="quicklink" href="#quicklink-L">L</A><a class="quicklink" href="#quicklink-M">M</A><a class="quicklink" href="#quicklink-N">N</A><a class="quicklink" href="#quicklink-O">O</A><a class="quicklink" href="#quicklink-P">P</A><a class="quicklink" href="#quicklink-Q">Q</A><a class="quicklink" href="#quicklink-R">R</A><a class="quicklink" href="#quicklink-S">S</A><a class="quicklink" href="#quicklink-T">T</A><a class="quicklink" href="#quicklink-U">U</A><a class="quicklink" href="#quicklink-V">V</A><a class="quicklink" href="#quicklink-W">W</A><a class="quicklink" href="#quicklink-X">X</A><a class="quicklink" href="#quicklink-Y">Y</A><a class="quicklink" href="#quicklink-Z">Z</A><a class="quicklink" href="#quicklink-Δ">Δ</A></div>
+      <h2></h2>
+      
+      <!-- Games Grid -->
+      <div class="games-grid">
+        <!-- Game cards will be inserted here by JavaScript -->
+      </div>
+    </div>
+
+    <script>
+      // Call the function when the page loads
+      window.addEventListener('DOMContentLoaded', createGameCards);
+    </script>
+  </body>
 </html>
