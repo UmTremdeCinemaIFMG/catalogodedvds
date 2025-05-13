@@ -75,14 +75,10 @@
         .search-container {
             flex: 1;
             min-width: 300px;
-            display: flex;
-            gap: 20px;
-            align-items: center;
         }
         
         .search-box {
             position: relative;
-            flex: 1;
         }
         
         .search-box input {
@@ -109,39 +105,6 @@
             color: var(--cinza-medio);
         }
         
-        .items-per-page {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            white-space: nowrap;
-        }
-        
-        .items-per-page span {
-            font-size: 14px;
-            font-weight: 600;
-        }
-        
-        .items-per-page button {
-            padding: 8px 12px;
-            border: 1px solid var(--cinza-medio);
-            border-radius: 6px;
-            background-color: var(--branco);
-            cursor: pointer;
-            font-size: 14px;
-            transition: var(--transicao);
-            min-width: 40px;
-        }
-        
-        .items-per-page button:hover {
-            background-color: var(--cinza-claro);
-        }
-        
-        .items-per-page button.active {
-            background-color: var(--verde-ifmg);
-            color: var(--branco);
-            border-color: var(--verde-escuro);
-        }
-
         .genre-filter-container {
             background-color: var(--branco);
             padding: 15px;
@@ -293,13 +256,20 @@
             position: absolute;
             top: 10px;
             right: 10px;
-            background-color: rgba(0, 154, 68, 0.9);
-            color: white;
+            background-color: rgba(0, 0, 0, 0.7);
+            color: var(--amarelo);
             padding: 4px 8px;
             border-radius: 4px;
             font-size: 12px;
             font-weight: bold;
             z-index: 1;
+            display: flex;
+            align-items: center;
+            gap: 3px;
+        }
+        
+        .film-badge i {
+            color: var(--amarelo);
         }
         
         .modal {
@@ -538,15 +508,6 @@
         }
         
         @media (max-width: 900px) {
-            .search-container {
-                flex-direction: column;
-                align-items: stretch;
-            }
-            
-            .items-per-page {
-                justify-content: center;
-            }
-            
             .modal-content {
                 width: 90%;
                 padding: 20px;
@@ -613,19 +574,12 @@
     </header>
     
     <div class="container">
-        <!-- Primeira linha: Barra de busca e paginação -->
+        <!-- Primeira linha: Barra de busca -->
         <div class="controls-row">
             <div class="search-container">
                 <div class="search-box">
                     <i class="fas fa-search"></i>
-                    <input type="text" id="searchInput" placeholder="Buscar filmes por título, diretor ou gênero...">
-                </div>
-                
-                <div class="items-per-page">
-                    <span><i class="fas fa-list-ol"></i> Itens por página:</span>
-                    <button class="active" data-items="10">10</button>
-                    <button data-items="20">20</button>
-                    <button data-items="30">30</button>
+                    <input type="text" id="searchInput" placeholder="Buscar filmes por título, diretor, elenco, sinopse...">
                 </div>
             </div>
         </div>
@@ -670,7 +624,7 @@
         let allFilms = [];
         let currentFilms = [];
         let currentPage = 1;
-        let itemsPerPage = 10;
+        const itemsPerPage = 20; // Quantidade fixa de itens por página
         let allGenres = [];
         let debounceTimer;
         let selectedGenre = '';
@@ -815,10 +769,15 @@
                 const searchTerm = document.getElementById('searchInput').value.toLowerCase();
                 
                 currentFilms = allFilms.filter(film => {
+                    // Verificar se o termo de busca aparece em algum dos campos
                     const matchesSearch = 
                         film.title.toLowerCase().includes(searchTerm) ||
                         (film.director && film.director.toLowerCase().includes(searchTerm)) ||
-                        (film.genre && film.genre.toLowerCase().includes(searchTerm));
+                        (film.cast && film.cast.toLowerCase().includes(searchTerm)) ||
+                        (film.synopsis && film.synopsis.toLowerCase().includes(searchTerm)) ||
+                        (film.tema && film.tema.toLowerCase().includes(searchTerm)) ||
+                        (film.tags && film.tags.toLowerCase().includes(searchTerm)) ||
+                        (film.dvd && film.dvd.toLowerCase().includes(searchTerm));
                     
                     const matchesGenre = selectedGenre === '' || film.genre === selectedGenre;
                     
@@ -857,12 +816,12 @@
                 const filmCard = document.createElement('div');
                 filmCard.className = 'film-card';
                 
-                // Badge para DVD
-                if (film.dvd) {
-                    const dvdBadge = document.createElement('div');
-                    dvdBadge.className = 'film-badge';
-                    dvdBadge.textContent = film.dvd;
-                    filmCard.appendChild(dvdBadge);
+                // Badge para nota IMDb (se existir)
+                if (film.imdb) {
+                    const imdbBadge = document.createElement('div');
+                    imdbBadge.className = 'film-badge';
+                    imdbBadge.innerHTML = `<i class="fab fa-imdb"></i> ${film.imdb}`;
+                    filmCard.appendChild(imdbBadge);
                 }
                 
                 const posterImg = document.createElement('img');
@@ -1124,19 +1083,6 @@
         // Configurar eventos
         function setupEventListeners() {
             document.getElementById('searchInput').addEventListener('input', filterAndRenderFilms);
-            
-            document.querySelectorAll('.items-per-page button').forEach(button => {
-                button.addEventListener('click', function() {
-                    document.querySelectorAll('.items-per-page button').forEach(btn => {
-                        btn.classList.remove('active');
-                    });
-                    this.classList.add('active');
-                    itemsPerPage = parseInt(this.dataset.items);
-                    currentPage = 1;
-                    filterAndRenderFilms();
-                    window.scrollTo({top: 0, behavior: 'smooth'});
-                });
-            });
             
             document.querySelector('.close').addEventListener('click', closeModal);
             
