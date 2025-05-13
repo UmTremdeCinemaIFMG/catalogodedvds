@@ -54,9 +54,16 @@
         
         h1 {
             margin: 0;
-            font-size: 2.5em;
-            font-weight: 700;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+    font-size: 2.5em;
+    font-weight: 700;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+    transition: var(--transicao);
+    cursor: pointer;
+}
+
+h1:hover {
+    color: var(--amarelo);
+    transform: scale(1.02);
         }
         
         .container {
@@ -643,8 +650,10 @@
 <body>
     <header>
         <div class="container">
-            <h1><i class="fas fa-film"></i> Catálogo de DVDs</h1>
-        </div>
+        <h1 style="cursor: pointer;" onclick="window.location.href='https://umtremdecinemaifmg.github.io/catalogodedvds/'">
+            <i class="fas fa-film"></i> Catálogo de DVDs
+        </h1>
+    </div>
     </header>
     
     <div class="container">
