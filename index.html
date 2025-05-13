@@ -216,12 +216,54 @@
             box-shadow: 0 10px 20px rgba(0,0,0,0.15);
         }
         
-        .film-poster {
+        .film-poster-container {
             width: 100%;
             height: 350px;
-            object-fit: cover;
+            position: relative;
+            overflow: hidden;
             border-bottom: 3px solid var(--verde-ifmg);
+        }
+        
+        .film-poster {
+            width: auto;
+            height: 100%;
+            position: absolute;
+            top: 0;
+            transition: transform 0.5s ease;
+        }
+        
+        .film-poster-controls {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            pointer-events: none;
+        }
+        
+        .film-poster-control {
+            background-color: rgba(0, 0, 0, 0.5);
+            color: white;
+            border: none;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            pointer-events: auto;
+            margin: 0 10px;
             transition: var(--transicao);
+            z-index: 2;
+        }
+        
+        .film-poster-control:hover {
+            background-color: rgba(0, 0, 0, 0.8);
+            transform: scale(1.1);
         }
         
         .film-card:hover .film-poster {
@@ -318,16 +360,59 @@
             color: var(--verde-escuro);
         }
         
-        .modal-poster {
+        .modal-poster-container {
             float: left;
             width: 200px;
             height: 280px;
-            object-fit: cover;
+            position: relative;
+            overflow: hidden;
             margin-right: 20px;
             margin-bottom: 20px;
             border: 3px solid var(--verde-ifmg);
             border-radius: 4px;
             box-shadow: var(--sombra);
+        }
+        
+        .modal-poster {
+            width: auto;
+            height: 100%;
+            position: absolute;
+            top: 0;
+            transition: transform 0.5s ease;
+        }
+        
+        .modal-poster-controls {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            pointer-events: none;
+        }
+        
+        .modal-poster-control {
+            background-color: rgba(0, 0, 0, 0.5);
+            color: white;
+            border: none;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            pointer-events: auto;
+            margin: 0 5px;
+            transition: var(--transicao);
+            z-index: 2;
+        }
+        
+        .modal-poster-control:hover {
+            background-color: rgba(0, 0, 0, 0.8);
+            transform: scale(1.1);
         }
         
         .modal-title {
@@ -509,7 +594,7 @@
                 padding: 20px;
             }
             
-            .modal-poster {
+            .modal-poster-container {
                 float: none;
                 width: 100%;
                 height: auto;
@@ -523,7 +608,7 @@
                 gap: 20px;
             }
             
-            .film-poster {
+            .film-poster-container {
                 height: 280px;
             }
         }
@@ -538,7 +623,7 @@
                 gap: 15px;
             }
             
-            .film-poster {
+            .film-poster-container {
                 height: 220px;
             }
             
@@ -786,6 +871,54 @@
             }, 300);
         }
         
+        // Criar controles de navegação para imagens horizontais
+        function createImageControls(container, image) {
+            const controls = document.createElement('div');
+            controls.className = container.classList.contains('modal-poster-container') ? 
+                'modal-poster-controls' : 'film-poster-controls';
+            
+            const leftButton = document.createElement('button');
+            leftButton.className = container.classList.contains('modal-poster-container') ? 
+                'modal-poster-control' : 'film-poster-control';
+            leftButton.innerHTML = '<i class="fas fa-chevron-left"></i>';
+            leftButton.addEventListener('click', (e) => {
+                e.stopPropagation();
+                const currentTransform = image.style.transform || 'translateX(0)';
+                const currentX = parseInt(currentTransform.match(/translateX\(([-\d]+)px\)/)?.[1] || 0);
+                const newX = Math.min(currentX + 100, 0);
+                image.style.transform = `translateX(${newX}px)`;
+            });
+            
+            const rightButton = document.createElement('button');
+            rightButton.className = container.classList.contains('modal-poster-container') ? 
+                'modal-poster-control' : 'film-poster-control';
+            rightButton.innerHTML = '<i class="fas fa-chevron-right"></i>';
+            rightButton.addEventListener('click', (e) => {
+                e.stopPropagation();
+                const currentTransform = image.style.transform || 'translateX(0)';
+                const currentX = parseInt(currentTransform.match(/translateX\(([-\d]+)px\)/)?.[1] || 0);
+                const containerWidth = container.clientWidth;
+                const imageWidth = image.clientWidth;
+                const maxX = containerWidth - imageWidth;
+                const newX = Math.max(currentX - 100, maxX);
+                image.style.transform = `translateX(${newX}px)`;
+            });
+            
+            controls.appendChild(leftButton);
+            controls.appendChild(rightButton);
+            container.appendChild(controls);
+            
+            // Posicionar imagem para mostrar a borda direita inicialmente
+            setTimeout(() => {
+                const containerWidth = container.clientWidth;
+                const imageWidth = image.clientWidth;
+                if (imageWidth > containerWidth) {
+                    const initialX = containerWidth - imageWidth;
+                    image.style.transform = `translateX(${initialX}px)`;
+                }
+            }, 50);
+        }
+        
         // Renderizar filmes com skeleton loading
         function renderFilms() {
             const filmGrid = document.getElementById('filmGrid');
@@ -826,6 +959,9 @@
                     filmCard.appendChild(classificationBadge);
                 }
                 
+                const posterContainer = document.createElement('div');
+                posterContainer.className = 'film-poster-container';
+                
                 const posterImg = document.createElement('img');
                 posterImg.className = 'film-poster';
                 posterImg.alt = film.title;
@@ -834,6 +970,12 @@
                 posterImg.onerror = function() {
                     this.src = 'capas/progbrasil.png';
                 };
+                
+                posterImg.onload = function() {
+                    createImageControls(posterContainer, posterImg);
+                };
+                
+                posterContainer.appendChild(posterImg);
                 
                 const filmInfo = document.createElement('div');
                 filmInfo.className = 'film-info';
@@ -857,7 +999,7 @@
                 filmInfo.appendChild(title);
                 filmInfo.appendChild(meta);
                 
-                filmCard.appendChild(posterImg);
+                filmCard.appendChild(posterContainer);
                 filmCard.appendChild(filmInfo);
                 
                 filmCard.addEventListener('click', () => openModal(film));
@@ -916,7 +1058,9 @@
                                     film.legendasOutras || film.materialOutros;
             
             modalContent.innerHTML = `
-                <img src="${getCoverForDvd(film.dvd)}" alt="${film.title}" class="modal-poster" onerror="this.src='capas/progbrasil.png'">
+                <div class="modal-poster-container">
+                    <img src="${getCoverForDvd(film.dvd)}" alt="${film.title}" class="modal-poster" onerror="this.src='capas/progbrasil.png'">
+                </div>
                 <h2 class="modal-title">
                     <span class="classification ${classificationClass}">${classificationText}</span>
                     ${film.title}
@@ -959,6 +1103,13 @@
                 </div>
                 ` : ''}
             `;
+            
+            // Configurar controles de navegação para a imagem no modal
+            const modalPosterContainer = modalContent.querySelector('.modal-poster-container');
+            const modalPoster = modalContent.querySelector('.modal-poster');
+            if (modalPosterContainer && modalPoster) {
+                createImageControls(modalPosterContainer, modalPoster);
+            }
             
             modal.style.display = 'block';
             setTimeout(() => {
