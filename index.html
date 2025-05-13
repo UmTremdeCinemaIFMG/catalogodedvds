@@ -257,7 +257,7 @@
             top: 10px;
             right: 10px;
             background-color: rgba(0, 0, 0, 0.7);
-            color: var(--amarelo);
+            color: var(--branco);
             padding: 4px 8px;
             border-radius: 4px;
             font-size: 12px;
@@ -266,10 +266,6 @@
             display: flex;
             align-items: center;
             gap: 3px;
-        }
-        
-        .film-badge i {
-            color: var(--amarelo);
         }
         
         .modal {
@@ -615,7 +611,7 @@
     
     <footer>
         <div class="container">
-            <p><i class="fas fa-train"></i> UM TREM DE CINEMA 2019-2021</p>
+            <p><i class="fas fa-train"></i> <a href="https://umtremdecinema.wixsite.com/umtremdecinema" style="color: white; text-decoration: none;">UM TREM DE CINEMA 2019-2021</a></p>
         </div>
     </footer>
     
@@ -816,12 +812,18 @@
                 const filmCard = document.createElement('div');
                 filmCard.className = 'film-card';
                 
-                // Badge para nota IMDb (se existir)
-                if (film.imdb) {
-                    const imdbBadge = document.createElement('div');
-                    imdbBadge.className = 'film-badge';
-                    imdbBadge.innerHTML = `<i class="fab fa-imdb"></i> ${film.imdb}`;
-                    filmCard.appendChild(imdbBadge);
+                // Badge para classificação indicativa
+                if (film.classification) {
+                    const classification = film.classification;
+                    const classificationClass = getClassificationClass(classification);
+                    const classificationText = classification <= 0 ? 'L' : classification;
+                    
+                    const classificationBadge = document.createElement('div');
+                    classificationBadge.className = 'film-badge';
+                    classificationBadge.innerHTML = `
+                        <span class="classification ${classificationClass}">${classificationText}</span>
+                    `;
+                    filmCard.appendChild(classificationBadge);
                 }
                 
                 const posterImg = document.createElement('img');
