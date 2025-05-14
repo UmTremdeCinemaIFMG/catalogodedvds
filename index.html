@@ -166,7 +166,6 @@
             font-weight: bold;
         }
 
-        /* CLASSIFICAÇÃO INDICATIVA - QUADRADOS COLORIDOS */
         .classification {
             display: inline-flex;
             align-items: center;
@@ -738,23 +737,37 @@
         }
         
         // Função para obter capa do DVD
-        function getCoverForDvd(dvdTitle) {
-            if (!dvdTitle) return 'capas/progbrasil.png';
+        function getDvdCover(filmData) {
+            const DEFAULT_COVER = 'capas/progbrasil.png';
             
-            const normalizedName = dvdTitle
+            // 1. Se tiver imageName definido no JSON, usa ele
+            if (filmData.imageName) {
+                return `capas/${filmData.imageName}`;
+            }
+            
+            // 2. Fallback baseado no Nome do Programa (se imageName não existir)
+            if (!filmData["Nome do Programa"]) return DEFAULT_COVER;
+            
+            const standardizedName = filmData["Nome do Programa"]
                 .toLowerCase()
-                .normalize('NFD').replace(/[\u0300-\u036f]/g, '')
-                .replace(/\s+/g, '_')
-                .replace(/[^\w_]/g, '');
+                .normalize("NFD").replace(/[\u0300-\u036f]/g, "")
+                .replace(/[^\w\s-]/g, "")
+                .replace(/\s+/g, "_")
+                .replace(/-+/g, "_")
+                .replace(/_+/g, "_")
+                .replace(/\.{3,}/g, "")
+                .trim() + ".png";
                 
-            return `capas/${normalizedName}.png`;
+            return `capas/${standardizedName}`;
         }
         
         // Classificação por cores - Retorna a classe CSS correspondente
         function getClassificationClass(age) {
             if (!age || age <= 0) return 'L';
             
-            switch(age) {
+            const ageNum = typeof age === 'string' ? parseInt(age) : age;
+            
+            switch(ageNum) {
                 case 10: return 'ten';
                 case 12: return 'twelve';
                 case 14: return 'fourteen';
@@ -766,6 +779,13 @@
         
         // Transformar dados do JSON
         function transformFilmData(originalFilm) {
+            // Tratamento especial para nota IMDB
+            let imdbData = { votantes: '' };
+            if (originalFilm["nota imdb/votantes"]) {
+                const [nota, votantes] = String(originalFilm["nota imdb/votantes"]).split('/');
+                imdbData = { votantes: `${nota}/${votantes || ''}`.trim() };
+            }
+            
             return {
                 title: cleanField(originalFilm["Título do filme"]),
                 director: cleanField(originalFilm["Direção"]),
@@ -773,21 +793,28 @@
                 duration: parseInt(originalFilm["Dur.(´)"]) || 0,
                 genre: cleanField(originalFilm["GEN."]),
                 year: parseInt(originalFilm["Ano"]) || 0,
-                imdb: originalFilm["nota imdb"]?.votantes || '',
+                imdb: imdbData,
+                country: cleanField(originalFilm["País"]),
                 state: cleanField(originalFilm["UF"]),
-                synopsis: cleanField(originalFilm["Sinopse"]),
-                dvd: cleanField(originalFilm["Nome do Programa"]),
-                classification: parseInt(originalFilm["Classificação Indicativa POR PGM"]) || 0,
+                city: cleanField(originalFilm["cidade"]),
                 audiodescricao: cleanField(originalFilm["Audiodescrição"]),
                 closedCaption: cleanField(originalFilm["Closed Caption"]),
+                synopsis: cleanField(originalFilm["Sinopse"]),
                 tema: cleanField(originalFilm["tema (Programadora Brasil)"]),
                 tags: cleanField(originalFilm["tags"]),
                 website: cleanField(originalFilm["website"]),
-                adoroCinema: cleanField(originalFilm["Adoro Cinema"]),
+                portaCurta: cleanField(originalFilm["Porta Curta"]),
                 festivais: cleanField(originalFilm["festivais"]),
                 premios: cleanField(originalFilm["premios"]),
                 legendasOutras: cleanField(originalFilm["legendas_outras"]),
-                materialOutros: cleanField(originalFilm["material_outros"])
+                materialOutros: cleanField(originalFilm["material_outros"]),
+                duracaoFormato: cleanField(originalFilm["duracao FORMATO"]),
+                nossoAcervo: cleanField(originalFilm["Nosso Acervo"]),
+                pgm: parseInt(originalFilm["PGM"]) || 0,
+                filmes: parseInt(originalFilm["Filmes"]) || 0,
+                dvd: cleanField(originalFilm["Nome do Programa"]),
+                imageName: cleanField(originalFilm["imageName"]), // Campo novo
+                classification: parseInt(originalFilm["Classificação Indicativa POR PGM"]) || 0
             };
         }
         
@@ -796,12 +823,13 @@
             try {
                 await new Promise(resolve => setTimeout(resolve, 800));
                 
-                const response = await fetch('catalogo.json');
+                const response = await fetch('catalogo.json'); // Altere para o nome do seu arquivo JSON
                 if (!response.ok) throw new Error('Erro ao carregar o arquivo');
                 
                 const data = await response.json();
                 allFilms = data.map(transformFilmData);
                 
+                // Extrai todos os gêneros únicos
                 allGenres = [...new Set(allFilms.map(film => film.genre).filter(Boolean))].sort();
                 
                 renderGenreTags();
@@ -932,7 +960,33 @@
             }, 50);
         }
         
-        // Renderizar filmes com skeleton loading
+        // Função para criar a imagem com fallback
+        function createSmartPoster(film) {
+            const img = new Image();
+            img.className = 'film-poster';
+            img.alt = film.title || 'Capa do filme';
+            
+            // Tentará carregar nesta ordem:
+            const attempts = [
+                getDvdCover(film),      // Usa imageName ou nome padronizado
+                'capas/progbrasil.png'  // Fallback obrigatório
+            ];
+
+            let currentAttempt = 0;
+            
+            const tryNext = () => {
+                if (currentAttempt < attempts.length) {
+                    img.src = attempts[currentAttempt++];
+                }
+            };
+
+            img.onerror = tryNext;
+            tryNext(); // Inicia o processo
+
+            return img;
+        }
+        
+        // Renderizar filmes
         function renderFilms() {
             const filmGrid = document.getElementById('filmGrid');
             filmGrid.innerHTML = '';
@@ -958,11 +1012,10 @@
                 const filmCard = document.createElement('div');
                 filmCard.className = 'film-card';
                 
-                // Badge para classificação indicativa - CORREÇÃO AQUI
+                // Badge para classificação indicativa
                 if (film.classification !== undefined) {
-                    const classification = film.classification;
-                    const classificationClass = getClassificationClass(classification);
-                    const classificationText = classification <= 0 ? 'L' : classification;
+                    const classificationClass = getClassificationClass(film.classification);
+                    const classificationText = film.classification <= 0 ? 'L' : film.classification;
                     
                     const classificationBadge = document.createElement('div');
                     classificationBadge.className = 'film-badge';
@@ -975,14 +1028,8 @@
                 const posterContainer = document.createElement('div');
                 posterContainer.className = 'film-poster-container';
                 
-                const posterImg = document.createElement('img');
-                posterImg.className = 'film-poster';
-                posterImg.alt = film.title;
-                posterImg.src = getCoverForDvd(film.dvd);
-                posterImg.loading = "lazy";
-                posterImg.onerror = function() {
-                    this.src = 'capas/progbrasil.png';
-                };
+                // Usa a nova função createSmartPoster
+                const posterImg = createSmartPoster(film);
                 
                 posterImg.onload = function() {
                     createImageControls(posterContainer, posterImg);
@@ -1063,12 +1110,12 @@
             const hasThemes = themes.length > 0;
             
             const hasAdditionalInfo = film.audiodescricao || film.closedCaption || film.website || 
-                                    film.adoroCinema || film.festivais || film.premios || 
+                                    film.portaCurta || film.festivais || film.premios || 
                                     film.legendasOutras || film.materialOutros;
             
             modalContent.innerHTML = `
                 <div class="modal-poster-container">
-                    <img src="${getCoverForDvd(film.dvd)}" alt="${film.title}" class="modal-poster" onerror="this.src='capas/progbrasil.png'">
+                    <img src="${getDvdCover(film)}" alt="${film.title}" class="modal-poster" onerror="this.src='capas/progbrasil.png'">
                 </div>
                 <h2 class="modal-title">
                     <span class="classification ${classificationClass}">${classificationText}</span>
@@ -1080,7 +1127,9 @@
                     ${film.duration ? `<p><strong><i class="fas fa-clock"></i> Duração:</strong> ${film.duration} min</p>` : ''}
                     ${film.genre ? `<p><strong><i class="fas fa-tag"></i> Gênero:</strong> ${film.genre}</p>` : ''}
                     ${film.year ? `<p><strong><i class="fas fa-calendar-alt"></i> Ano:</strong> ${film.year}</p>` : ''}
-                    ${film.imdb ? `<p><strong><i class="fab fa-imdb"></i> IMDb:</strong> ${film.imdb}</p>` : ''}
+                    ${film.imdb.votantes ? `<p><strong><i class="fab fa-imdb"></i> IMDb:</strong> ${film.imdb.votantes}</p>` : ''}
+                    ${film.country ? `<p><strong><i class="fas fa-globe-americas"></i> País:</strong> ${film.country}</p>` : ''}
+                    ${film.state ? `<p><strong><i class="fas fa-map-marker-alt"></i> UF:</strong> ${film.state}</p>` : ''}
                     ${film.dvd ? `<p><strong><i class="fas fa-compact-disc"></i> DVD:</strong> ${film.dvd}</p>` : ''}
                 </div>
                 
@@ -1104,7 +1153,7 @@
                     ${film.audiodescricao ? `<p><strong><i class="fas fa-assistive-listening-systems"></i> Audiodescrição:</strong> ${film.audiodescricao}</p>` : ''}
                     ${film.closedCaption ? `<p><strong><i class="fas fa-closed-captioning"></i> Closed Caption:</strong> ${film.closedCaption}</p>` : ''}
                     ${film.website ? `<p><strong><i class="fas fa-globe"></i> Website:</strong> <a href="${film.website.startsWith('http') ? film.website : 'https://' + film.website}" target="_blank">${film.website}</a></p>` : ''}
-                    ${film.adoroCinema ? `<p><strong><i class="fas fa-film"></i> Adoro Cinema:</strong> <a href="${film.adoroCinema.startsWith('http') ? film.adoroCinema : 'https://' + film.adoroCinema}" target="_blank">Link</a></p>` : ''}
+                    ${film.portaCurta ? `<p><strong><i class="fas fa-film"></i> Porta Curtas:</strong> <a href="${film.portaCurta.startsWith('http') ? film.portaCurta : 'https://' + film.portaCurta}" target="_blank">Link</a></p>` : ''}
                     ${film.festivais ? `<p><strong><i class="fas fa-trophy"></i> Festivais:</strong> ${film.festivais}</p>` : ''}
                     ${film.premios ? `<p><strong><i class="fas fa-award"></i> Prêmios:</strong> ${film.premios}</p>` : ''}
                     ${film.legendasOutras ? `<p><strong><i class="fas fa-language"></i> Outras Legendas:</strong> ${film.legendasOutras}</p>` : ''}
