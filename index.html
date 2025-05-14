@@ -40,6 +40,8 @@
             box-shadow: var(--sombra);
             position: relative;
             overflow: hidden;
+            transition: var(--transicao);
+            cursor: pointer;
         }
         
         header::after {
@@ -52,18 +54,21 @@
             background: linear-gradient(90deg, var(--verde-ifmg), var(--verde-escuro));
         }
         
+        header:hover {
+            background-color: var(--vermelho);
+            transform: scale(1.01);
+        }
+        
         h1 {
             margin: 0;
-    font-size: 2.5em;
-    font-weight: 700;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
-    transition: var(--transicao);
-    cursor: pointer;
-}
-
-h1:hover {
-    color: var(--vermelho);
-    transform: scale(1.02);
+            font-size: 2.5em;
+            font-weight: 700;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+            transition: var(--transicao);
+        }
+        
+        header:hover h1 {
+            transform: scale(1.02);
         }
         
         .container {
@@ -537,20 +542,21 @@ h1:hover {
             margin-top: 30px;
             box-shadow: 0 -2px 5px rgba(0,0,0,0.1);
             transition: var(--transicao);
-    cursor: pointer;
-}
+            cursor: pointer;
+        }
 
-footer:hover {
-    background-color: var(--vermelho);
-    transform: scale(1.01);
-}
+        footer:hover {
+            background-color: var(--vermelho);
+            transform: scale(1.01);
+        }
 
-footer a {
-    transition: var(--transicao);
-}
+        footer p {
+            margin: 0;
+            transition: var(--transicao);
+        }
 
-footer:hover a {
-    color: var(--branco);
+        footer:hover p {
+            transform: scale(1.02);
         }
         
         .loading {
@@ -663,11 +669,11 @@ footer:hover a {
     </style>
 </head>
 <body>
-    <header onclick="window.location.href='https://umtremdecinemaifmg.github.io/catalogodedvds/'">
-    <div class="container">
-        <h1><i class="fas fa-film"></i> Catálogo de DVDs</h1>
-    </div>
-</header>
+    <header>
+        <div class="container">
+            <h1><i class="fas fa-film"></i> Catálogo de DVDs</h1>
+        </div>
+    </header>
     
     <div class="container">
         <!-- Primeira linha: Barra de busca -->
@@ -709,11 +715,11 @@ footer:hover a {
         </div>
     </div>
 
-    <footer onclick="window.location.href='https://umtremdecinema.wixsite.com/umtremdecinema'">
-    <div class="container">
-        <p><i class="fas fa-train"></i> UM TREM DE CINEMA 2019-2021</p>
-    </div>
-</footer>
+    <footer>
+        <div class="container">
+            <p><i class="fas fa-train"></i> UM TREM DE CINEMA 2019-2021</p>
+        </div>
+    </footer>
         
     <script>
         // Variáveis globais
@@ -1246,6 +1252,16 @@ footer:hover a {
                 if (event.target === document.getElementById('filmModal')) {
                     closeModal();
                 }
+            });
+            
+            // Configurar clique no cabeçalho
+            document.querySelector('header').addEventListener('click', function() {
+                window.location.href = 'https://umtremdecinemaifmg.github.io/catalogodedvds/';
+            });
+            
+            // Configurar clique no rodapé
+            document.querySelector('footer').addEventListener('click', function() {
+                window.location.href = 'https://umtremdecinema.wixsite.com/umtremdecinema';
             });
         }
         
