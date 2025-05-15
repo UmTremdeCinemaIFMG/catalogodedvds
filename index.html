@@ -877,28 +877,7 @@ allTag.addEventListener('click', function() {
 genreTagsContainer.innerHTML = '';
 genreTagsContainer.appendChild(allTag);
             
-            allGenres.forEach(genre => {
-                const tag = document.createElement('div');
-                tag.className = 'genre-tag';
-                tag.textContent = genre;
-                tag.dataset.genre = genre;
-                
-                if (genre === selectedGenre) {
-                    tag.classList.add('active');
-                }
-                
-                tag.addEventListener('click', function() {
-                    selectedGenre = this.dataset.genre;
-                    
-                    document.querySelectorAll('.genre-tag').forEach(t => {
-                        t.classList.remove('active');
-                    });
-                    this.classList.add('active');
-                    
-                    filterAndRenderFilms();
-                });
-                
-                genreTagsContainer.appendChild(tag);
+
             });
         }
         
