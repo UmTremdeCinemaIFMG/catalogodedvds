@@ -5,52 +5,174 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Catálogo de DVDs</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <!-- O CSS permanece exatamente o mesmo -->
     <style>
-        /* Todo o CSS anterior permanece inalterado */
+        /* Seus estilos CSS existentes */
+        :root {
+            --verde-ifmg: #009a44;
+            --verde-escuro: #007236;
+            --cinza-escuro: #333333;
+            --cinza-medio: #666666;
+            --cinza-claro: #f2f2f2;
+            --branco: #ffffff;
+            --azul: #0066cc;
+            --amarelo: #ffcc00;
+            --laranja: #ff9900;
+            --vermelho: #cc0000;
+            --preto: #000000;
+            --sombra: 0 4px 6px rgba(0, 0, 0, 0.1);
+            --transicao: all 0.3s ease;
+        }
+        
+        /* Mantenha todos os seus estilos existentes */
         /* ... */
+        
+        /* Estilos do Modal (garanta que estão presentes) */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.8);
+            overflow: auto;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        
+        .modal.show {
+            opacity: 1;
+        }
+        
+        .modal-content {
+            background-color: var(--branco);
+            margin: 5% auto;
+            padding: 30px;
+            width: 70%;
+            max-width: 800px;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+            position: relative;
+            transform: translateY(-20px);
+            transition: transform 0.3s ease;
+        }
+        
+        .modal.show .modal-content {
+            transform: translateY(0);
+        }
+        
+        .close {
+            position: absolute;
+            top: 15px;
+            right: 25px;
+            font-size: 28px;
+            font-weight: bold;
+            color: var(--cinza-medio);
+            cursor: pointer;
+            transition: color 0.2s;
+        }
+        
+        .close:hover {
+            color: var(--verde-escuro);
+        }
     </style>
 </head>
 <body>
-    <!-- O HTML permanece exatamente o mesmo até a tag <script> -->
-    <!-- ... -->
+    <header>
+        <div class="container">
+            <h1><i class="fas fa-film"></i> Catálogo de DVDs</h1>
+        </div>
+    </header>
+    
+    <div class="container">
+        <!-- Seus controles de busca e filtro -->
+        <div class="controls-row">
+            <div class="search-container">
+                <div class="search-box">
+                    <i class="fas fa-search"></i>
+                    <input type="text" id="searchInput" placeholder="Buscar filmes...">
+                </div>
+            </div>
+        </div>
+        
+        <div class="genre-filter-container">
+            <div class="genre-filter-title">
+                <i class="fas fa-filter"></i> Filtrar por gênero:
+            </div>
+            <div class="genre-tags" id="genreTags">
+                <div class="genre-tag active" data-genre="">Todos</div>
+            </div>
+        </div>
+        
+        <div id="loadingMessage" class="loading">
+            <div class="skeleton" style="width: 100%; height: 300px;"></div>
+            <div class="skeleton" style="width: 80%; height: 20px;"></div>
+        </div>
+        
+        <div class="film-grid" id="filmGrid"></div>
+        
+        <div class="pagination" id="pagination"></div>
+    </div>
+    
+    <!-- Modal - Estrutura corrigida -->
+    <div id="filmModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <div id="modalContent"></div>
+        </div>
+    </div>
 
+    <footer>
+        <div class="container">
+            <p><i class="fas fa-train"></i> UM TREM DE CINEMA 2019-2021</p>
+        </div>
+    </footer>
+        
     <script>
         // Variáveis globais
         let allFilms = [];
         let currentFilms = [];
         let currentPage = 1;
         const itemsPerPage = 20;
-        let allGenres = [];
-        let debounceTimer;
-        let selectedGenre = '';
+        let modal;
+        let modalContent;
         
-        // Função para limpar campos
-        function cleanField(value) {
-            if (!value) return '';
-            return String(value).replace(/^"|"$/g, '').trim();
+        // Inicialização quando o DOM estiver carregado
+        document.addEventListener('DOMContentLoaded', function() {
+            // Obter referências aos elementos do modal
+            modal = document.getElementById('filmModal');
+            modalContent = document.getElementById('modalContent');
+            
+            // Configurar eventos
+            setupEventListeners();
+            loadCatalogData();
+        });
+        
+        function setupEventListeners() {
+            // Fechar modal ao clicar no X
+            document.querySelector('.close').addEventListener('click', closeModal);
+            
+            // Fechar modal ao clicar fora do conteúdo
+            window.addEventListener('click', function(event) {
+                if (event.target === modal) {
+                    closeModal();
+                }
+            });
+            
+            // Evento de busca
+            document.getElementById('searchInput').addEventListener('input', filterAndRenderFilms);
         }
         
-        // Função para obter capa do DVD - MODIFICADA PARA USAR imageName E FALLBACK FIXO
-        function getDvdCover(filmData) {
-            const DEFAULT_COVER = 'capas/progdata.png';
-            
-            // Se tiver imageName definido no JSON, usa ele
-            if (filmData.imageName) {
-                return `capas/${filmData.imageName}.jpg`; // Assumindo extensão .jpg
-            }
-            
-            // Fallback fixo - não procura mais no "Nome do Programa"
-            return DEFAULT_COVER;
+        function getDvdCover(film) {
+            return film.imageName 
+                ? `capas/${film.imageName}`
+                : 'capas/progbrasil.png';
         }
         
-        // Classificação por cores - Retorna a classe CSS correspondente
         function getClassificationClass(age) {
             if (!age || age <= 0) return 'L';
-            
-            const ageNum = typeof age === 'string' ? parseInt(age) : age;
-            
-            switch(ageNum) {
+            switch(age) {
                 case 10: return 'ten';
                 case 12: return 'twelve';
                 case 14: return 'fourteen';
@@ -60,90 +182,118 @@
             }
         }
         
-        // Transformar dados do JSON - AJUSTADA PARA O NOVO FORMATO
-        function transformFilmData(originalFilm) {
-            // Tratamento especial para nota IMDB (agora é um objeto)
-            let imdbData = { votantes: '' };
-            if (originalFilm["nota imdb"] && originalFilm["nota imdb"].votantes) {
-                imdbData = { votantes: originalFilm["nota imdb"].votantes };
+        function openModal(film) {
+            if (!modal || !modalContent) {
+                console.error('Elementos do modal não encontrados!');
+                return;
             }
             
-            return {
-                title: cleanField(originalFilm["Título do filme"]),
-                director: cleanField(originalFilm["Direção"]),
-                cast: cleanField(originalFilm["Elenco"]),
-                duration: parseInt(originalFilm["Dur.(´)"]) || 0,
-                genre: cleanField(originalFilm["GEN."]),
-                year: parseInt(originalFilm["Ano"]) || 0,
-                imdb: imdbData,
-                country: cleanField(originalFilm["País"]),
-                state: cleanField(originalFilm["UF"]),
-                city: cleanField(originalFilm["cidade"]),
-                audiodescricao: cleanField(originalFilm["Audiodescrição"]),
-                closedCaption: cleanField(originalFilm["Closed Caption"]),
-                synopsis: cleanField(originalFilm["Sinopse"]),
-                tema: cleanField(originalFilm["tema (Programadora Brasil)"]),
-                tags: cleanField(originalFilm["tags"]),
-                website: cleanField(originalFilm["website"]),
-                portaCurta: cleanField(originalFilm["Porta Curta"]),
-                festivais: cleanField(originalFilm["festivais"]),
-                premios: cleanField(originalFilm["premios"]),
-                legendasOutras: cleanField(originalFilm["legendas_outras"]),
-                materialOutros: cleanField(originalFilm["material_outros"]),
-                duracaoFormato: cleanField(originalFilm["duracao FORMATO"]),
-                nossoAcervo: cleanField(originalFilm["Nosso Acervo"]),
-                pgm: parseInt(originalFilm["PGM"]) || 0,
-                filmes: parseInt(originalFilm["Filmes"]) || 0,
-                dvd: cleanField(originalFilm["Nome do Programa"]),
-                imageName: cleanField(originalFilm["imageName"]),
-                classification: parseInt(originalFilm["Classificação Indicativa POR PGM"]) || 0
-            };
-        }
-
-        // Função para criar a imagem com fallback - MODIFICADA PARA TENTAR JPG E PNG
-        function createSmartPoster(film) {
-            const img = new Image();
-            img.className = 'film-poster';
-            img.alt = film.title || 'Capa do filme';
+            const classificationClass = getClassificationClass(film.classification);
+            const classificationText = film.classification <= 0 ? 'L' : film.classification;
             
-            // Tentará carregar nesta ordem:
-            const attempts = [
-                getDvdCover(film),      // Tenta o caminho principal
-                getDvdCover(film).replace('.jpg', '.png'), // Tenta PNG se for JPG
-                'capas/progdata.png'    // Fallback obrigatório
-            ];
-
-            let currentAttempt = 0;
+            modalContent.innerHTML = `
+                <div class="modal-poster-container">
+                    <img src="${getDvdCover(film)}" alt="${film.title}" class="modal-poster" 
+                         onerror="this.src='capas/progbrasil.png'">
+                </div>
+                <h2 class="modal-title">
+                    <span class="classification ${classificationClass}">${classificationText}</span>
+                    ${film.title}
+                </h2>
+                <div class="modal-details">
+                    ${film.director ? `<p><strong><i class="fas fa-user"></i> Direção:</strong> ${film.director}</p>` : ''}
+                    ${film.cast ? `<p><strong><i class="fas fa-users"></i> Elenco:</strong> ${film.cast}</p>` : ''}
+                    ${film.duration ? `<p><strong><i class="fas fa-clock"></i> Duração:</strong> ${film.duration} min</p>` : ''}
+                    ${film.genre ? `<p><strong><i class="fas fa-tag"></i> Gênero:</strong> ${film.genre}</p>` : ''}
+                    ${film.year ? `<p><strong><i class="fas fa-calendar-alt"></i> Ano:</strong> ${film.year}</p>` : ''}
+                    ${film.imdb ? `<p><strong><i class="fab fa-imdb"></i> IMDb:</strong> ${film.imdb}</p>` : ''}
+                    ${film.dvd ? `<p><strong><i class="fas fa-compact-disc"></i> DVD:</strong> ${film.dvd}</p>` : ''}
+                </div>
+                
+                ${film.synopsis ? `
+                <div class="modal-synopsis">
+                    <h3><i class="fas fa-align-left"></i> Sinopse</h3>
+                    <p>${film.synopsis}</p>
+                </div>
+                ` : ''}
+            `;
             
-            const tryNext = () => {
-                if (currentAttempt < attempts.length) {
-                    img.src = attempts[currentAttempt++];
-                }
-            };
-
-            img.onerror = tryNext;
-            tryNext(); // Inicia o processo
-
-            return img;
+            modal.style.display = 'block';
+            setTimeout(() => modal.classList.add('show'), 10);
         }
-
-        // O restante do código JavaScript permanece exatamente o mesmo
-        // ...
         
-        // Na função openModal, atualize a linha da imagem para:
-        modalContent.innerHTML = `
-            <div class="modal-poster-container">
-                <img src="${getDvdCover(film)}" alt="${film.title}" class="modal-poster" onerror="this.src='capas/progdata.png'">
-            </div>
-            <!-- Restante do modal permanece igual -->
-            ...
-        `;
-
-        // Inicialização
-        window.addEventListener('DOMContentLoaded', function() {
-            setupEventListeners();
-            loadCatalogData();
-        });
+        function closeModal() {
+            modal.classList.remove('show');
+            setTimeout(() => {
+                modal.style.display = 'none';
+            }, 300);
+        }
+        
+        async function loadCatalogData() {
+            try {
+                const response = await fetch('catalogo.json');
+                if (!response.ok) throw new Error('Erro ao carregar o catálogo');
+                
+                const data = await response.json();
+                allFilms = data;
+                currentFilms = data;
+                
+                document.getElementById('loadingMessage').style.display = 'none';
+                renderFilms();
+                
+            } catch (error) {
+                console.error('Erro:', error);
+                document.getElementById('loadingMessage').innerHTML = `
+                    <div style="color: var(--vermelho); text-align: center;">
+                        <i class="fas fa-exclamation-triangle" style="font-size: 40px;"></i>
+                        <p>Erro ao carregar o catálogo</p>
+                        <button onclick="loadCatalogData()">Tentar novamente</button>
+                    </div>
+                `;
+            }
+        }
+        
+        function renderFilms() {
+            const filmGrid = document.getElementById('filmGrid');
+            filmGrid.innerHTML = '';
+            
+            const filmsToShow = currentFilms.slice(
+                (currentPage - 1) * itemsPerPage,
+                currentPage * itemsPerPage
+            );
+            
+            filmsToShow.forEach(film => {
+                const filmCard = document.createElement('div');
+                filmCard.className = 'film-card';
+                filmCard.innerHTML = `
+                    <div class="film-poster-container">
+                        <img src="${getDvdCover(film)}" alt="${film.title}" 
+                             class="film-poster" onerror="this.src='capas/progbrasil.png'">
+                    </div>
+                    <div class="film-info">
+                        <h3 class="film-title">${film.title}</h3>
+                        <div class="film-meta">
+                            <span>${film.duration || ''} min</span>
+                            <span>${film.year || ''}</span>
+                        </div>
+                    </div>
+                `;
+                
+                filmCard.addEventListener('click', () => openModal(film));
+                filmGrid.appendChild(filmCard);
+            });
+        }
+        
+        function filterAndRenderFilms() {
+            const searchTerm = document.getElementById('searchInput').value.toLowerCase();
+            currentFilms = allFilms.filter(film => 
+                film.title.toLowerCase().includes(searchTerm) ||
+                (film.director && film.director.toLowerCase().includes(searchTerm))
+            );
+            
+            currentPage = 1;
+            renderFilms();
+        }
     </script>
 </body>
 </html>
