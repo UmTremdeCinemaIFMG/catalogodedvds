@@ -856,9 +856,26 @@
         function renderGenreTags() {
             const genreTagsContainer = document.getElementById('genreTags');
             
-            const allTag = genreTagsContainer.querySelector('[data-genre=""]');
-            genreTagsContainer.innerHTML = '';
-            genreTagsContainer.appendChild(allTag);
+            const allTag = document.createElement('div');
+allTag.className = 'genre-tag active'; // Sempre começa ativo
+allTag.textContent = 'Todos';
+allTag.dataset.genre = '';
+allTag.addEventListener('click', function() {
+    // Apenas reseta o filtro de gênero
+    selectedGenre = '';
+    
+    // Atualiza a aparência (ativa apenas o "Todos")
+    document.querySelectorAll('.genre-tag').forEach(t => {
+        t.classList.remove('active');
+    });
+    this.classList.add('active');
+    
+    // Refaz a filtragem (mantendo a busca se houver)
+    filterAndRenderFilms();
+});
+
+genreTagsContainer.innerHTML = '';
+genreTagsContainer.appendChild(allTag);
             
             allGenres.forEach(genre => {
                 const tag = document.createElement('div');
