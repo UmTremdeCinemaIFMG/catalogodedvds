@@ -1168,9 +1168,9 @@ document.getElementById('sortSelect').addEventListener('change', function() {
         // Resetar filtros
         function resetFilters() {
            document.getElementById('searchInput').value = '';
+    document.getElementById('sortSelect').value = '';
     selectedGenre = '';
     currentSort = '';
-    document.getElementById('sortSelect').value = '';
     
     document.querySelectorAll('.genre-tag').forEach(tag => {
         tag.classList.remove('active');
