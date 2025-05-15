@@ -738,14 +738,16 @@
         
         // Função para obter capa do DVD - MODIFICADA para priorizar imageName
         function getDvdCover(filmData) {
+            console.log("Buscando capa para:", filmData.imageName);
             const DEFAULT_COVER = 'capas/progbrasil.png';
             
             // 1. Se tiver imageName definido no JSON, tenta carregar com .jpg e .png
             if (filmData.imageName) {
                 // Remove qualquer extensão que possa estar no imageName (por segurança)
                 const baseName = filmData.imageName.replace(/\.(jpg|jpeg|png|gif)$/i, '');
-                return `capas/${baseName}.jpg`; // Primeiro tenta com .jpg
-                // Se não encontrar, o onerror vai tentar com .png
+                const imagePath = `capas/${baseName}.jpg`;
+        console.log("Tentando carregar:", imagePath); // Adicione esta linha
+        return imagePath;
             }
             
             // 2. Se não tiver imageName, retorna a capa padrão
