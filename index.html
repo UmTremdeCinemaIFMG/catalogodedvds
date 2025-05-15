@@ -738,26 +738,16 @@
         
         // Função para obter capa do DVD - MODIFICADA para priorizar imageName
         function getDvdCover(filmData) {
-            console.log("Buscando capa para:", filmData.imageName);
             const DEFAULT_COVER = 'capas/progbrasil.png';
             
-            // 1. Se tiver imageName definido no JSON, tenta carregar com .jpg e .png
+            // 1. Se tiver imageName definido no JSON, usa ele
             if (filmData.imageName) {
-                // Remove qualquer extensão que possa estar no imageName (por segurança)
-                const baseName = filmData.imageName.replace(/\.(jpg|jpeg|png|gif)$/i, '');
-                const imagePath = `capas/${baseName}.jpg`;
-        console.log("Tentando carregar:", imagePath); // Adicione esta linha
-        return imagePath;
+                return `capas/${filmData.imageName}`;
             }
             
             // 2. Se não tiver imageName, retorna a capa padrão
             return DEFAULT_COVER;
         }
-
-
-
-
-        
         
         // Classificação por cores - Retorna a classe CSS correspondente
         function getClassificationClass(age) {
@@ -778,7 +768,6 @@
         // Transformar dados do JSON
         function transformFilmData(originalFilm) {
             // Tratamento especial para nota IMDB
-            console.log("Original imageName:", originalFilm["imageName"]);
             let imdbData = { votantes: '' };
             if (originalFilm["nota imdb/votantes"]) {
                 const [nota, votantes] = String(originalFilm["nota imdb/votantes"]).split('/');
@@ -965,28 +954,11 @@
             img.className = 'film-poster';
             img.alt = film.title || 'Capa do filme';
             
-            // Primeiro tenta com .jpg
+            // Tenta carregar a imagem usando imageName ou fallback padrão
             img.src = getDvdCover(film);
-            
-            // Se der erro, tenta com .png antes de ir para o fallback padrão
             img.onerror = function() {
-                console.error("Falha ao carregar:", this.src);
-                if (film.imageName) {
-                    const baseName = film.imageName.replace(/\.(jpg|jpeg|png|gif)$/i, '');
-                    const fallbackPath = `capas/${baseName}.png`;
-            console.log("Tentando fallback PNG:", fallbackPath); // Adicione esta linha
-            this.src = fallbackPath;
-                    this.onerror = function() {
-                        console.error("Fallback também falhou, usando padrão"); // Adicione esta linha
-                        this.src = 'capas/progbrasil.png'; // Fallback final
-                    };
-                } else {
-                    this.src = 'capas/progbrasil.png'; // Fallback direto se não tiver imageName
-                }
+                this.src = 'capas/progbrasil.png'; // Fallback obrigatório
             };
-
-            img.src = getDvdCover(film);
-    console.log("Imagem definida como:", img.src); // Adicione esta linha
 
             return img;
         }
