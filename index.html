@@ -776,6 +776,7 @@
         // Transformar dados do JSON
         function transformFilmData(originalFilm) {
             // Tratamento especial para nota IMDB
+            console.log("Original imageName:", originalFilm["imageName"]);
             let imdbData = { votantes: '' };
             if (originalFilm["nota imdb/votantes"]) {
                 const [nota, votantes] = String(originalFilm["nota imdb/votantes"]).split('/');
