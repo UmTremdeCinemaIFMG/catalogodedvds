@@ -970,16 +970,23 @@
             
             // Se der erro, tenta com .png antes de ir para o fallback padrão
             img.onerror = function() {
+                console.error("Falha ao carregar:", this.src);
                 if (film.imageName) {
                     const baseName = film.imageName.replace(/\.(jpg|jpeg|png|gif)$/i, '');
-                    this.src = `capas/${baseName}.png`;
+                    const fallbackPath = `capas/${baseName}.png`;
+            console.log("Tentando fallback PNG:", fallbackPath); // Adicione esta linha
+            this.src = fallbackPath;
                     this.onerror = function() {
+                        console.error("Fallback também falhou, usando padrão"); // Adicione esta linha
                         this.src = 'capas/progbrasil.png'; // Fallback final
                     };
                 } else {
                     this.src = 'capas/progbrasil.png'; // Fallback direto se não tiver imageName
                 }
             };
+
+            img.src = getDvdCover(film);
+    console.log("Imagem definida como:", img.src); // Adicione esta linha
 
             return img;
         }
