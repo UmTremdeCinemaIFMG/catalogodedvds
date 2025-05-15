@@ -793,6 +793,7 @@
     <script>
         // Variáveis globais
         let currentSort = '';
+        
         let allFilms = [];
         let currentFilms = [];
         let currentPage = 1;
@@ -898,6 +899,15 @@
                 
                 const data = await response.json();
                 allFilms = data.map(transformFilmData);
+                currentFilms = [...allFilms]; // Inicializa currentFilms
+
+                // Atualiza contador
+        document.getElementById('resultsCount').textContent = currentFilms.length;
+                // Renderiza
+        renderPagination();
+        renderFilms();
+
+
                 
                 // Extrai todos os gêneros únicos
                 allGenres = [...new Set(allFilms.map(film => film.genre).filter(Boolean))].sort();
@@ -958,31 +968,30 @@ function filterAndRenderFilms() {
     debounceTimer = setTimeout(() => {
         const searchTerm = document.getElementById('searchInput').value.toLowerCase();
         
-        // 1. Filtra por busca (se houver)
-        currentFilms = allFilms.filter(film => 
-            !searchTerm || // Se não houver termo de busca, mostra tudo
-            film.title.toLowerCase().includes(searchTerm) ||
-            (film.director && film.director.toLowerCase().includes(searchTerm)) ||
-            (film.cast && film.cast.toLowerCase().includes(searchTerm)) ||
-            (film.synopsis && film.synopsis.toLowerCase().includes(searchTerm)) ||
-            (film.tema && film.tema.toLowerCase().includes(searchTerm)) ||
-            (film.tags && film.tags.toLowerCase().includes(searchTerm)) ||
-            (film.dvd && film.dvd.toLowerCase().includes(searchTerm))
-        );
+        // 1. Começa com todos os filmes
+        currentFilms = [...allFilms]; // Usamos spread para criar uma cópia
         
-        // 2. Filtra por gênero (APENAS se um gênero específico estiver selecionado)
+        // 2. Aplica filtro de busca (se houver termo)
+        if (searchTerm) {
+            currentFilms = currentFilms.filter(film => 
+                (film.title && film.title.toLowerCase().includes(searchTerm)) ||
+                (film.director && film.director.toLowerCase().includes(searchTerm)) ||
+                (film.cast && film.cast.toLowerCase().includes(searchTerm)) ||
+                (film.synopsis && film.synopsis.toLowerCase().includes(searchTerm))
+            );
+        }
+        
+        // 3. Aplica filtro de gênero (se selecionado)
         if (selectedGenre) {
             currentFilms = currentFilms.filter(film => 
                 film.genre && film.genre === selectedGenre
             );
         }
         
-        // 3. Aplica ordenação
-        applySorting();
-        
-        // Atualiza a contagem
+        // 4. Atualiza contador (isso já estava funcionando)
         document.getElementById('resultsCount').textContent = currentFilms.length;
         
+        // 5. Renderiza
         currentPage = 1;
         renderPagination();
         renderFilms();
@@ -991,9 +1000,9 @@ function filterAndRenderFilms() {
 
 // Adicione esta nova função para ordenação:
 function applySorting() {
-    if (currentSort === 'title-asc') {
+   if (currentSort === 'asc') {
         currentFilms.sort((a, b) => a.title.localeCompare(b.title));
-    } else if (currentSort === 'title-desc') {
+    } else if (currentSort === 'desc') {
         currentFilms.sort((a, b) => b.title.localeCompare(a.title));
     }
     // Se não houver ordenação selecionada, mantém a ordem original
@@ -1001,8 +1010,10 @@ function applySorting() {
 
 // Adicione este event listener no final da sua função setupEventListeners:
 document.getElementById('sortSelect').addEventListener('change', function() {
+    // Apenas atualiza a variável e refiltra
     currentSort = this.value;
-    filterAndRenderFilms();
+    applySorting(); // Chama a função de ordenação
+    renderFilms();  // Re-renderiza sem refiltrar
 });
         
         // Criar controles de navegação para imagens horizontais
