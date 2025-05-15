@@ -41,7 +41,6 @@
             position: relative;
             overflow: hidden;
             transition: var(--transicao);
-            cursor: pointer;
         }
         
         header::after {
@@ -54,10 +53,10 @@
             background: linear-gradient(90deg, var(--verde-ifmg), var(--verde-escuro));
         }
         
-        header:hover {
-            background-color: var(--vermelho);
-            transform: scale(1.01);
-        }
+       //header:hover {
+          //  background-color: var(--vermelho);
+         //   transform: scale(1.01);
+       // }
         
         h1 {
             margin: 0;
@@ -67,9 +66,9 @@
             transition: var(--transicao);
         }
         
-        header:hover h1 {
-            transform: scale(1.02);
-        }
+      //  header:hover h1 {
+      //      transform: scale(1.02);
+     //   }
         
         .container {
             max-width: 1200px;
@@ -1340,9 +1339,9 @@ genreTagsContainer.appendChild(allTag);
             });
             
             // Configurar clique no cabeçalho
-            document.querySelector('header').addEventListener('click', function() {
-                window.location.href = 'https://umtremdecinemaifmg.github.io/catalogodedvds/';
-            });
+ //           document.querySelector('header').addEventListener('click', function() {
+//                window.location.href = 'https://umtremdecinemaifmg.github.io/catalogodedvds/';
+ //           });
             
             // Configurar clique no rodapé
             document.querySelector('footer').addEventListener('click', function() {
