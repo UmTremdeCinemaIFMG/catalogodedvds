@@ -990,6 +990,7 @@
             
             // Tenta carregar a imagem usando imageName ou fallback padrão
             img.src = getDvdCover(film);
+             console.log("Imagem definida como:", img.src); // Adicione esta linha
             img.onerror = function() {
                 this.src = 'capas/progbrasil.png'; // Fallback obrigatório
             };
