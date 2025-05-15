@@ -1220,6 +1220,7 @@
                 if (currentPage > 1) {
                     currentPage--;
                     renderFilms();
+                    renderPagination();
                     window.scrollTo({top: 0, behavior: 'smooth'});
                 }
             });
@@ -1241,6 +1242,7 @@
                 firstButton.addEventListener('click', () => {
                     currentPage = 1;
                     renderFilms();
+                    renderPagination();
                     window.scrollTo({top: 0, behavior: 'smooth'});
                 });
                 pagination.appendChild(firstButton);
@@ -1256,10 +1258,13 @@
             for (let i = startPage; i <= endPage; i++) {
                 const pageButton = document.createElement('button');
                 pageButton.textContent = i;
-                if (i === currentPage) pageButton.classList.add('active');
+                if (i === currentPage) {
+            pageButton.classList.add('active');
+        }
                 pageButton.addEventListener('click', () => {
                     currentPage = i;
                     renderFilms();
+                    renderPagination();
                     window.scrollTo({top: 0, behavior: 'smooth'});
                 });
                 pagination.appendChild(pageButton);
@@ -1278,6 +1283,7 @@
                 lastButton.addEventListener('click', () => {
                     currentPage = totalPages;
                     renderFilms();
+                    renderPagination();
                     window.scrollTo({top: 0, behavior: 'smooth'});
                 });
                 pagination.appendChild(lastButton);
@@ -1291,6 +1297,7 @@
                 if (currentPage < totalPages) {
                     currentPage++;
                     renderFilms();
+                    renderPagination();
                     window.scrollTo({top: 0, behavior: 'smooth'});
                 }
             });
