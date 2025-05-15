@@ -1169,11 +1169,13 @@ document.getElementById('sortSelect').addEventListener('change', function() {
         function resetFilters() {
             document.getElementById('searchInput').value = '';
             selectedGenre = '';
-            
-            document.querySelectorAll('.genre-tag').forEach(tag => {
-                tag.classList.remove('active');
-                if (tag.dataset.genre === '') {
-                    tag.classList.add('active');
+            currentSort = '';
+    document.getElementById('sortSelect').value = '';
+    
+    document.querySelectorAll('.genre-tag').forEach(tag => {
+        tag.classList.remove('active');
+        if (tag.dataset.genre === '') {
+            tag.classList.add('active');
                 }
             });
             
