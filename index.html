@@ -901,7 +901,7 @@
                         (film.tags && film.tags.toLowerCase().includes(searchTerm)) ||
                         (film.dvd && film.dvd.toLowerCase().includes(searchTerm));
                     
-                    const matchesGenre = selectedGenre === '' || film.genre === selectedGenre;
+                   const matchesGenre = selectedGenre === '' || (film.genre && film.genre === selectedGenre);
                     
                     return matchesSearch && matchesGenre;
                 });
