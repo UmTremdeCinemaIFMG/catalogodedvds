@@ -691,7 +691,7 @@
                 <i class="fas fa-filter"></i> Filtrar por gênero:
             </div>
             <div class="genre-tags" id="genreTags">
-                <div class="genre-tag active" data-genre="all">Todos</div>
+                <div class="genre-tag active" data-genre="">Todos</div>
                 <!-- Tags de gênero serão adicionadas dinamicamente aqui -->
             </div>
         </div>
@@ -728,7 +728,7 @@
         const itemsPerPage = 20;
         let allGenres = [];
         let debounceTimer;
-        let selectedGenre = 'all';
+        let selectedGenre = '';
         
         // Função para limpar campos
         function cleanField(value) {
@@ -746,9 +746,9 @@
             }
             
             // 2. Fallback baseado no Nome do Programa (se imageName não existir)
-            if (!filmData.dvd) return DEFAULT_COVER;
+            if (!filmData["Nome do Programa"]) return DEFAULT_COVER;
             
-            const standardizedName = filmData.dvd
+            const standardizedName = filmData["Nome do Programa"]
                 .toLowerCase()
                 .normalize("NFD").replace(/[\u0300-\u036f]/g, "")
                 .replace(/[^\w\s-]/g, "")
@@ -813,7 +813,7 @@
                 pgm: parseInt(originalFilm["PGM"]) || 0,
                 filmes: parseInt(originalFilm["Filmes"]) || 0,
                 dvd: cleanField(originalFilm["Nome do Programa"]),
-                imageName: cleanField(originalFilm["imageName"]),
+                imageName: cleanField(originalFilm["imageName"]), // Campo novo
                 classification: parseInt(originalFilm["Classificação Indicativa POR PGM"]) || 0
             };
         }
@@ -823,21 +823,20 @@
             try {
                 await new Promise(resolve => setTimeout(resolve, 800));
                 
-                const response = await fetch('catalogo.json');
+                const response = await fetch('catalogo.json'); // Altere para o nome do seu arquivo JSON
                 if (!response.ok) throw new Error('Erro ao carregar o arquivo');
                 
                 const data = await response.json();
                 allFilms = data.map(transformFilmData);
                 
                 // Extrai todos os gêneros únicos
-                allGenres = [...new Set(allFilms.map(film => film.genre).filter(Boolean)].sort();
+                allGenres = [...new Set(allFilms.map(film => film.genre).filter(Boolean))].sort();
                 
                 renderGenreTags();
                 
                 currentFilms = allFilms;
                 document.getElementById('loadingMessage').style.display = 'none';
                 renderFilms();
-                renderPagination(); // Renderiza a paginação imediatamente
                 
             } catch (error) {
                 console.error('Erro:', error);
@@ -858,7 +857,7 @@
         function renderGenreTags() {
             const genreTagsContainer = document.getElementById('genreTags');
             
-            const allTag = genreTagsContainer.querySelector('[data-genre="all"]');
+            const allTag = genreTagsContainer.querySelector('[data-genre=""]');
             genreTagsContainer.innerHTML = '';
             genreTagsContainer.appendChild(allTag);
             
@@ -903,7 +902,7 @@
                         (film.tags && film.tags.toLowerCase().includes(searchTerm)) ||
                         (film.dvd && film.dvd.toLowerCase().includes(searchTerm));
                     
-                    const matchesGenre = selectedGenre === 'all' || film.genre === selectedGenre;
+                    const matchesGenre = selectedGenre === '' || film.genre === selectedGenre;
                     
                     return matchesSearch && matchesGenre;
                 });
@@ -1071,11 +1070,11 @@
         // Resetar filtros
         function resetFilters() {
             document.getElementById('searchInput').value = '';
-            selectedGenre = 'all';
+            selectedGenre = '';
             
             document.querySelectorAll('.genre-tag').forEach(tag => {
                 tag.classList.remove('active');
-                if (tag.dataset.genre === 'all') {
+                if (tag.dataset.genre === '') {
                     tag.classList.add('active');
                 }
             });
