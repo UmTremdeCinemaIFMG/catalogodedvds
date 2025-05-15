@@ -891,26 +891,33 @@
     debounceTimer = setTimeout(() => {
         const searchTerm = document.getElementById('searchInput').value.toLowerCase();
         
-        currentFilms = allFilms.filter(film => {
-            const matchesSearch = 
+        // Primeiro filtramos pela busca (se houver termo de busca)
+        let filteredFilms = allFilms;
+        if (searchTerm) {
+            filteredFilms = allFilms.filter(film => 
                 film.title.toLowerCase().includes(searchTerm) ||
                 (film.director && film.director.toLowerCase().includes(searchTerm)) ||
                 (film.cast && film.cast.toLowerCase().includes(searchTerm)) ||
                 (film.synopsis && film.synopsis.toLowerCase().includes(searchTerm)) ||
                 (film.tema && film.tema.toLowerCase().includes(searchTerm)) ||
                 (film.tags && film.tags.toLowerCase().includes(searchTerm)) ||
-                (film.dvd && film.dvd.toLowerCase().includes(searchTerm));
-            
-            // Corrigido: verifica se selectedGenre é vazio OU se o gênero do filme corresponde
-            const matchesGenre = selectedGenre === '' || (film.genre && film.genre === selectedGenre);
-            
-            return matchesSearch && matchesGenre;
-        });
+                (film.dvd && film.dvd.toLowerCase().includes(searchTerm))
+            );
+        }
         
+        // Depois filtramos por gênero (se não for "Todos")
+        if (selectedGenre && selectedGenre !== "") {
+            filteredFilms = filteredFilms.filter(film => 
+                film.genre && film.genre === selectedGenre
+            );
+        }
+        
+        currentFilms = filteredFilms;
         currentPage = 1;
         renderPagination();
         renderFilms();
-    }, 300);
+    }, 300);           
+    
         }
         
         // Criar controles de navegação para imagens horizontais
