@@ -117,44 +117,6 @@
             color: var(--cinza-medio);
         }
         
-        .sort-container {
-            min-width: 250px;
-        }
-        
-        .sort-select {
-            width: 100%;
-            padding: 12px 15px;
-            border: 1px solid var(--cinza-medio);
-            border-radius: 6px;
-            font-size: 16px;
-            transition: var(--transicao);
-            box-shadow: inset 0 1px 3px rgba(0,0,0,0.1);
-            background-color: var(--branco);
-            cursor: pointer;
-        }
-        
-        .sort-select:focus {
-            border-color: var(--verde-ifmg);
-            outline: none;
-            box-shadow: 0 0 0 3px rgba(0, 154, 68, 0.2);
-        }
-        
-        .results-count {
-            background-color: var(--branco);
-            padding: 12px 15px;
-            border-radius: 6px;
-            font-size: 16px;
-            box-shadow: var(--sombra);
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            min-width: 200px;
-        }
-        
-        .results-count i {
-            color: var(--verde-ifmg);
-        }
-        
         .genre-filter-container {
             background-color: var(--branco);
             padding: 15px;
@@ -702,15 +664,6 @@
                 padding: 6px 8px;
                 min-width: 30px;
             }
-            
-            .controls-row {
-                flex-direction: column;
-            }
-            
-            .results-count {
-                min-width: auto;
-                justify-content: center;
-            }
         }
     </style>
 </head>
@@ -722,29 +675,13 @@
     </header>
     
     <div class="container">
-        <!-- Primeira linha: Barra de busca, ordenação e contagem -->
+        <!-- Primeira linha: Barra de busca -->
         <div class="controls-row">
             <div class="search-container">
                 <div class="search-box">
                     <i class="fas fa-search"></i>
                     <input type="text" id="searchInput" placeholder="Buscar filmes por título, diretor, elenco, sinopse...">
                 </div>
-            </div>
-            
-            <div class="sort-container">
-                <select id="sortSelect" class="sort-select">
-                    <option value="title-asc">Ordenar por: Título (A-Z)</option>
-                    <option value="title-desc">Ordenar por: Título (Z-A)</option>
-                    <option value="year-asc">Ordenar por: Ano (mais antigo)</option>
-                    <option value="year-desc">Ordenar por: Ano (mais recente)</option>
-                    <option value="duration-asc">Ordenar por: Duração (curta)</option>
-                    <option value="duration-desc">Ordenar por: Duração (longa)</option>
-                </select>
-            </div>
-            
-            <div class="results-count">
-                <i class="fas fa-film"></i>
-                <span id="resultsCount">0 filmes</span>
             </div>
         </div>
         
@@ -792,7 +729,6 @@
         let allGenres = [];
         let debounceTimer;
         let selectedGenre = '';
-        let currentSort = 'title-asc';
         
         // Função para limpar campos
         function cleanField(value) {
@@ -810,13 +746,18 @@
                 // Remove qualquer extensão que possa estar no imageName (por segurança)
                 const baseName = filmData.imageName.replace(/\.(jpg|jpeg|png|gif)$/i, '');
                 const imagePath = `capas/${baseName}.jpg`;
-                console.log("Tentando carregar:", imagePath);
-                return imagePath;
+        console.log("Tentando carregar:", imagePath); // Adicione esta linha
+        return imagePath;
             }
             
             // 2. Se não tiver imageName, retorna a capa padrão
             return DEFAULT_COVER;
         }
+
+
+
+
+        
         
         // Classificação por cores - Retorna a classe CSS correspondente
         function getClassificationClass(age) {
@@ -876,47 +817,6 @@
             };
         }
         
-        // Função para ordenar os filmes
-        function sortFilms(films, sortOption) {
-            const [field, direction] = sortOption.split('-');
-            
-            return [...films].sort((a, b) => {
-                let valueA, valueB;
-                
-                switch(field) {
-                    case 'title':
-                        valueA = a.title.toLowerCase();
-                        valueB = b.title.toLowerCase();
-                        break;
-                    case 'year':
-                        valueA = a.year || 0;
-                        valueB = b.year || 0;
-                        break;
-                    case 'duration':
-                        valueA = a.duration || 0;
-                        valueB = b.duration || 0;
-                        break;
-                    default:
-                        valueA = a.title.toLowerCase();
-                        valueB = b.title.toLowerCase();
-                }
-                
-                if (valueA < valueB) {
-                    return direction === 'asc' ? -1 : 1;
-                }
-                if (valueA > valueB) {
-                    return direction === 'asc' ? 1 : -1;
-                }
-                return 0;
-            });
-        }
-        
-        // Atualizar contagem de resultados
-        function updateResultsCount(count) {
-            const countElement = document.getElementById('resultsCount');
-            countElement.textContent = `${count} ${count === 1 ? 'filme' : 'filmes'}`;
-        }
-        
         // Carregar dados do JSON com skeleton loading
         async function loadCatalogData() {
             try {
@@ -929,13 +829,12 @@
                 allFilms = data.map(transformFilmData);
                 
                 // Extrai todos os gêneros únicos
-                allGenres = [...new Set(allFilms.map(film => film.genre).filter(Boolean)].sort();
+                allGenres = [...new Set(allFilms.map(film => film.genre).filter(Boolean))].sort();
                 
                 renderGenreTags();
                 
-                currentFilms = sortFilms(allFilms, currentSort);
+                currentFilms = allFilms;
                 document.getElementById('loadingMessage').style.display = 'none';
-                updateResultsCount(currentFilms.length);
                 renderFilms();
                 
             } catch (error) {
@@ -1007,11 +906,7 @@
                     return matchesSearch && matchesGenre;
                 });
                 
-                // Aplicar ordenação
-                currentFilms = sortFilms(currentFilms, currentSort);
-                
                 currentPage = 1;
-                updateResultsCount(currentFilms.length);
                 renderPagination();
                 renderFilms();
             }, 300);
@@ -1079,10 +974,10 @@
                 if (film.imageName) {
                     const baseName = film.imageName.replace(/\.(jpg|jpeg|png|gif)$/i, '');
                     const fallbackPath = `capas/${baseName}.png`;
-                    console.log("Tentando fallback PNG:", fallbackPath);
-                    this.src = fallbackPath;
+            console.log("Tentando fallback PNG:", fallbackPath); // Adicione esta linha
+            this.src = fallbackPath;
                     this.onerror = function() {
-                        console.error("Fallback também falhou, usando padrão");
+                        console.error("Fallback também falhou, usando padrão"); // Adicione esta linha
                         this.src = 'capas/progbrasil.png'; // Fallback final
                     };
                 } else {
@@ -1091,7 +986,7 @@
             };
 
             img.src = getDvdCover(film);
-            console.log("Imagem definida como:", img.src);
+    console.log("Imagem definida como:", img.src); // Adicione esta linha
 
             return img;
         }
@@ -1181,8 +1076,6 @@
         function resetFilters() {
             document.getElementById('searchInput').value = '';
             selectedGenre = '';
-            document.getElementById('sortSelect').value = 'title-asc';
-            currentSort = 'title-asc';
             
             document.querySelectorAll('.genre-tag').forEach(tag => {
                 tag.classList.remove('active');
@@ -1406,14 +1299,6 @@
         // Configurar eventos
         function setupEventListeners() {
             document.getElementById('searchInput').addEventListener('input', filterAndRenderFilms);
-            
-            document.getElementById('sortSelect').addEventListener('change', function() {
-                currentSort = this.value;
-                currentFilms = sortFilms(currentFilms, currentSort);
-                currentPage = 1;
-                renderFilms();
-                renderPagination();
-            });
             
             document.querySelector('.close').addEventListener('click', closeModal);
             
