@@ -1167,19 +1167,19 @@ document.getElementById('sortSelect').addEventListener('change', function() {
         
         // Resetar filtros
         function resetFilters() {
-            document.getElementById('searchInput').value = '';
-            selectedGenre = '';
-            currentSort = '';
+           document.getElementById('searchInput').value = '';
+    selectedGenre = '';
+    currentSort = '';
     document.getElementById('sortSelect').value = '';
     
     document.querySelectorAll('.genre-tag').forEach(tag => {
         tag.classList.remove('active');
         if (tag.dataset.genre === '') {
             tag.classList.add('active');
-                }
-            });
-            
-            filterAndRenderFilms();
+        }
+    });
+    
+    filterAndRenderFilms();
         }
         
         // Criar lista de temas a partir dos campos tema e tags
