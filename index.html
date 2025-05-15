@@ -736,7 +736,7 @@
             return String(value).replace(/^"|"$/g, '').trim();
         }
         
-        // Função para obter capa do DVD
+        // Função para obter capa do DVD - MODIFICADA para priorizar imageName
         function getDvdCover(filmData) {
             const DEFAULT_COVER = 'capas/progbrasil.png';
             
@@ -745,20 +745,8 @@
                 return `capas/${filmData.imageName}`;
             }
             
-            // 2. Fallback baseado no Nome do Programa (se imageName não existir)
-            if (!filmData["Nome do Programa"]) return DEFAULT_COVER;
-            
-            const standardizedName = filmData["Nome do Programa"]
-                .toLowerCase()
-                .normalize("NFD").replace(/[\u0300-\u036f]/g, "")
-                .replace(/[^\w\s-]/g, "")
-                .replace(/\s+/g, "_")
-                .replace(/-+/g, "_")
-                .replace(/_+/g, "_")
-                .replace(/\.{3,}/g, "")
-                .trim() + ".png";
-                
-            return `capas/${standardizedName}`;
+            // 2. Se não tiver imageName, retorna a capa padrão
+            return DEFAULT_COVER;
         }
         
         // Classificação por cores - Retorna a classe CSS correspondente
@@ -813,7 +801,7 @@
                 pgm: parseInt(originalFilm["PGM"]) || 0,
                 filmes: parseInt(originalFilm["Filmes"]) || 0,
                 dvd: cleanField(originalFilm["Nome do Programa"]),
-                imageName: cleanField(originalFilm["imageName"]), // Campo novo
+                imageName: cleanField(originalFilm["imageName"]), // Campo usado para buscar a imagem
                 classification: parseInt(originalFilm["Classificação Indicativa POR PGM"]) || 0
             };
         }
@@ -960,28 +948,17 @@
             }, 50);
         }
         
-        // Função para criar a imagem com fallback
+        // Função para criar a imagem com fallback - MODIFICADA para usar apenas imageName ou fallback padrão
         function createSmartPoster(film) {
             const img = new Image();
             img.className = 'film-poster';
             img.alt = film.title || 'Capa do filme';
             
-            // Tentará carregar nesta ordem:
-            const attempts = [
-                getDvdCover(film),      // Usa imageName ou nome padronizado
-                'capas/progbrasil.png'  // Fallback obrigatório
-            ];
-
-            let currentAttempt = 0;
-            
-            const tryNext = () => {
-                if (currentAttempt < attempts.length) {
-                    img.src = attempts[currentAttempt++];
-                }
+            // Tenta carregar a imagem usando imageName ou fallback padrão
+            img.src = getDvdCover(film);
+            img.onerror = function() {
+                this.src = 'capas/progbrasil.png'; // Fallback obrigatório
             };
-
-            img.onerror = tryNext;
-            tryNext(); // Inicia o processo
 
             return img;
         }
