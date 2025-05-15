@@ -894,8 +894,9 @@
                 }
                 
                 tag.addEventListener('click', function() {
-                    selectedGenre = this.dataset.genre;
-                    
+                    selectedGenre = '';
+                    document.getElementById('searchInput').value = ''; // Limpa a busca
+    
                     document.querySelectorAll('.genre-tag').forEach(t => {
                         t.classList.remove('active');
                     });
