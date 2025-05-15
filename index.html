@@ -887,29 +887,30 @@
         
         // Filtrar filmes com debounce para melhor performance
         function filterAndRenderFilms() {
-            clearTimeout(debounceTimer);
-            debounceTimer = setTimeout(() => {
-                const searchTerm = document.getElementById('searchInput').value.toLowerCase();
-                
-                currentFilms = allFilms.filter(film => {
-                    const matchesSearch = 
-                        film.title.toLowerCase().includes(searchTerm) ||
-                        (film.director && film.director.toLowerCase().includes(searchTerm)) ||
-                        (film.cast && film.cast.toLowerCase().includes(searchTerm)) ||
-                        (film.synopsis && film.synopsis.toLowerCase().includes(searchTerm)) ||
-                        (film.tema && film.tema.toLowerCase().includes(searchTerm)) ||
-                        (film.tags && film.tags.toLowerCase().includes(searchTerm)) ||
-                        (film.dvd && film.dvd.toLowerCase().includes(searchTerm));
-                    
-                   const matchesGenre = selectedGenre === '' || (film.genre && film.genre === selectedGenre);
-                    
-                    return matchesSearch && matchesGenre;
-                });
-                
-                currentPage = 1;
-                renderPagination();
-                renderFilms();
-            }, 300);
+           clearTimeout(debounceTimer);
+    debounceTimer = setTimeout(() => {
+        const searchTerm = document.getElementById('searchInput').value.toLowerCase();
+        
+        currentFilms = allFilms.filter(film => {
+            const matchesSearch = 
+                film.title.toLowerCase().includes(searchTerm) ||
+                (film.director && film.director.toLowerCase().includes(searchTerm)) ||
+                (film.cast && film.cast.toLowerCase().includes(searchTerm)) ||
+                (film.synopsis && film.synopsis.toLowerCase().includes(searchTerm)) ||
+                (film.tema && film.tema.toLowerCase().includes(searchTerm)) ||
+                (film.tags && film.tags.toLowerCase().includes(searchTerm)) ||
+                (film.dvd && film.dvd.toLowerCase().includes(searchTerm));
+            
+            // Corrigido: verifica se selectedGenre é vazio OU se o gênero do filme corresponde
+            const matchesGenre = selectedGenre === '' || (film.genre && film.genre === selectedGenre);
+            
+            return matchesSearch && matchesGenre;
+        });
+        
+        currentPage = 1;
+        renderPagination();
+        renderFilms();
+    }, 300);
         }
         
         // Criar controles de navegação para imagens horizontais
