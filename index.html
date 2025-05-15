@@ -860,7 +860,7 @@
     <script>
 
 
-// Variáveis globais
+// VARIÁVEIS GLOBAIS
 let allFilms = [];
 let currentFilms = [];
 let currentPage = 1;
@@ -870,168 +870,125 @@ let selectedGenre = '';
 let currentSort = '';
 let debounceTimer;
 
-// Função para limpar campos
-function cleanField(value) {
-    if (!value) return '';
-    return String(value).replace(/^"|"$/g, '').trim();
-}
-
-// Transformar dados do JSON
-function transformFilmData(originalFilm) {
-    return {
-        title: cleanField(originalFilm["Título do filme"]),
-        director: cleanField(originalFilm["Direção"]),
-        cast: cleanField(originalFilm["Elenco"]),
-        duration: parseInt(originalFilm["Dur.(´)"]) || 0,
-        genre: cleanField(originalFilm["GEN."]),
-        year: parseInt(originalFilm["Ano"]) || 0,
-        country: cleanField(originalFilm["País"]),
-        synopsis: cleanField(originalFilm["Sinopse"]),
-        tema: cleanField(originalFilm["tema (Programadora Brasil)"]),
-        tags: cleanField(originalFilm["tags"]),
-        dvd: cleanField(originalFilm["Nome do Programa"]),
-        imageName: cleanField(originalFilm["imageName"]),
-        classification: parseInt(originalFilm["Classificação Indicativa POR PGM"]) || 0
-    };
-}
-
-// Carregar dados
+// FUNÇÕES PRINCIPAIS
 async function loadCatalogData() {
     try {
         const response = await fetch('catalogo.json');
-        if (!response.ok) throw new Error('Erro ao carregar o arquivo');
+        if (!response.ok) throw new Error('Erro ao carregar dados');
         
         const data = await response.json();
         allFilms = data.map(transformFilmData);
         currentFilms = [...allFilms];
         
-        // Extrai gêneros únicos
-        allGenres = [...new Set(allFilms.map(film => film.genre).filter(Boolean)].sort();
+        allGenres = [...new Set(allFilms.map(f => f.genre).filter(Boolean))].sort();
         
         renderGenreTags();
-        updateResultsCount();
+        updateResults();
         renderPagination();
         renderFilms();
         
         document.getElementById('loadingMessage').style.display = 'none';
     } catch (error) {
-        console.error('Erro:', error);
+        console.error("Erro:", error);
         document.getElementById('loadingMessage').innerHTML = `
             <div style="color: var(--vermelho); text-align: center;">
-                <i class="fas fa-exclamation-triangle" style="font-size: 40px; margin-bottom: 15px;"></i>
-                <p style="font-weight: bold;">Erro ao carregar o catálogo</p>
-                <p>${error.message}</p>
-                <button onclick="loadCatalogData()" style="margin-top: 15px; padding: 8px 15px; background-color: var(--verde-ifmg); color: white; border: none; border-radius: 4px; cursor: pointer;">
-                    <i class="fas fa-sync-alt"></i> Tentar novamente
-                </button>
+                <i class="fas fa-exclamation-triangle"></i>
+                <p>Erro ao carregar catálogo</p>
+                <button onclick="location.reload()">Recarregar</button>
             </div>
         `;
     }
 }
 
-// Renderizar tags de gênero
-function renderGenreTags() {
-    const container = document.getElementById('genreTags');
-    container.innerHTML = '';
-    
-    // Botão "Todos"
-    const allTag = document.createElement('div');
-    allTag.className = 'genre-tag active';
-    allTag.textContent = 'Todos';
-    allTag.dataset.genre = '';
-    allTag.addEventListener('click', () => {
-        selectedGenre = '';
-        document.querySelectorAll('.genre-tag').forEach(t => t.classList.remove('active'));
-        allTag.classList.add('active');
-        filterAndRenderFilms();
-    });
-    container.appendChild(allTag);
-    
-    // Demais gêneros
-    allGenres.forEach(genre => {
-        const tag = document.createElement('div');
-        tag.className = 'genre-tag';
-        tag.textContent = genre;
-        tag.dataset.genre = genre;
-        tag.addEventListener('click', function() {
-            selectedGenre = this.dataset.genre;
-            document.querySelectorAll('.genre-tag').forEach(t => t.classList.remove('active'));
-            this.classList.add('active');
-            filterAndRenderFilms();
-        });
-        container.appendChild(tag);
-    });
+function transformFilmData(film) {
+    return {
+        title: film["Título do filme"]?.trim() || '',
+        director: film["Direção"]?.trim() || '',
+        genre: film["GEN."]?.trim() || '',
+        year: parseInt(film["Ano"]) || 0,
+        duration: parseInt(film["Dur.(´)"]) || 0,
+        synopsis: film["Sinopse"]?.trim() || '',
+        imageName: film["imageName"]?.trim() || ''
+    };
 }
 
-// Filtrar e renderizar filmes
-function filterAndRenderFilms() {
-    clearTimeout(debounceTimer);
-    debounceTimer = setTimeout(() => {
-        const searchTerm = document.getElementById('searchInput').value.toLowerCase();
+function filterFilms() {
+    const searchTerm = document.getElementById('searchInput').value.toLowerCase();
+    
+    currentFilms = allFilms.filter(film => {
+        const matchesSearch = !searchTerm || 
+            film.title.toLowerCase().includes(searchTerm) ||
+            film.director.toLowerCase().includes(searchTerm);
         
-        // Filtra por busca e gênero
-        currentFilms = allFilms.filter(film => {
-            const matchesSearch = !searchTerm || (
-                film.title.toLowerCase().includes(searchTerm) ||
-                (film.director && film.director.toLowerCase().includes(searchTerm)) ||
-                (film.cast && film.cast.toLowerCase().includes(searchTerm)) ||
-                (film.synopsis && film.synopsis.toLowerCase().includes(searchTerm))
-            );
-            
-            const matchesGenre = !selectedGenre || film.genre === selectedGenre;
-            
-            return matchesSearch && matchesGenre;
-        });
+        const matchesGenre = !selectedGenre || film.genre === selectedGenre;
         
-        // Aplica ordenação
-        applySorting();
-        
-        updateResultsCount();
-        currentPage = 1;
-        renderPagination();
-        renderFilms();
-    }, 300);
-}
-
-// Aplicar ordenação
-function applySorting() {
+        return matchesSearch && matchesGenre;
+    });
+    
     if (currentSort === 'asc') {
         currentFilms.sort((a, b) => a.title.localeCompare(b.title));
     } else if (currentSort === 'desc') {
         currentFilms.sort((a, b) => b.title.localeCompare(a.title));
     }
+    
+    updateResults();
+    currentPage = 1;
+    renderPagination();
+    renderFilms();
 }
 
-// Atualizar contador
-function updateResultsCount() {
+function renderGenreTags() {
+    const container = document.getElementById('genreTags');
+    container.innerHTML = '';
+    
+    const allTag = document.createElement('div');
+    allTag.className = 'genre-tag active';
+    allTag.textContent = 'Todos';
+    allTag.onclick = () => {
+        selectedGenre = '';
+        document.querySelectorAll('.genre-tag').forEach(t => t.classList.remove('active'));
+        allTag.classList.add('active');
+        filterFilms();
+    };
+    container.appendChild(allTag);
+    
+    allGenres.forEach(genre => {
+        const tag = document.createElement('div');
+        tag.className = 'genre-tag';
+        tag.textContent = genre;
+        tag.onclick = function() {
+            selectedGenre = genre;
+            document.querySelectorAll('.genre-tag').forEach(t => t.classList.remove('active'));
+            this.classList.add('active');
+            filterFilms();
+        };
+        container.appendChild(tag);
+    });
+}
+
+function updateResults() {
     document.getElementById('resultsCount').textContent = currentFilms.length;
 }
 
-// Renderizar filmes
 function renderFilms() {
     const grid = document.getElementById('filmGrid');
     grid.innerHTML = '';
     
     const start = (currentPage - 1) * itemsPerPage;
     const end = start + itemsPerPage;
-    const filmsToShow = currentFilms.slice(start, end);
+    const films = currentFilms.slice(start, end);
     
-    if (filmsToShow.length === 0) {
-        grid.innerHTML = `
-            <div class="no-results">
-                <i class="fas fa-film"></i>
-                <p>Nenhum filme encontrado</p>
-            </div>
-        `;
+    if (films.length === 0) {
+        grid.innerHTML = '<div class="no-results">Nenhum filme encontrado</div>';
         return;
     }
     
-    filmsToShow.forEach(film => {
+    films.forEach(film => {
         const card = document.createElement('div');
         card.className = 'film-card';
         card.innerHTML = `
             <div class="film-poster-container">
-                <img src="${getDvdCover(film)}" alt="${film.title}" class="film-poster" onerror="this.src='capas/progbrasil.png'">
+                <img src="${getDvdCover(film)}" alt="${film.title}" class="film-poster">
             </div>
             <div class="film-info">
                 <h3 class="film-title">${film.title}</h3>
@@ -1041,38 +998,22 @@ function renderFilms() {
                 </div>
             </div>
         `;
-        card.addEventListener('click', () => openModal(film));
         grid.appendChild(card);
     });
 }
 
-// Restante do código (getDvdCover, renderPagination, openModal, etc.) permanece igual
-// Certifique-se de manter essas funções como estavam antes
-
-// Configurar eventos
-function setupEventListeners() {
-    document.getElementById('searchInput').addEventListener('input', filterAndRenderFilms);
-    document.getElementById('sortSelect').addEventListener('change', function() {
-        currentSort = this.value;
-        filterAndRenderFilms();
-    });
-    document.querySelector('.close').addEventListener('click', closeModal);
-    window.addEventListener('click', (e) => {
-        if (e.target === document.getElementById('filmModal')) closeModal();
-    });
-    document.querySelector('header').addEventListener('click', () => {
-        window.location.href = 'https://umtremdecinemaifmg.github.io/catalogodedvds/';
-    });
-    document.querySelector('footer').addEventListener('click', () => {
-        window.location.href = 'https://umtremdecinema.wixsite.com/umtremdecinema';
-    });
-}
-
-// Inicializar
-window.addEventListener('DOMContentLoaded', () => {
-    setupEventListeners();
-    loadCatalogData();
+// INICIALIZAÇÃO
+document.getElementById('sortSelect').addEventListener('change', function() {
+    currentSort = this.value;
+    filterFilms();
 });
+
+document.getElementById('searchInput').addEventListener('input', () => {
+    clearTimeout(debounceTimer);
+    debounceTimer = setTimeout(filterFilms, 300);
+});
+
+window.addEventListener('DOMContentLoaded', loadCatalogData);
 
 
         
