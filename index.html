@@ -740,14 +740,22 @@
         function getDvdCover(filmData) {
             const DEFAULT_COVER = 'capas/progbrasil.png';
             
-            // 1. Se tiver imageName definido no JSON, usa ele
+            // 1. Se tiver imageName definido no JSON, tenta carregar com .jpg e .png
             if (filmData.imageName) {
-                return `capas/${filmData.imageName}`;
+                // Remove qualquer extensão que possa estar no imageName (por segurança)
+                const baseName = filmData.imageName.replace(/\.(jpg|jpeg|png|gif)$/i, '');
+                return `capas/${baseName}.jpg`; // Primeiro tenta com .jpg
+                // Se não encontrar, o onerror vai tentar com .png
             }
             
             // 2. Se não tiver imageName, retorna a capa padrão
             return DEFAULT_COVER;
         }
+
+
+
+
+        
         
         // Classificação por cores - Retorna a classe CSS correspondente
         function getClassificationClass(age) {
@@ -954,10 +962,20 @@
             img.className = 'film-poster';
             img.alt = film.title || 'Capa do filme';
             
-            // Tenta carregar a imagem usando imageName ou fallback padrão
+            // Primeiro tenta com .jpg
             img.src = getDvdCover(film);
+            
+            // Se der erro, tenta com .png antes de ir para o fallback padrão
             img.onerror = function() {
-                this.src = 'capas/progbrasil.png'; // Fallback obrigatório
+                if (film.imageName) {
+                    const baseName = film.imageName.replace(/\.(jpg|jpeg|png|gif)$/i, '');
+                    this.src = `capas/${baseName}.png`;
+                    this.onerror = function() {
+                        this.src = 'capas/progbrasil.png'; // Fallback final
+                    };
+                } else {
+                    this.src = 'capas/progbrasil.png'; // Fallback direto se não tiver imageName
+                }
             };
 
             return img;
