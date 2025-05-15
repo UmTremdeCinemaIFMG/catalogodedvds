@@ -738,14 +738,16 @@
         
         // Função para obter capa do DVD - MODIFICADA para priorizar imageName
         function getDvdCover(filmData) {
+            console.log("Buscando capa para:", filmData.imageName); // Adicione esta linha
             const DEFAULT_COVER = 'capas/progbrasil.png';
             
             // 1. Se tiver imageName definido no JSON, tenta carregar com .jpg e .png
             if (filmData.imageName) {
                 // Remove qualquer extensão que possa estar no imageName (por segurança)
                 const baseName = filmData.imageName.replace(/\.(jpg|jpeg|png|gif)$/i, '');
-                return `capas/${baseName}.jpg`; // Primeiro tenta com .jpg
-                // Se não encontrar, o onerror vai tentar com .png
+        const imagePath = `capas/${baseName}.jpg`;
+        console.log("Tentando carregar:", imagePath); // Adicione esta linha
+        return imagePath;
             }
             
             // 2. Se não tiver imageName, retorna a capa padrão
@@ -755,26 +757,29 @@
         // Função para criar a imagem com fallback - VERSÃO CORRIGIDA
         function createSmartPoster(film) {
             const img = new Image();
-            img.className = 'film-poster';
-            img.alt = film.title || 'Capa do filme';
-            
-            // Primeiro tenta com .jpg
-            img.src = getDvdCover(film);
-            
-            // Se der erro, tenta com .png antes de ir para o fallback padrão
-            img.onerror = function() {
-                if (film.imageName) {
-                    const baseName = film.imageName.replace(/\.(jpg|jpeg|png|gif)$/i, '');
-                    this.src = `capas/${baseName}.png`;
-                    this.onerror = function() {
-                        this.src = 'capas/progbrasil.png'; // Fallback final
-                    };
-                } else {
-                    this.src = 'capas/progbrasil.png'; // Fallback direto se não tiver imageName
-                }
+    img.className = 'film-poster';
+    img.alt = film.title || 'Capa do filme';
+    
+    img.onerror = function() {
+        console.error("Falha ao carregar:", this.src); // Adicione esta linha
+        if (film.imageName) {
+            const baseName = film.imageName.replace(/\.(jpg|jpeg|png|gif)$/i, '');
+            const fallbackPath = `capas/${baseName}.png`;
+            console.log("Tentando fallback PNG:", fallbackPath); // Adicione esta linha
+            this.src = fallbackPath;
+            this.onerror = function() {
+                console.error("Fallback também falhou, usando padrão"); // Adicione esta linha
+                this.src = 'capas/progbrasil.png';
             };
-
-            return img;
+        } else {
+            this.src = 'capas/progbrasil.png';
+        }
+    };
+    
+    img.src = getDvdCover(film);
+    console.log("Imagem definida como:", img.src); // Adicione esta linha
+    
+    return img;
         }
         
         // Classificação por cores - Retorna a classe CSS correspondente
@@ -795,6 +800,7 @@
         
         // Transformar dados do JSON
         function transformFilmData(originalFilm) {
+            console.log("Original imageName:", originalFilm["imageName"]); // Adicione esta linha
             // Tratamento especial para nota IMDB
             let imdbData = { votantes: '' };
             if (originalFilm["nota imdb/votantes"]) {
