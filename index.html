@@ -879,59 +879,61 @@
         function renderGenreTags() {
             const genreTagsContainer = document.getElementById('genreTags');
             
-            const allTag = document.createElement('div');
-allTag.className = 'genre-tag active'; // Sempre começa ativo
-allTag.textContent = 'Todos';
-allTag.dataset.genre = '';
-allTag.addEventListener('click', function() {
-    // Apenas reseta o filtro de gênero
-    selectedGenre = '';
-    
-    // Atualiza a aparência (ativa apenas o "Todos")
-    document.querySelectorAll('.genre-tag').forEach(t => {
-        t.classList.remove('active');
-    });
-    this.classList.add('active');
-    
-    // Refaz a filtragem (mantendo a busca se houver)
-    filterAndRenderFilms();
-});
-
-genreTagsContainer.innerHTML = '';
-genreTagsContainer.appendChild(allTag);
+            const allTag = genreTagsContainer.querySelector('[data-genre=""]');
+            genreTagsContainer.innerHTML = '';
+            genreTagsContainer.appendChild(allTag);
+            
+            allGenres.forEach(genre => {
+                const tag = document.createElement('div');
+                tag.className = 'genre-tag';
+                tag.textContent = genre;
+                tag.dataset.genre = genre;
+                
+                if (genre === selectedGenre) {
+                    tag.classList.add('active');
+                }
+                
+                tag.addEventListener('click', function() {
+                    selectedGenre = this.dataset.genre;
+                    
+                    document.querySelectorAll('.genre-tag').forEach(t => {
+                        t.classList.remove('active');
+                    });
+                    this.classList.add('active');
+                    
+                    filterAndRenderFilms();
+                });
+                
+                genreTagsContainer.appendChild(tag);
             });
         }
         
         // Filtrar filmes com debounce para melhor performance
         function filterAndRenderFilms() {
-    clearTimeout(debounceTimer);
-    debounceTimer = setTimeout(() => {
-        const searchTerm = document.getElementById('searchInput').value.toLowerCase();
-        
-        // 1. Filtra por busca (se houver)
-        currentFilms = allFilms.filter(film => 
-            !searchTerm || // Se não houver termo de busca, mostra tudo
-            film.title.toLowerCase().includes(searchTerm) ||
-            (film.director && film.director.toLowerCase().includes(searchTerm)) ||
-            (film.cast && film.cast.toLowerCase().includes(searchTerm)) ||
-            (film.synopsis && film.synopsis.toLowerCase().includes(searchTerm)) ||
-            (film.tema && film.tema.toLowerCase().includes(searchTerm)) ||
-            (film.tags && film.tags.toLowerCase().includes(searchTerm)) ||
-            (film.dvd && film.dvd.toLowerCase().includes(searchTerm))
-        );
-        
-        // 2. Filtra por gênero (APENAS se um gênero específico estiver selecionado)
-        if (selectedGenre) {
-            currentFilms = currentFilms.filter(film => 
-                film.genre && film.genre === selectedGenre
-            );
+            clearTimeout(debounceTimer);
+            debounceTimer = setTimeout(() => {
+                const searchTerm = document.getElementById('searchInput').value.toLowerCase();
+                
+                currentFilms = allFilms.filter(film => {
+                    const matchesSearch = 
+                        film.title.toLowerCase().includes(searchTerm) ||
+                        (film.director && film.director.toLowerCase().includes(searchTerm)) ||
+                        (film.cast && film.cast.toLowerCase().includes(searchTerm)) ||
+                        (film.synopsis && film.synopsis.toLowerCase().includes(searchTerm)) ||
+                        (film.tema && film.tema.toLowerCase().includes(searchTerm)) ||
+                        (film.tags && film.tags.toLowerCase().includes(searchTerm)) ||
+                        (film.dvd && film.dvd.toLowerCase().includes(searchTerm));
+                    
+                    const matchesGenre = selectedGenre === '' || film.genre === selectedGenre;
+                    
+                    return matchesSearch && matchesGenre;
+                });
+                
+                currentPage = 1;
+                renderPagination();
+                renderFilms();
+            }, 300);
         }
-        
-        currentPage = 1;
-        renderPagination();
-        renderFilms();
-    }, 300);
-}
         
         // Criar controles de navegação para imagens horizontais
         function createImageControls(container, image) {
