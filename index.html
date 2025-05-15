@@ -966,37 +966,28 @@ genreTagsContainer.appendChild(allTag);
 function filterAndRenderFilms() {
     clearTimeout(debounceTimer);
     debounceTimer = setTimeout(() => {
-        const searchTerm = document.getElementById('searchInput').value.toLowerCase();
-        
-        // 1. Começa com todos os filmes
-        currentFilms = [...allFilms]; // Usamos spread para criar uma cópia
-        
-        // 2. Aplica filtro de busca (se houver termo)
-        if (searchTerm) {
-            currentFilms = currentFilms.filter(film => 
-                (film.title && film.title.toLowerCase().includes(searchTerm)) ||
-                (film.director && film.director.toLowerCase().includes(searchTerm)) ||
-                (film.cast && film.cast.toLowerCase().includes(searchTerm)) ||
-                (film.synopsis && film.synopsis.toLowerCase().includes(searchTerm))
+        // 1. Filtra por busca e gênero
+        currentFilms = allFilms.filter(film => {
+            const matchesSearch = !searchInput.value || (
+                film.title.toLowerCase().includes(searchInput.value.toLowerCase()) ||
+                (film.director && film.director.toLowerCase().includes(searchInput.value.toLowerCase()))
             );
-        }
+            
+            const matchesGenre = !selectedGenre || film.genre === selectedGenre;
+            
+            return matchesSearch && matchesGenre;
+        });
         
-        // 3. Aplica filtro de gênero (se selecionado)
-        if (selectedGenre) {
-            currentFilms = currentFilms.filter(film => 
-                film.genre && film.genre === selectedGenre
-            );
-        }
+        // 2. Atualiza contador
+        resultsCount.textContent = currentFilms.length;
         
-        // 4. Atualiza contador (isso já estava funcionando)
-        document.getElementById('resultsCount').textContent = currentFilms.length;
-        
-        // 5. Renderiza
+        // 3. Renderiza
         currentPage = 1;
         renderPagination();
         renderFilms();
     }, 300);
 }
+
 
 // Adicione esta nova função para ordenação:
 function applySorting() {
