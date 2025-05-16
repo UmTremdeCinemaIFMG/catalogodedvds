@@ -1552,42 +1552,57 @@ function sortFilms(films, sortOption) {
             pagination.appendChild(nextButton);
         }
         
-        // Configurar eventos
-        function setupEventListeners() {
-        document.getElementById('searchInput').addEventListener('input', filterAndRenderFilms);
-        
-        // ADICIONE ESTE EVENT LISTENER PARA A CAIXA DE ORDENAÇÃO
-        document.getElementById('sortSelect').addEventListener('change', filterAndRenderFilms);
-        
-        document.querySelector('.close').addEventListener('click', closeModal);
-        
-        window.addEventListener('click', function(event) {
+// Configurar eventos
+function setupEventListeners() {
+    // 1. Barra de pesquisa - Filtra os filmes enquanto o usuário digita
+    document.getElementById('searchInput').addEventListener('input', filterAndRenderFilms);
+    
+    // 2. Caixa de ordenação - Reordena os filmes quando muda a seleção
+    document.getElementById('sortSelect').addEventListener('change', filterAndRenderFilms);
+    
+    // 3. Novo: Caixa de seleção de gênero - Filtra por gênero selecionado
+    document.getElementById('genreSelect').addEventListener('change', function() {
+        selectedGenre = this.value;
+        filterAndRenderFilms();
+    });
+    
+    // 4. Botão de fechar no modal
+    document.querySelector('.close').addEventListener('click', closeModal);
+    
+    // 5. Fechar modal ao clicar fora do conteúdo
+    window.addEventListener('click', function(event) {
         if (event.target === document.getElementById('filmModal')) {
             closeModal();
         }
-        });
+    });
+
+    /* 
+    // EXEMPLOS COMENTADOS (não ativos atualmente):
     
-//------    document.querySelector('footer').addEventListener('click', function() {
-//------        window.location.href = 'https://umtremdecinema.wixsite.com/umtremdecinema';
-//------    });
-//------}
-            
-            // Configurar clique no cabeçalho
- //           document.querySelector('header').addEventListener('click', function() {
-//                window.location.href = 'https://umtremdecinemaifmg.github.io/catalogodedvds/';
- //           });
-            
-            // Configurar clique no rodapé
-            document.querySelector('footer').addEventListener('click', function() {
-                window.location.href = 'https://umtremdecinema.wixsite.com/umtremdecinema';
-            });
-        }
+    // a) Redirecionamento pelo footer - Atualmente ativo na versão não comentada abaixo
+    document.querySelector('footer').addEventListener('click', function() {
+        window.location.href = 'https://umtremdecinema.wixsite.com/umtremdecinema';
+    });
+    
+    // b) Redirecionamento pelo cabeçalho - Reserva para possível uso futuro
+    document.querySelector('header').addEventListener('click', function() {
+        window.location.href = 'https://umtremdecinemaifmg.github.io/catalogodedvds/';
+    });
+    */
+    
+    // 6. Versão ativa do redirecionamento pelo footer (sem comentários)
+    document.querySelector('footer').addEventListener('click', function() {
+        window.location.href = 'https://umtremdecinema.wixsite.com/umtremdecinema';
+    });
+}
+
+// Inicialização - Executa quando a página termina de carregar
+window.addEventListener('DOMContentLoaded', function() {
+    setupEventListeners();  // Configura todos os ouvintes de eventos
+    loadCatalogData();      // Carrega os dados do catálogo
+});
+
         
-        // Inicialização
-        window.addEventListener('DOMContentLoaded', function() {
-            setupEventListeners();
-            loadCatalogData();
-        });
     </script>
 </body>
 </html>
