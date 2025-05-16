@@ -151,45 +151,45 @@
 
 
         /* ESTILOS PARA A CAIXA DE ORDENAÇÃO */
-.sort-container {
-    flex: 0 0 auto; /* NÃO CRESCE, NÃO ENCOLHE, TAMANHO AUTOMÁTICO */
-    min-width: 200px;
-    margin-top: 30px;
-    gap: 20px;
-    margin-bottom: 20px;
-}
-
-.sort-box {
-    position: relative;
-}
-
-.sort-box i {
-    position: absolute;
-    left: 15px;
-    top: 50%;
-    transform: translateY(-50%);
-    color: var(--cinza-medio);
-    z-index: 1;
-}
-
-.sort-box select {
-    width: 100%;
-    padding: 12px 15px 12px 40px;
-    border: 1px solid var(--cinza-medio);
-    border-radius: 6px;
-    font-size: 16px;
-    transition: var(--transicao);
-    box-shadow: inset 0 1px 3px rgba(0,0,0,0.1);
-    appearance: none; /* REMOVE O ESTILO PADRÃO DO SELECT */
-    background-color: var(--branco);
-    cursor: pointer;
-}
-
-.sort-box select:focus {
-    border-color: var(--verde-ifmg);
-    outline: none;
-    box-shadow: 0 0 0 3px rgba(0, 154, 68, 0.2);
-}
+        .sort-container {
+            flex: 0 0 auto; /* NÃO CRESCE, NÃO ENCOLHE, TAMANHO AUTOMÁTICO */
+            min-width: 200px;
+            margin-top: 30px;
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+        
+        .sort-box {
+            position: relative;
+        }
+        
+        .sort-box i {
+            position: absolute;
+            left: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--cinza-medio);
+            z-index: 1;
+        }
+        
+        .sort-box select {
+            width: 100%;
+            padding: 12px 15px 12px 40px;
+            border: 1px solid var(--cinza-medio);
+            border-radius: 6px;
+            font-size: 16px;
+            transition: var(--transicao);
+            box-shadow: inset 0 1px 3px rgba(0,0,0,0.1);
+            appearance: none; /* REMOVE O ESTILO PADRÃO DO SELECT */
+            background-color: var(--branco);
+            cursor: pointer;
+        }
+        
+        .sort-box select:focus {
+            border-color: var(--verde-ifmg);
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(0, 154, 68, 0.2);
+        }
           
         .genre-filter-container {
             background-color: var(--branco);
@@ -208,6 +208,34 @@
             align-items: center;
             gap: 8px;
         }
+
+.genre-select {
+    width: 100%;
+    padding: 10px 15px;
+    border: 1px solid var(--cinza-medio);
+    border-radius: 6px;
+    background-color: var(--branco);
+    font-size: 14px;
+    color: var(--cinza-escuro);
+    cursor: pointer;
+    transition: var(--transicao);
+    appearance: none;
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23666666'%3e%3cpath d='M7 10l5 5 5-5z'/%3e%3c/svg%3e");
+    background-repeat: no-repeat;
+    background-position: right 10px center;
+    background-size: 15px;
+}
+
+.genre-select:focus {
+    border-color: var(--verde-ifmg);
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(0, 154, 68, 0.2);
+}
+
+.genre-select:hover {
+    border-color: var(--verde-ifmg);
+}
+        
         
         .genre-tags {
             display: flex;
@@ -705,9 +733,9 @@
             .film-poster-container {
                 height: 280px;
             }
-        }
-        
-        @media (max-width: 600px) {
+            }
+            
+            @media (max-width: 600px) {
             h1 {
                 font-size: 2em;
             }
@@ -785,10 +813,10 @@
             <div class="genre-filter-title">
                 <i class="fas fa-filter"></i> Filtrar por gênero:
             </div>
-            <div class="genre-tags" id="genreTags">
-                <div class="genre-tag active" data-genre="">Todos</div>
-                <!-- Tags de gênero serão adicionadas dinamicamente aqui -->
-            </div>
+            <select id="genreSelect" class="genre-select">
+                <option value="">Todos os gêneros</option>
+                <!-- Opções serão preenchidas dinamicamente -->
+            </select>
         </div>
         
         <div id="loadingMessage" class="loading">
@@ -986,7 +1014,8 @@ function sortFilms(films, sortOption) {
                 // Extrai todos os gêneros únicos
                 allGenres = [...new Set(allFilms.map(film => film.genre).filter(Boolean))].sort();
                 
-                renderGenreTags();
+                //renderGenreTags();
+                renderGenreSelect();
                 
                 currentFilms = allFilms;
                 document.getElementById('loadingMessage').style.display = 'none';
@@ -1008,30 +1037,53 @@ function sortFilms(films, sortOption) {
             }
         }
         
-        // Renderizar tags de gênero
-        function renderGenreTags() {
-            const genreTagsContainer = document.getElementById('genreTags');
-            
-            const allTag = document.createElement('div');
-allTag.className = 'genre-tag active'; // Sempre começa ativo
-allTag.textContent = 'Todos';
-allTag.dataset.genre = '';
-allTag.addEventListener('click', function() {
-    // Apenas reseta o filtro de gênero
-    selectedGenre = '';
-    
-    // Atualiza a aparência (ativa apenas o "Todos")
-    document.querySelectorAll('.genre-tag').forEach(t => {
-        t.classList.remove('active');
-    });
-    this.classList.add('active');
-    
-    // Refaz a filtragem (mantendo a busca se houver)
-    filterAndRenderFilms();
-});
+                                                // Renderizar tags de gênero
+                                        /*       function renderGenreTags() {
+                                                    const genreTagsContainer = document.getElementById('genreTags');
+                                                    
+                                                    const allTag = document.createElement('div');
+                                        allTag.className = 'genre-tag active'; // Sempre começa ativo
+                                        allTag.textContent = 'Todos';
+                                        allTag.dataset.genre = '';
+                                        allTag.addEventListener('click', function() {
+                                            // Apenas reseta o filtro de gênero
+                                            selectedGenre = '';
+                                            
+                                            // Atualiza a aparência (ativa apenas o "Todos")
+                                            document.querySelectorAll('.genre-tag').forEach(t => {
+                                                t.classList.remove('active');
+                                            });
+                                            this.classList.add('active');
+                                            
+                                            // Refaz a filtragem (mantendo a busca se houver)
+                                            filterAndRenderFilms();
+                                        });
+                                        
+                                            // FILTRO POR GÊNERO CAIXA DE SELEÇÃO
+                                        genreTagsContainer.innerHTML = '';
+                                        genreTagsContainer.appendChild(allTag); */
 
-genreTagsContainer.innerHTML = '';
-genreTagsContainer.appendChild(allTag);
+    function renderGenreSelect() {
+    const genreSelect = document.getElementById('genreSelect');
+    
+    // Limpa opções exceto a primeira
+    while (genreSelect.options.length > 1) {
+        genreSelect.remove(1);
+    }
+    
+    // Adiciona cada gênero como opção
+    allGenres.forEach(genre => {
+        const option = document.createElement('option');
+        option.value = genre;
+        option.textContent = genre;
+        genreSelect.appendChild(option);
+    });
+    
+    // Define o gênero selecionado se houver
+    if (selectedGenre) {
+        genreSelect.value = selectedGenre;
+    }
+}
             
             allGenres.forEach(genre => {
                 const tag = document.createElement('div');
@@ -1261,22 +1313,29 @@ genreTagsContainer.appendChild(allTag);
             });
         }
         
-        // Resetar filtros
-        function resetFilters() {
-            document.getElementById('searchInput').value = '';
-            selectedGenre = '';
-            
-            document.querySelectorAll('.genre-tag').forEach(tag => {
-                tag.classList.remove('active');
-                if (tag.dataset.genre === '') {
-                    tag.classList.add('active');
-                }
-            });
-            
-            filterAndRenderFilms();
-            updateFilmsCounter(); 
-        }
+                                        // Resetar filtros
+                                        /* --function resetFilters() {
+                                            document.getElementById('searchInput').value = '';
+                                            selectedGenre = '';
+                                            
+                                            document.querySelectorAll('.genre-tag').forEach(tag => {
+                                                tag.classList.remove('active');
+                                                if (tag.dataset.genre === '') {
+                                                    tag.classList.add('active');
+                                                }
+                                            });
+                                            
+                                            filterAndRenderFilms();
+                                            updateFilmsCounter(); 
+                                        }*/
         
+        function resetFilters() {
+        document.getElementById('searchInput').value = '';
+        selectedGenre = '';
+        document.getElementById('genreSelect').value = '';
+        filterAndRenderFilms();
+        }
+                                            
         // Criar lista de temas a partir dos campos tema e tags
         function createThemesList(film) {
             const themes = [];
@@ -1495,18 +1554,18 @@ genreTagsContainer.appendChild(allTag);
         
         // Configurar eventos
         function setupEventListeners() {
-    document.getElementById('searchInput').addEventListener('input', filterAndRenderFilms);
-    
-    // ADICIONE ESTE EVENT LISTENER PARA A CAIXA DE ORDENAÇÃO
-    document.getElementById('sortSelect').addEventListener('change', filterAndRenderFilms);
-    
-    document.querySelector('.close').addEventListener('click', closeModal);
-    
-    window.addEventListener('click', function(event) {
+        document.getElementById('searchInput').addEventListener('input', filterAndRenderFilms);
+        
+        // ADICIONE ESTE EVENT LISTENER PARA A CAIXA DE ORDENAÇÃO
+        document.getElementById('sortSelect').addEventListener('change', filterAndRenderFilms);
+        
+        document.querySelector('.close').addEventListener('click', closeModal);
+        
+        window.addEventListener('click', function(event) {
         if (event.target === document.getElementById('filmModal')) {
             closeModal();
         }
-    });
+        });
     
 //------    document.querySelector('footer').addEventListener('click', function() {
 //------        window.location.href = 'https://umtremdecinema.wixsite.com/umtremdecinema';
