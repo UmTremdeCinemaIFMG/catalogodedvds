@@ -1001,7 +1001,10 @@ function sortFilms(films, sortOption) {
 
         
         // Carregar dados do JSON com skeleton loading
-        async function loadCatalogData() {
+      
+
+
+ /* async function loadCatalogData() {
             try {
                 await new Promise(resolve => setTimeout(resolve, 800));
                 
@@ -1035,7 +1038,79 @@ function sortFilms(films, sortOption) {
                     </div>
                 `;
             }
+        }  */
+
+async function loadCatalogData() {
+    try {
+        console.log('Iniciando carregamento do catálogo...');
+        document.getElementById('loadingMessage').style.display = 'block';
+        
+        // Delay para visualização do skeleton (opcional)
+        await new Promise(resolve => setTimeout(resolve, 500));
+
+        // 1. Carrega o arquivo JSON
+        const response = await fetch('catalogo.json');
+        if (!response.ok) {
+            throw new Error(`Erro ao carregar o arquivo: ${response.status} ${response.statusText}`);
         }
+
+        // 2. Verifica se o JSON é válido
+        const data = await response.json();
+        if (!Array.isArray(data)) {
+            throw new Error('O arquivo JSON não contém um array válido');
+        }
+
+        console.log('Dados brutos carregados:', data);
+        
+        // 3. Transforma os dados dos filmes
+        allFilms = data.map(transformFilmData);
+        if (allFilms.length === 0) {
+            console.warn('Nenhum filme encontrado no catálogo');
+        }
+
+        console.log('Filmes transformados:', allFilms);
+
+        // 4. Extrai e ordena gêneros
+        allGenres = [...new Set(allFilms.flatMap(film => 
+            film.genre ? [film.genre] : []
+        )].sort((a, b) => a.localeCompare(b));
+
+        console.log('Gêneros encontrados:', allGenres);
+
+        // 5. Renderiza os controles
+        renderGenreSelect();
+        
+        // 6. Prepara os dados para exibição
+        currentFilms = allFilms;
+        updateFilmsCounter();
+        renderFilms();
+
+        console.log('Catálogo carregado com sucesso!');
+        
+    } catch (error) {
+        console.error('Erro ao carregar o catálogo:', error);
+        showError(error);
+    } finally {
+        document.getElementById('loadingMessage').style.display = 'none';
+    }
+}
+
+// Função auxiliar para mostrar erros
+function showError(error) {
+    const errorHtml = `
+        <div style="color: var(--vermelho); text-align: center;">
+            <i class="fas fa-exclamation-triangle" style="font-size: 40px; margin-bottom: 15px;"></i>
+            <p style="font-weight: bold;">Erro ao carregar o catálogo</p>
+            <p>${error.message}</p>
+            <button onclick="loadCatalogData()" style="margin-top: 15px; padding: 8px 15px; 
+                background-color: var(--verde-ifmg); color: white; border: none; 
+                border-radius: 4px; cursor: pointer;">
+                <i class="fas fa-sync-alt"></i> Tentar novamente
+            </button>
+        </div>
+    `;
+    document.getElementById('loadingMessage').innerHTML = errorHtml;
+}
         
                                                 // Renderizar tags de gênero
                                         /*       function renderGenreTags() {
