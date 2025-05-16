@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Catálogo de DVDs</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
     <style>
         :root {
             --verde-ifmg: #009a44;
@@ -78,6 +79,42 @@
 .controls-row + .genre-filter-container {
     margin-top: 30px;
 }*/
+
+.results-counter {
+    /* Estilos base (mantém o verde padrão) */
+    margin: 10px 0 20px;
+    padding: 8px 15px;
+    background-color: var(--verde-ifmg); /* Verde padrão quando há resultados */
+    color: white;
+    border-radius: 20px;
+    display: inline-block;
+    font-size: 14px;
+    box-shadow: var(--sombra);
+    transition: all 0.3s ease;
+}
+
+/* Estado quando NÃO há resultados */
+.results-counter.sem-resultados {
+    background-color: var(--vermelho); /* Vermelho quando não há filmes */
+}
+
+/* Estado quando HÁ resultados (já é o padrão, mas pode personalizar) */
+.results-counter.com-resultados {
+    background-color: var(--verde-ifmg); /* Verde (opcional, já é padrão) */
+}
+
+/* Animação do número */
+#filmsCount {
+    font-weight: bold;
+    font-size: 16px;
+    transition: all 0.3s ease;
+    display: inline-block;
+}
+
+#filmsCount.updated {
+    transform: scale(1.2);
+    color: var(--amarelo); /* Destaque amarelo na animação */
+}   
         
         .search-container {
             flex: 1;
@@ -703,6 +740,8 @@
             }
         }
     </style>
+
+
 </head>
 <body>
     <header>
@@ -721,7 +760,11 @@
                 </div>
             </div>
        // </div>
-      
+
+        <!-- QUANTIDADE DE FILMES ENCONTRADOS -->
+        <div class="results-counter">
+    <span id="filmsCount">0</span> filmes encontrados
+</div>
 
         <!-- NOVA CAIXA DE ORDENAÇÃO - ADICIONE ESTE BLOCO -->
     <div class="sort-container">
@@ -947,6 +990,7 @@ function sortFilms(films, sortOption) {
                 
                 currentFilms = allFilms;
                 document.getElementById('loadingMessage').style.display = 'none';
+                updateFilmsCounter(); 
                 renderFilms();
                 
             } catch (error) {
@@ -1036,6 +1080,9 @@ genreTagsContainer.appendChild(allTag);
             
             return matchesSearch && matchesGenre;
         });
+
+        // ATUALIZA O CONTADOR DE FILMES
+        updateFilmsCounter();
         
         // APLICA A ORDENAÇÃO - ADICIONE ESTA LINHA
         currentFilms = sortFilms(currentFilms, sortOption);
@@ -1045,6 +1092,30 @@ genreTagsContainer.appendChild(allTag);
         renderFilms();
     }, 300);
 }
+
+        // Nova função para atualizar o contador
+        function updateFilmsCounter() {
+            const countElement = document.getElementById('filmsCount');
+            const counterContainer = document.querySelector('.results-counter');
+            
+            // Animação do número
+            countElement.classList.add('updated');
+            setTimeout(() => {
+                countElement.classList.remove('updated');
+            }, 300);
+        
+            // Atualiza contador
+            countElement.textContent = currentFilms.length;
+            
+            // Controla os estados visualis
+            if (currentFilms.length === 0) {
+                counterContainer.classList.add('sem-resultados');
+                counterContainer.classList.remove('com-resultados'); // Limpa classe oposta
+            } else {
+                counterContainer.classList.add('com-resultados');   // Explicita que há resultados
+                counterContainer.classList.remove('sem-resultados');
+            }
+        }
         
         // Criar controles de navegação para imagens horizontais
         function createImageControls(container, image) {
@@ -1203,6 +1274,7 @@ genreTagsContainer.appendChild(allTag);
             });
             
             filterAndRenderFilms();
+            updateFilmsCounter(); 
         }
         
         // Criar lista de temas a partir dos campos tema e tags
