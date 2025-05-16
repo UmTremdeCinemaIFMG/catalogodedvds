@@ -115,6 +115,47 @@
             transform: translateY(-50%);
             color: var(--cinza-medio);
         }
+
+        //---------------
+        /* ESTILOS PARA A CAIXA DE ORDENAÇÃO */
+.sort-container {
+    flex: 0 0 auto; /* NÃO CRESCE, NÃO ENCOLHE, TAMANHO AUTOMÁTICO */
+    min-width: 200px;
+}
+
+.sort-box {
+    position: relative;
+}
+
+.sort-box i {
+    position: absolute;
+    left: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--cinza-medio);
+    z-index: 1;
+}
+
+.sort-box select {
+    width: 100%;
+    padding: 12px 15px 12px 40px;
+    border: 1px solid var(--cinza-medio);
+    border-radius: 6px;
+    font-size: 16px;
+    transition: var(--transicao);
+    box-shadow: inset 0 1px 3px rgba(0,0,0,0.1);
+    appearance: none; /* REMOVE O ESTILO PADRÃO DO SELECT */
+    background-color: var(--branco);
+    cursor: pointer;
+}
+
+.sort-box select:focus {
+    border-color: var(--verde-ifmg);
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(0, 154, 68, 0.2);
+}
+        //----------------
+        
         
         .genre-filter-container {
             background-color: var(--branco);
@@ -683,7 +724,24 @@
                 </div>
             </div>
         </div>
-        
+//--------------------
+        <!-- NOVA CAIXA DE ORDENAÇÃO - ADICIONE ESTE BLOCO -->
+    <div class="sort-container">
+        <div class="sort-box">
+            <i class="fas fa-sort-alpha-down"></i>
+            <select id="sortSelect">
+                <option value="">Ordenar por...</option>
+                <option value="title-asc">Título (A-Z)</option>
+                <option value="title-desc">Título (Z-A)</option>
+                <option value="year-asc">Ano (Mais antigo)</option>
+                <option value="year-desc">Ano (Mais recente)</option>
+            </select>
+        </div>
+    </div>
+</div>
+
+//------------------------
+    
         <!-- Segunda linha: Filtro de gêneros como tags -->
         <div class="genre-filter-container">
             <div class="genre-filter-title">
@@ -838,6 +896,43 @@
                 classification: parseInt(originalFilm["Classificação Indicativa POR PGM"]) || 0
             };
         }
+//------------------
+
+
+// FUNÇÃO PARA ORDENAR OS FILMES - ADICIONE ESTA FUNÇÃO
+function sortFilms(films, sortOption) {
+    // FAZ UMA CÓPIA DO ARRAY PARA NÃO MODIFICAR O ORIGINAL
+    const sortedFilms = [...films];
+    
+    switch(sortOption) {
+        case 'title-asc':
+            // ORDEM ALFABÉTICA CRESCENTE POR TÍTULO
+            sortedFilms.sort((a, b) => a.title.localeCompare(b.title));
+            break;
+        case 'title-desc':
+            // ORDEM ALFABÉTICA DECRESCENTE POR TÍTULO
+            sortedFilms.sort((a, b) => b.title.localeCompare(a.title));
+            break;
+        case 'year-asc':
+            // ORDEM CRESCENTE POR ANO
+            sortedFilms.sort((a, b) => a.year - b.year);
+            break;
+        case 'year-desc':
+            // ORDEM DECRESCENTE POR ANO
+            sortedFilms.sort((a, b) => b.year - a.year);
+            break;
+        default:
+            // SEM ORDENAÇÃO (MANTÉM A ORDEM ORIGINAL)
+            break;
+    }
+    
+    return sortedFilms;
+}
+        
+        //-----------------
+
+
+
         
         // Carregar dados do JSON com skeleton loading
         async function loadCatalogData() {
@@ -926,30 +1021,35 @@ genreTagsContainer.appendChild(allTag);
         
         // Filtrar filmes com debounce para melhor performance
         function filterAndRenderFilms() {
-            clearTimeout(debounceTimer);
-            debounceTimer = setTimeout(() => {
-                const searchTerm = document.getElementById('searchInput').value.toLowerCase();
-                
-                currentFilms = allFilms.filter(film => {
-                    const matchesSearch = 
-                        film.title.toLowerCase().includes(searchTerm) ||
-                        (film.director && film.director.toLowerCase().includes(searchTerm)) ||
-                        (film.cast && film.cast.toLowerCase().includes(searchTerm)) ||
-                        (film.synopsis && film.synopsis.toLowerCase().includes(searchTerm)) ||
-                        (film.tema && film.tema.toLowerCase().includes(searchTerm)) ||
-                        (film.tags && film.tags.toLowerCase().includes(searchTerm)) ||
-                        (film.dvd && film.dvd.toLowerCase().includes(searchTerm));
-                    
-                    const matchesGenre = selectedGenre === '' || film.genre === selectedGenre;
-                    
-                    return matchesSearch && matchesGenre;
-                });
-                
-                currentPage = 1;
-                renderPagination();
-                renderFilms();
-            }, 300);
-        }
+    clearTimeout(debounceTimer);
+    debounceTimer = setTimeout(() => {
+        const searchTerm = document.getElementById('searchInput').value.toLowerCase();
+        const sortOption = document.getElementById('sortSelect').value; // PEGA A OPÇÃO DE ORDENAÇÃO
+        
+        // FILTRA OS FILMES
+        currentFilms = allFilms.filter(film => {
+            const matchesSearch = 
+                film.title.toLowerCase().includes(searchTerm) ||
+                (film.director && film.director.toLowerCase().includes(searchTerm)) ||
+                (film.cast && film.cast.toLowerCase().includes(searchTerm)) ||
+                (film.synopsis && film.synopsis.toLowerCase().includes(searchTerm)) ||
+                (film.tema && film.tema.toLowerCase().includes(searchTerm)) ||
+                (film.tags && film.tags.toLowerCase().includes(searchTerm)) ||
+                (film.dvd && film.dvd.toLowerCase().includes(searchTerm));
+            
+            const matchesGenre = selectedGenre === '' || film.genre === selectedGenre;
+            
+            return matchesSearch && matchesGenre;
+        });
+        
+        // APLICA A ORDENAÇÃO - ADICIONE ESTA LINHA
+        currentFilms = sortFilms(currentFilms, sortOption);
+        
+        currentPage = 1;
+        renderPagination();
+        renderFilms();
+    }, 300);
+}
         
         // Criar controles de navegação para imagens horizontais
         function createImageControls(container, image) {
@@ -1328,15 +1428,23 @@ genreTagsContainer.appendChild(allTag);
         
         // Configurar eventos
         function setupEventListeners() {
-            document.getElementById('searchInput').addEventListener('input', filterAndRenderFilms);
-            
-            document.querySelector('.close').addEventListener('click', closeModal);
-            
-            window.addEventListener('click', function(event) {
-                if (event.target === document.getElementById('filmModal')) {
-                    closeModal();
-                }
-            });
+    document.getElementById('searchInput').addEventListener('input', filterAndRenderFilms);
+    
+    // ADICIONE ESTE EVENT LISTENER PARA A CAIXA DE ORDENAÇÃO
+    document.getElementById('sortSelect').addEventListener('change', filterAndRenderFilms);
+    
+    document.querySelector('.close').addEventListener('click', closeModal);
+    
+    window.addEventListener('click', function(event) {
+        if (event.target === document.getElementById('filmModal')) {
+            closeModal();
+        }
+    });
+    
+    document.querySelector('footer').addEventListener('click', function() {
+        window.location.href = 'https://umtremdecinema.wixsite.com/umtremdecinema';
+    });
+}
             
             // Configurar clique no cabeçalho
  //           document.querySelector('header').addEventListener('click', function() {
