@@ -1004,41 +1004,41 @@ function sortFilms(films, sortOption) {
       
 
 
- /* async function loadCatalogData() {
-            try {
-                await new Promise(resolve => setTimeout(resolve, 800));
-                
-                const response = await fetch('catalogo.json'); // Altere para o nome do seu arquivo JSON
-                if (!response.ok) throw new Error('Erro ao carregar o arquivo');
-                
-                const data = await response.json();
-                allFilms = data.map(transformFilmData);
-                
-                // Extrai todos os gêneros únicos
-                allGenres = [...new Set(allFilms.map(film => film.genre).filter(Boolean))].sort();
-                
-                //renderGenreTags();
-                renderGenreSelect();
-                
-                currentFilms = allFilms;
-                document.getElementById('loadingMessage').style.display = 'none';
-                updateFilmsCounter(); 
-                renderFilms();
-                
-            } catch (error) {
-                console.error('Erro:', error);
-                document.getElementById('loadingMessage').innerHTML = `
-                    <div style="color: var(--vermelho); text-align: center;">
-                        <i class="fas fa-exclamation-triangle" style="font-size: 40px; margin-bottom: 15px;"></i>
-                        <p style="font-weight: bold;">Erro ao carregar o catálogo</p>
-                        <p>${error.message}</p>
-                        <button onclick="loadCatalogData()" style="margin-top: 15px; padding: 8px 15px; background-color: var(--verde-ifmg); color: white; border: none; border-radius: 4px; cursor: pointer;">
-                            <i class="fas fa-sync-alt"></i> Tentar novamente
-                        </button>
-                    </div>
-                `;
-            }
-        }  */
+                                 /* async function loadCatalogData() {
+                                            try {
+                                                await new Promise(resolve => setTimeout(resolve, 800));
+                                                
+                                                const response = await fetch('catalogo.json'); // Altere para o nome do seu arquivo JSON
+                                                if (!response.ok) throw new Error('Erro ao carregar o arquivo');
+                                                
+                                                const data = await response.json();
+                                                allFilms = data.map(transformFilmData);
+                                                
+                                                // Extrai todos os gêneros únicos
+                                                allGenres = [...new Set(allFilms.map(film => film.genre).filter(Boolean))].sort();
+                                                
+                                                //renderGenreTags();
+                                                renderGenreSelect();
+                                                
+                                                currentFilms = allFilms;
+                                                document.getElementById('loadingMessage').style.display = 'none';
+                                                updateFilmsCounter(); 
+                                                renderFilms();
+                                                
+                                            } catch (error) {
+                                                console.error('Erro:', error);
+                                                document.getElementById('loadingMessage').innerHTML = `
+                                                    <div style="color: var(--vermelho); text-align: center;">
+                                                        <i class="fas fa-exclamation-triangle" style="font-size: 40px; margin-bottom: 15px;"></i>
+                                                        <p style="font-weight: bold;">Erro ao carregar o catálogo</p>
+                                                        <p>${error.message}</p>
+                                                        <button onclick="loadCatalogData()" style="margin-top: 15px; padding: 8px 15px; background-color: var(--verde-ifmg); color: white; border: none; border-radius: 4px; cursor: pointer;">
+                                                            <i class="fas fa-sync-alt"></i> Tentar novamente
+                                                        </button>
+                                                    </div>
+                                                `;
+                                            }
+                                        }  */
 
 async function loadCatalogData() {
     try {
@@ -1306,87 +1306,208 @@ function showError(error) {
 
             return img;
         }
-        
-        // Renderizar filmes
+
         function renderFilms() {
-            const filmGrid = document.getElementById('filmGrid');
-            filmGrid.innerHTML = '';
-            
-            const startIndex = (currentPage - 1) * itemsPerPage;
-            const endIndex = startIndex + itemsPerPage;
-            const filmsToShow = currentFilms.slice(startIndex, endIndex);
-            
-            if (filmsToShow.length === 0) {
-                filmGrid.innerHTML = `
-                    <div class="no-results">
-                        <i class="fas fa-film"></i>
-                        <p>Nenhum filme encontrado com os critérios selecionados.</p>
-                        <button onclick="resetFilters()" style="margin-top: 15px; padding: 8px 15px; background-color: var(--verde-ifmg); color: white; border: none; border-radius: 4px; cursor: pointer;">
-                            <i class="fas fa-undo"></i> Limpar filtros
-                        </button>
-                    </div>
-                `;
-                return;
-            }
-            
-            filmsToShow.forEach(film => {
-                const filmCard = document.createElement('div');
-                filmCard.className = 'film-card';
-                
-                // Badge para classificação indicativa
-                if (film.classification !== undefined) {
-                    const classificationClass = getClassificationClass(film.classification);
-                    const classificationText = film.classification <= 0 ? 'L' : film.classification;
-                    
-                    const classificationBadge = document.createElement('div');
-                    classificationBadge.className = 'film-badge';
-                    classificationBadge.innerHTML = `
-                        <span class="classification ${classificationClass}">${classificationText}</span>
-                    `;
-                    filmCard.appendChild(classificationBadge);
-                }
-                
-                const posterContainer = document.createElement('div');
-                posterContainer.className = 'film-poster-container';
-                
-                // Usa a nova função createSmartPoster
-                const posterImg = createSmartPoster(film);
-                
-                posterImg.onload = function() {
-                    createImageControls(posterContainer, posterImg);
-                };
-                
-                posterContainer.appendChild(posterImg);
-                
-                const filmInfo = document.createElement('div');
-                filmInfo.className = 'film-info';
-                
-                const title = document.createElement('h3');
-                title.className = 'film-title';
-                title.textContent = film.title;
-                
-                const meta = document.createElement('div');
-                meta.className = 'film-meta';
-                
-                const duration = document.createElement('span');
-                duration.textContent = film.duration ? `${film.duration} min` : '';
-                
-                const year = document.createElement('span');
-                year.textContent = film.year || '';
-                
-                meta.appendChild(duration);
-                meta.appendChild(year);
-                
-                filmInfo.appendChild(title);
-                filmInfo.appendChild(meta);
-                
-                filmCard.appendChild(posterContainer);
-                filmCard.appendChild(filmInfo);
-                
-                filmCard.addEventListener('click', () => openModal(film));
-                filmGrid.appendChild(filmCard);
-            });
-        }
+    const filmGrid = document.getElementById('filmGrid');
+    filmGrid.innerHTML = '';
+    
+    const startIndex = (currentPage - 1) * itemsPerPage;
+    const endIndex = startIndex + itemsPerPage;
+    const filmsToShow = currentFilms.slice(startIndex, endIndex);
+    
+    // Caso não haja filmes
+    if (filmsToShow.length === 0) {
+        filmGrid.innerHTML = `
+            <div class="no-results">
+                <i class="fas fa-film"></i>
+                <p>Nenhum filme encontrado com os critérios selecionados.</p>
+                <button onclick="resetFilters()" class="reset-button">
+                    <i class="fas fa-undo"></i> Limpar filtros
+                </button>
+            </div>
+        `;
+        return;
+    }
+    
+    // Para cada filme a ser exibido
+    filmsToShow.forEach(film => {
+        if (!film) return; // Pula itens inválidos
+
+        const filmCard = createFilmCard(film);
+        filmGrid.appendChild(filmCard);
+    });
+}
+
+// Função auxiliar para criar o card de um filme
+function createFilmCard(film) {
+    const filmCard = document.createElement('div');
+    filmCard.className = 'film-card';
+    
+    // Adiciona classificação indicativa se existir
+    addClassificationBadge(film, filmCard);
+    
+    // Cria container do poster
+    const posterContainer = createPosterContainer(film);
+    filmCard.appendChild(posterContainer);
+    
+    // Cria informações do filme
+    const filmInfo = createFilmInfo(film);
+    filmCard.appendChild(filmInfo);
+    
+    // Adiciona evento de clique
+    filmCard.addEventListener('click', () => openModal(film));
+    
+    return filmCard;
+}
+
+function addClassificationBadge(film, container) {
+    if (film.classification === undefined) return;
+    
+    const classificationClass = getClassificationClass(film.classification);
+    const classificationText = film.classification <= 0 ? 'L' : film.classification;
+    
+    const badge = document.createElement('div');
+    badge.className = 'film-badge';
+    badge.innerHTML = `
+        <span class="classification ${classificationClass}">${classificationText}</span>
+    `;
+    container.appendChild(badge);
+}
+
+function createPosterContainer(film) {
+    const container = document.createElement('div');
+    container.className = 'film-poster-container';
+    
+    const img = createSmartPoster(film);
+    
+    img.onload = function() {
+        createImageControls(container, img);
+    };
+    
+    img.onerror = function() {
+        console.error('Erro ao carregar imagem:', film.imageName || film.title);
+        this.src = 'capas/progbrasil.png'; // Fallback garantido
+    };
+    
+    container.appendChild(img);
+    return container;
+}
+
+function createFilmInfo(film) {
+    const info = document.createElement('div');
+    info.className = 'film-info';
+    
+    const title = document.createElement('h3');
+    title.className = 'film-title';
+    title.textContent = film.title || 'Título desconhecido';
+    
+    const meta = document.createElement('div');
+    meta.className = 'film-meta';
+    
+    const duration = document.createElement('span');
+    duration.textContent = film.duration ? `${film.duration} min` : 'Duração não informada';
+    
+    const year = document.createElement('span');
+    year.textContent = film.year || 'Ano desconhecido';
+    
+    meta.appendChild(duration);
+    meta.appendChild(year);
+    info.appendChild(title);
+    info.appendChild(meta);
+    
+    return info;
+}
+
+        console.log('Filmes a renderizar:', filmsToShow);
+filmsToShow.forEach(film => {
+    console.log('Filme:', {
+        title: film.title,
+        image: getDvdCover(film),
+        hasImage: film.imageName
+    });
+});
+
+        
+                                                    /*        // Renderizar filmes
+                                                            function renderFilms() {
+                                                                const filmGrid = document.getElementById('filmGrid');
+                                                                filmGrid.innerHTML = '';
+                                                                
+                                                                const startIndex = (currentPage - 1) * itemsPerPage;
+                                                                const endIndex = startIndex + itemsPerPage;
+                                                                const filmsToShow = currentFilms.slice(startIndex, endIndex);
+                                                                
+                                                                if (filmsToShow.length === 0) {
+                                                                    filmGrid.innerHTML = `
+                                                                        <div class="no-results">
+                                                                            <i class="fas fa-film"></i>
+                                                                            <p>Nenhum filme encontrado com os critérios selecionados.</p>
+                                                                            <button onclick="resetFilters()" style="margin-top: 15px; padding: 8px 15px; background-color: var(--verde-ifmg); color: white; border: none; border-radius: 4px; cursor: pointer;">
+                                                                                <i class="fas fa-undo"></i> Limpar filtros
+                                                                            </button>
+                                                                        </div>
+                                                                    `;
+                                                                    return;
+                                                                }
+                                                                
+                                                                filmsToShow.forEach(film => {
+                                                                    const filmCard = document.createElement('div');
+                                                                    filmCard.className = 'film-card';
+                                                                    
+                                                                    // Badge para classificação indicativa
+                                                                    if (film.classification !== undefined) {
+                                                                        const classificationClass = getClassificationClass(film.classification);
+                                                                        const classificationText = film.classification <= 0 ? 'L' : film.classification;
+                                                                        
+                                                                        const classificationBadge = document.createElement('div');
+                                                                        classificationBadge.className = 'film-badge';
+                                                                        classificationBadge.innerHTML = `
+                                                                            <span class="classification ${classificationClass}">${classificationText}</span>
+                                                                        `;
+                                                                        filmCard.appendChild(classificationBadge);
+                                                                    }
+                                                                    
+                                                                    const posterContainer = document.createElement('div');
+                                                                    posterContainer.className = 'film-poster-container';
+                                                                    
+                                                                    // Usa a nova função createSmartPoster
+                                                                    const posterImg = createSmartPoster(film);
+                                                                    
+                                                                    posterImg.onload = function() {
+                                                                        createImageControls(posterContainer, posterImg);
+                                                                    };
+                                                                    
+                                                                    posterContainer.appendChild(posterImg);
+                                                                    
+                                                                    const filmInfo = document.createElement('div');
+                                                                    filmInfo.className = 'film-info';
+                                                                    
+                                                                    const title = document.createElement('h3');
+                                                                    title.className = 'film-title';
+                                                                    title.textContent = film.title;
+                                                                    
+                                                                    const meta = document.createElement('div');
+                                                                    meta.className = 'film-meta';
+                                                                    
+                                                                    const duration = document.createElement('span');
+                                                                    duration.textContent = film.duration ? `${film.duration} min` : '';
+                                                                    
+                                                                    const year = document.createElement('span');
+                                                                    year.textContent = film.year || '';
+                                                                    
+                                                                    meta.appendChild(duration);
+                                                                    meta.appendChild(year);
+                                                                    
+                                                                    filmInfo.appendChild(title);
+                                                                    filmInfo.appendChild(meta);
+                                                                    
+                                                                    filmCard.appendChild(posterContainer);
+                                                                    filmCard.appendChild(filmInfo);
+                                                                    
+                                                                    filmCard.addEventListener('click', () => openModal(film));
+                                                                    filmGrid.appendChild(filmCard);
+                                                                });
+                                                            }   */
         
                                         // Resetar filtros
                                         /* --function resetFilters() {
