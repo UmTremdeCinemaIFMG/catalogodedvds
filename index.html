@@ -1075,18 +1075,16 @@
                 
                 // GERENCIA O CARREGAMENTO DE CAPAS DOS FILMES
                 function getDvdCover(filmData) {
-                    const DEFAULT_COVER = './capas/progbrasil.png';
+                    const DEFAULT_COVER = `${window.location.pathname}capas/progbrasil.png`;
                     
                     if (!filmData || !filmData.imageName) {
-                        console.log("Usando capa padrão para:", filmData);
                         return DEFAULT_COVER;
                     }
                     
-                    // Garante que a extensão seja .jpg
                     const baseName = filmData.imageName.replace(/\.(jpg|jpeg|png|gif)$/i, '');
-                    const imagePath = `./capas/${baseName}.jpg`;
+                    const imagePath = `${window.location.pathname}capas/${baseName}.jpg`;
                     
-                    console.log("Caminho da imagem gerado:", imagePath);
+                    console.log("Caminho absoluto da imagem:", imagePath);
                     return imagePath;
                 }
                 
