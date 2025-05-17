@@ -832,37 +832,63 @@ footer:hover p {
     
 <div class="container">
     <!-- Primeira linha: Controles de busca, ordenação e resultados -->
-        <div class="controls-wrapper">
-        <!-- Barra de busca -->
-        <div class="search-container">
-            <div class="search-box">
-                <i class="fas fa-search"></i>
-                <input type="text" id="searchInput" placeholder="Buscar filmes por título, diretor, elenco, sinopse...">
-            </div>
-        </div>
-
-        <!-- Controles secundários em linha -->
-        <div class="secondary-controls">
-            <!-- Ordenação -->
-            <div class="sort-container">
-                <div class="sort-box">
-                    <i class="fas fa-sort-alpha-down"></i>
-                    <select id="sortSelect">
-                        <option value="">Ordenar por...</option>
-                        <option value="title-asc">Título (A-Z)</option>
-                        <option value="title-desc">Título (Z-A)</option>
-                        <option value="year-asc">Ano (Mais antigo)</option>
-                        <option value="year-desc">Ano (Mais recente)</option>
-                    </select>
-                </div>
-            </div>
-
-            <!-- Contador de resultados -->
-            <div class="results-counter">
-                <span id="filmsCount">0</span> filmes encontrados
-            </div>
+<div class="controls-wrapper">
+    <!-- BARRA DE BUSCA -->
+    <div class="search-container">
+        <div class="search-box">
+            <i class="fas fa-search"></i>
+            <input type="text" placeholder="Buscar filmes por título, diretor, elenco, sinopse...">
         </div>
     </div>
+
+    <!-- LINHA DE FILTROS -->
+    <div class="filters-row">
+        <!-- SELEÇÃO DE GÊNERO -->
+        <div class="filter-container">
+            <div class="filter-box">
+                <i class="fas fa-film"></i>
+                <select id="genreSelect">
+                    <option value="">Todos os Gêneros</option>
+                    <!-- Opções de gênero serão inseridas aqui -->
+                </select>
+            </div>
+        </div>
+
+        <!-- SELEÇÃO DE CLASSIFICAÇÃO -->
+        <div class="filter-container">
+            <div class="filter-box">
+                <i class="fas fa-user-shield"></i>
+                <select id="ratingSelect">
+                    <option value="">Todas as Classificações</option>
+                    <option value="L">Livre</option>
+                    <option value="10">10 anos</option>
+                    <option value="12">12 anos</option>
+                    <option value="14">14 anos</option>
+                    <option value="16">16 anos</option>
+                    <option value="18">18 anos</option>
+                </select>
+            </div>
+        </div>
+
+        <!-- ORDENAÇÃO -->
+        <div class="filter-container">
+            <div class="filter-box">
+                <i class="fas fa-sort"></i>
+                <select id="sortSelect">
+                    <option value="title">Título (A-Z)</option>
+                    <option value="title-desc">Título (Z-A)</option>
+                    <option value="year">Ano (Antigo-Novo)</option>
+                    <option value="year-desc">Ano (Novo-Antigo)</option>
+                </select>
+            </div>
+        </div>
+
+        <!-- CONTADOR DE RESULTADOS -->
+        <div class="results-counter">
+            <span id="filmsCount">0</span> filmes encontrados
+        </div>
+    </div>
+</div>
     
     <!-- Fim da linha de controles -->
     
