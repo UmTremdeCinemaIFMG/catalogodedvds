@@ -1075,17 +1075,19 @@
                 
                 // GERENCIA O CARREGAMENTO DE CAPAS DOS FILMES
                 function getDvdCover(filmData) {
-                    console.log("Buscando capa para:", filmData.imageName);
                     const DEFAULT_COVER = './capas/progbrasil.png';
                     
-                    if (filmData.imageName) {
-                        const baseName = filmData.imageName.replace(/\.(jpg|jpeg|png|gif)$/i, '');
-                        const imagePath = `./capas/${baseName}.jpg`;
-                        console.log("Tentando carregar:", imagePath);
-                        return imagePath;
+                    if (!filmData || !filmData.imageName) {
+                        console.log("Usando capa padrão para:", filmData);
+                        return DEFAULT_COVER;
                     }
                     
-                    return DEFAULT_COVER;
+                    // Garante que a extensão seja .jpg
+                    const baseName = filmData.imageName.replace(/\.(jpg|jpeg|png|gif)$/i, '');
+                    const imagePath = `./capas/${baseName}.jpg`;
+                    
+                    console.log("Caminho da imagem gerado:", imagePath);
+                    return imagePath;
                 }
                 
                 /* ==========================================
@@ -1508,7 +1510,11 @@
                     const hasAdditionalInfo = film.audiodescricao || film.closedCaption || film.website || 
                                             film.portaCurta || film.festivais || film.premios || 
                                             film.legendasOutras || film.materialOutros;
-                    
+                        
+                    // Adiciona logs para debug
+                    console.log("Filme:", film);
+                    console.log("Caminho da imagem:", getDvdCover(film));
+ 
                     modalContent.innerHTML = `
                         <div class="modal-poster-container">
                             <img src="${getDvdCover(film)}" alt="${film.title}" class="modal-poster" onerror="this.src='capas/progbrasil.png'">
@@ -1575,9 +1581,7 @@
                     }
                     
                     modal.style.display = 'block';
-                    setTimeout(() => {
-                        modal.classList.add('show');
-                    }, 10);
+                    setTimeout(() => modal.classList.add('show'), 10);
                     
                     document.addEventListener('keydown', handleKeyDown);
                 }
