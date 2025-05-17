@@ -752,7 +752,8 @@
     
 <div class="container">
     <!-- Primeira linha: Controles de busca, ordenação e resultados -->
-    <div class="controls-row">
+        <div class="controls-wrapper">
+        <!-- Barra de busca -->
         <div class="search-container">
             <div class="search-box">
                 <i class="fas fa-search"></i>
@@ -760,25 +761,29 @@
             </div>
         </div>
 
-        <!-- Caixa de ordenação -->
-        <div class="sort-container">
-            <div class="sort-box">
-                <i class="fas fa-sort-alpha-down"></i>
-                <select id="sortSelect">
-                    <option value="">Ordenar por...</option>
-                    <option value="title-asc">Título (A-Z)</option>
-                    <option value="title-desc">Título (Z-A)</option>
-                    <option value="year-asc">Ano (Mais antigo)</option>
-                    <option value="year-desc">Ano (Mais recente)</option>
-                </select>
+        <!-- Controles secundários em linha -->
+        <div class="secondary-controls">
+            <!-- Ordenação -->
+            <div class="sort-container">
+                <div class="sort-box">
+                    <i class="fas fa-sort-alpha-down"></i>
+                    <select id="sortSelect">
+                        <option value="">Ordenar por...</option>
+                        <option value="title-asc">Título (A-Z)</option>
+                        <option value="title-desc">Título (Z-A)</option>
+                        <option value="year-asc">Ano (Mais antigo)</option>
+                        <option value="year-desc">Ano (Mais recente)</option>
+                    </select>
+                </div>
+            </div>
+
+            <!-- Contador de resultados -->
+            <div class="results-counter">
+                <span id="filmsCount">0</span> filmes encontrados
             </div>
         </div>
-
-        <!-- Contador de resultados -->
-        <div class="results-counter">
-            <span id="filmsCount">0</span> filmes encontrados
-        </div>
     </div>
+    
     <!-- Fim da linha de controles -->
     
         <!-- Segunda linha: Filtro de gêneros como tags -->
