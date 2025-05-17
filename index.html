@@ -750,35 +750,36 @@
         </div>
     </header>
     
-    <div class="container">
-        <!-- Primeira linha: Barra de busca -->
-        <div class="controls-row">
-            <div class="search-container">
-                <div class="search-box">
-                    <i class="fas fa-search"></i>
-                    <input type="text" id="searchInput" placeholder="Buscar filmes por título, diretor, elenco, sinopse...">
-                </div>
+<div class="container">
+    <!-- Primeira linha: Controles de busca, ordenação e resultados -->
+    <div class="controls-row">
+        <div class="search-container">
+            <div class="search-box">
+                <i class="fas fa-search"></i>
+                <input type="text" id="searchInput" placeholder="Buscar filmes por título, diretor, elenco, sinopse...">
             </div>
-       // </div>
+        </div>
 
-        <!-- QUANTIDADE DE FILMES ENCONTRADOS -->
+        <!-- Caixa de ordenação -->
+        <div class="sort-container">
+            <div class="sort-box">
+                <i class="fas fa-sort-alpha-down"></i>
+                <select id="sortSelect">
+                    <option value="">Ordenar por...</option>
+                    <option value="title-asc">Título (A-Z)</option>
+                    <option value="title-desc">Título (Z-A)</option>
+                    <option value="year-asc">Ano (Mais antigo)</option>
+                    <option value="year-desc">Ano (Mais recente)</option>
+                </select>
+            </div>
+        </div>
+
+        <!-- Contador de resultados -->
         <div class="results-counter">
-    <span id="filmsCount">0</span> filmes encontrados
-</div>
-
-        <!-- NOVA CAIXA DE ORDENAÇÃO - ADICIONE ESTE BLOCO -->
-    <div class="sort-container">
-        <div class="sort-box">
-            <i class="fas fa-sort-alpha-down"></i>
-            <select id="sortSelect">
-                <option value="">Ordenar por...</option>
-                <option value="title-asc">Título (A-Z)</option>
-                <option value="title-desc">Título (Z-A)</option>
-                <option value="year-asc">Ano (Mais antigo)</option>
-                <option value="year-desc">Ano (Mais recente)</option>
-            </select>
+            <span id="filmsCount">0</span> filmes encontrados
         </div>
     </div>
+    <!-- Fim da linha de controles -->
     
         <!-- Segunda linha: Filtro de gêneros como tags -->
         <div class="genre-filter-container">
