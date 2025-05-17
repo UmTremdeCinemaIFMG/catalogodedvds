@@ -1,0 +1,1534 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Catálogo de DVDs</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        :root {
+            --verde-ifmg: #009a44;
+            --verde-escuro: #007236;
+            --cinza-escuro: #333333;
+            --cinza-medio: #666666;
+            --cinza-claro: #f2f2f2;
+            --branco: #ffffff;
+            --azul: #0066cc;
+            --amarelo: #ffcc00;
+            --laranja: #ff9900;
+            --vermelho: #cc0000;
+            --preto: #000000;
+            --sombra: 0 4px 6px rgba(0, 0, 0, 0.1);
+            --transicao: all 0.3s ease;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: var(--cinza-claro);
+            color: var(--cinza-escuro);
+            line-height: 1.6;
+        }
+        
+        header {
+            background-color: var(--verde-ifmg);
+            color: var(--branco);
+            padding: 25px 0;
+            text-align: center;
+            margin-bottom: 30px;
+            box-shadow: var(--sombra);
+            position: relative;
+            overflow: hidden;
+            transition: var(--transicao);
+        }
+        
+        header::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(90deg, var(--verde-ifmg), var(--verde-escuro));
+        }
+        
+        h1 {
+            margin: 0;
+            font-size: 2.5em;
+            font-weight: 700;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+            transition: var(--transicao);
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        .controls-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+
+        /* Espaço extra entre a linha de controles e o filtro de gênero 
+.controls-row + .genre-filter-container {
+    margin-top: 30px;
+}*/
+
+.results-counter {
+    /* Estilos base (mantém o verde padrão) */
+    margin: 10px 0 20px;
+    padding: 8px 15px;
+    background-color: var(--verde-ifmg); /* Verde padrão quando há resultados */
+    color: white;
+    border-radius: 20px;
+    display: inline-block;
+    font-size: 14px;
+    box-shadow: var(--sombra);
+    transition: all 0.3s ease;
+}
+
+/* Estado quando NÃO há resultados */
+.results-counter.sem-resultados {
+    background-color: var(--vermelho); /* Vermelho quando não há filmes */
+}
+
+/* Estado quando HÁ resultados (já é o padrão, mas pode personalizar) */
+.results-counter.com-resultados {
+    background-color: var(--verde-ifmg); /* Verde (opcional, já é padrão) */
+}
+
+/* Animação do número */
+#filmsCount {
+    font-weight: bold;
+    font-size: 16px;
+    transition: all 0.3s ease;
+    display: inline-block;
+}
+
+#filmsCount.updated {
+    transform: scale(1.2);
+    color: var(--amarelo); /* Destaque amarelo na animação */
+}   
+        
+        .search-container {
+            flex: 1;
+            min-width: 200px;
+        }
+        
+        .search-box {
+            position: relative;
+        }
+        
+        .search-box input {
+            width: 100%;
+            padding: 12px 15px 12px 40px;
+            border: 1px solid var(--cinza-medio);
+            border-radius: 6px;
+            font-size: 16px;
+            transition: var(--transicao);
+            box-shadow: inset 0 1px 3px rgba(0,0,0,0.1);
+        }
+        
+        .search-box input:focus {
+            border-color: var(--verde-ifmg);
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(0, 154, 68, 0.2);
+        }
+        
+        .search-box i {
+            position: absolute;
+            left: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--cinza-medio);
+        }
+
+
+        /* ESTILOS PARA A CAIXA DE ORDENAÇÃO */
+.sort-container {
+    flex: 0 0 auto; /* NÃO CRESCE, NÃO ENCOLHE, TAMANHO AUTOMÁTICO */
+    min-width: 200px;
+    margin-top: 30px;
+    gap: 20px;
+    margin-bottom: 20px;
+}
+
+.sort-box {
+    position: relative;
+}
+
+.sort-box i {
+    position: absolute;
+    left: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--cinza-medio);
+    z-index: 1;
+}
+
+.sort-box select {
+    width: 100%;
+    padding: 12px 15px 12px 40px;
+    border: 1px solid var(--cinza-medio);
+    border-radius: 6px;
+    font-size: 16px;
+    transition: var(--transicao);
+    box-shadow: inset 0 1px 3px rgba(0,0,0,0.1);
+    appearance: none; /* REMOVE O ESTILO PADRÃO DO SELECT */
+    background-color: var(--branco);
+    cursor: pointer;
+}
+
+.sort-box select:focus {
+    border-color: var(--verde-ifmg);
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(0, 154, 68, 0.2);
+}
+          
+        .genre-filter-container {
+            background-color: var(--branco);
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: var(--sombra);
+            margin-bottom: 30px;
+        }
+        
+        .genre-filter-title {
+            font-weight: bold;
+            font-size: 16px;
+            color: var(--cinza-escuro);
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .genre-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+        
+        .genre-tag {
+            display: inline-block;
+            padding: 6px 12px;
+            background-color: var(--cinza-claro);
+            color: var(--cinza-escuro);
+            border-radius: 20px;
+            font-size: 14px;
+            cursor: pointer;
+            transition: var(--transicao);
+            border: 1px solid var(--cinza-medio);
+        }
+        
+        .genre-tag:hover {
+            background-color: var(--verde-ifmg);
+            color: var(--branco);
+            border-color: var(--verde-escuro);
+        }
+        
+        .genre-tag.active {
+            background-color: var(--verde-ifmg);
+            color: var(--branco);
+            border-color: var(--verde-escuro);
+            font-weight: bold;
+        }
+
+        .classification {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 24px;
+            height: 24px;
+            border-radius: 4px;
+            font-weight: bold;
+            font-size: 12px;
+            margin-right: 10px;
+            color: white;
+            border: 1px solid rgba(0,0,0,0.1);
+        }
+        
+        .classification.L { 
+            background-color: var(--verde-ifmg);
+        }
+        
+        .classification.ten { 
+            background-color: var(--azul);
+        }
+        
+        .classification.twelve { 
+            background-color: var(--amarelo);
+            color: var(--cinza-escuro);
+        }
+        
+        .classification.fourteen { 
+            background-color: var(--laranja);
+        }
+        
+        .classification.sixteen { 
+            background-color: var(--vermelho);
+        }
+        
+        .classification.eighteen { 
+            background-color: var(--preto);
+        }
+
+        .film-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+        
+        .film-card {
+            background-color: var(--branco);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: var(--sombra);
+            transition: var(--transicao);
+            cursor: pointer;
+            position: relative;
+        }
+        
+        .film-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.15);
+        }
+        
+        .film-poster-container {
+            width: 100%;
+            height: 350px;
+            position: relative;
+            overflow: hidden;
+            border-bottom: 3px solid var(--verde-ifmg);
+        }
+        
+        .film-poster {
+            width: auto;
+            height: 100%;
+            position: absolute;
+            top: 0;
+            transition: transform 0.5s ease;
+        }
+        
+        .film-poster-controls {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            pointer-events: none;
+        }
+        
+        .film-poster-control {
+            background-color: rgba(0, 0, 0, 0.5);
+            color: white;
+            border: none;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            pointer-events: auto;
+            margin: 0 10px;
+            transition: var(--transicao);
+            z-index: 2;
+        }
+        
+        .film-poster-control:hover {
+            background-color: rgba(0, 0, 0, 0.8);
+            transform: scale(1.1);
+        }
+        
+        .film-card:hover .film-poster {
+            opacity: 0.9;
+        }
+        
+        .film-info {
+            padding: 15px;
+        }
+        
+        .film-title {
+            font-weight: bold;
+            margin: 0 0 5px 0;
+            color: var(--verde-escuro);
+            font-size: 16px;
+            line-height: 1.3;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+            min-height: 2.6em;
+        }
+        
+        .film-meta {
+            display: flex;
+            justify-content: space-between;
+            font-size: 14px;
+            color: var(--cinza-medio);
+        }
+        
+        .film-badge {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background-color: transparent;
+            padding: 0;
+            z-index: 1;
+        }
+        
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.8);
+            overflow: auto;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        
+        .modal.show {
+            opacity: 1;
+        }
+        
+        .modal-content {
+            background-color: var(--branco);
+            margin: 5% auto;
+            padding: 30px;
+            width: 70%;
+            max-width: 800px;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+            position: relative;
+            transform: translateY(-20px);
+            transition: transform 0.3s ease;
+        }
+        
+        .modal.show .modal-content {
+            transform: translateY(0);
+        }
+        
+        .close {
+            position: absolute;
+            top: 15px;
+            right: 25px;
+            font-size: 28px;
+            font-weight: bold;
+            color: var(--cinza-medio);
+            cursor: pointer;
+            transition: color 0.2s;
+        }
+        
+        .close:hover {
+            color: var(--verde-escuro);
+        }
+        
+        .modal-poster-container {
+            float: left;
+            width: 200px;
+            height: 280px;
+            position: relative;
+            overflow: hidden;
+            margin-right: 20px;
+            margin-bottom: 20px;
+            border: 3px solid var(--verde-ifmg);
+            border-radius: 4px;
+            box-shadow: var(--sombra);
+        }
+        
+        .modal-poster {
+            width: auto;
+            height: 100%;
+            position: absolute;
+            top: 0;
+            transition: transform 0.5s ease;
+        }
+        
+        .modal-poster-controls {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            pointer-events: none;
+        }
+        
+        .modal-poster-control {
+            background-color: rgba(0, 0, 0, 0.5);
+            color: white;
+            border: none;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            pointer-events: auto;
+            margin: 0 5px;
+            transition: var(--transicao);
+            z-index: 2;
+        }
+        
+        .modal-poster-control:hover {
+            background-color: rgba(0, 0, 0, 0.8);
+            transform: scale(1.1);
+        }
+        
+        .modal-title {
+            color: var(--verde-escuro);
+            margin-top: 0;
+            border-bottom: 2px solid var(--cinza-claro);
+            padding-bottom: 10px;
+            margin-bottom: 15px;
+            font-size: 24px;
+        }
+        
+        .modal-details {
+            margin-bottom: 20px;
+        }
+        
+        .modal-details p {
+            margin: 8px 0;
+            font-size: 15px;
+            line-height: 1.5;
+        }
+        
+        .modal-details strong {
+            color: var(--cinza-escuro);
+        }
+        
+        .modal-synopsis {
+            clear: both;
+            line-height: 1.6;
+        }
+        
+        .modal-synopsis h3 {
+            color: var(--verde-escuro);
+            margin-bottom: 10px;
+        }
+        
+        .modal-synopsis p {
+            font-size: 15px;
+            line-height: 1.6;
+        }
+
+        .modal-themes {
+            margin: 15px 0;
+            padding: 15px;
+            background-color: var(--cinza-claro);
+            border-radius: 6px;
+        }
+
+        .modal-themes h3 {
+            color: var(--verde-escuro);
+            margin-top: 0;
+            margin-bottom: 10px;
+        }
+
+        .modal-themes .theme-tag {
+            display: inline-block;
+            background-color: var(--verde-ifmg);
+            color: white;
+            padding: 4px 8px;
+            border-radius: 4px;
+            margin-right: 5px;
+            margin-bottom: 5px;
+            font-size: 13px;
+        }
+
+        .modal-additional {
+            margin-top: 20px;
+            padding-top: 15px;
+            border-top: 1px dashed var(--cinza-medio);
+        }
+
+        .modal-additional h3 {
+            color: var(--verde-escuro);
+            margin-top: 0;
+            margin-bottom: 10px;
+        }
+
+        .modal-additional p {
+            margin: 8px 0;
+            font-size: 15px;
+            line-height: 1.5;
+        }
+        
+        .pagination {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+        }
+        
+        .pagination button {
+            padding: 8px 12px;
+            border: 1px solid var(--cinza-medio);
+            border-radius: 4px;
+            background-color: var(--branco);
+            cursor: pointer;
+            transition: var(--transicao);
+            min-width: 40px;
+        }
+        
+        .pagination button:hover {
+            background-color: var(--cinza-claro);
+        }
+        
+        .pagination button.active {
+            background-color: var(--verde-ifmg);
+            color: var(--branco);
+            border-color: var(--verde-escuro);
+        }
+        
+        .pagination span {
+            padding: 8px 12px;
+            display: flex;
+            align-items: center;
+        }
+        
+        footer {
+            background-color: var(--verde-escuro);
+            color: var(--branco);
+            text-align: center;
+            padding: 20px;
+            margin-top: 30px;
+            box-shadow: 0 -2px 5px rgba(0,0,0,0.1);
+            transition: var(--transicao);
+            cursor: pointer;
+        }
+
+        footer:hover {
+            background-color: var(--vermelho);
+            transform: scale(1.01);
+        }
+
+        footer p {
+            margin: 0;
+            transition: var(--transicao);
+        }
+
+        footer:hover p {
+            transform: scale(1.02);
+        }
+        
+        .loading {
+            text-align: center;
+            padding: 40px;
+            font-size: 1.2em;
+            color: var(--cinza-medio);
+        }
+        
+        .skeleton {
+            background-color: #e0e0e0;
+            border-radius: 4px;
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .skeleton::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.5), transparent);
+            animation: shimmer 1.5s infinite;
+        }
+        
+        @keyframes shimmer {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100%); }
+        }
+        
+        .no-results {
+            grid-column: 1 / -1;
+            text-align: center;
+            padding: 40px;
+            background: var(--branco);
+            border-radius: 8px;
+            box-shadow: var(--sombra);
+        }
+        
+        .no-results i {
+            font-size: 40px;
+            color: var(--cinza-medio);
+            margin-bottom: 15px;
+        }
+        
+        .no-results p {
+            margin: 0;
+            font-size: 16px;
+        }
+        
+        @media (max-width: 900px) {
+            .modal-content {
+                width: 90%;
+                padding: 20px;
+            }
+            
+            .modal-poster-container {
+                float: none;
+                width: 100%;
+                height: auto;
+                max-height: 400px;
+                margin-right: 0;
+                margin-bottom: 15px;
+            }
+            
+            .film-grid {
+                grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+                gap: 20px;
+            }
+            
+            .film-poster-container {
+                height: 280px;
+            }
+        }
+        
+        @media (max-width: 600px) {
+            h1 {
+                font-size: 2em;
+            }
+            
+            .film-grid {
+                grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+                gap: 15px;
+            }
+            
+            .film-poster-container {
+                height: 220px;
+            }
+            
+            .film-title {
+                font-size: 14px;
+            }
+            
+            .film-meta {
+                font-size: 12px;
+            }
+            
+            .pagination {
+                gap: 5px;
+            }
+            
+            .pagination button, 
+            .pagination span {
+                padding: 6px 8px;
+                min-width: 30px;
+            }
+        }
+    </style>
+
+
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1><i class="fas fa-film"></i> Catálogo de DVDs</h1>
+        </div>
+    </header>
+    
+    <div class="container">
+        <!-- Primeira linha: Barra de busca -->
+        <div class="controls-row">
+            <div class="search-container">
+                <div class="search-box">
+                    <i class="fas fa-search"></i>
+                    <input type="text" id="searchInput" placeholder="Buscar filmes por título, diretor, elenco, sinopse...">
+                </div>
+            </div>
+       // </div>
+
+        <!-- QUANTIDADE DE FILMES ENCONTRADOS -->
+        <div class="results-counter">
+    <span id="filmsCount">0</span> filmes encontrados
+</div>
+
+        <!-- NOVA CAIXA DE ORDENAÇÃO - ADICIONE ESTE BLOCO -->
+    <div class="sort-container">
+        <div class="sort-box">
+            <i class="fas fa-sort-alpha-down"></i>
+            <select id="sortSelect">
+                <option value="">Ordenar por...</option>
+                <option value="title-asc">Título (A-Z)</option>
+                <option value="title-desc">Título (Z-A)</option>
+                <option value="year-asc">Ano (Mais antigo)</option>
+                <option value="year-desc">Ano (Mais recente)</option>
+            </select>
+        </div>
+    </div>
+    
+        <!-- Segunda linha: Filtro de gêneros como tags -->
+        <div class="genre-filter-container">
+            <div class="genre-filter-title">
+                <i class="fas fa-filter"></i> Filtrar por gênero:
+            </div>
+            <div class="genre-tags" id="genreTags">
+                <div class="genre-tag active" data-genre="">Todos</div>
+                <!-- Tags de gênero serão adicionadas dinamicamente aqui -->
+            </div>
+        </div>
+        
+        <div id="loadingMessage" class="loading">
+            <div class="skeleton" style="width: 100%; height: 300px; margin-bottom: 20px;"></div>
+            <div class="skeleton" style="width: 80%; height: 20px; margin: 0 auto 10px;"></div>
+            <div class="skeleton" style="width: 60%; height: 20px; margin: 0 auto;"></div>
+        </div>
+        
+        <div class="film-grid" id="filmGrid"></div>
+        
+        <div class="pagination" id="pagination"></div>
+    </div>
+    
+    <div id="filmModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <div id="modalContent"></div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="container">
+            <p><i class="fas fa-train"></i> UM TREM DE CINEMA 2019-2021</p>
+        </div>
+    </footer>
+        
+    <script>
+        // Variáveis globais
+        let allFilms = [];
+        let currentFilms = [];
+        let currentPage = 1;
+        const itemsPerPage = 20;
+        let allGenres = [];
+        let debounceTimer;
+        let selectedGenre = '';
+        
+        // Função para limpar campos
+        function cleanField(value) {
+            if (!value) return '';
+            return String(value).replace(/^"|"$/g, '').trim();
+        }
+        
+        // Função para obter capa do DVD - MODIFICADA para priorizar imageName
+        function getDvdCover(filmData) {
+            console.log("Buscando capa para:", filmData.imageName); // Adicione esta linha
+            const DEFAULT_COVER = 'capas/progbrasil.png';
+            
+            // 1. Se tiver imageName definido no JSON, tenta carregar com .jpg e .png
+            if (filmData.imageName) {
+                // Remove qualquer extensão que possa estar no imageName (por segurança)
+                const baseName = filmData.imageName.replace(/\.(jpg|jpeg|png|gif)$/i, '');
+        const imagePath = `capas/${baseName}.jpg`;
+        console.log("Tentando carregar:", imagePath); // Adicione esta linha
+        return imagePath;
+            }
+            
+            // 2. Se não tiver imageName, retorna a capa padrão
+            return DEFAULT_COVER;
+        }
+
+        // Função para criar a imagem com fallback - VERSÃO CORRIGIDA
+        function createSmartPoster(film) {
+            const img = new Image();
+    img.className = 'film-poster';
+    img.alt = film.title || 'Capa do filme';
+    
+    img.onerror = function() {
+        console.error("Falha ao carregar:", this.src); // Adicione esta linha
+        if (film.imageName) {
+            const baseName = film.imageName.replace(/\.(jpg|jpeg|png|gif)$/i, '');
+            const fallbackPath = `capas/${baseName}.png`;
+            console.log("Tentando fallback PNG:", fallbackPath); // Adicione esta linha
+            this.src = fallbackPath;
+            this.onerror = function() {
+                console.error("Fallback também falhou, usando padrão"); // Adicione esta linha
+                this.src = 'capas/progbrasil.png';
+            };
+        } else {
+            this.src = 'capas/progbrasil.png';
+        }
+    };
+    
+    img.src = getDvdCover(film);
+    console.log("Imagem definida como:", img.src); // Adicione esta linha
+    
+    return img;
+        }
+        
+        // Classificação por cores - Retorna a classe CSS correspondente
+        function getClassificationClass(age) {
+            if (!age || age <= 0) return 'L';
+            
+            const ageNum = typeof age === 'string' ? parseInt(age) : age;
+            
+            switch(ageNum) {
+                case 10: return 'ten';
+                case 12: return 'twelve';
+                case 14: return 'fourteen';
+                case 16: return 'sixteen';
+                case 18: return 'eighteen';
+                default: return 'L';
+            }
+        }
+        
+        // Transformar dados do JSON
+        function transformFilmData(originalFilm) {
+            console.log("Original imageName:", originalFilm["imageName"]); // Adicione esta linha
+            // Tratamento especial para nota IMDB
+            let imdbData = { votantes: '' };
+            if (originalFilm["nota imdb/votantes"]) {
+                const [nota, votantes] = String(originalFilm["nota imdb/votantes"]).split('/');
+                imdbData = { votantes: `${nota}/${votantes || ''}`.trim() };
+            }
+            
+            return {
+                title: cleanField(originalFilm["Título do filme"]),
+                director: cleanField(originalFilm["Direção"]),
+                cast: cleanField(originalFilm["Elenco"]),
+                duration: parseInt(originalFilm["Dur.(´)"]) || 0,
+                genre: cleanField(originalFilm["GEN."]),
+                year: parseInt(originalFilm["Ano"]) || 0,
+                imdb: imdbData,
+                country: cleanField(originalFilm["País"]),
+                state: cleanField(originalFilm["UF"]),
+                city: cleanField(originalFilm["cidade"]),
+                audiodescricao: cleanField(originalFilm["Audiodescrição"]),
+                closedCaption: cleanField(originalFilm["Closed Caption"]),
+                synopsis: cleanField(originalFilm["Sinopse"]),
+                tema: cleanField(originalFilm["tema (Programadora Brasil)"]),
+                tags: cleanField(originalFilm["tags"]),
+                website: cleanField(originalFilm["website"]),
+                portaCurta: cleanField(originalFilm["Porta Curta"]),
+                festivais: cleanField(originalFilm["festivais"]),
+                premios: cleanField(originalFilm["premios"]),
+                legendasOutras: cleanField(originalFilm["legendas_outras"]),
+                materialOutros: cleanField(originalFilm["material_outros"]),
+                duracaoFormato: cleanField(originalFilm["duracao FORMATO"]),
+                nossoAcervo: cleanField(originalFilm["Nosso Acervo"]),
+                pgm: parseInt(originalFilm["PGM"]) || 0,
+                filmes: parseInt(originalFilm["Filmes"]) || 0,
+                dvd: cleanField(originalFilm["Nome do Programa"]),
+                imageName: cleanField(originalFilm["imageName"]), // Campo usado para buscar a imagem
+                classification: parseInt(originalFilm["Classificação Indicativa POR PGM"]) || 0
+            };
+        }
+//------------------
+
+
+// FUNÇÃO PARA ORDENAR OS FILMES - ADICIONE ESTA FUNÇÃO
+function sortFilms(films, sortOption) {
+    // FAZ UMA CÓPIA DO ARRAY PARA NÃO MODIFICAR O ORIGINAL
+    const sortedFilms = [...films];
+    
+    switch(sortOption) {
+        case 'title-asc':
+            // ORDEM ALFABÉTICA CRESCENTE POR TÍTULO
+            sortedFilms.sort((a, b) => a.title.localeCompare(b.title));
+            break;
+        case 'title-desc':
+            // ORDEM ALFABÉTICA DECRESCENTE POR TÍTULO
+            sortedFilms.sort((a, b) => b.title.localeCompare(a.title));
+            break;
+        case 'year-asc':
+            // ORDEM CRESCENTE POR ANO
+            sortedFilms.sort((a, b) => a.year - b.year);
+            break;
+        case 'year-desc':
+            // ORDEM DECRESCENTE POR ANO
+            sortedFilms.sort((a, b) => b.year - a.year);
+            break;
+        default:
+            // SEM ORDENAÇÃO (MANTÉM A ORDEM ORIGINAL)
+            break;
+    }
+    
+    return sortedFilms;
+}
+        
+        //-----------------
+
+
+
+        
+        // Carregar dados do JSON com skeleton loading
+        async function loadCatalogData() {
+            try {
+                await new Promise(resolve => setTimeout(resolve, 800));
+                
+                const response = await fetch('catalogo.json'); // Altere para o nome do seu arquivo JSON
+                if (!response.ok) throw new Error('Erro ao carregar o arquivo');
+                
+                const data = await response.json();
+                allFilms = data.map(transformFilmData);
+                
+                // Extrai todos os gêneros únicos
+                allGenres = [...new Set(allFilms.map(film => film.genre).filter(Boolean))].sort();
+                
+                renderGenreTags();
+                
+                currentFilms = allFilms;
+                document.getElementById('loadingMessage').style.display = 'none';
+                updateFilmsCounter(); 
+                renderFilms();
+                
+            } catch (error) {
+                console.error('Erro:', error);
+                document.getElementById('loadingMessage').innerHTML = `
+                    <div style="color: var(--vermelho); text-align: center;">
+                        <i class="fas fa-exclamation-triangle" style="font-size: 40px; margin-bottom: 15px;"></i>
+                        <p style="font-weight: bold;">Erro ao carregar o catálogo</p>
+                        <p>${error.message}</p>
+                        <button onclick="loadCatalogData()" style="margin-top: 15px; padding: 8px 15px; background-color: var(--verde-ifmg); color: white; border: none; border-radius: 4px; cursor: pointer;">
+                            <i class="fas fa-sync-alt"></i> Tentar novamente
+                        </button>
+                    </div>
+                `;
+            }
+        }
+        
+        // Renderizar tags de gênero
+        function renderGenreTags() {
+            const genreTagsContainer = document.getElementById('genreTags');
+            
+            const allTag = document.createElement('div');
+allTag.className = 'genre-tag active'; // Sempre começa ativo
+allTag.textContent = 'Todos';
+allTag.dataset.genre = '';
+allTag.addEventListener('click', function() {
+    // Apenas reseta o filtro de gênero
+    selectedGenre = '';
+    
+    // Atualiza a aparência (ativa apenas o "Todos")
+    document.querySelectorAll('.genre-tag').forEach(t => {
+        t.classList.remove('active');
+    });
+    this.classList.add('active');
+    
+    // Refaz a filtragem (mantendo a busca se houver)
+    filterAndRenderFilms();
+});
+
+genreTagsContainer.innerHTML = '';
+genreTagsContainer.appendChild(allTag);
+            
+            allGenres.forEach(genre => {
+                const tag = document.createElement('div');
+                tag.className = 'genre-tag';
+                tag.textContent = genre;
+                tag.dataset.genre = genre;
+                
+                if (genre === selectedGenre) {
+                    tag.classList.add('active');
+                }
+                
+                tag.addEventListener('click', function() {
+                    selectedGenre = this.dataset.genre;
+                    
+                    document.querySelectorAll('.genre-tag').forEach(t => {
+                        t.classList.remove('active');
+                    });
+                    this.classList.add('active');
+                    
+                    filterAndRenderFilms();
+                });
+                
+                genreTagsContainer.appendChild(tag);
+            });
+        }
+        
+        // Filtrar filmes com debounce para melhor performance
+        function filterAndRenderFilms() {
+    clearTimeout(debounceTimer);
+    debounceTimer = setTimeout(() => {
+        const searchTerm = document.getElementById('searchInput').value.toLowerCase();
+        const sortOption = document.getElementById('sortSelect').value; // PEGA A OPÇÃO DE ORDENAÇÃO
+        
+        // FILTRA OS FILMES
+        currentFilms = allFilms.filter(film => {
+            const matchesSearch = 
+                film.title.toLowerCase().includes(searchTerm) ||
+                (film.director && film.director.toLowerCase().includes(searchTerm)) ||
+                (film.cast && film.cast.toLowerCase().includes(searchTerm)) ||
+                (film.synopsis && film.synopsis.toLowerCase().includes(searchTerm)) ||
+                (film.tema && film.tema.toLowerCase().includes(searchTerm)) ||
+                (film.tags && film.tags.toLowerCase().includes(searchTerm)) ||
+                (film.dvd && film.dvd.toLowerCase().includes(searchTerm));
+            
+            const matchesGenre = selectedGenre === '' || film.genre === selectedGenre;
+            
+            return matchesSearch && matchesGenre;
+        });
+
+        // ATUALIZA O CONTADOR DE FILMES
+        updateFilmsCounter();
+        
+        // APLICA A ORDENAÇÃO - ADICIONE ESTA LINHA
+        currentFilms = sortFilms(currentFilms, sortOption);
+        
+        currentPage = 1;
+        renderPagination();
+        renderFilms();
+    }, 300);
+}
+
+        // Nova função para atualizar o contador
+        function updateFilmsCounter() {
+            const countElement = document.getElementById('filmsCount');
+            const counterContainer = document.querySelector('.results-counter');
+            
+            // Animação do número
+            countElement.classList.add('updated');
+            setTimeout(() => {
+                countElement.classList.remove('updated');
+            }, 300);
+        
+            // Atualiza contador
+            countElement.textContent = currentFilms.length;
+            
+            // Controla os estados visualis
+            if (currentFilms.length === 0) {
+                counterContainer.classList.add('sem-resultados');
+                counterContainer.classList.remove('com-resultados'); // Limpa classe oposta
+            } else {
+                counterContainer.classList.add('com-resultados');   // Explicita que há resultados
+                counterContainer.classList.remove('sem-resultados');
+            }
+        }
+        
+        // Criar controles de navegação para imagens horizontais
+        function createImageControls(container, image) {
+            const controls = document.createElement('div');
+            controls.className = container.classList.contains('modal-poster-container') ? 
+                'modal-poster-controls' : 'film-poster-controls';
+            
+            const leftButton = document.createElement('button');
+            leftButton.className = container.classList.contains('modal-poster-container') ? 
+                'modal-poster-control' : 'film-poster-control';
+            leftButton.innerHTML = '<i class="fas fa-chevron-left"></i>';
+            leftButton.addEventListener('click', (e) => {
+                e.stopPropagation();
+                const currentTransform = image.style.transform || 'translateX(0)';
+                const currentX = parseInt(currentTransform.match(/translateX\(([-\d]+)px\)/)?.[1] || 0);
+                const newX = Math.min(currentX + 100, 0);
+                image.style.transform = `translateX(${newX}px)`;
+            });
+            
+            const rightButton = document.createElement('button');
+            rightButton.className = container.classList.contains('modal-poster-container') ? 
+                'modal-poster-control' : 'film-poster-control';
+            rightButton.innerHTML = '<i class="fas fa-chevron-right"></i>';
+            rightButton.addEventListener('click', (e) => {
+                e.stopPropagation();
+                const currentTransform = image.style.transform || 'translateX(0)';
+                const currentX = parseInt(currentTransform.match(/translateX\(([-\d]+)px\)/)?.[1] || 0);
+                const containerWidth = container.clientWidth;
+                const imageWidth = image.clientWidth;
+                const maxX = containerWidth - imageWidth;
+                const newX = Math.max(currentX - 100, maxX);
+                image.style.transform = `translateX(${newX}px)`;
+            });
+            
+            controls.appendChild(leftButton);
+            controls.appendChild(rightButton);
+            container.appendChild(controls);
+            
+            setTimeout(() => {
+                const containerWidth = container.clientWidth;
+                const imageWidth = image.clientWidth;
+                if (imageWidth > containerWidth) {
+                    const initialX = containerWidth - imageWidth;
+                    image.style.transform = `translateX(${initialX}px)`;
+                }
+            }, 50);
+        }
+        
+        // Função para criar a imagem com fallback - MODIFICADA para usar apenas imageName ou fallback padrão
+        function createSmartPoster(film) {
+            const img = new Image();
+            img.className = 'film-poster';
+            img.alt = film.title || 'Capa do filme';
+            
+            // Tenta carregar a imagem usando imageName ou fallback padrão
+            img.src = getDvdCover(film);
+             console.log("Imagem definida como:", img.src); // Adicione esta linha
+            img.onerror = function() {
+                this.src = 'capas/progbrasil.png'; // Fallback obrigatório
+            };
+
+            return img;
+        }
+        
+        // Renderizar filmes
+        function renderFilms() {
+            const filmGrid = document.getElementById('filmGrid');
+            filmGrid.innerHTML = '';
+            
+            const startIndex = (currentPage - 1) * itemsPerPage;
+            const endIndex = startIndex + itemsPerPage;
+            const filmsToShow = currentFilms.slice(startIndex, endIndex);
+            
+            if (filmsToShow.length === 0) {
+                filmGrid.innerHTML = `
+                    <div class="no-results">
+                        <i class="fas fa-film"></i>
+                        <p>Nenhum filme encontrado com os critérios selecionados.</p>
+                        <button onclick="resetFilters()" style="margin-top: 15px; padding: 8px 15px; background-color: var(--verde-ifmg); color: white; border: none; border-radius: 4px; cursor: pointer;">
+                            <i class="fas fa-undo"></i> Limpar filtros
+                        </button>
+                    </div>
+                `;
+                return;
+            }
+            
+            filmsToShow.forEach(film => {
+                const filmCard = document.createElement('div');
+                filmCard.className = 'film-card';
+                
+                // Badge para classificação indicativa
+                if (film.classification !== undefined) {
+                    const classificationClass = getClassificationClass(film.classification);
+                    const classificationText = film.classification <= 0 ? 'L' : film.classification;
+                    
+                    const classificationBadge = document.createElement('div');
+                    classificationBadge.className = 'film-badge';
+                    classificationBadge.innerHTML = `
+                        <span class="classification ${classificationClass}">${classificationText}</span>
+                    `;
+                    filmCard.appendChild(classificationBadge);
+                }
+                
+                const posterContainer = document.createElement('div');
+                posterContainer.className = 'film-poster-container';
+                
+                // Usa a nova função createSmartPoster
+                const posterImg = createSmartPoster(film);
+                
+                posterImg.onload = function() {
+                    createImageControls(posterContainer, posterImg);
+                };
+                
+                posterContainer.appendChild(posterImg);
+                
+                const filmInfo = document.createElement('div');
+                filmInfo.className = 'film-info';
+                
+                const title = document.createElement('h3');
+                title.className = 'film-title';
+                title.textContent = film.title;
+                
+                const meta = document.createElement('div');
+                meta.className = 'film-meta';
+                
+                const duration = document.createElement('span');
+                duration.textContent = film.duration ? `${film.duration} min` : '';
+                
+                const year = document.createElement('span');
+                year.textContent = film.year || '';
+                
+                meta.appendChild(duration);
+                meta.appendChild(year);
+                
+                filmInfo.appendChild(title);
+                filmInfo.appendChild(meta);
+                
+                filmCard.appendChild(posterContainer);
+                filmCard.appendChild(filmInfo);
+                
+                filmCard.addEventListener('click', () => openModal(film));
+                filmGrid.appendChild(filmCard);
+            });
+        }
+        
+        // Resetar filtros
+        function resetFilters() {
+            document.getElementById('searchInput').value = '';
+            selectedGenre = '';
+            
+            document.querySelectorAll('.genre-tag').forEach(tag => {
+                tag.classList.remove('active');
+                if (tag.dataset.genre === '') {
+                    tag.classList.add('active');
+                }
+            });
+            
+            filterAndRenderFilms();
+            updateFilmsCounter(); 
+        }
+        
+        // Criar lista de temas a partir dos campos tema e tags
+        function createThemesList(film) {
+            const themes = [];
+            
+            if (film.tema) {
+                themes.push(...film.tema.split(',').map(t => t.trim()));
+            }
+            
+            if (film.tags) {
+                themes.push(...film.tags.split(',').map(t => t.trim()));
+            }
+            
+            return [...new Set(themes.filter(t => t))];
+        }
+        
+        // Abrir modal com animação
+        function openModal(film) {
+            const modal = document.getElementById('filmModal');
+            const modalContent = document.getElementById('modalContent');
+            
+            const classification = film.classification || 0;
+            const classificationClass = getClassificationClass(classification);
+            const classificationText = classification <= 0 ? 'L' : classification;
+            
+            const themes = createThemesList(film);
+            const hasThemes = themes.length > 0;
+            
+            const hasAdditionalInfo = film.audiodescricao || film.closedCaption || film.website || 
+                                    film.portaCurta || film.festivais || film.premios || 
+                                    film.legendasOutras || film.materialOutros;
+            
+            modalContent.innerHTML = `
+                <div class="modal-poster-container">
+                    <img src="${getDvdCover(film)}" alt="${film.title}" class="modal-poster" onerror="this.src='capas/progbrasil.png'">
+                </div>
+                <h2 class="modal-title">
+                    <span class="classification ${classificationClass}">${classificationText}</span>
+                    ${film.title}
+                </h2>
+                <div class="modal-details">
+                    ${film.director ? `<p><strong><i class="fas fa-user"></i> Direção:</strong> ${film.director}</p>` : ''}
+                    ${film.cast ? `<p><strong><i class="fas fa-users"></i> Elenco:</strong> ${film.cast}</p>` : ''}
+                    ${film.duration ? `<p><strong><i class="fas fa-clock"></i> Duração:</strong> ${film.duration} min</p>` : ''}
+                    ${film.genre ? `<p><strong><i class="fas fa-tag"></i> Gênero:</strong> ${film.genre}</p>` : ''}
+                    ${film.year ? `<p><strong><i class="fas fa-calendar-alt"></i> Ano:</strong> ${film.year}</p>` : ''}
+                    ${film.imdb.votantes ? `<p><strong><i class="fab fa-imdb"></i> IMDb:</strong> ${film.imdb.votantes}</p>` : ''}
+                    ${film.country ? `<p><strong><i class="fas fa-globe-americas"></i> País:</strong> ${film.country}</p>` : ''}
+                    ${film.state ? `<p><strong><i class="fas fa-map-marker-alt"></i> UF:</strong> ${film.state}</p>` : ''}
+                    ${film.dvd ? `<p><strong><i class="fas fa-compact-disc"></i> DVD:</strong> ${film.dvd}</p>` : ''}
+                </div>
+                
+                ${hasThemes ? `
+                <div class="modal-themes">
+                    <h3><i class="fas fa-tags"></i> Temas</h3>
+                    ${themes.map(theme => `<span class="theme-tag">${theme}</span>`).join('')}
+                </div>
+                ` : ''}
+                
+                ${film.synopsis ? `
+                <div class="modal-synopsis">
+                    <h3><i class="fas fa-align-left"></i> Sinopse</h3>
+                    <p>${film.synopsis}</p>
+                </div>
+                ` : ''}
+                
+                ${hasAdditionalInfo ? `
+                <div class="modal-additional">
+                    <h3><i class="fas fa-info-circle"></i> Informações Adicionais</h3>
+                    ${film.audiodescricao ? `<p><strong><i class="fas fa-assistive-listening-systems"></i> Audiodescrição:</strong> ${film.audiodescricao}</p>` : ''}
+                    ${film.closedCaption ? `<p><strong><i class="fas fa-closed-captioning"></i> Closed Caption:</strong> ${film.closedCaption}</p>` : ''}
+                    ${film.website ? `<p><strong><i class="fas fa-globe"></i> Website:</strong> <a href="${film.website.startsWith('http') ? film.website : 'https://' + film.website}" target="_blank">${film.website}</a></p>` : ''}
+                    ${film.portaCurta ? `<p><strong><i class="fas fa-film"></i> Porta Curtas:</strong> <a href="${film.portaCurta.startsWith('http') ? film.portaCurta : 'https://' + film.portaCurta}" target="_blank">Link</a></p>` : ''}
+                    ${film.festivais ? `<p><strong><i class="fas fa-trophy"></i> Festivais:</strong> ${film.festivais}</p>` : ''}
+                    ${film.premios ? `<p><strong><i class="fas fa-award"></i> Prêmios:</strong> ${film.premios}</p>` : ''}
+                    ${film.legendasOutras ? `<p><strong><i class="fas fa-language"></i> Outras Legendas:</strong> ${film.legendasOutras}</p>` : ''}
+                    ${film.materialOutros ? `<p><strong><i class="fas fa-box-open"></i> Outros Materiais:</strong> ${film.materialOutros}</p>` : ''}
+                </div>
+                ` : ''}
+            `;
+            
+            // Configurar controles de navegação para a imagem no modal
+            const modalPosterContainer = modalContent.querySelector('.modal-poster-container');
+            const modalPoster = modalContent.querySelector('.modal-poster');
+            if (modalPosterContainer && modalPoster) {
+                createImageControls(modalPosterContainer, modalPoster);
+            }
+            
+            modal.style.display = 'block';
+            setTimeout(() => {
+                modal.classList.add('show');
+            }, 10);
+            
+            // Adicionar evento de teclado para fechar com ESC
+            document.addEventListener('keydown', handleKeyDown);
+        }
+        
+        // Fechar modal
+        function closeModal() {
+            const modal = document.getElementById('filmModal');
+            modal.classList.remove('show');
+            
+            setTimeout(() => {
+                modal.style.display = 'none';
+            }, 300);
+            
+            // Remover evento de teclado
+            document.removeEventListener('keydown', handleKeyDown);
+        }
+        
+        // Handler para tecla ESC
+        function handleKeyDown(e) {
+            if (e.key === 'Escape') {
+                closeModal();
+            }
+        }
+        
+        // Paginação melhorada
+        function renderPagination() {
+            const pagination = document.getElementById('pagination');
+            pagination.innerHTML = '';
+            
+            const totalPages = Math.ceil(currentFilms.length / itemsPerPage);
+            if (totalPages <= 1) return;
+            
+            // Botão Anterior
+            const prevButton = document.createElement('button');
+            prevButton.innerHTML = '<i class="fas fa-chevron-left"></i> Anterior';
+            prevButton.disabled = currentPage === 1;
+            prevButton.addEventListener('click', () => {
+                if (currentPage > 1) {
+                    currentPage--;
+                    renderFilms();
+                    renderPagination(); // Adicionado para atualizar a paginação
+                    window.scrollTo({top: 0, behavior: 'smooth'});
+                }
+            });
+            pagination.appendChild(prevButton);
+            
+            // Páginas
+            const maxVisiblePages = 5;
+            let startPage = Math.max(1, currentPage - Math.floor(maxVisiblePages / 2));
+            let endPage = Math.min(totalPages, startPage + maxVisiblePages - 1);
+            
+            if (endPage - startPage + 1 < maxVisiblePages) {
+                startPage = Math.max(1, endPage - maxVisiblePages + 1);
+            }
+            
+            // Primeira página
+            if (startPage > 1) {
+                const firstButton = document.createElement('button');
+                firstButton.textContent = '1';
+                firstButton.addEventListener('click', () => {
+                    currentPage = 1;
+                    renderFilms();
+                    renderPagination(); // Adicionado para atualizar a paginação
+                    window.scrollTo({top: 0, behavior: 'smooth'});
+                });
+                pagination.appendChild(firstButton);
+                
+                if (startPage > 2) {
+                    const ellipsis = document.createElement('span');
+                    ellipsis.textContent = '...';
+                    pagination.appendChild(ellipsis);
+                }
+            }
+            
+            // Páginas intermediárias
+            for (let i = startPage; i <= endPage; i++) {
+                const pageButton = document.createElement('button');
+                pageButton.textContent = i;
+                if (i === currentPage) {
+                    pageButton.classList.add('active');
+                }
+                pageButton.addEventListener('click', () => {
+                    currentPage = i;
+                    renderFilms();
+                    renderPagination(); // Adicionado para atualizar a paginação
+                    window.scrollTo({top: 0, behavior: 'smooth'});
+                });
+                pagination.appendChild(pageButton);
+            }
+            
+            // Última página
+            if (endPage < totalPages) {
+                if (endPage < totalPages - 1) {
+                    const ellipsis = document.createElement('span');
+                    ellipsis.textContent = '...';
+                    pagination.appendChild(ellipsis);
+                }
+                
+                const lastButton = document.createElement('button');
+                lastButton.textContent = totalPages;
+                lastButton.addEventListener('click', () => {
+                    currentPage = totalPages;
+                    renderFilms();
+                    renderPagination(); // Adicionado para atualizar a paginação
+                    window.scrollTo({top: 0, behavior: 'smooth'});
+                });
+                pagination.appendChild(lastButton);
+            }
+            
+            // Botão Próximo
+            const nextButton = document.createElement('button');
+            nextButton.innerHTML = 'Próximo <i class="fas fa-chevron-right"></i>';
+            nextButton.disabled = currentPage === totalPages;
+            nextButton.addEventListener('click', () => {
+                if (currentPage < totalPages) {
+                    currentPage++;
+                    renderFilms();
+                    renderPagination(); // Adicionado para atualizar a paginação
+                    window.scrollTo({top: 0, behavior: 'smooth'});
+                }
+            });
+            pagination.appendChild(nextButton);
+        }
+        
+        // Configurar eventos
+        function setupEventListeners() {
+    document.getElementById('searchInput').addEventListener('input', filterAndRenderFilms);
+    
+    // ADICIONE ESTE EVENT LISTENER PARA A CAIXA DE ORDENAÇÃO
+    document.getElementById('sortSelect').addEventListener('change', filterAndRenderFilms);
+    
+    document.querySelector('.close').addEventListener('click', closeModal);
+    
+    window.addEventListener('click', function(event) {
+        if (event.target === document.getElementById('filmModal')) {
+            closeModal();
+        }
+    });
+    
+//------    document.querySelector('footer').addEventListener('click', function() {
+//------        window.location.href = 'https://umtremdecinema.wixsite.com/umtremdecinema';
+//------    });
+//------}
+            
+            // Configurar clique no cabeçalho
+ //           document.querySelector('header').addEventListener('click', function() {
+//                window.location.href = 'https://umtremdecinemaifmg.github.io/catalogodedvds/';
+ //           });
+            
+            // Configurar clique no rodapé
+            document.querySelector('footer').addEventListener('click', function() {
+                window.location.href = 'https://umtremdecinema.wixsite.com/umtremdecinema';
+            });
+        }
+        
+        // Inicialização
+        window.addEventListener('DOMContentLoaded', function() {
+            setupEventListeners();
+            loadCatalogData();
+        });
+    </script>
+</body>
+</html>
