@@ -6,7 +6,7 @@
     <title>Catálogo de DVDs</title>
  
     <!-- FONTS E ÍCONES -->
-    <link rel="stylesheet" href="<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">">
 
     <!-- FAVICON TEMPORÁRIO -->
     <!-- <link rel="icon" href="data:,"> -->
@@ -1700,50 +1700,6 @@
                ========================================== */
 
             // FUNÇÃO PARA RENDERIZAR FILMES NA GRID
-
-function renderFilms() {
-    const filmGrid = document.getElementById('filmGrid');
-    const startIndex = (currentPage - 1) * itemsPerPage;
-    const endIndex = startIndex + itemsPerPage;
-    const filmsToShow = currentFilms.slice(startIndex, endIndex);
-    
-    if (filmsToShow.length === 0) {
-        filmGrid.innerHTML = `
-            <div class="no-results">
-                <i class="fas fa-search"></i>
-                <p>Nenhum filme encontrado com os critérios selecionados.</p>
-            </div>`;
-        return;
-    }
-    
-    filmGrid.innerHTML = filmsToShow.map(film => `
-        <div class="film-card" onclick="openModal(${JSON.stringify(film).replace(/"/g, '&quot;')})">
-            <div class="film-poster-container">
-                <img 
-                    src="${getDvdCover(film)}" 
-                    alt="${film.title}" 
-                    class="film-poster"
-                    onerror="this.onerror=null; this.src='capas/progbrasil.png';"
-                    loading="lazy"
-                >
-            </div>
-            <div class="film-badge">
-                <span class="classification ${getClassificationClass(film.classification)}">
-                    ${film.classification <= 0 ? 'L' : film.classification}
-                </span>
-            </div>
-            <div class="film-info">
-                <h3 class="film-title">${film.title}</h3>
-                <div class="film-meta">
-                    <span>${film.year || 'Ano N/A'}</span>
-                    <span>${film.duration ? film.duration + ' min' : 'Duração N/A'}</span>
-                </div>
-            </div>
-        </div>
-    `).join('');
-    
-    renderPagination();
-}
 
 // FUNÇÃO PARA RENDERIZAR A PAGINAÇÃO
 function renderPagination() {
