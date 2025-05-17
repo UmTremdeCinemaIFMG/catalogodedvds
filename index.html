@@ -1341,16 +1341,42 @@
                     const endIndex = startIndex + itemsPerPage;
                     const filmsToShow = currentFilms.slice(startIndex, endIndex);
                     
+                    if (filmsToShow.length === 0) {
+                        filmGrid.innerHTML = `
+                            <div class="no-results">
+                                <i class="fas fa-search"></i>
+                                <p>Nenhum filme encontrado com os critérios selecionados.</p>
+                            </div>`;
+                        return;
+                    }
+                    
                     filmGrid.innerHTML = filmsToShow.map(film => `
                         <div class="film-card" onclick="openModal(${JSON.stringify(film).replace(/"/g, '&quot;')})">
-                            <img 
-                                src="${getDvdCover(film)}" 
-                                alt="${film.title}" 
-                                onerror="this.onerror=null; this.src='${getBasePath()}capas/progbrasil.png';"
-                            >
-                            <!-- resto do card -->
+                            <div class="film-poster-container">
+                                <img 
+                                    src="${getDvdCover(film)}" 
+                                    alt="${film.title}" 
+                                    class="film-poster"
+                                    onerror="this.onerror=null; this.src='capas/progbrasil.png';"
+                                    loading="lazy"
+                                >
+                            </div>
+                            <div class="film-badge">
+                                <span class="classification ${getClassificationClass(film.classification)}">
+                                    ${film.classification <= 0 ? 'L' : film.classification}
+                                </span>
+                            </div>
+                            <div class="film-info">
+                                <h3 class="film-title">${film.title}</h3>
+                                <div class="film-meta">
+                                    <span>${film.year || 'Ano N/A'}</span>
+                                    <span>${film.duration ? film.duration + ' min' : 'Duração N/A'}</span>
+                                </div>
+                            </div>
                         </div>
                     `).join('');
+                    
+                    renderPagination();
                 }
                     
                     filmsToShow.forEach(film => {
