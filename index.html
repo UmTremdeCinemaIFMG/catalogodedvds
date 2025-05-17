@@ -671,7 +671,40 @@
                     font-size: 15px;
                     line-height: 1.5;
                 }
-                
+
+/* BOTÃO DE PÁGINA COMPLETA */
+.modal-actions {
+    margin-top: 20px;
+    padding-top: 15px;
+    border-top: 1px dashed var(--cinza-medio);
+    text-align: center;
+}
+
+.btn-full-page {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 24px;
+    background-color: var(--verde-ifmg);
+    color: var(--branco);
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: 500;
+    transition: var(--transicao);
+}
+
+.btn-full-page:hover {
+    background-color: var(--verde-escuro);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
+
+.btn-full-page i {
+    font-size: 0.9em;
+}
+            
                 /* ==========================================
                    7. ELEMENTOS DE PAGINAÇÃO
                    ========================================== */
@@ -1457,7 +1490,16 @@
                     const classification = film.classification || 0;
                     const classificationClass = getClassificationClass(classification);
                     const classificationText = classification <= 0 ? 'L' : classification;
+
                     
+    // Cria URL amigável para o filme
+    const filmSlug = film.title
+        .toLowerCase()
+        .normalize('NFD')
+        .replace(/[\u0300-\u036f]/g, '')
+        .replace(/[^a-z0-9]+/g, '-')
+        .replace(/^-+|-+$/g, '');
+    
                     const themes = createThemesList(film);
                     const hasThemes = themes.length > 0;
                     
@@ -1519,14 +1561,43 @@
                     if (modalPosterContainer && modalPoster) {
                         createImageControls(modalPosterContainer, modalPoster);
                     }
+
+                            <!-- Conteúdo existente do modal -->
+                            [...]
+                            
+                            <!-- Botão de página completa -->
+                            <div class="modal-actions">
+                                <button class="btn-full-page" onclick="openFilmPage('${filmSlug}', ${JSON.stringify(film).replace(/"/g, '&quot;')})">
+                                    <i class="fas fa-external-link-alt"></i>
+                                    Ver página completa
+                                </button>
+                            </div>
+                        `;
+    
+
                     
                     modal.style.display = 'block';
-                    setTimeout(() => {
-                        modal.classList.add('show');
-                    }, 10);
+                    setTimeout(() => modal.classList.add('show'); 10);
+                    
+                    // Atualiza URL sem causar navegação
+                    history.pushState(
+                        { filmId: film.dvd }, 
+                        film.title, 
+                        `#filme/${filmSlug}`
+                    );
                     
                     document.addEventListener('keydown', handleKeyDown);
+                    
                 }
+
+            function generateSlug(text) {
+            return text
+                .toLowerCase()
+                .normalize('NFD')
+                .replace(/[\u0300-\u036f]/g, '')
+                .replace(/[^a-z0-9]+/g, '-')
+                .replace(/^-+|-+$/g, '');
+        }
                 
                 // FECHA O MODAL
                 function closeModal() {
