@@ -887,10 +887,15 @@ footer:hover p {
 }
 
         
-    </style>
-
+</style>
 
 </head>
+
+<!-- ADICIONE NO HEAD DO SEU HTML -->
+<!--<link rel="icon" type="image/x-icon" href="caminho/para/seu/favicon.ico">-->
+<!-- SOLUÇÃO TEMPORÁRIA - ÍCONE VAZIO -->
+<link rel="icon" href="data:,">    
+    
 <body>
     <header>
         <div class="container">
@@ -994,8 +999,10 @@ footer:hover p {
             <p><i class="fas fa-train"></i> UM TREM DE CINEMA 2019-2021</p>
         </div>
     </footer>
-        
-    <script>
+
+    </style>
+    
+    <script>      
         // Variáveis globais
         let allFilms = [];
         let currentFilms = [];
@@ -1688,15 +1695,6 @@ genreTagsContainer.appendChild(allTag);
         }
     });
     
-//------    document.querySelector('footer').addEventListener('click', function() {
-//------        window.location.href = 'https://umtremdecinema.wixsite.com/umtremdecinema';
-//------    });
-//------}
-            
-            // Configurar clique no cabeçalho
- //           document.querySelector('header').addEventListener('click', function() {
-//                window.location.href = 'https://umtremdecinemaifmg.github.io/catalogodedvds/';
- //           });
             
             // Configurar clique no rodapé
             document.querySelector('footer').addEventListener('click', function() {
