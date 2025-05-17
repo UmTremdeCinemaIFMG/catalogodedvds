@@ -1076,11 +1076,11 @@
                 // GERENCIA O CARREGAMENTO DE CAPAS DOS FILMES
                 function getDvdCover(filmData) {
                     console.log("Buscando capa para:", filmData.imageName);
-                    const DEFAULT_COVER = 'capas/progbrasil.png';
+                    const DEFAULT_COVER = './capas/progbrasil.png';
                     
                     if (filmData.imageName) {
                         const baseName = filmData.imageName.replace(/\.(jpg|jpeg|png|gif)$/i, '');
-                        const imagePath = `capas/${baseName}.jpg`;
+                        const imagePath = `./capas/${baseName}.jpg`;
                         console.log("Tentando carregar:", imagePath);
                         return imagePath;
                     }
@@ -1494,7 +1494,8 @@
                         .replace(/^-+|-+$/g, '');        // Remove hífens do início e fim
                     
                     // ATUALIZA A URL SEM RECARREGAR A PÁGINA
-                    const url = `/filmes/${filmSlug}`;
+                    const baseUrl = '/catalogodedvds'; // Nome do seu repositório
+                    const url = `${baseUrl}#filme/${filmSlug}`; // Usa hash (#) em vez de path
                     history.pushState({ filmId: film.dvd }, film.title, url);
                     
                     const classification = film.classification || 0;
@@ -1556,12 +1557,13 @@
                         </div>
                         ` : ''}
 
-                        <!-- Novo botão de detalhes -->
+                        <!-- NOVO BOTÃO DE DETALHES -->
                         <div class="modal-actions">
-                            <a href="/filme/${filmSlug}" class="btn-details" title="Ver página completa com todos os detalhes do filme">
+                            <button class="btn-details" title="Página individual em desenvolvimento" 
+                                    onclick="alert('Página individual do filme em desenvolvimento!')">
                                 <i class="fas fa-external-link-alt"></i>
-                                Ver página completa
-                            </a>
+                                Ver página completa (Em breve)
+                            </button>
                         </div>  
                         
                     `;
@@ -1585,8 +1587,9 @@
                     const modal = document.getElementById('filmModal');
                     modal.classList.remove('show');
 
-                    // Remove o estado da URL
-                    history.pushState(null, '', '/');
+                // Atualiza para a URL base correta
+                const baseUrl = '/catalogodedvds/'; // Nome do seu repositório
+                history.pushState(null, '', baseUrl);
                     
                     setTimeout(() => {
                         modal.style.display = 'none';
@@ -1622,11 +1625,20 @@
                         }
                     });
 
-                    // ADICIONE AQUI - Evento para o botão voltar do navegador
+                    // EVENTO PARA O BOTÃO VOLTAR DO NAVEGADOR
                     window.addEventListener('popstate', function(event) {
                         const modal = document.getElementById('filmModal');
                         if (modal.style.display === 'block') {
                             closeModal();
+                        }
+                    });
+
+                    // Verifica hash na URL
+                    window.addEventListener('load', function() {
+                        const hash = window.location.hash;
+                        if (hash && hash.startsWith('#filme/')) {
+                            // TODO: Implementar carregamento do filme específico
+                            window.location.href = '/catalogodedvds/'; // Por enquanto, redireciona para a página principal
                         }
                     });
                     
