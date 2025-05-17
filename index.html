@@ -480,7 +480,38 @@
                 /* ==========================================
                    6. MODAL E DETALHES
                    ========================================== */
+
+                /* BOTÃO DE DETALHES NO MODAL */
+                .modal-actions {
+                    margin-top: 20px;
+                    padding-top: 20px;
+                    border-top: 1px dashed var(--cinza-medio);
+                    text-align: center;
+                }
                 
+                .btn-details {
+                    display: inline-flex;
+                    align-items: center;
+                    gap: 8px;
+                    padding: 12px 24px;
+                    background-color: var(--verde-ifmg);
+                    color: var(--branco);
+                    text-decoration: none;
+                    border-radius: 6px;
+                    transition: var(--transicao);
+                    font-weight: 500;
+                }
+                
+                .btn-details:hover {
+                    background-color: var(--verde-escuro);
+                    transform: translateY(-2px);
+                    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+                }
+                
+                .btn-details i {
+                    font-size: 0.9em;
+                }
+            
                 /* MODAL BASE */
                 .modal {
                     display: none;
@@ -1453,6 +1484,18 @@
                 function openModal(film) {
                     const modal = document.getElementById('filmModal');
                     const modalContent = document.getElementById('modalContent');
+
+                    // CRIA URL AMIGÁVEL BASEADA NO TÍTULO DO FILME
+                    const filmSlug = film.title
+                        .toLowerCase()
+                        .normalize('NFD')
+                        .replace(/[\u0300-\u036f]/g, '') // Remove acentos
+                        .replace(/[^a-z0-9]+/g, '-')     // Substitui caracteres especiais por hífen
+                        .replace(/^-+|-+$/g, '');        // Remove hífens do início e fim
+                    
+                    // ATUALIZA A URL SEM RECARREGAR A PÁGINA
+                    const url = `/filmes/${filmSlug}`;
+                    history.pushState({ filmId: film.dvd }, film.title, url);
                     
                     const classification = film.classification || 0;
                     const classificationClass = getClassificationClass(classification);
@@ -1512,6 +1555,15 @@
                             ${film.materialOutros ? `<p><strong><i class="fas fa-box-open"></i> Outros Materiais:</strong> ${film.materialOutros}</p>` : ''}
                         </div>
                         ` : ''}
+
+                        <!-- Novo botão de detalhes -->
+                        <div class="modal-actions">
+                            <a href="/filme/${filmSlug}" class="btn-details" title="Ver página completa com todos os detalhes do filme">
+                                <i class="fas fa-external-link-alt"></i>
+                                Ver página completa
+                            </a>
+                        </div>  
+                        
                     `;
                     
                     const modalPosterContainer = modalContent.querySelector('.modal-poster-container');
@@ -1532,6 +1584,9 @@
                 function closeModal() {
                     const modal = document.getElementById('filmModal');
                     modal.classList.remove('show');
+
+                    // Remove o estado da URL
+                    history.pushState(null, '', '/');
                     
                     setTimeout(() => {
                         modal.style.display = 'none';
@@ -1563,6 +1618,14 @@
                     document.querySelector('.close').addEventListener('click', closeModal);
                     window.addEventListener('click', function(event) {
                         if (event.target === document.getElementById('filmModal')) {
+                            closeModal();
+                        }
+                    });
+
+                    // ADICIONE AQUI - Evento para o botão voltar do navegador
+                    window.addEventListener('popstate', function(event) {
+                        const modal = document.getElementById('filmModal');
+                        if (modal.style.display === 'block') {
                             closeModal();
                         }
                     });
