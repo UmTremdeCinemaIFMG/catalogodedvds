@@ -1080,22 +1080,14 @@
                 }
                 
                 // GERENCIA O CARREGAMENTO DE CAPAS DOS FILMES
-                function getDvdCover(filmData) {
-                    const basePath = getBasePath();
-                    const DEFAULT_COVER = `${basePath}capas/progbrasil.png`;
-                    
-                    if (!filmData || !filmData.imageName) {
-                        console.log("Usando imagem padrão:", DEFAULT_COVER);
-                        return DEFAULT_COVER;
-                    }
-                    
-                    const baseName = filmData.imageName.replace(/\.(jpg|jpeg|png|gif)$/i, '');
-                    const imagePath = `${basePath}capas/${baseName}.jpg`;
-                    
-                    console.log("Caminho da imagem gerado:", imagePath);
-                    return imagePath;
-
-                }
+function getDvdCover(filmData) {
+    if (!filmData || !filmData.imageName) {
+        return 'capas/progbrasil.png';
+    }
+    
+    const baseName = filmData.imageName.replace(/\.(jpg|jpeg|png|gif)$/i, '');
+    return `capas/${baseName}.jpg`;
+}
                 
                 /* ==========================================
                    3. FUNÇÕES DE TRANSFORMAÇÃO E ORDENAÇÃO
