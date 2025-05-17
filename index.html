@@ -75,29 +75,33 @@
             padding: 0 20px;
         }
         
-        .controls-wrapper {
-            display: flex;
-            flex-direction: column;
-            gap: 20px;
-            margin-bottom: 30px;
-        }
+.controls-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    margin-bottom: 30px;
+    width: 100%;
+    max-width: 100%;
+}
 
-        .search-container {
-            flex: 1;
-            width: 100%;
-        }
+.search-container {
+    width: 100%;
+    max-width: 100%;
+}
  
-        .secondary-controls {
-            display: flex;
-            align-items: center;
-            gap: 20px;
-            flex-wrap: wrap;
-        }
+.secondary-controls {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    flex-wrap: wrap;
+    width: 100%;
+}
 
-        .sort-container {
-            min-width: 200px;
-            max-width: 300px;
-        }        
+.sort-container {
+    min-width: 200px;
+    max-width: 300px;
+    margin: 0;
+}        
        
         .results-counter {
             /* Estilos base (mantém o verde padrão) */
@@ -111,11 +115,6 @@
             box-shadow: var(--sombra);
             transition: all 0.3s ease;
         }
-
-                                            /*      Remova qualquer margin-top da sort-container se existir 
-                                            .sort-container {
-                                                margin-top: 0;
-                                            }*/
 
         .results-counter.sem-resultados {
             /* Estado quando NÃO há resultados */
@@ -140,19 +139,14 @@
             color: var(--amarelo); /* Destaque amarelo na animação */
         }   
         
-        .search-box {
-            position: relative;
-        }
-        
-        .search-box input {
-            width: 100%;
-            padding: 12px 15px 12px 40px;
-            border: 1px solid var(--cinza-medio);
-            border-radius: 6px;
-            font-size: 16px;
-            transition: var(--transicao);
-            box-shadow: inset 0 1px 3px rgba(0,0,0,0.1);
-        }
+.search-box {
+    width: 100%;
+    position: relative;
+}
+.search-box input {
+    width: 100%;
+    box-sizing: border-box;
+}
         
         .search-box input:focus {
             border-color: var(--verde-ifmg);
@@ -168,14 +162,6 @@
             color: var(--cinza-medio);
         }
 
-                                        /* ESTILOS PARA A CAIXA DE ORDENAÇÃO 
-                                        .sort-container {
-                                            flex: 0 0 auto;  NÃO CRESCE, NÃO ENCOLHE, TAMANHO AUTOMÁTICO 
-                                            min-width: 200px;
-                                            margin-top: 30px;
-                                            gap: 20px;
-                                            margin-bottom: 20px;
-                                        }*/
         
         .sort-box {
             position: relative;
