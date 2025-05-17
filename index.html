@@ -1072,20 +1072,29 @@
                         default: return 'L';
                     }
                 }
+
+                // FUNÇÃO PARA GERAR CAMINHOS DE IMAGENS CORRETAMENTE
+                function getBasePath() {
+                    // Para GitHub Pages, o caminho base será /catalogodedvds/
+                    return '/catalogodedvds/';
+                }
                 
                 // GERENCIA O CARREGAMENTO DE CAPAS DOS FILMES
                 function getDvdCover(filmData) {
-                    const DEFAULT_COVER = `${window.location.pathname}capas/progbrasil.png`;
+                    const basePath = getBasePath();
+                    const DEFAULT_COVER = `${basePath}capas/progbrasil.png`;
                     
                     if (!filmData || !filmData.imageName) {
+                        console.log("Usando imagem padrão:", DEFAULT_COVER);
                         return DEFAULT_COVER;
                     }
                     
                     const baseName = filmData.imageName.replace(/\.(jpg|jpeg|png|gif)$/i, '');
-                    const imagePath = `${window.location.pathname}capas/${baseName}.jpg`;
+                    const imagePath = `${basePath}capas/${baseName}.jpg`;
                     
-                    console.log("Caminho absoluto da imagem:", imagePath);
+                    console.log("Caminho da imagem gerado:", imagePath);
                     return imagePath;
+
                 }
                 
                 /* ==========================================
@@ -1328,24 +1337,21 @@
                 // RENDERIZA GRID DE FILMES
                 function renderFilms() {
                     const filmGrid = document.getElementById('filmGrid');
-                    filmGrid.innerHTML = '';
-                    
                     const startIndex = (currentPage - 1) * itemsPerPage;
                     const endIndex = startIndex + itemsPerPage;
                     const filmsToShow = currentFilms.slice(startIndex, endIndex);
                     
-                    if (filmsToShow.length === 0) {
-                        filmGrid.innerHTML = `
-                            <div class="no-results">
-                                <i class="fas fa-film"></i>
-                                <p>Nenhum filme encontrado com os critérios selecionados.</p>
-                                <button onclick="resetFilters()" class="reset-button">
-                                    <i class="fas fa-undo"></i> Limpar filtros
-                                </button>
-                            </div>
-                        `;
-                        return;
-                    }
+                    filmGrid.innerHTML = filmsToShow.map(film => `
+                        <div class="film-card" onclick="openModal(${JSON.stringify(film).replace(/"/g, '&quot;')})">
+                            <img 
+                                src="${getDvdCover(film)}" 
+                                alt="${film.title}" 
+                                onerror="this.onerror=null; this.src='${getBasePath()}capas/progbrasil.png';"
+                            >
+                            <!-- resto do card -->
+                        </div>
+                    `).join('');
+                }
                     
                     filmsToShow.forEach(film => {
                         const filmCard = document.createElement('div');
@@ -1515,10 +1521,17 @@
  
                     modalContent.innerHTML = `
                         <div class="modal-poster-container">
-                            <img src="${getDvdCover(film)}" alt="${film.title}" class="modal-poster" onerror="this.src='capas/progbrasil.png'">
+                            <img 
+                                src="${getDvdCover(film)}" 
+                                alt="${film.title}" 
+                                class="modal-poster" 
+                                onerror="this.onerror=null; this.src='${getBasePath()}capas/progbrasil.png';"
+                            >
                         </div>
                         <h2 class="modal-title">
-                            <span class="classification ${classificationClass}">${classificationText}</span>
+                            <span class="classification ${getClassificationClass(film.classification || 0)}">
+                                ${film.classification <= 0 ? 'L' : film.classification}
+                            </span>
                             ${film.title}
                         </h2>
                         <div class="modal-details">
