@@ -394,12 +394,15 @@
                 // CARREGA DADOS DO CATÁLOGO
                 async function loadCatalogData() {
                     try {
+                      console.log('Iniciando carregamento do catálogo...'); // Debug
                         await new Promise(resolve => setTimeout(resolve, 800));
                         
                         const response = await fetch('catalogo.json');
+                      console.log('Status da resposta:', response.status); // Debug
                         if (!response.ok) throw new Error('Erro ao carregar o arquivo');
                         
                         const data = await response.json();
+                      console.log('Dados carregados:', data.length, 'filmes encontrados'); // Debug
                         allFilms = data.map(transformFilmData);
                         
                         // EXTRAI GÊNEROS ÚNICOS
