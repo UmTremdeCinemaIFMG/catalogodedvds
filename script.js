@@ -289,6 +289,8 @@
                 
                 // RENDERIZA GRID DE FILMES
                 function renderFilms() {
+                    console.log('Iniciando renderização...'); // Debug
+                  
                     const filmGrid = document.getElementById('filmGrid');
                     filmGrid.innerHTML = '';
                     
@@ -296,6 +298,8 @@
                     const endIndex = startIndex + itemsPerPage;
                     const filmsToShow = currentFilms.slice(startIndex, endIndex);
                     
+                    console.log('Filmes para mostrar:', filmsToShow.length); // Debug
+                  
                     if (filmsToShow.length === 0) {
                         filmGrid.innerHTML = `
                             <div class="no-results">
