@@ -1,4 +1,4 @@
-         <script>
+         //<script>
             
                 /* ==========================================
                    1. VARIÁVEIS E CONFIGURAÇÕES GLOBAIS
@@ -677,4 +677,4 @@
                     });
                     pagination.appendChild(nextButton);
                 }
-        </script>    
+       // </script>    
