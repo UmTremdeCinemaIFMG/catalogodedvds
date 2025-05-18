@@ -291,7 +291,6 @@
                 // RENDERIZA GRID DE FILMES
 function renderFilms() {
     const filmGrid = document.getElementById('filmGrid');
-    filmGrid.innerHTML = ''; // IMPORTANTE: Descomente esta linha!
     const startIndex = (currentPage - 1) * itemsPerPage;
     const endIndex = startIndex + itemsPerPage;
     const filmsToShow = currentFilms.slice(startIndex, endIndex);
@@ -309,63 +308,51 @@ function renderFilms() {
         return;
     }
     
-    filmsToShow.forEach(film => {
-        const filmCard = document.createElement('div');
-        filmCard.className = 'film-card';
-        
-        // BADGE DE CLASSIFICAÇÃO INDICATIVA
-        if (film.classification !== undefined) {
-            const classificationClass = getClassificationClass(film.classification);
-            const classificationText = film.classification <= 0 ? 'L' : film.classification;
-            
-            const classificationBadge = document.createElement('div');
-            classificationBadge.className = 'film-badge';
-            classificationBadge.innerHTML = `
-                <span class="classification ${classificationClass}">${classificationText}</span>
-            `;
-            filmCard.appendChild(classificationBadge);
+    filmGrid.innerHTML = filmsToShow.map(film => `
+        <div class="film-card" onclick="openModal(${JSON.stringify(film).replace(/"/g, '&quot;')})">
+            <div class="film-poster-container">
+                <img 
+                    src="${getDvdCover(film)}" 
+                    alt="${film.title}" 
+                    class="film-poster"
+                    onerror="this.onerror=null; this.src='capas/progbrasil.png';"
+                    loading="lazy"
+                >
+                <div class="film-poster-controls">
+                    <button class="film-poster-control" onclick="scrollPoster(this.closest('.film-card'), 'left')">
+                        <i class="fas fa-chevron-left"></i>
+                    </button>
+                    <button class="film-poster-control" onclick="scrollPoster(this.closest('.film-card'), 'right')">
+                        <i class="fas fa-chevron-right"></i>
+                    </button>
+                </div>
+            </div>
+            <div class="film-badge">
+                <span class="classification ${getClassificationClass(film.classification)}">
+                    ${film.classification <= 0 ? 'L' : film.classification}
+                </span>
+            </div>
+            <div class="film-info">
+                <h3 class="film-title">${film.title}</h3>
+                <div class="film-meta">
+                    <span>${film.year || 'Ano N/A'}</span>
+                    <span>${film.duration ? film.duration + ' min' : 'Duração N/A'}</span>
+                </div>
+            </div>
+        </div>
+    `).join('');
+
+    // Após renderizar os cards, adiciona os controles de imagem
+    const cards = filmGrid.querySelectorAll('.film-card');
+    cards.forEach(card => {
+        const container = card.querySelector('.film-poster-container');
+        const poster = card.querySelector('.film-poster');
+        if (container && poster) {
+            createImageControls(container, poster);
         }
-        
-        // CONTAINER DO POSTER
-        const posterContainer = document.createElement('div');
-        posterContainer.className = 'film-poster-container';
-        
-        const posterImg = createSmartPoster(film);
-        posterImg.onload = function() {
-            createImageControls(posterContainer, posterImg);
-        };
-        
-        posterContainer.appendChild(posterImg);
-        
-        // INFORMAÇÕES DO FILME
-        const filmInfo = document.createElement('div');
-        filmInfo.className = 'film-info';
-        
-        const title = document.createElement('h3');
-        title.className = 'film-title';
-        title.textContent = film.title;
-        
-        const meta = document.createElement('div');
-        meta.className = 'film-meta';
-        
-        const duration = document.createElement('span');
-        duration.textContent = film.duration ? `${film.duration} min` : '';
-        
-        const year = document.createElement('span');
-        year.textContent = film.year || '';
-        
-        meta.appendChild(duration);
-        meta.appendChild(year);
-        
-        filmInfo.appendChild(title);
-        filmInfo.appendChild(meta);
-        
-        filmCard.appendChild(posterContainer);
-        filmCard.appendChild(filmInfo);
-        
-        filmCard.addEventListener('click', () => openModal(film));
-        filmGrid.appendChild(filmCard);
     });
+    
+    renderPagination();
 }
                 
                 // RESETA TODOS OS FILTROS
