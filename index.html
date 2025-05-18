@@ -671,7 +671,40 @@
                     font-size: 15px;
                     line-height: 1.5;
                 }
-                
+
+/* BOTÃO DE PÁGINA COMPLETA */
+.modal-actions {
+    margin-top: 20px;
+    padding-top: 15px;
+    border-top: 1px dashed var(--cinza-medio);
+    text-align: center;
+}
+
+.btn-full-page {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 24px;
+    background-color: var(--verde-ifmg);
+    color: var(--branco);
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: 500;
+    transition: var(--transicao);
+}
+
+.btn-full-page:hover {
+    background-color: var(--verde-escuro);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
+
+.btn-full-page i {
+    font-size: 0.9em;
+}
+            
                 /* ==========================================
                    7. ELEMENTOS DE PAGINAÇÃO
                    ========================================== */
