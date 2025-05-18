@@ -1,5 +1,4 @@
-         //<script>
-            
+
                 /* ==========================================
                    1. VARIÁVEIS E CONFIGURAÇÕES GLOBAIS
                    ========================================== */
@@ -452,7 +451,15 @@
                     const classification = film.classification || 0;
                     const classificationClass = getClassificationClass(classification);
                     const classificationText = classification <= 0 ? 'L' : classification;
-                    
+
+             // Cria URL amigável para o filme
+             const filmSlug = film.title
+                 .toLowerCase()
+                 .normalize('NFD')
+                 .replace(/[\u0300-\u036f]/g, '')
+                 .replace(/[^a-z0-9]+/g, '-')
+                 .replace(/^-+|-+$/g, '');       
+                         
                     const themes = createThemesList(film);
                     const hasThemes = themes.length > 0;
                     
@@ -514,11 +521,29 @@
                     if (modalPosterContainer && modalPoster) {
                         createImageControls(modalPosterContainer, modalPoster);
                     }
-                    
+                                 
+        <!-- Botão de página completa -->
+        <div class="modal-actions">
+            <button class="btn-full-page" onclick="openFilmPage('${filmSlug}', ${JSON.stringify(film).replace(/"/g, '&quot;')})">
+                <i class="fas fa-external-link-alt"></i>
+                Ver página completa
+            </button>
+        </div>
+    `;
+    
+                         
                     modal.style.display = 'block';
                     setTimeout(() => {
                         modal.classList.add('show');
                     }, 10);
+
+    // Atualiza URL sem causar navegação
+    history.pushState(
+        { filmId: film.dvd }, 
+        film.title, 
+        `#filme/${filmSlug}`
+    );
+
                     
                     document.addEventListener('keydown', handleKeyDown);
                 }
@@ -541,6 +566,16 @@
                         closeModal();
                     }
                 }
+
+// função auxiliar para gerar slugs
+function generateSlug(text) {
+    return text
+        .toLowerCase()
+        .normalize('NFD')
+        .replace(/[\u0300-\u036f]/g, '')
+        .replace(/[^a-z0-9]+/g, '-')
+        .replace(/^-+|-+$/g, '');
+}
                 
                 /* ==========================================
                    9. INICIALIZAÇÃO E EVENTOS
@@ -677,4 +712,4 @@
                     });
                     pagination.appendChild(nextButton);
                 }
-       // </script>    
+       
