@@ -31345,7 +31345,22 @@
         "Filmes": 30,
         "Nome do Programa": "Clássicos e modernos",
         "imageName": "classicos_e_modernos",
-        "planos_de_aula": [],
+        "planos_de_aula": [
+                  {
+                    "nivel_ensino": "Ensino Fundamental 2, Ensino Médio e Educação de Jovens e Adultos",
+                    "area_conhecimento": "Língua Portuguesa, Geografia, Sociologia",
+                    "site": "Curta na Escola",
+                    "url": "https://www.curtanaescola.org.br/planodeaula/?movie=647&lessonplans=478",
+                    "descricao": "Plano de aula para o filme 'Ilha das Flores', de Jorge Furtado. Propõe análise crítica de questões sociais e ambientais, produção de textos e debates."
+                  },
+                  {
+                    "nivel_ensino": "Ensino Médio",
+                    "area_conhecimento": "Redação, Sociologia, Geografia",
+                    "site": "Criado pelo autor",
+                    "url": "",
+                    "descricao": "Os alunos assistem ao filme e debatem a cadeia de consumo, desperdício e desigualdade social. Dividem-se em grupos para criar mapas conceituais relacionando os temas abordados. Finalizam com uma redação argumentativa sobre consumo consciente e justiça social."
+                  }
+        ],
         "FIELD31": "",
         "FIELD32": "",
         "FIELD33": "",
