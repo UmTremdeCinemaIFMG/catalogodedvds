@@ -3055,7 +3055,15 @@
         "Filmes": 70,
         "Nome do Programa": "Curtas Infantis 8",
         "imageName": "curtas_infantis_8",
-        "planos_de_aula": [],
+        "planos_de_aula": [
+            {
+                "nivel_ensino": "Ensino Fundamental 2 e Ensino Médio",
+                "area_conhecimento": "Literatura, Redação, Artes",
+                "site": "Plano de aula genérico",
+                "url": "https://planejamentosdeaula.com/plano-de-aula-filme-ensino-medio-3o-ano/",
+                "descricao": "Plano de aula geral para filmes, sugerindo análise de roteiro, debate sobre sentimentos e produção textual."
+              }
+        ],
         "FIELD31": "",
         "FIELD32": "",
         "FIELD33": "",
@@ -7515,7 +7523,15 @@
         "Filmes": 155,
         "Nome do Programa": "Samba e bossa-nova: música do Brasil",
         "imageName": "samba_e_bossanova_musica_do_brasil",
-        "planos_de_aula": [],
+        "planos_de_aula": [
+                  {
+                    "nivel_ensino": "Ensino Fundamental 2, Ensino Médio e Educação de Jovens e Adultos",
+                    "area_conhecimento": "Artes, Música, História",
+                    "site": "Curta na Escola",
+                    "url": "https://curtanaescola.org.br/planodeaula/Default.aspx?movie=5056&lessonplans=759",
+                    "descricao": "Plano de aula para o filme 'Heitor dos Prazeres', de Antônio Carlos Fontoura. Explora biografia, samba, arte naïf e cultura afro-brasileira."
+                  }
+        ],
         "FIELD31": "",
         "FIELD32": "",
         "FIELD33": "",
@@ -11631,7 +11647,22 @@
         "Filmes": 82,
         "Nome do Programa": "Perambulação: Realismo das Ruas",
         "imageName": "perambulacao_realismo_das_ruas",
-        "planos_de_aula": [],
+        "planos_de_aula": [
+                  {
+                    "nivel_ensino": "Ensino Fundamental 2, Ensino Médio e Educação de Jovens e Adultos",
+                    "area_conhecimento": "Língua Portuguesa, Geografia, Sociologia",
+                    "site": "Instituto Claro",
+                    "url": "https://www.institutoclaro.org.br/educacao/para-ensinar/planos-de-aula/cinema-e-educacao-10-centavos-curta-metragem/",
+                    "descricao": "Plano de aula para o filme '10 Centavos', de Cesar Fernando de Oliveira. Aborda o tema do trabalho infantil, desigualdade social e cidadania."
+                  },
+                  {
+                    "nivel_ensino": "Ensino Fundamental 2, Ensino Médio e Educação de Jovens e Adultos",
+                    "area_conhecimento": "Língua Portuguesa, Sociologia, Geografia",
+                    "site": "Curta na Escola",
+                    "url": "https://www.curtanaescola.org.br/planodeaula/Default.aspx?movie=8738&lessonplans=1158",
+                    "descricao": "Plano de aula para o filme '10 Centavos', sugerindo atividades de análise crítica, discussão sobre exclusão social e produção de textos argumentativos."
+                  }
+        ],
         "FIELD31": "",
         "FIELD32": "",
         "FIELD33": "",
@@ -12555,7 +12586,15 @@
         "Filmes": 49,
         "Nome do Programa": "Comédias Contemorâneas 3",
         "imageName": "comedias_contemoraneas_3",
-        "planos_de_aula": [],
+        "planos_de_aula": [
+              {
+                "nivel_ensino": "Ensino Fundamental 2 e Ensino Médio",
+                "area_conhecimento": "Literatura, Redação, Filosofia",
+                "site": "Plano de aula genérico",
+                "url": "https://planejamentosdeaula.com/plano-de-aula-filme-ensino-medio-3o-ano/",
+                "descricao": "Sugestão de plano de aula para análise de filmes, focando em temas filosóficos, sentimentos e metáforas."
+              }
+        ],
         "FIELD31": "",
         "FIELD32": "",
         "FIELD33": "",
@@ -31346,20 +31385,41 @@
         "Nome do Programa": "Clássicos e modernos",
         "imageName": "classicos_e_modernos",
         "planos_de_aula": [
-                  {
-                    "nivel_ensino": "Ensino Fundamental 2, Ensino Médio e Educação de Jovens e Adultos",
-                    "area_conhecimento": "Língua Portuguesa, Geografia, Sociologia",
-                    "site": "Curta na Escola",
-                    "url": "https://www.curtanaescola.org.br/planodeaula/?movie=647&lessonplans=478",
-                    "descricao": "Plano de aula para o filme 'Ilha das Flores', de Jorge Furtado. Propõe análise crítica de questões sociais e ambientais, produção de textos e debates."
-                  },
-                  {
-                    "nivel_ensino": "Ensino Médio",
-                    "area_conhecimento": "Redação, Sociologia, Geografia",
-                    "site": "Criado pelo autor",
-                    "url": "",
-                    "descricao": "Os alunos assistem ao filme e debatem a cadeia de consumo, desperdício e desigualdade social. Dividem-se em grupos para criar mapas conceituais relacionando os temas abordados. Finalizam com uma redação argumentativa sobre consumo consciente e justiça social."
-                  }
+      {
+        "nivel_ensino": "Ensino Fundamental 2, Ensino Médio e Educação de Jovens e Adultos",
+        "area_conhecimento": "Língua Portuguesa, Geografia, Sociologia",
+        "site": "Curta na Escola",
+        "url": "https://www.curtanaescola.org.br/planodeaula/?movie=647&lessonplans=478",
+        "descricao": "Plano de aula para o filme 'Ilha das Flores', de Jorge Furtado. Propõe análise crítica de questões sociais e ambientais, produção de textos e debates."
+      },
+      {
+        "nivel_ensino": "Ensino Fundamental 2, Ensino Médio e Educação de Jovens e Adultos",
+        "area_conhecimento": "Língua Portuguesa, Geografia, Sociologia",
+        "site": "Brasil Escola",
+        "url": "https://educador.brasilescola.uol.com.br/estrategias-ensino/proposta-aula-sobre-filme-ilha-das-flores.htm",
+        "descricao": "Proposta de aula sobre o documentário 'Ilha das Flores', abordando temas sociais e ambientais de forma crítica, com produção de textos e debates."
+      },
+      {
+        "nivel_ensino": "Ensino Fundamental 2, Ensino Médio e Educação de Jovens e Adultos",
+        "area_conhecimento": "Língua Portuguesa, Geografia, Sociologia",
+        "site": "Instituto Claro",
+        "url": "https://www.institutoclaro.org.br/educacao/para-ensinar/planos-de-aula/ilha-das-flores-curta-metragem/",
+        "descricao": "Plano de aula para 'Ilha das Flores', sugerindo análise interdisciplinar sobre desigualdade, consumo e linguagem audiovisual."
+      },
+      {
+        "nivel_ensino": "Ensino Fundamental 2, Ensino Médio e Educação de Jovens e Adultos",
+        "area_conhecimento": "Língua Portuguesa, Sociologia",
+        "site": "Planejamentos de Aula",
+        "url": "https://planejamentosdeaula.com/glossario/plano-de-aula-sobre-o-documentario-ilha-das-flores/",
+        "descricao": "Plano de aula sobre o documentário 'Ilha das Flores', focando em debate crítico, argumentação e produção textual."
+      },
+      {
+        "nivel_ensino": "Ensino Fundamental 2, Ensino Médio",
+        "area_conhecimento": "Língua Portuguesa, Sociologia",
+        "site": "Coopermiti",
+        "url": "https://coopermiti.com.br/educacao/ilha-das-flores-debatendo-questoes-sociais-no-curta-metragem/",
+        "descricao": "Plano de aula para 'Ilha das Flores', com foco em interpretação, debate sobre temas sociais e produção de textos."
+      }
         ],
         "FIELD31": "",
         "FIELD32": "",
@@ -31654,7 +31714,15 @@
         "Filmes": 69,
         "Nome do Programa": "Janela da alma e Cego Oliveira no sertão do seu olhar",
         "imageName": "janela_da_alma_e_cego_oliveira_no_sertao_do_seu_olhar",
-        "planos_de_aula": [],
+        "planos_de_aula": [
+                  {
+                    "nivel_ensino": "Ensino Fundamental 2, Ensino Médio e Educação de Jovens e Adultos",
+                    "area_conhecimento": "Língua Portuguesa, Artes",
+                    "site": "Instituto Claro",
+                    "url": "https://www.institutoclaro.org.br/educacao/para-ensinar/planos-de-aula/cinema-e-educacao-janela-da-alma/",
+                    "descricao": "Plano de aula para o filme 'Janela da Alma', de João Jardim e Walter Carvalho. Proposta de reflexão crítica sobre deficiência visual, inclusão e percepção da realidade."
+                  }
+        ],
         "FIELD31": "",
         "FIELD32": "",
         "FIELD33": "",
@@ -33754,7 +33822,15 @@
         "Filmes": 81,
         "Nome do Programa": "Brasil indígena",
         "imageName": "brasil_indigena",
-        "planos_de_aula": [],
+        "planos_de_aula": [
+                  {
+                    "nivel_ensino": "Ensino Médio e EJA",
+                    "area_conhecimento": "História, Sociologia, Direitos Humanos",
+                    "site": "PDF Acadêmico",
+                    "url": "https://historiaeaudiovisual.weebly.com/uploads/1/7/7/4/17746215/matoeles1982.pdf",
+                    "descricao": "O PDF traz análise crítica sobre o documentário, que pode ser usado como base para discussões sobre etnocídio, direitos indígenas e políticas públicas."
+                  }
+        ],
         "FIELD31": "",
         "FIELD32": "",
         "FIELD33": "",
@@ -36988,7 +37064,15 @@
         "Filmes": 150,
         "Nome do Programa": "Curtas infantis 4 - ficções a partir de 7 anos",
         "imageName": "curtas_infantis_4_ficcoes_a_partir_de_7_anos",
-        "planos_de_aula": [],
+        "planos_de_aula": [
+                  {
+                    "nivel_ensino": "Ensino Fundamental 2 e Ensino Médio",
+                    "area_conhecimento": "Literatura, Artes, Direitos Humanos",
+                    "site": "Mostra de Cinema Infantil",
+                    "url": "https://www.mostradecinemainfantil.com.br/a-menina-espantalho/",
+                    "descricao": "Sinopse e sugestões para debater educação rural, igualdade de gênero, superação e alfabetização com crianças e adolescentes."
+                  }
+        ],
         "FIELD31": "",
         "FIELD32": "",
         "FIELD33": "",
@@ -37282,7 +37366,15 @@
         "Filmes": 151,
         "Nome do Programa": "Curtas infantis 4 - ficções a partir de 7 anos",
         "imageName": "curtas_infantis_4_ficcoes_a_partir_de_7_anos",
-        "planos_de_aula": [],
+        "planos_de_aula": [
+                  {
+                    "nivel_ensino": "Ensino Fundamental 2",
+                    "area_conhecimento": "Literatura, Redação, Artes",
+                    "site": "Plano de aula genérico",
+                    "url": "https://planejamentosdeaula.com/plano-de-aula-filme-ensino-medio-3o-ano/",
+                    "descricao": "Plano de aula geral sobre análise narrativa, criatividade e produção textual a partir de filmes."
+                  }
+        ],
         "FIELD31": "",
         "FIELD32": "",
         "FIELD33": "",
