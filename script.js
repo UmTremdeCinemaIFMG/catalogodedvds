@@ -449,7 +449,23 @@
                     
                     return [...new Set(themes.filter(t => t))];
                 }
-                
+// ==========================================
+// FUNÇÃO DE RENDERIZAÇÃO DOS PLANOS DE AULA
+// ==========================================
+function renderTeachingPlans(film) {
+    // Se não houver campo ou for vazio, retorna mensagem padrão
+    if (!film.planos_de_aula || film.planos_de_aula.length === 0) {
+        return '<p><i class="fas fa-info-circle"></i> Nenhum plano de aula disponível.</p>';
+    }
+    // Monta o HTML para cada plano de aula
+    return film.planos_de_aula.map(plano => `
+        <div class="teaching-plan-card">
+            <strong>${plano.nivel_ensino || ''} — ${plano.area_conhecimento || ''}</strong><br>
+            <a href="${plano.url}" target="_blank">${plano.site}</a><br>
+            <span>${plano.descricao || ''}</span>
+        </div>
+    `).join('');
+}
                 // ABRE O MODAL COM ANIMAÇÃO
                 function openModal(film) {
                     const modal = document.getElementById('filmModal');
@@ -484,6 +500,14 @@
                             ${film.country ? `<p><strong><i class="fas fa-globe-americas"></i> País:</strong> ${film.country}</p>` : ''}
                             ${film.state ? `<p><strong><i class="fas fa-map-marker-alt"></i> UF:</strong> ${film.state}</p>` : ''}
                             ${film.dvd ? `<p><strong><i class="fas fa-compact-disc"></i> DVD:</strong> ${film.dvd}</p>` : ''}
+                        </div>
+
+
+
+                        <!-- Bloco dos Planos de Aula -->
+                        <div class="modal-teaching-plans">
+                            <h3><i class="fas fa-chalkboard-teacher"></i> Planos de Aula</h3>
+                            ${renderTeachingPlans(film)}
                         </div>
                         
                         ${hasThemes ? `
