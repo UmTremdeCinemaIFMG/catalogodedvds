@@ -37307,7 +37307,15 @@
         "Filmes": 222,
         "Nome do Programa": "Garoto Cósmico e Sírius",
         "imageName": "garoto_cosmico_e_sirius",
-        "planos_de_aula": [],
+        "planos_de_aula": [
+            {
+                "nivel_ensino": "Ensino Fundamental I",
+                "area_conhecimento": "Artes, Ciências,Cinema, Língua Portuguesa",
+                "site": "Instituto Claro",
+                "url": "https://www.institutoclaro.org.br/educacao/para-ensinar/planos-de-aula/garoto-cosmico/",
+                "descricao": "Objetivos: Refletir sobre o mundo da infância e a ansiedade de se tornar adulto; Refletir sobre a importância do brincar no dia a dia das pessoas; Investigar a função da trilha sonora na animação e realizar exercícios de sonoplastia; Estudar o gênero ‘definição’, usar e elaborar um  dicionário;"
+            }
+        ],
         "FIELD31": "",
         "FIELD32": "",
         "FIELD33": "",
