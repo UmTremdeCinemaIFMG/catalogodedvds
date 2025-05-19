@@ -164,7 +164,7 @@
                               (selectedAccessibility === 'closed_caption' && film.closedCaption)
                           );
                           
-                            return matchesSearch && matchesGenre && matchesClassification; && matchesAccessibility;
+                            return matchesSearch && matchesGenre && matchesClassification && matchesAccessibility;
                         });
                 
                         // ATUALIZA CONTADOR E APLICA ORDENAÇÃO
@@ -593,6 +593,7 @@ function renderTeachingPlans(film) {
                     document.getElementById('genreSelect').addEventListener('change', filterAndRenderFilms);
                     document.getElementById('classificationSelect').addEventListener('change', filterAndRenderFilms);
                     document.getElementById('sortSelect').addEventListener('change', filterAndRenderFilms);
+                    document.getElementById('accessibilitySelect').addEventListener('change', filterAndRenderFilms);
                     
                     // EVENTOS DO MODAL
                     document.querySelector('.close').addEventListener('click', closeModal);
