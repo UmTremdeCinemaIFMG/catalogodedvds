@@ -390,7 +390,8 @@
                     document.getElementById('genreSelect').value = '';
                     document.getElementById('classificationSelect').value = '';
                     document.getElementById('sortSelect').value = 'title-asc';
-                    
+                    document.getElementById('accessibilitySelect').value = ''; 
+                  
                     // ATUALIZA VISUALIZAÇÃO
                     filterAndRenderFilms();
                     updateFilmsCounter();
