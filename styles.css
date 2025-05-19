@@ -908,10 +908,27 @@
                         width: 100%;
                     }
                 }  
-
+/* ===========================
+   11. PLANOS DE AULA NO MODAL
+   =========================== */
+.modal-teaching-plans {
+    margin: 20px 0;
+    padding: 15px;
+    background: #f9f9f9;
+    border-radius: 6px;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.04);
+}
+.teaching-plan-card {
+    margin-bottom: 16px;
+    padding-bottom: 8px;
+    border-bottom: 1px dashed #ccc;
+}
+.teaching-plan-card:last-child {
+    border-bottom: none;
+}
 
             /* ===========================
-               11. PLANOS DE AULA NO MODAL
+               12. FALE CONOSCO
                =========================== */
 
 /* Botão Fale Conosco */
