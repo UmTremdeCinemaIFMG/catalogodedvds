@@ -414,6 +414,7 @@
                         document.getElementById('loadingMessage').style.display = 'none';
                         updateFilmsCounter();
                         renderFilms();
+                        renderPagination()
                         
                     } catch (error) {
                         console.error('Erro:', error);
