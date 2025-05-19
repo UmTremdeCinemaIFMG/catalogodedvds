@@ -17722,11 +17722,13 @@
         "Nome do Programa": "Eles não usam black-tie - CC e AD",
         "imageName": "eles_nao_usam_blacktie_cc_e_ad",
         "planos_de_aula": [
+            {
                 "nivel_ensino": "Ensino Médio e Educação de Jovens e Adultos.",
                 "area_conhecimento": "",
                 "site": "Janela Aberta",
                 "url": "https://www.fattorhost.com.br/imagens/mrpmk/janelaaberta/leituras-materiais-pedagogicos/Material_de_Apoio_Eles_Nao_Usam_Blacktie.pdf",
-                "descricao":
+                "descricao": "Material de apoio sobre o filme Eles não usam Black-tie, de Leon Hirszman. Elaborado pelo Coletivo Janela Aberta – Cinema & Educação "
+            }
         ],
         "FIELD31": "",
         "FIELD32": "",
