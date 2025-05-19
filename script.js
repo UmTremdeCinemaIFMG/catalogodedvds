@@ -138,6 +138,7 @@
                         const sortOption = document.getElementById('sortSelect').value;
                         const selectedClassification = document.getElementById('classificationSelect').value;
                         const selectedGenre = document.getElementById('genreSelect').value;
+                       const selectedAccessibility = document.getElementById('accessibilitySelect').value;
                         
                         // APLICA TODOS OS FILTROS
                         currentFilms = allFilms.filter(film => {
@@ -155,8 +156,15 @@
                             const matchesClassification = !selectedClassification || 
                                 film.classification === parseInt(selectedClassification) ||
                                 (selectedClassification === 'L' && film.classification <= 0);
-                            
-                            return matchesSearch && matchesGenre && matchesClassification;
+                           
+                          // Novo filtro de acessibilidade
+                          const matchesAccessibility = !selectedAccessibility || (
+                              (selectedAccessibility === 'planos_de_aula' && film.planos_de_aula && film.planos_de_aula.length > 0) ||
+                              (selectedAccessibility === 'audiodescricao' && film.audiodescricao) ||
+                              (selectedAccessibility === 'closed_caption' && film.closedCaption)
+                          );
+                          
+                            return matchesSearch && matchesGenre && matchesClassification; && matchesAccessibility;
                         });
                 
                         // ATUALIZA CONTADOR E APLICA ORDENAÇÃO
