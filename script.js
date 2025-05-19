@@ -605,7 +605,7 @@ function renderTeachingPlans(film) {
                     
                     // EVENTO DO FOOTER
                     document.querySelector('footer').addEventListener('click', function() {
-                        window.location.href = 'https://umtremdecinema.wixsite.com/umtremdecinema';
+                        window.open('https://umtremdecinema.wixsite.com/umtremdecinema', '_blank');
                     });
                 }
                 
