@@ -518,6 +518,12 @@ function renderTeachingPlans(film) {
                         <div class="modal-teaching-plans">
                             <h3><i class="fas fa-chalkboard-teacher"></i> Planos de Aula</h3>
                             ${renderTeachingPlans(film)}
+                            <a href="" target="_blank" class="btn-enviar-plano" style="display:inline-block; margin-top:15px; background:#009a44; color:#fff; padding:10px 18px; border-radius:6px; text-decoration:none; font-weight:500;">
+                                <i class="fas fa-plus"></i> Envie seu plano de aula
+                            </a>
+                            <p style="font-size: 0.95em; color: #666; margin-top: 6px;">
+                                Você pode colaborar enviando um plano de aula seu para este filme. Ao clicar, você será direcionado a um formulário.
+                            </p>
                         </div>
                         
                         ${hasThemes ? `
