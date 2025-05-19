@@ -94,6 +94,7 @@
                         dvd: cleanField(originalFilm["Nome do Programa"]),
                         imageName: cleanField(originalFilm["imageName"]),
                         classification: parseInt(originalFilm["Classificação Indicativa POR PGM"]) || 0
+                        planos_de_aula: originalFilm["planos_de_aula"] || []
                     };
                 }
                 
