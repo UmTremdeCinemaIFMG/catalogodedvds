@@ -613,6 +613,32 @@ function renderTeachingPlans(film) {
                         window.open('https://umtremdecinema.wixsite.com/umtremdecinema', '_blank');
                     });
                 }
+
+/* ==========================================
+   12. FUNCIONALIDADES DO FALE CONOSCO
+   ========================================== */
+
+// Elementos do DOM para o Fale Conosco
+const modalFaleConosco = document.getElementById("modalFaleConosco");
+const btnFaleConosco = document.getElementById("btnFaleConosco");
+const spanCloseFeedback = modalFaleConosco.querySelector(".close");
+
+// Abre o modal do Fale Conosco
+btnFaleConosco.onclick = function() {
+    modalFaleConosco.style.display = "block";
+}
+
+// Fecha o modal do Fale Conosco ao clicar no X
+spanCloseFeedback.onclick = function() {
+    modalFaleConosco.style.display = "none";
+}
+
+// Fecha o modal do Fale Conosco ao clicar fora dele
+window.addEventListener('click', function(event) {
+    if (event.target == modalFaleConosco) {
+        modalFaleConosco.style.display = "none";
+    }
+});
                 
                 // INICIALIZAÇÃO DA APLICAÇÃO
                 window.addEventListener('DOMContentLoaded', function() {
@@ -724,28 +750,4 @@ function renderTeachingPlans(film) {
                     pagination.appendChild(nextButton);
                 }
 
-/* ==========================================
-   12. FUNCIONALIDADES DO FALE CONOSCO
-   ========================================== */
 
-// Elementos do DOM para o Fale Conosco
-const modalFaleConosco = document.getElementById("modalFaleConosco");
-const btnFaleConosco = document.getElementById("btnFaleConosco");
-const spanCloseFeedback = modalFaleConosco.querySelector(".close");
-
-// Abre o modal do Fale Conosco
-btnFaleConosco.onclick = function() {
-    modalFaleConosco.style.display = "block";
-}
-
-// Fecha o modal do Fale Conosco ao clicar no X
-spanCloseFeedback.onclick = function() {
-    modalFaleConosco.style.display = "none";
-}
-
-// Fecha o modal do Fale Conosco ao clicar fora dele
-window.addEventListener('click', function(event) {
-    if (event.target == modalFaleConosco) {
-        modalFaleConosco.style.display = "none";
-    }
-});
