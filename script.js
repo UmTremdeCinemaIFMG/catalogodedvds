@@ -163,7 +163,7 @@
                               (selectedAccessibility === 'audiodescricao' && film.audiodescricao) ||
                               (selectedAccessibility === 'closed_caption' && film.closedCaption) ||
                               (selectedAccessibility === 'material_outros' && film.materialOutros && film.materialOutros.length > 0) 
-                          
+                        );
                             return matchesSearch && matchesGenre && matchesClassification && matchesAccessibility;
                         });
                 
