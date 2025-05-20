@@ -911,12 +911,19 @@
 /* ===========================
    11. PLANOS DE AULA NO MODAL
    =========================== */
-.modal-teaching-plans {
+.modal-teaching-plans,
+.modal-other-materials {
     margin: 20px 0;
     padding: 15px;
     background: #f9f9f9;
     border-radius: 6px;
     box-shadow: 0 1px 4px rgba(0,0,0,0.04);
+}
+
+.modal-teaching-plans h3,
+.modal-other-materials h3 {
+    color: #008445;
+    margin-bottom: 15px;
 }
 .teaching-plan-card {
     margin-bottom: 16px;
