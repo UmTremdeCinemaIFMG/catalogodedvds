@@ -635,7 +635,10 @@ function setupEventListeners() {
         window.open('https://umtremdecinema.wixsite.com/umtremdecinema', '_blank');
     });
 
-    // EVENTOS DO FALE CONOSCO
+    
+}
+                
+     // EVENTOS DO FALE CONOSCO
     const modalFaleConosco = document.getElementById("modalFaleConosco");
     const btnFaleConosco = document.getElementById("btnFaleConosco");
     const spanCloseFeedback = modalFaleConosco.querySelector(".close");
@@ -655,11 +658,8 @@ function setupEventListeners() {
         if (event.target == modalFaleConosco) {
             modalFaleConosco.style.display = "none";
         }
-    });
-}
-                
-                
-
+    });           
+                }
 
                 
                 // INICIALIZAÇÃO DA APLICAÇÃO
