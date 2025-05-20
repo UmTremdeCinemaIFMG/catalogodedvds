@@ -612,9 +612,8 @@ function renderTeachingPlans(film) {
                     document.querySelector('footer').addEventListener('click', function() {
                         window.open('https://umtremdecinema.wixsite.com/umtremdecinema', '_blank');
                     });
-                }
-
-/* ==========================================
+                
+               /* ==========================================
    12. FUNCIONALIDADES DO FALE CONOSCO
    ========================================== */
 
@@ -638,7 +637,11 @@ window.addEventListener('click', function(event) {
     if (event.target == modalFaleConosco) {
         modalFaleConosco.style.display = "none";
     }
-});
+}); 
+                
+                }
+
+
                 
                 // INICIALIZAÇÃO DA APLICAÇÃO
                 window.addEventListener('DOMContentLoaded', function() {
