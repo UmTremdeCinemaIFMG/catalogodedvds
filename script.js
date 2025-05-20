@@ -472,9 +472,10 @@ function renderTeachingPlans(film) {
     // Monta o HTML para cada plano de aula
     return film.planos_de_aula.map(plano => `
         <div class="teaching-plan-card">
-            <strong>${plano.nivel_ensino || ''} — ${plano.area_conhecimento || ''}</strong><br>
-            <a href="${plano.url}" target="_blank">${plano.site}</a><br>
-            <span>${plano.descricao || ''}</span>
+            <p><strong><i class="fas fa-graduation-cap"></i> Nível de Ensino:</strong> ${plano.nivel_ensino || ''}</p>
+            <p><strong><i class="fas fa-book"></i> Área de Conhecimento:</strong> ${plano.area_conhecimento || ''}</p>
+            <p><strong><i class="fas fa-globe"></i> Site:</strong> <a href="${plano.url}" target="_blank">${plano.site}</a></p>
+            <p><strong><i class="fas fa-info-circle"></i> Descrição:</strong> ${plano.descricao || ''}</p>
         </div>
     `).join('');
 }
@@ -483,16 +484,13 @@ function renderTeachingPlans(film) {
 // FUNÇÃO DE RENDERIZAÇÃO DE OUTROS MATERIAIS
 // ==========================================
 function renderOtherMaterials(film) {
-    // Se não houver campo ou for vazio, retorna mensagem padrão
     if (!film.materialOutros || film.materialOutros.length === 0) {
         return '<p><i class="fas fa-info-circle"></i> Nenhum material adicional disponível.</p>';
     }
-    
-    // Monta o HTML para cada material
     return film.materialOutros.map(material => `
         <div class="other-material-card">
-            <strong>${material.tipo || ''}</strong><br>
-            <a href="${material.url}" target="_blank">${material.titulo}</a>
+            <p><strong><i class="fas fa-bookmark"></i> Tipo:</strong> ${material.tipo || ''}</p>
+            <p><strong><i class="fas fa-file-alt"></i> Título:</strong> <a href="${material.url}" target="_blank">${material.titulo}</a></p>
         </div>
     `).join('');
 }
