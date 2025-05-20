@@ -37550,7 +37550,15 @@
         "Filmes": 228,
         "Nome do Programa": "Mutum e Rio de- Janeiro,   Minas",
         "imageName": "mutum_e_rio_de_janeiro_minas",
-        "planos_de_aula": [],
+        "planos_de_aula": [
+                        {
+                        "nivel_ensino": "Ensino Fundamental 2, Ensino Médio e Educação de Jovens e Adultos",
+                        "area_conhecimento": "Literatura, Geografia, Sociologia",
+                        "site": "Instituto Claro",
+                        "url": "https://www.institutoclaro.org.br/educacao/para-ensinar/planos-de-aula/mutum/",
+                        "descricao": "Plano de aula que trabalha a constituição da identidade sertaneja relacionada à obra literária de Guimarães Rosa, consolidando a experiência cultural proporcionada pelo filme Mutum. Inclui materiais complementares e links para recursos adicionais."
+                        }
+                    ],
         "FIELD31": "",
         "FIELD32": "",
         "FIELD33": "",
