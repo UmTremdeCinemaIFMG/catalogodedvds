@@ -86,7 +86,7 @@
                         festivais: cleanField(originalFilm["festivais"]),
                         premios: cleanField(originalFilm["premios"]),
                         legendasOutras: cleanField(originalFilm["legendas_outras"]),
-                        materialOutros: cleanField(originalFilm["material_outros"]),
+                        materialOutros: originalFilm["material_outros"] || [],
                         duracaoFormato: cleanField(originalFilm["duracao FORMATO"]),
                         nossoAcervo: cleanField(originalFilm["Nosso Acervo"]),
                         pgm: parseInt(originalFilm["PGM"]) || 0,
