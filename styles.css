@@ -927,6 +927,22 @@
     border-bottom: none;
 }
 
+.other-material-card {
+    background: #f8f9fa;
+    border-radius: 4px;
+    padding: 12px;
+    margin-bottom: 8px;
+}
+
+.other-material-card a {
+    color: #2196f3;
+    text-decoration: none;
+}
+
+.other-material-card a:hover {
+    text-decoration: underline;
+}
+
             /* ===========================
                12. FALE CONOSCO
                =========================== */
