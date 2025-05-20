@@ -86,7 +86,7 @@
                         festivais: cleanField(originalFilm["festivais"]),
                         premios: cleanField(originalFilm["premios"]),
                         legendasOutras: cleanField(originalFilm["legendas_outras"]),
-                        materialOutros: (originalFilm["material_outros"] || []),
+                        materialOutros: originalFilm["material_outros"] || [],
                         duracaoFormato: cleanField(originalFilm["duracao FORMATO"]),
                         nossoAcervo: cleanField(originalFilm["Nosso Acervo"]),
                         pgm: parseInt(originalFilm["PGM"]) || 0,
@@ -459,6 +459,8 @@
                     
                     return [...new Set(themes.filter(t => t))];
                 }
+
+
 // ==========================================
 // FUNÇÃO DE RENDERIZAÇÃO DOS PLANOS DE AULA
 // ==========================================
@@ -476,6 +478,25 @@ function renderTeachingPlans(film) {
         </div>
     `).join('');
 }
+
+// ==========================================
+// FUNÇÃO DE RENDERIZAÇÃO DE OUTROS MATERIAIS
+// ==========================================
+function renderOtherMaterials(film) {
+    // Se não houver campo ou for vazio, retorna mensagem padrão
+    if (!film.materialOutros || film.materialOutros.length === 0) {
+        return '<p><i class="fas fa-info-circle"></i> Nenhum material adicional disponível.</p>';
+    }
+    
+    // Monta o HTML para cada material
+    return film.materialOutros.map(material => `
+        <div class="other-material-card">
+            <strong>${material.tipo || ''}</strong><br>
+            <a href="${material.url}" target="_blank">${material.titulo}</a>
+        </div>
+    `).join('');
+}
+
                 // ABRE O MODAL COM ANIMAÇÃO
                 function openModal(film) {
                     const modal = document.getElementById('filmModal');
@@ -536,7 +557,10 @@ function renderTeachingPlans(film) {
                             ${film.festivais ? `<p><strong><i class="fas fa-trophy"></i> Festivais:</strong> ${film.festivais}</p>` : ''}
                             ${film.premios ? `<p><strong><i class="fas fa-award"></i> Prêmios:</strong> ${film.premios}</p>` : ''}
                             ${film.legendasOutras ? `<p><strong><i class="fas fa-language"></i> Outras Legendas:</strong> ${film.legendasOutras}</p>` : ''}
-                            ${film.materialOutros ? `<p><strong><i class="fas fa-box-open"></i> Outros Materiais:</strong> ${film.materialOutros}</p>` : ''}
+                            <div class="modal-other-materials">
+                                <h3><i class="fas fa-box-open"></i> Outros Materiais</h3>
+                                ${renderOtherMaterials(film)}
+                            </div>
                         </div>
                         ` : ''}
 
