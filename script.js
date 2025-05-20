@@ -86,7 +86,20 @@
                         festivais: cleanField(originalFilm["festivais"]),
                         premios: cleanField(originalFilm["premios"]),
                         legendasOutras: cleanField(originalFilm["legendas_outras"]),
-                        materialOutros: originalFilm["material_outros"] || [],
+                        materialOutros: (() => {
+    const material = originalFilm["material_outros"];
+    if (!material) return [];
+    if (typeof material === 'string') {
+        // Converte string em um objeto no formato esperado
+        return [{
+            tipo: material,
+            titulo: material,
+            url: '#'
+        }];
+    }
+    // Se já for array, retorna como está
+    return Array.isArray(material) ? material : [];
+})(),
                         duracaoFormato: cleanField(originalFilm["duracao FORMATO"]),
                         nossoAcervo: cleanField(originalFilm["Nosso Acervo"]),
                         pgm: parseInt(originalFilm["PGM"]) || 0,
