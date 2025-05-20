@@ -613,31 +613,50 @@ function renderTeachingPlans(film) {
                         window.open('https://umtremdecinema.wixsite.com/umtremdecinema', '_blank');
                     });
                 
-               /* ==========================================
-   12. FUNCIONALIDADES DO FALE CONOSCO
-   ========================================== */
+  // CONFIGURA TODOS OS EVENT LISTENERS
+function setupEventListeners() {
+    // EVENTOS DE BUSCA E FILTROS
+    document.getElementById('searchInput').addEventListener('input', filterAndRenderFilms);
+    document.getElementById('genreSelect').addEventListener('change', filterAndRenderFilms);
+    document.getElementById('classificationSelect').addEventListener('change', filterAndRenderFilms);
+    document.getElementById('sortSelect').addEventListener('change', filterAndRenderFilms);
+    document.getElementById('accessibilitySelect').addEventListener('change', filterAndRenderFilms);
+    
+    // EVENTOS DO MODAL
+    document.querySelector('.close').addEventListener('click', closeModal);
+    window.addEventListener('click', function(event) {
+        if (event.target === document.getElementById('filmModal')) {
+            closeModal();
+        }
+    });
+    
+    // EVENTO DO FOOTER
+    document.querySelector('footer').addEventListener('click', function() {
+        window.open('https://umtremdecinema.wixsite.com/umtremdecinema', '_blank');
+    });
 
-// Elementos do DOM para o Fale Conosco
-const modalFaleConosco = document.getElementById("modalFaleConosco");
-const btnFaleConosco = document.getElementById("btnFaleConosco");
-const spanCloseFeedback = modalFaleConosco.querySelector(".close");
+    // EVENTOS DO FALE CONOSCO
+    const modalFaleConosco = document.getElementById("modalFaleConosco");
+    const btnFaleConosco = document.getElementById("btnFaleConosco");
+    const spanCloseFeedback = modalFaleConosco.querySelector(".close");
 
-// Abre o modal do Fale Conosco
-btnFaleConosco.onclick = function() {
-    modalFaleConosco.style.display = "block";
-}
+    // Abre o modal do Fale Conosco
+    btnFaleConosco.addEventListener('click', function() {
+        modalFaleConosco.style.display = "block";
+    });
 
-// Fecha o modal do Fale Conosco ao clicar no X
-spanCloseFeedback.onclick = function() {
-    modalFaleConosco.style.display = "none";
-}
-
-// Fecha o modal do Fale Conosco ao clicar fora dele
-window.addEventListener('click', function(event) {
-    if (event.target == modalFaleConosco) {
+    // Fecha o modal do Fale Conosco ao clicar no X
+    spanCloseFeedback.addEventListener('click', function() {
         modalFaleConosco.style.display = "none";
-    }
-}); 
+    });
+
+    // Fecha o modal do Fale Conosco ao clicar fora dele
+    window.addEventListener('click', function(event) {
+        if (event.target == modalFaleConosco) {
+            modalFaleConosco.style.display = "none";
+        }
+    });
+}
                 
                 }
 
