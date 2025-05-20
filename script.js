@@ -162,6 +162,7 @@
                               (selectedAccessibility === 'planos_de_aula' && film.planos_de_aula && film.planos_de_aula.length > 0) ||
                               (selectedAccessibility === 'audiodescricao' && film.audiodescricao) ||
                               (selectedAccessibility === 'closed_caption' && film.closedCaption)
+                            (selectedAccessibility === 'material_outros' && film.materialOutros && film.materialOutros.length > 0) // Nova condição
                           );
                           
                             return matchesSearch && matchesGenre && matchesClassification && matchesAccessibility;
