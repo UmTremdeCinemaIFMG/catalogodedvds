@@ -925,27 +925,33 @@
     color: #008445;
     margin-bottom: 15px;
 }
-.teaching-plan-card {
-    margin-bottom: 16px;
-    padding-bottom: 8px;
-    border-bottom: 1px dashed #ccc;
-}
-.teaching-plan-card:last-child {
-    border-bottom: none;
-}
 
+.teaching-plan-card,
 .other-material-card {
     background: #f8f9fa;
     border-radius: 4px;
-    padding: 12px;
-    margin-bottom: 8px;
+    padding: 15px;
+    margin-bottom: 10px;
+    border-bottom: 1px dashed #ccc;
 }
 
+.teaching-plan-card:last-child,
+.other-material-card:last-child {
+    border-bottom: none;
+}
+
+.teaching-plan-card p,
+.other-material-card p {
+    margin: 5px 0;
+}
+
+.teaching-plan-card a,
 .other-material-card a {
     color: #2196f3;
     text-decoration: none;
 }
 
+.teaching-plan-card a:hover,
 .other-material-card a:hover {
     text-decoration: underline;
 }
