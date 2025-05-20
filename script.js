@@ -86,11 +86,7 @@
                         festivais: cleanField(originalFilm["festivais"]),
                         premios: cleanField(originalFilm["premios"]),
                         legendasOutras: cleanField(originalFilm["legendas_outras"]),
-                        materialOutros: Array.isArray(originalFilm["material_outros"]) 
-    ? originalFilm["material_outros"] 
-    : (typeof originalFilm["material_outros"] === 'object' && originalFilm["material_outros"] !== null)
-        ? [originalFilm["material_outros"]]
-        : [],
+                        materialOutros: (originalFilm["material_outros"] || []),
                         duracaoFormato: cleanField(originalFilm["duracao FORMATO"]),
                         nossoAcervo: cleanField(originalFilm["Nosso Acervo"]),
                         pgm: parseInt(originalFilm["PGM"]) || 0,
