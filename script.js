@@ -134,12 +134,6 @@
                         case 'duration-desc':
                             sortedFilms.sort((a, b) => b.duration - a.duration);
                             break;
-                        case 'classification-asc':
-                            sortedFilms.sort((a, b) => a.classification - b.classification);
-                            break;
-                        case 'classification-desc':
-                            sortedFilms.sort((a, b) => b.classification - a.classification);
-                            break;
                     }
                     
                     return sortedFilms;
