@@ -37559,13 +37559,7 @@
         "Filmes": 233,
         "Nome do Programa": "O Pagador de Promessas",
         "imageName": "o_pagador_de_promessas",
-        "planos_de_aula": [{
-            "nivel_ensino": "Ensino Médio",
-            "area_conhecimento": "Literatura, História, Sociologia",
-            "site": "Nova Escola",
-            "url": "https://novaescola.org.br/plano-de-aula/3245/o-pagador-de-promessas-e-o-sincretismo-religioso",
-            "descricao": "Plano de aula focado no sincretismo religioso e conflitos sociais apresentados no filme, relacionando com o contexto histórico brasileiro."
-        }],
+        "planos_de_aula": [],
         "FIELD31": "",
         "FIELD32": "",
         "FIELD33": "",
