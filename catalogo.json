@@ -37033,15 +37033,7 @@
         "Filmes": 150,
         "Nome do Programa": "Curtas infantis 4 - ficções a partir de 7 anos",
         "imageName": "curtas_infantis_4_ficcoes_a_partir_de_7_anos",
-        "planos_de_aula": [
-                  {
-                    "nivel_ensino": "Ensino Fundamental 2 e Ensino Médio",
-                    "area_conhecimento": "Literatura, Artes, Direitos Humanos",
-                    "site": "Mostra de Cinema Infantil",
-                    "url": "https://www.mostradecinemainfantil.com.br/a-menina-espantalho/",
-                    "descricao": "Sinopse e sugestões para debater educação rural, igualdade de gênero, superação e alfabetização com crianças e adolescentes."
-                  }
-        ],
+        "planos_de_aula": [],
         "FIELD31": "",
         "FIELD32": "",
         "FIELD33": "",
