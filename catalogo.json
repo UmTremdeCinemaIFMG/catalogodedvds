@@ -2761,7 +2761,13 @@
         "Filmes": 20,
         "Nome do Programa": "Estamira",
         "imageName": "estamira",
-        "planos_de_aula": [],
+        "planos_de_aula": [{
+            "nivel_ensino": "Ensino Médio e EJA",
+            "area_conhecimento": "Sociologia, Meio Ambiente, Saúde Mental",
+            "site": "Portal do Professor - MEC",
+            "url": "http://portaldoprofessor.mec.gov.br/fichaTecnicaAula.html?aula=15372",
+            "descricao": "Plano de aula que utiliza o documentário para discutir exclusão social, saúde mental e questões ambientais relacionadas ao lixo."
+        }],
         "FIELD31": "",
         "FIELD32": "",
         "FIELD33": "",
@@ -11914,7 +11920,13 @@
         "Filmes": 9,
         "Nome do Programa": "Cabra Marcado Para Morrer",
         "imageName": "cabra_marcado_para_morrer",
-        "planos_de_aula": [],
+        "planos_de_aula": [{
+            "nivel_ensino": "Ensino Médio e EJA",
+            "area_conhecimento": "História, Sociologia, Cinema",
+            "site": "Portal Escrita da História",
+            "url": "http://www.escritadahistoria.com/2018/05/plano-de-aula-cabra-marcado-para-morrer.html",
+            "descricao": "Plano de aula que analisa o filme como documento histórico, abordando a ditadura militar, movimentos sociais e resistência camponesa."
+        }],
         "FIELD31": "",
         "FIELD32": "",
         "FIELD33": "",
@@ -13224,7 +13236,13 @@
         "Filmes": 111,
         "Nome do Programa": "Pêra, Uva ou Maça",
         "imageName": "pera_uva_ou_maca",
-        "planos_de_aula": [],
+        "planos_de_aula": [{
+            "nivel_ensino": "Ensino Fundamental 2 e Ensino Médio",
+            "area_conhecimento": "Sociologia, Educação Inclusiva",
+            "site": "Instituto Claro",
+            "url": "https://www.institutoclaro.org.br/educacao/para-ensinar/planos-de-aula/eu-nao-quero-voltar-sozinho/",
+            "descricao": "Plano de aula que aborda temas como inclusão, diversidade e orientação sexual na adolescência."
+        }],
         "FIELD31": "",
         "FIELD32": "",
         "FIELD33": "",
@@ -32142,7 +32160,13 @@
         "Filmes": 113,
         "Nome do Programa": "Edifício Master",
         "imageName": "edificio_master",
-        "planos_de_aula": [],
+        "planos_de_aula": [{
+            "nivel_ensino": "Ensino Médio",
+            "area_conhecimento": "Sociologia, Geografia Urbana",
+            "site": "Portal do Professor - MEC",
+            "url": "http://portaldoprofessor.mec.gov.br/fichaTecnicaAula.html?aula=27134",
+            "descricao": "Plano de aula que utiliza o documentário para discutir questões urbanas, relações sociais e solidão nas grandes cidades."
+        }],
         "FIELD31": "",
         "FIELD32": "",
         "FIELD33": "",
@@ -37606,7 +37630,13 @@
         "Filmes": 233,
         "Nome do Programa": "O Pagador de Promessas",
         "imageName": "o_pagador_de_promessas",
-        "planos_de_aula": [],
+        "planos_de_aula": [{
+            "nivel_ensino": "Ensino Médio",
+            "area_conhecimento": "Literatura, História, Sociologia",
+            "site": "Nova Escola",
+            "url": "https://novaescola.org.br/plano-de-aula/3245/o-pagador-de-promessas-e-o-sincretismo-religioso",
+            "descricao": "Plano de aula focado no sincretismo religioso e conflitos sociais apresentados no filme, relacionando com o contexto histórico brasileiro."
+        }],
         "FIELD31": "",
         "FIELD32": "",
         "FIELD33": "",
