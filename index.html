@@ -3,182 +3,177 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Catálogo de DVDs - Um Trem de Cinema</title>
-    <meta name="description" content="Catálogo de DVDs do projeto Um Trem de Cinema do IFMG Campus Ouro Preto">
-    <meta name="keywords" content="cinema, IFMG, Ouro Preto, DVDs, filmes, educação">
-    <meta name="author" content="Um Trem de Cinema - IFMG">
-    
-    <!-- Favicon -->
-    <link rel="icon" href="favicon.ico" type="image/x-icon">
-    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
-    
-    <!-- Fontes e Estilos -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <title>Catálogo de DVDs</title>
+ 
+    <!-- FONTS E ÍCONES -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
-    <link rel="stylesheet" href="styles.css">
-</head>
+
+    <!-- FAVICON TEMPORÁRIO -->
+    <!-- <link rel="icon" href="data:,"> -->
+    <link rel="icon" type="image/png" href="favicon.png" />
+    
+        <!-- ESTILOS -->
+             
+            <!-- SE DIVIDIR O CÓDIGO EM 3 PARTES (HTML+CSS+JS), ISSO AQUI ABAIXO FARÁ REFERÊNCIA AO CSS -->
+            <link rel="stylesheet" href="styles.css">
+    
+</head>  
+    
 <body>
-    <!-- Header -->
-    <header>
-        <div class="header-content">
-            <img src="logo.png" alt="Logo Um Trem de Cinema" class="logo">
-            <h1>Catálogo de DVDs</h1>
+        <!-- CABEÇALHO -->
+        <header>
+            <div class="container">
+                <h1><i class="fas fa-film"></i> Catálogo de DVDs</h1>
+                <h3>Filmes Brasileiros do Projeto Um Trem de Cinema do IFMG Sabará</h3>
+                <strong>LEI Nº 13.006, DE 26 DE JUNHO DE 2014:</strong>
+                  A exibição de filmes de produção nacional constituirá componente curricular complementar integrado à proposta pedagógica da escola, sendo a sua exibição obrigatória por, no mínimo, 2 (duas) horas mensais.
+                  <a href="https://www.planalto.gov.br/ccivil_03/_ato2011-2014/2014/lei/l13006.htm" target="_blank" style="margin-left: 8px; color: #ffffff; text-decoration: underline;">
+                    Saiba mais
+                  </a>
+            </div>
+        </header>
+    
+        <!-- CONTEÚDO PRINCIPAL -->
+        <main class="container">
+            <!-- SEÇÃO DE CONTROLES -->
+            <div class="controls-wrapper">
+                <!-- BARRA DE BUSCA -->
+                <div class="search-container">
+                    <div class="search-box">
+                        <i class="fas fa-search"></i>
+                        <input 
+                            type="text" 
+                            id="searchInput"
+                            placeholder="Buscar filmes por título, diretor, elenco, sinopse..."
+                        >
+                    </div>
+                </div>
+    
+                <!-- LINHA DE FILTROS -->
+                <div class="filters-row">
+                    <!-- FILTRO DE GÊNERO -->
+                    <div class="filter-container">
+                        <div class="filter-box">
+                            <i class="fas fa-film"></i>
+                            <select id="genreSelect">
+                                <option value="">Todos os Gêneros</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <!-- OUTROS FILTROS -->
+                    <div class="filter-container">
+                        <div class="filter-box">
+                            <i class="fas fa-universal-access"></i>
+                            <select id="accessibilitySelect">
+                                <option value="">Todos os recursos</option>
+                                <option value="planos_de_aula">Planos de Aula</option>
+                                <option value="audiodescricao">Audiodescrição</option>
+                                <option value="closed_caption">Closed Caption</option>
+                                <option value="material_outros">Outros Materiais</option> <!-- Nova opção -->
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <!-- FILTRO DE CLASSIFICAÇÃO -->
+                    <div class="filter-container">
+                        <div class="filter-box">
+                            <i class="fas fa-user-shield"></i>
+                            <select id="classificationSelect">
+                                <option value="">Todas as Classificações</option>
+                                <option value="L">Livre</option>
+                                <option value="10">10 anos</option>
+                                <option value="12">12 anos</option>
+                                <option value="14">14 anos</option>
+                                <option value="16">16 anos</option>
+                                <option value="18">18 anos</option>
+                            </select>
+                        </div>
+                    </div>
+    
+                    <!-- ORDENAÇÃO -->
+                    <div class="filter-container">
+                        <div class="filter-box">
+                            <i class="fas fa-sort"></i>
+                            <select id="sortSelect">
+                                <option value="title-asc">Título (A-Z)</option>
+                                <option value="title-desc">Título (Z-A)</option>
+                                <option value="year-asc">Ano (Antigo-Novo)</option>
+                                <option value="year-desc">Ano (Novo-Antigo)</option>
+                                <option value="duration-asc">Duração (Menor-Maior)</option>
+                                <option value="duration-desc">Duração (Maior-Menor)</option>
+                            </select>
+                        </div>
+                    </div>
+    
+                    <!-- CONTADOR DE RESULTADOS -->
+                    <div class="results-counter">
+                        <span id="filmsCount">0</span> filmes encontrados
+                    </div>
+                </div>
+            </div>
+    
+            <!-- LOADING STATE -->
+            <div id="loadingMessage" class="loading">
+                <div class="skeleton" style="width: 100%; height: 300px; margin-bottom: 20px;"></div>
+                <div class="skeleton" style="width: 80%; height: 20px; margin: 0 auto 10px;"></div>
+                <div class="skeleton" style="width: 60%; height: 20px; margin: 0 auto;"></div>
+            </div>
+    
+            <!-- GRID DE FILMES -->
+            <div class="film-grid" id="filmGrid"></div>
+    
+            <!-- PAGINAÇÃO -->
+            <div class="pagination" id="pagination"></div>
+        </main>
+    
+        <!-- MODAL DE DETALHES DO FILME -->
+        <div id="filmModal" class="modal">
+            <div class="modal-content">
+                <span class="close">&times;</span>
+                <div id="modalContent"></div>
+            </div>
         </div>
-    </header>
+    
+        <!-- RODAPÉ -->
+        <footer>
+            <div class="container">
+               <p>
+                Acervo doado pelo Ministério da Cultura ao Projeto de Extensão
+                <br>                
+               <i class="fas fa-train"></i> UM TREM DE CINEMA IFMG SABARÁ 2019-2021
+               </p>
+            </div>
+        </footer>
 
-    <!-- Barra de Ferramentas -->
-    <div class="toolbar">
-        <div class="search-container">
-            <input type="text" id="searchInput" placeholder="Buscar filmes...">
-            <i class="fas fa-search search-icon"></i>
-        </div>
+        <!-- SE DIVIDIR O CÓDIGO EM 3 PARTES (HTML+CSS+JS), ISSO AQUI ABAIXO FARÁ REFERÊNCIA AO JS -->
+        <!-- SCRIPTS -->
+        <script src="script.js"></script>   
 
-        <div class="filters-container">
-            <select id="genreSelect">
-                <option value="">Todos os Gêneros</option>
-            </select>
+        <!-- SCRIPTS -->
+        <script src="script.js"></script>   
 
-            <select id="classificationSelect">
-                <option value="">Todas as Classificações</option>
-                <option value="L">Livre</option>
-                <option value="10">10 anos</option>
-                <option value="12">12 anos</option>
-                <option value="14">14 anos</option>
-                <option value="16">16 anos</option>
-                <option value="18">18 anos</option>
-            </select>
-
-            <select id="accessibilitySelect">
-                <option value="">Todos os Recursos</option>
-                <option value="planos_de_aula">Planos de Aula</option>
-                <option value="audiodescricao">Audiodescrição</option>
-                <option value="closed_caption">Closed Caption</option>
-                <option value="material_outros">Materiais Extras</option>
-            </select>
-
-            <select id="sortSelect">
-                <option value="title-asc">A-Z</option>
-                <option value="title-desc">Z-A</option>
-                <option value="year-desc">Mais Recentes</option>
-                <option value="year-asc">Mais Antigos</option>
-                <option value="duration-desc">Maior Duração</option>
-                <option value="duration-asc">Menor Duração</option>
-            </select>
-        </div>
-    </div>
-
-    <!-- Contador de Resultados -->
-    <div class="results-counter">
-        <span>Exibindo </span>
-        <span id="filmsCount">0</span>
-        <span> filmes</span>
-    </div>
-        <!-- Área Principal -->
-    <main>
-        <!-- Mensagem de Carregamento -->
-        <div id="loadingMessage" class="loading-message">
-            <div class="loading-spinner"></div>
-            <p>Carregando catálogo...</p>
-        </div>
-
-        <!-- Grid de Filmes -->
-        <div id="filmGrid" class="film-grid">
-            <!-- Os cards dos filmes serão inseridos aqui dinamicamente -->
-        </div>
-
-        <!-- Paginação -->
-        <div id="pagination" class="pagination">
-            <!-- A paginação será inserida aqui dinamicamente -->
-        </div>
-    </main>
-
-    <!-- Modal do Filme -->
-    <div id="filmModal" class="modal">
-        <div class="modal-overlay"></div>
-        <div class="modal-container">
-            <button class="close">
-                <i class="fas fa-times"></i>
+        <!-- FALE CONOSCO -->
+        <div class="feedback-button">
+            <button id="btnFaleConosco">
+                <i class="fas fa-comments"></i> Fale Conosco
             </button>
-            <div id="modalContent" class="modal-content">
-                <!-- O conteúdo do modal será inserido aqui dinamicamente -->
-            </div>
         </div>
-    </div>
 
-    <!-- Modal de Visualização da Capa -->
-    <div id="coverModal" class="cover-modal">
-        <div class="cover-modal-content">
-            <button class="close">
-                <i class="fas fa-times"></i>
-            </button>
-            <div class="cover-controls">
-                <button id="zoomIn" title="Aumentar zoom">
-                    <i class="fas fa-search-plus"></i>
-                </button>
-                <button id="zoomOut" title="Diminuir zoom">
-                    <i class="fas fa-search-minus"></i>
-                </button>
-                <button id="resetZoom" title="Restaurar zoom">
-                    <i class="fas fa-undo"></i>
-                </button>
-            </div>
-            <div class="expanded-cover-container">
-                <img id="expandedCover" src="" alt="Capa do filme ampliada">
-            </div>
-        </div>
-    </div>
-        <!-- Modal Fale Conosco -->
-    <div id="modalFaleConosco" class="modal">
-        <div class="modal-content feedback-modal">
-            <span class="close"><i class="fas fa-times"></i></span>
-            <h2><i class="fas fa-comments"></i> Fale Conosco</h2>
-            <div class="contact-info">
-                <div class="contact-section">
-                    <h3><i class="fas fa-envelope"></i> E-mail</h3>
-                    <p>umtremdecinema@gmail.com</p>
-                </div>
-                
-                <div class="contact-section">
-                    <h3><i class="fab fa-instagram"></i> Instagram</h3>
-                    <p><a href="https://www.instagram.com/umtremdecinema/" target="_blank">@umtremdecinema</a></p>
-                </div>
-                
-                <div class="contact-section">
-                    <h3><i class="fab fa-facebook"></i> Facebook</h3>
-                    <p><a href="https://www.facebook.com/umtremdecinema/" target="_blank">Um Trem de Cinema</a></p>
-                </div>
-
-                <div class="contact-section">
-                    <h3><i class="fas fa-map-marker-alt"></i> Endereço</h3>
-                    <p>IFMG Campus Ouro Preto<br>
-                    Rua Pandiá Calógeras, 898<br>
-                    Bauxita, Ouro Preto - MG<br>
-                    CEP: 35400-000</p>
+        <div id="modalFaleConosco" class="feedback-modal">
+            <div class="feedback-modal-content">
+                <span class="close">&times;</span>
+                <h2>Fale Conosco</h2>
+                <div class="form-container">
+                    <iframe id="googleForm" 
+                            src="https://docs.google.com/forms/d/e/1FAIpQLSfaMr7-ermLAAO8S8zDk0WMcPrVX34mF2xhTrHiC1Z53GbIFQ/viewform?usp=sharing&ouid=101786859238464224020"
+                            frameborder="0" 
+                            marginheight="0" 
+                            marginwidth="0">
+                        Carregando…
+                    </iframe>
                 </div>
             </div>
         </div>
-    </div>
-
-    <!-- Botão Flutuante Fale Conosco -->
-    <button id="btnFaleConosco" class="floating-button">
-        <i class="fas fa-comments"></i>
-        <span>Fale Conosco</span>
-    </button>
-
-    <!-- Footer -->
-    <footer>
-        <div class="footer-content">
-            <img src="logo.png" alt="Logo Um Trem de Cinema" class="footer-logo">
-            <div class="footer-text">
-                <p>Um Trem de Cinema</p>
-                <p>IFMG Campus Ouro Preto</p>
-            </div>
-        </div>
-    </footer>
-
-    <!-- Scripts -->
-    <script src="script.js"></script>
-</body>
+    </body>
 </html>
