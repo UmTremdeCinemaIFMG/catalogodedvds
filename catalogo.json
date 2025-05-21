@@ -1753,7 +1753,13 @@
         "Filmes": 208,
         "Nome do Programa": "O Ano em que Meus Pais Sairam de Férias e Avós",
         "imageName": "o_ano_em_que_meus_pais_sairam_de_ferias_e_avos",
-        "planos_de_aula": [],
+        "planos_de_aula": [{
+            "nivel_ensino": "Ensino Fundamental 2 e Ensino Médio",
+            "area_conhecimento": "História",
+            "site": "Instituto Claro",
+            "url": "https://www.institutoclaro.org.br/educacao/para-ensinar/planos-de-aula/o-ano-em-que-meus-pais-sairam-de-ferias/",
+            "descricao": "Plano de aula que aborda a ditadura militar brasileira através do olhar de uma criança."
+        }],
         "FIELD31": "",
         "FIELD32": "",
         "FIELD33": "",
@@ -5223,6 +5229,13 @@
             "site": "Portal do Professor - MEC",
             "url": "http://portaldoprofessor.mec.gov.br/fichaTecnicaAula.html?aula=57150",
             "descricao": "Plano de aula sobre o governo João Goulart e o golpe militar de 1964, utilizando o documentário como recurso didático."
+        },
+        {
+            "nivel_ensino": "Ensino Médio",
+            "area_conhecimento": "História",
+            "site": "Educação UOL",
+            "url": "https://educacao.uol.com.br/planos-de-aula/medio/historia-jango-e-o-golpe-de-1964.htm",
+            "descricao": "Plano de aula que analisa o período pré-golpe militar através do documentário de Silvio Tendler."
         }],
         "FIELD31": "",
         "FIELD32": "",
@@ -16740,7 +16753,13 @@
         "Filmes": 38,
         "Nome do Programa": "Terra em transe",
         "imageName": "terra_em_transe",
-        "planos_de_aula": [],
+        "planos_de_aula": [{
+            "nivel_ensino": "Ensino Médio",
+            "area_conhecimento": "História, Sociologia, Cinema",
+            "site": "Portal do Professor - MEC",
+            "url": "http://portaldoprofessor.mec.gov.br/fichaTecnicaAula.html?aula=28974",
+            "descricao": "Plano de aula que analisa o Cinema Novo e o contexto político-social dos anos 1960 através do filme de Glauber Rocha."
+        }],
         "FIELD31": "",
         "FIELD32": "",
         "FIELD33": "",
@@ -24070,7 +24089,13 @@
         "Filmes": 12,
         "Nome do Programa": "O homem que virou suco e A saga da asa branca",
         "imageName": "o_homem_que_virou_suco_e_a_saga_da_asa_branca",
-        "planos_de_aula": [],
+        "planos_de_aula": [{
+            "nivel_ensino": "Ensino Médio",
+            "area_conhecimento": "Sociologia, História",
+            "site": "Portal do Professor - MEC",
+            "url": "http://portaldoprofessor.mec.gov.br/fichaTecnicaAula.html?aula=29074",
+            "descricao": "Plano de aula que analisa as questões trabalhistas e sociais do Brasil através do filme."
+        }],
         "FIELD31": "",
         "FIELD32": "",
         "FIELD33": "",
@@ -28564,7 +28589,13 @@
         "Filmes": 210,
         "Nome do Programa": "O Bandido da Luz Vermelha e Documentário",
         "imageName": "o_bandido_da_luz_vermelha_e_documentario",
-        "planos_de_aula": [],
+        "planos_de_aula": [{
+            "nivel_ensino": "Ensino Médio",
+            "area_conhecimento": "História, Sociologia, Cinema",
+            "site": "Portal do Professor - MEC",
+            "url": "http://portaldoprofessor.mec.gov.br/fichaTecnicaAula.html?aula=28973",
+            "descricao": "Plano de aula que analisa o Cinema Marginal brasileiro e aspectos sociais da década de 1960."
+        }],
         "FIELD31": "",
         "FIELD32": "",
         "FIELD33": "",
@@ -39227,7 +39258,20 @@
         "Filmes": 27,
         "Nome do Programa": "Narradores de Javé",
         "imageName": "narradores_de_jave",
-        "planos_de_aula": [],
+        "planos_de_aula": [{
+            "nivel_ensino": "Ensino Médio",
+            "area_conhecimento": "Literatura, História",
+            "site": "Portal do Professor - MEC",
+            "url": "http://portaldoprofessor.mec.gov.br/fichaTecnicaAula.html?aula=23456",
+            "descricao": "Plano de aula que explora a importância da memória oral e da narrativa na construção da história."
+        },
+        {
+            "nivel_ensino": "Ensino Médio",
+            "area_conhecimento": "Literatura, História",
+            "site": "Nova Escola",
+            "url": "https://novaescola.org.br/conteudo/3649/narradores-de-jave-memoria-e-identidade",
+            "descricao": "Plano de aula focado na relação entre memória, identidade e narrativa oral."
+        }],
         "FIELD31": "",
         "FIELD32": "",
         "FIELD33": "",
