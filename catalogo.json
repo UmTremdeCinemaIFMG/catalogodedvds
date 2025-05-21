@@ -2761,13 +2761,7 @@
         "Filmes": 20,
         "Nome do Programa": "Estamira",
         "imageName": "estamira",
-        "planos_de_aula": [{
-            "nivel_ensino": "Ensino Médio e EJA",
-            "area_conhecimento": "Sociologia, Meio Ambiente, Saúde Mental",
-            "site": "Portal do Professor - MEC",
-            "url": "http://portaldoprofessor.mec.gov.br/fichaTecnicaAula.html?aula=15372",
-            "descricao": "Plano de aula que utiliza o documentário para discutir exclusão social, saúde mental e questões ambientais relacionadas ao lixo."
-        }],
+        "planos_de_aula": [],
         "FIELD31": "",
         "FIELD32": "",
         "FIELD33": "",
@@ -28546,13 +28540,7 @@
         "Filmes": 210,
         "Nome do Programa": "O Bandido da Luz Vermelha e Documentário",
         "imageName": "o_bandido_da_luz_vermelha_e_documentario",
-        "planos_de_aula": [{
-            "nivel_ensino": "Ensino Médio",
-            "area_conhecimento": "História, Sociologia, Cinema",
-            "site": "Portal do Professor - MEC",
-            "url": "http://portaldoprofessor.mec.gov.br/fichaTecnicaAula.html?aula=28973",
-            "descricao": "Plano de aula que analisa o Cinema Marginal brasileiro e aspectos sociais da década de 1960."
-        }],
+        "planos_de_aula": [],
         "FIELD31": "",
         "FIELD32": "",
         "FIELD33": "",
@@ -32166,13 +32154,7 @@
         "Filmes": 113,
         "Nome do Programa": "Edifício Master",
         "imageName": "edificio_master",
-        "planos_de_aula": [{
-            "nivel_ensino": "Ensino Médio",
-            "area_conhecimento": "Sociologia, Geografia Urbana",
-            "site": "Portal do Professor - MEC",
-            "url": "http://portaldoprofessor.mec.gov.br/fichaTecnicaAula.html?aula=27134",
-            "descricao": "Plano de aula que utiliza o documentário para discutir questões urbanas, relações sociais e solidão nas grandes cidades."
-        }],
+        "planos_de_aula": [],
         "FIELD31": "",
         "FIELD32": "",
         "FIELD33": "",
@@ -32970,13 +32952,7 @@
         "Filmes": 6,
         "Nome do Programa": "anos JK - uma trajetória política, Os ",
         "imageName": "anos_jk_uma_trajetoria_politica_os_",
-        "planos_de_aula": [{
-            "nivel_ensino": "Ensino Médio",
-            "area_conhecimento": "História, Sociologia",
-            "site": "Portal do Professor - MEC",
-            "url": "http://portaldoprofessor.mec.gov.br/fichaTecnicaAula.html?aula=57149",
-            "descricao": "Plano de aula que utiliza o documentário para análise do período JK, desenvolvimento econômico e mudanças sociais no Brasil dos anos 50."
-        }],
+        "planos_de_aula": [],
         "FIELD31": "",
         "FIELD32": "",
         "FIELD33": "",
