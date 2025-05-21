@@ -243,58 +243,72 @@
                 
                 // CRIA CONTROLES DE NAVEGAÇÃO PARA IMAGENS
                 function createImageControls(container, image) {
-                    const controls = document.createElement('div');
-                    controls.className = container.classList.contains('modal-poster-container') ? 
-                        'modal-poster-controls' : 'film-poster-controls';
-                    
-                    const leftButton = document.createElement('button');
-                    leftButton.className = container.classList.contains('modal-poster-container') ? 
-                        'modal-poster-control' : 'film-poster-control';
-                    leftButton.innerHTML = '<i class="fas fa-chevron-left"></i>';
-                    leftButton.addEventListener('click', (e) => {
-                        e.stopPropagation();
-                        const currentTransform = image.style.transform || 'translateX(0)';
-                        const currentX = parseInt(currentTransform.match(/translateX\(([-\d]+)px\)/)?.[1] || 0);
-                        const newX = Math.min(currentX + 100, 0);
-                        image.style.transform = `translateX(${newX}px)`;
-                    });
-                    
-                    const rightButton = document.createElement('button');
-                    rightButton.className = container.classList.contains('modal-poster-container') ? 
-                        'modal-poster-control' : 'film-poster-control';
-                    rightButton.innerHTML = '<i class="fas fa-chevron-right"></i>';
-                    rightButton.addEventListener('click', (e) => {
-                        e.stopPropagation();
-                        const currentTransform = image.style.transform || 'translateX(0)';
-                        const currentX = parseInt(currentTransform.match(/translateX\(([-\d]+)px\)/)?.[1] || 0);
-                        const containerWidth = container.clientWidth;
-                        const imageWidth = image.clientWidth;
-                        const maxX = containerWidth - imageWidth;
-                        const newX = Math.max(currentX - 100, maxX);
-                        image.style.transform = `translateX(${newX}px)`;
-                    });
-                    
-                    controls.appendChild(leftButton);
-                    controls.appendChild(rightButton);
-                    container.appendChild(controls);
-                    
-                    setTimeout(() => {
-                        const containerWidth = container.clientWidth;
-                        const imageWidth = image.clientWidth;
-                        if (imageWidth > containerWidth) {
-                            const initialX = containerWidth - imageWidth;
-                            image.style.transform = `translateX(${initialX}px)`;
-                        }
-                    }, 50);
-                }
+    // Remove controles existentes se houver
+    const existingControls = container.querySelector('.film-poster-controls');
+    if (existingControls) {
+        existingControls.remove();
+    }
+
+    const controls = document.createElement('div');
+    controls.className = container.classList.contains('modal-poster-container') ? 
+        'modal-poster-controls' : 'film-poster-controls';
+    
+    const leftButton = document.createElement('button');
+    leftButton.className = container.classList.contains('modal-poster-container') ? 
+        'modal-poster-control' : 'film-poster-control';
+    leftButton.innerHTML = '<i class="fas fa-chevron-left"></i>';
+    leftButton.addEventListener('click', (e) => {
+        e.stopPropagation();
+        const currentTransform = image.style.transform || 'translateX(0)';
+        const currentX = parseInt(currentTransform.match(/translateX\(([-\d]+)px\)/)?.[1] || 0);
+        const newX = Math.min(currentX + 100, 0);
+        image.style.transform = `translateX(${newX}px)`;
+    });
+    
+    const rightButton = document.createElement('button');
+    rightButton.className = container.classList.contains('modal-poster-container') ? 
+        'modal-poster-control' : 'film-poster-control';
+    rightButton.innerHTML = '<i class="fas fa-chevron-right"></i>';
+    rightButton.addEventListener('click', (e) => {
+        e.stopPropagation();
+        const currentTransform = image.style.transform || 'translateX(0)';
+        const currentX = parseInt(currentTransform.match(/translateX\(([-\d]+)px\)/)?.[1] || 0);
+        const containerWidth = container.clientWidth;
+        const imageWidth = image.clientWidth;
+        const maxX = containerWidth - imageWidth;
+        const newX = Math.max(currentX - 100, maxX);
+        image.style.transform = `translateX(${newX}px)`;
+    });
+    
+    controls.appendChild(leftButton);
+    controls.appendChild(rightButton);
+    container.appendChild(controls);
+    
+    // Posiciona a imagem inicial
+    setTimeout(() => {
+        const containerWidth = container.clientWidth;
+        const imageWidth = image.clientWidth;
+        if (imageWidth > containerWidth) {
+            const initialX = containerWidth - imageWidth;
+            image.style.transform = `translateX(${initialX}px)`;
+        }
+    }, 50);
+}
                 
                 // CRIA IMAGEM COM FALLBACK
                 function createSmartPoster(film) {
+                  const container = document.createElement('div');
+                  container.className = 'film-poster-container';
+                  
                     const img = new Image();
                     img.className = 'film-poster';
-                    img.alt = film.title || 'Capa do filme';
-                    
+                    img.alt = film.title || 'Capa do filme';                 
                     img.src = getDvdCover(film);
+
+                  // Adiciona controles de navegação quando a imagem carregar
+    img.onload = function() {
+        createImageControls(container, img);
+    };
                     console.log("Imagem definida como:", img.src);
                     
                     img.onerror = function() {
@@ -671,6 +685,11 @@ function createSmartPoster(film) {
     img.className = 'film-poster';
     img.alt = film.title || 'Capa do filme';
     img.src = getDvdCover(film);
+
+  // Adiciona controles de navegação quando a imagem carregar
+    img.onload = function() {
+        createImageControls(container, img);
+    };
     
     const expandButton = document.createElement('button');
     expandButton.className = 'expand-cover-button';
