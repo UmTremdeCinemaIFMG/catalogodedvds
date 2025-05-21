@@ -128,6 +128,12 @@
                         case 'year-desc':
                             sortedFilms.sort((a, b) => b.year - a.year);
                             break;
+                        case 'duration-asc':
+                            sortedFilms.sort((a, b) => a.duration - b.duration);
+                            break;
+                        case 'duration-desc':
+                            sortedFilms.sort((a, b) => b.duration - a.duration);
+                            break;
                         case 'classification-asc':
                             sortedFilms.sort((a, b) => a.classification - b.classification);
                             break;
