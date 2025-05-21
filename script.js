@@ -625,7 +625,98 @@ function renderOtherMaterials(film) {
                 /* ==========================================
                    9. INICIALIZAÇÃO E EVENTOS
                    ========================================== */
-                
+// Variáveis para controle do zoom
+let currentZoom = 1;
+const zoomStep = 0.2;
+const maxZoom = 3;
+const minZoom = 0.5;
+
+// Função para abrir o modal da capa
+function openCoverModal(imageSrc, title) {
+    const modal = document.getElementById('coverModal');
+    const expandedCover = document.getElementById('expandedCover');
+    
+    expandedCover.src = imageSrc;
+    expandedCover.alt = `Capa do filme ${title} em tamanho ampliado`;
+    
+    modal.style.display = 'block';
+    currentZoom = 1;
+    updateZoom();
+}
+
+// Função para atualizar o zoom
+function updateZoom() {
+    const expandedCover = document.getElementById('expandedCover');
+    expandedCover.style.transform = `scale(${currentZoom})`;
+}
+
+// Função para controlar o zoom
+function handleZoom(direction) {
+    if (direction === 'in' && currentZoom < maxZoom) {
+        currentZoom += zoomStep;
+    } else if (direction === 'out' && currentZoom > minZoom) {
+        currentZoom -= zoomStep;
+    } else if (direction === 'reset') {
+        currentZoom = 1;
+    }
+    updateZoom();
+}
+
+// Modificação na função createSmartPoster
+function createSmartPoster(film) {
+    const container = document.createElement('div');
+    container.className = 'poster-wrapper';
+    
+    const img = new Image();
+    img.className = 'film-poster';
+    img.alt = film.title || 'Capa do filme';
+    img.src = getDvdCover(film);
+    
+    const expandButton = document.createElement('button');
+    expandButton.className = 'expand-cover-button';
+    expandButton.innerHTML = '<i class="fas fa-expand"></i>';
+    expandButton.title = 'Expandir capa';
+    expandButton.onclick = (e) => {
+        e.stopPropagation(); // Evita que o clique abra o modal do filme
+        openCoverModal(img.src, film.title);
+    };
+    
+    img.onerror = function() {
+        console.error("Falha ao carregar:", this.src);
+        this.src = 'capas/progbrasil.png';
+    };
+    
+    container.appendChild(img);
+    container.appendChild(expandButton);
+    return container;
+}
+
+// Adicione isto na função setupEventListeners
+function setupEventListeners() {
+    // ... código existente ...
+    
+    // Eventos do modal da capa
+    const coverModal = document.getElementById('coverModal');
+    const coverClose = coverModal.querySelector('.close');
+    
+    coverClose.addEventListener('click', () => {
+        coverModal.style.display = 'none';
+    });
+    
+    document.getElementById('zoomIn').addEventListener('click', () => handleZoom('in'));
+    document.getElementById('zoomOut').addEventListener('click', () => handleZoom('out'));
+    document.getElementById('resetZoom').addEventListener('click', () => handleZoom('reset'));
+    
+    window.addEventListener('click', (event) => {
+        if (event.target === coverModal) {
+            coverModal.style.display = 'none';
+        }
+    });
+    
+    // ... resto do código existente ...
+}
+
+
                 // CONFIGURA TODOS OS EVENT LISTENERS
                 function setupEventListeners() {
                     // EVENTOS DE BUSCA E FILTROS
@@ -647,7 +738,25 @@ function renderOtherMaterials(film) {
                     document.querySelector('footer').addEventListener('click', function() {
                         window.open('https://umtremdecinema.wixsite.com/umtremdecinema', '_blank');
                     });
-                
+// Eventos do modal da capa
+    const coverModal = document.getElementById('coverModal');
+    const coverClose = coverModal.querySelector('.close');
+    
+    coverClose.addEventListener('click', () => {
+        coverModal.style.display = 'none';
+    });
+    
+    document.getElementById('zoomIn').addEventListener('click', () => handleZoom('in'));
+    document.getElementById('zoomOut').addEventListener('click', () => handleZoom('out'));
+    document.getElementById('resetZoom').addEventListener('click', () => handleZoom('reset'));
+    
+    window.addEventListener('click', (event) => {
+        if (event.target === coverModal) {
+            coverModal.style.display = 'none';
+        }
+    });
+
+                  
   // CONFIGURA TODOS OS EVENT LISTENERS
 function setupEventListeners() {
     // EVENTOS DE BUSCA E FILTROS
