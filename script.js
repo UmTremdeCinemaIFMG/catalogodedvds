@@ -296,28 +296,45 @@
 }
                 
                 // CRIA IMAGEM COM FALLBACK
-                function createSmartPoster(film) {
-                  const container = document.createElement('div');
-                  container.className = 'film-poster-container';
-                  
-                    const img = new Image();
-                    img.className = 'film-poster';
-                    img.alt = film.title || 'Capa do filme';                 
-                    img.src = getDvdCover(film);
-
-                  // Adiciona controles de navegação quando a imagem carregar
+               function createSmartPoster(film) {
+    // Cria o container principal
+    const container = document.createElement('div');
+    container.className = 'film-poster-container';
+    
+    // Cria a imagem
+    const img = new Image();
+    img.className = 'film-poster';
+    img.alt = film.title || 'Capa do filme';
+    img.src = getDvdCover(film);
+    
+    // Cria o botão de expansão
+    const expandButton = document.createElement('button');
+    expandButton.className = 'expand-cover-button';
+    expandButton.innerHTML = '<i class="fas fa-expand"></i>';
+    expandButton.title = 'Expandir capa';
+    expandButton.onclick = (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        openCoverModal(img.src, film.title);
+    };
+    
+    // Configuração de erro da imagem
+    img.onerror = function() {
+        console.error("Falha ao carregar:", this.src);
+        this.src = 'capas/progbrasil.png';
+    };
+    
+    // Adiciona os elementos ao container
+    container.appendChild(img);
+    container.appendChild(expandButton);
+    
+    // Adiciona controles de navegação quando a imagem carregar
     img.onload = function() {
         createImageControls(container, img);
     };
-                    console.log("Imagem definida como:", img.src);
-                    
-                    img.onerror = function() {
-                        console.error("Falha ao carregar:", this.src);
-                        this.src = 'capas/progbrasil.png';
-                    };
-                
-                    return img;
-                }
+    
+    return container;
+}
                 
                 /* ==========================================
                    6. FUNÇÕES DE RENDERIZAÇÃO DE FILMES E CARDS
@@ -710,9 +727,6 @@ function createSmartPoster(film) {
     return container;
 }
 
-// Adicione isto na função setupEventListeners
-function setupEventListeners() {
-    // ... código existente ...
     
     // Eventos do modal da capa
     const coverModal = document.getElementById('coverModal');
@@ -732,48 +746,8 @@ function setupEventListeners() {
         }
     });
     
-    // ... resto do código existente ...
-}
 
 
-                // CONFIGURA TODOS OS EVENT LISTENERS
-                function setupEventListeners() {
-                    // EVENTOS DE BUSCA E FILTROS
-                    document.getElementById('searchInput').addEventListener('input', filterAndRenderFilms);
-                    document.getElementById('genreSelect').addEventListener('change', filterAndRenderFilms);
-                    document.getElementById('classificationSelect').addEventListener('change', filterAndRenderFilms);
-                    document.getElementById('sortSelect').addEventListener('change', filterAndRenderFilms);
-                    document.getElementById('accessibilitySelect').addEventListener('change', filterAndRenderFilms);
-                    
-                    // EVENTOS DO MODAL
-                    document.querySelector('.close').addEventListener('click', closeModal);
-                    window.addEventListener('click', function(event) {
-                        if (event.target === document.getElementById('filmModal')) {
-                            closeModal();
-                        }
-                    });
-                    
-                    // EVENTO DO FOOTER
-                    document.querySelector('footer').addEventListener('click', function() {
-                        window.open('https://umtremdecinema.wixsite.com/umtremdecinema', '_blank');
-                    });
-// Eventos do modal da capa
-    const coverModal = document.getElementById('coverModal');
-    const coverClose = coverModal.querySelector('.close');
-    
-    coverClose.addEventListener('click', () => {
-        coverModal.style.display = 'none';
-    });
-    
-    document.getElementById('zoomIn').addEventListener('click', () => handleZoom('in'));
-    document.getElementById('zoomOut').addEventListener('click', () => handleZoom('out'));
-    document.getElementById('resetZoom').addEventListener('click', () => handleZoom('reset'));
-    
-    window.addEventListener('click', (event) => {
-        if (event.target === coverModal) {
-            coverModal.style.display = 'none';
-        }
-    });
 
                   
   // CONFIGURA TODOS OS EVENT LISTENERS
@@ -785,11 +759,39 @@ function setupEventListeners() {
     document.getElementById('sortSelect').addEventListener('change', filterAndRenderFilms);
     document.getElementById('accessibilitySelect').addEventListener('change', filterAndRenderFilms);
     
-    // EVENTOS DO MODAL
-    document.querySelector('.close').addEventListener('click', closeModal);
+    // EVENTOS DOS MODAIS
+    const filmModal = document.getElementById('filmModal');
+    const coverModal = document.getElementById('coverModal');
+    
+    // Eventos do modal do filme
+    document.querySelectorAll('.close').forEach(closeBtn => {
+        closeBtn.addEventListener('click', () => {
+            filmModal.style.display = 'none';
+            coverModal.style.display = 'none';
+        });
+    });
+    
+    // Eventos do modal da capa
+    document.getElementById('zoomIn').addEventListener('click', (e) => {
+        e.stopPropagation();
+        handleZoom('in');
+    });
+    document.getElementById('zoomOut').addEventListener('click', (e) => {
+        e.stopPropagation();
+        handleZoom('out');
+    });
+    document.getElementById('resetZoom').addEventListener('click', (e) => {
+        e.stopPropagation();
+        handleZoom('reset');
+    });
+    
+    // Cliques fora dos modais
     window.addEventListener('click', function(event) {
-        if (event.target === document.getElementById('filmModal')) {
-            closeModal();
+        if (event.target === filmModal) {
+            filmModal.style.display = 'none';
+        }
+        if (event.target === coverModal) {
+            coverModal.style.display = 'none';
         }
     });
     
@@ -797,32 +799,26 @@ function setupEventListeners() {
     document.querySelector('footer').addEventListener('click', function() {
         window.open('https://umtremdecinema.wixsite.com/umtremdecinema', '_blank');
     });
-
     
-}
-                
-     // EVENTOS DO FALE CONOSCO
+    // EVENTOS DO FALE CONOSCO
     const modalFaleConosco = document.getElementById("modalFaleConosco");
     const btnFaleConosco = document.getElementById("btnFaleConosco");
     const spanCloseFeedback = modalFaleConosco.querySelector(".close");
-
-    // Abre o modal do Fale Conosco
+    
     btnFaleConosco.addEventListener('click', function() {
         modalFaleConosco.style.display = "block";
     });
-
-    // Fecha o modal do Fale Conosco ao clicar no X
+    
     spanCloseFeedback.addEventListener('click', function() {
         modalFaleConosco.style.display = "none";
     });
-
-    // Fecha o modal do Fale Conosco ao clicar fora dele
+    
     window.addEventListener('click', function(event) {
         if (event.target == modalFaleConosco) {
             modalFaleConosco.style.display = "none";
         }
-    });           
-                }
+    });
+}
 
                 
                 // INICIALIZAÇÃO DA APLICAÇÃO
