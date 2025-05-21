@@ -13208,13 +13208,7 @@
         "Filmes": 111,
         "Nome do Programa": "Pêra, Uva ou Maça",
         "imageName": "pera_uva_ou_maca",
-        "planos_de_aula": [{
-            "nivel_ensino": "Ensino Fundamental 2 e Ensino Médio",
-            "area_conhecimento": "Sociologia, Educação Inclusiva",
-            "site": "Instituto Claro",
-            "url": "https://www.institutoclaro.org.br/educacao/para-ensinar/planos-de-aula/eu-nao-quero-voltar-sozinho/",
-            "descricao": "Plano de aula que aborda temas como inclusão, diversidade e orientação sexual na adolescência."
-        }],
+        "planos_de_aula": [],
         "FIELD31": "",
         "FIELD32": "",
         "FIELD33": "",
