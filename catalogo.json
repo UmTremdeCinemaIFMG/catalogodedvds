@@ -1879,7 +1879,13 @@
         "Filmes": 236,
         "Nome do Programa": "São Bernardo",
         "imageName": "sao_bernardo",
-        "planos_de_aula": [],
+        "planos_de_aula": [{
+            "nivel_ensino": "Ensino Médio",
+            "area_conhecimento": "Literatura, História",
+            "site": "Nova Escola",
+            "url": "https://novaescola.org.br/plano-de-aula/3876/sao-bernardo-literatura-e-cinema",
+            "descricao": "Plano de aula que trabalha a adaptação do romance de Graciliano Ramos para o cinema, analisando aspectos literários e históricos."
+        }],
         "FIELD31": "",
         "FIELD32": "",
         "FIELD33": "",
@@ -5211,7 +5217,13 @@
         "Filmes": 114,
         "Nome do Programa": "Jango",
         "imageName": "jango",
-        "planos_de_aula": [],
+        "planos_de_aula": [{
+            "nivel_ensino": "Ensino Médio",
+            "area_conhecimento": "História",
+            "site": "Portal do Professor - MEC",
+            "url": "http://portaldoprofessor.mec.gov.br/fichaTecnicaAula.html?aula=57150",
+            "descricao": "Plano de aula sobre o governo João Goulart e o golpe militar de 1964, utilizando o documentário como recurso didático."
+        }],
         "FIELD31": "",
         "FIELD32": "",
         "FIELD33": "",
@@ -20650,7 +20662,13 @@
         "Filmes": 14,
         "Nome do Programa": "O Caso dos Irmãos Naves",
         "imageName": "o_caso_dos_irmaos_naves",
-        "planos_de_aula": [],
+        "planos_de_aula": [{
+            "nivel_ensino": "Ensino Médio",
+            "area_conhecimento": "História, Sociologia, Direitos Humanos",
+            "site": "Cinema e História",
+            "url": "http://www.educacao.ufrj.br/portal/cinema-e-historia/o-caso-dos-irmaos-naves",
+            "descricao": "Plano de aula que aborda o Estado Novo, violência policial e justiça no Brasil através do filme."
+        }],
         "FIELD31": "",
         "FIELD32": "",
         "FIELD33": "",
@@ -32964,7 +32982,13 @@
         "Filmes": 6,
         "Nome do Programa": "anos JK - uma trajetória política, Os ",
         "imageName": "anos_jk_uma_trajetoria_politica_os_",
-        "planos_de_aula": [],
+        "planos_de_aula": [{
+            "nivel_ensino": "Ensino Médio",
+            "area_conhecimento": "História, Sociologia",
+            "site": "Portal do Professor - MEC",
+            "url": "http://portaldoprofessor.mec.gov.br/fichaTecnicaAula.html?aula=57149",
+            "descricao": "Plano de aula que utiliza o documentário para análise do período JK, desenvolvimento econômico e mudanças sociais no Brasil dos anos 50."
+        }],
         "FIELD31": "",
         "FIELD32": "",
         "FIELD33": "",
@@ -37762,7 +37786,20 @@
         "Filmes": 235,
         "Nome do Programa": "Pro Dia Nascer Feliz",
         "imageName": "pro_dia_nascer_feliz",
-        "planos_de_aula": [],
+        "planos_de_aula": [ {
+            "nivel_ensino": "Ensino Médio e Licenciaturas",
+            "area_conhecimento": "Educação, Sociologia",
+            "site": "Instituto Claro",
+            "url": "https://www.institutoclaro.org.br/educacao/para-ensinar/planos-de-aula/pro-dia-nascer-feliz/",
+            "descricao": "Plano de aula que analisa a realidade educacional brasileira, desigualdades e desafios do ensino público e privado."
+        },
+        {
+            "nivel_ensino": "Ensino Médio",
+            "area_conhecimento": "Sociologia, Educação",
+            "site": "Portal do Professor - MEC",
+            "url": "http://portaldoprofessor.mec.gov.br/fichaTecnicaAula.html?aula=28901",
+            "descricao": "Plano de aula focado na análise da educação brasileira e suas disparidades sociais."
+        }],
         "FIELD31": "",
         "FIELD32": "",
         "FIELD33": "",
