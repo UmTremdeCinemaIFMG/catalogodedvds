@@ -78,6 +78,7 @@
                         city: cleanField(originalFilm["cidade"]),
                         audiodescricao: cleanField(originalFilm["Audiodescrição"]),
                         closedCaption: cleanField(originalFilm["Closed Caption"]),
+                      trailer: cleanField(originalFilm["Trailer"]),
                         synopsis: cleanField(originalFilm["Sinopse"]),
                         tema: cleanField(originalFilm["tema (Programadora Brasil)"]),
                         tags: cleanField(originalFilm["tags"]),
@@ -107,8 +108,8 @@
                         dvd: cleanField(originalFilm["Nome do Programa"]),
                         imageName: cleanField(originalFilm["imageName"]),
                         classification: parseInt(originalFilm["Classificação Indicativa POR PGM"]) || 0,
-                        planos_de_aula: originalFilm["planos_de_aula"] || [],
-                      trailer: cleanField(originalFilm["Trailer"])
+                        planos_de_aula: originalFilm["planos_de_aula"] || []
+                      
                     };
                 }
                 
@@ -522,7 +523,7 @@ function renderOtherMaterials(film) {
                     const themes = createThemesList(film);
                     const hasThemes = themes.length > 0;
                     
-                    const hasAdditionalInfo = film.audiodescricao || film.closedCaption || film.website || 
+                    const hasAdditionalInfo = film.audiodescricao || film.trailer || film.closedCaption || film.website || 
                                             film.portaCurta || film.festivais || film.premios || 
                                             film.legendasOutras || film.materialOutros;
                     
