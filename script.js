@@ -592,7 +592,7 @@ function renderOtherMaterials(film) {
                         
                         <!-- Botão para página exclusiva do filme -->
                         <div style="text-align: center; margin-top: 20px;">
-                            <a href="filme.html?titulo=${encodedTitle}" class="btn-enviar-plano" style="display:inline-block; background:#333; color:#fff; padding:12px 25px; border-radius:6px; text-decoration:none; font-weight:500;">
+                            <a href="filme.html?titulo=${encodedTitle}" class="btn-enviar-plano" style="display:inline-block; background:#009a44; color:#fff; padding:12px 25px; border-radius:6px; text-decoration:none; font-weight:500;">
                                 <i class="fas fa-external-link-alt"></i> Ver página completa do filme
                             </a>
                         </div>

@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Detalhes completos do filme no catálogo de DVDs do Projeto Um Trem de Cinema do IFMG Sabará">
     <title>Detalhes do Filme - Catálogo de DVDs</title>
  
     <!-- FONTS E ÍCONES -->
@@ -13,196 +14,8 @@
     
     <!-- ESTILOS -->
     <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="filme-styles.css">
     
-    <!-- ESTILOS ESPECÍFICOS PARA PÁGINA DE FILME -->
-    <style>
-        .filme-container {
-            max-width: 1200px;
-            margin: 30px auto;
-            padding: 20px;
-            background-color: #fff;
-            border-radius: 10px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-        }
-        
-        .filme-header {
-            display: flex;
-            flex-direction: column;
-            margin-bottom: 30px;
-            position: relative;
-        }
-        
-        @media (min-width: 768px) {
-            .filme-header {
-                flex-direction: row;
-                gap: 30px;
-            }
-        }
-        
-        .filme-poster-container {
-            flex: 0 0 300px;
-            margin-bottom: 20px;
-            position: relative;
-            overflow: hidden;
-            border-radius: 8px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-        }
-        
-        .filme-poster {
-            width: 100%;
-            height: auto;
-            display: block;
-            transition: transform 0.3s ease;
-        }
-        
-        .filme-info {
-            flex: 1;
-        }
-        
-        .filme-title {
-            font-size: 2.5rem;
-            margin-bottom: 15px;
-            color: #333;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-        
-        .filme-details {
-            margin-bottom: 20px;
-        }
-        
-        .filme-details p {
-            margin-bottom: 10px;
-            font-size: 1.1rem;
-            color: #555;
-        }
-        
-        .filme-details strong {
-            color: #333;
-        }
-        
-        .filme-section {
-            margin-bottom: 30px;
-            padding-bottom: 20px;
-            border-bottom: 1px solid #eee;
-        }
-        
-        .filme-section h3 {
-            font-size: 1.5rem;
-            margin-bottom: 15px;
-            color: #333;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-        
-        .filme-section p {
-            font-size: 1.1rem;
-            line-height: 1.6;
-            color: #555;
-        }
-        
-        .theme-tag {
-            display: inline-block;
-            background-color: #f0f0f0;
-            color: #555;
-            padding: 5px 12px;
-            margin: 0 8px 8px 0;
-            border-radius: 20px;
-            font-size: 0.9rem;
-            transition: all 0.2s ease;
-        }
-        
-        .theme-tag:hover {
-            background-color: #e0e0e0;
-        }
-        
-        .teaching-plan-card, .other-material-card {
-            background-color: #f9f9f9;
-            border-radius: 8px;
-            padding: 15px;
-            margin-bottom: 15px;
-            border-left: 4px solid #009a44;
-        }
-        
-        .teaching-plan-card p, .other-material-card p {
-            margin-bottom: 8px;
-        }
-        
-        .btn-voltar {
-            display: inline-block;
-            background-color: #333;
-            color: #fff;
-            padding: 10px 20px;
-            border-radius: 5px;
-            text-decoration: none;
-            margin-bottom: 20px;
-            transition: background-color 0.3s ease;
-        }
-        
-        .btn-voltar:hover {
-            background-color: #555;
-        }
-        
-        .classification {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            width: 30px;
-            height: 30px;
-            border-radius: 50%;
-            font-weight: bold;
-            font-size: 0.9rem;
-            margin-right: 10px;
-        }
-        
-        .L { background-color: #00a651; color: white; }
-        .ten { background-color: #0091cf; color: white; }
-        .twelve { background-color: #ffcc29; color: black; }
-        .fourteen { background-color: #f7941d; color: black; }
-        .sixteen { background-color: #ed1c24; color: white; }
-        .eighteen { background-color: #000000; color: white; }
-        
-        /* Seção de conteúdo expandido */
-        .expanded-content {
-            background-color: #f9f9f9;
-            border-radius: 8px;
-            padding: 20px;
-            margin-top: 30px;
-            border-left: 4px solid #009a44;
-        }
-        
-        .expanded-content h3 {
-            color: #009a44;
-            margin-bottom: 15px;
-        }
-        
-        /* Galeria de imagens (para expansão futura) */
-        .filme-gallery {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-            gap: 15px;
-            margin-top: 20px;
-        }
-        
-        .gallery-item {
-            border-radius: 8px;
-            overflow: hidden;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-        }
-        
-        .gallery-item img {
-            width: 100%;
-            height: auto;
-            display: block;
-            transition: transform 0.3s ease;
-        }
-        
-        .gallery-item:hover img {
-            transform: scale(1.05);
-        }
-    </style>
 </head>  
     
 <body>
@@ -244,9 +57,6 @@
         </div>
     </footer>
 
-    <!-- SCRIPTS -->
-    <script src="filme.js"></script>   
-
     <!-- FALE CONOSCO -->
     <div class="feedback-button">
         <button id="btnFaleConosco">
@@ -269,5 +79,9 @@
             </div>
         </div>
     </div>
+
+    <!-- SCRIPTS -->
+    <script src="url-handler.js"></script>
+    <script src="filme.js"></script>
 </body>
 </html>

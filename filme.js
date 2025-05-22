@@ -5,6 +5,9 @@
 // VARIÁVEIS GLOBAIS
 let allFilms = [];           // ARMAZENA TODOS OS FILMES DO CATÁLOGO
 let currentFilm = null;      // FILME ATUAL SENDO EXIBIDO
+let currentSlide = 0;        // SLIDE ATUAL DO CARROSSEL
+let totalSlides = 0;         // TOTAL DE SLIDES NO CARROSSEL
+let trailerLoaded = false;   // CONTROLE DE CARREGAMENTO DO TRAILER
 
 // FUNÇÕES DE UTILIDADE E FORMATAÇÃO
 function cleanField(value) {
@@ -39,6 +42,27 @@ function getDvdCover(filmData) {
     }
     
     return DEFAULT_COVER;
+}
+
+// EXTRAI ID DO YOUTUBE DE UMA URL
+function getYoutubeId(url) {
+    if (!url) return null;
+    
+    // Padrões de URL do YouTube
+    const patterns = [
+        /(?:https?:\/\/)?(?:www\.)?youtube\.com\/watch\?v=([^&]+)/i,
+        /(?:https?:\/\/)?(?:www\.)?youtu\.be\/([^?]+)/i,
+        /(?:https?:\/\/)?(?:www\.)?youtube\.com\/embed\/([^?]+)/i
+    ];
+    
+    for (const pattern of patterns) {
+        const match = url.match(pattern);
+        if (match && match[1]) {
+            return match[1];
+        }
+    }
+    
+    return null;
 }
 
 // TRANSFORMA DADOS DO JSON PARA O FORMATO DESEJADO
@@ -92,7 +116,9 @@ function transformFilmData(originalFilm) {
         dvd: cleanField(originalFilm["Nome do Programa"]),
         imageName: cleanField(originalFilm["imageName"]),
         classification: parseInt(originalFilm["Classificação Indicativa POR PGM"]) || 0,
-        planos_de_aula: originalFilm["planos_de_aula"] || []
+        planos_de_aula: originalFilm["planos_de_aula"] || [],
+        trailer: cleanField(originalFilm["trailer"] || ''),
+        imagens_adicionais: originalFilm["imagens_adicionais"] || []
     };
 }
 
@@ -141,6 +167,179 @@ function renderOtherMaterials(film) {
     `).join('');
 }
 
+// CRIA O CARROSSEL DE BANNER
+function createBannerCarousel(film) {
+    // Prepara os slides
+    const slides = [];
+    
+    // Adiciona a capa principal como primeiro slide
+    slides.push({
+        type: 'image',
+        content: getDvdCover(film)
+    });
+    
+    // Adiciona imagens adicionais se existirem
+    if (film.imagens_adicionais && film.imagens_adicionais.length > 0) {
+        film.imagens_adicionais.forEach(img => {
+            slides.push({
+                type: 'image',
+                content: `capas/${img}`
+            });
+        });
+    }
+    
+    // Adiciona trailer se existir
+    if (film.trailer) {
+        const youtubeId = getYoutubeId(film.trailer);
+        if (youtubeId) {
+            slides.push({
+                type: 'trailer',
+                content: youtubeId
+            });
+        }
+    }
+    
+    // Atualiza o total de slides
+    totalSlides = slides.length;
+    
+    // Cria o HTML do carrossel
+    let slidesHTML = '';
+    let indicatorsHTML = '';
+    
+    slides.forEach((slide, index) => {
+        if (slide.type === 'image') {
+            slidesHTML += `
+                <div class="banner-slide" data-index="${index}">
+                    <img src="${slide.content}" alt="Imagem do filme" onerror="this.src='capas/progbrasil.png'">
+                </div>
+            `;
+        } else if (slide.type === 'trailer') {
+            slidesHTML += `
+                <div class="banner-slide" data-index="${index}" data-youtube-id="${slide.content}">
+                    <div id="youtube-placeholder-${index}" class="youtube-placeholder">
+                        <i class="fab fa-youtube"></i>
+                        <span>Clique para carregar o trailer</span>
+                    </div>
+                </div>
+            `;
+        }
+        
+        indicatorsHTML += `<div class="banner-indicator ${index === 0 ? 'active' : ''}" data-index="${index}"></div>`;
+    });
+    
+    // Retorna o HTML completo do carrossel
+    return `
+        <div class="banner-carrossel">
+            <div class="banner-slides" id="bannerSlides">
+                ${slidesHTML}
+            </div>
+            <div class="banner-controls">
+                <button class="banner-control" id="prevSlide">
+                    <i class="fas fa-chevron-left"></i>
+                </button>
+                <button class="banner-control" id="nextSlide">
+                    <i class="fas fa-chevron-right"></i>
+                </button>
+            </div>
+            <div class="banner-indicators" id="bannerIndicators">
+                ${indicatorsHTML}
+            </div>
+        </div>
+    `;
+}
+
+// NAVEGA PARA UM SLIDE ESPECÍFICO
+function goToSlide(index) {
+    // Garante que o índice está dentro dos limites
+    if (index < 0) index = totalSlides - 1;
+    if (index >= totalSlides) index = 0;
+    
+    // Atualiza o slide atual
+    currentSlide = index;
+    
+    // Move o carrossel para o slide atual
+    const slidesContainer = document.getElementById('bannerSlides');
+    if (slidesContainer) {
+        slidesContainer.style.transform = `translateX(-${currentSlide * 100}%)`;
+    }
+    
+    // Atualiza os indicadores
+    const indicators = document.querySelectorAll('.banner-indicator');
+    indicators.forEach((indicator, i) => {
+        if (i === currentSlide) {
+            indicator.classList.add('active');
+        } else {
+            indicator.classList.remove('active');
+        }
+    });
+    
+    // Carrega o trailer se for o slide do trailer
+    const currentSlideElement = document.querySelector(`.banner-slide[data-index="${currentSlide}"]`);
+    if (currentSlideElement && currentSlideElement.dataset.youtubeId && !trailerLoaded) {
+        const youtubeId = currentSlideElement.dataset.youtubeId;
+        const placeholder = document.getElementById(`youtube-placeholder-${currentSlide}`);
+        
+        if (placeholder) {
+            placeholder.innerHTML = `
+                <iframe 
+                    src="https://www.youtube.com/embed/${youtubeId}?autoplay=1" 
+                    title="YouTube video player" 
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                    allowfullscreen>
+                </iframe>
+            `;
+            trailerLoaded = true;
+        }
+    }
+}
+
+// CONFIGURA OS EVENTOS DO CARROSSEL
+function setupCarouselEvents() {
+    // Botões de navegação
+    const prevButton = document.getElementById('prevSlide');
+    const nextButton = document.getElementById('nextSlide');
+    
+    if (prevButton) {
+        prevButton.addEventListener('click', () => {
+            goToSlide(currentSlide - 1);
+        });
+    }
+    
+    if (nextButton) {
+        nextButton.addEventListener('click', () => {
+            goToSlide(currentSlide + 1);
+        });
+    }
+    
+    // Indicadores
+    const indicators = document.querySelectorAll('.banner-indicator');
+    indicators.forEach(indicator => {
+        indicator.addEventListener('click', () => {
+            const index = parseInt(indicator.dataset.index);
+            goToSlide(index);
+        });
+    });
+    
+    // Carregamento do trailer ao clicar no placeholder
+    document.querySelectorAll('.youtube-placeholder').forEach(placeholder => {
+        placeholder.addEventListener('click', () => {
+            const slideElement = placeholder.closest('.banner-slide');
+            if (slideElement && slideElement.dataset.youtubeId) {
+                const youtubeId = slideElement.dataset.youtubeId;
+                placeholder.innerHTML = `
+                    <iframe 
+                        src="https://www.youtube.com/embed/${youtubeId}?autoplay=1" 
+                        title="YouTube video player" 
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                        allowfullscreen>
+                    </iframe>
+                `;
+                trailerLoaded = true;
+            }
+        });
+    });
+}
+
 // RENDERIZA OS DETALHES DO FILME NA PÁGINA
 function renderFilmDetails(film) {
     const filmeContainer = document.getElementById('filmeContainer');
@@ -159,11 +358,13 @@ function renderFilmDetails(film) {
     // Atualiza o título da página
     document.title = `${film.title} - Catálogo de DVDs`;
     
+    // Cria o HTML do carrossel
+    const carouselHTML = createBannerCarousel(film);
+    
     filmeContainer.innerHTML = `
+        ${carouselHTML}
+        
         <div class="filme-header">
-            <div class="filme-poster-container">
-                <img src="${getDvdCover(film)}" alt="${film.title}" class="filme-poster" onerror="this.src='capas/progbrasil.png'">
-            </div>
             <div class="filme-info">
                 <h2 class="filme-title">
                     <span class="classification ${classificationClass}">${classificationText}</span>
@@ -245,6 +446,9 @@ function renderFilmDetails(film) {
         </div>
     `;
     
+    // Configura os eventos do carrossel
+    setupCarouselEvents();
+    
     // Configura o evento do Fale Conosco
     setupFeedbackModal();
 }
@@ -290,12 +494,20 @@ async function loadFilmData() {
             throw new Error('Nenhum filme especificado');
         }
         
-        // Carrega o catálogo
-        const response = await fetch('catalogo.json');
-        if (!response.ok) throw new Error('Erro ao carregar o arquivo');
-        
-        const data = await response.json();
-        allFilms = data.map(transformFilmData);
+        // Carrega o catálogo atualizado
+        const response = await fetch('catalogo_atualizado.json');
+        if (!response.ok) {
+            // Se não encontrar o catálogo atualizado, tenta o original
+            const originalResponse = await fetch('catalogo.json');
+            if (!originalResponse.ok) {
+                throw new Error('Erro ao carregar o arquivo de catálogo');
+            }
+            const data = await originalResponse.json();
+            allFilms = data.map(transformFilmData);
+        } else {
+            const data = await response.json();
+            allFilms = data.map(transformFilmData);
+        }
         
         // Encontra o filme pelo título
         currentFilm = allFilms.find(film => 
@@ -328,3 +540,40 @@ async function loadFilmData() {
 document.addEventListener('DOMContentLoaded', function() {
     loadFilmData();
 });
+
+// ADICIONA ESTILOS PARA O PLACEHOLDER DO YOUTUBE
+document.head.insertAdjacentHTML('beforeend', `
+    <style>
+        .youtube-placeholder {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background-color: rgba(0, 0, 0, 0.7);
+            color: white;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .youtube-placeholder:hover {
+            background-color: rgba(255, 0, 0, 0.7);
+        }
+        
+        .youtube-placeholder i {
+            font-size: 3rem;
+            margin-bottom: 10px;
+        }
+        
+        .youtube-placeholder span {
+            font-size: 1.2rem;
+        }
+        
+        .banner-slide iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+    </style>
+`);
