@@ -34,6 +34,14 @@
     background-color: #000;
 }
 
+/* Aumentando a altura do carrossel em 20% para desktop */
+@media (min-width: 768px) {
+    .banner-carrossel {
+        height: 48vh; /* 40vh + 20% */
+        max-height: 480px; /* 400px + 20% */
+    }
+}
+
 .banner-slides {
     display: flex;
     width: 100%;

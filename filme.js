@@ -254,6 +254,20 @@ function goToSlide(index) {
     if (index < 0) index = totalSlides - 1;
     if (index >= totalSlides) index = 0;
     
+    // Se estamos saindo de um slide com trailer, para o vídeo
+    const previousSlideElement = document.querySelector(`.banner-slide[data-index="${currentSlide}"]`);
+    if (previousSlideElement && previousSlideElement.dataset.youtubeId && index !== currentSlide) {
+        const placeholder = document.getElementById(`youtube-placeholder-${currentSlide}`);
+        if (placeholder && placeholder.querySelector('iframe')) {
+            // Substitui o iframe por um novo placeholder para parar o vídeo
+            placeholder.innerHTML = `
+                <i class="fab fa-youtube"></i>
+                <span>Clique para carregar o trailer</span>
+            `;
+            trailerLoaded = false;
+        }
+    }
+    
     // Atualiza o slide atual
     currentSlide = index;
     
@@ -576,18 +590,71 @@ async function loadFilmData() {
 
 // Funções de compartilhamento em redes sociais
 function shareOnWhatsApp(url, text) {
-    const whatsappUrl = `https://api.whatsapp.com/send?text=${encodeURIComponent(text + ' ' + url)}`;
-    window.open(whatsappUrl, '_blank');
+    // Verifica se é dispositivo móvel
+    const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+    
+    // Formata o texto e URL para compartilhamento
+    const shareText = encodeURIComponent(text + ' ' + url);
+    
+    // Usa API diferente dependendo se é mobile ou desktop
+    const whatsappUrl = isMobile 
+        ? `whatsapp://send?text=${shareText}`
+        : `https://web.whatsapp.com/send?text=${shareText}`;
+    
+    // Tenta abrir em nova janela
+    try {
+        window.open(whatsappUrl, '_blank');
+    } catch (e) {
+        // Fallback: cria um link temporário e simula clique
+        const link = document.createElement('a');
+        link.href = whatsappUrl;
+        link.target = '_blank';
+        link.style.display = 'none';
+        document.body.appendChild(link);
+        link.click();
+        setTimeout(() => {
+            document.body.removeChild(link);
+        }, 100);
+    }
 }
 
 function shareOnFacebook(url) {
     const facebookUrl = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(url)}`;
-    window.open(facebookUrl, '_blank');
+    
+    try {
+        window.open(facebookUrl, '_blank');
+    } catch (e) {
+        // Fallback: cria um link temporário e simula clique
+        const link = document.createElement('a');
+        link.href = facebookUrl;
+        link.target = '_blank';
+        link.style.display = 'none';
+        document.body.appendChild(link);
+        link.click();
+        setTimeout(() => {
+            document.body.removeChild(link);
+        }, 100);
+    }
 }
 
 function shareOnTwitter(url, text) {
-    const twitterUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(text)}&url=${encodeURIComponent(url)}`;
-    window.open(twitterUrl, '_blank');
+    // Twitter agora é X, mas mantém compatibilidade com ambas URLs
+    const twitterUrl = `https://x.com/intent/tweet?text=${encodeURIComponent(text)}&url=${encodeURIComponent(url)}`;
+    
+    try {
+        window.open(twitterUrl, '_blank');
+    } catch (e) {
+        // Fallback: cria um link temporário e simula clique
+        const link = document.createElement('a');
+        link.href = twitterUrl;
+        link.target = '_blank';
+        link.style.display = 'none';
+        document.body.appendChild(link);
+        link.click();
+        setTimeout(() => {
+            document.body.removeChild(link);
+        }, 100);
+    }
 }
 
 function copyToClipboard(text) {
@@ -675,4 +742,21 @@ function setupLazyLoading() {
 document.addEventListener('DOMContentLoaded', function() {
     loadFilmData();
     setupLazyLoading();
+    
+    // Força o carregamento da primeira imagem imediatamente
+    setTimeout(() => {
+        // Garante que o primeiro slide é exibido corretamente
+        goToSlide(0);
+        
+        // Carrega explicitamente a primeira imagem se for lazy-loaded
+        const firstSlide = document.querySelector('.banner-slide[data-index="0"]');
+        if (firstSlide) {
+            const lazyImage = firstSlide.querySelector('img.lazy-load');
+            if (lazyImage && lazyImage.dataset.src) {
+                lazyImage.src = lazyImage.dataset.src;
+                lazyImage.classList.add('loaded');
+                lazyImage.removeAttribute('data-src');
+            }
+        }
+    }, 100);
 });
