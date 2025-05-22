@@ -107,7 +107,8 @@
                         dvd: cleanField(originalFilm["Nome do Programa"]),
                         imageName: cleanField(originalFilm["imageName"]),
                         classification: parseInt(originalFilm["Classificação Indicativa POR PGM"]) || 0,
-                        planos_de_aula: originalFilm["planos_de_aula"] || []
+                        planos_de_aula: originalFilm["planos_de_aula"] || [],
+                      trailer: parseInt(originalFilm["trailer"]) || 0
                     };
                 }
                 
@@ -175,6 +176,7 @@
                               (selectedAccessibility === 'planos_de_aula' && film.planos_de_aula && film.planos_de_aula.length > 0) ||
                               (selectedAccessibility === 'audiodescricao' && film.audiodescricao) ||
                               (selectedAccessibility === 'closed_caption' && film.closedCaption) ||
+                            (selectedAccessibility === 'trailer' && film.trailer) ||
                               (selectedAccessibility === 'material_outros' && film.materialOutros && film.materialOutros.length > 0) 
                         );
                             return matchesSearch && matchesGenre && matchesClassification && matchesAccessibility;
