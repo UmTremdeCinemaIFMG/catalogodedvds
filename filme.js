@@ -528,7 +528,7 @@ async function loadFilmData() {
                 <i class="fas fa-exclamation-triangle"></i>
                 <p>Erro ao carregar os detalhes do filme</p>
                 <p>${error.message}</p>
-                <a href="index.html" class="btn-voltar">
+                <a href="https://umtremdecinemaifmg.github.io/catalogodedvds/" class="btn-voltar">
                     <i class="fas fa-home"></i> Voltar ao catálogo
                 </a>
             </div>
