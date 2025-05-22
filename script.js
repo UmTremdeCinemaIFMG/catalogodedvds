@@ -108,7 +108,7 @@
                         imageName: cleanField(originalFilm["imageName"]),
                         classification: parseInt(originalFilm["Classificação Indicativa POR PGM"]) || 0,
                         planos_de_aula: originalFilm["planos_de_aula"] || [],
-                      trailer: parseInt(originalFilm["trailer"]) || 0
+                      trailer: cleanField(originalFilm["Trailer"])
                     };
                 }
                 
