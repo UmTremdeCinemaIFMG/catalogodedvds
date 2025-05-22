@@ -102,7 +102,6 @@
     return Array.isArray(material) ? material : [];
 })(),
                         duracaoFormato: cleanField(originalFilm["duracao FORMATO"]),
-                        nossoAcervo: cleanField(originalFilm["Nosso Acervo"]),
                         pgm: parseInt(originalFilm["PGM"]) || 0,
                         filmes: parseInt(originalFilm["Filmes"]) || 0,
                         dvd: cleanField(originalFilm["Nome do Programa"]),
@@ -394,7 +393,11 @@
                         filmCard.appendChild(posterContainer);
                         filmCard.appendChild(filmInfo);
                         
-                        filmCard.addEventListener('click', () => openModal(film));
+                        // Corrigido: Usar função anônima para evitar problemas de escopo
+                        filmCard.addEventListener('click', function() {
+                            openModal(film);
+                        });
+                        
                         filmGrid.appendChild(filmCard);
                     });
                 }
@@ -500,7 +503,7 @@ function renderTeachingPlans(film) {
                 </button>
             </div>
             <div class="site-preview" id="site-preview-${index}" style="display: none;">
-                <iframe src="${plano.url}" frameborder="0" width="100%" height="400px"></iframe>
+                <iframe src="${plano.url}" frameborder="0" width="100%" height="600px"></iframe>
                 <button class="btn-toggle-preview-close" data-target="site-preview-${index}">
                     <i class="fas fa-times"></i> Fechar visualização
                 </button>
@@ -545,6 +548,10 @@ function renderModalContent(film) {
     const filmUrl = `https://umtremdecinemaifmg.github.io/catalogodedvds/filme.html?titulo=${encodeURIComponent(film.title)}`;
     const shareText = `Confira o filme "${film.title}" no catálogo de DVDs do Projeto Um Trem de Cinema IFMG Sabará`;
     
+    // Armazena globalmente para uso nas funções de compartilhamento
+    window.shareUrl = filmUrl;
+    window.shareText = shareText;
+    
     return `
         <div class="modal-header">
             <div class="modal-poster-container">
@@ -571,16 +578,16 @@ function renderModalContent(film) {
                 <div class="social-share-container">
                     <div class="social-share-title">Compartilhar:</div>
                     <div class="social-share-buttons">
-                        <button class="social-share-button whatsapp" title="Compartilhar no WhatsApp" onclick="shareOnWhatsApp('${filmUrl}', '${shareText}')">
+                        <button class="social-share-button whatsapp" title="Compartilhar no WhatsApp" onclick="shareOnWhatsApp()">
                             <i class="fab fa-whatsapp"></i>
                         </button>
-                        <button class="social-share-button facebook" title="Compartilhar no Facebook" onclick="shareOnFacebook('${filmUrl}')">
+                        <button class="social-share-button facebook" title="Compartilhar no Facebook" onclick="shareOnFacebook()">
                             <i class="fab fa-facebook-f"></i>
                         </button>
-                        <button class="social-share-button twitter" title="Compartilhar no X (Twitter)" onclick="shareOnTwitter('${filmUrl}', '${shareText}')">
+                        <button class="social-share-button twitter" title="Compartilhar no X (Twitter)" onclick="shareOnTwitter()">
                             <i class="fab fa-twitter"></i>
                         </button>
-                        <button class="social-share-button copy" title="Copiar link" onclick="copyToClipboard('${filmUrl}')">
+                        <button class="social-share-button copy" title="Copiar link" onclick="copyToClipboard()">
                             <i class="fas fa-link"></i>
                         </button>
                     </div>
@@ -657,24 +664,24 @@ function openModal(film) {
     const modalContent = document.getElementById('modalContent');
     const closeBtn = document.querySelector('.modal .close');
     
+    // Renderiza o conteúdo do modal
     modalContent.innerHTML = renderModalContent(film);
     
+    // Exibe o modal
     modal.style.display = 'block';
     document.body.style.overflow = 'hidden';
     
-    // Configura o evento de fechar
+    // Configura o evento de fechar no botão X
     closeBtn.onclick = function() {
-        modal.style.display = 'none';
-        document.body.style.overflow = '';
+        closeModal();
     };
     
-    // Fecha ao clicar fora do modal
-    window.onclick = function(event) {
-        if (event.target == modal) {
-            modal.style.display = 'none';
-            document.body.style.overflow = '';
+    // Configura o evento de fechar ao clicar fora do modal
+    window.addEventListener('click', function(event) {
+        if (event.target === modal) {
+            closeModal();
         }
-    };
+    });
     
     // Configura os controles da imagem do poster
     setTimeout(() => {
@@ -705,6 +712,13 @@ function openModal(film) {
             });
         });
     }, 100);
+}
+
+// FECHA O MODAL
+function closeModal() {
+    const modal = document.getElementById('filmModal');
+    modal.style.display = 'none';
+    document.body.style.overflow = '';
 }
 
 // RENDERIZA A PAGINAÇÃO
@@ -815,76 +829,34 @@ function renderPagination() {
 }
 
 // FUNÇÕES DE COMPARTILHAMENTO
-function shareOnWhatsApp(url, text) {
+function shareOnWhatsApp() {
     // Verifica se é dispositivo móvel
     const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
     
     // Formata o texto e URL para compartilhamento
-    const shareText = encodeURIComponent(text + ' ' + url);
+    const shareText = encodeURIComponent(window.shareText + ' ' + window.shareUrl);
     
     // Usa API diferente dependendo se é mobile ou desktop
     const whatsappUrl = isMobile 
         ? `whatsapp://send?text=${shareText}`
-        : `https://api.whatsapp.com/send?text=${shareText}`;
+        : `https://web.whatsapp.com/send?text=${shareText}`;
     
-    // Tenta abrir em nova janela
-    try {
-        window.open(whatsappUrl, '_blank');
-    } catch (e) {
-        // Fallback: cria um link temporário e simula clique
-        const link = document.createElement('a');
-        link.href = whatsappUrl;
-        link.target = '_blank';
-        link.style.display = 'none';
-        document.body.appendChild(link);
-        link.click();
-        setTimeout(() => {
-            document.body.removeChild(link);
-        }, 100);
-    }
+    // Abre em nova janela
+    window.open(whatsappUrl, '_blank');
 }
 
-function shareOnFacebook(url) {
-    const facebookUrl = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(url)}`;
-    
-    try {
-        window.open(facebookUrl, '_blank');
-    } catch (e) {
-        // Fallback: cria um link temporário e simula clique
-        const link = document.createElement('a');
-        link.href = facebookUrl;
-        link.target = '_blank';
-        link.style.display = 'none';
-        document.body.appendChild(link);
-        link.click();
-        setTimeout(() => {
-            document.body.removeChild(link);
-        }, 100);
-    }
+function shareOnFacebook() {
+    const facebookUrl = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(window.shareUrl)}`;
+    window.open(facebookUrl, '_blank');
 }
 
-function shareOnTwitter(url, text) {
-    // Twitter agora é X, mas mantém compatibilidade com ambas URLs
-    const twitterUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(text)}&url=${encodeURIComponent(url)}`;
-    
-    try {
-        window.open(twitterUrl, '_blank');
-    } catch (e) {
-        // Fallback: cria um link temporário e simula clique
-        const link = document.createElement('a');
-        link.href = twitterUrl;
-        link.target = '_blank';
-        link.style.display = 'none';
-        document.body.appendChild(link);
-        link.click();
-        setTimeout(() => {
-            document.body.removeChild(link);
-        }, 100);
-    }
+function shareOnTwitter() {
+    const twitterUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(window.shareText)}&url=${encodeURIComponent(window.shareUrl)}`;
+    window.open(twitterUrl, '_blank');
 }
 
-function copyToClipboard(text) {
-    navigator.clipboard.writeText(text).then(() => {
+function copyToClipboard() {
+    navigator.clipboard.writeText(window.shareUrl).then(() => {
         // Mostra mensagem de sucesso
         const copySuccess = document.createElement('div');
         copySuccess.className = 'copy-success';
@@ -952,4 +924,8 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // CONFIGURA MODAL DE FALE CONOSCO
     setupFeedbackModal();
+    
+    // Inicializa variáveis globais para compartilhamento
+    window.shareUrl = window.location.href;
+    window.shareText = "Confira o Catálogo de DVDs do Projeto Um Trem de Cinema IFMG Sabará";
 });
