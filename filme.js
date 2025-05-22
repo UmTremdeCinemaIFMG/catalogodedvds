@@ -519,28 +519,33 @@ function setupFeedbackModal() {
 // CARREGA DADOS DO CATÁLOGO E EXIBE O FILME SELECIONADO
 async function loadFilmData() {
     try {
-        // Obtém o ID do filme da URL
-        const urlParams = new URLSearchParams(window.location.search);
-        const filmTitle = urlParams.get('titulo');
+        // Obtém o ID do filme da URL usando a função getUrlParams do url-handler.js
+        let filmTitle;
+        
+        // Verifica se a função getUrlParams existe (importada do url-handler.js)
+        if (typeof getUrlParams === 'function') {
+            const params = getUrlParams();
+            filmTitle = params.titulo;
+        } else {
+            // Fallback para URLSearchParams nativo
+            const urlParams = new URLSearchParams(window.location.search);
+            filmTitle = urlParams.get('titulo');
+        }
         
         if (!filmTitle) {
             throw new Error('Nenhum filme especificado');
         }
         
+        console.log('Carregando filme:', filmTitle);
+        
         // Carrega o catálogo atualizado
-        const response = await fetch('catalogo_atualizado.json');
+        const response = await fetch('catalogo.json');
         if (!response.ok) {
-            // Se não encontrar o catálogo atualizado, tenta o original
-            const originalResponse = await fetch('catalogo.json');
-            if (!originalResponse.ok) {
-                throw new Error('Erro ao carregar o arquivo de catálogo');
-            }
-            const data = await originalResponse.json();
-            allFilms = data.map(transformFilmData);
-        } else {
-            const data = await response.json();
-            allFilms = data.map(transformFilmData);
+            throw new Error('Erro ao carregar o arquivo de catálogo');
         }
+        
+        const data = await response.json();
+        allFilms = data.map(transformFilmData);
         
         // Encontra o filme pelo título
         currentFilm = allFilms.find(film => 
