@@ -210,7 +210,7 @@ function createBannerCarousel(film) {
         if (slide.type === 'image') {
             slidesHTML += `
                 <div class="banner-slide" data-index="${index}">
-                    <img src="${slide.content}" alt="Imagem do filme" onerror="this.src='capas/progbrasil.png'">
+                    <img data-src="${slide.content}" alt="Imagem do filme" class="lazy-load" onerror="this.src='capas/progbrasil.png'">
                 </div>
             `;
         } else if (slide.type === 'trailer') {
@@ -291,6 +291,16 @@ function goToSlide(index) {
             trailerLoaded = true;
         }
     }
+    
+    // Carrega as imagens lazy-loaded do slide atual
+    const lazyImages = currentSlideElement.querySelectorAll('img.lazy-load');
+    lazyImages.forEach(img => {
+        if (img.dataset.src) {
+            img.src = img.dataset.src;
+            img.classList.add('loaded');
+            img.removeAttribute('data-src');
+        }
+    });
 }
 
 // CONFIGURA OS EVENTOS DO CARROSSEL
@@ -361,6 +371,10 @@ function renderFilmDetails(film) {
     // Cria o HTML do carrossel
     const carouselHTML = createBannerCarousel(film);
     
+    // Prepara a URL atual para compartilhamento
+    const currentUrl = window.location.href;
+    const shareText = `Confira o filme "${film.title}" no catálogo de DVDs do Projeto Um Trem de Cinema IFMG Sabará`;
+    
     filmeContainer.innerHTML = `
         ${carouselHTML}
         
@@ -382,6 +396,25 @@ function renderFilmDetails(film) {
                     ${film.city ? `<p><strong><i class="fas fa-city"></i> Cidade:</strong> ${film.city}</p>` : ''}
                     ${film.dvd ? `<p><strong><i class="fas fa-compact-disc"></i> DVD:</strong> ${film.dvd}</p>` : ''}
                 </div>
+            </div>
+        </div>
+        
+        <!-- Botões de compartilhamento -->
+        <div class="social-share-container">
+            <div class="social-share-title">Compartilhar:</div>
+            <div class="social-share-buttons">
+                <button class="social-share-button whatsapp" title="Compartilhar no WhatsApp" onclick="shareOnWhatsApp('${currentUrl}', '${shareText}')">
+                    <i class="fab fa-whatsapp"></i>
+                </button>
+                <button class="social-share-button facebook" title="Compartilhar no Facebook" onclick="shareOnFacebook('${currentUrl}')">
+                    <i class="fab fa-facebook-f"></i>
+                </button>
+                <button class="social-share-button twitter" title="Compartilhar no Twitter" onclick="shareOnTwitter('${currentUrl}', '${shareText}')">
+                    <i class="fab fa-twitter"></i>
+                </button>
+                <button class="social-share-button copy" title="Copiar link" onclick="copyToClipboard('${currentUrl}')">
+                    <i class="fas fa-link"></i>
+                </button>
             </div>
         </div>
         
@@ -536,44 +569,105 @@ async function loadFilmData() {
     }
 }
 
+// Funções de compartilhamento em redes sociais
+function shareOnWhatsApp(url, text) {
+    const whatsappUrl = `https://api.whatsapp.com/send?text=${encodeURIComponent(text + ' ' + url)}`;
+    window.open(whatsappUrl, '_blank');
+}
+
+function shareOnFacebook(url) {
+    const facebookUrl = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(url)}`;
+    window.open(facebookUrl, '_blank');
+}
+
+function shareOnTwitter(url, text) {
+    const twitterUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(text)}&url=${encodeURIComponent(url)}`;
+    window.open(twitterUrl, '_blank');
+}
+
+function copyToClipboard(text) {
+    navigator.clipboard.writeText(text).then(() => {
+        // Mostra mensagem de sucesso
+        const copySuccess = document.createElement('div');
+        copySuccess.className = 'copy-success';
+        copySuccess.textContent = 'Link copiado para a área de transferência!';
+        document.body.appendChild(copySuccess);
+        
+        // Exibe a mensagem
+        setTimeout(() => {
+            copySuccess.classList.add('show');
+        }, 10);
+        
+        // Remove a mensagem após 3 segundos
+        setTimeout(() => {
+            copySuccess.classList.remove('show');
+            setTimeout(() => {
+                document.body.removeChild(copySuccess);
+            }, 300);
+        }, 3000);
+    }).catch(err => {
+        console.error('Erro ao copiar texto: ', err);
+    });
+}
+
+// Implementação de Lazy Loading para imagens
+function setupLazyLoading() {
+    // Observer para Intersection Observer API (mais eficiente que scroll events)
+    if ('IntersectionObserver' in window) {
+        const lazyImageObserver = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const lazyImage = entry.target;
+                    if (lazyImage.dataset.src) {
+                        lazyImage.src = lazyImage.dataset.src;
+                        lazyImage.classList.add('loaded');
+                        lazyImage.removeAttribute('data-src');
+                    }
+                    observer.unobserve(lazyImage);
+                }
+            });
+        });
+
+        // Observa todas as imagens com data-src
+        document.querySelectorAll('img[data-src]').forEach(img => {
+            lazyImageObserver.observe(img);
+        });
+    } else {
+        // Fallback para navegadores que não suportam Intersection Observer
+        function isElementInViewport(el) {
+            const rect = el.getBoundingClientRect();
+            return (
+                rect.top >= 0 &&
+                rect.left >= 0 &&
+                rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) &&
+                rect.right <= (window.innerWidth || document.documentElement.clientWidth)
+            );
+        }
+        
+        function lazyLoadImages() {
+            const lazyImages = document.querySelectorAll('img[data-src]');
+            
+            lazyImages.forEach(img => {
+                if (isElementInViewport(img)) {
+                    img.src = img.dataset.src;
+                    img.classList.add('loaded');
+                    img.removeAttribute('data-src');
+                }
+            });
+        }
+        
+        // Adiciona listeners para eventos que podem acionar o lazy loading
+        window.addEventListener('scroll', lazyLoadImages);
+        window.addEventListener('resize', lazyLoadImages);
+        window.addEventListener('orientationchange', lazyLoadImages);
+        
+        // Executa uma vez para carregar imagens já visíveis
+        lazyLoadImages();
+    }
+}
+
 // INICIALIZA A PÁGINA
 document.addEventListener('DOMContentLoaded', function() {
     loadFilmData();
+    setupLazyLoading();
 });
-
-// ADICIONA ESTILOS PARA O PLACEHOLDER DO YOUTUBE
-document.head.insertAdjacentHTML('beforeend', `
-    <style>
-        .youtube-placeholder {
-            width: 100%;
-            height: 100%;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            background-color: rgba(0, 0, 0, 0.7);
-            color: white;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-        
-        .youtube-placeholder:hover {
-            background-color: rgba(255, 0, 0, 0.7);
-        }
-        
-        .youtube-placeholder i {
-            font-size: 3rem;
-            margin-bottom: 10px;
-        }
-        
-        .youtube-placeholder span {
-            font-size: 1.2rem;
-        }
-        
-        .banner-slide iframe {
-            width: 100%;
-            height: 100%;
-            border: none;
-        }
-    </style>
-`);
