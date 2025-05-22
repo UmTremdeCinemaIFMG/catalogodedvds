@@ -23,9 +23,9 @@
 /* Banner Horizontal com Carrossel */
 .banner-carrossel {
     width: 100%;
-    height: 40vh;
-    min-height: 250px;
-    max-height: 400px;
+    height: 60vh; /* Aumentado em 50% (de 40vh para 60vh) */
+    min-height: 375px; /* Aumentado em 50% (de 250px para 375px) */
+    max-height: 600px; /* Aumentado em 50% (de 400px para 600px) */
     position: relative;
     overflow: hidden;
     margin-bottom: 30px;
@@ -34,11 +34,11 @@
     background-color: #000;
 }
 
-/* Aumentando a altura do carrossel em 20% para desktop */
+/* Aumentando a altura do carrossel em 50% para desktop */
 @media (min-width: 768px) {
     .banner-carrossel {
-        height: 48vh; /* 40vh + 20% */
-        max-height: 480px; /* 400px + 20% */
+        height: 72vh; /* Aumentado em 50% (de 48vh para 72vh) */
+        max-height: 720px; /* Aumentado em 50% (de 480px para 720px) */
     }
 }
 
@@ -323,7 +323,7 @@
 /* Responsividade para o banner */
 @media (max-width: 768px) {
     .banner-carrossel {
-        height: 30vh;
+        height: 45vh; /* Aumentado em 50% (de 30vh para 45vh) */
     }
     
     .banner-control {
@@ -335,7 +335,7 @@
 
 @media (max-width: 480px) {
     .banner-carrossel {
-        height: 25vh;
+        height: 37.5vh; /* Aumentado em 50% (de 25vh para 37.5vh) */
     }
     
     .banner-control {
@@ -363,4 +363,45 @@
 .error-message p {
     margin-bottom: 15px;
     font-size: 1.1rem;
+}
+
+/* Estilos para expandir/recolher planos de aula */
+.site-preview-toggle {
+    margin-top: 10px;
+}
+
+.btn-toggle-preview, .btn-toggle-preview-close {
+    background-color: var(--verde-ifmg);
+    color: white;
+    border: none;
+    padding: 8px 15px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    transition: background-color 0.3s ease;
+}
+
+.btn-toggle-preview:hover, .btn-toggle-preview-close:hover {
+    background-color: var(--verde-escuro);
+}
+
+.btn-toggle-preview-close {
+    margin-top: 10px;
+    background-color: #cc0000;
+}
+
+.btn-toggle-preview-close:hover {
+    background-color: #aa0000;
+}
+
+.site-preview {
+    margin-top: 15px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+.site-preview iframe {
+    width: 100%;
+    border: none;
 }

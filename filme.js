@@ -118,7 +118,8 @@ function transformFilmData(originalFilm) {
         classification: parseInt(originalFilm["Classificação Indicativa POR PGM"]) || 0,
         planos_de_aula: originalFilm["planos_de_aula"] || [],
         trailer: cleanField(originalFilm["trailer"] || ''),
-        imagens_adicionais: originalFilm["imagens_adicionais"] || []
+        imagens_adicionais: originalFilm["imagens_adicionais"] || [],
+        videos: originalFilm["videos"] || []
     };
 }
 
@@ -143,13 +144,24 @@ function renderTeachingPlans(film) {
     if (!film.planos_de_aula || film.planos_de_aula.length === 0) {
         return '<p><i class="fas fa-info-circle"></i> Nenhum plano de aula disponível.</p>';
     }
-    // Monta o HTML para cada plano de aula
-    return film.planos_de_aula.map(plano => `
+    // Monta o HTML para cada plano de aula com funcionalidade de expandir/recolher
+    return film.planos_de_aula.map((plano, index) => `
         <div class="teaching-plan-card">
             <p><strong><i class="fas fa-graduation-cap"></i> Nível de Ensino:</strong> ${plano.nivel_ensino || ''}</p>
             <p><strong><i class="fas fa-book"></i> Área de Conhecimento:</strong> ${plano.area_conhecimento || ''}</p>
             <p><strong><i class="fas fa-globe"></i> Site:</strong> <a href="${plano.url}" target="_blank">${plano.site}</a></p>
             <p><strong><i class="fas fa-info-circle"></i> Descrição:</strong> ${plano.descricao || ''}</p>
+            <div class="site-preview-toggle">
+                <button class="btn-toggle-preview" data-target="site-preview-${index}">
+                    <i class="fas fa-eye"></i> Visualizar site
+                </button>
+            </div>
+            <div class="site-preview" id="site-preview-${index}" style="display: none;">
+                <iframe src="${plano.url}" frameborder="0" width="100%" height="400px"></iframe>
+                <button class="btn-toggle-preview-close" data-target="site-preview-${index}">
+                    <i class="fas fa-times"></i> Fechar visualização
+                </button>
+            </div>
         </div>
     `).join('');
 }
@@ -172,11 +184,36 @@ function createBannerCarousel(film) {
     // Prepara os slides
     const slides = [];
     
-    // Adiciona a capa principal como primeiro slide
+    // Adiciona trailer como primeiro slide se existir
+    if (film.trailer) {
+        const youtubeId = getYoutubeId(film.trailer);
+        if (youtubeId) {
+            slides.push({
+                type: 'trailer',
+                content: youtubeId
+            });
+        }
+    }
+    
+    // Adiciona a capa principal como segundo slide (ou primeiro se não houver trailer)
     slides.push({
         type: 'image',
         content: getDvdCover(film)
     });
+    
+    // Adiciona vídeos adicionais se existirem
+    if (film.videos && film.videos.length > 0) {
+        film.videos.forEach(video => {
+            const youtubeId = getYoutubeId(video.url);
+            if (youtubeId) {
+                slides.push({
+                    type: 'video',
+                    content: youtubeId,
+                    title: video.titulo || 'Vídeo adicional'
+                });
+            }
+        });
+    }
     
     // Adiciona imagens adicionais se existirem
     if (film.imagens_adicionais && film.imagens_adicionais.length > 0) {
@@ -186,17 +223,6 @@ function createBannerCarousel(film) {
                 content: `capas/${img}`
             });
         });
-    }
-    
-    // Adiciona trailer se existir
-    if (film.trailer) {
-        const youtubeId = getYoutubeId(film.trailer);
-        if (youtubeId) {
-            slides.push({
-                type: 'trailer',
-                content: youtubeId
-            });
-        }
     }
     
     // Atualiza o total de slides
@@ -213,12 +239,12 @@ function createBannerCarousel(film) {
                     <img data-src="${slide.content}" alt="Imagem do filme" class="lazy-load" onerror="this.src='capas/progbrasil.png'">
                 </div>
             `;
-        } else if (slide.type === 'trailer') {
+        } else if (slide.type === 'trailer' || slide.type === 'video') {
             slidesHTML += `
                 <div class="banner-slide" data-index="${index}" data-youtube-id="${slide.content}">
                     <div id="youtube-placeholder-${index}" class="youtube-placeholder">
                         <i class="fab fa-youtube"></i>
-                        <span>Clique para carregar o trailer</span>
+                        <span>Clique para carregar o ${slide.type === 'trailer' ? 'trailer' : 'vídeo'}</span>
                     </div>
                 </div>
             `;
@@ -262,7 +288,7 @@ function goToSlide(index) {
             // Substitui o iframe por um novo placeholder para parar o vídeo
             placeholder.innerHTML = `
                 <i class="fab fa-youtube"></i>
-                <span>Clique para carregar o trailer</span>
+                <span>Clique para carregar o vídeo</span>
             `;
             trailerLoaded = false;
         }
@@ -362,6 +388,29 @@ function setupCarouselEvents() {
             }
         });
     });
+    
+    // Configurar eventos para expandir/recolher planos de aula
+    setTimeout(() => {
+        document.querySelectorAll('.btn-toggle-preview').forEach(button => {
+            button.addEventListener('click', function() {
+                const targetId = this.getAttribute('data-target');
+                const targetElement = document.getElementById(targetId);
+                if (targetElement) {
+                    targetElement.style.display = 'block';
+                }
+            });
+        });
+        
+        document.querySelectorAll('.btn-toggle-preview-close').forEach(button => {
+            button.addEventListener('click', function() {
+                const targetId = this.getAttribute('data-target');
+                const targetElement = document.getElementById(targetId);
+                if (targetElement) {
+                    targetElement.style.display = 'none';
+                }
+            });
+        });
+    }, 500);
 }
 
 // RENDERIZA OS DETALHES DO FILME NA PÁGINA
@@ -423,7 +472,7 @@ function renderFilmDetails(film) {
                 <button class="social-share-button facebook" title="Compartilhar no Facebook" onclick="shareOnFacebook('${currentUrl}')">
                     <i class="fab fa-facebook-f"></i>
                 </button>
-                <button class="social-share-button twitter" title="Compartilhar no Twitter" onclick="shareOnTwitter('${currentUrl}', '${shareText}')">
+                <button class="social-share-button twitter" title="Compartilhar no X (Twitter)" onclick="shareOnTwitter('${currentUrl}', '${shareText}')">
                     <i class="fab fa-twitter"></i>
                 </button>
                 <button class="social-share-button copy" title="Copiar link" onclick="copyToClipboard('${currentUrl}')">
@@ -599,7 +648,7 @@ function shareOnWhatsApp(url, text) {
     // Usa API diferente dependendo se é mobile ou desktop
     const whatsappUrl = isMobile 
         ? `whatsapp://send?text=${shareText}`
-        : `https://web.whatsapp.com/send?text=${shareText}`;
+        : `https://api.whatsapp.com/send?text=${shareText}`;
     
     // Tenta abrir em nova janela
     try {
@@ -639,7 +688,7 @@ function shareOnFacebook(url) {
 
 function shareOnTwitter(url, text) {
     // Twitter agora é X, mas mantém compatibilidade com ambas URLs
-    const twitterUrl = `https://x.com/intent/tweet?text=${encodeURIComponent(text)}&url=${encodeURIComponent(url)}`;
+    const twitterUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(text)}&url=${encodeURIComponent(url)}`;
     
     try {
         window.open(twitterUrl, '_blank');

@@ -78,7 +78,7 @@
                         city: cleanField(originalFilm["cidade"]),
                         audiodescricao: cleanField(originalFilm["Audiodescrição"]),
                         closedCaption: cleanField(originalFilm["Closed Caption"]),
-                      trailer: cleanField(originalFilm["Trailer"]),
+                        trailer: cleanField(originalFilm["trailer"] || ''),
                         synopsis: cleanField(originalFilm["Sinopse"]),
                         tema: cleanField(originalFilm["tema (Programadora Brasil)"]),
                         tags: cleanField(originalFilm["tags"]),
@@ -108,7 +108,8 @@
                         dvd: cleanField(originalFilm["Nome do Programa"]),
                         imageName: cleanField(originalFilm["imageName"]),
                         classification: parseInt(originalFilm["Classificação Indicativa POR PGM"]) || 0,
-                        planos_de_aula: originalFilm["planos_de_aula"] || []
+                        planos_de_aula: originalFilm["planos_de_aula"] || [],
+                        videos: originalFilm["videos"] || []
                       
                     };
                 }
@@ -153,7 +154,7 @@
                         const sortOption = document.getElementById('sortSelect').value;
                         const selectedClassification = document.getElementById('classificationSelect').value;
                         const selectedGenre = document.getElementById('genreSelect').value;
-                       const selectedAccessibility = document.getElementById('accessibilitySelect').value;
+                        const selectedAccessibility = document.getElementById('accessibilitySelect').value;
                         
                         // APLICA TODOS OS FILTROS
                         currentFilms = allFilms.filter(film => {
@@ -172,14 +173,15 @@
                                 film.classification === parseInt(selectedClassification) ||
                                 (selectedClassification === 'L' && film.classification <= 0);
                            
-                          // Novo filtro de acessibilidade
-                          const matchesAccessibility = !selectedAccessibility || (
-                              (selectedAccessibility === 'planos_de_aula' && film.planos_de_aula && film.planos_de_aula.length > 0) ||
-                              (selectedAccessibility === 'audiodescricao' && film.audiodescricao) ||
-                              (selectedAccessibility === 'closed_caption' && film.closedCaption) ||
-                            (selectedAccessibility === 'trailer' && film.trailer) ||
-                              (selectedAccessibility === 'material_outros' && film.materialOutros && film.materialOutros.length > 0) 
-                        );
+                            // Filtro de acessibilidade corrigido
+                            const matchesAccessibility = !selectedAccessibility || (
+                                (selectedAccessibility === 'planos_de_aula' && film.planos_de_aula && film.planos_de_aula.length > 0) ||
+                                (selectedAccessibility === 'audiodescricao' && film.audiodescricao) ||
+                                (selectedAccessibility === 'closed_caption' && film.closedCaption) ||
+                                (selectedAccessibility === 'trailer' && film.trailer && film.trailer.trim() !== '') ||
+                                (selectedAccessibility === 'material_outros' && film.materialOutros && film.materialOutros.length > 0) 
+                            );
+                            
                             return matchesSearch && matchesGenre && matchesClassification && matchesAccessibility;
                         });
                 
@@ -485,13 +487,24 @@ function renderTeachingPlans(film) {
     if (!film.planos_de_aula || film.planos_de_aula.length === 0) {
         return '<p><i class="fas fa-info-circle"></i> Nenhum plano de aula disponível.</p>';
     }
-    // Monta o HTML para cada plano de aula
-    return film.planos_de_aula.map(plano => `
+    // Monta o HTML para cada plano de aula com funcionalidade de expandir/recolher
+    return film.planos_de_aula.map((plano, index) => `
         <div class="teaching-plan-card">
             <p><strong><i class="fas fa-graduation-cap"></i> Nível de Ensino:</strong> ${plano.nivel_ensino || ''}</p>
             <p><strong><i class="fas fa-book"></i> Área de Conhecimento:</strong> ${plano.area_conhecimento || ''}</p>
             <p><strong><i class="fas fa-globe"></i> Site:</strong> <a href="${plano.url}" target="_blank">${plano.site}</a></p>
             <p><strong><i class="fas fa-info-circle"></i> Descrição:</strong> ${plano.descricao || ''}</p>
+            <div class="site-preview-toggle">
+                <button class="btn-toggle-preview" data-target="site-preview-${index}">
+                    <i class="fas fa-eye"></i> Visualizar site
+                </button>
+            </div>
+            <div class="site-preview" id="site-preview-${index}" style="display: none;">
+                <iframe src="${plano.url}" frameborder="0" width="100%" height="400px"></iframe>
+                <button class="btn-toggle-preview-close" data-target="site-preview-${index}">
+                    <i class="fas fa-times"></i> Fechar visualização
+                </button>
+            </div>
         </div>
     `).join('');
 }
@@ -500,9 +513,11 @@ function renderTeachingPlans(film) {
 // FUNÇÃO DE RENDERIZAÇÃO DE OUTROS MATERIAIS
 // ==========================================
 function renderOtherMaterials(film) {
+    // Se não houver campo ou for vazio, retorna mensagem padrão
     if (!film.materialOutros || film.materialOutros.length === 0) {
         return '<p><i class="fas fa-info-circle"></i> Nenhum material adicional disponível.</p>';
     }
+    // Monta o HTML para cada material adicional
     return film.materialOutros.map(material => `
         <div class="other-material-card">
             <p><strong><i class="fas fa-bookmark"></i> Tipo:</strong> ${material.tipo || ''}</p>
@@ -511,312 +526,430 @@ function renderOtherMaterials(film) {
     `).join('');
 }
 
-                // ABRE O MODAL COM ANIMAÇÃO
-                function openModal(film) {
-                    const modal = document.getElementById('filmModal');
-                    const modalContent = document.getElementById('modalContent');
-                    
-                    const classification = film.classification || 0;
-                    const classificationClass = getClassificationClass(classification);
-                    const classificationText = classification <= 0 ? 'L' : classification;
-                    
-                    const themes = createThemesList(film);
-                    const hasThemes = themes.length > 0;
-                    
-                    const hasAdditionalInfo = film.audiodescricao || film.trailer || film.closedCaption || film.website || 
-                                            film.portaCurta || film.festivais || film.premios || 
-                                            film.legendasOutras || film.materialOutros;
-                    
-                    // Codifica o título do filme para uso na URL
-                    const encodedTitle = encodeURIComponent(film.title);
-                    
-                    modalContent.innerHTML = `
-                        <div class="modal-poster-container">
-                            <img src="${getDvdCover(film)}" alt="${film.title}" class="modal-poster" onerror="this.src='capas/progbrasil.png'">
-                        </div>
-                        <h2 class="modal-title">
-                            <span class="classification ${classificationClass}">${classificationText}</span>
-                            ${film.title}
-                        </h2>
-                        <div class="modal-details">
-                            ${film.director ? `<p><strong><i class="fas fa-user"></i> Direção:</strong> ${film.director}</p>` : ''}
-                            ${film.cast ? `<p><strong><i class="fas fa-users"></i> Elenco:</strong> ${film.cast}</p>` : ''}
-                            ${film.duration ? `<p><strong><i class="fas fa-clock"></i> Duração:</strong> ${film.duration} min</p>` : ''}
-                            ${film.genre ? `<p><strong><i class="fas fa-tag"></i> Gênero:</strong> ${film.genre}</p>` : ''}
-                            ${film.year ? `<p><strong><i class="fas fa-calendar-alt"></i> Ano:</strong> ${film.year}</p>` : ''}
-                            ${film.imdb.votantes ? `<p><strong><i class="fab fa-imdb"></i> IMDb:</strong> ${film.imdb.votantes}</p>` : ''}
-                            ${film.country ? `<p><strong><i class="fas fa-globe-americas"></i> País:</strong> ${film.country}</p>` : ''}
-                            ${film.state ? `<p><strong><i class="fas fa-map-marker-alt"></i> UF:</strong> ${film.state}</p>` : ''}
-                            ${film.dvd ? `<p><strong><i class="fas fa-compact-disc"></i> DVD:</strong> ${film.dvd}</p>` : ''}
-                        </div>
-                        
-                        ${hasThemes ? `
-                        <div class="modal-themes">
-                            <h3><i class="fas fa-tags"></i> Temas</h3>
-                            ${themes.map(theme => `<span class="theme-tag">${theme}</span>`).join('')}
-                        </div>
-                        ` : ''}
-                        
-                        ${film.synopsis ? `
-                        <div class="modal-synopsis">
-                            <h3><i class="fas fa-align-left"></i> Sinopse</h3>
-                            <p>${film.synopsis}</p>
-                        </div>
-                        ` : ''}
-                        
-                        ${hasAdditionalInfo ? `
-                        <div class="modal-additional">
-                            <h3><i class="fas fa-info-circle"></i> Informações Adicionais</h3>
-                            ${film.audiodescricao ? `<p><strong><i class="fas fa-assistive-listening-systems"></i> Audiodescrição:</strong> ${film.audiodescricao}</p>` : ''}
-                            ${film.closedCaption ? `<p><strong><i class="fas fa-closed-captioning"></i> Closed Caption:</strong> ${film.closedCaption}</p>` : ''}
-                            ${film.website ? `<p><strong><i class="fas fa-globe"></i> Website:</strong> <a href="${film.website.startsWith('http') ? film.website : 'https://' + film.website}" target="_blank">${film.website}</a></p>` : ''}
-                            ${film.portaCurta ? `<p><strong><i class="fas fa-film"></i> Porta Curtas:</strong> <a href="${film.portaCurta.startsWith('http') ? film.portaCurta : 'https://' + film.portaCurta}" target="_blank">Link</a></p>` : ''}
-                            ${film.festivais ? `<p><strong><i class="fas fa-trophy"></i> Festivais:</strong> ${film.festivais}</p>` : ''}
-                            ${film.premios ? `<p><strong><i class="fas fa-award"></i> Prêmios:</strong> ${film.premios}</p>` : ''}
-                            ${film.legendasOutras ? `<p><strong><i class="fas fa-language"></i> Outras Legendas:</strong> ${film.legendasOutras}</p>` : ''}
-                            <div class="modal-other-materials">
-                                <h3><i class="fas fa-box-open"></i> Outros Materiais</h3>
-                                ${renderOtherMaterials(film)}
-                            </div>
-                        </div>
-                        ` : ''}
-
-                        <!-- Bloco dos Planos de Aula -->
-                        <div class="modal-teaching-plans">
-                            <h3><i class="fas fa-chalkboard-teacher"></i> Planos de Aula</h3>
-                            ${renderTeachingPlans(film)}
-                            <a href="https://docs.google.com/forms/d/e/1FAIpQLSdxQz8onMOFjxIqEPpo5v2I4CJdLQ9cN50I7zUhmnBwgUeGIQ/viewform?usp=sharing&ouid=101786859238464224020" target="_blank" class="btn-enviar-plano" style="display:inline-block; margin-top:15px; background:#009a44; color:#fff; padding:10px 18px; border-radius:6px; text-decoration:none; font-weight:500;">
-                                <i class="fas fa-plus"></i> Envie um plano de aula
-                            </a>
-                            <p style="font-size: 0.95em; color: #666; margin-top: 6px;">
-                                Você pode colaborar enviando um plano de aula para este filme. Ao clicar, você será direcionado a um formulário.
-                            </p>
-                        </div>
-                        
-                        <!-- Botão para página exclusiva do filme -->
-                        <div style="text-align: center; margin-top: 20px;">
-                            <a href="filme.html?titulo=${encodedTitle}" class="btn-enviar-plano" style="display:inline-block; background:#009a44; color:#fff; padding:12px 25px; border-radius:6px; text-decoration:none; font-weight:500;">
-                                <i class="fas fa-external-link-alt"></i> Ver página completa do filme
-                            </a>
-                        </div>
-                    `;
-                    
-                    const modalPosterContainer = modalContent.querySelector('.modal-poster-container');
-                    const modalPoster = modalContent.querySelector('.modal-poster');
-                    if (modalPosterContainer && modalPoster) {
-                        createImageControls(modalPosterContainer, modalPoster);
-                    }
-                    
-                    modal.style.display = 'block';
-                    setTimeout(() => {
-                        modal.classList.add('show');
-                    }, 10);
-                    
-                    document.addEventListener('keydown', handleKeyDown);
-                }
-                
-                // FECHA O MODAL
-                function closeModal() {
-                    const modal = document.getElementById('filmModal');
-                    modal.classList.remove('show');
-                    
-                    setTimeout(() => {
-                        modal.style.display = 'none';
-                    }, 300);
-                    
-                    document.removeEventListener('keydown', handleKeyDown);
-                }
-                
-                // HANDLER PARA TECLA ESC
-                function handleKeyDown(e) {
-                    if (e.key === 'Escape') {
-                        closeModal();
-                    }
-                }
-                
-                /* ==========================================
-                   9. INICIALIZAÇÃO E EVENTOS
-                   ========================================== */
-                
-                // CONFIGURA TODOS OS EVENT LISTENERS
-                function setupEventListeners() {
-                    // EVENTOS DE BUSCA E FILTROS
-                    document.getElementById('searchInput').addEventListener('input', filterAndRenderFilms);
-                    document.getElementById('genreSelect').addEventListener('change', filterAndRenderFilms);
-                    document.getElementById('classificationSelect').addEventListener('change', filterAndRenderFilms);
-                    document.getElementById('sortSelect').addEventListener('change', filterAndRenderFilms);
-                    document.getElementById('accessibilitySelect').addEventListener('change', filterAndRenderFilms);
-                    
-                    // EVENTOS DO MODAL
-                    document.querySelector('.close').addEventListener('click', closeModal);
-                    window.addEventListener('click', function(event) {
-                        if (event.target === document.getElementById('filmModal')) {
-                            closeModal();
-                        }
-                    });
-                    
-                    // EVENTO DO FOOTER
-                    document.querySelector('footer').addEventListener('click', function() {
-                        window.open('https://umtremdecinema.wixsite.com/umtremdecinema', '_blank');
-                    });
-                
-  // CONFIGURA TODOS OS EVENT LISTENERS
-function setupEventListeners() {
-    // EVENTOS DE BUSCA E FILTROS
-    document.getElementById('searchInput').addEventListener('input', filterAndRenderFilms);
-    document.getElementById('genreSelect').addEventListener('change', filterAndRenderFilms);
-    document.getElementById('classificationSelect').addEventListener('change', filterAndRenderFilms);
-    document.getElementById('sortSelect').addEventListener('change', filterAndRenderFilms);
-    document.getElementById('accessibilitySelect').addEventListener('change', filterAndRenderFilms);
+// ==========================================
+// FUNÇÃO DE RENDERIZAÇÃO DO MODAL DE FILME
+// ==========================================
+function renderModalContent(film) {
+    const classification = film.classification || 0;
+    const classificationClass = getClassificationClass(classification);
+    const classificationText = classification <= 0 ? 'L' : classification;
     
-    // EVENTOS DO MODAL
-    document.querySelector('.close').addEventListener('click', closeModal);
-    window.addEventListener('click', function(event) {
-        if (event.target === document.getElementById('filmModal')) {
-            closeModal();
+    const themes = createThemesList(film);
+    const hasThemes = themes.length > 0;
+    
+    const hasAdditionalInfo = film.audiodescricao || film.closedCaption || film.website || 
+                            film.portaCurta || film.festivais || film.premios || 
+                            film.legendasOutras || film.materialOutros;
+    
+    // Prepara a URL para compartilhamento
+    const filmUrl = `https://umtremdecinemaifmg.github.io/catalogodedvds/filme.html?titulo=${encodeURIComponent(film.title)}`;
+    const shareText = `Confira o filme "${film.title}" no catálogo de DVDs do Projeto Um Trem de Cinema IFMG Sabará`;
+    
+    return `
+        <div class="modal-header">
+            <div class="modal-poster-container">
+                <img src="${getDvdCover(film)}" alt="${film.title}" class="modal-poster" onerror="this.src='capas/progbrasil.png'">
+            </div>
+            <div class="modal-info">
+                <h2 class="modal-title">
+                    <span class="classification ${classificationClass}">${classificationText}</span>
+                    ${film.title}
+                </h2>
+                <div class="modal-details">
+                    ${film.director ? `<p><strong><i class="fas fa-user"></i> Direção:</strong> ${film.director}</p>` : ''}
+                    ${film.cast ? `<p><strong><i class="fas fa-users"></i> Elenco:</strong> ${film.cast}</p>` : ''}
+                    ${film.duration ? `<p><strong><i class="fas fa-clock"></i> Duração:</strong> ${film.duration} min</p>` : ''}
+                    ${film.genre ? `<p><strong><i class="fas fa-tag"></i> Gênero:</strong> ${film.genre}</p>` : ''}
+                    ${film.year ? `<p><strong><i class="fas fa-calendar-alt"></i> Ano:</strong> ${film.year}</p>` : ''}
+                    ${film.imdb.votantes ? `<p><strong><i class="fab fa-imdb"></i> IMDb:</strong> ${film.imdb.votantes}</p>` : ''}
+                    ${film.country ? `<p><strong><i class="fas fa-globe-americas"></i> País:</strong> ${film.country}</p>` : ''}
+                    ${film.state ? `<p><strong><i class="fas fa-map-marker-alt"></i> UF:</strong> ${film.state}</p>` : ''}
+                    ${film.city ? `<p><strong><i class="fas fa-city"></i> Cidade:</strong> ${film.city}</p>` : ''}
+                </div>
+                
+                <!-- Botões de compartilhamento -->
+                <div class="social-share-container">
+                    <div class="social-share-title">Compartilhar:</div>
+                    <div class="social-share-buttons">
+                        <button class="social-share-button whatsapp" title="Compartilhar no WhatsApp" onclick="shareOnWhatsApp('${filmUrl}', '${shareText}')">
+                            <i class="fab fa-whatsapp"></i>
+                        </button>
+                        <button class="social-share-button facebook" title="Compartilhar no Facebook" onclick="shareOnFacebook('${filmUrl}')">
+                            <i class="fab fa-facebook-f"></i>
+                        </button>
+                        <button class="social-share-button twitter" title="Compartilhar no X (Twitter)" onclick="shareOnTwitter('${filmUrl}', '${shareText}')">
+                            <i class="fab fa-twitter"></i>
+                        </button>
+                        <button class="social-share-button copy" title="Copiar link" onclick="copyToClipboard('${filmUrl}')">
+                            <i class="fas fa-link"></i>
+                        </button>
+                    </div>
+                </div>
+                
+                <a href="filme.html?titulo=${encodeURIComponent(film.title)}" class="btn-ver-mais">
+                    <i class="fas fa-external-link-alt"></i> Ver página completa
+                </a>
+            </div>
+        </div>
+        
+        ${film.synopsis ? `
+        <div class="modal-section">
+            <h3><i class="fas fa-align-left"></i> Sinopse</h3>
+            <p>${film.synopsis}</p>
+        </div>
+        ` : ''}
+        
+        ${hasThemes ? `
+        <div class="modal-section">
+            <h3><i class="fas fa-tags"></i> Temas</h3>
+            ${themes.map(theme => `<span class="theme-tag">${theme}</span>`).join('')}
+        </div>
+        ` : ''}
+        
+        ${film.trailer ? `
+        <div class="modal-section">
+            <h3><i class="fab fa-youtube"></i> Trailer</h3>
+            <div class="modal-trailer">
+                <iframe 
+                    src="https://www.youtube.com/embed/${getYoutubeId(film.trailer)}" 
+                    title="YouTube video player" 
+                    frameborder="0" 
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                    allowfullscreen>
+                </iframe>
+            </div>
+        </div>
+        ` : ''}
+        
+        ${film.planos_de_aula && film.planos_de_aula.length > 0 ? `
+        <div class="modal-section">
+            <h3><i class="fas fa-chalkboard-teacher"></i> Planos de Aula</h3>
+            ${renderTeachingPlans(film)}
+        </div>
+        ` : ''}
+    `;
+}
+
+// EXTRAI ID DO YOUTUBE DE UMA URL
+function getYoutubeId(url) {
+    if (!url) return null;
+    
+    // Padrões de URL do YouTube
+    const patterns = [
+        /(?:https?:\/\/)?(?:www\.)?youtube\.com\/watch\?v=([^&]+)/i,
+        /(?:https?:\/\/)?(?:www\.)?youtu\.be\/([^?]+)/i,
+        /(?:https?:\/\/)?(?:www\.)?youtube\.com\/embed\/([^?]+)/i
+    ];
+    
+    for (const pattern of patterns) {
+        const match = url.match(pattern);
+        if (match && match[1]) {
+            return match[1];
+        }
+    }
+    
+    return null;
+}
+
+// ABRE O MODAL COM DETALHES DO FILME
+function openModal(film) {
+    const modal = document.getElementById('filmModal');
+    const modalContent = document.getElementById('modalContent');
+    const closeBtn = document.querySelector('.modal .close');
+    
+    modalContent.innerHTML = renderModalContent(film);
+    
+    modal.style.display = 'block';
+    document.body.style.overflow = 'hidden';
+    
+    // Configura o evento de fechar
+    closeBtn.onclick = function() {
+        modal.style.display = 'none';
+        document.body.style.overflow = '';
+    };
+    
+    // Fecha ao clicar fora do modal
+    window.onclick = function(event) {
+        if (event.target == modal) {
+            modal.style.display = 'none';
+            document.body.style.overflow = '';
+        }
+    };
+    
+    // Configura os controles da imagem do poster
+    setTimeout(() => {
+        const posterContainer = document.querySelector('.modal-poster-container');
+        const poster = document.querySelector('.modal-poster');
+        if (posterContainer && poster) {
+            createImageControls(posterContainer, poster);
+        }
+        
+        // Configura eventos para expandir/recolher planos de aula
+        document.querySelectorAll('.btn-toggle-preview').forEach(button => {
+            button.addEventListener('click', function() {
+                const targetId = this.getAttribute('data-target');
+                const targetElement = document.getElementById(targetId);
+                if (targetElement) {
+                    targetElement.style.display = 'block';
+                }
+            });
+        });
+        
+        document.querySelectorAll('.btn-toggle-preview-close').forEach(button => {
+            button.addEventListener('click', function() {
+                const targetId = this.getAttribute('data-target');
+                const targetElement = document.getElementById(targetId);
+                if (targetElement) {
+                    targetElement.style.display = 'none';
+                }
+            });
+        });
+    }, 100);
+}
+
+// RENDERIZA A PAGINAÇÃO
+function renderPagination() {
+    const paginationContainer = document.getElementById('pagination');
+    paginationContainer.innerHTML = '';
+    
+    const totalPages = Math.ceil(currentFilms.length / itemsPerPage);
+    
+    if (totalPages <= 1) {
+        return;
+    }
+    
+    // BOTÃO ANTERIOR
+    const prevButton = document.createElement('button');
+    prevButton.className = 'pagination-button';
+    prevButton.innerHTML = '<i class="fas fa-chevron-left"></i>';
+    prevButton.disabled = currentPage === 1;
+    prevButton.addEventListener('click', () => {
+        if (currentPage > 1) {
+            currentPage--;
+            renderFilms();
+            renderPagination();
+            window.scrollTo(0, 0);
         }
     });
+    paginationContainer.appendChild(prevButton);
     
-    // EVENTO DO FOOTER
-    document.querySelector('footer').addEventListener('click', function() {
-        window.open('https://umtremdecinema.wixsite.com/umtremdecinema', '_blank');
+    // PÁGINAS
+    const maxVisiblePages = 5;
+    let startPage = Math.max(1, currentPage - Math.floor(maxVisiblePages / 2));
+    let endPage = Math.min(totalPages, startPage + maxVisiblePages - 1);
+    
+    if (endPage - startPage + 1 < maxVisiblePages) {
+        startPage = Math.max(1, endPage - maxVisiblePages + 1);
+    }
+    
+    // PRIMEIRA PÁGINA
+    if (startPage > 1) {
+        const firstPageButton = document.createElement('button');
+        firstPageButton.className = 'pagination-button';
+        firstPageButton.textContent = '1';
+        firstPageButton.addEventListener('click', () => {
+            currentPage = 1;
+            renderFilms();
+            renderPagination();
+            window.scrollTo(0, 0);
+        });
+        paginationContainer.appendChild(firstPageButton);
+        
+        if (startPage > 2) {
+            const ellipsis = document.createElement('span');
+            ellipsis.className = 'pagination-ellipsis';
+            ellipsis.textContent = '...';
+            paginationContainer.appendChild(ellipsis);
+        }
+    }
+    
+    // PÁGINAS NUMERADAS
+    for (let i = startPage; i <= endPage; i++) {
+        const pageButton = document.createElement('button');
+        pageButton.className = `pagination-button ${i === currentPage ? 'active' : ''}`;
+        pageButton.textContent = i;
+        pageButton.addEventListener('click', () => {
+            currentPage = i;
+            renderFilms();
+            renderPagination();
+            window.scrollTo(0, 0);
+        });
+        paginationContainer.appendChild(pageButton);
+    }
+    
+    // ÚLTIMA PÁGINA
+    if (endPage < totalPages) {
+        if (endPage < totalPages - 1) {
+            const ellipsis = document.createElement('span');
+            ellipsis.className = 'pagination-ellipsis';
+            ellipsis.textContent = '...';
+            paginationContainer.appendChild(ellipsis);
+        }
+        
+        const lastPageButton = document.createElement('button');
+        lastPageButton.className = 'pagination-button';
+        lastPageButton.textContent = totalPages;
+        lastPageButton.addEventListener('click', () => {
+            currentPage = totalPages;
+            renderFilms();
+            renderPagination();
+            window.scrollTo(0, 0);
+        });
+        paginationContainer.appendChild(lastPageButton);
+    }
+    
+    // BOTÃO PRÓXIMO
+    const nextButton = document.createElement('button');
+    nextButton.className = 'pagination-button';
+    nextButton.innerHTML = '<i class="fas fa-chevron-right"></i>';
+    nextButton.disabled = currentPage === totalPages;
+    nextButton.addEventListener('click', () => {
+        if (currentPage < totalPages) {
+            currentPage++;
+            renderFilms();
+            renderPagination();
+            window.scrollTo(0, 0);
+        }
     });
-
-    
+    paginationContainer.appendChild(nextButton);
 }
-                
-     // EVENTOS DO FALE CONOSCO
+
+// FUNÇÕES DE COMPARTILHAMENTO
+function shareOnWhatsApp(url, text) {
+    // Verifica se é dispositivo móvel
+    const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+    
+    // Formata o texto e URL para compartilhamento
+    const shareText = encodeURIComponent(text + ' ' + url);
+    
+    // Usa API diferente dependendo se é mobile ou desktop
+    const whatsappUrl = isMobile 
+        ? `whatsapp://send?text=${shareText}`
+        : `https://api.whatsapp.com/send?text=${shareText}`;
+    
+    // Tenta abrir em nova janela
+    try {
+        window.open(whatsappUrl, '_blank');
+    } catch (e) {
+        // Fallback: cria um link temporário e simula clique
+        const link = document.createElement('a');
+        link.href = whatsappUrl;
+        link.target = '_blank';
+        link.style.display = 'none';
+        document.body.appendChild(link);
+        link.click();
+        setTimeout(() => {
+            document.body.removeChild(link);
+        }, 100);
+    }
+}
+
+function shareOnFacebook(url) {
+    const facebookUrl = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(url)}`;
+    
+    try {
+        window.open(facebookUrl, '_blank');
+    } catch (e) {
+        // Fallback: cria um link temporário e simula clique
+        const link = document.createElement('a');
+        link.href = facebookUrl;
+        link.target = '_blank';
+        link.style.display = 'none';
+        document.body.appendChild(link);
+        link.click();
+        setTimeout(() => {
+            document.body.removeChild(link);
+        }, 100);
+    }
+}
+
+function shareOnTwitter(url, text) {
+    // Twitter agora é X, mas mantém compatibilidade com ambas URLs
+    const twitterUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(text)}&url=${encodeURIComponent(url)}`;
+    
+    try {
+        window.open(twitterUrl, '_blank');
+    } catch (e) {
+        // Fallback: cria um link temporário e simula clique
+        const link = document.createElement('a');
+        link.href = twitterUrl;
+        link.target = '_blank';
+        link.style.display = 'none';
+        document.body.appendChild(link);
+        link.click();
+        setTimeout(() => {
+            document.body.removeChild(link);
+        }, 100);
+    }
+}
+
+function copyToClipboard(text) {
+    navigator.clipboard.writeText(text).then(() => {
+        // Mostra mensagem de sucesso
+        const copySuccess = document.createElement('div');
+        copySuccess.className = 'copy-success';
+        copySuccess.textContent = 'Link copiado para a área de transferência!';
+        document.body.appendChild(copySuccess);
+        
+        // Exibe a mensagem
+        setTimeout(() => {
+            copySuccess.classList.add('show');
+        }, 10);
+        
+        // Remove a mensagem após 3 segundos
+        setTimeout(() => {
+            copySuccess.classList.remove('show');
+            setTimeout(() => {
+                document.body.removeChild(copySuccess);
+            }, 300);
+        }, 3000);
+    }).catch(err => {
+        console.error('Erro ao copiar texto: ', err);
+    });
+}
+
+// CONFIGURA O MODAL DE FALE CONOSCO
+function setupFeedbackModal() {
     const modalFaleConosco = document.getElementById("modalFaleConosco");
     const btnFaleConosco = document.getElementById("btnFaleConosco");
     const spanCloseFeedback = modalFaleConosco.querySelector(".close");
-
-    // Abre o modal do Fale Conosco
-    btnFaleConosco.addEventListener('click', function() {
+    
+    btnFaleConosco.addEventListener("click", function() {
         modalFaleConosco.style.display = "block";
+        setTimeout(() => {
+            modalFaleConosco.classList.add('show');
+        }, 10);
     });
-
-    // Fecha o modal do Fale Conosco ao clicar no X
-    spanCloseFeedback.addEventListener('click', function() {
-        modalFaleConosco.style.display = "none";
-    });
-
-    // Fecha o modal do Fale Conosco ao clicar fora dele
-    window.addEventListener('click', function(event) {
-        if (event.target == modalFaleConosco) {
+    
+    spanCloseFeedback.addEventListener("click", function() {
+        modalFaleConosco.classList.remove('show');
+        setTimeout(() => {
             modalFaleConosco.style.display = "none";
+        }, 300);
+    });
+    
+    window.addEventListener("click", function(event) {
+        if (event.target == modalFaleConosco) {
+            modalFaleConosco.classList.remove('show');
+            setTimeout(() => {
+                modalFaleConosco.style.display = "none";
+            }, 300);
         }
-    });           
-                }
+    });
+}
 
-                
-                // INICIALIZAÇÃO DA APLICAÇÃO
-                window.addEventListener('DOMContentLoaded', function() {
-                    setupEventListeners();
-                    loadCatalogData();
-                });
-
-            /* ==========================================
-               10. FUNÇÕES DE PAGINAÇÃO
-               ========================================== */
-            
-                // RENDERIZA A PAGINAÇÃO
-                function renderPagination() {
-                    const pagination = document.getElementById('pagination');
-                    pagination.innerHTML = '';
-                    
-                    const totalPages = Math.ceil(currentFilms.length / itemsPerPage);
-                    if (totalPages <= 1) return;
-                    
-                    // BOTÃO ANTERIOR
-                    const prevButton = document.createElement('button');
-                    prevButton.innerHTML = '<i class="fas fa-chevron-left"></i> Anterior';
-                    prevButton.disabled = currentPage === 1;
-                    prevButton.addEventListener('click', () => {
-                        if (currentPage > 1) {
-                            currentPage--;
-                            renderFilms();
-                            renderPagination();
-                            window.scrollTo({top: 0, behavior: 'smooth'});
-                        }
-                    });
-                    pagination.appendChild(prevButton);
-                    
-                    // PÁGINAS
-                    const maxVisiblePages = 5;
-                    let startPage = Math.max(1, currentPage - Math.floor(maxVisiblePages / 2));
-                    let endPage = Math.min(totalPages, startPage + maxVisiblePages - 1);
-                    
-                    if (endPage - startPage + 1 < maxVisiblePages) {
-                        startPage = Math.max(1, endPage - maxVisiblePages + 1);
-                    }
-                    
-                    // PRIMEIRA PÁGINA
-                    if (startPage > 1) {
-                        const firstButton = document.createElement('button');
-                        firstButton.textContent = '1';
-                        firstButton.addEventListener('click', () => {
-                            currentPage = 1;
-                            renderFilms();
-                            renderPagination();
-                            window.scrollTo({top: 0, behavior: 'smooth'});
-                        });
-                        pagination.appendChild(firstButton);
-                        
-                        if (startPage > 2) {
-                            const ellipsis = document.createElement('span');
-                            ellipsis.textContent = '...';
-                            pagination.appendChild(ellipsis);
-                        }
-                    }
-                    
-                    // PÁGINAS INTERMEDIÁRIAS
-                    for (let i = startPage; i <= endPage; i++) {
-                        const pageButton = document.createElement('button');
-                        pageButton.textContent = i;
-                        if (i === currentPage) {
-                            pageButton.classList.add('active');
-                        }
-                        pageButton.addEventListener('click', () => {
-                            currentPage = i;
-                            renderFilms();
-                            renderPagination();
-                            window.scrollTo({top: 0, behavior: 'smooth'});
-                        });
-                        pagination.appendChild(pageButton);
-                    }
-                    
-                    // ÚLTIMA PÁGINA
-                    if (endPage < totalPages) {
-                        if (endPage < totalPages - 1) {
-                            const ellipsis = document.createElement('span');
-                            ellipsis.textContent = '...';
-                            pagination.appendChild(ellipsis);
-                        }
-                        
-                        const lastButton = document.createElement('button');
-                        lastButton.textContent = totalPages;
-                        lastButton.addEventListener('click', () => {
-                            currentPage = totalPages;
-                            renderFilms();
-                            renderPagination();
-                            window.scrollTo({top: 0, behavior: 'smooth'});
-                        });
-                        pagination.appendChild(lastButton);
-                    }
-                    
-                    // BOTÃO PRÓXIMO
-                    const nextButton = document.createElement('button');
-                    nextButton.innerHTML = 'Próximo <i class="fas fa-chevron-right"></i>';
-                    nextButton.disabled = currentPage === totalPages;
-                    nextButton.addEventListener('click', () => {
-                        if (currentPage < totalPages) {
-                            currentPage++;
-                            renderFilms();
-                            renderPagination();
-                            window.scrollTo({top: 0, behavior: 'smooth'});
-                        }
-                    });
-                    pagination.appendChild(nextButton);
-                }
-
-
+// INICIALIZA A PÁGINA
+document.addEventListener('DOMContentLoaded', function() {
+    // CARREGA DADOS DO CATÁLOGO
+    loadCatalogData();
+    
+    // CONFIGURA EVENTOS DE FILTRO
+    document.getElementById('searchInput').addEventListener('input', filterAndRenderFilms);
+    document.getElementById('genreSelect').addEventListener('change', filterAndRenderFilms);
+    document.getElementById('classificationSelect').addEventListener('change', filterAndRenderFilms);
+    document.getElementById('accessibilitySelect').addEventListener('change', filterAndRenderFilms);
+    document.getElementById('sortSelect').addEventListener('change', filterAndRenderFilms);
+    
+    // CONFIGURA MODAL DE FALE CONOSCO
+    setupFeedbackModal();
+});
