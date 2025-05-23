@@ -323,7 +323,8 @@ function renderFilmData(film) {
     }
     
     // ADICIONA O CONTEÚDO AO CONTAINER
-
+ filmContainer.innerHTML = `
+        
         
         <!-- Banner com carrossel -->
         <div class="banner-carrossel">
