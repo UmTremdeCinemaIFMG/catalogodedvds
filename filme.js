@@ -323,10 +323,7 @@ function renderFilmData(film) {
     }
     
     // ADICIONA O CONTEÚDO AO CONTAINER
-    filmContainer.innerHTML = `
-        <a href="index.html" class="btn-voltar">
-            <i class="fas fa-arrow-left"></i> Voltar para o catálogo
-        </a>
+
         
         <!-- Banner com carrossel -->
         <div class="banner-carrossel">
@@ -679,7 +676,10 @@ function getYoutubeId(url) {
     });
 
 
-
+    filmContainer.innerHTML = `
+        <a href="index.html" class="btn-voltar">
+            <i class="fas fa-arrow-left"></i> Voltar para o catálogo
+        </a>
 
 
 // INICIALIZA A PÁGINA
