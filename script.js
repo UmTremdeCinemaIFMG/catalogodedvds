@@ -108,7 +108,7 @@
                         imageName: cleanField(originalFilm["imageName"]),
                         classification: parseInt(originalFilm["Classificação Indicativa POR PGM"]) || 0,
                         planos_de_aula: originalFilm["planos_de_aula"] || [],
-                        //videos: originalFilm["videos"] || []
+                        videos: originalFilm["videos"] || []
                       
                     };
                 }
@@ -281,8 +281,44 @@
                     controls.appendChild(leftButton);
                     controls.appendChild(rightButton);
                     container.appendChild(controls);
-                }
+               
+                setTimeout(() => {
+                        const containerWidth = container.clientWidth;
+                        const imageWidth = image.clientWidth;
+                        if (imageWidth > containerWidth) {
+                            const initialX = containerWidth - imageWidth;
+                            image.style.transform = `translateX(${initialX}px)`;
+                        }
+                    }, 50);
                 
+                
+                
+                
+                
+                
+                
+                }
+
+
+ // CRIA IMAGEM COM FALLBACK
+                function createSmartPoster(film) {
+                    const img = new Image();
+                    img.className = 'film-poster';
+                    img.alt = film.title || 'Capa do filme';
+                    
+                    img.src = getDvdCover(film);
+                    console.log("Imagem definida como:", img.src);
+                    
+                    img.onerror = function() {
+                        console.error("Falha ao carregar:", this.src);
+                        this.src = 'capas/progbrasil.png';
+                    };
+                
+                    return img;
+                }
+
+
+
                 // RENDERIZA OS FILMES NA GRID
                 function renderFilms() {
                     const filmGrid = document.getElementById('filmGrid');
