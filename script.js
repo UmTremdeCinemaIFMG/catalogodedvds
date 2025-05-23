@@ -78,7 +78,7 @@
                         city: cleanField(originalFilm["cidade"]),
                         audiodescricao: cleanField(originalFilm["Audiodescrição"]),
                         closedCaption: cleanField(originalFilm["Closed Caption"]),
-                        //trailer: cleanField(originalFilm["trailer"] || ''),
+                        trailer: cleanField(originalFilm["trailer"] || ''),
                         synopsis: cleanField(originalFilm["Sinopse"]),
                         tema: cleanField(originalFilm["tema (Programadora Brasil)"]),
                         tags: cleanField(originalFilm["tags"]),
@@ -108,7 +108,7 @@
                         imageName: cleanField(originalFilm["imageName"]),
                         classification: parseInt(originalFilm["Classificação Indicativa POR PGM"]) || 0,
                         planos_de_aula: originalFilm["planos_de_aula"] || [],
-                        videos: originalFilm["videos"] || []
+                        //videos: originalFilm["videos"] || []
                       
                     };
                 }
