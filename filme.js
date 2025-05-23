@@ -646,6 +646,16 @@ function getClassificationClass(age) {
     }
 }
 
+
+
+    filmContainer.innerHTML = `
+        <a href="index.html" class="btn-voltar">
+            <i class="fas fa-arrow-left"></i> Voltar para o catálogo
+        </a>
+
+
+
+
 // EXTRAI ID DO YOUTUBE DE UMA URL
 function getYoutubeId(url) {
     if (!url) return null;
@@ -676,10 +686,7 @@ function getYoutubeId(url) {
     });
 
 
-    filmContainer.innerHTML = `
-        <a href="index.html" class="btn-voltar">
-            <i class="fas fa-arrow-left"></i> Voltar para o catálogo
-        </a>
+
 
 
 // INICIALIZA A PÁGINA
