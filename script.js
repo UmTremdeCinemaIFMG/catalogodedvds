@@ -281,171 +281,604 @@
                     controls.appendChild(leftButton);
                     controls.appendChild(rightButton);
                     container.appendChild(controls);
-                    
-                    setTimeout(() => {
-                        const containerWidth = container.clientWidth;
-                        const imageWidth = image.clientWidth;
-                        if (imageWidth > containerWidth) {
-                            const initialX = containerWidth - imageWidth;
-                            image.style.transform = `translateX(${initialX}px)`;
-                        }
-                    }, 50);
                 }
                 
-                // CRIA IMAGEM COM FALLBACK
-                function createSmartPoster(film) {
-                    const img = new Image();
-                    img.className = 'film-poster';
-                    img.alt = film.title || 'Capa do filme';
-                    
-                    img.src = getDvdCover(film);
-                    console.log("Imagem definida como:", img.src);
-                    
-                    img.onerror = function() {
-                        console.error("Falha ao carregar:", this.src);
-                        this.src = 'capas/progbrasil.png';
-                    };
-                
-                    return img;
-                }
-                
-                /* ==========================================
-                   6. FUNÇÕES DE RENDERIZAÇÃO DE FILMES E CARDS
-                   ========================================== */
-                
-                // RENDERIZA GRID DE FILMES
+                // RENDERIZA OS FILMES NA GRID
                 function renderFilms() {
-                    console.log('Iniciando renderização...'); // Debug
-                  
                     const filmGrid = document.getElementById('filmGrid');
                     filmGrid.innerHTML = '';
                     
+                    // CALCULA ÍNDICES PARA PAGINAÇÃO
                     const startIndex = (currentPage - 1) * itemsPerPage;
-                    const endIndex = startIndex + itemsPerPage;
-                    const filmsToShow = currentFilms.slice(startIndex, endIndex);
+                    const endIndex = Math.min(startIndex + itemsPerPage, currentFilms.length);
                     
-                    console.log('Filmes para mostrar:', filmsToShow.length); // Debug
-                  
-                    if (filmsToShow.length === 0) {
+                    // SE NÃO HOUVER RESULTADOS
+                    if (currentFilms.length === 0) {
                         filmGrid.innerHTML = `
                             <div class="no-results">
-                                <i class="fas fa-film"></i>
-                                <p>Nenhum filme encontrado com os critérios selecionados.</p>
-                                <button onclick="resetFilters()" class="reset-button">
-                                    <i class="fas fa-undo"></i> Limpar filtros
-                                </button>
+                                <i class="fas fa-search"></i>
+                                <p>Nenhum filme encontrado com os filtros selecionados.</p>
+                                <p>Tente ajustar seus critérios de busca.</p>
                             </div>
                         `;
                         return;
                     }
                     
-                    filmsToShow.forEach(film => {
+                    // RENDERIZA OS FILMES DA PÁGINA ATUAL
+                    for (let i = startIndex; i < endIndex; i++) {
+                        const film = currentFilms[i];
                         const filmCard = document.createElement('div');
                         filmCard.className = 'film-card';
+                        filmCard.setAttribute('data-film-index', i);
                         
-                        // BADGE DE CLASSIFICAÇÃO INDICATIVA
-                        if (film.classification !== undefined) {
-                            const classificationClass = getClassificationClass(film.classification);
-                            const classificationText = film.classification <= 0 ? 'L' : film.classification;
-                            
-                            const classificationBadge = document.createElement('div');
-                            classificationBadge.className = 'film-badge';
-                            classificationBadge.innerHTML = `
-                                <span class="classification ${classificationClass}">${classificationText}</span>
-                            `;
-                            filmCard.appendChild(classificationBadge);
-                        }
+                        // CLASSIFICAÇÃO INDICATIVA
+                        const classification = film.classification || 0;
+                        const classificationClass = getClassificationClass(classification);
+                        const classificationText = classification <= 0 ? 'L' : classification;
                         
-                        // CONTAINER DO POSTER
-                        const posterContainer = document.createElement('div');
-                        posterContainer.className = 'film-poster-container';
+                        // RECURSOS DISPONÍVEIS
+                        const hasAudiodescricao = film.audiodescricao ? '<span class="resource-badge audiodescricao" title="Audiodescrição"><i class="fas fa-assistive-listening-systems"></i></span>' : '';
+                        const hasClosedCaption = film.closedCaption ? '<span class="resource-badge closed-caption" title="Closed Caption"><i class="fas fa-closed-captioning"></i></span>' : '';
+                        const hasPlanoAula = film.planos_de_aula && film.planos_de_aula.length > 0 ? '<span class="resource-badge plano-aula" title="Plano de Aula"><i class="fas fa-chalkboard-teacher"></i></span>' : '';
+                        const hasTrailer = film.trailer ? '<span class="resource-badge trailer" title="Trailer"><i class="fab fa-youtube"></i></span>' : '';
+                        const hasMaterialOutros = film.materialOutros && film.materialOutros.length > 0 ? '<span class="resource-badge material-outros" title="Outros Materiais"><i class="fas fa-file-alt"></i></span>' : '';
                         
-                        const posterImg = createSmartPoster(film);
-                        posterImg.onload = function() {
-                            createImageControls(posterContainer, posterImg);
-                        };
+                        // MONTA O CARD DO FILME
+                        filmCard.innerHTML = `
+                            <div class="film-poster-container">
+                                <img 
+                                    src="${getDvdCover(film)}" 
+                                    alt="${film.title}" 
+                                    class="film-poster"
+                                    onerror="this.src='capas/progbrasil.png'"
+                                >
+                                <div class="film-overlay">
+                                    <span class="film-year">${film.year || 'N/A'}</span>
+                                    <span class="film-duration">${film.duration ? `${film.duration} min` : 'N/A'}</span>
+                                </div>
+                            </div>
+                            <div class="film-info">
+                                <h3 class="film-title">
+                                    <span class="classification ${classificationClass}">${classificationText}</span>
+                                    ${film.title}
+                                </h3>
+                                <p class="film-director">${film.director || 'Diretor não informado'}</p>
+                                <div class="film-resources">
+                                    ${hasAudiodescricao}
+                                    ${hasClosedCaption}
+                                    ${hasPlanoAula}
+                                    ${hasTrailer}
+                                    ${hasMaterialOutros}
+                                </div>
+                            </div>
+                        `;
                         
-                        posterContainer.appendChild(posterImg);
-                        
-                        // INFORMAÇÕES DO FILME
-                        const filmInfo = document.createElement('div');
-                        filmInfo.className = 'film-info';
-                        
-                        const title = document.createElement('h3');
-                        title.className = 'film-title';
-                        title.textContent = film.title;
-                        
-                        const meta = document.createElement('div');
-                        meta.className = 'film-meta';
-                        
-                        const duration = document.createElement('span');
-                        duration.textContent = film.duration ? `${film.duration} min` : '';
-                        
-                        const year = document.createElement('span');
-                        year.textContent = film.year || '';
-                        
-                        meta.appendChild(duration);
-                        meta.appendChild(year);
-                        
-                        filmInfo.appendChild(title);
-                        filmInfo.appendChild(meta);
-                        
-                        filmCard.appendChild(posterContainer);
-                        filmCard.appendChild(filmInfo);
-                        
-                        // Corrigido: Usar função anônima para evitar problemas de escopo
-                        filmCard.addEventListener('click', function() {
+                        // ADICIONA EVENTO DE CLIQUE PARA ABRIR O MODAL
+                        filmCard.addEventListener('click', () => {
                             openModal(film);
                         });
                         
+                        // ADICIONA O CARD À GRID
                         filmGrid.appendChild(filmCard);
+                        
+                        // CONFIGURA OS CONTROLES DA IMAGEM DO POSTER
+                        const posterContainer = filmCard.querySelector('.film-poster-container');
+                        const poster = filmCard.querySelector('.film-poster');
+                        if (posterContainer && poster) {
+                            createImageControls(posterContainer, poster);
+                        }
+                    }
+                }
+                
+                // RENDERIZA O CONTEÚDO DO MODAL
+                function renderModalContent(film) {
+                    // CLASSIFICAÇÃO INDICATIVA
+                    const classification = film.classification || 0;
+                    const classificationClass = getClassificationClass(classification);
+                    const classificationText = classification <= 0 ? 'L' : classification;
+                    
+                    // TEMAS
+                    const themes = [];
+                    if (film.tema) {
+                        themes.push(...film.tema.split(',').map(t => t.trim()));
+                    }
+                    if (film.tags) {
+                        themes.push(...film.tags.split(',').map(t => t.trim()));
+                    }
+                    const uniqueThemes = [...new Set(themes.filter(t => t))];
+                    const hasThemes = uniqueThemes.length > 0;
+                    
+                    // RENDERIZA PLANOS DE AULA
+                    function renderTeachingPlans(film) {
+                        if (!film.planos_de_aula || film.planos_de_aula.length === 0) {
+                            return '<p><i class="fas fa-info-circle"></i> Nenhum plano de aula disponível.</p>';
+                        }
+                        
+                        return film.planos_de_aula.map((plano, index) => `
+                            <div class="teaching-plan-card">
+                                <p><strong><i class="fas fa-graduation-cap"></i> Nível de Ensino:</strong> ${plano.nivel_ensino || ''}</p>
+                                <p><strong><i class="fas fa-book"></i> Área de Conhecimento:</strong> ${plano.area_conhecimento || ''}</p>
+                                <p><strong><i class="fas fa-globe"></i> Site:</strong> <a href="${plano.url}" target="_blank">${plano.site}</a></p>
+                                <p><strong><i class="fas fa-info-circle"></i> Descrição:</strong> ${plano.descricao || ''}</p>
+                                <div class="site-preview-toggle">
+                                    <button class="btn-toggle-preview" data-target="site-preview-${index}">
+                                        <i class="fas fa-eye"></i> Visualizar site
+                                    </button>
+                                </div>
+                                <div class="site-preview" id="site-preview-${index}" style="display: none;">
+                                    <iframe src="${plano.url}" frameborder="0" width="100%" height="600px"></iframe>
+                                    <button class="btn-toggle-preview-close" data-target="site-preview-${index}">
+                                        <i class="fas fa-times"></i> Fechar visualização
+                                    </button>
+                                </div>
+                            </div>
+                        `).join('');
+                    }
+                    
+                    // EXTRAI ID DO YOUTUBE
+                    function getYoutubeId(url) {
+                        if (!url) return null;
+                        
+                        const patterns = [
+                            /(?:https?:\/\/)?(?:www\.)?youtube\.com\/watch\?v=([^&]+)/i,
+                            /(?:https?:\/\/)?(?:www\.)?youtu\.be\/([^?]+)/i,
+                            /(?:https?:\/\/)?(?:www\.)?youtube\.com\/embed\/([^?]+)/i
+                        ];
+                        
+                        for (const pattern of patterns) {
+                            const match = url.match(pattern);
+                            if (match && match[1]) {
+                                return match[1];
+                            }
+                        }
+                        
+                        return null;
+                    }
+                    
+                    // CONSTRÓI O HTML DO MODAL
+                    return `
+                        <!-- Seção de mídia -->
+                        <div class="modal-media-section">
+                            <!-- Trailer (se existir) -->
+                            ${film.trailer ? `
+                            <div class="modal-trailer">
+                                <iframe 
+                                    src="https://www.youtube.com/embed/${getYoutubeId(film.trailer)}" 
+                                    title="YouTube video player" 
+                                    frameborder="0" 
+                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                                    allowfullscreen>
+                                </iframe>
+                            </div>
+                            ` : `
+                            <!-- Poster (se não houver trailer) -->
+                            <div class="modal-poster-container">
+                                <img 
+                                    src="${getDvdCover(film)}" 
+                                    alt="${film.title}" 
+                                    class="modal-poster"
+                                    onerror="this.src='capas/progbrasil.png'"
+                                >
+                            </div>
+                            `}
+                        </div>
+                        
+                        <!-- Informações do filme -->
+                        <div class="modal-info-section">
+                            <h2 class="modal-title">
+                                <span class="classification ${classificationClass}">${classificationText}</span>
+                                ${film.title}
+                            </h2>
+                            
+                            <div class="modal-details">
+                                ${film.director ? `<p><strong><i class="fas fa-user"></i> Direção:</strong> ${film.director}</p>` : ''}
+                                ${film.cast ? `<p><strong><i class="fas fa-users"></i> Elenco:</strong> ${film.cast}</p>` : ''}
+                                ${film.duration ? `<p><strong><i class="fas fa-clock"></i> Duração:</strong> ${film.duration} min</p>` : ''}
+                                ${film.genre ? `<p><strong><i class="fas fa-tag"></i> Gênero:</strong> ${film.genre}</p>` : ''}
+                                ${film.year ? `<p><strong><i class="fas fa-calendar-alt"></i> Ano:</strong> ${film.year}</p>` : ''}
+                                ${film.imdb.votantes ? `<p><strong><i class="fab fa-imdb"></i> IMDb:</strong> ${film.imdb.votantes}</p>` : ''}
+                                ${film.country ? `<p><strong><i class="fas fa-globe-americas"></i> País:</strong> ${film.country}</p>` : ''}
+                                ${film.state ? `<p><strong><i class="fas fa-map-marker-alt"></i> UF:</strong> ${film.state}</p>` : ''}
+                                ${film.city ? `<p><strong><i class="fas fa-city"></i> Cidade:</strong> ${film.city}</p>` : ''}
+                            </div>
+                            
+                            <!-- Botões de compartilhamento -->
+                            <div class="social-share-container">
+                                <div class="social-share-title">Compartilhar:</div>
+                                <div class="social-share-buttons">
+                                    <button class="social-share-button whatsapp" title="Compartilhar no WhatsApp" onclick="shareOnWhatsApp('${film.title}')">
+                                        <i class="fab fa-whatsapp"></i>
+                                    </button>
+                                    <button class="social-share-button facebook" title="Compartilhar no Facebook" onclick="shareOnFacebook('${film.title}')">
+                                        <i class="fab fa-facebook-f"></i>
+                                    </button>
+                                    <button class="social-share-button twitter" title="Compartilhar no X (Twitter)" onclick="shareOnTwitter('${film.title}')">
+                                        <i class="fab fa-twitter"></i>
+                                    </button>
+                                    <button class="social-share-button copy" title="Copiar link" onclick="copyToClipboard('${film.title}')">
+                                        <i class="fas fa-link"></i>
+                                    </button>
+                                </div>
+                            </div>
+                            
+                            <!-- Link para página detalhada -->
+                            <div class="modal-link-container">
+                                <a href="filme.html?titulo=${encodeURIComponent(film.title)}" class="modal-link">
+                                    <i class="fas fa-external-link-alt"></i> Ver página completa do filme
+                                </a>
+                            </div>
+                        </div>
+                        
+                        ${film.synopsis ? `
+                        <div class="modal-section">
+                            <h3><i class="fas fa-align-left"></i> Sinopse</h3>
+                            <p>${film.synopsis}</p>
+                        </div>
+                        ` : ''}
+                        
+                        ${hasThemes ? `
+                        <div class="modal-section">
+                            <h3><i class="fas fa-tags"></i> Temas</h3>
+                            ${uniqueThemes.map(theme => `<span class="theme-tag">${theme}</span>`).join('')}
+                        </div>
+                        ` : ''}
+                        
+                        ${film.trailer ? `
+                        <div class="modal-section">
+                            <h3><i class="fab fa-youtube"></i> Trailer</h3>
+                            <div class="modal-trailer">
+                                <iframe 
+                                    src="https://www.youtube.com/embed/${getYoutubeId(film.trailer)}" 
+                                    title="YouTube video player" 
+                                    frameborder="0" 
+                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                                    allowfullscreen>
+                                </iframe>
+                            </div>
+                        </div>
+                        ` : ''}
+                        
+                        ${film.planos_de_aula && film.planos_de_aula.length > 0 ? `
+                        <div class="modal-section">
+                            <h3><i class="fas fa-chalkboard-teacher"></i> Planos de Aula</h3>
+                            ${renderTeachingPlans(film)}
+                        </div>
+                        ` : ''}
+                    `;
+                }
+
+                // EXTRAI ID DO YOUTUBE DE UMA URL
+                function getYoutubeId(url) {
+                    if (!url) return null;
+                    
+                    // Padrões de URL do YouTube
+                    const patterns = [
+                        /(?:https?:\/\/)?(?:www\.)?youtube\.com\/watch\?v=([^&]+)/i,
+                        /(?:https?:\/\/)?(?:www\.)?youtu\.be\/([^?]+)/i,
+                        /(?:https?:\/\/)?(?:www\.)?youtube\.com\/embed\/([^?]+)/i
+                    ];
+                    
+                    for (const pattern of patterns) {
+                        const match = url.match(pattern);
+                        if (match && match[1]) {
+                            return match[1];
+                        }
+                    }
+                    
+                    return null;
+                }
+
+                // ABRE O MODAL COM DETALHES DO FILME
+                function openModal(film) {
+                    const modal = document.getElementById('filmModal');
+                    const modalContent = document.getElementById('modalContent');
+                    const closeBtn = document.querySelector('.modal .close');
+                    
+                    if (!modal || !modalContent || !closeBtn) {
+                        console.error("Elementos do modal não encontrados");
+                        return;
+                    }
+                    
+                    // Renderiza o conteúdo do modal
+                    modalContent.innerHTML = renderModalContent(film);
+                    
+                    // Exibe o modal
+                    modal.style.display = 'block';
+                    document.body.style.overflow = 'hidden';
+                    
+                    // Configura o evento de fechar no botão X
+                    closeBtn.onclick = function(e) {
+                        e.preventDefault();
+                        e.stopPropagation();
+                        closeModal();
+                    };
+                    
+                    // Configura o evento de fechar ao clicar fora do modal
+                    window.onclick = function(event) {
+                        if (event.target === modal) {
+                            closeModal();
+                        }
+                    };
+                    
+                    // Configura os controles da imagem do poster
+                    setTimeout(() => {
+                        const posterContainer = document.querySelector('.modal-poster-container');
+                        const poster = document.querySelector('.modal-poster');
+                        if (posterContainer && poster) {
+                            createImageControls(posterContainer, poster);
+                        }
+                        
+                        // Configura eventos para expandir/recolher planos de aula
+                        document.querySelectorAll('.btn-toggle-preview').forEach(button => {
+                            button.addEventListener('click', function() {
+                                const targetId = this.getAttribute('data-target');
+                                const targetElement = document.getElementById(targetId);
+                                if (targetElement) {
+                                    targetElement.style.display = 'block';
+                                }
+                            });
+                        });
+                        
+                        document.querySelectorAll('.btn-toggle-preview-close').forEach(button => {
+                            button.addEventListener('click', function() {
+                                const targetId = this.getAttribute('data-target');
+                                const targetElement = document.getElementById(targetId);
+                                if (targetElement) {
+                                    targetElement.style.display = 'none';
+                                }
+                            });
+                        });
+                    }, 100);
+                }
+
+                // FECHA O MODAL
+                function closeModal() {
+                    const modal = document.getElementById('filmModal');
+                    if (modal) {
+                        modal.style.display = 'none';
+                        document.body.style.overflow = '';
+                        window.onclick = null;
+                    }
+                }
+
+                // RENDERIZA A PAGINAÇÃO
+                function renderPagination() {
+                    const paginationContainer = document.getElementById('pagination');
+                    paginationContainer.innerHTML = '';
+                    
+                    const totalPages = Math.ceil(currentFilms.length / itemsPerPage);
+                    
+                    if (totalPages <= 1) {
+                        return;
+                    }
+                    
+                    // BOTÃO ANTERIOR
+                    const prevButton = document.createElement('button');
+                    prevButton.className = 'pagination-button';
+                    prevButton.innerHTML = '<i class="fas fa-chevron-left"></i>';
+                    prevButton.disabled = currentPage === 1;
+                    prevButton.addEventListener('click', () => {
+                        if (currentPage > 1) {
+                            currentPage--;
+                            renderFilms();
+                            renderPagination();
+                            window.scrollTo(0, 0);
+                        }
+                    });
+                    paginationContainer.appendChild(prevButton);
+                    
+                    // PÁGINAS
+                    const maxVisiblePages = 5;
+                    let startPage = Math.max(1, currentPage - Math.floor(maxVisiblePages / 2));
+                    let endPage = Math.min(totalPages, startPage + maxVisiblePages - 1);
+                    
+                    if (endPage - startPage + 1 < maxVisiblePages) {
+                        startPage = Math.max(1, endPage - maxVisiblePages + 1);
+                    }
+                    
+                    // PRIMEIRA PÁGINA
+                    if (startPage > 1) {
+                        const firstPageButton = document.createElement('button');
+                        firstPageButton.className = 'pagination-button';
+                        firstPageButton.textContent = '1';
+                        firstPageButton.addEventListener('click', () => {
+                            currentPage = 1;
+                            renderFilms();
+                            renderPagination();
+                            window.scrollTo(0, 0);
+                        });
+                        paginationContainer.appendChild(firstPageButton);
+                        
+                        if (startPage > 2) {
+                            const ellipsis = document.createElement('span');
+                            ellipsis.className = 'pagination-ellipsis';
+                            ellipsis.textContent = '...';
+                            paginationContainer.appendChild(ellipsis);
+                        }
+                    }
+                    
+                    // PÁGINAS NUMERADAS
+                    for (let i = startPage; i <= endPage; i++) {
+                        const pageButton = document.createElement('button');
+                        pageButton.className = `pagination-button ${i === currentPage ? 'active' : ''}`;
+                        pageButton.textContent = i;
+                        pageButton.addEventListener('click', () => {
+                            currentPage = i;
+                            renderFilms();
+                            renderPagination();
+                            window.scrollTo(0, 0);
+                        });
+                        paginationContainer.appendChild(pageButton);
+                    }
+                    
+                    // ÚLTIMA PÁGINA
+                    if (endPage < totalPages) {
+                        if (endPage < totalPages - 1) {
+                            const ellipsis = document.createElement('span');
+                            ellipsis.className = 'pagination-ellipsis';
+                            ellipsis.textContent = '...';
+                            paginationContainer.appendChild(ellipsis);
+                        }
+                        
+                        const lastPageButton = document.createElement('button');
+                        lastPageButton.className = 'pagination-button';
+                        lastPageButton.textContent = totalPages;
+                        lastPageButton.addEventListener('click', () => {
+                            currentPage = totalPages;
+                            renderFilms();
+                            renderPagination();
+                            window.scrollTo(0, 0);
+                        });
+                        paginationContainer.appendChild(lastPageButton);
+                    }
+                    
+                    // BOTÃO PRÓXIMO
+                    const nextButton = document.createElement('button');
+                    nextButton.className = 'pagination-button';
+                    nextButton.innerHTML = '<i class="fas fa-chevron-right"></i>';
+                    nextButton.disabled = currentPage === totalPages;
+                    nextButton.addEventListener('click', () => {
+                        if (currentPage < totalPages) {
+                            currentPage++;
+                            renderFilms();
+                            renderPagination();
+                            window.scrollTo(0, 0);
+                        }
+                    });
+                    paginationContainer.appendChild(nextButton);
+                }
+
+                /* ==========================================
+                   6. FUNÇÕES DE COMPARTILHAMENTO
+                   ========================================== */
+
+                // COMPARTILHAR NO WHATSAPP
+                function shareOnWhatsApp(filmTitle) {
+                    // Prepara a URL e texto para compartilhamento
+                    const shareUrl = filmTitle 
+                        ? `${window.location.origin}${window.location.pathname}filme.html?titulo=${encodeURIComponent(filmTitle)}`
+                        : window.location.href;
+                    
+                    const shareText = filmTitle 
+                        ? `Confira o filme "${filmTitle}" no catálogo de DVDs do Projeto Um Trem de Cinema IFMG Sabará`
+                        : 'Confira o catálogo de DVDs do Projeto Um Trem de Cinema IFMG Sabará';
+                    
+                    // Verifica se é dispositivo móvel
+                    const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+                    
+                    // Formata o texto e URL para compartilhamento
+                    const formattedText = encodeURIComponent(shareText + ' ' + shareUrl);
+                    
+                    // Usa API diferente dependendo se é mobile ou desktop
+                    const whatsappUrl = isMobile 
+                        ? `whatsapp://send?text=${formattedText}`
+                        : `https://web.whatsapp.com/send?text=${formattedText}`;
+                    
+                    // Abre em nova janela
+                    window.open(whatsappUrl, '_blank');
+                }
+
+                // COMPARTILHAR NO FACEBOOK
+                function shareOnFacebook(filmTitle) {
+                    // Prepara a URL para compartilhamento
+                    const shareUrl = filmTitle 
+                        ? `${window.location.origin}${window.location.pathname}filme.html?titulo=${encodeURIComponent(filmTitle)}`
+                        : window.location.href;
+                    
+                    const facebookUrl = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(shareUrl)}`;
+                    window.open(facebookUrl, '_blank');
+                }
+
+                // COMPARTILHAR NO TWITTER
+                function shareOnTwitter(filmTitle) {
+                    // Prepara a URL e texto para compartilhamento
+                    const shareUrl = filmTitle 
+                        ? `${window.location.origin}${window.location.pathname}filme.html?titulo=${encodeURIComponent(filmTitle)}`
+                        : window.location.href;
+                    
+                    const shareText = filmTitle 
+                        ? `Confira o filme "${filmTitle}" no catálogo de DVDs do Projeto Um Trem de Cinema IFMG Sabará`
+                        : 'Confira o catálogo de DVDs do Projeto Um Trem de Cinema IFMG Sabará';
+                    
+                    const twitterUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(shareText)}&url=${encodeURIComponent(shareUrl)}`;
+                    window.open(twitterUrl, '_blank');
+                }
+
+                // COPIAR LINK PARA ÁREA DE TRANSFERÊNCIA
+                function copyToClipboard(filmTitle) {
+                    // Prepara a URL para compartilhamento
+                    const shareUrl = filmTitle 
+                        ? `${window.location.origin}${window.location.pathname}filme.html?titulo=${encodeURIComponent(filmTitle)}`
+                        : window.location.href;
+                    
+                    navigator.clipboard.writeText(shareUrl).then(() => {
+                        // Mostra mensagem de sucesso
+                        const copySuccess = document.createElement('div');
+                        copySuccess.className = 'copy-success';
+                        copySuccess.textContent = 'Link copiado para a área de transferência!';
+                        document.body.appendChild(copySuccess);
+                        
+                        // Exibe a mensagem
+                        setTimeout(() => {
+                            copySuccess.classList.add('show');
+                        }, 10);
+                        
+                        // Remove a mensagem após 3 segundos
+                        setTimeout(() => {
+                            copySuccess.classList.remove('show');
+                            setTimeout(() => {
+                                document.body.removeChild(copySuccess);
+                            }, 300);
+                        }, 3000);
+                    }).catch(err => {
+                        console.error('Erro ao copiar texto: ', err);
                     });
                 }
-                
-                // RESETA TODOS OS FILTROS
-                function resetFilters() {
-                    // LIMPA CAMPO DE BUSCA
-                    document.getElementById('searchInput').value = '';
-                    
-                    // RESETA SELECTS
-                    document.getElementById('genreSelect').value = '';
-                    document.getElementById('classificationSelect').value = '';
-                    document.getElementById('sortSelect').value = 'title-asc';
-                    document.getElementById('accessibilitySelect').value = ''; 
-                  
-                    // ATUALIZA VISUALIZAÇÃO
-                    filterAndRenderFilms();
-                    updateFilmsCounter();
-                }
-                
+
                 /* ==========================================
-                   7. FUNÇÕES DE CARREGAMENTO DE DADOS
+                   7. INICIALIZAÇÃO DA APLICAÇÃO
                    ========================================== */
-                
-                // CARREGA DADOS DO CATÁLOGO
+
+                // CARREGA OS DADOS DO CATÁLOGO
                 async function loadCatalogData() {
                     try {
-                      console.log('Iniciando carregamento do catálogo...'); // Debug
-                        await new Promise(resolve => setTimeout(resolve, 800));
+                        // EXIBE MENSAGEM DE CARREGAMENTO
+                        document.getElementById('loadingMessage').style.display = 'flex';
+                        document.getElementById('filmGrid').style.display = 'none';
                         
+                        // CARREGA O CATÁLOGO
                         const response = await fetch('catalogo.json');
-                      console.log('Status da resposta:', response.status); // Debug
-                        if (!response.ok) throw new Error('Erro ao carregar o arquivo');
+                        if (!response.ok) {
+                            throw new Error('Erro ao carregar o catálogo');
+                        }
                         
                         const data = await response.json();
-                      console.log('Dados carregados:', data.length, 'filmes encontrados'); // Debug
-                        allFilms = data.map(transformFilmData);
+                        console.log(`Catálogo carregado com ${data.length} filmes`);
                         
-                        // EXTRAI GÊNEROS ÚNICOS
-                        allGenres = [...new Set(allFilms.map(film => film.genre).filter(Boolean))].sort();
+                        // TRANSFORMA OS DADOS
+                        allFilms = data.map(film => transformFilmData(film));
+                        currentFilms = [...allFilms];
                         
-                        // INICIALIZA INTERFACE
+                        // EXTRAI TODOS OS GÊNEROS ÚNICOS
+                        const genres = new Set();
+                        allFilms.forEach(film => {
+                            if (film.genre) {
+                                genres.add(film.genre);
+                            }
+                        });
+                        allGenres = [...genres].sort();
+                        
+                        // INICIALIZA OS FILTROS
                         initializeFilters();
-                        currentFilms = allFilms;
-                        document.getElementById('loadingMessage').style.display = 'none';
-                        updateFilmsCounter();
+                        
+                        // RENDERIZA OS FILMES E PAGINAÇÃO
                         renderFilms();
-                        renderPagination()
+                        renderPagination();
+                        updateFilmsCounter();
+                        
+                        // OCULTA MENSAGEM DE CARREGAMENTO
+                        document.getElementById('loadingMessage').style.display = 'none';
+                        document.getElementById('filmGrid').style.display = 'grid';
                         
                     } catch (error) {
                         console.error('Erro:', error);
@@ -454,478 +887,55 @@
                                 <i class="fas fa-exclamation-triangle"></i>
                                 <p>Erro ao carregar o catálogo</p>
                                 <p>${error.message}</p>
-                                <button onclick="loadCatalogData()" class="retry-button">
-                                    <i class="fas fa-sync-alt"></i> Tentar novamente
-                                </button>
                             </div>
                         `;
                     }
                 }
-                
-                /* ==========================================
-                   8. FUNÇÕES DO MODAL
-                   ========================================== */
-                
-                // CRIA LISTA DE TEMAS
-                function createThemesList(film) {
-                    const themes = [];
+
+                // INICIALIZA A APLICAÇÃO QUANDO O DOM ESTIVER PRONTO
+                document.addEventListener('DOMContentLoaded', function() {
+                    console.log("DOM carregado, iniciando aplicação...");
                     
-                    if (film.tema) {
-                        themes.push(...film.tema.split(',').map(t => t.trim()));
+                    // CARREGA OS DADOS DO CATÁLOGO
+                    loadCatalogData();
+                    
+                    // CONFIGURA EVENTOS DE FILTRO
+                    document.getElementById('searchInput').addEventListener('input', filterAndRenderFilms);
+                    document.getElementById('genreSelect').addEventListener('change', filterAndRenderFilms);
+                    document.getElementById('classificationSelect').addEventListener('change', filterAndRenderFilms);
+                    document.getElementById('accessibilitySelect').addEventListener('change', filterAndRenderFilms);
+                    document.getElementById('sortSelect').addEventListener('change', filterAndRenderFilms);
+                    
+                    // CONFIGURA MODAL DE FALE CONOSCO
+                    const modalFaleConosco = document.getElementById("modalFaleConosco");
+                    const btnFaleConosco = document.getElementById("btnFaleConosco");
+                    
+                    if (modalFaleConosco && btnFaleConosco) {
+                        const spanCloseFeedback = modalFaleConosco.querySelector(".close");
+                        
+                        btnFaleConosco.addEventListener("click", function() {
+                            modalFaleConosco.style.display = "block";
+                            setTimeout(() => {
+                                modalFaleConosco.classList.add('show');
+                            }, 10);
+                        });
+                        
+                        if (spanCloseFeedback) {
+                            spanCloseFeedback.addEventListener("click", function() {
+                                modalFaleConosco.classList.remove('show');
+                                setTimeout(() => {
+                                    modalFaleConosco.style.display = "none";
+                                }, 300);
+                            });
+                        }
+                        
+                        window.addEventListener("click", function(event) {
+                            if (event.target == modalFaleConosco) {
+                                modalFaleConosco.classList.remove('show');
+                                setTimeout(() => {
+                                    modalFaleConosco.style.display = "none";
+                                }, 300);
+                            }
+                        });
                     }
-                    
-                    if (film.tags) {
-                        themes.push(...film.tags.split(',').map(t => t.trim()));
-                    }
-                    
-                    return [...new Set(themes.filter(t => t))];
-                }
-
-
-// ==========================================
-// FUNÇÃO DE RENDERIZAÇÃO DOS PLANOS DE AULA
-// ==========================================
-function renderTeachingPlans(film) {
-    // Se não houver campo ou for vazio, retorna mensagem padrão
-    if (!film.planos_de_aula || film.planos_de_aula.length === 0) {
-        return '<p><i class="fas fa-info-circle"></i> Nenhum plano de aula disponível.</p>';
-    }
-    // Monta o HTML para cada plano de aula com funcionalidade de expandir/recolher
-    return film.planos_de_aula.map((plano, index) => `
-        <div class="teaching-plan-card">
-            <p><strong><i class="fas fa-graduation-cap"></i> Nível de Ensino:</strong> ${plano.nivel_ensino || ''}</p>
-            <p><strong><i class="fas fa-book"></i> Área de Conhecimento:</strong> ${plano.area_conhecimento || ''}</p>
-            <p><strong><i class="fas fa-globe"></i> Site:</strong> <a href="${plano.url}" target="_blank">${plano.site}</a></p>
-            <p><strong><i class="fas fa-info-circle"></i> Descrição:</strong> ${plano.descricao || ''}</p>
-            <div class="site-preview-toggle">
-                <button class="btn-toggle-preview" data-target="site-preview-${index}">
-                    <i class="fas fa-eye"></i> Visualizar site
-                </button>
-            </div>
-            <div class="site-preview" id="site-preview-${index}" style="display: none;">
-                <iframe src="${plano.url}" frameborder="0" width="100%" height="600px"></iframe>
-                <button class="btn-toggle-preview-close" data-target="site-preview-${index}">
-                    <i class="fas fa-times"></i> Fechar visualização
-                </button>
-            </div>
-        </div>
-    `).join('');
-}
-
-// ==========================================
-// FUNÇÃO DE RENDERIZAÇÃO DE OUTROS MATERIAIS
-// ==========================================
-function renderOtherMaterials(film) {
-    // Se não houver campo ou for vazio, retorna mensagem padrão
-    if (!film.materialOutros || film.materialOutros.length === 0) {
-        return '<p><i class="fas fa-info-circle"></i> Nenhum material adicional disponível.</p>';
-    }
-    // Monta o HTML para cada material adicional
-    return film.materialOutros.map(material => `
-        <div class="other-material-card">
-            <p><strong><i class="fas fa-bookmark"></i> Tipo:</strong> ${material.tipo || ''}</p>
-            <p><strong><i class="fas fa-file-alt"></i> Título:</strong> <a href="${material.url}" target="_blank">${material.titulo}</a></p>
-        </div>
-    `).join('');
-}
-
-// ==========================================
-// FUNÇÃO DE RENDERIZAÇÃO DO MODAL DE FILME
-// ==========================================
-function renderModalContent(film) {
-    const classification = film.classification || 0;
-    const classificationClass = getClassificationClass(classification);
-    const classificationText = classification <= 0 ? 'L' : classification;
-    
-    const themes = createThemesList(film);
-    const hasThemes = themes.length > 0;
-    
-    const hasAdditionalInfo = film.audiodescricao || film.closedCaption || film.website || 
-                            film.portaCurta || film.festivais || film.premios || 
-                            film.legendasOutras || film.materialOutros;
-    
-    // Prepara a URL para compartilhamento
-    const filmUrl = `https://umtremdecinemaifmg.github.io/catalogodedvds/filme.html?titulo=${encodeURIComponent(film.title)}`;
-    const shareText = `Confira o filme "${film.title}" no catálogo de DVDs do Projeto Um Trem de Cinema IFMG Sabará`;
-    
-    // Armazena globalmente para uso nas funções de compartilhamento
-    window.shareUrl = filmUrl;
-    window.shareText = shareText;
-    
-    return `
-        <div class="modal-header">
-            <div class="modal-poster-container">
-                <img src="${getDvdCover(film)}" alt="${film.title}" class="modal-poster" onerror="this.src='capas/progbrasil.png'">
-            </div>
-            <div class="modal-info">
-                <h2 class="modal-title">
-                    <span class="classification ${classificationClass}">${classificationText}</span>
-                    ${film.title}
-                </h2>
-                <div class="modal-details">
-                    ${film.director ? `<p><strong><i class="fas fa-user"></i> Direção:</strong> ${film.director}</p>` : ''}
-                    ${film.cast ? `<p><strong><i class="fas fa-users"></i> Elenco:</strong> ${film.cast}</p>` : ''}
-                    ${film.duration ? `<p><strong><i class="fas fa-clock"></i> Duração:</strong> ${film.duration} min</p>` : ''}
-                    ${film.genre ? `<p><strong><i class="fas fa-tag"></i> Gênero:</strong> ${film.genre}</p>` : ''}
-                    ${film.year ? `<p><strong><i class="fas fa-calendar-alt"></i> Ano:</strong> ${film.year}</p>` : ''}
-                    ${film.imdb.votantes ? `<p><strong><i class="fab fa-imdb"></i> IMDb:</strong> ${film.imdb.votantes}</p>` : ''}
-                    ${film.country ? `<p><strong><i class="fas fa-globe-americas"></i> País:</strong> ${film.country}</p>` : ''}
-                    ${film.state ? `<p><strong><i class="fas fa-map-marker-alt"></i> UF:</strong> ${film.state}</p>` : ''}
-                    ${film.city ? `<p><strong><i class="fas fa-city"></i> Cidade:</strong> ${film.city}</p>` : ''}
-                </div>
-                
-                <!-- Botões de compartilhamento -->
-                <div class="social-share-container">
-                    <div class="social-share-title">Compartilhar:</div>
-                    <div class="social-share-buttons">
-                        <button class="social-share-button whatsapp" title="Compartilhar no WhatsApp" onclick="shareOnWhatsApp()">
-                            <i class="fab fa-whatsapp"></i>
-                        </button>
-                        <button class="social-share-button facebook" title="Compartilhar no Facebook" onclick="shareOnFacebook()">
-                            <i class="fab fa-facebook-f"></i>
-                        </button>
-                        <button class="social-share-button twitter" title="Compartilhar no X (Twitter)" onclick="shareOnTwitter()">
-                            <i class="fab fa-twitter"></i>
-                        </button>
-                        <button class="social-share-button copy" title="Copiar link" onclick="copyToClipboard()">
-                            <i class="fas fa-link"></i>
-                        </button>
-                    </div>
-                </div>
-                
-                <a href="filme.html?titulo=${encodeURIComponent(film.title)}" class="btn-ver-mais">
-                    <i class="fas fa-external-link-alt"></i> Ver página completa
-                </a>
-            </div>
-        </div>
-        
-        ${film.synopsis ? `
-        <div class="modal-section">
-            <h3><i class="fas fa-align-left"></i> Sinopse</h3>
-            <p>${film.synopsis}</p>
-        </div>
-        ` : ''}
-        
-        ${hasThemes ? `
-        <div class="modal-section">
-            <h3><i class="fas fa-tags"></i> Temas</h3>
-            ${themes.map(theme => `<span class="theme-tag">${theme}</span>`).join('')}
-        </div>
-        ` : ''}
-        
-        ${film.trailer ? `
-        <div class="modal-section">
-            <h3><i class="fab fa-youtube"></i> Trailer</h3>
-            <div class="modal-trailer">
-                <iframe 
-                    src="https://www.youtube.com/embed/${getYoutubeId(film.trailer)}" 
-                    title="YouTube video player" 
-                    frameborder="0" 
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-                    allowfullscreen>
-                </iframe>
-            </div>
-        </div>
-        ` : ''}
-        
-        ${film.planos_de_aula && film.planos_de_aula.length > 0 ? `
-        <div class="modal-section">
-            <h3><i class="fas fa-chalkboard-teacher"></i> Planos de Aula</h3>
-            ${renderTeachingPlans(film)}
-        </div>
-        ` : ''}
-    `;
-}
-
-// EXTRAI ID DO YOUTUBE DE UMA URL
-function getYoutubeId(url) {
-    if (!url) return null;
-    
-    // Padrões de URL do YouTube
-    const patterns = [
-        /(?:https?:\/\/)?(?:www\.)?youtube\.com\/watch\?v=([^&]+)/i,
-        /(?:https?:\/\/)?(?:www\.)?youtu\.be\/([^?]+)/i,
-        /(?:https?:\/\/)?(?:www\.)?youtube\.com\/embed\/([^?]+)/i
-    ];
-    
-    for (const pattern of patterns) {
-        const match = url.match(pattern);
-        if (match && match[1]) {
-            return match[1];
-        }
-    }
-    
-    return null;
-}
-
-// ABRE O MODAL COM DETALHES DO FILME
-function openModal(film) {
-    const modal = document.getElementById('filmModal');
-    const modalContent = document.getElementById('modalContent');
-    const closeBtn = document.querySelector('.modal .close');
-    
-    // Renderiza o conteúdo do modal
-    modalContent.innerHTML = renderModalContent(film);
-    
-    // Exibe o modal
-    modal.style.display = 'block';
-    document.body.style.overflow = 'hidden';
-    
-    // Configura o evento de fechar no botão X
-    closeBtn.onclick = function() {
-        closeModal();
-    };
-    
-    // Configura o evento de fechar ao clicar fora do modal
-    window.addEventListener('click', function(event) {
-        if (event.target === modal) {
-            closeModal();
-        }
-    });
-    
-    // Configura os controles da imagem do poster
-    setTimeout(() => {
-        const posterContainer = document.querySelector('.modal-poster-container');
-        const poster = document.querySelector('.modal-poster');
-        if (posterContainer && poster) {
-            createImageControls(posterContainer, poster);
-        }
-        
-        // Configura eventos para expandir/recolher planos de aula
-        document.querySelectorAll('.btn-toggle-preview').forEach(button => {
-            button.addEventListener('click', function() {
-                const targetId = this.getAttribute('data-target');
-                const targetElement = document.getElementById(targetId);
-                if (targetElement) {
-                    targetElement.style.display = 'block';
-                }
-            });
-        });
-        
-        document.querySelectorAll('.btn-toggle-preview-close').forEach(button => {
-            button.addEventListener('click', function() {
-                const targetId = this.getAttribute('data-target');
-                const targetElement = document.getElementById(targetId);
-                if (targetElement) {
-                    targetElement.style.display = 'none';
-                }
-            });
-        });
-    }, 100);
-}
-
-// FECHA O MODAL
-function closeModal() {
-    const modal = document.getElementById('filmModal');
-    modal.style.display = 'none';
-    document.body.style.overflow = '';
-}
-
-// RENDERIZA A PAGINAÇÃO
-function renderPagination() {
-    const paginationContainer = document.getElementById('pagination');
-    paginationContainer.innerHTML = '';
-    
-    const totalPages = Math.ceil(currentFilms.length / itemsPerPage);
-    
-    if (totalPages <= 1) {
-        return;
-    }
-    
-    // BOTÃO ANTERIOR
-    const prevButton = document.createElement('button');
-    prevButton.className = 'pagination-button';
-    prevButton.innerHTML = '<i class="fas fa-chevron-left"></i>';
-    prevButton.disabled = currentPage === 1;
-    prevButton.addEventListener('click', () => {
-        if (currentPage > 1) {
-            currentPage--;
-            renderFilms();
-            renderPagination();
-            window.scrollTo(0, 0);
-        }
-    });
-    paginationContainer.appendChild(prevButton);
-    
-    // PÁGINAS
-    const maxVisiblePages = 5;
-    let startPage = Math.max(1, currentPage - Math.floor(maxVisiblePages / 2));
-    let endPage = Math.min(totalPages, startPage + maxVisiblePages - 1);
-    
-    if (endPage - startPage + 1 < maxVisiblePages) {
-        startPage = Math.max(1, endPage - maxVisiblePages + 1);
-    }
-    
-    // PRIMEIRA PÁGINA
-    if (startPage > 1) {
-        const firstPageButton = document.createElement('button');
-        firstPageButton.className = 'pagination-button';
-        firstPageButton.textContent = '1';
-        firstPageButton.addEventListener('click', () => {
-            currentPage = 1;
-            renderFilms();
-            renderPagination();
-            window.scrollTo(0, 0);
-        });
-        paginationContainer.appendChild(firstPageButton);
-        
-        if (startPage > 2) {
-            const ellipsis = document.createElement('span');
-            ellipsis.className = 'pagination-ellipsis';
-            ellipsis.textContent = '...';
-            paginationContainer.appendChild(ellipsis);
-        }
-    }
-    
-    // PÁGINAS NUMERADAS
-    for (let i = startPage; i <= endPage; i++) {
-        const pageButton = document.createElement('button');
-        pageButton.className = `pagination-button ${i === currentPage ? 'active' : ''}`;
-        pageButton.textContent = i;
-        pageButton.addEventListener('click', () => {
-            currentPage = i;
-            renderFilms();
-            renderPagination();
-            window.scrollTo(0, 0);
-        });
-        paginationContainer.appendChild(pageButton);
-    }
-    
-    // ÚLTIMA PÁGINA
-    if (endPage < totalPages) {
-        if (endPage < totalPages - 1) {
-            const ellipsis = document.createElement('span');
-            ellipsis.className = 'pagination-ellipsis';
-            ellipsis.textContent = '...';
-            paginationContainer.appendChild(ellipsis);
-        }
-        
-        const lastPageButton = document.createElement('button');
-        lastPageButton.className = 'pagination-button';
-        lastPageButton.textContent = totalPages;
-        lastPageButton.addEventListener('click', () => {
-            currentPage = totalPages;
-            renderFilms();
-            renderPagination();
-            window.scrollTo(0, 0);
-        });
-        paginationContainer.appendChild(lastPageButton);
-    }
-    
-    // BOTÃO PRÓXIMO
-    const nextButton = document.createElement('button');
-    nextButton.className = 'pagination-button';
-    nextButton.innerHTML = '<i class="fas fa-chevron-right"></i>';
-    nextButton.disabled = currentPage === totalPages;
-    nextButton.addEventListener('click', () => {
-        if (currentPage < totalPages) {
-            currentPage++;
-            renderFilms();
-            renderPagination();
-            window.scrollTo(0, 0);
-        }
-    });
-    paginationContainer.appendChild(nextButton);
-}
-
-// FUNÇÕES DE COMPARTILHAMENTO
-function shareOnWhatsApp() {
-    // Verifica se é dispositivo móvel
-    const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
-    
-    // Formata o texto e URL para compartilhamento
-    const shareText = encodeURIComponent(window.shareText + ' ' + window.shareUrl);
-    
-    // Usa API diferente dependendo se é mobile ou desktop
-    const whatsappUrl = isMobile 
-        ? `whatsapp://send?text=${shareText}`
-        : `https://web.whatsapp.com/send?text=${shareText}`;
-    
-    // Abre em nova janela
-    window.open(whatsappUrl, '_blank');
-}
-
-function shareOnFacebook() {
-    const facebookUrl = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(window.shareUrl)}`;
-    window.open(facebookUrl, '_blank');
-}
-
-function shareOnTwitter() {
-    const twitterUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(window.shareText)}&url=${encodeURIComponent(window.shareUrl)}`;
-    window.open(twitterUrl, '_blank');
-}
-
-function copyToClipboard() {
-    navigator.clipboard.writeText(window.shareUrl).then(() => {
-        // Mostra mensagem de sucesso
-        const copySuccess = document.createElement('div');
-        copySuccess.className = 'copy-success';
-        copySuccess.textContent = 'Link copiado para a área de transferência!';
-        document.body.appendChild(copySuccess);
-        
-        // Exibe a mensagem
-        setTimeout(() => {
-            copySuccess.classList.add('show');
-        }, 10);
-        
-        // Remove a mensagem após 3 segundos
-        setTimeout(() => {
-            copySuccess.classList.remove('show');
-            setTimeout(() => {
-                document.body.removeChild(copySuccess);
-            }, 300);
-        }, 3000);
-    }).catch(err => {
-        console.error('Erro ao copiar texto: ', err);
-    });
-}
-
-// CONFIGURA O MODAL DE FALE CONOSCO
-function setupFeedbackModal() {
-    const modalFaleConosco = document.getElementById("modalFaleConosco");
-    const btnFaleConosco = document.getElementById("btnFaleConosco");
-    const spanCloseFeedback = modalFaleConosco.querySelector(".close");
-    
-    btnFaleConosco.addEventListener("click", function() {
-        modalFaleConosco.style.display = "block";
-        setTimeout(() => {
-            modalFaleConosco.classList.add('show');
-        }, 10);
-    });
-    
-    spanCloseFeedback.addEventListener("click", function() {
-        modalFaleConosco.classList.remove('show');
-        setTimeout(() => {
-            modalFaleConosco.style.display = "none";
-        }, 300);
-    });
-    
-    window.addEventListener("click", function(event) {
-        if (event.target == modalFaleConosco) {
-            modalFaleConosco.classList.remove('show');
-            setTimeout(() => {
-                modalFaleConosco.style.display = "none";
-            }, 300);
-        }
-    });
-}
-
-// INICIALIZA A PÁGINA
-document.addEventListener('DOMContentLoaded', function() {
-    // CARREGA DADOS DO CATÁLOGO
-    loadCatalogData();
-    
-    // CONFIGURA EVENTOS DE FILTRO
-    document.getElementById('searchInput').addEventListener('input', filterAndRenderFilms);
-    document.getElementById('genreSelect').addEventListener('change', filterAndRenderFilms);
-    document.getElementById('classificationSelect').addEventListener('change', filterAndRenderFilms);
-    document.getElementById('accessibilitySelect').addEventListener('change', filterAndRenderFilms);
-    document.getElementById('sortSelect').addEventListener('change', filterAndRenderFilms);
-    
-    // CONFIGURA MODAL DE FALE CONOSCO
-    setupFeedbackModal();
-    
-    // Inicializa variáveis globais para compartilhamento
-    window.shareUrl = window.location.href;
-    window.shareText = "Confira o Catálogo de DVDs do Projeto Um Trem de Cinema IFMG Sabará";
-});
+                });

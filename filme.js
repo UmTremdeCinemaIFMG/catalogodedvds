@@ -17,13 +17,18 @@ function getUrlParameter(name) {
 async function loadFilmData() {
     try {
         // EXIBE MENSAGEM DE CARREGAMENTO
-        document.getElementById('loadingMessage').style.display = 'flex';
+        const loadingElement = document.querySelector('.loading');
+        if (loadingElement) {
+            loadingElement.style.display = 'flex';
+        }
         
         // OBTÉM O TÍTULO DO FILME DA URL
         const filmTitle = getUrlParameter('titulo');
         if (!filmTitle) {
             throw new Error('Título do filme não especificado na URL');
         }
+        
+        console.log("Buscando filme com título:", decodeURIComponent(filmTitle));
         
         // CARREGA O CATÁLOGO
         const response = await fetch('catalogo.json');
@@ -32,25 +37,37 @@ async function loadFilmData() {
         }
         
         const data = await response.json();
+        console.log("Catálogo carregado, total de filmes:", data.length);
         
-        // BUSCA O FILME PELO TÍTULO
-        const film = data.find(item => 
-            item["Título do filme"] && 
-            item["Título do filme"].toLowerCase() === decodeURIComponent(filmTitle).toLowerCase()
-        );
+        // BUSCA O FILME PELO TÍTULO - MELHORADA PARA NORMALIZAR STRINGS
+        const normalizedSearchTitle = decodeURIComponent(filmTitle).toLowerCase().trim();
+        console.log("Título normalizado para busca:", normalizedSearchTitle);
+        
+        const film = data.find(item => {
+            if (!item["Título do filme"]) return false;
+            const normalizedItemTitle = item["Título do filme"].toLowerCase().trim();
+            return normalizedItemTitle === normalizedSearchTitle;
+        });
         
         if (!film) {
+            console.error("Filme não encontrado. Títulos disponíveis:", 
+                data.slice(0, 10).map(f => f["Título do filme"]));
             throw new Error(`Filme "${decodeURIComponent(filmTitle)}" não encontrado no catálogo`);
         }
         
+        console.log("Filme encontrado:", film["Título do filme"]);
+        
         // TRANSFORMA OS DADOS DO FILME
         const transformedFilm = transformFilmData(film);
+        console.log("Dados transformados:", transformedFilm);
         
         // RENDERIZA OS DADOS DO FILME
         renderFilmData(transformedFilm);
         
         // OCULTA MENSAGEM DE CARREGAMENTO
-        document.getElementById('loadingMessage').style.display = 'none';
+        if (loadingElement) {
+            loadingElement.style.display = 'none';
+        }
         
         // CONFIGURA EVENTOS PARA EXPANDIR/RECOLHER PLANOS DE AULA
         setupExpandableContent();
@@ -63,16 +80,19 @@ async function loadFilmData() {
         
     } catch (error) {
         console.error('Erro:', error);
-        document.getElementById('loadingMessage').innerHTML = `
-            <div class="error-message">
-                <i class="fas fa-exclamation-triangle"></i>
-                <p>Erro ao carregar dados do filme</p>
-                <p>${error.message}</p>
-                <a href="index.html" class="btn-voltar">
-                    <i class="fas fa-arrow-left"></i> Voltar para o catálogo
-                </a>
-            </div>
-        `;
+        const filmContainer = document.getElementById('filmeContainer');
+        if (filmContainer) {
+            filmContainer.innerHTML = `
+                <div class="error-message">
+                    <i class="fas fa-exclamation-triangle"></i>
+                    <p>Erro ao carregar dados do filme</p>
+                    <p>${error.message}</p>
+                    <a href="index.html" class="btn-voltar">
+                        <i class="fas fa-arrow-left"></i> Voltar para o catálogo
+                    </a>
+                </div>
+            `;
+        }
     }
 }
 
@@ -143,7 +163,11 @@ function transformFilmData(originalFilm) {
 
 // FUNÇÃO PARA RENDERIZAR DADOS DO FILME
 function renderFilmData(film) {
-    const filmContainer = document.querySelector('.filme-container');
+    const filmContainer = document.getElementById('filmeContainer');
+    if (!filmContainer) {
+        console.error("Container do filme não encontrado");
+        return;
+    }
     
     // CLASSIFICAÇÃO INDICATIVA
     const classification = film.classification || 0;
@@ -326,6 +350,11 @@ function initializeCarousel(film) {
     const slidesContainer = document.getElementById('bannerSlides');
     const indicatorsContainer = document.getElementById('bannerIndicators');
     
+    if (!slidesContainer || !indicatorsContainer) {
+        console.error("Containers do carrossel não encontrados");
+        return;
+    }
+    
     // Prepara os itens de mídia para o carrossel
     mediaItems = [];
     
@@ -409,13 +438,20 @@ function initializeCarousel(film) {
     });
     
     // Configura os controles do carrossel
-    document.getElementById('prevSlide').addEventListener('click', () => {
-        goToSlide(currentSlide - 1);
-    });
+    const prevButton = document.getElementById('prevSlide');
+    const nextButton = document.getElementById('nextSlide');
     
-    document.getElementById('nextSlide').addEventListener('click', () => {
-        goToSlide(currentSlide + 1);
-    });
+    if (prevButton) {
+        prevButton.addEventListener('click', () => {
+            goToSlide(currentSlide - 1);
+        });
+    }
+    
+    if (nextButton) {
+        nextButton.addEventListener('click', () => {
+            goToSlide(currentSlide + 1);
+        });
+    }
     
     // Inicializa o primeiro slide
     slides = document.querySelectorAll('.banner-slide');
@@ -434,7 +470,9 @@ function goToSlide(index) {
     
     // Atualiza a posição dos slides
     const slidesContainer = document.getElementById('bannerSlides');
-    slidesContainer.style.transform = `translateX(-${currentSlide * 100}%)`;
+    if (slidesContainer) {
+        slidesContainer.style.transform = `translateX(-${currentSlide * 100}%)`;
+    }
     
     // Atualiza os indicadores
     const indicators = document.querySelectorAll('.banner-indicator');
@@ -609,7 +647,7 @@ function getClassificationClass(age) {
     }
 }
 
-// FUNÇÃO PARA EXTRAIR ID DO YOUTUBE DE UMA URL
+// EXTRAI ID DO YOUTUBE DE UMA URL
 function getYoutubeId(url) {
     if (!url) return null;
     
@@ -632,5 +670,39 @@ function getYoutubeId(url) {
 
 // INICIALIZA A PÁGINA
 document.addEventListener('DOMContentLoaded', function() {
+    console.log("Página de filme carregada, iniciando carregamento de dados...");
     loadFilmData();
+    
+    // CONFIGURA MODAL DE FALE CONOSCO
+    const modalFaleConosco = document.getElementById("modalFaleConosco");
+    const btnFaleConosco = document.getElementById("btnFaleConosco");
+    
+    if (modalFaleConosco && btnFaleConosco) {
+        const spanCloseFeedback = modalFaleConosco.querySelector(".close");
+        
+        btnFaleConosco.addEventListener("click", function() {
+            modalFaleConosco.style.display = "block";
+            setTimeout(() => {
+                modalFaleConosco.classList.add('show');
+            }, 10);
+        });
+        
+        if (spanCloseFeedback) {
+            spanCloseFeedback.addEventListener("click", function() {
+                modalFaleConosco.classList.remove('show');
+                setTimeout(() => {
+                    modalFaleConosco.style.display = "none";
+                }, 300);
+            });
+        }
+        
+        window.addEventListener("click", function(event) {
+            if (event.target == modalFaleConosco) {
+                modalFaleConosco.classList.remove('show');
+                setTimeout(() => {
+                    modalFaleConosco.style.display = "none";
+                }, 300);
+            }
+        });
+    }
 });
