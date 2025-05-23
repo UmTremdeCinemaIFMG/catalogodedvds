@@ -169,7 +169,7 @@
 }
 
 .filme-details strong {
-    color: var(--cinza-escuro);
+    color: var(--verde-escuro);
 }
 
 .filme-section {
@@ -181,7 +181,7 @@
 .filme-section h3 {
     font-size: 1.5rem;
     margin-bottom: 15px;
-    color: var(--cinza-escuro);
+    color: var(--verde-escuro);
     display: flex;
     align-items: center;
     gap: 10px;
