@@ -14275,7 +14275,7 @@
         "tags": "Operário, dia de folga, alucinação, Ditadura, Presídio, Resistência, Direitos humanos",
         "website": "www.400filmes.com",
         "Porta Curta": "https://www.curtanaescola.org.br/filme/?name=o_dia_em_que_dorival_encarou_a_guarda",
-        "festivais": "Festivais e prêmios nacionais\n39º Festival de Brasília do Cinema Brasileiro 2006 – Melhor Roteiro\nCine PE 2007 (Recife-PE)\nCurta SE 7 2007 (Aracaju-SE)\n14º Festival de Cinema e Vídeo de Cuiabá 2007 – Melhor Ator para Cláudio Jaborandy\n11º FAM 2007 (Florianópolis-SC) – Melhor Fotografia\n17º Cine Ceará 2007 (Fortaleza-CE) – Melhor Ator para Cláudio Jaborandy\nExibição especial no 12o Festival Brasileiro de Cinema Universitário 2007 (Niterói-RJ)\n2o Festival do Paraná de Cinema Brasileiro e Latino 2007\n2o Festival Macapá de Cinema e Vídeo 2007 (Amapá)\n6a Goiânia Mostra Curtas 2007\n2a Mostra Curta Audiovisual 2007 (Campinas-SP)\n17o Curta Cinema – Festival Internacional de Curtas do Rio de Janeiro 2007\nFestivais internacionais\n1st Brazilian Film Festival of Toronto 2007 (Canadá)\n25eme Festival Tous Courts 2007 (Aix-en-Provence - França)\n4o Festival Internacional de Cortometrajes FENACO 2007 (Cusco - Peru)\n",
+        "festivais": "Festivais e prêmios nacionais\n39º Festival de Brasília do Cinema Brasileiro 2006 – Melhor Roteiro\nCine PE 2007 (Recife-PE)\nCurta SE 7 2007 (Aracaju-SE)\n14º Festival de Cinema e Vídeo de Cuiabá 2007 – Melhor Ator para Cláudio Jaborandy\n11º FAM 2007 (Florianópolis-SC) – Melhor Fotografia\n17º Cine Ceará 2007 (Fortaleza-CE) – Melhor Ator para Cláudio Jaborandy\nExibição especial no 12o Festival Brasileiro de Cinema Universitário 2007 (Niterói-RJ)\n2o Festival do Paraná de Cinema Brasileiro e Latino 2007\n2o Festival Macapá de Cinema e Vídeo 2007 (Amapá)\n6a Goiânia Mostra Curtas 2007\n2a Mostra Curta Audiovisual 2007 (Campinas-SP)\n17o Curta Cinema – Festival Internacional de Curtas do Rio de Janeiro 2007\nFestivais internacionais\nSundance Film Festival\n1st Brazilian Film Festival of Toronto 2007 (Canadá)\n25eme Festival Tous Courts 2007 (Aix-en-Provence - França)\n4o Festival Internacional de Cortometrajes FENACO 2007 (Cusco - Peru)\n",
         "premios": "39º Festival de Brasília do Cinema Brasileiro 2006 – Melhor Roteiro\n14º Festival de Cinema e Vídeo de Cuiabá 2007 – Melhor Ator para Cláudio Jaborandy\n11º FAM 2007 (Florianópolis-SC) – Melhor Fotografia\n17º Cine Ceará 2007 (Fortaleza-CE) – Melhor Ator para Cláudio Jaborandy\n\n\n\n\n",
         "legendas_outras": "",
         "material_outros": "Fotos still",
@@ -14284,7 +14284,22 @@
         "Filmes": 77,
         "Nome do Programa": "Animação para adultos 3",
         "imageName": "animacao_para_adultos_3",
-        "planos_de_aula": [],
+        "planos_de_aula": [
+             {
+                "nivel_ensino": "Ensino Médio",
+                "area_conhecimento": "Sociologia",
+                "site": "Curta na Escola",
+                "url": "https://www.curtanaescola.org.br/relatos/Default.aspx?movie=399&teacherReport=1486",
+                "descricao": "Objetivos gerais: compreender e interpretar aspectos relevantes do filme assistido. Objetivos específicos:  Explorar o tema 'Poder' enquanto teoria e na prática;  Desenvolver o espírito reflexivo-crítico dos alunos."
+            },
+            {
+                "nivel_ensino": "Ensino Médio",
+                "area_conhecimento": "História",
+                "site": "Curta na Escola",
+                "url": "https://www.curtanaescola.org.br/relatos/Default.aspx?movie=399&teacherReport=1556",
+                "descricao": "O objetivo ao utilizar o curta 'O dia em que Dorival encarou a guarda', de Jorge Furtado, era entender o funcionamento de um regime ditatorial como o vivenciado no Brasil entre 1964 e 1985 e a impessoalidade do poder, que faz com que ordens não sejam questionadas."
+            }
+        ],
         "trailer": "",
         "imagens_adicionais": [],
         "videos": []
@@ -14310,8 +14325,8 @@
         "tags": "",
         "website": "",
         "Porta Curta": "https://portacurtas.org.br/busca/?termo=Leila%20para%20sempre%20Diniz",
-        "festivais": "Sundance Film Festival",
-        "premios": "Melhor Ator no Festival de Gramado em 1986, Melhor Curta no Festival de Gramado em 1986, Melhor Curta no Festival de Havana em 1986, Melhor Filme no Festival de Huelva em 1986, Melhor Filme - Crítica no Festival de Gramado em 1986, Melhor Filme - Crítica no Festival de Huelva em 1986, Melhor Filme - Júri Popular no Festival de Gramado em 1986",
+        "festivais": "",
+        "premios": "",
         "legendas_outras": "",
         "material_outros": "",
         "duracao FORMATO": "CURTA",
@@ -14319,22 +14334,7 @@
         "Filmes": 82,
         "Nome do Programa": "Brasileiras",
         "imageName": "brasileiras",
-        "planos_de_aula": [
-             {
-                "nivel_ensino": "Ensino Médio",
-                "area_conhecimento": "Sociologia",
-                "site": "Curta na Escola",
-                "url": "https://www.curtanaescola.org.br/relatos/Default.aspx?movie=399&teacherReport=1486",
-                "descricao": "Objetivos gerais: compreender e interpretar aspectos relevantes do filme assistido. Objetivos específicos:  Explorar o tema 'Poder' enquanto teoria e na prática;  Desenvolver o espírito reflexivo-crítico dos alunos."
-            },
-            {
-                "nivel_ensino": "Ensino Médio",
-                "area_conhecimento": "História",
-                "site": "Curta na Escola",
-                "url": "https://www.curtanaescola.org.br/relatos/Default.aspx?movie=399&teacherReport=1556",
-                "descricao": "O objetivo ao utilizar o curta 'O dia em que Dorival encarou a guarda', de Jorge Furtado, era entender o funcionamento de um regime ditatorial como o vivenciado no Brasil entre 1964 e 1985 e a impessoalidade do poder, que faz com que ordens não sejam questionadas."
-            }
-        ],
+        "planos_de_aula": [],
         "trailer": "",
         "imagens_adicionais": [],
         "videos": []
