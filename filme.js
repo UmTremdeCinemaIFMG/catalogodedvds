@@ -615,6 +615,12 @@ function renderOtherMaterials(film) {
     `).join('');
 }
 
+    filmContainer.innerHTML = `
+        <a href="index.html" class="btn-voltar">
+            <i class="fas fa-arrow-left"></i> Voltar para o catálogo
+        </a>
+
+
 // FUNÇÃO PARA CRIAR LISTA DE TEMAS
 function createThemesList(film) {
     const themes = [];
@@ -648,10 +654,7 @@ function getClassificationClass(age) {
 
 
 
-    filmContainer.innerHTML = `
-        <a href="index.html" class="btn-voltar">
-            <i class="fas fa-arrow-left"></i> Voltar para o catálogo
-        </a>
+
 
 
 
