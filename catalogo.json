@@ -26218,7 +26218,11 @@
         "planos_de_aula": [],
         "trailer": "",
         "imagens_adicionais": [],
-        "videos": [{"https://www.youtube.com/watch?v=SF6L3ukz9sI"}]
+        "videos": [
+            {
+                "url": "https://www.youtube.com/watch?v=SF6L3ukz9sI"
+            }
+        ]
     },
     {
         "Classificação Indicativa POR PGM": "Livre",
