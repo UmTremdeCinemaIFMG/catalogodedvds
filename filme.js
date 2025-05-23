@@ -96,6 +96,8 @@ async function loadFilmData() {
     }
 }
 
+
+
 // FUNÇÃO PARA TRANSFORMAR DADOS DO FILME
 function transformFilmData(originalFilm) {
     // TRATAMENTO ESPECIAL PARA NOTA IMDB
@@ -667,6 +669,18 @@ function getYoutubeId(url) {
     
     return null;
 }
+
+
+
+
+    // EVENTO DO FOOTER
+    document.querySelector('footer').addEventListener('click', function() {
+        window.open('https://umtremdecinema.wixsite.com/umtremdecinema', '_blank');
+    });
+
+
+
+
 
 // INICIALIZA A PÁGINA
 document.addEventListener('DOMContentLoaded', function() {
