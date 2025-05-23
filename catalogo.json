@@ -26148,8 +26148,9 @@
         "material_outros": [
             {
                 "tipo": "Notícia",
-                "titulo": "'Ilha das Flores' é eleito melhor curta-metragem brasileiro da história. Levantamento da Associação Brasileira de Críticos de Cinema (Abraccine) listou os 100 melhores filmes de todos os tempos. 'Infelizmente, segue muito atual em todos os sentidos', diz o diretor Jorge Furtado.",
-                "url":"https://g1.globo.com/rs/rio-grande-do-sul/noticia/2019/05/06/ilha-das-flores-e-eleito-melhor-curta-metragem-brasileiro-da-historia.ghtml" 
+                "titulo": "'Ilha das Flores' é eleito melhor curta-metragem brasileiro da história.",
+                "url":"https://g1.globo.com/rs/rio-grande-do-sul/noticia/2019/05/06/ilha-das-flores-e-eleito-melhor-curta-metragem-brasileiro-da-historia.ghtml",
+                "Descrição": "Levantamento da Associação Brasileira de Críticos de Cinema (Abraccine) listou os 100 melhores filmes de todos os tempos. 'Infelizmente, segue muito atual em todos os sentidos', diz o diretor Jorge Furtado."
             }
         ],
         "duracao FORMATO": "CURTA",
