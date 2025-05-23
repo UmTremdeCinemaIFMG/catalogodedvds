@@ -26183,7 +26183,11 @@
         ],
         "trailer": "https://www.youtube.com/watch?v=3l0DplBkiPU",
         "imagens_adicionais": [],
-        "videos": []
+        "videos": [
+            {
+                "url": "https://www.youtube.com/watch?v=SF6L3ukz9sI"
+            }
+        ]
     },
     {
         "Classificação Indicativa POR PGM": "Livre",
@@ -26217,11 +26221,7 @@
         "imageName": "classicos_e_modernos",
         "planos_de_aula": [],
         "trailer": "",
-        "imagens_adicionais": [
-            {
-                "url": "https://www.youtube.com/watch?v=SF6L3ukz9sI"
-            }
-        ],
+        "imagens_adicionais": [],
         "videos": []
     },
     {
