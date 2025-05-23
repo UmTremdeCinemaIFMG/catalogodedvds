@@ -14311,13 +14311,7 @@
         "website": "",
         "Porta Curta": "https://portacurtas.org.br/busca/?termo=Leila%20para%20sempre%20Diniz",
         "festivais": "Sundance Film Festival",
-        "premios": "Melhor Ator no Festival de Gramado em 1986, 
-Melhor Curta no Festival de Gramado em 1986, 
-Melhor Curta no Festival de Havana em 1986, 
-Melhor Filme no Festival de Huelva em 1986, 
-Melhor Filme - Crítica no Festival de Gramado em 1986, 
-Melhor Filme - Crítica no Festival de Huelva em 1986, 
-Melhor Filme - Júri Popular no Festival de Gramado em 1986",
+        "premios": "Melhor Ator no Festival de Gramado em 1986, Melhor Curta no Festival de Gramado em 1986, Melhor Curta no Festival de Havana em 1986, Melhor Filme no Festival de Huelva em 1986, Melhor Filme - Crítica no Festival de Gramado em 1986, Melhor Filme - Crítica no Festival de Huelva em 1986, Melhor Filme - Júri Popular no Festival de Gramado em 1986",
         "legendas_outras": "",
         "material_outros": "",
         "duracao FORMATO": "CURTA",
@@ -14326,19 +14320,19 @@ Melhor Filme - Júri Popular no Festival de Gramado em 1986",
         "Nome do Programa": "Brasileiras",
         "imageName": "brasileiras",
         "planos_de_aula": [
-            {
+             {
                 "nivel_ensino": "Ensino Médio",
                 "area_conhecimento": "Sociologia",
                 "site": "Curta na Escola",
                 "url": "https://www.curtanaescola.org.br/relatos/Default.aspx?movie=399&teacherReport=1486",
-                "descricao": "Objetivos gerais: compreender e interpretar aspectos relevantes do filme assistido. Objetivos específicos:  Explorar o tema "Poder" enquanto teoria e na prática;  Desenvolver o espírito reflexivo-crítico dos alunos."
+                "descricao": "Objetivos gerais: compreender e interpretar aspectos relevantes do filme assistido. Objetivos específicos:  Explorar o tema 'Poder' enquanto teoria e na prática;  Desenvolver o espírito reflexivo-crítico dos alunos."
             },
             {
                 "nivel_ensino": "Ensino Médio",
                 "area_conhecimento": "História",
                 "site": "Curta na Escola",
                 "url": "https://www.curtanaescola.org.br/relatos/Default.aspx?movie=399&teacherReport=1556",
-                "descricao": "O objetivo ao utilizar o curta "O dia em que Dorival encarou a guarda", de Jorge Furtado, era entender o funcionamento de um regime ditatorial como o vivenciado no Brasil entre 1964 e 1985 e a impessoalidade do poder, que faz com que ordens não sejam questionadas."
+                "descricao": "O objetivo ao utilizar o curta 'O dia em que Dorival encarou a guarda', de Jorge Furtado, era entender o funcionamento de um regime ditatorial como o vivenciado no Brasil entre 1964 e 1985 e a impessoalidade do poder, que faz com que ordens não sejam questionadas."
             }
         ],
         "trailer": "",
