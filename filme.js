@@ -612,13 +612,7 @@ function renderOtherMaterials(film) {
             <p><strong><i class="fas fa-bookmark"></i> Tipo:</strong> ${material.tipo || ''}</p>
             <p><strong><i class="fas fa-file-alt"></i> Título:</strong> <a href="${material.url}" target="_blank">${material.titulo}</a></p>
         </div>
-    `).join('');
-
-    filmContainer.innerHTML = `
-        <a href="index.html" class="btn-voltar">
-            <i class="fas fa-arrow-left"></i> Voltar para o catálogo
-        </a>
-    
+    `).join('');    
 }
 
 
