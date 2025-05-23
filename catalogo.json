@@ -2648,13 +2648,27 @@
         "festivais": "É Tudo Verdade, Festival de Brasilia e todos os festivais abaixo em que ganhou prêmios.",
         "premios": "- Melhor Filme de Média-metragem, Melhor Diretor, Melhor Roteiro, Prêmio Especial de Filme Gaúcho, no 28º Festival de Gramado – Cinema Latino e Brasileiro;\n- Eleito um dos 10 favoritos do público, no 11º Festival Internacional de Curtas Metragens de São Paulo;\n- Melhor Filme pelo júri popular e Prêmio UNICEF, no 42º Festival Internacional de Filme Documentário e Curta-Metragem de Bilbao – Espanha;\n- Melhor Filme 16mm, no 1º Prêmio APTC de Cinema;\n- Melhor Curta-metragem, eleito pelo público, na 4ª Mostra de Cinema Brasileiro de Tiradentes; \n- Melhor Média-metragem, no II Grande Prêmio Cinema Brasil;\n- Melhor Curta-metragem, no II Images du Noveau Monde – Quebéc/Canadá;\n- Melhor Filme Documentário, Melhor Direção, Roteiro e Montagem de Curta-metragem em 16mm, no 5º Festival de Cinema do Recife;\n- Melhor Filme eleito pelo público, na 3ª Mostra de Taguatinga de curta-metragem; \n- Melhor Filme, no Short Short Film Festival – Tokio/Japão – 2001;\n- Menção Honrosa, no Sexto Festival Internacional Santiago Álvarez In Memoriam – Cuba – 2005.",
         "legendas_outras": "",
-        "material_outros": "",
+        "material_outros": [
+                    {
+                        "tipo": "Dissertação",
+                        "titulo": "'Construindo conhecimentos sobre direitos humanos a partir de atividades escolares mediadas por filmes",
+                        "url":"https://repositorio.ufmg.br/handle/1843/44756"
+                    }
+        ],
         "duracao FORMATO": "MÉDIA",
         "PGM": 294,
         "Filmes": 139,
         "Nome do Programa": "Visões da Infância",
         "imageName": "visoes_da_infancia",
-        "planos_de_aula": [],
+        "planos_de_aula": [
+            {
+                "nivel_ensino": "estudantes a partir de 12  anos",
+                "area_conhecimento": "direitos das crianças",
+                "site": "Repositório Institucional da UFMG",
+                "url": "https://repositorio.ufmg.br/handle/1843/44756",
+                "descricao": "Atividade resultado do Mestrado Profissional de Matheus Felipe Santos que propõe um 'processo de reflexão a respeito da luta pelos direitos das crianças em nosso país'"
+            }
+        ],
         "trailer": "",
         "imagens_adicionais": [],
         "videos": []
@@ -26147,6 +26161,11 @@
         "legendas_outras": "",
         "material_outros": [
             {
+                "tipo": "Dissertação",
+                "titulo": "'Construindo conhecimentos sobre direitos humanos a partir de atividades escolares mediadas por filmes",
+                "url":"https://repositorio.ufmg.br/handle/1843/44756"
+            },
+            {
                 "tipo": "Notícia",
                 "titulo": "'Ilha das Flores' é eleito melhor curta-metragem brasileiro da história. Levantamento da Associação Brasileira de Críticos de Cinema (Abraccine) listou os 100 melhores filmes de todos os tempos. 'Infelizmente, segue muito atual em todos os sentidos', diz o diretor Jorge Furtado.",
                 "url":"https://g1.globo.com/rs/rio-grande-do-sul/noticia/2019/05/06/ilha-das-flores-e-eleito-melhor-curta-metragem-brasileiro-da-historia.ghtml"
@@ -26168,6 +26187,13 @@
         "Nome do Programa": "Clássicos e modernos",
         "imageName": "classicos_e_modernos",
         "planos_de_aula": [
+            {
+                "nivel_ensino": "estudantes a partir de 12  anos",
+                "area_conhecimento": "direito à igualdade social",
+                "site": "Repositório Institucional da UFMG",
+                "url": "https://repositorio.ufmg.br/handle/1843/44756",
+                "descricao": "Atividade resultado do Mestrado Profissional de Matheus Felipe Santos que propõe um 'processo de reflexão a respeito de desigualdade social e as tensões advindas dessa mazela no nosso país.'"
+            },
             {
                 "nivel_ensino": "Ensino Fundamental 2, Ensino Médio e Educação de Jovens e Adultos",
                 "area_conhecimento": "Língua Portuguesa, Geografia, Sociologia",
