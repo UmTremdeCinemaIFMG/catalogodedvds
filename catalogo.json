@@ -26217,12 +26217,12 @@
         "imageName": "classicos_e_modernos",
         "planos_de_aula": [],
         "trailer": "",
-        "imagens_adicionais": [],
-        "videos": [
+        "imagens_adicionais": [
             {
                 "url": "https://www.youtube.com/watch?v=SF6L3ukz9sI"
             }
-        ]
+        ],
+        "videos": []
     },
     {
         "Classificação Indicativa POR PGM": "Livre",
