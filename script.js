@@ -649,7 +649,7 @@ function renderOtherMaterials(film) {
                    9. INICIALIZAÇÃO E EVENTOS
                    ========================================== */
                 
-                // CONFIGURA TODOS OS EVENT LISTENERS
+          /*      // CONFIGURA TODOS OS EVENT LISTENERS
                 function setupEventListeners() {
                     // EVENTOS DE BUSCA E FILTROS
                     document.getElementById('searchInput').addEventListener('input', filterAndRenderFilms);
@@ -670,8 +670,8 @@ function renderOtherMaterials(film) {
                     document.querySelector('footer').addEventListener('click', function() {
                         window.open('https://umtremdecinema.wixsite.com/umtremdecinema', '_blank');
                     });
-                
-/*  // CONFIGURA TODOS OS EVENT LISTENERS
+                */
+  // CONFIGURA TODOS OS EVENT LISTENERS
 function setupEventListeners() {
     // EVENTOS DE BUSCA E FILTROS
     document.getElementById('searchInput').addEventListener('input', filterAndRenderFilms);
@@ -692,7 +692,7 @@ function setupEventListeners() {
     document.querySelector('footer').addEventListener('click', function() {
         window.open('https://umtremdecinema.wixsite.com/umtremdecinema', '_blank');
     });
-*/
+
     
 }
                 
