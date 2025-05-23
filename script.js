@@ -78,7 +78,7 @@
                         city: cleanField(originalFilm["cidade"]),
                         audiodescricao: cleanField(originalFilm["Audiodescrição"]),
                         closedCaption: cleanField(originalFilm["Closed Caption"]),
-                        trailer: cleanField(originalFilm["trailer"] || ''),
+                        //trailer: cleanField(originalFilm["trailer"] || ''),
                         synopsis: cleanField(originalFilm["Sinopse"]),
                         tema: cleanField(originalFilm["tema (Programadora Brasil)"]),
                         tags: cleanField(originalFilm["tags"]),
