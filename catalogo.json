@@ -26145,7 +26145,11 @@
         "festivais": "",
         "premios": "17º Festival do Cinema Brasileiro, Gramado, 1989:\n Melhor filme de curta metragem (júri oficial, júri popular e prêmio da crítica), Melhor roteiro, Melhor montagem e mais 4 prêmios regionais (Melhor Filme, Melhor Direção, Melhor Roteiro e Melhor Montagem). \n40º International Filmfestival, Berlim, Alemanha, 1990: \nUrso de Prata para curta metragem. \nPrêmio Air France, Rio de Janeiro, 1990: \nMelhor curta metragem brasileiro. \nPrêmio Margarida de Prata (CNBB), Brasília, 1990: \nMelhor curta-metragem. \n3º Festival Internacional do Curta-metragem, Clermont-Ferrand, França, 1991: \nPrêmio Especial do Júri, Melhor Filme (Júri Popular). \nAmerican Film and Video Festival, New York, 1991: \nBlue Ribbon Award. \n7º No-budget Kurzfilmfestival, Hamburgo, Alemanha, 1991: \nMelhor Filme. \nFestival International du Film de Region, Saint Paul, França, 1993: \nMelhor Filme. \nExibido na mostra \"Os 10 Melhores curtas brasileiros da década de 80\", no Cineclube Estação Botafogo, Rio de Janeiro, 1990.",
         "legendas_outras": "",
-        "material_outros": "",
+        "material_outros": [
+            {
+                "notícias":"https://g1.globo.com/rs/rio-grande-do-sul/noticia/2019/05/06/ilha-das-flores-e-eleito-melhor-curta-metragem-brasileiro-da-historia.ghtml" 
+            }
+        ],
         "duracao FORMATO": "CURTA",
         "PGM": 54,
         "Filmes": 30,
