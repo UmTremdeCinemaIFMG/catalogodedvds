@@ -14263,7 +14263,8 @@
         "GEN.": "Ficção",
         "Ano": "1986",
         "nota imdb": {
-            "votantes": "7,3/237"
+            "votantes": "7,9/375",
+            "url":"https://www.imdb.com/pt/title/tt0125721/"
         },
         "País": "Brasil",
         "UF": "RS",
@@ -14300,9 +14301,13 @@
                 "descricao": "O objetivo ao utilizar o curta 'O dia em que Dorival encarou a guarda', de Jorge Furtado, era entender o funcionamento de um regime ditatorial como o vivenciado no Brasil entre 1964 e 1985 e a impessoalidade do poder, que faz com que ordens não sejam questionadas."
             }
         ],
-        "trailer": "",
+        "trailer": "https://www.youtube.com/watch?v=O2I8ZXbIsuM",
         "imagens_adicionais": [],
-        "videos": []
+        "videos": [
+            {
+                "url": "https://www.youtube.com/watch?v=940vKqukhug"
+            }
+        ]
     },
     {
         "Classificação Indicativa POR PGM": "14",
