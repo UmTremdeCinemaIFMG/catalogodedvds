@@ -14072,7 +14072,8 @@
         "duracao FORMATO": "CURTA",
         "PGM": 138,
         "Filmes": 72,
-        "Nome do Programa": "Anos de Chumbo",
+        "Nome do Programa": "
+        ",
         "imageName": "anos_de_chumbo",
         "planos_de_aula": [],
         "trailer": "",
@@ -14283,8 +14284,8 @@
         "duracao FORMATO": "CURTA",
         "PGM": 138,
         "Filmes": 77,
-        "Nome do Programa": "Animação para adultos 3",
-        "imageName": "animacao_para_adultos_3",
+        "Nome do Programa": "Anos de Chumbo",
+        "imageName": "anos_de_chumbo",
         "planos_de_aula": [
              {
                 "nivel_ensino": "Ensino Médio",
