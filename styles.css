@@ -343,7 +343,7 @@
                 .film-poster {
                     width: auto;
                     height: 100%;
-                    position: absolute;
+                    position: right center;
                     top: 0;
                     transition: transform 0.5s ease;
                 }
