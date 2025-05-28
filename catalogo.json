@@ -29,9 +29,13 @@
         "Nome do Programa": "",
         "imageName": "o_menino_e_o_mundo_ad_libras",
         "planos_de_aula": [],
-        "trailer": "",
+        "trailer": "https://www.youtube.com/watch?v=bDvcQPnZtfc",
         "imagens_adicionais": [],
-        "videos": [],
+        "videos": [
+            {"url": "https://www.youtube.com/watch?v=tKwWkYL8aMs"}
+            {"url": "https://www.youtube.com/watch?v=dWL40XjLhv0"}
+            {"url": "https://www.youtube.com/watch?v=cpOb3db_Xuc"}
+        ],
         "Assistir Online": "https://assista.itauculturalplay.com.br/ItemDetail/673b6ebd3a22b068ff820af4/6669b07fa3cf1567277b392f"
     },
     {
@@ -64,9 +68,13 @@
         "Nome do Programa": "",
         "imageName": "o_menino_e_o_mundo",
         "planos_de_aula": [],
-        "trailer": "",
+        "trailer": "https://www.youtube.com/watch?v=bDvcQPnZtfc",
         "imagens_adicionais": [],
-        "videos": [],
+        "videos": [
+            {"url": "https://www.youtube.com/watch?v=tKwWkYL8aMs"}
+            {"url": "https://www.youtube.com/watch?v=dWL40XjLhv0"}
+            {"url": "https://www.youtube.com/watch?v=cpOb3db_Xuc"}
+        ],
         "Assistir Online": "https://assista.itauculturalplay.com.br/ItemDetail/673b6ebd3a22b068ff820af4/63973436a2fa051d3a3fa407"
     },
     {
