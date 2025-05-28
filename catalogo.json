@@ -28,12 +28,20 @@
         "Filmes": "",
         "Nome do Programa": "",
         "imageName": "o_menino_e_o_mundo_ad_libras",
-        "planos_de_aula": [],
+        "planos_de_aula": [
+            {
+                "nivel_ensino": "Ensino Fundamental I",
+                "area_conhecimento": "Expressão artística, plástica e musical, Educação Ambiental, Formas geométricas, Interferência gráfica",
+                "site": "Instituto Claro",
+                "url": "https://www.institutoclaro.org.br/educacao/para-ensinar/planos-de-aula/o-menino-e-o-mundo/",
+                "descricao": "Conhecer uma animação artesanal, com proposta estética diferente dos desenhos dos grandes estúdios. Refletir sobre o ponto de vista de uma criança: como ela olha o mundo e interage com ele. Refletir sobre o desenvolvimento econômico não planejado e seu impacto no meio ambiente. Conhecer desenhos simples que podem expressar pensamentos complexos"
+            }
+        ],
         "trailer": "https://www.youtube.com/watch?v=bDvcQPnZtfc",
         "imagens_adicionais": [],
         "videos": [
-            {"url": "https://www.youtube.com/watch?v=tKwWkYL8aMs"}
-            {"url": "https://www.youtube.com/watch?v=dWL40XjLhv0"}
+            {"url": "https://www.youtube.com/watch?v=tKwWkYL8aMs"},
+            {"url": "https://www.youtube.com/watch?v=dWL40XjLhv0"},
             {"url": "https://www.youtube.com/watch?v=cpOb3db_Xuc"}
         ],
         "Assistir Online": "https://assista.itauculturalplay.com.br/ItemDetail/673b6ebd3a22b068ff820af4/6669b07fa3cf1567277b392f"
@@ -67,12 +75,20 @@
         "Filmes": "",
         "Nome do Programa": "",
         "imageName": "o_menino_e_o_mundo",
-        "planos_de_aula": [],
+        "planos_de_aula": [            
+            {
+                "nivel_ensino": "Ensino Fundamental I",
+                "area_conhecimento": "Expressão artística, plástica e musical, Educação Ambiental, Formas geométricas, Interferência gráfica",
+                "site": "Instituto Claro",
+                "url": "https://www.institutoclaro.org.br/educacao/para-ensinar/planos-de-aula/o-menino-e-o-mundo/",
+                "descricao": "Conhecer uma animação artesanal, com proposta estética diferente dos desenhos dos grandes estúdios. Refletir sobre o ponto de vista de uma criança: como ela olha o mundo e interage com ele. Refletir sobre o desenvolvimento econômico não planejado e seu impacto no meio ambiente. Conhecer desenhos simples que podem expressar pensamentos complexos"
+            }
+        ],
         "trailer": "https://www.youtube.com/watch?v=bDvcQPnZtfc",
         "imagens_adicionais": [],
         "videos": [
-            {"url": "https://www.youtube.com/watch?v=tKwWkYL8aMs"}
-            {"url": "https://www.youtube.com/watch?v=dWL40XjLhv0"}
+            {"url": "https://www.youtube.com/watch?v=tKwWkYL8aMs"},
+            {"url": "https://www.youtube.com/watch?v=dWL40XjLhv0"},
             {"url": "https://www.youtube.com/watch?v=cpOb3db_Xuc"}
         ],
         "Assistir Online": "https://assista.itauculturalplay.com.br/ItemDetail/673b6ebd3a22b068ff820af4/63973436a2fa051d3a3fa407"
