@@ -21,9 +21,9 @@
                    2. ESTILOS BASE
                    ========================================== */
                 
-                /* RESET E CONFIGURAÇÕES BÁSICAS */
+                /* RESET E CONFIGURAÇÕES BÁSICAS Segoe UI */
                 body {
-                    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+                    font-family: 'open_sansextrabold', Tahoma, Geneva, Verdana, sans-serif;
                     margin: 0;
                     padding: 0;
                     background-color: var(--cinza-claro);
@@ -36,7 +36,7 @@
                     background-image: radial-gradient(ellipse at center, #19882c 1%, #025310 100%);
                     /*background-color: var(--verde-ifmg);*/
                     color: var(--branco);
-                    padding: 25px 0;
+                    padding: 0px 0;
                     text-align: center;
                     margin-bottom: 30px;
                     box-shadow: var(--sombra);
@@ -51,7 +51,7 @@
                     bottom: 0;
                     left: 0;
                     width: 100%;
-                    height: 5px;
+                    height: 0px;
                     background: linear-gradient(90deg, var(--verde-ifmg), var(--verde-escuro));
                 }
                 
@@ -71,7 +71,7 @@
                 .container {
                     max-width: 1200px;
                     margin: 0 auto;
-                    padding: 0 20px;
+                    padding: 10 20px;
                 }
                 
                 /* WRAPPER DOS CONTROLES */
@@ -679,7 +679,8 @@
     cursor: pointer;
     font-size: 16px;
     font-weight: 500;
-    transition: var(--transicao);
+    /*transition: var(--transicao)*/;
+  transition: background-color 0.3s ease;
 }
 
 .btn-full-page:hover {
@@ -1105,8 +1106,8 @@ a {
 }
 
 a:hover {
-    color: var(--verde-escuro); /* Muda cor no hover */
-    text-decoration: underline; /* Adiciona sublinhado no hover */
+    color: var(--branco); /* Muda cor no hover */
+    text-decoration: none; /* Adiciona sublinhado no hover */
 }
 
 /* Ajusta botão 'Ver Mais' no modal */
@@ -1115,17 +1116,18 @@ a:hover {
     margin-top: 10px; /* Espaço acima do botão */
     margin-right: 10px; /* Espaço à direita, se houver outro botão */
     padding: 6px 12px;
-    background-color: var(--cinza-claro);
-    color: var(--cinza-escuro); /* Cor diferente do link padrão */
-    border: 1px solid var(--cinza-medio);
+    background-color: var(--verde-ifmg);
+    color: white; /* Cor diferente do link padrão */
+    border: 1px solid var(--verde-ifmg);
     border-radius: 4px;
     font-size: 14px;
     font-weight: normal; /* Não negrito para diferenciar de links comuns */
     cursor: pointer;
+  transition: background-color 0.3s ease;
 }
 
 .btn-ver-mais:hover {
-    background-color: var(--cinza-medio);
+    background-color: var(--verde-ifmg);
     color: var(--branco);
     text-decoration: none;
 }
