@@ -597,6 +597,9 @@ async function initializeApp() {
     }
 }
 
+            // Botão Voltar ao Topo
+            var btnTopo = document.getElementById('btnVoltarTopo');
+
 /* ==========================================
    9. EVENT LISTENERS
    ========================================== */
