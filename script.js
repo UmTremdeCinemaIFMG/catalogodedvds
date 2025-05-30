@@ -597,8 +597,7 @@ async function initializeApp() {
     }
 }
 
-            // Botão Voltar ao Topo
-            var btnTopo = document.getElementById('btnVoltarTopo');
+
 
 /* ==========================================
    9. EVENT LISTENERS
@@ -613,6 +612,9 @@ document.addEventListener('DOMContentLoaded', () => {
     document.getElementById('genreSelect').addEventListener('change', filterAndRenderFilms);
     document.getElementById('accessibilitySelect').addEventListener('change', filterAndRenderFilms);
 
+            // Botão Voltar ao Topo
+            var btnTopo = document.getElementById('btnVoltarTopo');
+   
     // MODAL FALE CONOSCO
     const btnFaleConosco = document.getElementById('btnFaleConosco');
     const modalFaleConosco = document.getElementById('modalFaleConosco');
