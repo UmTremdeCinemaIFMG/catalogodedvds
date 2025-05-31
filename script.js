@@ -614,6 +614,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
             // Botão Voltar ao Topo
             var btnTopo = document.getElementById('btnVoltarTopo');
+   window.onscroll = function() {
+    if (document.body.scrollTop > 300 || document.documentElement.scrollTop > 300) {
+        btnTopo.style.display = "flex";
+    } else {
+        btnTopo.style.display = "none";
+    }
+};
    
     // MODAL FALE CONOSCO
     const btnFaleConosco = document.getElementById('btnFaleConosco');
