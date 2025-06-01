@@ -1188,3 +1188,36 @@ a:hover {
     z-index: 2;
 }
 
+
+
+
+/* ESTILO PARA BOTÃO VOLTAR AO TOPO (ADICIONADO) */
+.voltar-topo {
+    position: fixed;
+    bottom: 80px; /* Ajustado para ficar acima do botão Fale Conosco */
+    right: 20px;
+    background-color: var(--verde-ifmg);
+    color: var(--branco);
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: none; /* Inicialmente oculto */
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    box-shadow: var(--sombra);
+    transition: var(--transicao);
+    z-index: 99;
+    opacity: 0.7;
+}
+
+.voltar-topo:hover {
+    opacity: 1;
+    background-color: var(--verde-escuro);
+    transform: translateY(-5px);
+}
+
+.voltar-topo.show {
+    display: flex; /* Mostra o botão */
+}
+

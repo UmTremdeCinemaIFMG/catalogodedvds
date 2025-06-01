@@ -651,3 +651,31 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 });
 
+
+
+
+/* ==========================================
+   10. FUNCIONALIDADE DO BOTÃO VOLTAR AO TOPO (ADICIONADO)
+   ========================================== */
+document.addEventListener('DOMContentLoaded', function() {
+    const btnVoltarTopo = document.getElementById('btnVoltarTopo');
+
+    if (btnVoltarTopo) { // Verifica se o botão existe na página atual
+        window.addEventListener('scroll', function() {
+            if (window.scrollY > 300) { // Mostra o botão após rolar 300px
+                btnVoltarTopo.classList.add('show');
+            } else {
+                btnVoltarTopo.classList.remove('show');
+            }
+        });
+
+        btnVoltarTopo.addEventListener('click', function(e) {
+            e.preventDefault(); // Previne o comportamento padrão do link #
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+    }
+});
+
