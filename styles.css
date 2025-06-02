@@ -181,6 +181,21 @@
                 }
                 
                 /* ESTILO COMUM PARA TODAS AS CAIXAS DE FILTRO */
+
+.film-genres {
+    margin-top: 8px;
+}
+
+.genre-tag {
+    display: inline-block;
+    padding: 2px 8px;
+    margin: 2px;
+    border-radius: 12px;
+    background-color: #f0f0f0;
+    font-size: 0.9em;
+    color: #666;
+}
+
                 .filter-box {
                     position: relative;
                 }
