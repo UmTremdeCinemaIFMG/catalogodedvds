@@ -351,10 +351,10 @@
     width: auto;
     height: 100%;
     position: absolute;
-    right: 0;
+    right: -50%;
     top: 0;
     transition: transform 0.3s ease; 
-                  object-fit: cover;
+                  
 }
 
 .film-poster-container {
