@@ -353,6 +353,7 @@
     position: absolute;
     right: 0;
     top: 0;
+                   transform: translateX(-50%); /* Começa mostrando a borda direita */
     transition: transform 0.3s ease; 
                   
 }
