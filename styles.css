@@ -351,10 +351,9 @@
     width: auto;
     height: 100%;
     position: absolute;
-    right: 0; /* Adicionar esta linha */
+    right: 0;
     top: 0;
-    transition: transform 0.5s ease;
-    object-fit: cover; /* Adicionar esta linha */
+    transition: transform 0.3s ease; 
 }
 
 .film-poster-container {
@@ -365,7 +364,8 @@
     border-bottom: 3px solid var(--verde-ifmg);
 }
                 
-                .film-poster-controls {
+                .film-poster-controls,
+.modal-poster-controls  {
                     position: absolute;
                     top: 0;
                     left: 0;
@@ -374,10 +374,17 @@
                     display: flex;
                     justify-content: space-between;
                     align-items: center;
-                    pointer-events: none;
+                   opacity: 0;
+    transition: opacity 0.3s ease;
                 }
-                
-                .film-poster-control {
+
+.film-poster-container:hover .film-poster-controls,
+.modal-poster-container:hover .modal-poster-controls {
+    opacity: 1;
+}
+
+                .film-poster-control,
+.modal-poster-control {
                     background-color: rgba(0, 0, 0, 0.5);
                     color: white;
                     border: none;
@@ -388,13 +395,13 @@
                     align-items: center;
                     justify-content: center;
                     cursor: pointer;
-                    pointer-events: auto;
                     margin: 0 10px;
                     transition: var(--transicao);
                     z-index: 2;
                 }
                 
-                .film-poster-control:hover {
+                .film-poster-control:hover,
+.modal-poster-control:hover {
                     background-color: rgba(0, 0, 0, 0.8);
                     transform: scale(1.1);
                 }
