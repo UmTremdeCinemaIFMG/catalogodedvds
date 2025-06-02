@@ -726,12 +726,12 @@ function initializePosterControls() {
         if (prev && next) {
             prev.addEventListener('click', (e) => {
                 e.stopPropagation(); // Previne que o modal abra
-                img.style.right = '10%';
+                img.style.left = '10%';
             });
             
             next.addEventListener('click', (e) => {
                 e.stopPropagation(); // Previne que o modal abra
-                img.style.right = '.film-poster';
+                img.style.right = '0';
             });
         }
     });
