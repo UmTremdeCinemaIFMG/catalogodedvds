@@ -731,7 +731,7 @@ function initializePosterControls() {
             
             next.addEventListener('click', (e) => {
                 e.stopPropagation(); // Previne que o modal abra
-                img.style.right = '0';
+                img.style.right = '10%';
             });
         }
     });
