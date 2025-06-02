@@ -369,6 +369,12 @@ function renderFilms() {
                     class="film-poster" 
                     onerror="this.onerror=null; this.src='capas/progbrasil.png';"
                 >
+                
+        <div class="film-poster-controls">
+            <button class="film-poster-control prev"><i class="fas fa-chevron-left"></i></button>
+            <button class="film-poster-control next"><i class="fas fa-chevron-right"></i></button>
+        </div>
+                
                 <span class="classification ${classificationClass}">${classificationText}</span>
             </div>
             <div class="film-info">
@@ -387,6 +393,8 @@ function renderFilms() {
         filmCard.addEventListener('click', () => openModal(film));
         filmGrid.appendChild(filmCard);
     });
+
+ initializePosterControls(); 
 }
 
 // RENDERIZA A PAGINAÇÃO
@@ -479,6 +487,12 @@ function openModal(film) {
                     class="modal-poster" 
                     onerror="this.onerror=null; this.src='capas/progbrasil.png';"
                 >
+
+            <div class="modal-poster-controls">
+                <button class="modal-poster-control prev"><i class="fas fa-chevron-left"></i></button>
+                <button class="modal-poster-control next"><i class="fas fa-chevron-right"></i></button>
+            </div>
+                
                 <span class="classification ${classificationClass}">${classificationText}</span>
             </div>
         </div>
@@ -555,6 +569,7 @@ function openModal(film) {
     modal.style.display = 'block';
     setTimeout(() => {
         modal.classList.add('show');
+       initializePosterControls();
     }, 10);
     
     document.addEventListener('keydown', handleKeyDown);
@@ -699,4 +714,43 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 });
+
+// CONTROLE DE ROLAGEM DAS CAPAS DOS FILMES
+function initializePosterControls() {
+    // Para cards na página principal
+    document.querySelectorAll('.film-poster-container').forEach(container => {
+        const img = container.querySelector('.film-poster');
+        const prev = container.querySelector('.film-poster-control.prev');
+        const next = container.querySelector('.film-poster-control.next');
+        
+        if (prev && next) {
+            prev.addEventListener('click', (e) => {
+                e.stopPropagation(); // Previne que o modal abra
+                img.style.right = '0';
+            });
+            
+            next.addEventListener('click', (e) => {
+                e.stopPropagation(); // Previne que o modal abra
+                img.style.right = '50%';
+            });
+        }
+    });
+
+    // Para o modal
+    document.querySelectorAll('.modal-poster-container').forEach(container => {
+        const img = container.querySelector('.modal-poster');
+        const prev = container.querySelector('.modal-poster-control.prev');
+        const next = container.querySelector('.modal-poster-control.next');
+        
+        if (prev && next) {
+            prev.addEventListener('click', () => {
+                img.style.right = '0';
+            });
+            
+            next.addEventListener('click', () => {
+                img.style.right = '50%';
+            });
+        }
+    });
+}
 
