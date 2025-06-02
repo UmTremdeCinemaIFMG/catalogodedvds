@@ -67,7 +67,8 @@ function transformFilmData(originalFilm) {
         director: cleanField(originalFilm["Direção"]),
         cast: cleanField(originalFilm["Elenco"]),
         duration: parseInt(originalFilm["Dur.(´)"]) || 0,
-        genres: [
+        genre: cleanField(originalFilm["GEN."]), // mantemos o campo original para compatibilidade
+       genres: [
         ...(cleanField(originalFilm["GEN."]) ? [cleanField(originalFilm["GEN."])] : []),
         ...(cleanField(originalFilm["Gênero"]) ? cleanField(originalFilm["Gênero"]).split(',').map(g => g.trim()) : [])
     ].filter(g => g),
