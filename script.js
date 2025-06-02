@@ -726,7 +726,7 @@ function initializePosterControls() {
         if (prev && next) {
             prev.addEventListener('click', (e) => {
                 e.stopPropagation(); // Previne que o modal abra
-                img.style.left = '10%';
+                img.style.right = '10%';
             });
             
             next.addEventListener('click', (e) => {
