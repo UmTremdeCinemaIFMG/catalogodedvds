@@ -354,6 +354,7 @@
     right: 0;
     top: 0;
     transition: transform 0.3s ease; 
+                  object-fit: cover;
 }
 
 .film-poster-container {
