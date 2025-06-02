@@ -1682,14 +1682,30 @@
     "cidade": "",
     "Audiodescrição": "",
     "Closed Caption": "",
-    "Sinopse": "Baseado numa lenda aborígine australiana, as crianças vão saber porque o canguru salta em duas patas, além de aprender que ele se chama Bora e de conhecer as canções, os instrumentos e a pintura corporal usada por esse povo.",
+    "Sinopse": "Baseado em uma história de cordel de J. Borges, renomado artista popular e produzido inteiramente com xilogravuras originais do próprio autor. Um rapaz se apaixona por uma misteriosa moça num baile de carnaval do interior",
     "tema (Programadora Brasil)": "",
     "tags": "",
-    "website": "www.2dlab.com.br",
-    "festivais": "10/2004 – Chicago Children’s Film Festival - USA\n03/2005 - New York International Children's Film Festival - USA\n07/2005 – Anima Mundi – Brasil \n",
+    "website": "",
+    "festivais": "",
     "premios": "",
     "legendas_outras": "",
-    "material_outros": "",
+    "material_outros": [
+      {
+        "tipo": "Lenda",
+        "titulo": "Lenda da moça que dançou depois de morta",
+        "url": "https://www.lendas-gauchas.radar-rs.com.br/lenda-da-moca-que-dancou-depois-de-morta/"
+      },
+      {
+        "tipo": "Lenda",
+        "titulo": "Lenda da moça que dançou depois de morta",
+        "url": "https://eixodoleitorcrateus.blogspot.com/2016/07/a-moca-que-dancou-depois-de-morta.html"
+      },
+      {
+        "tipo": "Lenda",
+        "titulo": "Lenda da moça que dançou depois de morta ou Defunta Que Dança ou Dançarina Defunta ou Moça Morta",
+        "url": "https://litera.mus.br/a-moca-que-dancou-depois-de-morta/"
+      }
+    ],
     "duracao FORMATO": "CURTA",
     "PGM": 34,
     "Filmes": 104,
@@ -27673,11 +27689,11 @@
     "cidade": "",
     "Audiodescrição": "",
     "Closed Caption": "",
-    "Sinopse": "",
+    "Sinopse": "Baseado numa lenda aborígine australiana, as crianças vão saber porque o canguru salta em duas patas, além de aprender que ele se chama Bora e de conhecer as canções, os instrumentos e a pintura corporal usada por esse povo.",
     "tema (Programadora Brasil)": "",
     "tags": "",
-    "website": "",
-    "festivais": "",
+    "website": "www.2dlab.com",
+    "festivais": "10/2004 – Chicago Children’s Film Festival - USA\n03/2005 - New York International Children's Film Festival - USA\n07/2005 – Anima Mundi – Brasil \n",
     "premios": "",
     "legendas_outras": "",
     "material_outros": "",
@@ -27690,7 +27706,7 @@
     "trailer": "",
     "imagens_adicionais": [],
     "videos": [],
-    "Assistir Online": ""
+    "Assistir Online": "https://www.youtube.com/watch?v=flS4JplxKA4"
   },
   {
     "Classificação Indicativa POR PGM": "12",
