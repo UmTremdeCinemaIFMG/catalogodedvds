@@ -109,7 +109,7 @@ function sortFilms(films, sortOption) {
     
     switch(sortOption) {
         case 'imdb-desc':
-            sortedFilms.sort((b, a) => b.imdb - a.imdb);
+            sortedFilms.sort((a, b) => b.imdb - a.imdb);
             break;
         case 'imdb-asc':
             sortedFilms.sort((a, b) => a.imdb - b.imdb);
