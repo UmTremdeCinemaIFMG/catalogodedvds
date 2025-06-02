@@ -161,10 +161,51 @@ function transformFilmData(originalFilm) {
         videos: originalFilm["videos"] || [],
         imagens_adicionais: originalFilm["imagens_adicionais"] || []
     };
+    let odsArray = [];
+    if (originalFilm["ODS"]) {
+        // Converte a string dos ODS em um array, removendo espaços extras
+        odsArray = originalFilm["ODS"].split(',')
+            .map(ods => ods.trim())
+            .filter(ods => ods); // Remove itens vazios
+    }
+
+    return {
+        // ... outros campos existentes ...
+        ods: odsArray,
+        // ... resto do código
+    };
 }
 
 // FUNÇÃO PARA RENDERIZAR DADOS DO FILME
 function renderFilmData(film) {
+
+    // ODS
+if (film.ods && film.ods.length > 0) {
+    filmContent += `
+    <div class="filme-section">
+        <h3><i class="fas fa-globe-americas"></i> Objetivos de Desenvolvimento Sustentável</h3>
+        <div class="ods-container">
+            ${film.ods.map(ods => {
+                const odsNumber = ods.match(/\d+/); // Extrai o número do ODS
+                if (odsNumber) {
+                    return `
+                        <a href="https://brasil.un.org/pt-br/sdgs/${odsNumber[0]}" 
+                           target="_blank" 
+                           class="ods-icon" 
+                           title="ODS ${ods}">
+                            <img src="https://brasil.un.org/sites/default/files/styles/large/public/2020-09/E-WEB-Goal-${odsNumber[0]}.png" 
+                                 alt="Ícone do ODS ${ods}" 
+                                 loading="lazy">
+                        </a>
+                    `;
+                }
+                return '';
+            }).join('')}
+        </div>
+    </div>
+    `;
+}
+    
     const filmContainer = document.getElementById('filmeContainer');
     if (!filmContainer) {
         console.error("Container do filme não encontrado");
