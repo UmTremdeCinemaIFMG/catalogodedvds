@@ -67,7 +67,7 @@ function transformFilmData(originalFilm) {
         director: cleanField(originalFilm["Direção"]),
         cast: cleanField(originalFilm["Elenco"]),
         duration: parseInt(originalFilm["Dur.(´)"]) || 0,
-        genre: [
+        genres: [
         ...(cleanField(originalFilm["GEN."]) ? [cleanField(originalFilm["GEN."])] : []),
         ...(cleanField(originalFilm["Gênero"]) ? cleanField(originalFilm["Gênero"]).split(',').map(g => g.trim()) : [])
     ].filter(g => g),
@@ -164,7 +164,9 @@ function filterAndRenderFilms() {
                 (film.tags && film.tags.toLowerCase().includes(searchTerm)) ||
                 (film.dvd && film.dvd.toLowerCase().includes(searchTerm));
             
-            const matchesGenre = !selectedGenre || film.genres.includes(selectedGenre);
+           const matchesGenre = !selectedGenre || 
+    (film.genres && film.genres.includes(selectedGenre)) || 
+    film.genre === selectedGenre;
             
             const matchesClassification = !selectedClassification || 
                 film.classification === parseInt(selectedClassification) ||
