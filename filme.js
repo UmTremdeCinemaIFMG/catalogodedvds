@@ -45,7 +45,7 @@ async function loadFilmData() {
         
         const film = data.find(item => {
             if (!item["Título do filme"]) return false;
-            const normalizedItemTitle = item["Título do filme"].toLowerCase().trim();
+            const normalizedItemTitle = String(item["Título do filme"]).toLowerCase().trim();
             return normalizedItemTitle === normalizedSearchTitle;
         });
         
