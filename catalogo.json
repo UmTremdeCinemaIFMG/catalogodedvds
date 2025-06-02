@@ -1695,11 +1695,19 @@
     "Filmes": 104,
     "Nome do Programa": "Literatura e Cinema",
     "imageName": "literatura_e_cinema",
-    "planos_de_aula": [],
+    "planos_de_aula": [
+      {
+        "nivel_ensino": "8º e 9º ano",
+        "area_conhecimento": "Ética, saúde e orientação sexual.",
+        "site": "Blog Sala de Aula",
+        "url": "https://edusaladeaula.wordpress.com/2013/02/22/2/",
+        "descricao": "Identificar as consequências de um modo de vida prejudicial à saúde compreendendo que as questões pertinentes atingem toda sociedade e podem fazê-la refém da violência..."
+      }
+    ],
     "trailer": "",
     "imagens_adicionais": [],
     "videos": [],
-    "Assistir Online": "https://portacurtas.org.br/busca/?termo=Moça%20que%20Dançou%20depois%20de%20Morta,%20A"
+    "Assistir Online": ""
   },
   {
     "Classificação Indicativa POR PGM": "Livre",
