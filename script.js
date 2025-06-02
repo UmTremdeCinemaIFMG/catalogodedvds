@@ -222,6 +222,12 @@ function updateFilmsCounter() {
 function initializeFilters() {
     const genreSelect = document.getElementById('genreSelect');
     genreSelect.innerHTML = '<option value="">Todos os Gêneros</option>';
+ // Coleta todos os gêneros únicos
+    allGenres = [...new Set(allFilms.flatMap(film => 
+        film.genres || [film.genre]
+    ).filter(Boolean))].sort();
+    
+    // Adiciona as opções ao select
     allGenres.forEach(genre => {
         const option = document.createElement('option');
         option.value = genre;
@@ -370,8 +376,10 @@ function renderFilms() {
                 <div class="film-details">
                     <span><i class="fas fa-clock"></i> ${film.duration || '?'} min</span>
                     <span><i class="fas fa-calendar-alt"></i> ${film.year || '?'}</span>
-                    ${film.genres.map(genre => `<span class="genre-tag">${genre}</span>`).join('')}
-                </div>
+               </div>
+               <div class="film-genres">
+            ${film.genres ? film.genres.map(genre => `<span class="genre-tag">${genre}</span>`).join('') : ''}
+        </div>
             </div>
         `;
         
