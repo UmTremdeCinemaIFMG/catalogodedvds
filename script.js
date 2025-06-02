@@ -726,12 +726,12 @@ function initializePosterControls() {
         if (prev && next) {
             prev.addEventListener('click', (e) => {
                 e.stopPropagation(); // Previne que o modal abra
-                img.style.transform = 'translateX(0)';
+                img.style.transform = 'translateX(50%)';
             });
             
             next.addEventListener('click', (e) => {
                 e.stopPropagation(); // Previne que o modal abra
-                img.style.transform = 'translateX(-50%)';
+                img.style.transform = 'translateX(0)';
             });
         }
     });
