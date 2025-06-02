@@ -742,13 +742,15 @@ function initializePosterControls() {
         const prev = container.querySelector('.modal-poster-control.prev');
         const next = container.querySelector('.modal-poster-control.next');
         
-        if (prev && next) {
-            prev.addEventListener('click', () => {
-                img.style.right = '50%';
+     if (prev && next) {
+            prev.addEventListener('click', (e) => {
+                e.stopPropagation(); // Previne que o modal abra
+                img.style.transform = 'translateX(50%)';
             });
             
-            next.addEventListener('click', () => {
-                img.style.right = '0';
+            next.addEventListener('click', (e) => {
+                e.stopPropagation(); // Previne que o modal abra
+                img.style.transform = 'translateX(0)';
             });
         }
     });
