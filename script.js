@@ -68,10 +68,10 @@ function transformFilmData(originalFilm) {
         cast: cleanField(originalFilm["Elenco"]),
         duration: parseInt(originalFilm["Dur.(´)"]) || 0,
         genre: cleanField(originalFilm["GEN."]), // mantemos o campo original para compatibilidade
-       genres: [
+        genres: [...new Set([  // usando Set para remover duplicatas
         ...(cleanField(originalFilm["GEN."]) ? [cleanField(originalFilm["GEN."])] : []),
         ...(cleanField(originalFilm["Gênero"]) ? cleanField(originalFilm["Gênero"]).split(',').map(g => g.trim()) : [])
-    ].filter(g => g),
+    ])].filter(g => g), // Remove valores vazios
         year: parseInt(originalFilm["Ano"]) || 0,
         imdb: imdbData,
         country: cleanField(originalFilm["País"]),
