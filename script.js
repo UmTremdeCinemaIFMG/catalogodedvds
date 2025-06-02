@@ -108,7 +108,13 @@ function sortFilms(films, sortOption) {
     const sortedFilms = [...films];
     
     switch(sortOption) {
-        case 'title-asc':
+        case 'imdb-desc':
+            sortedFilms.sort((b, a) => b.imdb - a.imdb);
+            break;
+        case 'imdb-asc':
+            sortedFilms.sort((a, b) => a.imdb - b.imdb);
+            break;
+       case 'title-asc':
             sortedFilms.sort((a, b) => a.title.localeCompare(b.title));
             break;
         case 'title-desc':
