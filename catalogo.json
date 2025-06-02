@@ -27701,11 +27701,15 @@
     "PGM": 94,
     "Filmes": 143,
     "Nome do Programa": "Animações para primeira infância",
-    "imageName": "",
+    "imageName": "animacoes_para_a_primeira_infancia",
     "planos_de_aula": [],
     "trailer": "",
     "imagens_adicionais": [],
-    "videos": [],
+    "videos": [
+      {
+      "url": "https://www.youtube.com/watch?v=flS4JplxKA4"
+      }
+    ],
     "Assistir Online": "https://www.youtube.com/watch?v=flS4JplxKA4"
   },
   {
