@@ -67,7 +67,7 @@ function transformFilmData(originalFilm) {
         director: cleanField(originalFilm["Direção"]),
         cast: cleanField(originalFilm["Elenco"]),
         duration: parseInt(originalFilm["Dur.(´)"]) || 0,
-        genre: cleanField(originalFilm["GEN."]),
+        genre: cleanField(originalFilm["GEN."]) || cleanField(originalFilm["Gênero"]),
         year: parseInt(originalFilm["Ano"]) || 0,
         imdb: imdbData,
         country: cleanField(originalFilm["País"]),
