@@ -179,7 +179,24 @@ function transformFilmData(originalFilm) {
 // FUNÇÃO PARA RENDERIZAR DADOS DO FILME
 function renderFilmData(film) {
 
-    // ODS
+
+    
+    const filmContainer = document.getElementById('filmeContainer');
+    if (!filmContainer) {
+        console.error("Container do filme não encontrado");
+        return;
+    }
+    
+    // CLASSIFICAÇÃO INDICATIVA
+    const classification = film.classification || 0;
+    const classificationClass = getClassificationClass(classification);
+    const classificationText = classification <= 0 ? 'L' : classification;
+    
+    // TEMAS
+    const themes = createThemesList(film);
+    const hasThemes = themes.length > 0;
+
+        // ODS
 if (film.ods && film.ods.length > 0) {
     filmContent += `
     <div class="filme-section">
@@ -205,21 +222,6 @@ if (film.ods && film.ods.length > 0) {
     </div>
     `;
 }
-    
-    const filmContainer = document.getElementById('filmeContainer');
-    if (!filmContainer) {
-        console.error("Container do filme não encontrado");
-        return;
-    }
-    
-    // CLASSIFICAÇÃO INDICATIVA
-    const classification = film.classification || 0;
-    const classificationClass = getClassificationClass(classification);
-    const classificationText = classification <= 0 ? 'L' : classification;
-    
-    // TEMAS
-    const themes = createThemesList(film);
-    const hasThemes = themes.length > 0;
     
     // INFORMAÇÕES ADICIONAIS
     const hasAdditionalInfo = film.audiodescricao || film.closedCaption || film.website || 
