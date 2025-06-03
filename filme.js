@@ -170,17 +170,13 @@ function transformFilmData(originalFilm) {
         planos_de_aula: originalFilm["planos_de_aula"] || [],
         videos: originalFilm["videos"] || [],
         imagens_adicionais: originalFilm["imagens_adicionais"] || [],
-        ods: odsArray // Adiciona o campo ods aqui
+        
     };
 
-    }
+    
 
-    return {
-        // ... outros campos existentes ...
-        ods: odsArray,
-        // ... resto do código
-    };
-}
+    
+
 
 // FUNÇÃO PARA RENDERIZAR DADOS DO FILME
 function renderFilmData(film) {
