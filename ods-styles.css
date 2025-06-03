@@ -72,10 +72,10 @@
     line-height: 1.2; /* Espaçamento entre linhas */
 }
 
-.ods-back h4 {
+.ods-back h5 {
     margin: 0 0 5px 0;
     font-size: 0.2rem; /* Tamanho da fonte do título */
-    font-weight: bold;
+    font-weight: normal;
 }
 
 .ods-back p {
@@ -94,7 +94,7 @@
     .ods-back {
         font-size: 0.2rem;
     }
-    .ods-back h4 {
+    .ods-back h5 {
         font-size: 0.2rem;
     }
 }
