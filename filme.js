@@ -114,6 +114,15 @@ function transformFilmData(originalFilm) {
         if (!value) return '';
         return String(value).replace(/^\"|\"$/g, '').trim();
     }
+    // Processa ODS
+    let odsArray = [];
+    if (originalFilm["ODS"]) {
+        // Converte a string dos ODS em um array, removendo espaços extras
+        odsArray = originalFilm["ODS"].split(',')
+            .map(ods => ods.trim())
+            .filter(ods => ods); // Remove itens vazios
+    }
+    
     
     return {
         title: cleanField(originalFilm["Título do filme"]),
@@ -159,14 +168,10 @@ function transformFilmData(originalFilm) {
         classification: parseInt(originalFilm["Classificação Indicativa POR PGM"]) || 0,
         planos_de_aula: originalFilm["planos_de_aula"] || [],
         videos: originalFilm["videos"] || [],
-        imagens_adicionais: originalFilm["imagens_adicionais"] || []
+        imagens_adicionais: originalFilm["imagens_adicionais"] || [],
+        ods: odsArray // Adiciona o campo ods aqui
     };
-    let odsArray = [];
-    if (originalFilm["ODS"]) {
-        // Converte a string dos ODS em um array, removendo espaços extras
-        odsArray = originalFilm["ODS"].split(',')
-            .map(ods => ods.trim())
-            .filter(ods => ods); // Remove itens vazios
+
     }
 
     return {
