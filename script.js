@@ -193,7 +193,7 @@ function filterAndRenderFilms() {
             return odsIds.some(id => filmODS.includes(id));
         });
             
-            return matchesSearch && matchesGenre && matchesClassification && matchesAccessibility && matchesselectODS;
+            return matchesSearch && matchesGenre && matchesClassification && matchesAccessibility;
         });
 
         updateFilmsCounter();
