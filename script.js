@@ -183,7 +183,7 @@ function filterAndRenderFilms() {
                 (selectedAccessibility === 'assistir_online' && film.assistirOnline && film.assistirOnline.trim() !== '') // Filtro Assistir Online
             );
 
-           // Filtro de ODS
+         // Filtro de ODS
     const selectedODS = new URLSearchParams(window.location.search).get('ods');
     if (selectedODS) {
         const odsIds = selectedODS.split(',').map(Number);
@@ -191,7 +191,8 @@ function filterAndRenderFilms() {
             if (!film.ODS) return false;
             const filmODS = film.ODS.split(',').map(ods => parseInt(ods.trim()));
             return odsIds.some(id => filmODS.includes(id));
-        });
+        }); 
+        } 
             
             return matchesSearch && matchesGenre && matchesClassification && matchesAccessibility;
         });
