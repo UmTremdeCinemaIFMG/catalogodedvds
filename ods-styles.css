@@ -10,8 +10,8 @@
 
 .ods-flip-container {
     perspective: 1000px; /* Necessário para o efeito 3D */
-    width: 150px; /* Largura do container do ícone */
-    height: 150px; /* Altura do container do ícone */
+    width: 80px; /* Largura do container do ícone */
+    height: 80px; /* Altura do container do ícone */
     cursor: pointer; /* Indica que é clicável */
 }
 
@@ -56,46 +56,72 @@
 }
 
 .ods-front img {
-    max-width: 100%;
-    max-height: 100%;
+    max-width: 90%;
+    max-height: 90%;
     object-fit: contain; /* Garante que a imagem caiba sem distorção */
 }
 
+/* Estilos gerais para a parte de trás */
 .ods-back {
-    background-color: #e0e0e0; /* Cor de fundo para a parte de trás */
-    color: #333; /* Cor do texto */
+    /* background-color: #e0e0e0; Cor de fundo padrão removida, será definida por ODS */
+    color: white; /* Cor do texto padrão para branco */
     transform: rotateY(180deg); /* Posiciona a parte de trás virada */
     flex-direction: column; /* Organiza título e texto verticalmente */
-    padding: 4px; /* Espaçamento interno */
+    padding: 8px; /* Espaçamento interno */
     text-align: center;
-    font-size: 0.2rem; /* Tamanho da fonte menor para caber texto */
-    line-height: 0.8; /* Espaçamento entre linhas */
+    line-height: 1.2; /* Espaçamento entre linhas */
 }
 
-.ods-back h5 {
-    margin: 0 0 2px 0;
-    font-size: 0.2rem; /* Tamanho da fonte do título */
-    font-weight: normal;
+/* Estilos para o título (h4) na parte de trás */
+.ods-back h4 {
+    margin: 0 0 5px 0;
+    font-size: 0.8rem; /* Tamanho da fonte do título */
+    font-weight: bold; /* Mantém o título em negrito */
+    color: white; /* Garante que o título também seja branco */
 }
 
+/* Estilos para o parágrafo (p) na parte de trás */
 .ods-back p {
     margin: 0;
+    font-size: calc(0.7rem * 0.7); /* Reduzido em 30% (0.49rem) */
+    font-weight: normal; /* Remove negrito */
+    color: white; /* Cor do texto branca */
     /* Evita que o texto quebre de forma estranha */
     word-break: keep-all; 
     hyphens: auto;
 }
 
-/* Ajustes de Responsividade (Opcional, pode ser ajustado conforme necessário) */
+/* Cores de fundo específicas para cada ODS */
+.ods-back[data-ods-number="1"] { background-color: rgb(229, 36, 59); }
+.ods-back[data-ods-number="2"] { background-color: rgb(221, 168, 58); }
+.ods-back[data-ods-number="3"] { background-color: rgb(76, 159, 56); }
+.ods-back[data-ods-number="4"] { background-color: rgb(197, 25, 45); }
+.ods-back[data-ods-number="5"] { background-color: rgb(255, 58, 33); }
+.ods-back[data-ods-number="6"] { background-color: rgb(38, 189, 226); }
+.ods-back[data-ods-number="7"] { background-color: rgb(252, 195, 11); }
+.ods-back[data-ods-number="8"] { background-color: rgb(162, 25, 66); }
+.ods-back[data-ods-number="9"] { background-color: rgb(253, 105, 37); }
+.ods-back[data-ods-number="10"] { background-color: rgb(221, 19, 103); }
+.ods-back[data-ods-number="11"] { background-color: rgb(253, 157, 36); }
+.ods-back[data-ods-number="12"] { background-color: rgb(191, 139, 46); }
+.ods-back[data-ods-number="13"] { background-color: rgb(63, 126, 68); }
+.ods-back[data-ods-number="14"] { background-color: rgb(10, 151, 217); }
+.ods-back[data-ods-number="15"] { background-color: rgb(86, 192, 43); }
+.ods-back[data-ods-number="16"] { background-color: rgb(0, 104, 157); }
+.ods-back[data-ods-number="17"] { background-color: rgb(25, 72, 106); }
+.ods-back[data-ods-number="18"] { background-color: rgb(122, 49, 17); } /* Cor para ODS 18 adicionada */
+
+/* Ajustes de Responsividade */
 @media (max-width: 600px) {
     .ods-flip-container {
         width: 65px;
         height: 65px;
     }
-    .ods-back {
-        font-size: 0.2rem;
+    .ods-back p {
+        font-size: calc(0.6rem * 0.7); /* Ajusta o tamanho da fonte reduzida para telas menores */
     }
-    .ods-back h5 {
-        font-size: 0.2rem;
+    .ods-back h4 {
+        font-size: 0.7rem;
     }
 }
 

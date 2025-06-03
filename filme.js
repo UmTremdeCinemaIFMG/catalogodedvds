@@ -16,7 +16,7 @@ function getUrlParameter(name) {
 
 // FUNÇÃO PARA NORMALIZAR STRINGS (remover acentos, converter para minúsculas, trim)
 function normalizeString(str) {
-    if (!str) return '';
+    if (!str) return ".";
     return String(str)
         .toLowerCase()
         .normalize("NFD") // Decompor acentos
@@ -27,14 +27,14 @@ function normalizeString(str) {
 // FUNÇÃO PARA CARREGAR DESCRIÇÕES DOS ODS
 async function loadOdsDescriptions() {
     try {
-        const response = await fetch('ods_descriptions.json');
+        const response = await fetch("ods_descriptions.json");
         if (!response.ok) {
-            throw new Error('Erro ao carregar descrições dos ODS');
+            throw new Error("Erro ao carregar descrições dos ODS");
         }
         odsDescriptions = await response.json();
         console.log("Descrições dos ODS carregadas.");
     } catch (error) {
-        console.error('Erro ao carregar ods_descriptions.json:', error);
+        console.error("Erro ao carregar ods_descriptions.json:", error);
         // Pode definir um objeto vazio ou padrão em caso de erro
         odsDescriptions = {}; 
     }
@@ -44,27 +44,27 @@ async function loadOdsDescriptions() {
 async function loadFilmData() {
     try {
         // EXIBE MENSAGEM DE CARREGAMENTO
-        const loadingElement = document.querySelector('.loading');
+        const loadingElement = document.querySelector(".loading");
         if (loadingElement) {
-            loadingElement.style.display = 'flex';
+            loadingElement.style.display = "flex";
         }
 
         // CARREGA AS DESCRIÇÕES DOS ODS PRIMEIRO
         await loadOdsDescriptions();
         
         // OBTÉM O TÍTULO DO FILME DA URL
-        const filmTitle = getUrlParameter('titulo');
+        const filmTitle = getUrlParameter("titulo");
         if (!filmTitle) {
-            throw new Error('Título do filme não especificado na URL');
+            throw new Error("Título do filme não especificado na URL");
         }
         
         const decodedFilmTitle = decodeURIComponent(filmTitle);
         console.log("Buscando filme com título (original):", decodedFilmTitle);
         
         // CARREGA O CATÁLOGO
-        const response = await fetch('catalogo.json');
+        const response = await fetch("catalogo.json");
         if (!response.ok) {
-            throw new Error('Erro ao carregar o catálogo');
+            throw new Error("Erro ao carregar o catálogo");
         }
         
         const data = await response.json();
@@ -77,7 +77,7 @@ async function loadFilmData() {
         const film = data.find(item => {
             if (!item["Título do filme"]) return false;
             const normalizedItemTitle = normalizeString(item["Título do filme"]); // Normaliza título do JSON
-            // console.log(`Comparando: '${normalizedItemTitle}' === '${normalizedSearchTitle}'`); // Debug comparison
+            // console.log(`Comparando: "${normalizedItemTitle}" === "${normalizedSearchTitle}"`); // Debug comparison
             return normalizedItemTitle === normalizedSearchTitle;
         });
         
@@ -99,7 +99,7 @@ async function loadFilmData() {
         
         // OCULTA MENSAGEM DE CARREGAMENTO
         if (loadingElement) {
-            loadingElement.style.display = 'none';
+            loadingElement.style.display = "none";
         }
         
         // CONFIGURA EVENTOS PARA EXPANDIR/RECOLHER PLANOS DE AULA
@@ -112,8 +112,8 @@ async function loadFilmData() {
         setupSharingButtons(transformedFilm);
         
     } catch (error) {
-        console.error('Erro:', error);
-        const filmContainer = document.getElementById('filmeContainer');
+        console.error("Erro:", error);
+        const filmContainer = document.getElementById("filmeContainer");
         if (filmContainer) {
             filmContainer.innerHTML = `
                 <div class="error-message">
@@ -127,16 +127,16 @@ async function loadFilmData() {
             `;
         }
         // Garante que o loading seja escondido em caso de erro
-        const loadingElement = document.querySelector('.loading');
+        const loadingElement = document.querySelector(".loading");
         if (loadingElement) {
-            loadingElement.style.display = 'none';
+            loadingElement.style.display = "none";
         }
     }
 }
 
 // FUNÇÃO PARA RENDERIZAR DADOS DO FILME
 function renderFilmData(film) {
-    const filmContainer = document.getElementById('filmeContainer');
+    const filmContainer = document.getElementById("filmeContainer");
     if (!filmContainer) {
         console.error("Container do filme não encontrado");
         return;
@@ -145,7 +145,7 @@ function renderFilmData(film) {
     // CLASSIFICAÇÃO INDICATIVA (usa função de script.js)
     const classification = film.classification || 0;
     const classificationClass = getClassificationClass(classification);
-    const classificationText = classification <= 0 ? 'L' : classification;
+    const classificationText = classification <= 0 ? "L" : classification;
     
     // TEMAS (usa função de script.js)
     const themes = createThemesList(film);
@@ -157,8 +157,8 @@ function renderFilmData(film) {
                             film.legendasOutras || (film.materialOutros && film.materialOutros.length > 0);
     
     // HEADER DO FILME
-    const filmHeader = document.createElement('div');
-    filmHeader.className = 'filme-header';
+    const filmHeader = document.createElement("div");
+    filmHeader.className = "filme-header";
     filmHeader.innerHTML = `
         <div class="filme-info">
             <h1 class="filme-title">
@@ -166,15 +166,15 @@ function renderFilmData(film) {
                 ${film.title}
             </h1>
             <div class="filme-details">
-                ${film.director ? `<p><strong><i class="fas fa-user"></i> Direção:</strong> ${film.director}</p>` : ''}
-                ${film.cast ? `<p><strong><i class="fas fa-users"></i> Elenco:</strong> ${film.cast}</p>` : ''}
-                ${film.duration ? `<p><strong><i class="fas fa-clock"></i> Duração:</strong> ${film.duration} min</p>` : ''}
-                ${film.genre ? `<p><strong><i class="fas fa-tag"></i> Gênero:</strong> ${film.genre}</p>` : ''}
-                ${film.year ? `<p><strong><i class="fas fa-calendar-alt"></i> Ano:</strong> ${film.year}</p>` : ''}
-                ${film.imdb.votantes ? `<p><strong><i class="fab fa-imdb"></i> IMDb:</strong> ${film.imdb.votantes}</p>` : ''}
-                ${film.country ? `<p><strong><i class="fas fa-globe-americas"></i> País:</strong> ${film.country}</p>` : ''}
-                ${film.state ? `<p><strong><i class="fas fa-map-marker-alt"></i> UF:</strong> ${film.state}</p>` : ''}
-                ${film.city ? `<p><strong><i class="fas fa-city"></i> Cidade:</strong> ${film.city}</p>` : ''}
+                ${film.director ? `<p><strong><i class="fas fa-user"></i> Direção:</strong> ${film.director}</p>` : ""}
+                ${film.cast ? `<p><strong><i class="fas fa-users"></i> Elenco:</strong> ${film.cast}</p>` : ""}
+                ${film.duration ? `<p><strong><i class="fas fa-clock"></i> Duração:</strong> ${film.duration} min</p>` : ""}
+                ${film.genre ? `<p><strong><i class="fas fa-tag"></i> Gênero:</strong> ${film.genre}</p>` : ""}
+                ${film.year ? `<p><strong><i class="fas fa-calendar-alt"></i> Ano:</strong> ${film.year}</p>` : ""}
+                ${film.imdb.votantes ? `<p><strong><i class="fab fa-imdb"></i> IMDb:</strong> ${film.imdb.votantes}</p>` : ""}
+                ${film.country ? `<p><strong><i class="fas fa-globe-americas"></i> País:</strong> ${film.country}</p>` : ""}
+                ${film.state ? `<p><strong><i class="fas fa-map-marker-alt"></i> UF:</strong> ${film.state}</p>` : ""}
+                ${film.city ? `<p><strong><i class="fas fa-city"></i> Cidade:</strong> ${film.city}</p>` : ""}
             </div>
             
             <!-- Botões de compartilhamento -->
@@ -199,7 +199,7 @@ function renderFilmData(film) {
     `;
     
     // Inicializa o conteúdo do filme
-    let filmContent = '';
+    let filmContent = "";
     
     // SINOPSE
     if (film.synopsis) {
@@ -211,7 +211,7 @@ function renderFilmData(film) {
         `;
     }
     
-    // ODS - MODIFICADO PARA EFEITO FLIP
+    // ODS - MODIFICADO PARA EFEITO FLIP E CORES
     if (film.ods && film.ods.length > 0) {
         filmContent += `
         <div class="filme-section">
@@ -224,6 +224,7 @@ function renderFilmData(film) {
                         const description = odsDescriptions[odsNumber] || `Descrição para ODS ${odsNumber} não encontrada.`; // Pega descrição do JSON
                         const link = `https://brasil.un.org/pt-br/sdgs/${odsNumber}`;
                         
+                        // Adiciona data-ods-number ao ods-back para estilização CSS
                         return `
                             <div class="ods-flip-container">
                                 <a href="${link}" target="_blank" class="ods-flipper-link" title="ODS ${ods} - Clique para saber mais">
@@ -233,7 +234,7 @@ function renderFilmData(film) {
                                                  alt="Ícone do ODS ${ods}" 
                                                  loading="lazy">
                                         </div>
-                                        <div class="ods-back">
+                                        <div class="ods-back" data-ods-number="${odsNumber}">
                                             <h4>ODS ${odsNumber}</h4>
                                             <p>${description}</p>
                                         </div>
@@ -242,8 +243,8 @@ function renderFilmData(film) {
                             </div>
                         `;
                     }
-                    return '';
-                }).join('')}
+                    return "";
+                }).join("")}
             </div>
         </div>
         `;
@@ -254,7 +255,7 @@ function renderFilmData(film) {
         filmContent += `
         <div class="filme-section">
             <h3><i class="fas fa-tags"></i> Temas</h3>
-            ${themes.map(theme => `<span class="theme-tag">${theme}</span>`).join('')}
+            ${themes.map(theme => `<span class="theme-tag">${theme}</span>`).join("")}
         </div>
         `;
     }
@@ -276,7 +277,7 @@ function renderFilmData(film) {
         filmContent += `
         <div class="filme-section">
             <h3><i class="fas fa-ticket-alt"></i> Festivais</h3>
-            <p>${film.festivais.replace(/\n/g, '<br>')}</p>
+            <p>${film.festivais.replace(/\n/g, "<br>")}</p>
         </div>
         `;
     }
@@ -286,7 +287,7 @@ function renderFilmData(film) {
         filmContent += `
         <div class="filme-section">
             <h3><i class="fas fa-award"></i> Prêmios</h3>
-            <p>${film.premios.replace(/\n/g, '<br>')}</p>
+            <p>${film.premios.replace(/\n/g, "<br>")}</p>
         </div>
         `;
     }
@@ -305,7 +306,7 @@ function renderFilmData(film) {
     
     // INFORMAÇÕES ADICIONAIS
     if (hasAdditionalInfo) {
-        let additionalContent = '';
+        let additionalContent = "";
         
         if (film.audiodescricao) {
             additionalContent += `<p><strong><i class="fas fa-assistive-listening-systems"></i> Audiodescrição:</strong> ${film.audiodescricao}</p>`;
@@ -321,7 +322,7 @@ function renderFilmData(film) {
         
         if (film.website) {
             // Garante que a URL tenha protocolo
-            const websiteUrl = film.website.startsWith('http') ? film.website : `https://${film.website}`;
+            const websiteUrl = film.website.startsWith("http") ? film.website : `https://${film.website}`;
             additionalContent += `<p><strong><i class="fas fa-globe"></i> Website:</strong> <a href="${websiteUrl}" target="_blank">${film.website}</a></p>`;
         }
         
@@ -356,19 +357,19 @@ function renderFilmData(film) {
     `;
 
     // ADICIONA O BOTÃO "ASSISTIR ONLINE" SE EXISTIR O LINK
-    const controlsContainer = document.querySelector('.filme-page-controls');
-    if (controlsContainer && film.assistirOnline && film.assistirOnline.trim() !== '') {
+    const controlsContainer = document.querySelector(".filme-page-controls");
+    if (controlsContainer && film.assistirOnline && film.assistirOnline.trim() !== "") {
         // Garante que a URL tenha protocolo
-        const onlineUrl = film.assistirOnline.startsWith('http') ? film.assistirOnline : `https://${film.assistirOnline}`;
-        const assistirOnlineBtn = document.createElement('a');
+        const onlineUrl = film.assistirOnline.startsWith("http") ? film.assistirOnline : `https://${film.assistirOnline}`;
+        const assistirOnlineBtn = document.createElement("a");
         assistirOnlineBtn.href = onlineUrl;
-        assistirOnlineBtn.target = '_blank';
-        assistirOnlineBtn.className = 'btn-assistir-online';
-        assistirOnlineBtn.innerHTML = 'Assistir Online <i class="fas fa-external-link-alt"></i>'; // Ícone atualizado
+        assistirOnlineBtn.target = "_blank";
+        assistirOnlineBtn.className = "btn-assistir-online";
+        assistirOnlineBtn.innerHTML = "Assistir Online <i class=\"fas fa-external-link-alt\"></i>"; // Ícone atualizado
         // Insere o botão após o botão de voltar
-        const voltarBtn = controlsContainer.querySelector('.btn-voltar');
+        const voltarBtn = controlsContainer.querySelector(".btn-voltar");
         if (voltarBtn) {
-            voltarBtn.insertAdjacentElement('afterend', assistirOnlineBtn);
+            voltarBtn.insertAdjacentElement("afterend", assistirOnlineBtn);
         } else {
             controlsContainer.appendChild(assistirOnlineBtn);
         }
@@ -377,8 +378,8 @@ function renderFilmData(film) {
 
 // FUNÇÃO PARA INICIALIZAR O CARROSSEL
 function initializeCarousel(film) {
-    const slidesContainer = document.getElementById('bannerSlides');
-    const indicatorsContainer = document.getElementById('bannerIndicators');
+    const slidesContainer = document.getElementById("bannerSlides");
+    const indicatorsContainer = document.getElementById("bannerIndicators");
     
     if (!slidesContainer || !indicatorsContainer) {
         console.warn("Elementos do carrossel não encontrados.");
@@ -389,47 +390,47 @@ function initializeCarousel(film) {
 
     // 1. Adiciona a capa principal
     const mainCover = getDvdCover(film); // Usa a função de script.js
-    mediaItems.push({ type: 'image', src: mainCover, alt: `Capa principal de ${film.title}` });
+    mediaItems.push({ type: "image", src: mainCover, alt: `Capa principal de ${film.title}` });
 
     // 2. Adiciona o trailer, se existir
-    if (film.trailer && film.trailer.trim() !== '') {
-        mediaItems.push({ type: 'video', src: film.trailer, alt: `Trailer de ${film.title}` });
+    if (film.trailer && film.trailer.trim() !== "") {
+        mediaItems.push({ type: "video", src: film.trailer, alt: `Trailer de ${film.title}` });
     }
 
     // 3. Adiciona imagens adicionais, se existirem
     if (film.imagens_adicionais && film.imagens_adicionais.length > 0) {
         film.imagens_adicionais.forEach((imgUrl, index) => {
-            if (imgUrl && imgUrl.trim() !== '') {
-                mediaItems.push({ type: 'image', src: imgUrl, alt: `Imagem adicional ${index + 1} de ${film.title}` });
+            if (imgUrl && imgUrl.trim() !== "") {
+                mediaItems.push({ type: "image", src: imgUrl, alt: `Imagem adicional ${index + 1} de ${film.title}` });
             }
         });
     }
 
     // Limpa containers
-    slidesContainer.innerHTML = '';
-    indicatorsContainer.innerHTML = '';
+    slidesContainer.innerHTML = "";
+    indicatorsContainer.innerHTML = "";
     currentSlide = 0;
 
     // Cria slides e indicadores
     mediaItems.forEach((item, index) => {
-        const slide = document.createElement('div');
-        slide.className = 'banner-slide';
-        if (index === 0) slide.classList.add('active');
+        const slide = document.createElement("div");
+        slide.className = "banner-slide";
+        if (index === 0) slide.classList.add("active");
 
-        if (item.type === 'image') {
-            slide.innerHTML = `<img src="${item.src}" alt="${item.alt}" onerror="this.onerror=null; this.src='capas/progbrasil.png'; this.alt='Imagem indisponível';">`;
-        } else if (item.type === 'video') {
+        if (item.type === "image") {
+            slide.innerHTML = `<img src="${item.src}" alt="${item.alt}" onerror="this.onerror=null; this.src="capas/progbrasil.png"; this.alt="Imagem indisponível";">`;
+        } else if (item.type === "video") {
             // Tenta extrair ID do YouTube
             let videoId = null;
             try {
                 const url = new URL(item.src);
-                if (url.hostname === 'www.youtube.com' || url.hostname === 'youtube.com') {
-                    videoId = url.searchParams.get('v');
-                } else if (url.hostname === 'youtu.be') {
+                if (url.hostname === "www.youtube.com" || url.hostname === "youtube.com") {
+                    videoId = url.searchParams.get("v");
+                } else if (url.hostname === "youtu.be") {
                     videoId = url.pathname.substring(1);
                 }
             } catch (e) {
-                console.warn('URL do trailer inválida:', item.src);
+                console.warn("URL do trailer inválida:", item.src);
             }
 
             if (videoId) {
@@ -453,28 +454,28 @@ function initializeCarousel(film) {
         slidesContainer.appendChild(slide);
 
         // Cria indicador
-        const indicator = document.createElement('span');
-        indicator.className = 'banner-indicator';
-        if (index === 0) indicator.classList.add('active');
+        const indicator = document.createElement("span");
+        indicator.className = "banner-indicator";
+        if (index === 0) indicator.classList.add("active");
         indicator.dataset.index = index;
         indicator.onclick = () => showSlide(index);
         indicatorsContainer.appendChild(indicator);
     });
 
-    slides = slidesContainer.querySelectorAll('.banner-slide');
-    const indicators = indicatorsContainer.querySelectorAll('.banner-indicator');
+    slides = slidesContainer.querySelectorAll(".banner-slide");
+    const indicators = indicatorsContainer.querySelectorAll(".banner-indicator");
 
     // Esconde controles se houver apenas 1 item
-    const controls = document.querySelector('.banner-controls');
+    const controls = document.querySelector(".banner-controls");
     if (mediaItems.length <= 1) {
-        if (controls) controls.style.display = 'none';
-        if (indicatorsContainer) indicatorsContainer.style.display = 'none';
+        if (controls) controls.style.display = "none";
+        if (indicatorsContainer) indicatorsContainer.style.display = "none";
     } else {
-        if (controls) controls.style.display = 'flex';
-        if (indicatorsContainer) indicatorsContainer.style.display = 'flex';
+        if (controls) controls.style.display = "flex";
+        if (indicatorsContainer) indicatorsContainer.style.display = "flex";
         // Adiciona eventos aos botões de controle
-        document.getElementById('prevSlide').onclick = prevSlide;
-        document.getElementById('nextSlide').onclick = nextSlide;
+        document.getElementById("prevSlide").onclick = prevSlide;
+        document.getElementById("nextSlide").onclick = nextSlide;
     }
 
     // Mostra o primeiro slide
@@ -487,16 +488,16 @@ function showSlide(index) {
     
     // Pausar vídeos anteriores
     slides.forEach((slide, i) => {
-        const iframe = slide.querySelector('iframe');
+        const iframe = slide.querySelector("iframe");
         if (iframe && i !== index) {
             // Pausa o vídeo do YouTube
-            iframe.contentWindow.postMessage('{"event":"command","func":"pauseVideo","args":""}', '*');
+            iframe.contentWindow.postMessage("{\"event\":\"command\",\"func\":\"pauseVideo\",\"args\":\"\"}", "*");
         }
-        slide.classList.remove('active');
+        slide.classList.remove("active");
     });
 
-    const indicators = document.querySelectorAll('.banner-indicator');
-    indicators.forEach(indicator => indicator.classList.remove('active'));
+    const indicators = document.querySelectorAll(".banner-indicator");
+    indicators.forEach(indicator => indicator.classList.remove("active"));
 
     currentSlide = index;
     if (currentSlide >= slides.length) {
@@ -505,9 +506,9 @@ function showSlide(index) {
         currentSlide = slides.length - 1;
     }
 
-    slides[currentSlide].classList.add('active');
+    slides[currentSlide].classList.add("active");
     if (indicators[currentSlide]) {
-        indicators[currentSlide].classList.add('active');
+        indicators[currentSlide].classList.add("active");
     }
 }
 
@@ -521,35 +522,35 @@ function prevSlide() {
 
 // FUNÇÃO PARA CONFIGURAR CONTEÚDO EXPANSÍVEL (Planos de Aula, Outros Materiais)
 function setupExpandableContent() {
-    const expandableTitles = document.querySelectorAll('.expandable-title');
+    const expandableTitles = document.querySelectorAll(".expandable-title");
     expandableTitles.forEach(title => {
-        title.addEventListener('click', () => {
+        title.addEventListener("click", () => {
             const content = title.nextElementSibling;
-            const section = title.closest('.expandable-section');
-            const icon = title.querySelector('.expand-icon');
+            const section = title.closest(".expandable-section");
+            const icon = title.querySelector(".expand-icon");
 
             if (content && section && icon) {
-                section.classList.toggle('open');
-                icon.classList.toggle('fa-chevron-down');
-                icon.classList.toggle('fa-chevron-up');
+                section.classList.toggle("open");
+                icon.classList.toggle("fa-chevron-down");
+                icon.classList.toggle("fa-chevron-up");
                 
                 // Alterna a acessibilidade
-                const isExpanded = section.classList.contains('open');
-                title.setAttribute('aria-expanded', isExpanded);
-                content.setAttribute('aria-hidden', !isExpanded);
+                const isExpanded = section.classList.contains("open");
+                title.setAttribute("aria-expanded", isExpanded);
+                content.setAttribute("aria-hidden", !isExpanded);
             }
         });
 
         // Define estado inicial de acessibilidade
         const content = title.nextElementSibling;
         if (content) {
-             title.setAttribute('aria-expanded', 'false');
-             content.setAttribute('aria-hidden', 'true');
-             title.setAttribute('role', 'button'); // Indica que é clicável
-             title.setAttribute('tabindex', '0'); // Torna focável via teclado
+             title.setAttribute("aria-expanded", "false");
+             content.setAttribute("aria-hidden", "true");
+             title.setAttribute("role", "button"); // Indica que é clicável
+             title.setAttribute("tabindex", "0"); // Torna focável via teclado
              // Permite ativar com Enter/Espaço
-             title.addEventListener('keydown', (event) => {
-                if (event.key === 'Enter' || event.key === ' ') {
+             title.addEventListener("keydown", (event) => {
+                if (event.key === "Enter" || event.key === " ") {
                     event.preventDefault(); // Previne rolagem da página com Espaço
                     title.click();
                 }
@@ -571,29 +572,29 @@ function setupSharingButtons(film) {
 
 function shareOnWhatsApp() {
     const text = encodeURIComponent(`Confira este filme: ${window.shareFilmTitle} - ${window.shareFilmUrl}`);
-    window.open(`https://api.whatsapp.com/send?text=${text}`, '_blank');
+    window.open(`https://api.whatsapp.com/send?text=${text}`, "_blank");
 }
 
 function shareOnFacebook() {
     const url = encodeURIComponent(window.shareFilmUrl);
-    window.open(`https://www.facebook.com/sharer/sharer.php?u=${url}`, '_blank');
+    window.open(`https://www.facebook.com/sharer/sharer.php?u=${url}`, "_blank");
 }
 
 function shareOnTwitter() {
     const text = encodeURIComponent(`Confira este filme: ${window.shareFilmTitle}`);
     const url = encodeURIComponent(window.shareFilmUrl);
-    window.open(`https://twitter.com/intent/tweet?url=${url}&text=${text}`, '_blank');
+    window.open(`https://twitter.com/intent/tweet?url=${url}&text=${text}`, "_blank");
 }
 
 function copyToClipboard() {
     navigator.clipboard.writeText(window.shareFilmUrl).then(() => {
-        alert('Link copiado para a área de transferência!');
+        alert("Link copiado para a área de transferência!");
     }).catch(err => {
-        console.error('Erro ao copiar link: ', err);
-        alert('Erro ao copiar o link.');
+        console.error("Erro ao copiar link: ", err);
+        alert("Erro ao copiar o link.");
     });
 }
 
 // INICIALIZAÇÃO QUANDO O DOM ESTIVER PRONTO
-document.addEventListener('DOMContentLoaded', loadFilmData);
+document.addEventListener("DOMContentLoaded", loadFilmData);
 
