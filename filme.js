@@ -6,6 +6,7 @@
 let currentSlide = 0;
 let slides = [];
 let mediaItems = [];
+let odsDescriptions = {}; // Variável para armazenar as descrições dos ODS
 
 // FUNÇÃO PARA OBTER PARÂMETROS DA URL
 function getUrlParameter(name) {
@@ -23,6 +24,22 @@ function normalizeString(str) {
         .trim();
 }
 
+// FUNÇÃO PARA CARREGAR DESCRIÇÕES DOS ODS
+async function loadOdsDescriptions() {
+    try {
+        const response = await fetch('ods_descriptions.json');
+        if (!response.ok) {
+            throw new Error('Erro ao carregar descrições dos ODS');
+        }
+        odsDescriptions = await response.json();
+        console.log("Descrições dos ODS carregadas.");
+    } catch (error) {
+        console.error('Erro ao carregar ods_descriptions.json:', error);
+        // Pode definir um objeto vazio ou padrão em caso de erro
+        odsDescriptions = {}; 
+    }
+}
+
 // FUNÇÃO PARA CARREGAR DADOS DO FILME
 async function loadFilmData() {
     try {
@@ -31,6 +48,9 @@ async function loadFilmData() {
         if (loadingElement) {
             loadingElement.style.display = 'flex';
         }
+
+        // CARREGA AS DESCRIÇÕES DOS ODS PRIMEIRO
+        await loadOdsDescriptions();
         
         // OBTÉM O TÍTULO DO FILME DA URL
         const filmTitle = getUrlParameter('titulo');
@@ -191,24 +211,35 @@ function renderFilmData(film) {
         `;
     }
     
-    // ODS
+    // ODS - MODIFICADO PARA EFEITO FLIP
     if (film.ods && film.ods.length > 0) {
         filmContent += `
         <div class="filme-section">
             <h3><i class="fas fa-globe-americas"></i> Objetivos de Desenvolvimento Sustentável</h3>
             <div class="ods-container">
                 ${film.ods.map(ods => {
-                    const odsNumber = ods.match(/\d+/); // Extrai o número do ODS
-                    if (odsNumber) {
+                    const odsNumberMatch = ods.match(/\d+/); // Extrai o número do ODS
+                    if (odsNumberMatch) {
+                        const odsNumber = odsNumberMatch[0];
+                        const description = odsDescriptions[odsNumber] || `Descrição para ODS ${odsNumber} não encontrada.`; // Pega descrição do JSON
+                        const link = `https://brasil.un.org/pt-br/sdgs/${odsNumber}`;
+                        
                         return `
-                            <a href="https://brasil.un.org/pt-br/sdgs/${odsNumber[0]}" 
-                               target="_blank" 
-                               class="ods-icon" 
-                               title="ODS ${ods}">
-                                <img src="ods_icons/ods_${odsNumber[0]}.svg" 
-                                     alt="Ícone do ODS ${ods}" 
-                                     loading="lazy">
-                            </a>
+                            <div class="ods-flip-container">
+                                <a href="${link}" target="_blank" class="ods-flipper-link" title="ODS ${ods} - Clique para saber mais">
+                                    <div class="ods-flipper">
+                                        <div class="ods-front">
+                                            <img src="ods_icons/ods_${odsNumber}.svg" 
+                                                 alt="Ícone do ODS ${ods}" 
+                                                 loading="lazy">
+                                        </div>
+                                        <div class="ods-back">
+                                            <h4>ODS ${odsNumber}</h4>
+                                            <p>${description}</p>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
                         `;
                     }
                     return '';
@@ -389,140 +420,178 @@ function initializeCarousel(film) {
             slide.innerHTML = `<img src="${item.src}" alt="${item.alt}" onerror="this.onerror=null; this.src='capas/progbrasil.png'; this.alt='Imagem indisponível';">`;
         } else if (item.type === 'video') {
             // Tenta extrair ID do YouTube
-            let videoEmbedHtml = `<p>Trailer indisponível ou formato não suportado.</p>`;
-            const youtubeMatch = item.src.match(/(?:https:\/\/)?(?:www\.)?(?:youtube\.com\/watch\?v=|youtu\.be\/)([\w-]+)/);
-            if (youtubeMatch && youtubeMatch[1]) {
-                const videoId = youtubeMatch[1];
-                videoEmbedHtml = `
+            let videoId = null;
+            try {
+                const url = new URL(item.src);
+                if (url.hostname === 'www.youtube.com' || url.hostname === 'youtube.com') {
+                    videoId = url.searchParams.get('v');
+                } else if (url.hostname === 'youtu.be') {
+                    videoId = url.pathname.substring(1);
+                }
+            } catch (e) {
+                console.warn('URL do trailer inválida:', item.src);
+            }
+
+            if (videoId) {
+                slide.innerHTML = `
                     <iframe 
-                        width="100%" 
-                        height="100%" 
+                        width="560" 
+                        height="315" 
                         src="https://www.youtube.com/embed/${videoId}" 
                         title="YouTube video player" 
                         frameborder="0" 
-                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                        referrerpolicy="strict-origin-when-cross-origin" 
                         allowfullscreen>
-                    </iframe>`;
+                    </iframe>
+                `;
             } else {
-                 console.warn("URL do trailer não é um link do YouTube válido:", item.src);
-                 // Poderia adicionar suporte a outros players aqui ou um link direto
-                 videoEmbedHtml = `<p>Trailer: <a href="${item.src}" target="_blank">Assistir</a> (formato não incorporável)</p>`;
+                // Fallback se não for YouTube ou ID não encontrado
+                slide.innerHTML = `<p>Trailer disponível em: <a href="${item.src}" target="_blank">${item.src}</a></p>`;
             }
-             slide.innerHTML = videoEmbedHtml;
         }
         slidesContainer.appendChild(slide);
 
         // Cria indicador
-        const indicator = document.createElement('button');
+        const indicator = document.createElement('span');
         indicator.className = 'banner-indicator';
         if (index === 0) indicator.classList.add('active');
         indicator.dataset.index = index;
-        indicator.addEventListener('click', () => goToSlide(index));
+        indicator.onclick = () => showSlide(index);
         indicatorsContainer.appendChild(indicator);
     });
 
     slides = slidesContainer.querySelectorAll('.banner-slide');
+    const indicators = indicatorsContainer.querySelectorAll('.banner-indicator');
 
     // Esconde controles se houver apenas 1 item
     const controls = document.querySelector('.banner-controls');
     if (mediaItems.length <= 1) {
-        if(controls) controls.style.display = 'none';
-        indicatorsContainer.style.display = 'none';
+        if (controls) controls.style.display = 'none';
+        if (indicatorsContainer) indicatorsContainer.style.display = 'none';
     } else {
-        if(controls) controls.style.display = 'flex';
-        indicatorsContainer.style.display = 'flex';
-        // Adiciona listeners aos botões de controle
-        const prevButton = document.getElementById('prevSlide');
-        const nextButton = document.getElementById('nextSlide');
-        if(prevButton) prevButton.addEventListener('click', prevSlide);
-        if(nextButton) nextButton.addEventListener('click', nextSlide);
+        if (controls) controls.style.display = 'flex';
+        if (indicatorsContainer) indicatorsContainer.style.display = 'flex';
+        // Adiciona eventos aos botões de controle
+        document.getElementById('prevSlide').onclick = prevSlide;
+        document.getElementById('nextSlide').onclick = nextSlide;
     }
+
+    // Mostra o primeiro slide
+    showSlide(0);
 }
 
 // FUNÇÕES DO CARROSSEL
-function updateCarousel() {
-    slides.forEach((slide, index) => {
-        slide.classList.remove('active');
-        if (index === currentSlide) {
-            slide.classList.add('active');
+function showSlide(index) {
+    if (!slides || slides.length === 0) return;
+    
+    // Pausar vídeos anteriores
+    slides.forEach((slide, i) => {
+        const iframe = slide.querySelector('iframe');
+        if (iframe && i !== index) {
+            // Pausa o vídeo do YouTube
+            iframe.contentWindow.postMessage('{"event":"command","func":"pauseVideo","args":""}', '*');
         }
+        slide.classList.remove('active');
     });
 
     const indicators = document.querySelectorAll('.banner-indicator');
-    indicators.forEach((indicator, index) => {
-        indicator.classList.remove('active');
-        if (index === currentSlide) {
-            indicator.classList.add('active');
-        }
-    });
-}
+    indicators.forEach(indicator => indicator.classList.remove('active'));
 
-function goToSlide(index) {
     currentSlide = index;
-    updateCarousel();
+    if (currentSlide >= slides.length) {
+        currentSlide = 0;
+    } else if (currentSlide < 0) {
+        currentSlide = slides.length - 1;
+    }
+
+    slides[currentSlide].classList.add('active');
+    if (indicators[currentSlide]) {
+        indicators[currentSlide].classList.add('active');
+    }
 }
 
 function nextSlide() {
-    currentSlide = (currentSlide + 1) % mediaItems.length;
-    updateCarousel();
+    showSlide(currentSlide + 1);
 }
 
 function prevSlide() {
-    currentSlide = (currentSlide - 1 + mediaItems.length) % mediaItems.length;
-    updateCarousel();
+    showSlide(currentSlide - 1);
 }
 
-// FUNÇÃO PARA CONFIGURAR CONTEÚDO EXPANSÍVEL
+// FUNÇÃO PARA CONFIGURAR CONTEÚDO EXPANSÍVEL (Planos de Aula, Outros Materiais)
 function setupExpandableContent() {
-    document.querySelectorAll('.expandable-section').forEach(section => {
-        const title = section.querySelector('.expandable-title');
-        const content = section.querySelector('.expandable-content');
-        const icon = title.querySelector('.expand-icon');
+    const expandableTitles = document.querySelectorAll('.expandable-title');
+    expandableTitles.forEach(title => {
+        title.addEventListener('click', () => {
+            const content = title.nextElementSibling;
+            const section = title.closest('.expandable-section');
+            const icon = title.querySelector('.expand-icon');
 
-        if (title && content && icon) {
-            title.addEventListener('click', () => {
-                const isExpanded = section.classList.toggle('expanded');
-                icon.classList.toggle('fa-chevron-down', !isExpanded);
-                icon.classList.toggle('fa-chevron-up', isExpanded);
-                content.style.maxHeight = isExpanded ? content.scrollHeight + "px" : null;
+            if (content && section && icon) {
+                section.classList.toggle('open');
+                icon.classList.toggle('fa-chevron-down');
+                icon.classList.toggle('fa-chevron-up');
+                
+                // Alterna a acessibilidade
+                const isExpanded = section.classList.contains('open');
+                title.setAttribute('aria-expanded', isExpanded);
+                content.setAttribute('aria-hidden', !isExpanded);
+            }
+        });
+
+        // Define estado inicial de acessibilidade
+        const content = title.nextElementSibling;
+        if (content) {
+             title.setAttribute('aria-expanded', 'false');
+             content.setAttribute('aria-hidden', 'true');
+             title.setAttribute('role', 'button'); // Indica que é clicável
+             title.setAttribute('tabindex', '0'); // Torna focável via teclado
+             // Permite ativar com Enter/Espaço
+             title.addEventListener('keydown', (event) => {
+                if (event.key === 'Enter' || event.key === ' ') {
+                    event.preventDefault(); // Previne rolagem da página com Espaço
+                    title.click();
+                }
             });
-            // Inicia recolhido
-            content.style.maxHeight = null;
-            section.classList.remove('expanded');
-            icon.classList.remove('fa-chevron-up');
-            icon.classList.add('fa-chevron-down');
         }
     });
 }
 
-// FUNÇÕES DE COMPARTILHAMENTO SOCIAL
+// FUNÇÕES DE COMPARTILHAMENTO
 function setupSharingButtons(film) {
-    // As funções de compartilhamento usam a URL atual e o título do filme
-    // Elas são definidas globalmente para serem acessíveis pelo onclick
-    window.shareOnWhatsApp = () => {
-        const text = encodeURIComponent(`Confira o filme: ${film.title} - ${window.location.href}`);
-        window.open(`https://api.whatsapp.com/send?text=${text}`, '_blank');
-    };
+    // As funções de compartilhamento individuais (shareOnWhatsApp, etc.) 
+    // usarão a URL atual e o título do filme.
+    // Não precisam de configuração extra aqui se já usam `window.location.href` e `document.title`
+    // ou se podemos passar `film.title` para elas.
+    // Vamos assumir que elas pegam da página ou definimos globalmente.
+    window.shareFilmTitle = film.title;
+    window.shareFilmUrl = window.location.href;
+}
 
-    window.shareOnFacebook = () => {
-        const url = encodeURIComponent(window.location.href);
-        window.open(`https://www.facebook.com/sharer/sharer.php?u=${url}`, '_blank');
-    };
+function shareOnWhatsApp() {
+    const text = encodeURIComponent(`Confira este filme: ${window.shareFilmTitle} - ${window.shareFilmUrl}`);
+    window.open(`https://api.whatsapp.com/send?text=${text}`, '_blank');
+}
 
-    window.shareOnTwitter = () => {
-        const text = encodeURIComponent(`Confira o filme: ${film.title}`);
-        const url = encodeURIComponent(window.location.href);
-        window.open(`https://twitter.com/intent/tweet?text=${text}&url=${url}`, '_blank');
-    };
+function shareOnFacebook() {
+    const url = encodeURIComponent(window.shareFilmUrl);
+    window.open(`https://www.facebook.com/sharer/sharer.php?u=${url}`, '_blank');
+}
 
-    window.copyToClipboard = () => {
-        navigator.clipboard.writeText(window.location.href).then(() => {
-            alert('Link copiado para a área de transferência!');
-        }).catch(err => {
-            console.error('Erro ao copiar link: ', err);
-            alert('Erro ao copiar o link.');
-        });
-    };
+function shareOnTwitter() {
+    const text = encodeURIComponent(`Confira este filme: ${window.shareFilmTitle}`);
+    const url = encodeURIComponent(window.shareFilmUrl);
+    window.open(`https://twitter.com/intent/tweet?url=${url}&text=${text}`, '_blank');
+}
+
+function copyToClipboard() {
+    navigator.clipboard.writeText(window.shareFilmUrl).then(() => {
+        alert('Link copiado para a área de transferência!');
+    }).catch(err => {
+        console.error('Erro ao copiar link: ', err);
+        alert('Erro ao copiar o link.');
+    });
 }
 
 // INICIALIZAÇÃO QUANDO O DOM ESTIVER PRONTO
