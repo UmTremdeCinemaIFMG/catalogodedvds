@@ -205,7 +205,7 @@ function renderFilmData(film) {
                                target="_blank" 
                                class="ods-icon" 
                                title="ODS ${ods}">
-                                <img src="https://brasil.un.org/sites/default/files/styles/large/public/2020-09/E-WEB-Goal-${odsNumber[0]}.png" 
+                                <img src="ods_icons/ods_${odsNumber[0]}.png" 
                                      alt="Ícone do ODS ${ods}" 
                                      loading="lazy">
                             </a>
