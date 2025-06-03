@@ -83,7 +83,7 @@
 /* Estilos para o parágrafo (p) na parte de trás */
 .ods-back p {
     margin: 0;
-    font-size: calc(0.7rem); /* Reduzido em 30% (0.49rem) */
+    font-size: calc(0.8rem); /* Reduzido em 30% (0.49rem) */
     font-weight: normal; /* Remove negrito */
     color: white; /* Cor do texto branca */
     /* Evita que o texto quebre de forma estranha */
