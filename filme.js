@@ -183,7 +183,6 @@ function transformFilmData(originalFilm) {
 
 // FUNÇÃO PARA RENDERIZAR DADOS DO FILME
 function renderFilmData(film) {
-   
     const filmContainer = document.getElementById('filmeContainer');
     if (!filmContainer) {
         console.error("Container do filme não encontrado");
@@ -198,8 +197,6 @@ function renderFilmData(film) {
     // TEMAS
     const themes = createThemesList(film);
     const hasThemes = themes.length > 0;
-
- 
     
     // INFORMAÇÕES ADICIONAIS
     const hasAdditionalInfo = film.audiodescricao || film.closedCaption || film.website || 
@@ -248,8 +245,10 @@ function renderFilmData(film) {
         </div>
     `;
     
-    // SINOPSE
+    // Inicializa o conteúdo do filme
     let filmContent = '';
+    
+    // SINOPSE
     if (film.synopsis) {
         filmContent += `
         <div class="filme-section">
@@ -258,33 +257,33 @@ function renderFilmData(film) {
         </div>
         `;
     }
-
-           // ODS
-if (film.ods && film.ods.length > 0) {
-    filmContent += `
-    <div class="filme-section">
-        <h3><i class="fas fa-globe-americas"></i> Objetivos de Desenvolvimento Sustentável</h3>
-        <div class="ods-container">
-            ${film.ods.map(ods => {
-                const odsNumber = ods.match(/\d+/); // Extrai o número do ODS
-                if (odsNumber) {
-                    return `
-                        <a href="https://brasil.un.org/pt-br/sdgs/${odsNumber[0]}" 
-                           target="_blank" 
-                           class="ods-icon" 
-                           title="ODS ${ods}">
-                            <img src="https://brasil.un.org/sites/default/files/styles/large/public/2020-09/E-WEB-Goal-${odsNumber[0]}.png" 
-                                 alt="Ícone do ODS ${ods}" 
-                                 loading="lazy">
-                        </a>
-                    `;
-                }
-                return '';
-            }).join('')}
+    
+    // ODS
+    if (film.ods && film.ods.length > 0) {
+        filmContent += `
+        <div class="filme-section">
+            <h3><i class="fas fa-globe-americas"></i> Objetivos de Desenvolvimento Sustentável</h3>
+            <div class="ods-container">
+                ${film.ods.map(ods => {
+                    const odsNumber = ods.match(/\d+/); // Extrai o número do ODS
+                    if (odsNumber) {
+                        return `
+                            <a href="https://brasil.un.org/pt-br/sdgs/${odsNumber[0]}" 
+                               target="_blank" 
+                               class="ods-icon" 
+                               title="ODS ${ods}">
+                                <img src="https://brasil.un.org/sites/default/files/styles/large/public/2020-09/E-WEB-Goal-${odsNumber[0]}.png" 
+                                     alt="Ícone do ODS ${ods}" 
+                                     loading="lazy">
+                            </a>
+                        `;
+                    }
+                    return '';
+                }).join('')}
+            </div>
         </div>
-    </div>
-    `;
-}
+        `;
+    }
     
     // TEMAS
     if (hasThemes) {
@@ -356,7 +355,6 @@ if (film.ods && film.ods.length > 0) {
             additionalContent += `<p><strong><i class="fas fa-globe"></i> Website:</strong> <a href="${film.website}" target="_blank">${film.website}</a></p>`;
         }
         
-        
         if (additionalContent) {
             filmContent += `
             <div class="filme-section">
@@ -393,11 +391,11 @@ if (film.ods && film.ods.length > 0) {
         const assistirOnlineBtn = document.createElement('a');
         assistirOnlineBtn.href = film.assistirOnline.startsWith('http') ? film.assistirOnline : 'https://' + film.assistirOnline;
         assistirOnlineBtn.target = '_blank';
-        assistirOnlineBtn.className = 'btn-assistir-online'; // Usar a mesma classe ou uma nova
+        assistirOnlineBtn.className = 'btn-assistir-online';
         assistirOnlineBtn.innerHTML = 'Assistir Online <i class="fas fa-arrow-right"></i>';
         controlsContainer.appendChild(assistirOnlineBtn);
     }
-}
+} 
 
 // FUNÇÃO PARA INICIALIZAR O CARROSSEL
 function initializeCarousel(film) {
