@@ -69,7 +69,7 @@
     flex-direction: column; /* Organiza título e texto verticalmente */
     padding: 8px; /* Espaçamento interno */
     text-align: center;
-    line-height: 1.0; /* Espaçamento entre linhas */
+    line-height: 0.8; /* Espaçamento entre linhas */
 }
 
 /* Estilos para o título (h4) na parte de trás */
@@ -118,7 +118,7 @@
         height: 95px;
     }
     .ods-back p {
-        font-size: calc(0.5rem); /* Ajusta o tamanho da fonte reduzida para telas menores */
+        font-size: calc(0.6rem); /* Ajusta o tamanho da fonte reduzida para telas menores */
     }
     .ods-back h4 {
         font-size: 0.7rem;
