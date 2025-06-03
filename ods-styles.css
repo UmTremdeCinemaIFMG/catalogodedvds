@@ -66,10 +66,10 @@
     color: #333; /* Cor do texto */
     transform: rotateY(180deg); /* Posiciona a parte de trás virada */
     flex-direction: column; /* Organiza título e texto verticalmente */
-    padding: 8px; /* Espaçamento interno */
+    padding: 4px; /* Espaçamento interno */
     text-align: center;
     font-size: 0.2rem; /* Tamanho da fonte menor para caber texto */
-    line-height: 1.2; /* Espaçamento entre linhas */
+    line-height: 0.8; /* Espaçamento entre linhas */
 }
 
 .ods-back h5 {
