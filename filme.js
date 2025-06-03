@@ -205,7 +205,7 @@ function renderFilmData(film) {
                                target="_blank" 
                                class="ods-icon" 
                                title="ODS ${ods}">
-                                <img src="ods_icons/ods_${odsNumber[0]}.png" 
+                                <img src="ods_icons/ods_${odsNumber[0]}.svg" 
                                      alt="Ícone do ODS ${ods}" 
                                      loading="lazy">
                             </a>
