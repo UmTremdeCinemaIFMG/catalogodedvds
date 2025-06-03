@@ -114,7 +114,7 @@ function transformFilmData(originalFilm) {
         if (!value) return '';
         return String(value).replace(/^\"|\"$/g, '').trim();
     }
-    // Processa ODS
+// Processa ODS
     let odsArray = [];
     if (originalFilm["ODS"]) {
         // Converte a string dos ODS em um array, removendo espaços extras
@@ -131,6 +131,7 @@ function transformFilmData(originalFilm) {
         duration: parseInt(originalFilm["Dur.(´)"]) || 0,
         genre: cleanField(originalFilm["GEN."]),
         year: parseInt(originalFilm["Ano"]) || 0,
+        ods: odsArray,
         imdb: imdbData,
         country: cleanField(originalFilm["País"]),
         state: cleanField(originalFilm["UF"]),
