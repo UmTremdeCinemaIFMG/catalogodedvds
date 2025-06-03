@@ -114,8 +114,8 @@
 /* Ajustes de Responsividade */
 @media (max-width: 600px) {
     .ods-flip-container {
-        width: 65px;
-        height: 65px;
+        width: 95px;
+        height: 95px;
     }
     .ods-back p {
         font-size: calc(0.4rem); /* Ajusta o tamanho da fonte reduzida para telas menores */
