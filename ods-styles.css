@@ -10,8 +10,8 @@
 
 .ods-flip-container {
     perspective: 1000px; /* Necessário para o efeito 3D */
-    width: 80px; /* Largura do container do ícone */
-    height: 80px; /* Altura do container do ícone */
+    width: 120px; /* Largura do container do ícone */
+    height: 120px; /* Altura do container do ícone */
     cursor: pointer; /* Indica que é clicável */
 }
 
@@ -68,13 +68,13 @@
     flex-direction: column; /* Organiza título e texto verticalmente */
     padding: 8px; /* Espaçamento interno */
     text-align: center;
-    font-size: 0.7rem; /* Tamanho da fonte menor para caber texto */
+    font-size: 0.4rem; /* Tamanho da fonte menor para caber texto */
     line-height: 1.2; /* Espaçamento entre linhas */
 }
 
 .ods-back h4 {
     margin: 0 0 5px 0;
-    font-size: 0.8rem; /* Tamanho da fonte do título */
+    font-size: 0.5rem; /* Tamanho da fonte do título */
     font-weight: bold;
 }
 
@@ -92,10 +92,10 @@
         height: 65px;
     }
     .ods-back {
-        font-size: 0.6rem;
+        font-size: 0.4rem;
     }
     .ods-back h4 {
-        font-size: 0.7rem;
+        font-size: 0.5rem;
     }
 }
 
