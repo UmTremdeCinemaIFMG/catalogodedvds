@@ -182,8 +182,18 @@ function filterAndRenderFilms() {
                 (selectedAccessibility === 'material_outros' && film.materialOutros && film.materialOutros.length > 0) ||
                 (selectedAccessibility === 'assistir_online' && film.assistirOnline && film.assistirOnline.trim() !== '') // Filtro Assistir Online
             );
+
+           // Filtro de ODS
+    const selectedODS = new URLSearchParams(window.location.search).get('ods');
+    if (selectedODS) {
+        const odsIds = selectedODS.split(',').map(Number);
+        filteredFilms = filteredFilms.filter(film => {
+            if (!film.ODS) return false;
+            const filmODS = film.ODS.split(',').map(ods => parseInt(ods.trim()));
+            return odsIds.some(id => filmODS.includes(id));
+        });
             
-            return matchesSearch && matchesGenre && matchesClassification && matchesAccessibility;
+            return matchesSearch && matchesGenre && matchesClassification && matchesAccessibility && matchesselectODS;
         });
 
         updateFilmsCounter();
