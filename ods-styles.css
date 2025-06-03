@@ -112,7 +112,7 @@
 .ods-back[data-ods-number="18"] { background-color: rgb(122, 49, 17); } /* Cor para ODS 18 adicionada */
 
 /* Ajustes de Responsividade */
-@media (max-width: 900px) {
+@media (max-width: 600px) {
     .ods-flip-container {
         width: 95px;
         height: 95px;
