@@ -77,6 +77,7 @@ function transformFilmData(originalFilm) {
         country: cleanField(originalFilm["País"]),
         state: cleanField(originalFilm["UF"]),
         city: cleanField(originalFilm["cidade"]),
+        ods: originalFilm["ODS"] ? String(originalFilm["ODS"]).split(',').map(s => s.trim()).filter(s => s) : [], // Adicionado mapeamento e conversão para ODS
         audiodescricao: cleanField(originalFilm["Audiodescrição"]),
         closedCaption: cleanField(originalFilm["Closed Caption"]),
         trailer: cleanField(originalFilm["trailer"] || ''),
