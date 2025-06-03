@@ -235,7 +235,7 @@ function renderFilmData(film) {
                                                  loading="lazy">
                                         </div>
                                         <div class="ods-back" data-ods-number="${odsNumber}">
-                                            <h4>ODS ${odsNumber}</h4>
+                                           
                                             <p>${description}</p>
                                         </div>
                                     </div>
