@@ -9,7 +9,7 @@
 }
 
 .ods-flip-container {
-    perspective: 1000px; /* Necessário para o efeito 3D */
+    perspective: 600px; /* Necessário para o efeito 3D */
     width: 150px; /* Largura do container do ícone */
     height: 150px; /* Altura do container do ícone */
     cursor: pointer; /* Indica que é clicável */
