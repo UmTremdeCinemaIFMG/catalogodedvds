@@ -118,7 +118,7 @@
         height: 95px;
     }
     .ods-back p {
-        font-size: calc(0.4rem); /* Ajusta o tamanho da fonte reduzida para telas menores */
+        font-size: calc(0.5rem); /* Ajusta o tamanho da fonte reduzida para telas menores */
     }
     .ods-back h4 {
         font-size: 0.7rem;
