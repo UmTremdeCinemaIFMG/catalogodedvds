@@ -482,3 +482,31 @@
     background-color: #5a6268; /* Cinza mais escuro no hover */
 }
 
+
+
+/* Estilos para conteúdo expansível (Planos de Aula, Outros Materiais) */
+.expandable-section .expandable-content {
+    display: none; /* Oculto por padrão */
+    padding-top: 15px; /* Espaçamento quando visível */
+}
+
+.expandable-section.open .expandable-content {
+    display: block; /* Visível quando a seção tem a classe 'open' */
+}
+
+/* Ajuste no título para indicar que é clicável e posicionar ícone */
+.expandable-title {
+    cursor: pointer;
+    position: relative; /* Para posicionar o ícone */
+    padding-right: 30px; /* Espaço para o ícone */
+}
+
+.expandable-title .expand-icon {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    transition: transform 0.3s ease;
+}
+
+/* Rotação do ícone é feita pelo JS ao trocar as classes fa-chevron-down/up, não precisa de CSS extra aqui se o JS já faz isso */
