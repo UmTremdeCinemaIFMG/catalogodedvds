@@ -643,4 +643,3 @@ function getYoutubeId(url) {
 
 // INICIALIZAÇÃO QUANDO O DOM ESTIVER PRONTO
 document.addEventListener("DOMContentLoaded", loadFilmData);
-
