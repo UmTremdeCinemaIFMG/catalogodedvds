@@ -150,13 +150,17 @@ function sortFilms(films, sortOption) {
 function filterAndRenderFilms() {
     clearTimeout(debounceTimer);
     debounceTimer = setTimeout(() => {
+        // OBTÉM VALORES DOS FILTROS
         const searchTerm = document.getElementById('searchInput').value.toLowerCase();
         const sortOption = document.getElementById('sortSelect').value;
         const selectedClassification = document.getElementById('classificationSelect').value;
         const selectedGenre = document.getElementById('genreSelect').value;
         const selectedAccessibility = document.getElementById('accessibilitySelect').value;
-        
+        const selectedOds = document.getElementById('odsSelect').value; // OBTÉM O ODS SELECIONADO
+
+        // FILTRA A LISTA DE FILMES
         currentFilms = allFilms.filter(film => {
+            // VERIFICA CORRESPONDÊNCIA COM TERMO DE BUSCA
             const matchesSearch = 
                 film.title.toLowerCase().includes(searchTerm) ||
                 (film.director && film.director.toLowerCase().includes(searchTerm)) ||
@@ -166,33 +170,41 @@ function filterAndRenderFilms() {
                 (film.tags && film.tags.toLowerCase().includes(searchTerm)) ||
                 (film.dvd && film.dvd.toLowerCase().includes(searchTerm));
             
-           const matchesGenre = !selectedGenre || 
-    (film.genres && film.genres.includes(selectedGenre)) || 
-    film.genre === selectedGenre;
+            // VERIFICA CORRESPONDÊNCIA COM GÊNERO
+            const matchesGenre = !selectedGenre || 
+                (film.genres && film.genres.includes(selectedGenre)) || 
+                film.genre === selectedGenre;
             
+            // VERIFICA CORRESPONDÊNCIA COM CLASSIFICAÇÃO
             const matchesClassification = !selectedClassification || 
                 film.classification === parseInt(selectedClassification) ||
                 (selectedClassification === 'L' && film.classification <= 0);
            
+            // VERIFICA CORRESPONDÊNCIA COM ACESSIBILIDADE
             const matchesAccessibility = !selectedAccessibility || (
                 (selectedAccessibility === 'planos_de_aula' && film.planos_de_aula && film.planos_de_aula.length > 0) ||
                 (selectedAccessibility === 'audiodescricao' && film.audiodescricao) ||
                 (selectedAccessibility === 'closed_caption' && film.closedCaption) ||
                 (selectedAccessibility === 'trailer' && film.trailer && film.trailer.trim() !== '') ||
                 (selectedAccessibility === 'material_outros' && film.materialOutros && film.materialOutros.length > 0) ||
-                (selectedAccessibility === 'assistir_online' && film.assistirOnline && film.assistirOnline.trim() !== '') // Filtro Assistir Online
+                (selectedAccessibility === 'assistir_online' && film.assistirOnline && film.assistirOnline.trim() !== '')
             );
+
+            // VERIFICA CORRESPONDÊNCIA COM ODS (NOVA LÓGICA)
+            const matchesOds = !selectedOds || (film.ods && film.ods.includes(selectedOds));
             
-            return matchesSearch && matchesGenre && matchesClassification && matchesAccessibility;
+            // RETORNA TRUE SE O FILME CORRESPONDE A TODOS OS CRITÉRIOS
+            return matchesSearch && matchesGenre && matchesClassification && matchesAccessibility && matchesOds;
         });
 
+        // ATUALIZA CONTADOR, ORDENA E RENDERIZA
         updateFilmsCounter();
         currentFilms = sortFilms(currentFilms, sortOption);
         
         currentPage = 1;
         renderPagination();
         renderFilms();
-    }, 300);
+    }, 300); // ATRASO DE 300MS PARA DEBOUNCE
 }
 
 /* ==========================================
@@ -223,19 +235,46 @@ function updateFilmsCounter() {
 // INICIALIZA OS SELECTS DE FILTRO
 function initializeFilters() {
     const genreSelect = document.getElementById('genreSelect');
+    const odsSelect = document.getElementById('odsSelect'); // PEGA O NOVO SELECT ODS
+
     genreSelect.innerHTML = '<option value="">Todos os Gêneros</option>';
- // Coleta todos os gêneros únicos
+    odsSelect.innerHTML = '<option value="">Todos os ODS</option>'; // LIMPA E ADICIONA OPÇÃO PADRÃO
+
+    // COLETA TODOS OS GÊNEROS E ODS ÚNICOS
+    const allOds = [...new Set(allFilms.flatMap(film => film.ods || []))].sort((a, b) => {
+        // ORDENA NUMERICAMENTE OS ODS (EXTRAINDO NÚMEROS)
+        const numA = parseInt(a.match(/\d+/)?.[0] || 0);
+        const numB = parseInt(b.match(/\d+/)?.[0] || 0);
+        return numA - numB;
+    });
     allGenres = [...new Set(allFilms.flatMap(film => 
         film.genres || [film.genre]
     ).filter(Boolean))].sort();
     
-    // Adiciona as opções ao select
+    // ADICIONA OPÇÕES DE GÊNERO
     allGenres.forEach(genre => {
         const option = document.createElement('option');
         option.value = genre;
         option.textContent = genre;
         genreSelect.appendChild(option);
     });
+
+    // ADICIONA OPÇÕES DE ODS
+    allOds.forEach(ods => {
+        const option = document.createElement('option');
+        option.value = ods;
+        option.textContent = `ODS ${ods}`; // MOSTRA "ODS" ANTES DO NÚMERO
+        odsSelect.appendChild(option);
+    });
+
+    // ADICIONA EVENT LISTENERS AOS FILTROS (INCLUINDO O NOVO FILTRO ODS)
+    document.getElementById('searchInput').addEventListener('input', filterAndRenderFilms);
+    document.getElementById('sortSelect').addEventListener('change', filterAndRenderFilms);
+    document.getElementById('classificationSelect').addEventListener('change', filterAndRenderFilms);
+    document.getElementById('genreSelect').addEventListener('change', filterAndRenderFilms);
+    document.getElementById('accessibilitySelect').addEventListener('change', filterAndRenderFilms);
+    document.getElementById('odsSelect').addEventListener('change', filterAndRenderFilms); // ADICIONA LISTENER PARA ODS
+
     // Os outros selects (classification, accessibility) são estáticos no HTML
 }
 
