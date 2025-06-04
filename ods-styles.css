@@ -9,7 +9,7 @@
 }
 
 .ods-flip-container {
-    perspective: 600px; /* Necessário para o efeito 3D */
+    perspective: 1000px; /* Necessário para o efeito 3D */
     width: 150px; /* Largura do container do ícone */
     height: 150px; /* Altura do container do ícone */
     cursor: pointer; /* Indica que é clicável */
@@ -69,7 +69,7 @@
     flex-direction: column; /* Organiza título e texto verticalmente */
     padding: 8px; /* Espaçamento interno */
     text-align: center;
-    line-height: 0.6; /* Espaçamento entre linhas */
+    line-height: 0.5; /* Espaçamento entre linhas */
 }
 
 /* Estilos para o título (h4) na parte de trás */
