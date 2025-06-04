@@ -520,39 +520,65 @@ function goToSlide(index) {
 // FUNÇÃO PARA CONFIGURAR CONTEÚDO EXPANSÍVEL (Planos de Aula, Outros Materiais)
 function setupExpandableContent() {
     const expandableTitles = document.querySelectorAll(".expandable-title");
-    expandableTitles.forEach(title => {
-        title.addEventListener("click", () => {
-            const content = title.nextElementSibling;
-            const section = title.closest(".expandable-section");
-            const icon = title.querySelector(".expand-icon");
 
-            if (content && section && icon) {
-                section.classList.toggle("open");
-                icon.classList.toggle("fa-chevron-down");
-                icon.classList.toggle("fa-chevron-up");
-                
-                // Alterna a acessibilidade
-                const isExpanded = section.classList.contains("open");
-                title.setAttribute("aria-expanded", isExpanded);
-                content.setAttribute("aria-hidden", !isExpanded);
-            }
-        });
-
-        // Define estado inicial de acessibilidade
-        const content = title.nextElementSibling;
-        if (content) {
-             title.setAttribute("aria-expanded", "false");
-             content.setAttribute("aria-hidden", "true");
-             title.setAttribute("role", "button"); // Indica que é clicável
-             title.setAttribute("tabindex", "0"); // Torna focável via teclado
-             // Permite ativar com Enter/Espaço
-             title.addEventListener("keydown", (event) => {
+    expandableTitles.forEach(clickedTitle => {
+        // Initial ARIA setup
+        const initialContent = clickedTitle.nextElementSibling;
+        if (initialContent) {
+             clickedTitle.setAttribute("aria-expanded", "false");
+             initialContent.setAttribute("aria-hidden", "true");
+             clickedTitle.setAttribute("role", "button");
+             clickedTitle.setAttribute("tabindex", "0");
+             clickedTitle.addEventListener("keydown", (event) => {
                 if (event.key === "Enter" || event.key === " ") {
-                    event.preventDefault(); // Previne rolagem da página com Espaço
-                    title.click();
+                    event.preventDefault();
+                    clickedTitle.click();
                 }
             });
         }
+
+        clickedTitle.addEventListener("click", () => {
+            const clickedSection = clickedTitle.closest(".expandable-section");
+            const clickedContent = clickedTitle.nextElementSibling;
+            const clickedIcon = clickedTitle.querySelector(".expand-icon");
+
+            if (!clickedContent || !clickedSection || !clickedIcon) return; // Safety check
+
+            const isCurrentlyOpen = clickedSection.classList.contains("open");
+
+            // Close all other sections first
+            expandableTitles.forEach(otherTitle => {
+                const otherSection = otherTitle.closest(".expandable-section");
+                const otherContent = otherTitle.nextElementSibling;
+                const otherIcon = otherTitle.querySelector(".expand-icon");
+
+                // Close others only if they are currently open and not the one being clicked
+                if (otherSection && otherContent && otherIcon && otherSection !== clickedSection && otherSection.classList.contains("open")) {
+                    otherSection.classList.remove("open");
+                    otherIcon.classList.remove("fa-chevron-up");
+                    otherIcon.classList.add("fa-chevron-down");
+                    otherTitle.setAttribute("aria-expanded", "false");
+                    otherContent.setAttribute("aria-hidden", "true");
+                }
+            });
+
+            // Toggle the clicked section state
+            if (isCurrentlyOpen) {
+                // It was open, now close it
+                clickedSection.classList.remove("open");
+                clickedIcon.classList.remove("fa-chevron-up");
+                clickedIcon.classList.add("fa-chevron-down");
+                clickedTitle.setAttribute("aria-expanded", "false");
+                clickedContent.setAttribute("aria-hidden", "true");
+            } else {
+                // It was closed, now open it
+                clickedSection.classList.add("open");
+                clickedIcon.classList.remove("fa-chevron-down");
+                clickedIcon.classList.add("fa-chevron-up");
+                clickedTitle.setAttribute("aria-expanded", "true");
+                clickedContent.setAttribute("aria-hidden", "false");
+            }
+        });
     });
 }
 
