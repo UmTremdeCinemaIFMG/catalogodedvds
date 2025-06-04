@@ -299,7 +299,7 @@ function renderFilmData(film) {
             <h3 class="expandable-title"><i class="fas fa-file-alt"></i> Outros Materiais <i class="fas fa-chevron-down expand-icon"></i></h3>
             <div class="expandable-content">
                  ${renderOtherMaterials(film)}
-                 setupExpandableContent();
+                 
             </div>
         </div>
         `;
@@ -356,6 +356,47 @@ function renderFilmData(film) {
         ${filmHeader.outerHTML}
         ${filmContent}
     `;
+
+    setupExpandableContent();
+
+    // FUNÇÃO PARA CONFIGURAR CONTEÚDO EXPANSÍVEL (Planos de Aula, Outros Materiais)
+function setupExpandableContent() {
+    const expandableTitles = document.querySelectorAll(".expandable-title");
+    expandableTitles.forEach(title => {
+        title.addEventListener("click", () => {
+            const content = title.nextElementSibling;
+            const section = title.closest(".expandable-section");
+            const icon = title.querySelector(".expand-icon");
+
+            if (content && section && icon) {
+                section.classList.toggle("open");
+                icon.classList.toggle("fa-chevron-down");
+                icon.classList.toggle("fa-chevron-up");
+                
+                // Alterna a acessibilidade
+                const isExpanded = section.classList.contains("open");
+                title.setAttribute("aria-expanded", isExpanded);
+                content.setAttribute("aria-hidden", !isExpanded);
+            }
+        });
+
+        // Define estado inicial de acessibilidade
+        const content = title.nextElementSibling;
+        if (content) {
+             title.setAttribute("aria-expanded", "false");
+             content.setAttribute("aria-hidden", "true");
+             title.setAttribute("role", "button"); // Indica que é clicável
+             title.setAttribute("tabindex", "0"); // Torna focável via teclado
+             // Permite ativar com Enter/Espaço
+             title.addEventListener("keydown", (event) => {
+                if (event.key === "Enter" || event.key === " ") {
+                    event.preventDefault(); // Previne rolagem da página com Espaço
+                    title.click();
+                }
+            });
+        }
+    });
+}
 
     // ADICIONA O BOTÃO "ASSISTIR ONLINE" SE EXISTIR O LINK
     const controlsContainer = document.querySelector(".filme-page-controls");
@@ -518,44 +559,7 @@ function goToSlide(index) {
     });
 }
 
-// FUNÇÃO PARA CONFIGURAR CONTEÚDO EXPANSÍVEL (Planos de Aula, Outros Materiais)
-function setupExpandableContent() {
-    const expandableTitles = document.querySelectorAll(".expandable-title");
-    expandableTitles.forEach(title => {
-        title.addEventListener("click", () => {
-            const content = title.nextElementSibling;
-            const section = title.closest(".expandable-section");
-            const icon = title.querySelector(".expand-icon");
 
-            if (content && section && icon) {
-                section.classList.toggle("open");
-                icon.classList.toggle("fa-chevron-down");
-                icon.classList.toggle("fa-chevron-up");
-                
-                // Alterna a acessibilidade
-                const isExpanded = section.classList.contains("open");
-                title.setAttribute("aria-expanded", isExpanded);
-                content.setAttribute("aria-hidden", !isExpanded);
-            }
-        });
-
-        // Define estado inicial de acessibilidade
-        const content = title.nextElementSibling;
-        if (content) {
-             title.setAttribute("aria-expanded", "false");
-             content.setAttribute("aria-hidden", "true");
-             title.setAttribute("role", "button"); // Indica que é clicável
-             title.setAttribute("tabindex", "0"); // Torna focável via teclado
-             // Permite ativar com Enter/Espaço
-             title.addEventListener("keydown", (event) => {
-                if (event.key === "Enter" || event.key === " ") {
-                    event.preventDefault(); // Previne rolagem da página com Espaço
-                    title.click();
-                }
-            });
-        }
-    });
-}
 
 // FUNÇÕES DE COMPARTILHAMENTO
 function setupSharingButtons(film) {
