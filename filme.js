@@ -272,7 +272,21 @@ function renderFilmData(film) {
         `;
     }
     
-    // FESTIVAIS
+    
+    
+    // OUTROS MATERIAIS (usa função de script.js)
+    if (film.materialOutros && film.materialOutros.length > 0) {
+        filmContent += `
+        <div class="filme-section expandable-section">
+            <h3 class="expandable-title"><i class="fas fa-file-alt"></i> Outros Materiais <i class="fas fa-chevron-down expand-icon"></i></h3>
+            <div class="expandable-content">
+                 ${renderOtherMaterials(film)}
+            </div>
+        </div>
+        `;
+    }
+
+// FESTIVAIS
     if (film.festivais) {
         filmContent += `
         <div class="filme-section">
@@ -288,18 +302,6 @@ function renderFilmData(film) {
         <div class="filme-section">
             <h3><i class="fas fa-award"></i> Prêmios</h3>
             <p>${film.premios.replace(/\n/g, "<br>")}</p>
-        </div>
-        `;
-    }
-    
-    // OUTROS MATERIAIS (usa função de script.js)
-    if (film.materialOutros && film.materialOutros.length > 0) {
-        filmContent += `
-        <div class="filme-section expandable-section">
-            <h3 class="expandable-title"><i class="fas fa-file-alt"></i> Outros Materiais <i class="fas fa-chevron-down expand-icon"></i></h3>
-            <div class="expandable-content">
-                 ${renderOtherMaterials(film)}
-            </div>
         </div>
         `;
     }
