@@ -299,7 +299,6 @@ function renderFilmData(film) {
             <h3 class="expandable-title"><i class="fas fa-file-alt"></i> Outros Materiais <i class="fas fa-chevron-down expand-icon"></i></h3>
             <div class="expandable-content">
                  ${renderOtherMaterials(film)}
-                 
             </div>
         </div>
         `;
@@ -356,47 +355,6 @@ function renderFilmData(film) {
         ${filmHeader.outerHTML}
         ${filmContent}
     `;
-
-    setupExpandableContent();
-
-    // FUNÇÃO PARA CONFIGURAR CONTEÚDO EXPANSÍVEL (Planos de Aula, Outros Materiais)
-function setupExpandableContent() {
-    const expandableTitles = document.querySelectorAll(".expandable-title");
-    expandableTitles.forEach(title => {
-        title.addEventListener("click", () => {
-            const content = title.nextElementSibling;
-            const section = title.closest(".expandable-section");
-            const icon = title.querySelector(".expand-icon");
-
-            if (content && section && icon) {
-                section.classList.toggle("open");
-                icon.classList.toggle("fa-chevron-down");
-                icon.classList.toggle("fa-chevron-up");
-                
-                // Alterna a acessibilidade
-                const isExpanded = section.classList.contains("open");
-                title.setAttribute("aria-expanded", isExpanded);
-                content.setAttribute("aria-hidden", !isExpanded);
-            }
-        });
-
-        // Define estado inicial de acessibilidade
-        const content = title.nextElementSibling;
-        if (content) {
-             title.setAttribute("aria-expanded", "false");
-             content.setAttribute("aria-hidden", "true");
-             title.setAttribute("role", "button"); // Indica que é clicável
-             title.setAttribute("tabindex", "0"); // Torna focável via teclado
-             // Permite ativar com Enter/Espaço
-             title.addEventListener("keydown", (event) => {
-                if (event.key === "Enter" || event.key === " ") {
-                    event.preventDefault(); // Previne rolagem da página com Espaço
-                    title.click();
-                }
-            });
-        }
-    });
-}
 
     // ADICIONA O BOTÃO "ASSISTIR ONLINE" SE EXISTIR O LINK
     const controlsContainer = document.querySelector(".filme-page-controls");
@@ -559,7 +517,44 @@ function goToSlide(index) {
     });
 }
 
+// FUNÇÃO PARA CONFIGURAR CONTEÚDO EXPANSÍVEL (Planos de Aula, Outros Materiais)
+function setupExpandableContent() {
+    const expandableTitles = document.querySelectorAll(".expandable-title");
+    expandableTitles.forEach(title => {
+        title.addEventListener("click", () => {
+            const content = title.nextElementSibling;
+            const section = title.closest(".expandable-section");
+            const icon = title.querySelector(".expand-icon");
 
+            if (content && section && icon) {
+                section.classList.toggle("open");
+                icon.classList.toggle("fa-chevron-down");
+                icon.classList.toggle("fa-chevron-up");
+                
+                // Alterna a acessibilidade
+                const isExpanded = section.classList.contains("open");
+                title.setAttribute("aria-expanded", isExpanded);
+                content.setAttribute("aria-hidden", !isExpanded);
+            }
+        });
+
+        // Define estado inicial de acessibilidade
+        const content = title.nextElementSibling;
+        if (content) {
+             title.setAttribute("aria-expanded", "false");
+             content.setAttribute("aria-hidden", "true");
+             title.setAttribute("role", "button"); // Indica que é clicável
+             title.setAttribute("tabindex", "0"); // Torna focável via teclado
+             // Permite ativar com Enter/Espaço
+             title.addEventListener("keydown", (event) => {
+                if (event.key === "Enter" || event.key === " ") {
+                    event.preventDefault(); // Previne rolagem da página com Espaço
+                    title.click();
+                }
+            });
+        }
+    });
+}
 
 // FUNÇÕES DE COMPARTILHAMENTO
 function setupSharingButtons(film) {
@@ -619,60 +614,6 @@ function getYoutubeId(url) {
     return null;
 }
 
-            // Inicializa com todos os capítulos fechados
-            document.querySelectorAll('.capitulo-content').forEach(function(content) {
-                content.style.display = 'none';
-            });
-            
-            // Função para expandir/recolher capítulos
-            window.toggleCapitulo = function(id) {
-                var capitulo = document.getElementById(id);
-                var content = capitulo.querySelector('.capitulo-content');
-                var header = capitulo.querySelector('.capitulo-header');
-                
-                // Se o capítulo já está aberto, fecha
-                if (content.style.display === 'block') {
-                    content.style.display = 'none';
-                    header.classList.remove('active');
-                } else {
-                    // Fecha todos os outros capítulos
-                    document.querySelectorAll('.capitulo-content').forEach(function(item) {
-                        item.style.display = 'none';
-                    });
-                    
-                    document.querySelectorAll('.capitulo-header').forEach(function(item) {
-                        item.classList.remove('active');
-                    });
-                    
-                    // Abre o capítulo clicado
-                    content.style.display = 'block';
-                    header.classList.add('active');
-                }
-            }
-            
-            // Função para abrir um capítulo específico (usada pelos botões de etapas)
-            window.abrirCapitulo = function(id) {
-                var capitulo = document.getElementById(id);
-                var content = capitulo.querySelector('.capitulo-content');
-                var header = capitulo.querySelector('.capitulo-header');
-                
-                // Fecha todos os outros capítulos
-                document.querySelectorAll('.capitulo-content').forEach(function(item) {
-                    item.style.display = 'none';
-                });
-                
-                document.querySelectorAll('.capitulo-header').forEach(function(item) {
-                    item.classList.remove('active');
-                });
-                
-                // Abre o capítulo selecionado
-                content.style.display = 'block';
-                header.classList.add('active');
-                
-                // Rola a página até o capítulo
-                capitulo.scrollIntoView({behavior: 'smooth'});
-            }
-        });
 
 // INICIALIZAÇÃO QUANDO O DOM ESTIVER PRONTO
 document.addEventListener("DOMContentLoaded", loadFilmData);
