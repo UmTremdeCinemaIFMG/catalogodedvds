@@ -558,6 +558,7 @@ function setupExpandableContent() {
 
 // FUNÇÕES DE COMPARTILHAMENTO
 function setupSharingButtons(film) {
+    document.title = `${film.title} - Catálogo de DVDs`;
     // As funções de compartilhamento individuais (shareOnWhatsApp, etc.) 
     // usarão a URL atual e o título do filme.
     // Não precisam de configuração extra aqui se já usam `window.location.href` e `document.title`
