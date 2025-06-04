@@ -615,6 +615,60 @@ function getYoutubeId(url) {
     return null;
 }
 
+            // Inicializa com todos os capítulos fechados
+            document.querySelectorAll('.capitulo-content').forEach(function(content) {
+                content.style.display = 'none';
+            });
+            
+            // Função para expandir/recolher capítulos
+            window.toggleCapitulo = function(id) {
+                var capitulo = document.getElementById(id);
+                var content = capitulo.querySelector('.capitulo-content');
+                var header = capitulo.querySelector('.capitulo-header');
+                
+                // Se o capítulo já está aberto, fecha
+                if (content.style.display === 'block') {
+                    content.style.display = 'none';
+                    header.classList.remove('active');
+                } else {
+                    // Fecha todos os outros capítulos
+                    document.querySelectorAll('.capitulo-content').forEach(function(item) {
+                        item.style.display = 'none';
+                    });
+                    
+                    document.querySelectorAll('.capitulo-header').forEach(function(item) {
+                        item.classList.remove('active');
+                    });
+                    
+                    // Abre o capítulo clicado
+                    content.style.display = 'block';
+                    header.classList.add('active');
+                }
+            }
+            
+            // Função para abrir um capítulo específico (usada pelos botões de etapas)
+            window.abrirCapitulo = function(id) {
+                var capitulo = document.getElementById(id);
+                var content = capitulo.querySelector('.capitulo-content');
+                var header = capitulo.querySelector('.capitulo-header');
+                
+                // Fecha todos os outros capítulos
+                document.querySelectorAll('.capitulo-content').forEach(function(item) {
+                    item.style.display = 'none';
+                });
+                
+                document.querySelectorAll('.capitulo-header').forEach(function(item) {
+                    item.classList.remove('active');
+                });
+                
+                // Abre o capítulo selecionado
+                content.style.display = 'block';
+                header.classList.add('active');
+                
+                // Rola a página até o capítulo
+                capitulo.scrollIntoView({behavior: 'smooth'});
+            }
+        });
 
 // INICIALIZAÇÃO QUANDO O DOM ESTIVER PRONTO
 document.addEventListener("DOMContentLoaded", loadFilmData);
