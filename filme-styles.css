@@ -481,4 +481,21 @@
    color: white !important;
     background-color: #5a6268; /* Cinza mais escuro no hover */
 }
-
+/* Expansão de seções (NOVIDADE/ESSENCIAL) */
+.expandable-section .expandable-content {
+    display: none;
+}
+.expandable-section.open .expandable-content {
+    display: block;
+}
+.expandable-section .expand-icon {
+    transition: transform 0.2s;
+}
+.expandable-section.open .expand-icon {
+    transform: rotate(180deg);
+}
+/* Opcional: destaque visual na seção aberta */
+.expandable-section.open .expandable-title {
+    font-weight: bold;
+    color: #007b55;
+}
