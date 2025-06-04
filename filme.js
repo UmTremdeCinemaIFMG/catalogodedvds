@@ -378,160 +378,143 @@ function renderFilmData(film) {
 
 // FUNÇÃO PARA INICIALIZAR O CARROSSEL
 function initializeCarousel(film) {
-    const slidesContainer = document.getElementById("bannerSlides");
-    const indicatorsContainer = document.getElementById("bannerIndicators");
+    const slidesContainer = document.getElementById('bannerSlides');
+    const indicatorsContainer = document.getElementById('bannerIndicators');
     
     if (!slidesContainer || !indicatorsContainer) {
-        console.warn("Elementos do carrossel não encontrados.");
+        console.error("Containers do carrossel não encontrados");
         return;
     }
-
+    
+    // Prepara os itens de mídia para o carrossel
     mediaItems = [];
-
-    // 1. Adiciona a capa principal
-    const mainCover = getDvdCover(film); // Usa a função de script.js
-    mediaItems.push({ type: "image", src: mainCover, alt: `Capa principal de ${film.title}` });
-
-    // 2. Adiciona o trailer, se existir
-    if (film.trailer && film.trailer.trim() !== "") {
-        mediaItems.push({ type: "video", src: film.trailer, alt: `Trailer de ${film.title}` });
+    
+    // 1. Adiciona o trailer primeiro (se existir)
+    if (film.trailer && film.trailer.trim() !== '') {
+        mediaItems.push({
+            type: 'video',
+            url: film.trailer,
+            title: 'Trailer'
+        });
     }
-
-    // 3. Adiciona outros videos (se existirem)
-    if (film.videos && Array.isArray(film.videos) && film.videos.length > 0) {
+    
+    // 2. Adiciona outros vídeos (se existirem)
+    if (film.videos && film.videos.length > 0) {
         film.videos.forEach(video => {
-            // Garante que o vídeo tenha uma URL válida
-            if (video && video.url && String(video.url).trim() !== "") {
-                mediaItems.push({ 
-                    type: "video", 
-                    src: String(video.url).trim(), // Usa src para consistência
-                    alt: video.titulo || `Vídeo de ${film.title}` // Usa alt para consistência
-                });
-            }
+            mediaItems.push({
+                type: 'video',
+                url: video.url,
+                title: video.titulo || 'Vídeo'
+            });
         });
     }
-
-    // 4. Adiciona imagens adicionais, se existirem
+    
+    // 3. Adiciona a capa do filme
+    mediaItems.push({
+        type: 'image',
+        url: `capas/${film.imageName || 'progbrasil'}.jpg`,
+        title: 'Capa do filme'
+    });
+    
+    // 4. Adiciona imagens adicionais (se existirem)
     if (film.imagens_adicionais && film.imagens_adicionais.length > 0) {
-        film.imagens_adicionais.forEach((imgUrl, index) => {
-            if (imgUrl && imgUrl.trim() !== "") {
-                mediaItems.push({ type: "image", src: imgUrl, alt: `Imagem adicional ${index + 1} de ${film.title}` });
-            }
+        film.imagens_adicionais.forEach(imagem => {
+            mediaItems.push({
+                type: 'image',
+                url: imagem.url || imagem,
+                title: imagem.titulo || 'Imagem'
+            });
         });
     }
-
-    // Limpa containers
-    slidesContainer.innerHTML = "";
-    indicatorsContainer.innerHTML = "";
-    currentSlide = 0;
-
-    // Cria slides e indicadores
+    
+    // Renderiza os slides
     mediaItems.forEach((item, index) => {
-        const slide = document.createElement("div");
-        slide.className = "banner-slide";
-        if (index === 0) slide.classList.add("active");
-
-        if (item.type === "image") {
-            slide.innerHTML = `<img src="${item.src}" alt="${item.alt}" onerror="this.onerror=null; this.src="capas/progbrasil.png"; this.alt="Imagem indisponível";">`;
-        } else if (item.type === "video") {
-            // Tenta extrair ID do YouTube
-            let videoId = null;
-            try {
-                const url = new URL(item.src);
-                if (url.hostname === "www.youtube.com" || url.hostname === "youtube.com") {
-                    videoId = url.searchParams.get("v");
-                } else if (url.hostname === "youtu.be") {
-                    videoId = url.pathname.substring(1);
-                }
-            } catch (e) {
-                console.warn("URL do trailer inválida:", item.src);
-            }
-
-            if (videoId) {
+        const slide = document.createElement('div');
+        slide.className = 'banner-slide';
+        
+        if (item.type === 'video') {
+            const youtubeId = getYoutubeId(item.url);
+            if (youtubeId) {
                 slide.innerHTML = `
                     <iframe 
-                        width="560" 
-                        height="315" 
-                        src="https://www.youtube.com/embed/${videoId}" 
-                        title="YouTube video player" 
+                        src="https://www.youtube.com/embed/${youtubeId}" 
+                        title="${item.title}" 
                         frameborder="0" 
-                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
-                        referrerpolicy="strict-origin-when-cross-origin" 
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
                         allowfullscreen>
                     </iframe>
                 `;
             } else {
-                // Fallback se não for YouTube ou ID não encontrado
-                slide.innerHTML = `<p>Trailer disponível em: <a href="${item.src}" target="_blank">${item.src}</a></p>`;
+                slide.innerHTML = `
+                    <div class="youtube-placeholder">
+                        <i class="fab fa-youtube"></i>
+                        <span>Vídeo não disponível</span>
+                    </div>
+                `;
             }
+        } else {
+            slide.innerHTML = `<img src="${item.url}" alt="${item.title}" onerror="this.src='capas/progbrasil.jpg'">`;
         }
+        
         slidesContainer.appendChild(slide);
-
-        // Cria indicador
-        const indicator = document.createElement("span");
-        indicator.className = "banner-indicator";
-        if (index === 0) indicator.classList.add("active");
+        
+        // Adiciona indicador
+        const indicator = document.createElement('div');
+        indicator.className = 'banner-indicator';
         indicator.dataset.index = index;
-        indicator.onclick = () => showSlide(index);
+        indicator.addEventListener('click', () => {
+            goToSlide(index);
+        });
         indicatorsContainer.appendChild(indicator);
     });
-
-    slides = slidesContainer.querySelectorAll(".banner-slide");
-    const indicators = indicatorsContainer.querySelectorAll(".banner-indicator");
-
-    // Esconde controles se houver apenas 1 item
-    const controls = document.querySelector(".banner-controls");
-    if (mediaItems.length <= 1) {
-        if (controls) controls.style.display = "none";
-        if (indicatorsContainer) indicatorsContainer.style.display = "none";
-    } else {
-        if (controls) controls.style.display = "flex";
-        if (indicatorsContainer) indicatorsContainer.style.display = "flex";
-        // Adiciona eventos aos botões de controle
-        document.getElementById("prevSlide").onclick = prevSlide;
-        document.getElementById("nextSlide").onclick = nextSlide;
+    
+    // Configura os controles do carrossel
+    const prevButton = document.getElementById('prevSlide');
+    const nextButton = document.getElementById('nextSlide');
+    
+    if (prevButton) {
+        prevButton.addEventListener('click', () => {
+            goToSlide(currentSlide - 1);
+        });
     }
-
-    // Mostra o primeiro slide
-    showSlide(0);
+    
+    if (nextButton) {
+        nextButton.addEventListener('click', () => {
+            goToSlide(currentSlide + 1);
+        });
+    }
+    
+    // Inicializa o primeiro slide
+    slides = document.querySelectorAll('.banner-slide');
+    goToSlide(0);
 }
 
 // FUNÇÕES DO CARROSSEL
-function showSlide(index) {
-    if (!slides || slides.length === 0) return;
+// FUNÇÃO PARA NAVEGAR ENTRE SLIDES
+function goToSlide(index) {
+    if (slides.length === 0) return;
     
-    // Pausar vídeos anteriores
-    slides.forEach((slide, i) => {
-        const iframe = slide.querySelector("iframe");
-        if (iframe && i !== index) {
-            // Pausa o vídeo do YouTube
-            iframe.contentWindow.postMessage("{\"event\":\"command\",\"func\":\"pauseVideo\",\"args\":\"\"}", "*");
-        }
-        slide.classList.remove("active");
-    });
-
-    const indicators = document.querySelectorAll(".banner-indicator");
-    indicators.forEach(indicator => indicator.classList.remove("active"));
-
+    // Garante que o índice esteja dentro dos limites
+    if (index < 0) index = slides.length - 1;
+    if (index >= slides.length) index = 0;
+    
     currentSlide = index;
-    if (currentSlide >= slides.length) {
-        currentSlide = 0;
-    } else if (currentSlide < 0) {
-        currentSlide = slides.length - 1;
+    
+    // Atualiza a posição dos slides
+    const slidesContainer = document.getElementById('bannerSlides');
+    if (slidesContainer) {
+        slidesContainer.style.transform = `translateX(-${currentSlide * 100}%)`;
     }
-
-    slides[currentSlide].classList.add("active");
-    if (indicators[currentSlide]) {
-        indicators[currentSlide].classList.add("active");
-    }
-}
-
-function nextSlide() {
-    showSlide(currentSlide + 1);
-}
-
-function prevSlide() {
-    showSlide(currentSlide - 1);
+    
+    // Atualiza os indicadores
+    const indicators = document.querySelectorAll('.banner-indicator');
+    indicators.forEach((indicator, i) => {
+        if (i === currentSlide) {
+            indicator.classList.add('active');
+        } else {
+            indicator.classList.remove('active');
+        }
+    });
 }
 
 // FUNÇÃO PARA CONFIGURAR CONTEÚDO EXPANSÍVEL (Planos de Aula, Outros Materiais)
