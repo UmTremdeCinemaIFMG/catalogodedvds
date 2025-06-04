@@ -592,6 +592,28 @@ function copyToClipboard() {
     });
 }
 
+// EXTRAI ID DO YOUTUBE DE UMA URL
+function getYoutubeId(url) {
+    if (!url) return null;
+    
+    // Padrões de URL do YouTube
+    const patterns = [
+        /(?:https?:\/\/)?(?:www\.)?youtube\.com\/watch\?v=([^&]+)/i,
+        /(?:https?:\/\/)?(?:www\.)?youtu\.be\/([^?]+)/i,
+        /(?:https?:\/\/)?(?:www\.)?youtube\.com\/embed\/([^?]+)/i
+    ];
+    
+    for (const pattern of patterns) {
+        const match = url.match(pattern);
+        if (match && match[1]) {
+            return match[1];
+        }
+    }
+    
+    return null;
+}
+
+
 // INICIALIZAÇÃO QUANDO O DOM ESTIVER PRONTO
 document.addEventListener("DOMContentLoaded", loadFilmData);
 
