@@ -299,6 +299,7 @@ function renderFilmData(film) {
             <h3 class="expandable-title"><i class="fas fa-file-alt"></i> Outros Materiais <i class="fas fa-chevron-down expand-icon"></i></h3>
             <div class="expandable-content">
                  ${renderOtherMaterials(film)}
+                 setupExpandableContent();
             </div>
         </div>
         `;
