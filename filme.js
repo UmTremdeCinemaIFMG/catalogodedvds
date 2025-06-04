@@ -397,7 +397,21 @@ function initializeCarousel(film) {
         mediaItems.push({ type: "video", src: film.trailer, alt: `Trailer de ${film.title}` });
     }
 
-    // 3. Adiciona imagens adicionais, se existirem
+    // 3. Adiciona outros videos (se existirem)
+    if (film.videos && Array.isArray(film.videos) && film.videos.length > 0) {
+        film.videos.forEach(video => {
+            // Garante que o vídeo tenha uma URL válida
+            if (video && video.url && String(video.url).trim() !== "") {
+                mediaItems.push({ 
+                    type: "video", 
+                    src: String(video.url).trim(), // Usa src para consistência
+                    alt: video.titulo || `Vídeo de ${film.title}` // Usa alt para consistência
+                });
+            }
+        });
+    }
+
+    // 4. Adiciona imagens adicionais, se existirem
     if (film.imagens_adicionais && film.imagens_adicionais.length > 0) {
         film.imagens_adicionais.forEach((imgUrl, index) => {
             if (imgUrl && imgUrl.trim() !== "") {
