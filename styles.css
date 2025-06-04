@@ -21,16 +21,6 @@
                    2. ESTILOS BASE
                    ========================================== */
 
-/* Links em textos normais */
-a {
-    color: #007bff; /* azul ou o padrão do seu tema */
-    transition: color 0.2s;
-    text-decoration: underline;
-}
-
-a:hover, a:focus {
-    color: #0056b3; /* azul mais escuro, nunca branco */
-}
 
                 /* RESET E CONFIGURAÇÕES BÁSICAS Segoe UI */
                 body {
@@ -1260,3 +1250,13 @@ a:hover {
     display: flex; /* Mostra o botão */
 }
 
+/* Links em textos normais */
+a {
+    color: #007bff; /* azul ou o padrão do seu tema */
+    transition: color 0.2s;
+    text-decoration: underline;
+}
+
+a:hover, a:focus {
+    color: #0056b3; /* azul mais escuro, nunca branco */
+}
