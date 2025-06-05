@@ -201,12 +201,14 @@ function renderFilmData(film) {
     // Inicializa o conteúdo do filme
     let filmContent = "";
     
-    // SINOPSE
+    // SINOPSE (Expansível)
     if (film.synopsis) {
         filmContent += `
-        <div class="filme-section">
-            <h3><i class="fas fa-align-left"></i> Sinopse</h3>
-            <p>${film.synopsis}</p>
+        <div class="filme-section expandable-section">
+            <h3 class="expandable-title"><i class="fas fa-align-left"></i> Sinopse <i class="fas fa-chevron-down expand-icon"></i></h3>
+            <div class="expandable-content">
+                <p>${film.synopsis}</p>
+            </div>
         </div>
         `;
     }
@@ -272,9 +274,74 @@ function renderFilmData(film) {
         `;
     }
     
+    // AGRUPANDO INFORMAÇÕES ADICIONAIS (Expansível)
+    let additionalInfoContent = "";
+    let hasAnyAdditionalInfo = false;
+
+    // FESTIVAIS (dentro de Informações Adicionais)
+    if (film.festivais) {
+        additionalInfoContent += `
+        <div class="filme-subsection">
+            <h4><i class="fas fa-ticket-alt"></i> Festivais</h4>
+            <p>${film.festivais.replace(/\n/g, "<br>")}</p>
+        </div>
+        `;
+        hasAnyAdditionalInfo = true;
+    }
     
-    
-    // OUTROS MATERIAIS (usa função de script.js)
+    // PRÊMIOS (dentro de Informações Adicionais)
+    if (film.premios) {
+        additionalInfoContent += `
+        <div class="filme-subsection">
+            <h4><i class="fas fa-award"></i> Prêmios</h4>
+            <p>${film.premios.replace(/\n/g, "<br>")}</p>
+        </div>
+        `;
+        hasAnyAdditionalInfo = true;
+    }
+
+    // OUTROS DETALHES (Audiodescrição, CC, Legendas, Website)
+    let otherDetailsContent = "";
+    if (film.audiodescricao) {
+        otherDetailsContent += `<p><strong><i class="fas fa-assistive-listening-systems"></i> Audiodescrição:</strong> ${film.audiodescricao}</p>`;
+        hasAnyAdditionalInfo = true;
+    }
+    if (film.closedCaption) {
+        otherDetailsContent += `<p><strong><i class="fas fa-closed-captioning"></i> Closed Caption:</strong> ${film.closedCaption}</p>`;
+        hasAnyAdditionalInfo = true;
+    }
+    if (film.legendasOutras) {
+        otherDetailsContent += `<p><strong><i class="fas fa-language"></i> Outras Legendas:</strong> ${film.legendasOutras}</p>`;
+        hasAnyAdditionalInfo = true;
+    }
+    if (film.website) {
+        const websiteUrl = film.website.startsWith("http") ? film.website : `https://${film.website}`;
+        otherDetailsContent += `<p><strong><i class="fas fa-globe"></i> Website:</strong> <a href="${websiteUrl}" target="_blank">${film.website}</a></p>`;
+        hasAnyAdditionalInfo = true;
+    }
+
+    if (otherDetailsContent) {
+         additionalInfoContent += `
+         <div class="filme-subsection">
+             <h4><i class="fas fa-info-circle"></i> Outros Detalhes</h4>
+             ${otherDetailsContent}
+         </div>
+         `;
+    }
+
+    // Renderiza a seção "Informações Adicionais" apenas se houver conteúdo
+    if (hasAnyAdditionalInfo) {
+        filmContent += `
+        <div class="filme-section expandable-section">
+            <h3 class="expandable-title"><i class="fas fa-info-circle"></i> Informações Adicionais <i class="fas fa-chevron-down expand-icon"></i></h3>
+            <div class="expandable-content">
+                ${additionalInfoContent}
+            </div>
+        </div>
+        `;
+    }
+
+    // OUTROS MATERIAIS (Expansível - Mantido como estava)
     if (film.materialOutros && film.materialOutros.length > 0) {
         filmContent += `
         <div class="filme-section expandable-section">
@@ -286,57 +353,8 @@ function renderFilmData(film) {
         `;
     }
 
-// FESTIVAIS
-    if (film.festivais) {
-        filmContent += `
-        <div class="filme-section">
-            <h3><i class="fas fa-ticket-alt"></i> Festivais</h3>
-            <p>${film.festivais.replace(/\n/g, "<br>")}</p>
-        </div>
-        `;
-    }
-    
-    // PRÊMIOS
-    if (film.premios) {
-        filmContent += `
-        <div class="filme-section">
-            <h3><i class="fas fa-award"></i> Prêmios</h3>
-            <p>${film.premios.replace(/\n/g, "<br>")}</p>
-        </div>
-        `;
-    }
-    
-    // INFORMAÇÕES ADICIONAIS
-    if (hasAdditionalInfo) {
-        let additionalContent = "";
-        
-        if (film.audiodescricao) {
-            additionalContent += `<p><strong><i class="fas fa-assistive-listening-systems"></i> Audiodescrição:</strong> ${film.audiodescricao}</p>`;
-        }
-        
-        if (film.closedCaption) {
-            additionalContent += `<p><strong><i class="fas fa-closed-captioning"></i> Closed Caption:</strong> ${film.closedCaption}</p>`;
-        }
-        
-        if (film.legendasOutras) {
-            additionalContent += `<p><strong><i class="fas fa-language"></i> Outras Legendas:</strong> ${film.legendasOutras}</p>`;
-        }
-        
-        if (film.website) {
-            // Garante que a URL tenha protocolo
-            const websiteUrl = film.website.startsWith("http") ? film.website : `https://${film.website}`;
-            additionalContent += `<p><strong><i class="fas fa-globe"></i> Website:</strong> <a href="${websiteUrl}" target="_blank">${film.website}</a></p>`;
-        }
-        
-        if (additionalContent) {
-            filmContent += `
-            <div class="filme-section">
-                <h3><i class="fas fa-info-circle"></i> Informações Adicionais</h3>
-                ${additionalContent}
-            </div>
-            `;
-        }
-    }
+    // REMOVIDO O BLOCO ANTIGO DE INFORMAÇÕES ADICIONAIS QUE ESTAVA SOLTO
+
     
     // ADICIONA O CONTEÚDO AO CONTAINER
     filmContainer.innerHTML = `
@@ -645,3 +663,4 @@ function getYoutubeId(url) {
 
 // INICIALIZAÇÃO QUANDO O DOM ESTIVER PRONTO
 document.addEventListener("DOMContentLoaded", loadFilmData);
+
