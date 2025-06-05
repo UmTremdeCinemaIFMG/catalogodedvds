@@ -151,12 +151,7 @@ function renderFilmData(film) {
     const themes = createThemesList(film);
     const hasThemes = themes.length > 0;
     
-    // INFORMAÇÕES ADICIONAIS
-    const hasAdditionalInfo = film.audiodescricao || film.closedCaption || film.website || 
-                            film.assistirOnline || film.festivais || film.premios || 
-                            film.legendasOutras || (film.materialOutros && film.materialOutros.length > 0);
-    
-    // HEADER DO FILME
+    // HEADER DO FILME (Sem botões de compartilhar aqui)
     const filmHeader = document.createElement("div");
     filmHeader.className = "filme-header";
     filmHeader.innerHTML = `
@@ -176,68 +171,42 @@ function renderFilmData(film) {
                 ${film.state ? `<p><strong><i class="fas fa-map-marker-alt"></i> UF:</strong> ${film.state}</p>` : ""}
                 ${film.city ? `<p><strong><i class="fas fa-city"></i> Cidade:</strong> ${film.city}</p>` : ""}
             </div>
-            
-            <!-- Botões de compartilhamento -->
-            <div class="social-share-container">
-                <div class="social-share-title">Compartilhar:</div>
-                <div class="social-share-buttons">
-                    <button class="social-share-button whatsapp" title="Compartilhar no WhatsApp" onclick="shareOnWhatsApp()">
-                        <i class="fab fa-whatsapp"></i>
-                    </button>
-                    <button class="social-share-button facebook" title="Compartilhar no Facebook" onclick="shareOnFacebook()">
-                        <i class="fab fa-facebook-f"></i>
-                    </button>
-                    <button class="social-share-button twitter" title="Compartilhar no X (Twitter)" onclick="shareOnTwitter()">
-                        <i class="fab fa-twitter"></i>
-                    </button>
-                    <button class="social-share-button copy" title="Copiar link" onclick="copyToClipboard()">
-                        <i class="fas fa-link"></i>
-                    </button>
-                </div>
-            </div>
         </div>
     `;
     
     // Inicializa o conteúdo do filme
     let filmContent = "";
-    
-    // SINOPSE (Expansível)
-    if (film.synopsis) {
+
+    // 1. TEMAS
+    if (hasThemes) {
         filmContent += `
-        <div class="filme-section expandable-section">
-            <h3 class="expandable-title"><i class="fas fa-align-left"></i> Sinopse <i class="fas fa-chevron-down expand-icon"></i></h3>
-            <div class="expandable-content">
-                <p>${film.synopsis}</p>
-            </div>
+        <div class="filme-section">
+            <h3><i class="fas fa-tags"></i> Temas</h3>
+            ${themes.map(theme => `<span class="theme-tag">${theme}</span>`).join("")}
         </div>
         `;
     }
-    
-    // ODS - MODIFICADO PARA EFEITO FLIP E CORES
+
+    // 2. ODS
     if (film.ods && film.ods.length > 0) {
         filmContent += `
         <div class="filme-section">
             <h3><i class="fas fa-globe-americas"></i> Objetivos de Desenvolvimento Sustentável</h3>
             <div class="ods-container">
                 ${film.ods.map(ods => {
-                    const odsNumberMatch = ods.match(/\d+/); // Extrai o número do ODS
+                    const odsNumberMatch = ods.match(/\d+/);
                     if (odsNumberMatch) {
                         const odsNumber = odsNumberMatch[0];
-                        const description = odsDescriptions[odsNumber] || `Descrição para ODS ${odsNumber} não encontrada.`; // Pega descrição do JSON
+                        const description = odsDescriptions[odsNumber] || `Descrição para ODS ${odsNumber} não encontrada.`;
                         const link = `https://brasil.un.org/pt-br/sdgs/${odsNumber}`;
-                        
-                        // Adiciona data-ods-number ao ods-back para estilização CSS
                         return `
                             <div class="ods-flip-container">
                                 <a href="${link}" target="_blank" class="ods-flipper-link" title="ODS ${ods} - Clique para saber mais">
                                     <div class="ods-flipper">
                                         <div class="ods-front">
-                                            <img src="ods_icons/ods_${odsNumber}.svg" 
-                                                 alt="Ícone do ODS ${ods}" 
-                                                 loading="lazy">
+                                            <img src="ods_icons/ods_${odsNumber}.svg" alt="Ícone do ODS ${ods}" loading="lazy">
                                         </div>
                                         <div class="ods-back" data-ods-number="${odsNumber}">
-                                           
                                             <p>${description}</p>
                                         </div>
                                     </div>
@@ -252,17 +221,19 @@ function renderFilmData(film) {
         `;
     }
     
-    // TEMAS
-    if (hasThemes) {
+    // 3. SINOPSE (Expansível)
+    if (film.synopsis) {
         filmContent += `
-        <div class="filme-section">
-            <h3><i class="fas fa-tags"></i> Temas</h3>
-            ${themes.map(theme => `<span class="theme-tag">${theme}</span>`).join("")}
+        <div class="filme-section expandable-section">
+            <h3 class="expandable-title"><i class="fas fa-align-left"></i> Sinopse <i class="fas fa-chevron-down expand-icon"></i></h3>
+            <div class="expandable-content">
+                <p>${film.synopsis}</p>
+            </div>
         </div>
         `;
     }
     
-    // PLANOS DE AULA (usa função de script.js)
+    // 4. PLANOS DE AULA (Expansível)
     if (film.planos_de_aula && film.planos_de_aula.length > 0) {
         filmContent += `
         <div class="filme-section expandable-section">
@@ -274,7 +245,19 @@ function renderFilmData(film) {
         `;
     }
     
-    // AGRUPANDO INFORMAÇÕES ADICIONAIS (Expansível)
+    // 5. OUTROS MATERIAIS (Expansível)
+    if (film.materialOutros && film.materialOutros.length > 0) {
+        filmContent += `
+        <div class="filme-section expandable-section">
+            <h3 class="expandable-title"><i class="fas fa-file-alt"></i> Outros Materiais <i class="fas fa-chevron-down expand-icon"></i></h3>
+            <div class="expandable-content">
+                 ${renderOtherMaterials(film)}
+            </div>
+        </div>
+        `;
+    }
+
+    // 6. INFORMAÇÕES ADICIONAIS (Expansível e Agrupada)
     let additionalInfoContent = "";
     let hasAnyAdditionalInfo = false;
 
@@ -341,20 +324,26 @@ function renderFilmData(film) {
         `;
     }
 
-    // OUTROS MATERIAIS (Expansível - Mantido como estava)
-    if (film.materialOutros && film.materialOutros.length > 0) {
-        filmContent += `
-        <div class="filme-section expandable-section">
-            <h3 class="expandable-title"><i class="fas fa-file-alt"></i> Outros Materiais <i class="fas fa-chevron-down expand-icon"></i></h3>
-            <div class="expandable-content">
-                 ${renderOtherMaterials(film)}
-            </div>
+    // BOTÕES DE COMPARTILHAMENTO (Movidos para o final)
+    filmContent += `
+    <div class="filme-section social-share-bottom-container">
+        <h3><i class="fas fa-share-alt"></i> Compartilhar</h3>
+        <div class="social-share-buttons">
+            <button class="social-share-button whatsapp" title="Compartilhar no WhatsApp" onclick="shareOnWhatsApp()">
+                <i class="fab fa-whatsapp"></i>
+            </button>
+            <button class="social-share-button facebook" title="Compartilhar no Facebook" onclick="shareOnFacebook()">
+                <i class="fab fa-facebook-f"></i>
+            </button>
+            <button class="social-share-button twitter" title="Compartilhar no X (Twitter)" onclick="shareOnTwitter()">
+                <i class="fab fa-twitter"></i>
+            </button>
+            <button class="social-share-button copy" title="Copiar link" onclick="copyToClipboard()">
+                <i class="fas fa-link"></i>
+            </button>
         </div>
-        `;
-    }
-
-    // REMOVIDO O BLOCO ANTIGO DE INFORMAÇÕES ADICIONAIS QUE ESTAVA SOLTO
-
+    </div>
+    `;
     
     // ADICIONA O CONTEÚDO AO CONTAINER
     filmContainer.innerHTML = `
@@ -379,20 +368,14 @@ function renderFilmData(film) {
     // ADICIONA O BOTÃO "ASSISTIR ONLINE" SE EXISTIR O LINK
     const controlsContainer = document.querySelector(".filme-page-controls");
     if (controlsContainer && film.assistirOnline && film.assistirOnline.trim() !== "") {
-        // Garante que a URL tenha protocolo
         const onlineUrl = film.assistirOnline.startsWith("http") ? film.assistirOnline : `https://${film.assistirOnline}`;
         const assistirOnlineBtn = document.createElement("a");
         assistirOnlineBtn.href = onlineUrl;
         assistirOnlineBtn.target = "_blank";
         assistirOnlineBtn.className = "btn-assistir-online";
-        assistirOnlineBtn.innerHTML = "Assistir Online <i class=\"fas fa-external-link-alt\"></i>"; // Ícone atualizado
-        // Insere o botão após o botão de voltar
-        const voltarBtn = controlsContainer.querySelector(".btn-voltar");
-        if (voltarBtn) {
-            voltarBtn.insertAdjacentElement("afterend", assistirOnlineBtn);
-        } else {
-            controlsContainer.appendChild(assistirOnlineBtn);
-        }
+        assistirOnlineBtn.innerHTML = "Assistir Online <i class=\"fas fa-external-link-alt\"></i>";
+        // Insere o botão Assistir Online no início do container de controles
+        controlsContainer.insertBefore(assistirOnlineBtn, controlsContainer.firstChild);
     }
 } 
 
