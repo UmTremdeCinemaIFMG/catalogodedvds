@@ -170,10 +170,10 @@ function renderFilmData(film) {
                 ${film.country ? `<p><strong><i class="fas fa-globe-americas"></i> País:</strong> ${film.country}</p>` : ""}
                 ${film.state ? `<p><strong><i class="fas fa-map-marker-alt"></i> UF:</strong> ${film.state}</p>` : ""}
                 ${film.city ? `<p><strong><i class="fas fa-city"></i> Cidade:</strong> ${film.city}</p>` : ""}
-                ${film.classification ? `<p><strong><i class="fas fa-city"></i> Classificação Indicativa:</strong> ${film.classification}</p>` : ""}
+                ${film.classification ? `<p><strong><i class="fas fa-info-circle"></i> Classificação Indicativa:</strong> ${film.classification}</p>` : ""}
                 ${film.classificationDescription && film.classificationDescription.length > 0 ? 
                     film.classificationDescription.map(desc => 
-                        `<p><strong><i class="fas fa-info-circle"></i> Classificação Indicativa - Descrição:</strong> <a href="${desc.url || '#'}" target="_blank">${desc.Descrição || 'N/A'}</a></p>`
+                        `<p><strong><i class="fas fa-info-circle"></i> Descrição:</strong> <a href="${desc.url || '#'}" target="_blank">${desc.Descrição || 'N/A'}</a></p>`
                     ).join('') 
                     : ''
                 }
