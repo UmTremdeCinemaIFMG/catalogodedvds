@@ -103,6 +103,7 @@ function transformFilmData(originalFilm) {
         dvd: cleanField(originalFilm["Nome do Programa"]),
         imageName: cleanField(originalFilm["imageName"]),
         classification: parseInt(originalFilm["Classificação Indicativa POR PGM"]) || 0,
+        classificationDescription: originalFilm["Classificação Indicativa - Descrição"] || [], // Adicionado novo campo
         planos_de_aula: originalFilm["planos_de_aula"] || [],
         videos: originalFilm["videos"] || []
     };
