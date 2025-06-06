@@ -196,7 +196,7 @@
 .theme-tag {
     display: inline-block;
     background-color: var(--verde-ifmg);
-    color: var(--verde-ifmg);
+    color: var(--branco);
     padding: 5px 12px;
     margin: 0 8px 8px 0;
     border-radius: 20px;
