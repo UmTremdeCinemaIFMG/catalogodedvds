@@ -195,8 +195,8 @@
 
 .theme-tag {
     display: inline-block;
-    background-color: #f0f0f0;
-    color: var(--cinza-medio);
+    background-color: var(--verde-ifmg);
+    color: var(--verde-ifmg);
     padding: 5px 12px;
     margin: 0 8px 8px 0;
     border-radius: 20px;
@@ -205,7 +205,7 @@
 }
 
 .theme-tag:hover {
-    background-color: #e0e0e0;
+    background-color: var(--verde-escuro);
 }
 
 .teaching-plan-card, .other-material-card {
