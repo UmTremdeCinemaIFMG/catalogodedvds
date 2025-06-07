@@ -143,7 +143,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     ${isMobile ? '' : `<strong>Duração:</strong> ${filme['Dur.(´)']} minutos`}
                 </p>
                 ${filme.Gênero ? `<span class="genero">${filme.Gênero}</span>` : ''}
-                <a href="filme.html?titulo=${filme.id || filmeSlug}" class="ver-mais">Ver mais informações</a>
+                <a href="filme.html?titulo=${encodedTitle}" class="ver-mais">Ver mais informações</a>
             </div>
         `;
     }
