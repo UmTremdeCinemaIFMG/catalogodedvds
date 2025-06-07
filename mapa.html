@@ -1,67 +1,109 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mapa do Catálogo de Filmes</title>
-    <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <title>Mapa - Catálogo de DVDs</title>
+    
+    <!-- FONTS E ÍCONES -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="icon" type="image/png" href="favicon.png" />
+    
     <!-- Leaflet CSS -->
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
-    <!-- Custom CSS -->
+    
+    <!-- ESTILOS -->
+    <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="css/mapa.css">
 </head>
 <body>
-    <!-- Navbar -->
-    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+    <!-- CABEÇALHO -->
+    <header>
+        <p>
         <div class="container">
-            <a class="navbar-brand" href="index.html">Catálogo de DVDs</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav">
-                    <li class="nav-item">
-                        <a class="nav-link" href="index.html">Início</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link active" href="mapa.html">Mapa</a>
-                    </li>
-                </ul>
+            <h1><i class="fas fa-film"></i> CATÁLOGO DE DVDs</h1>
+            <h3>Filmes Brasileiros do Projeto Um Trem de Cinema do IFMG Sabará</h3>
+        </div>
+        </p>
+        <!-- BARRA EXTRA -->
+        <div class="barra-extra">
+            <div class="container">
+                <a href="index.html">Início</a>
+                <a href="sobre.html">Sobre</a>
+                <a href="mapa.html" style="font-weight: bold;">Mapa</a>
+                <a href="filmes-online-gratis.html">Filmes Online Grátis</a>
             </div>
         </div>
-    </nav>
+    </header>
 
-    <div class="container mt-4">
-        <h1 class="mb-4">Mapa do Acervo de Filmes</h1>
-        
-        <div class="row">
-            <div class="col-md-3">
-                <div class="stats-box">
-                    <h4>Estatísticas</h4>
-                    <div id="stats"></div>
+    <!-- CONTEÚDO PRINCIPAL -->
+    <main class="container">
+        <!-- SEÇÃO DE CONTROLES -->
+        <div class="controls-wrapper">
+            <div class="filters-row">
+                <!-- FILTRO DE UF -->
+                <div class="filter-container">
+                    <div class="filter-box">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <select id="filterUF">
+                            <option value="">Todos os Estados</option>
+                        </select>
+                    </div>
                 </div>
-                <div class="form-group mb-3">
-                    <label for="filterUF">Filtrar por Estado:</label>
-                    <select class="form-control" id="filterUF">
-                        <option value="">Todos os Estados</option>
-                    </select>
+
+                <!-- FILTRO DE CIDADE -->
+                <div class="filter-container">
+                    <div class="filter-box">
+                        <i class="fas fa-city"></i>
+                        <select id="filterCity">
+                            <option value="">Todas as Cidades</option>
+                        </select>
+                    </div>
                 </div>
-                <div class="form-group mb-3">
-                    <label for="filterYear">Filtrar por Ano:</label>
-                    <select class="form-control" id="filterYear">
-                        <option value="">Todos os Anos</option>
-                    </select>
+
+                <!-- FILTRO DE ANO -->
+                <div class="filter-container">
+                    <div class="filter-box">
+                        <i class="fas fa-calendar-alt"></i>
+                        <select id="filterYear">
+                            <option value="">Todos os Anos</option>
+                        </select>
+                    </div>
                 </div>
-            </div>
-            <div class="col-md-9">
-                <div id="map"></div>
+
+                <!-- CONTADOR DE RESULTADOS -->
+                <div class="results-counter">
+                    <span id="filmMapCount">0</span> filmes no mapa
+                </div>
             </div>
         </div>
-    </div>
+
+        <div class="map-container">
+            <div id="map"></div>
+            <div class="stats-box">
+                <h3><i class="fas fa-chart-bar"></i> Estatísticas</h3>
+                <div id="stats"></div>
+            </div>
+        </div>
+    </main>
+
+    <!-- RODAPÉ -->
+    <footer>
+        <div class="container">
+            <p>
+            Acervo doado pelo Ministério da Cultura ao Projeto de Extensão
+            <br>                
+            <i class="fas fa-train"></i> UM TREM DE CINEMA IFMG SABARÁ 2019-2021
+            </p>
+        </div>
+    </footer>
+
+    <!-- BOTÃO VOLTAR AO TOPO -->
+    <a href="#" class="voltar-topo" id="btnVoltarTopo">
+        <i class="fas fa-arrow-up"></i>
+    </a>
 
     <!-- Scripts -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
     <script src="js/mapa.js"></script>
 </body>
