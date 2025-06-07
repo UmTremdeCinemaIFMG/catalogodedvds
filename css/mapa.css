@@ -1,9 +1,13 @@
+/* ESTILOS PRINCIPAIS DO MAPA E SEUS COMPONENTES */
+
+/* CONTAINER PRINCIPAL DO MAPA E ESTATÍSTICAS */
 .map-container {
     display: flex;
     gap: 20px;
     margin: 20px 0;
 }
 
+/* ESTILO DO MAPA PRINCIPAL */
 #map {
     flex: 1;
     height: 75vh;
@@ -11,6 +15,7 @@
     box-shadow: var(--sombra);
 }
 
+/* CONTAINER DE ESTATÍSTICAS */
 .stats-box {
     width: 300px;
     background: var(--branco);
@@ -19,6 +24,7 @@
     box-shadow: var(--sombra);
 }
 
+/* TÍTULO DA CAIXA DE ESTATÍSTICAS */
 .stats-box h3 {
     color: var(--verde-ifmg);
     margin-bottom: 15px;
@@ -27,17 +33,20 @@
     gap: 10px;
 }
 
+/* PARÁGRAFOS DE ESTATÍSTICAS */
 .stats-box p {
     margin: 10px 0;
     font-size: 14px;
 }
 
+/* LISTA DE ESTATÍSTICAS */
 .stats-box ul {
     list-style: none;
     padding: 0;
     margin: 10px 0;
 }
 
+/* ITENS DA LISTA DE ESTATÍSTICAS */
 .stats-box li {
     padding: 5px 0;
     border-bottom: 1px solid var(--cinza-claro);
@@ -45,26 +54,31 @@
     justify-content: space-between;
 }
 
+/* ÚLTIMO ITEM DA LISTA */
 .stats-box li:last-child {
     border-bottom: none;
 }
 
+/* ESTILO DO POPUP DE FILME */
 .filme-popup {
     max-width: 300px;
 }
 
+/* TÍTULO DO FILME NO POPUP */
 .filme-popup h5 {
     color: var(--verde-ifmg);
     margin-bottom: 10px;
     font-size: 16px;
 }
 
+/* INFORMAÇÕES DO FILME NO POPUP */
 .filme-popup p {
     margin: 5px 0;
     font-size: 14px;
     line-height: 1.4;
 }
 
+/* TAG DE GÊNERO NO POPUP */
 .filme-popup .genero {
     display: inline-block;
     background-color: var(--verde-ifmg);
@@ -75,26 +89,127 @@
     margin-top: 5px;
 }
 
+/* ESTILO DO WRAPPER DO POPUP DO LEAFLET */
 .leaflet-popup-content-wrapper {
     border-radius: 8px;
     box-shadow: var(--sombra);
 }
 
+/* CONTEÚDO DO POPUP DO LEAFLET */
 .leaflet-popup-content {
     margin: 15px;
 }
 
-/* Responsividade */
-@media (max-width: 768px) {
-    .map-container {
-        flex-direction: column;
-    }
+/* ESTILO DOS CONTROLES DO MAPA */
+.leaflet-control-zoom {
+    margin: 10px !important;
+}
 
-    .stats-box {
+/* ATRIBUIÇÃO DO MAPA */
+.leaflet-control-attribution {
+    font-size: 10px !important;
+}
+
+/* ESTILO DOS FILTROS */
+.filters-row {
+    display: flex;
+    gap: 20px;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+}
+
+/* CONTAINER DE CADA FILTRO */
+.filter-container {
+    flex: 1;
+    min-width: 200px;
+}
+
+/* CAIXA DE FILTRO */
+.filter-box {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: var(--branco);
+    padding: 10px;
+    border-radius: 8px;
+    box-shadow: var(--sombra);
+}
+
+/* SELECT DOS FILTROS */
+.filter-box select {
+    flex: 1;
+    padding: 5px;
+    border: 1px solid var(--cinza-claro);
+    border-radius: 4px;
+    font-size: 14px;
+}
+
+/* CONTADOR DE RESULTADOS */
+.results-counter {
+    text-align: center;
+    font-size: 14px;
+    color: var(--texto);
+    margin: 10px 0;
+}
+
+/* RESPONSIVIDADE - TELAS MÉDIAS */
+@media (max-width: 768px) {
+    /* AJUSTES PARA DISPOSITIVOS MÓVEIS */
+    .filters-row {
+        flex-direction: column;
+        gap: 10px;
+    }
+    
+    .filter-container {
         width: 100%;
     }
+    
+    .filter-box select {
+        width: 100%;
+        max-width: none;
+    }
+    
+    .map-container {
+        flex-direction: column;
+        margin: 10px 0;
+    }
+    
+    #map {
+        height: 60vh;
+        width: 100%;
+    }
+    
+    .stats-box {
+        width: 100%;
+        margin-top: 15px;
+    }
+    
+    .filme-popup {
+        max-width: 250px;
+    }
+    
+    .results-counter {
+        width: 100%;
+        text-align: center;
+        margin: 10px 0;
+    }
+}
 
+/* RESPONSIVIDADE - TELAS PEQUENAS */
+@media (max-width: 480px) {
     #map {
         height: 50vh;
+    }
+    
+    .filme-popup {
+        max-width: 200px;
+    }
+    
+    .filme-popup h5 {
+        font-size: 14px;
+    }
+    
+    .filme-popup p {
+        font-size: 12px;
     }
 }
