@@ -73,160 +73,156 @@ document.addEventListener('DOMContentLoaded', function() {
     let filmes = [];
     let marcadores = L.layerGroup().addTo(map);
 
-// VARIÁVEIS GLOBAIS
-let filmes = [];
-let marcadores = L.layerGroup().addTo(map);
-
-// FUNÇÃO PARA SEPARAR UFs MÚLTIPLAS
-function getUFs(ufString) {
-    if (!ufString) return [];
-    // DIVIDE POR VÍRGULA, BARRA OU ESPAÇO E FILTRA VALORES VAZIOS
-    return ufString.split(/[,/\s]+/).map(uf => uf.trim()).filter(Boolean);
-}
-
-// FUNÇÃO PARA OBTER COORDENADAS DE UM FILME
-function getCoordenadas(filme) {
-    if (filme.cidade && filme.cidade.trim() !== '') {
-        const coords = coordenadas.cidades[filme.cidade];
-        if (coords) return coords;
+    // FUNÇÃO PARA SEPARAR UFs MÚLTIPLAS
+    function getUFs(ufString) {
+        if (!ufString) return [];
+        // DIVIDE POR VÍRGULA, BARRA OU ESPAÇO E FILTRA VALORES VAZIOS
+        return ufString.split(/[,/\s]+/).map(uf => uf.trim()).filter(Boolean);
     }
-    
-    if (filme.UF) {
-        const uf = filme.UF.trim();
-        return coordenadas.capitais[uf];
-    }
-    
-    return [-15.7975, -47.8919]; // BRASÍLIA COMO PONTO PADRÃO
-}
 
-// FUNÇÃO PARA CRIAR O CONTEÚDO DO POPUP ADAPTATIVO
-function criarConteudoPopup(filme) {
-    const isMobile = window.innerWidth <= 768;
-    
-    return `
-        <div class="filme-popup">
-            <h5>${filme['Título do filme']}</h5>
-            <p>
-                <strong>Direção:</strong> ${filme.Direção}<br>
-                <strong>Ano:</strong> ${filme.Ano}<br>
-                ${isMobile ? `<strong>Local:</strong> ${filme.cidade || filme.UF}<br>` : 
-                           `<strong>Estado:</strong> ${filme.UF}<br>
-                            ${filme.cidade ? `<strong>Cidade:</strong> ${filme.cidade}<br>` : ''}`}
-                <strong>Gênero:</strong> ${filme.Gênero || filme.GEN || 'Não informado'}<br>
-                ${isMobile ? '' : `<strong>Duração:</strong> ${filme['Dur.(´)']} minutos`}
-            </p>
-            ${filme.Gênero ? `<span class="genero">${filme.Gênero}</span>` : ''}
-        </div>
-    `;
-}
-
-// FUNÇÃO PARA ATUALIZAR O MAPA
-function atualizarMapa() {
-    marcadores.clearLayers();
-
-    const ufSelecionada = document.getElementById('filterUF').value;
-    const cidadeSelecionada = document.getElementById('filterCity').value;
-    const anoSelecionado = document.getElementById('filterYear').value;
-
-    let filmesVisiveis = 0;
-
-    filmes.forEach(filme => {
-        // VERIFICA OS FILTROS SELECIONADOS
-        if ((!ufSelecionada || filme.UF === ufSelecionada) &&
-            (!cidadeSelecionada || filme.cidade === cidadeSelecionada) &&
-            (!anoSelecionado || filme.Ano.toString() === anoSelecionado)) {
-            
-            const coords = getCoordenadas(filme);
-            if (coords) {
-                const marker = L.marker(coords)
-                    .bindPopup(criarConteudoPopup(filme), {
-                        maxWidth: window.innerWidth <= 768 ? 200 : 300,
-                        autoPan: true,
-                        closeButton: true
-                    });
-                marcadores.addLayer(marker);
-                filmesVisiveis++;
-            }
+    // FUNÇÃO PARA OBTER COORDENADAS DE UM FILME
+    function getCoordenadas(filme) {
+        if (filme.cidade && filme.cidade.trim() !== '') {
+            const coords = coordenadas.cidades[filme.cidade];
+            if (coords) return coords;
         }
-    });
+        
+        if (filme.UF) {
+            const uf = filme.UF.trim();
+            return coordenadas.capitais[uf];
+        }
+        
+        return [-15.7975, -47.8919]; // BRASÍLIA COMO PONTO PADRÃO
+    }
 
-    document.getElementById('filmMapCount').textContent = filmesVisiveis;
-}
+    // FUNÇÃO PARA CRIAR O CONTEÚDO DO POPUP ADAPTATIVO
+    function criarConteudoPopup(filme) {
+        const isMobile = window.innerWidth <= 768;
+        
+        return `
+            <div class="filme-popup">
+                <h5>${filme['Título do filme']}</h5>
+                <p>
+                    <strong>Direção:</strong> ${filme.Direção}<br>
+                    <strong>Ano:</strong> ${filme.Ano}<br>
+                    ${isMobile ? `<strong>Local:</strong> ${filme.cidade || filme.UF}<br>` : 
+                               `<strong>Estado:</strong> ${filme.UF}<br>
+                                ${filme.cidade ? `<strong>Cidade:</strong> ${filme.cidade}<br>` : ''}`}
+                    <strong>Gênero:</strong> ${filme.Gênero || filme.GEN || 'Não informado'}<br>
+                    ${isMobile ? '' : `<strong>Duração:</strong> ${filme['Dur.(´)']} minutos`}
+                </p>
+                ${filme.Gênero ? `<span class="genero">${filme.Gênero}</span>` : ''}
+            </div>
+        `;
+    }
 
-// FUNÇÃO PARA PREENCHER OS FILTROS
-function preencherFiltros() {
-    const ufs = new Set();
-    const cidades = new Set();
-    const anos = new Set();
+    // FUNÇÃO PARA ATUALIZAR O MAPA
+    function atualizarMapa() {
+        marcadores.clearLayers();
 
-    filmes.forEach(filme => {
-        if (filme.UF) ufs.add(filme.UF);
-        if (filme.cidade) cidades.add(filme.cidade);
-        if (filme.Ano) anos.add(filme.Ano);
-    });
+        const ufSelecionada = document.getElementById('filterUF').value;
+        const cidadeSelecionada = document.getElementById('filterCity').value;
+        const anoSelecionado = document.getElementById('filterYear').value;
 
-    // PREENCHE SELECT DE UF
-    const selectUF = document.getElementById('filterUF');
-    Array.from(ufs).sort().forEach(uf => {
-        const option = document.createElement('option');
-        option.value = uf;
-        option.textContent = uf;
-        selectUF.appendChild(option);
-    });
+        let filmesVisiveis = 0;
 
-    // PREENCHE SELECT DE CIDADE
-    const selectCity = document.getElementById('filterCity');
-    Array.from(cidades).sort().forEach(cidade => {
-        const option = document.createElement('option');
-        option.value = cidade;
-        option.textContent = cidade;
-        selectCity.appendChild(option);
-    });
+        filmes.forEach(filme => {
+            // VERIFICA OS FILTROS SELECIONADOS
+            if ((!ufSelecionada || filme.UF === ufSelecionada) &&
+                (!cidadeSelecionada || filme.cidade === cidadeSelecionada) &&
+                (!anoSelecionado || filme.Ano.toString() === anoSelecionado)) {
+                
+                const coords = getCoordenadas(filme);
+                if (coords) {
+                    const marker = L.marker(coords)
+                        .bindPopup(criarConteudoPopup(filme), {
+                            maxWidth: window.innerWidth <= 768 ? 200 : 300,
+                            autoPan: true,
+                            closeButton: true
+                        });
+                    marcadores.addLayer(marker);
+                    filmesVisiveis++;
+                }
+            }
+        });
 
-    // PREENCHE SELECT DE ANO
-    const selectAno = document.getElementById('filterYear');
-    Array.from(anos).sort((a, b) => b - a).forEach(ano => {
-        const option = document.createElement('option');
-        option.value = ano;
-        option.textContent = ano;
-        selectAno.appendChild(option);
-    });
+        document.getElementById('filmMapCount').textContent = filmesVisiveis;
+    }
 
-    // ADICIONA LISTENERS PARA OS FILTROS
-    document.getElementById('filterUF').addEventListener('change', atualizarMapa);
-    document.getElementById('filterCity').addEventListener('change', atualizarMapa);
-    document.getElementById('filterYear').addEventListener('change', atualizarMapa);
-}
+    // FUNÇÃO PARA PREENCHER OS FILTROS
+    function preencherFiltros() {
+        const ufs = new Set();
+        const cidades = new Set();
+        const anos = new Set();
 
-// FUNÇÃO PARA ATUALIZAR AS ESTATÍSTICAS
-function atualizarEstatisticas() {
-    const totalFilmes = filmes.length;
-    const estados = new Set(filmes.map(f => f.UF));
-    const cidades = new Set(filmes.filter(f => f.cidade).map(f => f.cidade));
-    const generos = new Map();
-    
-    filmes.forEach(filme => {
-        const genero = filme.Gênero || filme.GEN || 'Não informado';
-        generos.set(genero, (generos.get(genero) || 0) + 1);
-    });
+        filmes.forEach(filme => {
+            if (filme.UF) ufs.add(filme.UF);
+            if (filme.cidade) cidades.add(filme.cidade);
+            if (filme.Ano) anos.add(filme.Ano);
+        });
 
-    document.getElementById('stats').innerHTML = `
-        <p><strong>Total de Filmes:</strong> ${totalFilmes}</p>
-        <p><strong>Estados:</strong> ${estados.size}</p>
-        <p><strong>Cidades:</strong> ${cidades.size}</p>
-        <p><strong>Principais Gêneros:</strong></p>
-        <ul>
-            ${Array.from(generos)
-                .sort((a, b) => b[1] - a[1])
-                .slice(0, 5)
-                .map(([genero, count]) => 
-                    `<li><span>${genero}</span> <span>${count} filme${count > 1 ? 's' : ''}</span></li>`)
-                .join('')}
-        </ul>
-    `;
-}
+        // PREENCHE SELECT DE UF
+        const selectUF = document.getElementById('filterUF');
+        Array.from(ufs).sort().forEach(uf => {
+            const option = document.createElement('option');
+            option.value = uf;
+            option.textContent = uf;
+            selectUF.appendChild(option);
+        });
 
-  // CARREGA E PROCESSA OS DADOS DO CATÁLOGO
+        // PREENCHE SELECT DE CIDADE
+        const selectCity = document.getElementById('filterCity');
+        Array.from(cidades).sort().forEach(cidade => {
+            const option = document.createElement('option');
+            option.value = cidade;
+            option.textContent = cidade;
+            selectCity.appendChild(option);
+        });
+
+        // PREENCHE SELECT DE ANO
+        const selectAno = document.getElementById('filterYear');
+        Array.from(anos).sort((a, b) => b - a).forEach(ano => {
+            const option = document.createElement('option');
+            option.value = ano;
+            option.textContent = ano;
+            selectAno.appendChild(option);
+        });
+
+        // ADICIONA LISTENERS PARA OS FILTROS
+        document.getElementById('filterUF').addEventListener('change', atualizarMapa);
+        document.getElementById('filterCity').addEventListener('change', atualizarMapa);
+        document.getElementById('filterYear').addEventListener('change', atualizarMapa);
+    }
+
+    // FUNÇÃO PARA ATUALIZAR AS ESTATÍSTICAS
+    function atualizarEstatisticas() {
+        const totalFilmes = filmes.length;
+        const estados = new Set(filmes.map(f => f.UF));
+        const cidades = new Set(filmes.filter(f => f.cidade).map(f => f.cidade));
+        const generos = new Map();
+        
+        filmes.forEach(filme => {
+            const genero = filme.Gênero || filme.GEN || 'Não informado';
+            generos.set(genero, (generos.get(genero) || 0) + 1);
+        });
+
+        document.getElementById('stats').innerHTML = `
+            <p><strong>Total de Filmes:</strong> ${totalFilmes}</p>
+            <p><strong>Estados:</strong> ${estados.size}</p>
+            <p><strong>Cidades:</strong> ${cidades.size}</p>
+            <p><strong>Principais Gêneros:</strong></p>
+            <ul>
+                ${Array.from(generos)
+                    .sort((a, b) => b[1] - a[1])
+                    .slice(0, 5)
+                    .map(([genero, count]) => 
+                        `<li><span>${genero}</span> <span>${count} filme${count > 1 ? 's' : ''}</span></li>`)
+                    .join('')}
+            </ul>
+        `;
+    }
+
+    // CARREGA E PROCESSA OS DADOS DO CATÁLOGO
     fetch('catalogo.json')
         .then(response => {
             if (!response.ok) {
@@ -267,4 +263,10 @@ function atualizarEstatisticas() {
     setTimeout(() => {
         map.invalidateSize();
     }, 100);
+    
+    // ADICIONA EVENTO DE REDIMENSIONAMENTO PARA GARANTIR QUE O MAPA SE AJUSTE
+    window.addEventListener('resize', function() {
+        map.invalidateSize();
+    });
 });
+
