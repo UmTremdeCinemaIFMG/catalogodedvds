@@ -71,7 +71,35 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // VARIÁVEIS GLOBAIS
     let filmes = [];
-    let marcadores = L.layerGroup().addTo(map);
+    
+    // INICIALIZA O CLUSTER DE MARCADORES
+    const marcadores = L.markerClusterGroup({
+        showCoverageOnHover: true,
+        zoomToBoundsOnClick: true,
+        spiderfyOnMaxZoom: true,
+        removeOutsideVisibleBounds: true,
+        disableClusteringAtZoom: 15, // DESATIVA CLUSTERING EM ZOOM MUITO PRÓXIMO
+        maxClusterRadius: 80, // RAIO MÁXIMO PARA AGRUPAR MARCADORES
+        iconCreateFunction: function(cluster) {
+            const count = cluster.getChildCount();
+            let size = 'small';
+            
+            if (count > 50) {
+                size = 'large';
+            } else if (count > 20) {
+                size = 'medium';
+            }
+            
+            return L.divIcon({
+                html: `<div><span>${count}</span></div>`,
+                className: `marker-cluster marker-cluster-${size}`,
+                iconSize: L.point(40, 40)
+            });
+        }
+    });
+    
+    // ADICIONA O CLUSTER AO MAPA
+    map.addLayer(marcadores);
 
     // FUNÇÃO PARA SEPARAR UFs MÚLTIPLAS
     function getUFs(ufString) {
@@ -98,6 +126,9 @@ document.addEventListener('DOMContentLoaded', function() {
     // FUNÇÃO PARA CRIAR O CONTEÚDO DO POPUP ADAPTATIVO
     function criarConteudoPopup(filme) {
         const isMobile = window.innerWidth <= 768;
+        const filmeSlug = filme['Título do filme'].toLowerCase()
+            .replace(/[^\w\s]/gi, '')
+            .replace(/\s+/g, '-');
         
         return `
             <div class="filme-popup">
@@ -112,6 +143,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     ${isMobile ? '' : `<strong>Duração:</strong> ${filme['Dur.(´)']} minutos`}
                 </p>
                 ${filme.Gênero ? `<span class="genero">${filme.Gênero}</span>` : ''}
+                <a href="filme.html?id=${filme.id || filmeSlug}" class="ver-mais">Ver mais informações</a>
             </div>
         `;
     }
@@ -134,12 +166,21 @@ document.addEventListener('DOMContentLoaded', function() {
                 
                 const coords = getCoordenadas(filme);
                 if (coords) {
-                    const marker = L.marker(coords)
+                    // ADICIONA UM PEQUENO DESLOCAMENTO ALEATÓRIO PARA EVITAR SOBREPOSIÇÃO TOTAL
+                    const jitter = 0.0005; // APROXIMADAMENTE 50 METROS
+                    const adjustedCoords = [
+                        coords[0] + (Math.random() - 0.5) * jitter,
+                        coords[1] + (Math.random() - 0.5) * jitter
+                    ];
+                    
+                    const marker = L.marker(adjustedCoords)
                         .bindPopup(criarConteudoPopup(filme), {
                             maxWidth: window.innerWidth <= 768 ? 200 : 300,
                             autoPan: true,
                             closeButton: true
                         });
+                    
+                    // ADICIONA O MARCADOR AO CLUSTER
                     marcadores.addLayer(marker);
                     filmesVisiveis++;
                 }
