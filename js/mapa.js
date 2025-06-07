@@ -71,6 +71,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // VARIÁVEIS GLOBAIS
     let filmes = [];
+    let filmesOriginais = []; // ARMAZENA OS DADOS ORIGINAIS PARA FILTROS ENCADEADOS
     
     // INICIALIZA O CLUSTER DE MARCADORES
     const marcadores = L.markerClusterGroup({
@@ -126,9 +127,8 @@ document.addEventListener('DOMContentLoaded', function() {
     // FUNÇÃO PARA CRIAR O CONTEÚDO DO POPUP ADAPTATIVO
     function criarConteudoPopup(filme) {
         const isMobile = window.innerWidth <= 768;
-        const filmeSlug = filme['Título do filme'].toLowerCase()
-            .replace(/[^\w\s]/gi, '')
-            .replace(/\s+/g, '-');
+        // CODIFICA O TÍTULO DO FILME PARA A URL (MESMO PADRÃO DA PÁGINA INICIAL)
+        const encodedTitle = encodeURIComponent(filme['Título do filme']);
         
         return `
             <div class="filme-popup">
@@ -190,13 +190,66 @@ document.addEventListener('DOMContentLoaded', function() {
         document.getElementById('filmMapCount').textContent = filmesVisiveis;
     }
 
-    // FUNÇÃO PARA PREENCHER OS FILTROS
+    // FUNÇÃO PARA ATUALIZAR FILTROS ENCADEADOS
+    function atualizarFiltrosEncadeados() {
+        const ufSelecionada = document.getElementById('filterUF').value;
+        const cidadeSelecionada = document.getElementById('filterCity').value;
+        
+        // FILTRA FILMES BASEADO NA UF SELECIONADA
+        let filmesFiltrados = filmesOriginais;
+        if (ufSelecionada) {
+            filmesFiltrados = filmesOriginais.filter(filme => filme.UF === ufSelecionada);
+        }
+        
+        // ATUALIZA O SELECT DE CIDADES
+        const selectCity = document.getElementById('filterCity');
+        const cidadeAtual = selectCity.value;
+        selectCity.innerHTML = '<option value="">Todas as Cidades</option>';
+        
+        const cidadesDisponiveis = new Set();
+        filmesFiltrados.forEach(filme => {
+            if (filme.cidade) cidadesDisponiveis.add(filme.cidade);
+        });
+        
+        Array.from(cidadesDisponiveis).sort().forEach(cidade => {
+            const option = document.createElement('option');
+            option.value = cidade;
+            option.textContent = cidade;
+            if (cidade === cidadeAtual) option.selected = true;
+            selectCity.appendChild(option);
+        });
+        
+        // FILTRA AINDA MAIS BASEADO NA CIDADE SELECIONADA
+        if (cidadeSelecionada) {
+            filmesFiltrados = filmesFiltrados.filter(filme => filme.cidade === cidadeSelecionada);
+        }
+        
+        // ATUALIZA O SELECT DE ANOS
+        const selectYear = document.getElementById('filterYear');
+        const anoAtual = selectYear.value;
+        selectYear.innerHTML = '<option value="">Todos os Anos</option>';
+        
+        const anosDisponiveis = new Set();
+        filmesFiltrados.forEach(filme => {
+            if (filme.Ano) anosDisponiveis.add(filme.Ano);
+        });
+        
+        Array.from(anosDisponiveis).sort((a, b) => b - a).forEach(ano => {
+            const option = document.createElement('option');
+            option.value = ano;
+            option.textContent = ano;
+            if (ano.toString() === anoAtual) option.selected = true;
+            selectYear.appendChild(option);
+        });
+    }
+
+    // FUNÇÃO PARA PREENCHER OS FILTROS INICIAIS
     function preencherFiltros() {
         const ufs = new Set();
         const cidades = new Set();
         const anos = new Set();
 
-        filmes.forEach(filme => {
+        filmesOriginais.forEach(filme => {
             if (filme.UF) ufs.add(filme.UF);
             if (filme.cidade) cidades.add(filme.cidade);
             if (filme.Ano) anos.add(filme.Ano);
@@ -211,7 +264,7 @@ document.addEventListener('DOMContentLoaded', function() {
             selectUF.appendChild(option);
         });
 
-        // PREENCHE SELECT DE CIDADE
+        // PREENCHE SELECT DE CIDADE (INICIALMENTE COM TODAS AS CIDADES)
         const selectCity = document.getElementById('filterCity');
         Array.from(cidades).sort().forEach(cidade => {
             const option = document.createElement('option');
@@ -220,7 +273,7 @@ document.addEventListener('DOMContentLoaded', function() {
             selectCity.appendChild(option);
         });
 
-        // PREENCHE SELECT DE ANO
+        // PREENCHE SELECT DE ANO (INICIALMENTE COM TODOS OS ANOS)
         const selectAno = document.getElementById('filterYear');
         Array.from(anos).sort((a, b) => b - a).forEach(ano => {
             const option = document.createElement('option');
@@ -229,9 +282,17 @@ document.addEventListener('DOMContentLoaded', function() {
             selectAno.appendChild(option);
         });
 
-        // ADICIONA LISTENERS PARA OS FILTROS
-        document.getElementById('filterUF').addEventListener('change', atualizarMapa);
-        document.getElementById('filterCity').addEventListener('change', atualizarMapa);
+        // ADICIONA LISTENERS PARA OS FILTROS COM LÓGICA ENCADEADA
+        document.getElementById('filterUF').addEventListener('change', function() {
+            atualizarFiltrosEncadeados();
+            atualizarMapa();
+        });
+        
+        document.getElementById('filterCity').addEventListener('change', function() {
+            atualizarFiltrosEncadeados();
+            atualizarMapa();
+        });
+        
         document.getElementById('filterYear').addEventListener('change', atualizarMapa);
     }
 
@@ -273,6 +334,10 @@ document.addEventListener('DOMContentLoaded', function() {
         })
         .then(data => {
             console.log('DADOS CARREGADOS COM SUCESSO:', data.length, 'FILMES');
+            
+            // ARMAZENA OS DADOS ORIGINAIS PARA FILTROS ENCADEADOS
+            filmesOriginais = data;
+            
             // EXPANDE FILMES COM MÚLTIPLAS UFs
             filmes = data.reduce((acc, filme) => {
                 const ufs = getUFs(filme.UF);
