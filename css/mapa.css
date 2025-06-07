@@ -5,6 +5,8 @@
     display: flex;
     gap: 20px;
     margin: 20px 0;
+    width: 100%; /* GARANTE QUE OCUPE TODA A LARGURA */
+    box-sizing: border-box; /* INCLUI PADDING E BORDER NA LARGURA */
 }
 
 /* ESTILO DO MAPA PRINCIPAL */
@@ -13,6 +15,7 @@
     height: 75vh;
     border-radius: 8px;
     box-shadow: var(--sombra);
+    min-width: 0; /* EVITA OVERFLOW EM FLEX CONTAINERS */
 }
 
 /* CONTAINER DE ESTATÍSTICAS */
@@ -22,6 +25,7 @@
     padding: 20px;
     border-radius: 8px;
     box-shadow: var(--sombra);
+    box-sizing: border-box; /* INCLUI PADDING NA LARGURA */
 }
 
 /* TÍTULO DA CAIXA DE ESTATÍSTICAS */
@@ -31,97 +35,38 @@
     display: flex;
     align-items: center;
     gap: 10px;
+    font-size: 1.2em; /* TAMANHO RELATIVO PARA MELHOR RESPONSIVIDADE */
 }
 
 /* PARÁGRAFOS DE ESTATÍSTICAS */
 .stats-box p {
     margin: 10px 0;
     font-size: 14px;
+    word-wrap: break-word; /* QUEBRA PALAVRAS LONGAS */
 }
 
-/* LISTA DE ESTATÍSTICAS */
-.stats-box ul {
-    list-style: none;
-    padding: 0;
-    margin: 10px 0;
+/* CONTAINER DOS FILTROS */
+.controls-wrapper {
+    width: 100%;
+    margin-bottom: 20px;
+    box-sizing: border-box;
+    padding: 0 10px; /* ADICIONA ESPAÇAMENTO NAS LATERAIS */
 }
 
-/* ITENS DA LISTA DE ESTATÍSTICAS */
-.stats-box li {
-    padding: 5px 0;
-    border-bottom: 1px solid var(--cinza-claro);
-    display: flex;
-    justify-content: space-between;
-}
-
-/* ÚLTIMO ITEM DA LISTA */
-.stats-box li:last-child {
-    border-bottom: none;
-}
-
-/* ESTILO DO POPUP DE FILME */
-.filme-popup {
-    max-width: 300px;
-}
-
-/* TÍTULO DO FILME NO POPUP */
-.filme-popup h5 {
-    color: var(--verde-ifmg);
-    margin-bottom: 10px;
-    font-size: 16px;
-}
-
-/* INFORMAÇÕES DO FILME NO POPUP */
-.filme-popup p {
-    margin: 5px 0;
-    font-size: 14px;
-    line-height: 1.4;
-}
-
-/* TAG DE GÊNERO NO POPUP */
-.filme-popup .genero {
-    display: inline-block;
-    background-color: var(--verde-ifmg);
-    color: var(--branco);
-    padding: 2px 8px;
-    border-radius: 12px;
-    font-size: 12px;
-    margin-top: 5px;
-}
-
-/* ESTILO DO WRAPPER DO POPUP DO LEAFLET */
-.leaflet-popup-content-wrapper {
-    border-radius: 8px;
-    box-shadow: var(--sombra);
-}
-
-/* CONTEÚDO DO POPUP DO LEAFLET */
-.leaflet-popup-content {
-    margin: 15px;
-}
-
-/* ESTILO DOS CONTROLES DO MAPA */
-.leaflet-control-zoom {
-    margin: 10px !important;
-}
-
-/* ATRIBUIÇÃO DO MAPA */
-.leaflet-control-attribution {
-    font-size: 10px !important;
-}
-
-/* ESTILO DOS FILTROS */
+/* LINHA DE FILTROS */
 .filters-row {
     display: flex;
     gap: 20px;
     margin-bottom: 20px;
     flex-wrap: wrap;
+    width: 100%;
 }
 
 /* CONTAINER DE CADA FILTRO */
 .filter-container {
     flex: 1;
     min-width: 200px;
+    box-sizing: border-box;
 }
 
 /* CAIXA DE FILTRO */
@@ -133,70 +78,92 @@
     padding: 10px;
     border-radius: 8px;
     box-shadow: var(--sombra);
+    width: 100%;
+    box-sizing: border-box;
 }
 
 /* SELECT DOS FILTROS */
 .filter-box select {
     flex: 1;
-    padding: 5px;
+    padding: 8px; /* AUMENTA ÁREA DE TOQUE */
     border: 1px solid var(--cinza-claro);
     border-radius: 4px;
-    font-size: 14px;
-}
-
-/* CONTADOR DE RESULTADOS */
-.results-counter {
-    text-align: center;
-    font-size: 14px;
-    color: var(--texto);
-    margin: 10px 0;
+    font-size: 16px; /* TAMANHO MÍNIMO RECOMENDADO PARA MOBILE */
+    width: 100%;
+    background-color: var(--branco);
 }
 
 /* RESPONSIVIDADE - TELAS MÉDIAS */
 @media (max-width: 768px) {
-    /* AJUSTES PARA DISPOSITIVOS MÓVEIS */
+    /* CONTAINER PRINCIPAL */
+    .container {
+        padding: 10px;
+        width: 100%;
+        box-sizing: border-box;
+    }
+
+    /* AJUSTES PARA FILTROS */
     .filters-row {
         flex-direction: column;
-        gap: 10px;
+        gap: 15px;
+        margin: 0;
+        padding: 10px;
     }
     
     .filter-container {
         width: 100%;
+        margin: 0;
+    }
+    
+    .filter-box {
+        width: 100%;
+        margin: 0;
     }
     
     .filter-box select {
         width: 100%;
-        max-width: none;
+        height: 40px; /* AUMENTA ÁREA DE TOQUE */
     }
     
+    /* AJUSTES PARA O MAPA */
     .map-container {
         flex-direction: column;
         margin: 10px 0;
+        padding: 0 10px;
     }
     
     #map {
         height: 60vh;
         width: 100%;
+        margin-bottom: 15px;
     }
     
+    /* AJUSTES PARA ESTATÍSTICAS */
     .stats-box {
         width: 100%;
-        margin-top: 15px;
+        margin: 0;
+        padding: 15px;
     }
     
+    /* AJUSTES PARA POPUPS */
     .filme-popup {
         max-width: 250px;
+        padding: 10px;
     }
     
-    .results-counter {
-        width: 100%;
-        text-align: center;
-        margin: 10px 0;
+    .leaflet-popup-content {
+        margin: 10px;
+        padding: 5px;
     }
 }
 
-/* RESPONSIVIDADE - TELAS PEQUENAS */
+/* RESPONSIVIDADE - TELAS MUITO PEQUENAS */
 @media (max-width: 480px) {
+    /* AJUSTES ESPECÍFICOS PARA TELAS MUITO PEQUENAS */
+    .container {
+        padding: 5px;
+    }
+    
     #map {
         height: 50vh;
     }
@@ -211,5 +178,47 @@
     
     .filme-popup p {
         font-size: 12px;
+        line-height: 1.3;
     }
+    
+    .stats-box h3 {
+        font-size: 1.1em;
+    }
+    
+    .filter-box {
+        padding: 8px;
+    }
+    
+    .filter-box select {
+        font-size: 14px;
+        height: 36px;
+    }
+}
+
+/* AJUSTES PARA OS CONTROLES DO LEAFLET */
+.leaflet-control-zoom {
+    margin: 15px !important;
+}
+
+.leaflet-control-zoom a {
+    width: 36px !important;  /* AUMENTA ÁREA DE TOQUE */
+    height: 36px !important; /* AUMENTA ÁREA DE TOQUE */
+    line-height: 36px !important;
+}
+
+.leaflet-control-attribution {
+    font-size: 10px !important;
+    padding: 2px 5px !important;
+}
+
+/* AJUSTES PARA GARANTIR QUE O MAPA SEJA RESPONSIVO */
+.leaflet-container {
+    width: 100% !important;
+    height: 100% !important;
+}
+
+/* AJUSTES PARA OS ÍCONES DO MAPA */
+.leaflet-marker-icon {
+    width: 30px !important; /* AUMENTA TAMANHO DOS MARCADORES */
+    height: 30px !important;
 }
