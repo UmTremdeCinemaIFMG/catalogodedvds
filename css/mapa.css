@@ -1,0 +1,23 @@
+#map { 
+    height: 80vh;
+    width: 100%;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.filme-popup {
+    max-width: 300px;
+}
+
+.filme-popup img {
+    max-width: 100%;
+    height: auto;
+    margin-bottom: 10px;
+}
+
+.stats-box {
+    background: #f8f9fa;
+    padding: 15px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+}
