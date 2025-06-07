@@ -51,22 +51,27 @@ const coordenadas = {
     }
 };
 
-// INICIALIZAÇÃO DO MAPA COM CONFIGURAÇÕES OTIMIZADAS PARA MOBILE
-const map = L.map('map', {
-    zoomControl: false,  // DESATIVA O CONTROLE DE ZOOM PADRÃO
-    dragging: !L.Browser.mobile,  // OTIMIZA O ARRASTAR PARA DISPOSITIVOS MÓVEIS
-    tap: !L.Browser.mobile  // OTIMIZA O TOQUE PARA DISPOSITIVOS MÓVEIS
-}).setView([-15.7975, -47.8919], 4);
+// AGUARDA O CARREGAMENTO COMPLETO DA PÁGINA
+document.addEventListener('DOMContentLoaded', function() {
+    // INICIALIZAÇÃO DO MAPA COM CONFIGURAÇÕES OTIMIZADAS
+    const map = L.map('map', {
+        zoomControl: true,  // ATIVA O CONTROLE DE ZOOM
+        dragging: true,     // PERMITE ARRASTAR O MAPA
+        tap: true,         // PERMITE TOQUES
+        touchZoom: true,   // PERMITE ZOOM COM TOQUE
+        scrollWheelZoom: true // PERMITE ZOOM COM RODA DO MOUSE
+    }).setView([-15.7975, -47.8919], 4);
 
-// ADICIONA O CONTROLE DE ZOOM EM UMA POSIÇÃO MELHOR PARA MOBILE
-L.control.zoom({
-    position: 'bottomright'
-}).addTo(map);
+    // ADICIONA A CAMADA DO MAPA (TILES)
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+        maxZoom: 18,
+        minZoom: 2
+    }).addTo(map);
 
-// ADICIONA A CAMADA DO MAPA
-L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-}).addTo(map);
+    // VARIÁVEIS GLOBAIS
+    let filmes = [];
+    let marcadores = L.layerGroup().addTo(map);
 
 // VARIÁVEIS GLOBAIS
 let filmes = [];
@@ -221,32 +226,45 @@ function atualizarEstatisticas() {
     `;
 }
 
-// CARREGA E PROCESSA OS DADOS DO CATÁLOGO
-fetch('catalogo.json')
-    .then(response => response.json())
-    .then(data => {
-        // EXPANDE FILMES COM MÚLTIPLAS UFs
-        filmes = data.reduce((acc, filme) => {
-            const ufs = getUFs(filme.UF);
-            if (ufs.length > 0) {
-                ufs.forEach(uf => {
-                    acc.push({...filme, UF: uf});
-                });
-            } else {
-                acc.push(filme);
+  // CARREGA E PROCESSA OS DADOS DO CATÁLOGO
+    fetch('catalogo.json')
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('ERRO AO CARREGAR O CATÁLOGO');
             }
-            return acc;
-        }, []);
-        
-        // INICIALIZA O MAPA E SEUS COMPONENTES
-        atualizarMapa();
-        preencherFiltros();
-        atualizarEstatisticas();
-    })
-    .catch(error => console.error('ERRO AO CARREGAR O CATÁLOGO:', error));
+            return response.json();
+        })
+        .then(data => {
+            console.log('DADOS CARREGADOS COM SUCESSO:', data.length, 'FILMES');
+            // EXPANDE FILMES COM MÚLTIPLAS UFs
+            filmes = data.reduce((acc, filme) => {
+                const ufs = getUFs(filme.UF);
+                if (ufs.length > 0) {
+                    ufs.forEach(uf => {
+                        acc.push({...filme, UF: uf});
+                    });
+                } else {
+                    acc.push(filme);
+                }
+                return acc;
+            }, []);
+            
+            // INICIALIZA O MAPA E SEUS COMPONENTES
+            atualizarMapa();
+            preencherFiltros();
+            atualizarEstatisticas();
+        })
+        .catch(error => {
+            console.error('ERRO AO CARREGAR O CATÁLOGO:', error);
+            document.getElementById('map').innerHTML = `
+                <div style="text-align: center; padding: 20px;">
+                    <p>Erro ao carregar o mapa. Por favor, tente novamente.</p>
+                </div>
+            `;
+        });
 
-// ADICIONA LISTENER PARA REDIMENSIONAMENTO DA JANELA
-window.addEventListener('resize', () => {
-    // ATUALIZA O MAPA QUANDO A TELA É REDIMENSIONADA
-    atualizarMapa();
+    // FORÇA UMA ATUALIZAÇÃO DO MAPA APÓS O CARREGAMENTO
+    setTimeout(() => {
+        map.invalidateSize();
+    }, 100);
 });
