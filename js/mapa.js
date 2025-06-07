@@ -1,34 +1,36 @@
-// Coordenadas das capitais e cidades
+// OBJETO COM AS COORDENADAS DAS CAPITAIS E CIDADES
 const coordenadas = {
+    // COORDENADAS DAS CAPITAIS DOS ESTADOS
     capitais: {
-        'AC': [-9.9754, -67.8249],  // Rio Branco
-        'AL': [-9.6498, -35.7089],  // Maceió
-        'AM': [-3.1190, -60.0217],  // Manaus
-        'AP': [0.0344, -51.0665],   // Macapá
-        'BA': [-12.9711, -38.5108], // Salvador
-        'CE': [-3.7172, -38.5433],  // Fortaleza
-        'DF': [-15.7975, -47.8919], // Brasília
-        'ES': [-20.3222, -40.3381], // Vitória
-        'GO': [-16.6869, -49.2648], // Goiânia
-        'MA': [-2.5307, -44.3027],  // São Luís
-        'MG': [-19.9167, -43.9345], // Belo Horizonte
-        'MS': [-20.4697, -54.6201], // Campo Grande
-        'MT': [-15.6014, -56.0979], // Cuiabá
-        'PA': [-1.4558, -48.4902],  // Belém
-        'PB': [-7.1195, -34.8450],  // João Pessoa
-        'PE': [-8.0476, -34.8770],  // Recife
-        'PI': [-5.0892, -42.8019],  // Teresina
-        'PR': [-25.4195, -49.2646], // Curitiba
-        'RJ': [-22.9068, -43.1729], // Rio de Janeiro
-        'RN': [-5.7793, -35.2009],  // Natal
-        'RO': [-8.7619, -63.9039],  // Porto Velho
-        'RR': [2.8235, -60.6758],   // Boa Vista
-        'RS': [-30.0346, -51.2177], // Porto Alegre
-        'SC': [-27.5945, -48.5477], // Florianópolis
-        'SE': [-10.9091, -37.0677], // Aracaju
-        'SP': [-23.5505, -46.6333], // São Paulo
-        'TO': [-10.2128, -48.3603]  // Palmas
+        'AC': [-9.9754, -67.8249],  // RIO BRANCO
+        'AL': [-9.6498, -35.7089],  // MACEIÓ
+        'AM': [-3.1190, -60.0217],  // MANAUS
+        'AP': [0.0344, -51.0665],   // MACAPÁ
+        'BA': [-12.9711, -38.5108], // SALVADOR
+        'CE': [-3.7172, -38.5433],  // FORTALEZA
+        'DF': [-15.7975, -47.8919], // BRASÍLIA
+        'ES': [-20.3222, -40.3381], // VITÓRIA
+        'GO': [-16.6869, -49.2648], // GOIÂNIA
+        'MA': [-2.5307, -44.3027],  // SÃO LUÍS
+        'MG': [-19.9167, -43.9345], // BELO HORIZONTE
+        'MS': [-20.4697, -54.6201], // CAMPO GRANDE
+        'MT': [-15.6014, -56.0979], // CUIABÁ
+        'PA': [-1.4558, -48.4902],  // BELÉM
+        'PB': [-7.1195, -34.8450],  // JOÃO PESSOA
+        'PE': [-8.0476, -34.8770],  // RECIFE
+        'PI': [-5.0892, -42.8019],  // TERESINA
+        'PR': [-25.4195, -49.2646], // CURITIBA
+        'RJ': [-22.9068, -43.1729], // RIO DE JANEIRO
+        'RN': [-5.7793, -35.2009],  // NATAL
+        'RO': [-8.7619, -63.9039],  // PORTO VELHO
+        'RR': [2.8235, -60.6758],   // BOA VISTA
+        'RS': [-30.0346, -51.2177], // PORTO ALEGRE
+        'SC': [-27.5945, -48.5477], // FLORIANÓPOLIS
+        'SE': [-10.9091, -37.0677], // ARACAJU
+        'SP': [-23.5505, -46.6333], // SÃO PAULO
+        'TO': [-10.2128, -48.3603]  // PALMAS
     },
+    // COORDENADAS DAS OUTRAS CIDADES
     cidades: {
         'São Paulo': [-23.5505, -46.6333],
         'Rio de Janeiro': [-22.9068, -43.1729],
@@ -46,26 +48,38 @@ const coordenadas = {
         'Santo André': [-23.6639, -46.5383],
         'Niterói': [-22.8832, -43.1036],
         'Sabará': [-19.8889, -43.8054]
-        // Adicione mais cidades conforme necessário
     }
 };
-// Inicializa o mapa
-const map = L.map('map').setView([-15.7975, -47.8919], 4);
+
+// INICIALIZAÇÃO DO MAPA COM CONFIGURAÇÕES OTIMIZADAS PARA MOBILE
+const map = L.map('map', {
+    zoomControl: false,  // DESATIVA O CONTROLE DE ZOOM PADRÃO
+    dragging: !L.Browser.mobile,  // OTIMIZA O ARRASTAR PARA DISPOSITIVOS MÓVEIS
+    tap: !L.Browser.mobile  // OTIMIZA O TOQUE PARA DISPOSITIVOS MÓVEIS
+}).setView([-15.7975, -47.8919], 4);
+
+// ADICIONA O CONTROLE DE ZOOM EM UMA POSIÇÃO MELHOR PARA MOBILE
+L.control.zoom({
+    position: 'bottomright'
+}).addTo(map);
+
+// ADICIONA A CAMADA DO MAPA
 L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
 }).addTo(map);
 
+// VARIÁVEIS GLOBAIS
 let filmes = [];
 let marcadores = L.layerGroup().addTo(map);
 
-// Função para separar UFs múltiplas
+// FUNÇÃO PARA SEPARAR UFs MÚLTIPLAS
 function getUFs(ufString) {
     if (!ufString) return [];
-    // Divide por vírgula, barra ou espaço e filtra valores vazios
+    // DIVIDE POR VÍRGULA, BARRA OU ESPAÇO E FILTRA VALORES VAZIOS
     return ufString.split(/[,/\s]+/).map(uf => uf.trim()).filter(Boolean);
 }
 
-// Função para obter coordenadas
+// FUNÇÃO PARA OBTER COORDENADAS DE UM FILME
 function getCoordenadas(filme) {
     if (filme.cidade && filme.cidade.trim() !== '') {
         const coords = coordenadas.cidades[filme.cidade];
@@ -77,30 +91,31 @@ function getCoordenadas(filme) {
         return coordenadas.capitais[uf];
     }
     
-    return [-15.7975, -47.8919]; // Brasília como fallback
+    return [-15.7975, -47.8919]; // BRASÍLIA COMO PONTO PADRÃO
 }
-// Carrega e processa os dados do catálogo
-fetch('catalogo.json')
-    .then(response => response.json())
-    .then(data => {
-        // Expande filmes com múltiplas UFs
-        filmes = data.reduce((acc, filme) => {
-            const ufs = getUFs(filme.UF);
-            if (ufs.length > 0) {
-                ufs.forEach(uf => {
-                    acc.push({...filme, UF: uf});
-                });
-            } else {
-                acc.push(filme);
-            }
-            return acc;
-        }, []);
-        
-        atualizarMapa();
-        preencherFiltros();
-        atualizarEstatisticas();
-    })
-    .catch(error => console.error('Erro ao carregar o catálogo:', error));
+
+// FUNÇÃO PARA CRIAR O CONTEÚDO DO POPUP ADAPTATIVO
+function criarConteudoPopup(filme) {
+    const isMobile = window.innerWidth <= 768;
+    
+    return `
+        <div class="filme-popup">
+            <h5>${filme['Título do filme']}</h5>
+            <p>
+                <strong>Direção:</strong> ${filme.Direção}<br>
+                <strong>Ano:</strong> ${filme.Ano}<br>
+                ${isMobile ? `<strong>Local:</strong> ${filme.cidade || filme.UF}<br>` : 
+                           `<strong>Estado:</strong> ${filme.UF}<br>
+                            ${filme.cidade ? `<strong>Cidade:</strong> ${filme.cidade}<br>` : ''}`}
+                <strong>Gênero:</strong> ${filme.Gênero || filme.GEN || 'Não informado'}<br>
+                ${isMobile ? '' : `<strong>Duração:</strong> ${filme['Dur.(´)']} minutos`}
+            </p>
+            ${filme.Gênero ? `<span class="genero">${filme.Gênero}</span>` : ''}
+        </div>
+    `;
+}
+
+// FUNÇÃO PARA ATUALIZAR O MAPA
 function atualizarMapa() {
     marcadores.clearLayers();
 
@@ -111,6 +126,7 @@ function atualizarMapa() {
     let filmesVisiveis = 0;
 
     filmes.forEach(filme => {
+        // VERIFICA OS FILTROS SELECIONADOS
         if ((!ufSelecionada || filme.UF === ufSelecionada) &&
             (!cidadeSelecionada || filme.cidade === cidadeSelecionada) &&
             (!anoSelecionado || filme.Ano.toString() === anoSelecionado)) {
@@ -118,20 +134,11 @@ function atualizarMapa() {
             const coords = getCoordenadas(filme);
             if (coords) {
                 const marker = L.marker(coords)
-                    .bindPopup(`
-                        <div class="filme-popup">
-                            <h5>${filme['Título do filme']}</h5>
-                            <p>
-                                <strong>Direção:</strong> ${filme.Direção}<br>
-                                <strong>Ano:</strong> ${filme.Ano}<br>
-                                <strong>Estado:</strong> ${filme.UF}<br>
-                                ${filme.cidade ? `<strong>Cidade:</strong> ${filme.cidade}<br>` : ''}
-                                <strong>Gênero:</strong> ${filme.Gênero || filme.GEN || 'Não informado'}<br>
-                                <strong>Duração:</strong> ${filme['Dur.(´)']} minutos
-                            </p>
-                            ${filme.Gênero ? `<span class="genero">${filme.Gênero}</span>` : ''}
-                        </div>
-                    `);
+                    .bindPopup(criarConteudoPopup(filme), {
+                        maxWidth: window.innerWidth <= 768 ? 200 : 300,
+                        autoPan: true,
+                        closeButton: true
+                    });
                 marcadores.addLayer(marker);
                 filmesVisiveis++;
             }
@@ -140,6 +147,8 @@ function atualizarMapa() {
 
     document.getElementById('filmMapCount').textContent = filmesVisiveis;
 }
+
+// FUNÇÃO PARA PREENCHER OS FILTROS
 function preencherFiltros() {
     const ufs = new Set();
     const cidades = new Set();
@@ -151,7 +160,7 @@ function preencherFiltros() {
         if (filme.Ano) anos.add(filme.Ano);
     });
 
-    // Preenche select de UF
+    // PREENCHE SELECT DE UF
     const selectUF = document.getElementById('filterUF');
     Array.from(ufs).sort().forEach(uf => {
         const option = document.createElement('option');
@@ -160,7 +169,7 @@ function preencherFiltros() {
         selectUF.appendChild(option);
     });
 
-    // Preenche select de Cidade
+    // PREENCHE SELECT DE CIDADE
     const selectCity = document.getElementById('filterCity');
     Array.from(cidades).sort().forEach(cidade => {
         const option = document.createElement('option');
@@ -169,7 +178,7 @@ function preencherFiltros() {
         selectCity.appendChild(option);
     });
 
-    // Preenche select de Ano
+    // PREENCHE SELECT DE ANO
     const selectAno = document.getElementById('filterYear');
     Array.from(anos).sort((a, b) => b - a).forEach(ano => {
         const option = document.createElement('option');
@@ -177,7 +186,14 @@ function preencherFiltros() {
         option.textContent = ano;
         selectAno.appendChild(option);
     });
+
+    // ADICIONA LISTENERS PARA OS FILTROS
+    document.getElementById('filterUF').addEventListener('change', atualizarMapa);
+    document.getElementById('filterCity').addEventListener('change', atualizarMapa);
+    document.getElementById('filterYear').addEventListener('change', atualizarMapa);
 }
+
+// FUNÇÃO PARA ATUALIZAR AS ESTATÍSTICAS
 function atualizarEstatisticas() {
     const totalFilmes = filmes.length;
     const estados = new Set(filmes.map(f => f.UF));
@@ -198,8 +214,39 @@ function atualizarEstatisticas() {
             ${Array.from(generos)
                 .sort((a, b) => b[1] - a[1])
                 .slice(0, 5)
-                .map(([genero, count]) => `<li><span>${genero}</span> <span>${count} filme${count > 1 ? 's' : ''}</span></li>`)
+                .map(([genero, count]) => 
+                    `<li><span>${genero}</span> <span>${count} filme${count > 1 ? 's' : ''}</span></li>`)
                 .join('')}
         </ul>
     `;
-                      }
+}
+
+// CARREGA E PROCESSA OS DADOS DO CATÁLOGO
+fetch('catalogo.json')
+    .then(response => response.json())
+    .then(data => {
+        // EXPANDE FILMES COM MÚLTIPLAS UFs
+        filmes = data.reduce((acc, filme) => {
+            const ufs = getUFs(filme.UF);
+            if (ufs.length > 0) {
+                ufs.forEach(uf => {
+                    acc.push({...filme, UF: uf});
+                });
+            } else {
+                acc.push(filme);
+            }
+            return acc;
+        }, []);
+        
+        // INICIALIZA O MAPA E SEUS COMPONENTES
+        atualizarMapa();
+        preencherFiltros();
+        atualizarEstatisticas();
+    })
+    .catch(error => console.error('ERRO AO CARREGAR O CATÁLOGO:', error));
+
+// ADICIONA LISTENER PARA REDIMENSIONAMENTO DA JANELA
+window.addEventListener('resize', () => {
+    // ATUALIZA O MAPA QUANDO A TELA É REDIMENSIONADA
+    atualizarMapa();
+});
