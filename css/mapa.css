@@ -72,26 +72,47 @@
 
 /* CAIXA DE FILTRO */
 .filter-box {
-    display: flex;
-    align-items: center;
-    gap: 10px;
+    position: relative;
     background: var(--branco);
-    padding: 10px;
-    border-radius: 8px;
+    padding: 0;
+    border-radius: 6px;
     box-shadow: var(--sombra);
     width: 100%;
     box-sizing: border-box;
 }
 
+/* ÍCONE DOS FILTROS */
+.filter-box i {
+    position: absolute;
+    left: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--cinza-medio);
+    z-index: 1;
+}
+
 /* SELECT DOS FILTROS */
 .filter-box select {
-    flex: 1;
-    padding: 8px; /* AUMENTA ÁREA DE TOQUE */
-    border: 1px solid var(--cinza-claro);
-    border-radius: 4px;
-    font-size: 16px; /* TAMANHO MÍNIMO RECOMENDADO PARA MOBILE */
     width: 100%;
+    padding: 12px 15px 12px 40px;
+    border: 1px solid var(--cinza-medio);
+    border-radius: 6px;
+    font-size: 16px;
+    transition: var(--transicao);
+    box-shadow: inset 0 1px 3px rgba(0,0,0,0.1);
+    appearance: none;
     background-color: var(--branco);
+    cursor: pointer;
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23666666' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+    background-repeat: no-repeat;
+    background-position: right 15px center;
+    background-size: 15px;
+}
+
+.filter-box select:focus {
+    border-color: var(--verde-ifmg);
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(0, 154, 68, 0.2);
 }
 
 /* ESTILO PARA POPUPS DE FILMES */
@@ -123,22 +144,35 @@
     margin-top: 10px;
 }
 
-/* CONTADOR DE RESULTADOS */
-.results-counter {
-    background: var(--branco);
-    padding: 10px 15px;
-    border-radius: 8px;
-    box-shadow: var(--sombra);
+/* BOTÃO VER MAIS NO POPUP */
+.filme-popup .ver-mais {
+    display: inline-block;
+    background: var(--verde-ifmg);
+    color: white;
+    padding: 6px 12px;
+    border-radius: 4px;
     font-size: 14px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    margin-top: 10px;
+    text-decoration: none;
+    text-align: center;
+    transition: var(--transicao);
 }
 
-.results-counter span {
-    font-weight: bold;
-    color: var(--verde-ifmg);
-    margin: 0 5px;
+.filme-popup .ver-mais:hover {
+    background: var(--verde-escuro);
+    transform: translateY(-2px);
+}
+
+/* CONTADOR DE RESULTADOS */
+.results-counter {
+    background-color: var(--verde-ifmg);
+    color: var(--branco);
+    padding: 8px 15px;
+    border-radius: 20px;
+    font-size: 14px;
+    box-shadow: var(--sombra);
+    white-space: nowrap;
+    margin-left: auto;
 }
 
 /* RESPONSIVIDADE - TELAS MÉDIAS */
@@ -242,7 +276,7 @@
     }
     
     .filter-box {
-        padding: 8px;
+        padding: 0;
     }
     
     .filter-box select {
@@ -302,5 +336,30 @@
 
 .stats-box ul li:last-child {
     border-bottom: none;
+}
+
+/* ESTILOS PARA CLUSTER DE MARCADORES */
+.marker-cluster {
+    background-color: rgba(0, 154, 68, 0.6);
+    border-radius: 50%;
+    width: 40px !important;
+    height: 40px !important;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-weight: bold;
+    border: 2px solid rgba(0, 154, 68, 0.8);
+}
+
+.marker-cluster div {
+    background-color: rgba(0, 154, 68, 0.8);
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
 }
 
