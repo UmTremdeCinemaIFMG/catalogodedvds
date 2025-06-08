@@ -1,378 +1,253 @@
-// OBJETO COM AS COORDENADAS DAS CAPITAIS E CIDADES
-const coordenadas = {
-    // COORDENADAS DAS CAPITAIS DOS ESTADOS
-    capitais: {
-        'AC': [-9.9754, -67.8249],  // RIO BRANCO
-        'AL': [-9.6498, -35.7089],  // MACEIÓ
-        'AM': [-3.1190, -60.0217],  // MANAUS
-        'AP': [0.0344, -51.0665],   // MACAPÁ
-        'BA': [-12.9711, -38.5108], // SALVADOR
-        'CE': [-3.7172, -38.5433],  // FORTALEZA
-        'DF': [-15.7975, -47.8919], // BRASÍLIA
-        'ES': [-20.3222, -40.3381], // VITÓRIA
-        'GO': [-16.6869, -49.2648], // GOIÂNIA
-        'MA': [-2.5307, -44.3027],  // SÃO LUÍS
-        'MG': [-19.9167, -43.9345], // BELO HORIZONTE
-        'MS': [-20.4697, -54.6201], // CAMPO GRANDE
-        'MT': [-15.6014, -56.0979], // CUIABÁ
-        'PA': [-1.4558, -48.4902],  // BELÉM
-        'PB': [-7.1195, -34.8450],  // JOÃO PESSOA
-        'PE': [-8.0476, -34.8770],  // RECIFE
-        'PI': [-5.0892, -42.8019],  // TERESINA
-        'PR': [-25.4195, -49.2646], // CURITIBA
-        'RJ': [-22.9068, -43.1729], // RIO DE JANEIRO
-        'RN': [-5.7793, -35.2009],  // NATAL
-        'RO': [-8.7619, -63.9039],  // PORTO VELHO
-        'RR': [2.8235, -60.6758],   // BOA VISTA
-        'RS': [-30.0346, -51.2177], // PORTO ALEGRE
-        'SC': [-27.5945, -48.5477], // FLORIANÓPOLIS
-        'SE': [-10.9091, -37.0677], // ARACAJU
-        'SP': [-23.5505, -46.6333], // SÃO PAULO
-        'TO': [-10.2128, -48.3603]  // PALMAS
-    },
-    // COORDENADAS DAS OUTRAS CIDADES
-    cidades: {
-        'São Paulo': [-23.5505, -46.6333],
-        'Rio de Janeiro': [-22.9068, -43.1729],
-        'Salvador': [-12.9711, -38.5108],
-        'Brasília': [-15.7975, -47.8919],
-        'Fortaleza': [-3.7172, -38.5433],
-        'Belo Horizonte': [-19.9167, -43.9345],
-        'Manaus': [-3.1190, -60.0217],
-        'Curitiba': [-25.4195, -49.2646],
-        'Recife': [-8.0476, -34.8770],
-        'Porto Alegre': [-30.0346, -51.2177],
-        'Santos': [-23.9618, -46.3322],
-        'Campinas': [-22.9099, -47.0626],
-        'São José dos Campos': [-23.1791, -45.8872],
-        'Santo André': [-23.6639, -46.5383],
-        'Niterói': [-22.8832, -43.1036],
-        'Sabará': [-19.8889, -43.8054]
-    }
-};
+// VARIÁVEIS GLOBAIS
+let map;
+let filmesOriginais = [];
+let filmes = [];
+let markers = [];
+let markerCluster;
+let estados = new Set();
+let cidades = new Set();
+let infoWindow;
 
-// AGUARDA O CARREGAMENTO COMPLETO DA PÁGINA
-document.addEventListener('DOMContentLoaded', function() {
-    // INICIALIZAÇÃO DO MAPA COM CONFIGURAÇÕES OTIMIZADAS
-    const map = L.map('map', {
-        zoomControl: true,  // ATIVA O CONTROLE DE ZOOM
-        dragging: true,     // PERMITE ARRASTAR O MAPA
-        tap: true,         // PERMITE TOQUES
-        touchZoom: true,   // PERMITE ZOOM COM TOQUE
-        scrollWheelZoom: true // PERMITE ZOOM COM RODA DO MOUSE
-    }).setView([-15.7975, -47.8919], 4);
-
-    // ADICIONA A CAMADA DO MAPA (TILES)
-    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
-        maxZoom: 18,
-        minZoom: 2
-    }).addTo(map);
-
-    // VARIÁVEIS GLOBAIS
-    let filmes = [];
-    let filmesOriginais = []; // ARMAZENA OS DADOS ORIGINAIS PARA FILTROS ENCADEADOS
-    
-    // INICIALIZA O CLUSTER DE MARCADORES
-    const marcadores = L.markerClusterGroup({
-        showCoverageOnHover: true,
-        zoomToBoundsOnClick: true,
-        spiderfyOnMaxZoom: true,
-        removeOutsideVisibleBounds: true,
-        disableClusteringAtZoom: 15, // DESATIVA CLUSTERING EM ZOOM MUITO PRÓXIMO
-        maxClusterRadius: 80, // RAIO MÁXIMO PARA AGRUPAR MARCADORES
-        iconCreateFunction: function(cluster) {
-            const count = cluster.getChildCount();
-            let size = 'small';
-            
-            if (count > 50) {
-                size = 'large';
-            } else if (count > 20) {
-                size = 'medium';
+// FUNÇÃO PARA INICIALIZAR O MAPA
+async function initMap() {
+    // CONFIGURAÇÕES INICIAIS DO MAPA
+    const mapOptions = {
+        center: { lat: -15.77972, lng: -47.92972 },
+        zoom: 4,
+        styles: [
+            {
+                featureType: "administrative",
+                elementType: "geometry",
+                stylers: [{ visibility: "off" }]
+            },
+            {
+                featureType: "poi",
+                stylers: [{ visibility: "off" }]
+            },
+            {
+                featureType: "road",
+                elementType: "labels.icon",
+                stylers: [{ visibility: "off" }]
+            },
+            {
+                featureType: "transit",
+                stylers: [{ visibility: "off" }]
             }
-            
-            return L.divIcon({
-                html: `<div><span>${count}</span></div>`,
-                className: `marker-cluster marker-cluster-${size}`,
-                iconSize: L.point(40, 40)
-            });
-        }
-    });
-    
-    // ADICIONA O CLUSTER AO MAPA
-    map.addLayer(marcadores);
+        ]
+    };
 
-    // FUNÇÃO PARA SEPARAR UFs MÚLTIPLAS
-    function getUFs(ufString) {
-        if (!ufString) return [];
-        // DIVIDE POR VÍRGULA, BARRA OU ESPAÇO E FILTRA VALORES VAZIOS
-        return ufString.split(/[,/\s]+/).map(uf => uf.trim()).filter(Boolean);
-    }
+    // CRIA O MAPA
+    map = new google.maps.Map(document.getElementById('map'), mapOptions);
+    infoWindow = new google.maps.InfoWindow();
 
-    // FUNÇÃO PARA OBTER COORDENADAS DE UM FILME
-    function getCoordenadas(filme) {
-        if (filme.cidade && filme.cidade.trim() !== '') {
-            const coords = coordenadas.cidades[filme.cidade];
-            if (coords) return coords;
-        }
+    try {
+        // CARREGA OS DADOS DOS FILMES
+        const response = await fetch('data/filmes.json');
+        const data = await response.json();
         
-        if (filme.UF) {
-            const uf = filme.UF.trim();
-            return coordenadas.capitais[uf];
-        }
-        
-        return [-15.7975, -47.8919]; // BRASÍLIA COMO PONTO PADRÃO
-    }
-
-    // FUNÇÃO PARA CRIAR O CONTEÚDO DO POPUP ADAPTATIVO
-    function criarConteudoPopup(filme) {
-        const isMobile = window.innerWidth <= 768;
-        // CODIFICA O TÍTULO DO FILME PARA A URL (MESMO PADRÃO DA PÁGINA INICIAL)
-        const encodedTitle = encodeURIComponent(filme['Título do filme']);
-        
-        return `
-            <div class="filme-popup">
-                <h5>${filme['Título do filme']}</h5>
-                <p>
-                    <strong>Direção:</strong> ${filme.Direção}<br>
-                    <strong>Ano:</strong> ${filme.Ano}<br>
-                    ${isMobile ? `<strong>Local:</strong> ${filme.cidade || filme.UF}<br>` : 
-                               `<strong>Estado:</strong> ${filme.UF}<br>
-                                ${filme.cidade ? `<strong>Cidade:</strong> ${filme.cidade}<br>` : ''}`}
-                    <strong>Gênero:</strong> ${filme.Gênero || filme.GEN || 'Não informado'}<br>
-                    ${isMobile ? '' : `<strong>Duração:</strong> ${filme['Dur.(´)']} minutos`}
-                </p>
-                ${filme.Gênero ? `<span class="genero">${filme.Gênero}</span>` : ''}
-                <a href="filme.html?titulo=${encodedTitle}" class="ver-mais">Ver mais informações</a>
-            </div>
-        `;
-    }
-
-    // FUNÇÃO PARA ATUALIZAR O MAPA
-    function atualizarMapa() {
-        marcadores.clearLayers();
-
-        const ufSelecionada = document.getElementById('filterUF').value;
-        const cidadeSelecionada = document.getElementById('filterCity').value;
-        const anoSelecionado = document.getElementById('filterYear').value;
-
-        let filmesVisiveis = 0;
-
-        filmes.forEach(filme => {
-            // VERIFICA OS FILTROS SELECIONADOS
-            if ((!ufSelecionada || filme.UF === ufSelecionada) &&
-                (!cidadeSelecionada || filme.cidade === cidadeSelecionada) &&
-                (!anoSelecionado || filme.Ano.toString() === anoSelecionado)) {
-                
-                const coords = getCoordenadas(filme);
-                if (coords) {
-                    // ADICIONA UM PEQUENO DESLOCAMENTO ALEATÓRIO PARA EVITAR SOBREPOSIÇÃO TOTAL
-                    const jitter = 0.0005; // APROXIMADAMENTE 50 METROS
-                    const adjustedCoords = [
-                        coords[0] + (Math.random() - 0.5) * jitter,
-                        coords[1] + (Math.random() - 0.5) * jitter
-                    ];
-                    
-                    const marker = L.marker(adjustedCoords)
-                        .bindPopup(criarConteudoPopup(filme), {
-                            maxWidth: window.innerWidth <= 768 ? 200 : 300,
-                            autoPan: true,
-                            closeButton: true
-                        });
-                    
-                    // ADICIONA O MARCADOR AO CLUSTER
-                    marcadores.addLayer(marker);
-                    filmesVisiveis++;
-                }
-            }
-        });
-
-        document.getElementById('filmMapCount').textContent = filmesVisiveis;
-    }
-
-    // FUNÇÃO PARA ATUALIZAR FILTROS ENCADEADOS
-    function atualizarFiltrosEncadeados() {
-        const ufSelecionada = document.getElementById('filterUF').value;
-        const cidadeSelecionada = document.getElementById('filterCity').value;
-        
-        // FILTRA FILMES BASEADO NA UF SELECIONADA
-        let filmesFiltrados = filmesOriginais;
-        if (ufSelecionada) {
-            filmesFiltrados = filmesOriginais.filter(filme => filme.UF === ufSelecionada);
-        }
-        
-        // ATUALIZA O SELECT DE CIDADES
-        const selectCity = document.getElementById('filterCity');
-        const cidadeAtual = selectCity.value;
-        selectCity.innerHTML = '<option value="">Todas as Cidades</option>';
-        
-        const cidadesDisponiveis = new Set();
-        filmesFiltrados.forEach(filme => {
-            if (filme.cidade) cidadesDisponiveis.add(filme.cidade);
-        });
-        
-        Array.from(cidadesDisponiveis).sort().forEach(cidade => {
-            const option = document.createElement('option');
-            option.value = cidade;
-            option.textContent = cidade;
-            if (cidade === cidadeAtual) option.selected = true;
-            selectCity.appendChild(option);
-        });
-        
-        // FILTRA AINDA MAIS BASEADO NA CIDADE SELECIONADA
-        if (cidadeSelecionada) {
-            filmesFiltrados = filmesFiltrados.filter(filme => filme.cidade === cidadeSelecionada);
-        }
-        
-        // ATUALIZA O SELECT DE ANOS
-        const selectYear = document.getElementById('filterYear');
-        const anoAtual = selectYear.value;
-        selectYear.innerHTML = '<option value="">Todos os Anos</option>';
-        
-        const anosDisponiveis = new Set();
-        filmesFiltrados.forEach(filme => {
-            if (filme.Ano) anosDisponiveis.add(filme.Ano);
-        });
-        
-        Array.from(anosDisponiveis).sort((a, b) => b - a).forEach(ano => {
-            const option = document.createElement('option');
-            option.value = ano;
-            option.textContent = ano;
-            if (ano.toString() === anoAtual) option.selected = true;
-            selectYear.appendChild(option);
-        });
-    }
-
-    // FUNÇÃO PARA PREENCHER OS FILTROS INICIAIS
-    function preencherFiltros() {
-        const ufs = new Set();
-        const cidades = new Set();
-        const anos = new Set();
-
-        filmesOriginais.forEach(filme => {
-            if (filme.UF) ufs.add(filme.UF);
+        // PROCESSA OS DADOS DOS FILMES
+        filmesOriginais = data.map(filme => {
+            // ADICIONA UF E CIDADE AOS CONJUNTOS
+            if (filme.UF) estados.add(filme.UF);
             if (filme.cidade) cidades.add(filme.cidade);
-            if (filme.Ano) anos.add(filme.Ano);
+            
+            return {
+                ...filme,
+                // GARANTE QUE O TÍTULO ESTÁ EM FORMATO DE STRING
+                "Título do filme": String(filme["Título do filme"] || '').trim(),
+                UF: String(filme.UF || '').trim(),
+                cidade: String(filme.cidade || '').trim()
+            };
         });
 
-        // PREENCHE SELECT DE UF
-        const selectUF = document.getElementById('filterUF');
-        Array.from(ufs).sort().forEach(uf => {
-            const option = document.createElement('option');
-            option.value = uf;
-            option.textContent = uf;
-            selectUF.appendChild(option);
-        });
-
-        // PREENCHE SELECT DE CIDADE (INICIALMENTE COM TODAS AS CIDADES)
-        const selectCity = document.getElementById('filterCity');
-        Array.from(cidades).sort().forEach(cidade => {
-            const option = document.createElement('option');
-            option.value = cidade;
-            option.textContent = cidade;
-            selectCity.appendChild(option);
-        });
-
-        // PREENCHE SELECT DE ANO (INICIALMENTE COM TODOS OS ANOS)
-        const selectAno = document.getElementById('filterYear');
-        Array.from(anos).sort((a, b) => b - a).forEach(ano => {
-            const option = document.createElement('option');
-            option.value = ano;
-            option.textContent = ano;
-            selectAno.appendChild(option);
-        });
-
-        // ADICIONA LISTENERS PARA OS FILTROS COM LÓGICA ENCADEADA
-        document.getElementById('filterUF').addEventListener('change', function() {
-            atualizarFiltrosEncadeados();
-            atualizarMapa();
-        });
+        filmes = [...filmesOriginais];
         
-        document.getElementById('filterCity').addEventListener('change', function() {
-            atualizarFiltrosEncadeados();
-            atualizarMapa();
-        });
-        
-        document.getElementById('filterYear').addEventListener('change', atualizarMapa);
+        // INICIALIZA OS FILTROS
+        initializeFilters();
+        // ATUALIZA O CONTADOR DE FILMES
+        updateMapFilmsCounter();
+        // ADICIONA OS MARCADORES AO MAPA
+        updateMarkers();
+
+    } catch (error) {
+        console.error('Erro ao carregar dados:', error);
     }
+}
 
-    // FUNÇÃO PARA ATUALIZAR AS ESTATÍSTICAS
-    function atualizarEstatisticas() {
-        const totalFilmes = filmes.length;
-        const estados = new Set(filmes.map(f => f.UF));
-        const cidades = new Set(filmes.filter(f => f.cidade).map(f => f.cidade));
-        const generos = new Map();
-        
-        filmes.forEach(filme => {
-            const genero = filme.Gênero || filme.GEN || 'Não informado';
-            generos.set(genero, (generos.get(genero) || 0) + 1);
-        });
-
-        document.getElementById('stats').innerHTML = `
-            <p><strong>Total de Filmes:</strong> ${totalFilmes}</p>
-            <p><strong>Estados:</strong> ${estados.size}</p>
-            <p><strong>Cidades:</strong> ${cidades.size}</p>
-            <p><strong>Principais Gêneros:</strong></p>
-            <ul>
-                ${Array.from(generos)
-                    .sort((a, b) => b[1] - a[1])
-                    .slice(0, 5)
-                    .map(([genero, count]) => 
-                        `<li><span>${genero}</span> <span>${count} filme${count > 1 ? 's' : ''}</span></li>`)
-                    .join('')}
-            </ul>
-        `;
-    }
-
-    // CARREGA E PROCESSA OS DADOS DO CATÁLOGO
-    fetch('catalogo.json')
-        .then(response => {
-            if (!response.ok) {
-                throw new Error('ERRO AO CARREGAR O CATÁLOGO');
-            }
-            return response.json();
-        })
-        .then(data => {
-            console.log('DADOS CARREGADOS COM SUCESSO:', data.length, 'FILMES');
-            
-            // ARMAZENA OS DADOS ORIGINAIS PARA FILTROS ENCADEADOS
-            filmesOriginais = data;
-            
-            // EXPANDE FILMES COM MÚLTIPLAS UFs
-            filmes = data.reduce((acc, filme) => {
-                const ufs = getUFs(filme.UF);
-                if (ufs.length > 0) {
-                    ufs.forEach(uf => {
-                        acc.push({...filme, UF: uf});
-                    });
-                } else {
-                    acc.push(filme);
-                }
-                return acc;
-            }, []);
-            
-            // INICIALIZA O MAPA E SEUS COMPONENTES
-            atualizarMapa();
-            preencherFiltros();
-            atualizarEstatisticas();
-        })
-        .catch(error => {
-            console.error('ERRO AO CARREGAR O CATÁLOGO:', error);
-            document.getElementById('map').innerHTML = `
-                <div style="text-align: center; padding: 20px;">
-                    <p>Erro ao carregar o mapa. Por favor, tente novamente.</p>
-                </div>
-            `;
-        });
-
-    // FORÇA UMA ATUALIZAÇÃO DO MAPA APÓS O CARREGAMENTO
-    setTimeout(() => {
-        map.invalidateSize();
-    }, 100);
+// FUNÇÃO PARA ADICIONAR MARCADORES AO MAPA
+function updateMarkers() {
+    // REMOVE MARCADORES EXISTENTES
+    markers.forEach(marker => marker.setMap(null));
+    markers = [];
     
-    // ADICIONA EVENTO DE REDIMENSIONAMENTO PARA GARANTIR QUE O MAPA SE AJUSTE
-    window.addEventListener('resize', function() {
-        map.invalidateSize();
-    });
-});
+    if (markerCluster) {
+        markerCluster.clearMarkers();
+    }
 
+    // CRIA NOVOS MARCADORES
+    filmes.forEach(filme => {
+        if (filme.latitude && filme.longitude) {
+            const marker = new google.maps.Marker({
+                position: { lat: parseFloat(filme.latitude), lng: parseFloat(filme.longitude) },
+                map: map,
+                title: filme["Título do filme"]
+            });
+
+            // ADICIONA EVENTO DE CLIQUE NO MARCADOR
+            marker.addListener('click', () => {
+                const contentString = createInfoWindowContent(filme);
+                infoWindow.setContent(contentString);
+                infoWindow.open(map, marker);
+            });
+
+            markers.push(marker);
+        }
+    });
+
+    // CRIA O CLUSTER DE MARCADORES
+    markerCluster = new MarkerClusterer(map, markers, {
+        imagePath: 'https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m'
+    });
+}
+
+// FUNÇÃO PARA CRIAR O CONTEÚDO DA JANELA DE INFORMAÇÕES
+function createInfoWindowContent(filme) {
+    // OBTÉM O CAMINHO DA IMAGEM
+    const imagePath = filme.imageName ? `capas/${filme.imageName}` : 'capas/progbrasil.png';
+    
+    // CRIA O HTML DO CONTEÚDO
+    return `
+        <div class="info-window">
+            <div class="info-window-header">
+                <img src="${imagePath}" alt="${filme["Título do filme"]}" class="info-window-image">
+                <h3>${filme["Título do filme"]}</h3>
+            </div>
+            <div class="info-window-content">
+                ${filme.Direção ? `<p><strong>Direção:</strong> ${filme.Direção}</p>` : ''}
+                ${filme.Ano ? `<p><strong>Ano:</strong> ${filme.Ano}</p>` : ''}
+                ${filme["Dur.(´)"] ? `<p><strong>Duração:</strong> ${filme["Dur.(´)"]} min</p>` : ''}
+                ${filme.cidade ? `<p><strong>Cidade:</strong> ${filme.cidade}</p>` : ''}
+                ${filme.UF ? `<p><strong>UF:</strong> ${filme.UF}</p>` : ''}
+            </div>
+            <div class="info-window-footer">
+                <a href="filme.html?id=${encodeURIComponent(filme["Título do filme"])}" class="info-window-link">
+                    Ver mais detalhes
+                </a>
+            </div>
+        </div>
+    `;
+}
+
+// FUNÇÃO PARA INICIALIZAR OS FILTROS
+function initializeFilters() {
+    const selectUF = document.getElementById('filterUF');
+    const selectCity = document.getElementById('filterCity');
+    
+    // PREENCHE O SELECT DE UF
+    selectUF.innerHTML = '<option value="">Todos os Estados</option>';
+    Array.from(estados).sort().forEach(estado => {
+        selectUF.innerHTML += `<option value="${estado}">${estado}</option>`;
+    });
+    
+    // PREENCHE O SELECT DE CIDADES
+    selectCity.innerHTML = '<option value="">Todas as Cidades</option>';
+    Array.from(cidades).sort().forEach(cidade => {
+        selectCity.innerHTML += `<option value="${cidade}">${cidade}</option>`;
+    });
+    
+    // ADICIONA EVENTOS AOS FILTROS
+    selectUF.addEventListener('change', atualizarFiltrosEncadeados);
+    selectCity.addEventListener('change', atualizarFiltrosEncadeados);
+}
+
+// FUNÇÃO PARA ATUALIZAR FILTROS ENCADEADOS
+function atualizarFiltrosEncadeados() {
+    const ufSelecionada = document.getElementById('filterUF').value;
+    const cidadeSelecionada = document.getElementById('filterCity').value;
+    
+    // FILTRA FILMES BASEADO NA UF SELECIONADA
+    let filmesFiltrados = filmesOriginais;
+    if (ufSelecionada) {
+        filmesFiltrados = filmesOriginais.filter(filme => filme.UF === ufSelecionada);
+    }
+    
+    // ATUALIZA O SELECT DE CIDADES
+    const selectCity = document.getElementById('filterCity');
+    const cidadeAtual = selectCity.value;
+    selectCity.innerHTML = '<option value="">Todas as Cidades</option>';
+    
+    const cidadesDisponiveis = new Set();
+    filmesFiltrados.forEach(filme => {
+        if (filme.cidade) cidadesDisponiveis.add(filme.cidade);
+    });
+    
+    Array.from(cidadesDisponiveis).sort().forEach(cidade => {
+        selectCity.innerHTML += `<option value="${cidade}" ${cidade === cidadeAtual ? 'selected' : ''}>${cidade}</option>`;
+    });
+    
+    // FILTRA POR CIDADE SE SELECIONADA
+    if (cidadeSelecionada) {
+        filmesFiltrados = filmesFiltrados.filter(filme => filme.cidade === cidadeSelecionada);
+    }
+    
+    // ATUALIZA A LISTA DE FILMES E OS MARCADORES
+    filmes = filmesFiltrados;
+    updateMapFilmsCounter();
+    updateMarkers();
+    atualizarEstatisticas();
+}
+
+// FUNÇÃO PARA ATUALIZAR ESTATÍSTICAS
+function atualizarEstatisticas() {
+    const totalFilmes = filmes.length;
+    const estados = new Set(filmes.map(f => f.UF));
+    const cidades = new Set(filmes.filter(f => f.cidade).map(f => f.cidade));
+    const generos = new Map();
+    
+    filmes.forEach(filme => {
+        const genero = filme.Gênero || filme.GEN || 'Não informado';
+        generos.set(genero, (generos.get(genero) || 0) + 1);
+    });
+
+    document.getElementById('stats').innerHTML = `
+        <p><strong>Total de Filmes:</strong> ${totalFilmes}</p>
+        <p><strong>Estados:</strong> ${estados.size}</p>
+        <p><strong>Cidades:</strong> ${cidades.size}</p>
+        <p><strong>Principais Gêneros:</strong></p>
+        <ul>
+            ${Array.from(generos)
+                .sort((a, b) => b[1] - a[1])
+                .slice(0, 5)
+                .map(([genero, count]) => 
+                    `<li><span>${genero}</span> <span>${count} filme${count > 1 ? 's' : ''}</span></li>`)
+                .join('')}
+        </ul>
+    `;
+}
+
+// FUNÇÃO PARA ATUALIZAR O CONTADOR DE FILMES
+function updateMapFilmsCounter() {
+    const countElement = document.getElementById('filmsCount');
+    const counterContainer = document.querySelector('.results-counter');
+    
+    // ADICIONA EFEITO DE ATUALIZAÇÃO
+    countElement.classList.add('updated');
+    setTimeout(() => {
+        countElement.classList.remove('updated');
+    }, 300);
+
+    // ATUALIZA O NÚMERO DE FILMES
+    countElement.textContent = filmes.length;
+    
+    // ATUALIZA AS CLASSES CSS BASEADO NO NÚMERO DE FILMES
+    if (filmes.length === 0) {
+        counterContainer.classList.add('sem-resultados');
+        counterContainer.classList.remove('com-resultados');
+    } else {
+        counterContainer.classList.add('com-resultados');
+        counterContainer.classList.remove('sem-resultados');
+    }
+}
+
+// INICIA O MAPA QUANDO A PÁGINA CARREGAR
+window.initMap = initMap;
