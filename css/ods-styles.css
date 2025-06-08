@@ -1,0 +1,127 @@
+/* Estilos para os ícones ODS com efeito flip */
+
+.ods-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px; /* Espaçamento entre os ícones */
+    justify-content: center; /* Centraliza os ícones se não preencherem a linha */
+    margin-top: 15px;
+}
+
+.ods-flip-container {
+    perspective: 1000px; /* Necessário para o efeito 3D */
+    width: 150px; /* Largura do container do ícone */
+    height: 150px; /* Altura do container do ícone */
+    cursor: pointer; /* Indica que é clicável */
+}
+
+.ods-flipper-link {
+    display: block; /* Garante que o link ocupe todo o espaço */
+    width: 100%;
+    height: 100%;
+    text-decoration: none; /* Remove sublinhado do link */
+    color: inherit; /* Herda a cor do texto */
+}
+
+.ods-flipper {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    transition: transform 0.6s; /* Duração da animação de flip */
+    transform-style: preserve-3d; /* Mantém o efeito 3D durante a animação */
+}
+
+/* Aplica a rotação no hover */
+.ods-flip-container:hover .ods-flipper {
+    transform: rotateY(180deg);
+}
+
+.ods-front,
+.ods-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden; /* Esconde o lado de trás do elemento durante a animação */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 8px; /* Bordas arredondadas */
+    box-shadow: 0 2px 2px rgba(0, 0, 0, 0.1); /* Sombra suave */
+    overflow: hidden; /* Garante que o conteúdo não transborde */
+}
+
+.ods-front {
+    background-color: #f0f0f0; /* Cor de fundo padrão para a frente */
+    z-index: 2; /* Garante que a frente esteja sobre a parte de trás inicialmente */
+}
+
+.ods-front img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain; /* Garante que a imagem caiba sem distorção */
+}
+
+/* Estilos gerais para a parte de trás */
+.ods-back {
+    /* background-color: #e0e0e0; Cor de fundo padrão removida, será definida por ODS */
+    color: white; /* Cor do texto padrão para branco */
+    transform: rotateY(180deg); /* Posiciona a parte de trás virada */
+    flex-direction: column; /* Organiza título e texto verticalmente */
+    padding: 8px; /* Espaçamento interno */
+    text-align: center;
+    line-height: 0.5; /* Espaçamento entre linhas */
+}
+
+/* Estilos para o título (h4) na parte de trás */
+.ods-back h4 {
+    margin: 0 0 5px 0;
+    font-size: 0.8rem; /* Tamanho da fonte do título */
+    font-weight: bold; /* Mantém o título em negrito */
+    color: white; /* Garante que o título também seja branco */
+}
+
+/* Estilos para o parágrafo (p) na parte de trás */
+.ods-back p {
+    margin: 0;
+    font-size: calc(0.8rem); 
+    font-weight: normal; /* Remove negrito */
+    color: white; /* Cor do texto branca */
+    /* Evita que o texto quebre de forma estranha */
+    word-break: keep-all; 
+    hyphens: auto;
+}
+
+/* Cores de fundo específicas para cada ODS */
+.ods-back[data-ods-number="1"] { background-color: rgb(229, 36, 59); }
+.ods-back[data-ods-number="2"] { background-color: rgb(221, 168, 58); }
+.ods-back[data-ods-number="3"] { background-color: rgb(76, 159, 56); }
+.ods-back[data-ods-number="4"] { background-color: rgb(197, 25, 45); }
+.ods-back[data-ods-number="5"] { background-color: rgb(255, 58, 33); }
+.ods-back[data-ods-number="6"] { background-color: rgb(38, 189, 226); }
+.ods-back[data-ods-number="7"] { background-color: rgb(252, 195, 11); }
+.ods-back[data-ods-number="8"] { background-color: rgb(162, 25, 66); }
+.ods-back[data-ods-number="9"] { background-color: rgb(253, 105, 37); }
+.ods-back[data-ods-number="10"] { background-color: rgb(221, 19, 103); }
+.ods-back[data-ods-number="11"] { background-color: rgb(253, 157, 36); }
+.ods-back[data-ods-number="12"] { background-color: rgb(191, 139, 46); }
+.ods-back[data-ods-number="13"] { background-color: rgb(63, 126, 68); }
+.ods-back[data-ods-number="14"] { background-color: rgb(10, 151, 217); }
+.ods-back[data-ods-number="15"] { background-color: rgb(86, 192, 43); }
+.ods-back[data-ods-number="16"] { background-color: rgb(0, 104, 157); }
+.ods-back[data-ods-number="17"] { background-color: rgb(25, 72, 106); }
+.ods-back[data-ods-number="18"] { background-color: rgb(122, 49, 17); } /* Cor para ODS 18 adicionada */
+
+/* Ajustes de Responsividade */
+@media (max-width: 600px) {
+    .ods-flip-container {
+        width: 95px;
+        height: 95px;
+    }
+    .ods-back p {
+        font-size: calc(0.6rem); /* Ajusta o tamanho da fonte reduzida para telas menores */
+    }
+    .ods-back h4 {
+        font-size: 0.7rem;
+    }
+}
+

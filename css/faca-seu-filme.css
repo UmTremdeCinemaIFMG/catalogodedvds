@@ -1,0 +1,257 @@
+/* Estilos específicos para a página Faça Seu Próprio Filme */
+.manual-banner {
+    background-color: var(--verde-ifmg);
+    color: var(--branco);
+    padding: 30px;
+    border-radius: 8px;
+    margin-bottom: 30px;
+    position: relative;
+    overflow: hidden;
+    box-shadow: var(--sombra);
+}
+
+.manual-banner h2 {
+    font-size: 2.2em;
+    margin-top: 0;
+    margin-bottom: 15px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.manual-banner p {
+    font-size: 1.1em;
+    max-width: 80%;
+    line-height: 1.6;
+}
+
+.manual-banner::after {
+    content: \'\';
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 30%;
+    height: 100%;
+    background-image: url(\'https://img.freepik.com/free-photo/film-industry-concept-with-clapperboard_23-2149917572.jpg\');
+    background-size: cover;
+    background-position: center;
+    opacity: 0.3;
+}
+
+.etapas-container {
+    display: flex;
+    justify-content: space-between;
+    margin: 30px 0;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+.etapa {
+    flex: 1;
+    min-width: 150px;
+    text-align: center;
+    padding: 15px;
+    background-color: var(--cinza-claro);
+    border-radius: 8px;
+    transition: var(--transicao);
+    cursor: pointer;
+    border-bottom: 3px solid var(--verde-ifmg);
+}
+
+.etapa:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--sombra);
+}
+
+.etapa i {
+    font-size: 2em;
+    color: var(--verde-escuro);
+    margin-bottom: 10px;
+}
+
+.etapa h3 {
+    margin: 10px 0;
+    font-size: 1em;
+    color: var(--cinza-escuro);
+}
+
+.capitulo {
+    background-color: var(--branco);
+    border-radius: 8px;
+    padding: 30px;
+    margin-bottom: 30px;
+    box-shadow: var(--sombra);
+}
+
+.capitulo-header {
+    color: var(--verde-escuro);
+    border-bottom: 2px solid var(--verde-ifmg);
+    padding-bottom: 10px;
+    margin-top: 0;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    cursor: pointer;
+    position: relative;
+}
+
+.capitulo-header::after {
+    content: \'\f078\';
+    font-family: \'Font Awesome 5 Free\';
+    font-weight: 900;
+    position: absolute;
+    right: 10px;
+    transition: transform 0.3s ease;
+}
+
+.capitulo-header.active::after {
+    transform: rotate(180deg);
+}
+
+.capitulo-content {
+    display: none;
+    padding-top: 20px;
+}
+
+.capitulo-content.active {
+    display: block;
+}
+
+.capitulo h3 {
+    color: var(--verde-ifmg);
+    margin-top: 25px;
+    font-size: 1.3em;
+}
+
+.capitulo h4 {
+    color: var(--cinza-escuro);
+    margin-top: 20px;
+    font-size: 1.1em;
+}
+
+.capitulo p {
+    line-height: 1.7;
+    margin-bottom: 20px;
+}
+
+.capitulo ul, .capitulo ol {
+    margin-bottom: 20px;
+    padding-left: 25px;
+}
+
+.capitulo li {
+    margin-bottom: 10px;
+    line-height: 1.6;
+}
+
+.destaque {
+    background-color: var(--cinza-claro);
+    padding: 20px;
+    border-radius: 8px;
+    margin: 20px 0;
+    border-left: 5px solid var(--verde-ifmg);
+}
+
+.recursos-box {
+    background-color: var(--cinza-claro);
+    padding: 20px;
+    border-radius: 8px;
+    margin: 20px 0;
+}
+
+.recursos-box h4 {
+    margin-top: 0;
+    color: var(--verde-escuro);
+    border-bottom: 1px solid var(--cinza-medio);
+    padding-bottom: 10px;
+}
+
+.recursos-box ul {
+    margin-bottom: 0;
+}
+
+.link-externo {
+    color: var(--azul);
+    text-decoration: none;
+    border-bottom: 1px dotted var(--azul);
+    transition: var(--transicao);
+}
+
+.link-externo:hover {
+    color: var(--verde-escuro);
+    border-bottom-color: var(--verde-escuro);
+}
+
+.voltar-topo {
+    position: fixed;
+    bottom: 80px;
+    right: 20px;
+    background-color: var(--verde-ifmg);
+    color: var(--branco);
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    box-shadow: var(--sombra);
+    /* opacity: 0.7; */
+    transition: var(--transicao);
+    z-index: 99;
+}
+
+.voltar-topo:hover {
+   /* opacity: 1;  */
+    background-color: var(--verde-escuro);
+    transform: translateY(-5px);
+}
+
+.imagem-exemplo {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    justify-content: center;
+    margin: 20px 0;
+}
+
+.imagem-exemplo figure {
+    flex: 1;
+    min-width: 200px;
+    max-width: 300px;
+    margin: 0;
+    text-align: center;
+}
+
+.imagem-exemplo img {
+    width: 100%;
+    border-radius: 8px;
+    box-shadow: var(--sombra);
+}
+
+.imagem-exemplo figcaption {
+    margin-top: 10px;
+    font-size: 0.9em;
+    color: var(--cinza-escuro);
+}
+
+@media (max-width: 768px) {
+    .manual-banner::after {
+        display: none;
+    }
+    
+    .manual-banner p {
+        max-width: 100%;
+    }
+    
+    .etapas-container {
+        flex-direction: column;
+    }
+    
+    .etapa {
+        width: 100%;
+    }
+    
+    .imagem-exemplo figure {
+        min-width: 100%;
+    }
+}
+

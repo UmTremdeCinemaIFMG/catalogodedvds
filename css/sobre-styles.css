@@ -1,0 +1,97 @@
+/* ESTILOS ESPECÍFICOS PARA A PÁGINA SOBRE */
+.barra-extra {
+    background-color: #00420c;
+    padding: 0px 0;
+    text-align: center;
+    box-shadow: var(--sombra);
+}
+
+.barra-extra .container {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.barra-extra a {
+    color: var(--branco);
+    text-decoration: none;
+    font-size: 14px;
+    padding: 5px 10px;
+    transition: var(--transicao);
+}
+
+.barra-extra a:hover {
+    text-decoration: underline;
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 4px;
+}
+
+.sobre-conteudo {
+    background-color: var(--branco);
+    border-radius: 8px;
+    box-shadow: var(--sombra);
+    padding: 30px;
+    margin-bottom: 30px;
+}
+
+.sobre-conteudo h2 {
+    color: var(--verde-escuro);
+    border-bottom: 2px solid var(--verde-ifmg);
+    padding-bottom: 10px;
+    margin-top: 0;
+}
+
+.sobre-conteudo h3 {
+    color: var(--verde-ifmg);
+    margin-top: 25px;
+}
+
+.sobre-conteudo p {
+    line-height: 1.7;
+    margin-bottom: 20px;
+}
+
+.sobre-conteudo ul {
+    margin-bottom: 20px;
+}
+
+.sobre-conteudo li {
+    margin-bottom: 10px;
+    line-height: 1.6;
+}
+
+.destaque {
+    background-color: var(--cinza-claro);
+    padding: 20px;
+    border-radius: 8px;
+    margin: 20px 0;
+    border-left: 5px solid var(--verde-ifmg);
+}
+
+.equipe {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    margin-top: 20px;
+}
+
+.membro {
+    flex: 1;
+    min-width: 250px;
+    background-color: var(--cinza-claro);
+    padding: 15px;
+    border-radius: 8px;
+}
+
+.membro h4 {
+    margin-top: 0;
+    color: var(--verde-escuro);
+}
+
+@media (max-width: 768px) {
+    .equipe {
+        flex-direction: column;
+    }
+}
+

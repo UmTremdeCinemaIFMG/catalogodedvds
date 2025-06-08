@@ -1,0 +1,17 @@
+/* ESTILOS PARA A BARRA EXTRA */
+.barra-extra {
+    background-color: #00420c;
+    padding: 0px 0;
+    text-align: center;
+    box-shadow: var(--sombra);
+}
+
+.barra-extra .container a {
+    color: var(--branco);
+    text-decoration: none;
+    font-size: 14px;
+    padding: 5px 10px;
+    transition: var(--transicao);
+}
+
+
