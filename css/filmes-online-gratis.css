@@ -83,6 +83,7 @@
 .plataforma-link:hover {
     background-color: var(--verde-escuro);
     transform: scale(1.05);
+    color: var(--branco);
 }
 
 .intro-text {
