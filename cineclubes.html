@@ -6,10 +6,11 @@
     <title>Cineclubes - Catálogo de DVDs</title>
     <!-- FONTS E ÍCONES -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
-    <!-- FAVICON TEMPORÁRIO -->
+    <!-- FAVICON -->
     <link rel="icon" type="image/png" href="favicon.png" />
     <!-- ESTILOS -->
     <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/cineclubes.css">
 </head>
 <body>
     <!-- CABEÇALHO -->
@@ -25,16 +26,15 @@
               </a>
         </div>
     </p>
-         <!-- BARRA EXTRA -->
+    <!-- BARRA EXTRA -->
     <div class="barra-extra" style="background-color: #00420c; padding: 0px 0; text-align: center; box-shadow: var(--sombra);">
             <div class="container" style="display: flex; justify-content: center; flex-wrap: wrap; gap: 20px;">
                 <a href="index.html" style="color: var(--branco); text-decoration: none; font-size: 14px; padding: 5px 10px; transition: var(--transicao);">Início</a>
                 <a href="sobre.html" style="color: var(--branco); text-decoration: none; font-size: 14px; padding: 5px 10px; transition: var(--transicao);">Sobre</a>
                 <a href="filmes-online-gratis.html" style="color: var(--branco); text-decoration: none; font-size: 14px; padding: 5px 10px; transition: var(--transicao);">Filmes Online Grátis</a>
 		<a href="mapa.html" style="color: var(--branco); text-decoration: none; font-size: 14px; padding: 5px 10px; transition: var(--transicao);">Mapa</a>
-		<a href="faca-seu-filme.html" style="color: var(--branco); text-decoration: none; font-size: 14px; padding: 5px 10px; transition: var(--transicao);">Faça seu Filme</a>
-                <a href="cineclubes.html" style="color: var(--branco); text-decoration: none; font-size: 14px; padding: 5px 10px; transition: var(--transicao);">Cineclubes</a>
-            </div>
+		<a href="cineclubes.html" style="color: var(--branco); text-decoration: none; font-size: 14px; padding: 5px 10px; transition: var(--transicao);">Cineclubes</a>
+                </div>
     </div>
     </header>
 
@@ -50,46 +50,21 @@
 
     <!-- CONTEÚDO PRINCIPAL -->
     <main class="container">
-        <section class="intro-section collapsible">
-            <h2 class="collapsible-header"><i class="fas fa-users"></i> Cineclubes no Brasil <i class="fas fa-chevron-down toggle-icon"></i></h2>
-            <div class="collapsible-content">
+        <div class="capitulo" id="intro-cineclubes">
+            <h2 class="capitulo-header" onclick="toggleCapitulo('intro-cineclubes')"><i class="fas fa-users"></i> Cineclubes no Brasil</h2>
+            <div class="capitulo-content">
                 <p class="intro-text">
                     Os cineclubes são espaços fundamentais para a democratização do cinema e a formação de plateia crítica. 
                     No Brasil, eles desempenham um papel essencial na difusão da cultura cinematográfica, especialmente do 
                     cinema nacional, e na promoção do debate sobre questões sociais, culturais e artísticas.
                 </p>
             </div>
-        </section>
+        </div>
 
         <!-- SEÇÃO O QUE SÃO CINECLUBES -->
-        <section class="content-section collapsible">
-            <h3 class="collapsible-header"><i class="fas fa-question-circle"></i> O que são Cineclubes? <i class="fas fa-chevron-down toggle-icon"></i></h3>
-            <div class="collapsible-content">
-                <div class="content-grid">
-                    <div class="content-card">
-                        <h4><i class="fas fa-film"></i> Definição</h4>
-                        <p>
-                            Cineclubes são associações de pessoas interessadas em cinema que se reúnem regularmente 
-                            para assistir, discutir e promover filmes. Eles funcionam como espaços de educação 
-                            audiovisual e formação cultural, oferecendo uma alternativa ao circuito comercial.
-                        </p>
-                    </div>
-                    <div class="content-card">
-                        <h4><i class="fas fa-heart">        <section class="intro-section collapsible">
-            <h2 class="collapsible-header"><i class="fas fa-users"></i> Cineclubes no Brasil <i class="fas fa-chevron-down toggle-icon"></i></h2>
-            <div class="collapsible-content">
-                <p class="intro-text">
-                    Os cineclubes são espaços fundamentais para a democratização do cinema e a formação de plateia crítica. 
-                    No Brasil, eles desempenham um papel essencial na difusão da cultura cinematográfica, especialmente do 
-                    cinema nacional, e na promoção do debate sobre questões sociais, culturais e artísticas.
-                </p>
-            </div>
-        </section>
-
-        <!-- SEÇÃO O QUE SÃO CINECLUBES -->
-        <section class="content-section collapsible">
-            <h3 class="collapsible-header"><i class="fas fa-question-circle"></i> O que são Cineclubes? <i class="fas fa-chevron-down toggle-icon"></i></h3>
-            <div class="collapsible-content">
+        <div class="capitulo" id="o-que-sao">
+            <h3 class="capitulo-header" onclick="toggleCapitulo('o-que-sao')"><i class="fas fa-question-circle"></i> O que são Cineclubes?</h3>
+            <div class="capitulo-content">
                 <div class="content-grid">
                     <div class="content-card">
                         <h4><i class="fas fa-film"></i> Definição</h4>
@@ -116,12 +91,12 @@
                     </div>
                 </div>
             </div>
-        </section>
+        </div>
 
         <!-- SEÇÃO IMPORTÂNCIA DOS CINECLUBES -->
-        <section class="content-section collapsible">
-            <h3 class="collapsible-header"><i class="fas fa-star"></i> Importância dos Cineclubes <i class="fas fa-chevron-down toggle-icon"></i></h3>
-            <div class="collapsible-content">
+        <div class="capitulo" id="importancia">
+            <h3 class="capitulo-header" onclick="toggleCapitulo('importancia')"><i class="fas fa-star"></i> Importância dos Cineclubes</h3>
+            <div class="capitulo-content">
                 <div class="importance-grid">
                     <div class="importance-item">
                         <i class="fas fa-graduation-cap"></i>
@@ -145,12 +120,12 @@
                     </div>
                 </div>
             </div>
-        </section>
+        </div>
 
         <!-- SEÇÃO CINECLUBES DESTACADOS -->
-        <section class="content-section collapsible">
-            <h3 class="collapsible-header"><i class="fas fa-map-marker-alt"></i> Cineclubes em Destaque <i class="fas fa-chevron-down toggle-icon"></i></h3>
-            <div class="collapsible-content">
+        <div class="capitulo" id="destaques">
+            <h3 class="capitulo-header" onclick="toggleCapitulo('destaques')"><i class="fas fa-map-marker-alt"></i> Cineclubes em Destaque</h3>
+            <div class="capitulo-content">
                 <div class="cineclube-grid">
                     <div class="cineclube-card">
                         <h4>Cineclube Mário Gusmão</h4>
@@ -182,12 +157,12 @@
                     </div>
                 </div>
             </div>
-        </section>
+        </div>
 
         <!-- SEÇÃO CONSELHO NACIONAL DE CINECLUBES -->
-        <section class="content-section collapsible">
-            <h3 class="collapsible-header"><i class="fas fa-network-wired"></i> Conselho Nacional de Cineclubes <i class="fas fa-chevron-down toggle-icon"></i></h3>
-            <div class="collapsible-content">
+        <div class="capitulo" id="cnc">
+            <h3 class="capitulo-header" onclick="toggleCapitulo('cnc')"><i class="fas fa-network-wired"></i> Conselho Nacional de Cineclubes</h3>
+            <div class="capitulo-content">
                 <p>
                     O Conselho Nacional de Cineclubes (CNC) é a entidade que representa e articula o movimento 
                     cineclubista brasileiro. Fundado para fortalecer e organizar os cineclubes em todo o país, 
@@ -212,12 +187,12 @@
                     </div>
                 </div>
             </div>
-        </section>
+        </div>
 
         <!-- SEÇÃO CINEMA NEGRO E DIVERSIDADE -->
-        <section class="content-section collapsible">
-            <h3 class="collapsible-header"><i class="fas fa-fist-raised"></i> Cinema Negro e Diversidade <i class="fas fa-chevron-down toggle-icon"></i></h3>
-            <div class="collapsible-content">
+        <div class="capitulo" id="cinema-negro">
+            <h3 class="capitulo-header" onclick="toggleCapitulo('cinema-negro')"><i class="fas fa-fist-raised"></i> Cinema Negro e Diversidade</h3>
+            <div class="capitulo-content">
                 <p>
                     O movimento cineclubista brasileiro tem papel fundamental na promoção da diversidade 
                     e representatividade no cinema. Muitos cineclubes se dedicam especificamente à 
@@ -236,12 +211,16 @@
                     </div>
                 </div>
             </div>
-        </section>
+        </div>
 
         <!-- SEÇÃO COMO CRIAR UM CINECLUBE -->
-        <section class="content-section collapsible">
-            <h3 class="collapsible-header"><i class="fas fa-plus-circle"></i> Como Criar um Cineclube <i class="fas fa-chevron-down toggle-icon"></i></h3>
-            <div class="collapsible-content">
+        <div class="capitulo" id="criar-cineclube">
+            <h3 class="capitulo-header" onclick="toggleCapitulo('criar-cineclube')"><i class="fas fa-plus-circle"></i> Como Criar um Cineclube</h3>
+            <div class="capitulo-content">
+                <p>
+                    Criar um cineclube é um processo que envolve paixão por cinema, organização e dedicação. 
+                    Aqui estão os passos essenciais para tirar sua ideia do papel:
+                </p>
                 <div class="steps-grid">
                     <div class="step">
                         <div class="step-number">1</div>
@@ -256,180 +235,87 @@
                     <div class="step">
                         <div class="step-number">3</div>
                         <h4>Encontre um Espaço</h4>
-                        <p>Busque local adequado para exibições (escolas, centros culturais, etc.)</p>
+                        <p>Pode ser uma sala de aula, um auditório, um centro comunitário ou até mesmo um espaço ao ar livre.</p>
                     </div>
                     <div class="step">
                         <div class="step-number">4</div>
-                        <h4>Planeje a Programação</h4>
-                        <p>Selecione filmes, organize debates e atividades complementares</p>
+                        <h4>Obtenha os Filmes</h4>
+                        <p>Busque filmes com direitos de exibição para cineclubes ou utilize obras em domínio público.</p>
                     </div>
                     <div class="step">
                         <div class="step-number">5</div>
-                        <h4>Formalize o Cineclube</h4>
-                        <p>Registre-se no CNC e busque parcerias institucionais</p>
+                        <h4>Divulgue</h4>
+                        <p>Crie uma identidade visual, use redes sociais e parcerias para atrair seu público.</p>
                     </div>
                     <div class="step">
                         <div class="step-number">6</div>
-                        <h4>Divulgue e Realize</h4>
-                        <p>Promova as atividades e mantenha regularidade nas sessões</p>
+                        <h4>Realize as Sessões</h4>
+                        <p>Prepare o ambiente, projete o filme e promova o debate após a exibição.</p>
+                    </div>
+                </div>
+                <div class="resources-section">
+                    <h4>Recursos de Apoio:</h4>
+                    <div class="resources-grid">
+                        <div class="resource-card">
+                            <h4>Cartilha Cineclubes</h4>
+                            <p>"Cinema Perto de Todos, Cineclubes em Todo Lugar!" - Guia oficial para criação e manutenção de cineclubes.
+                                <a href="https://www.gov.br/cultura/pt-br/centrais-de-conteudo/publicacoes/cartilha-cineclubes-2/cartilha-cineclubes.pdf" target="_blank">Download da Cartilha</a>
+                            </p>
+                        </div>
+                        <div class="resource-card">
+                            <h4>Mapa do Cinema Negro</h4>
+                            <p>Plataforma que mapeia e divulga cineclubes e iniciativas de cinema negro no Brasil.
+                                <a href="https://mapadocinemanegro.com/cineclubes/" target="_blank">Acesse o Mapa</a>
+                            </p>
+                        </div>
+                        <div class="resource-card">
+                            <h4>Lei do Cinema Nacional</h4>
+                            <p>Lei 13.006/2014 obriga exibição de filmes nacionais nas escolas, fortalecendo o papel educativo dos cineclubes.
+                                <a href="https://www.planalto.gov.br/ccivil_03/_ato2011-2014/2014/lei/l13006.htm" target="_blank">Saiba mais sobre a Lei</a>
+                            </p>
+                        </div>
                     </div>
                 </div>
             </div>
-        </section>
+        </div>
 
-        <!-- SEÇÃO RECURSOS E APOIO -->
-        <section class="content-section collapsible">
-            <h3 class="collapsible-header"><i class="fas fa-hands-helping"></i> Recursos e Apoio <i class="fas fa-chevron-down toggle-icon"></i></h3>
-            <div class="collapsible-content">
-                <div class="resources-grid">
-                    <div class="resource-card">
-                        <i class="fas fa-file-pdf"></i>
-                        <h4>Cartilha do Ministério da Cultura</h4>
-                        <p>"Cinema Perto de Todos, Cineclubes em Todo Lugar!" - Guia oficial para criação e manutenção de cineclubes. <a href="https://www.gov.br/cultura/pt-br/centrais-de-conteudo/publicacoes/cartilha-cineclubes-2/cartilha-cineclubes.pdf" target="_blank">Acesse aqui</a>.</p>
-                    </div>
-                    <div class="resource-card">
-                        <i class="fas fa-map"></i>
-                        <h4>Mapa de Cineclubes</h4>
-                        <p>Ferramenta online que localiza cineclubes ativos em todo o Brasil, facilitando o contato e intercâmbio. <a href="https://www.google.com/maps/d/u/0/viewer?mid=13xzibrmYFhqi_-pTxykg0JTbsAdDbV8" target="_blank">Explore o mapa</a>.</p>
-                    </div>
-                    <div class="resource-card">
-                        <i class="fas fa-university"></i>
-                        <h4>Apoio Institucional</h4>
-                        <p>Universidades, centros culturais e órgãos públicos oferecem espaços e apoio para atividades cineclubistas.</p>
-                    </div>
-                    <div class="resource-card">
-                        <i class="fas fa-gavel"></i>
-                        <h4>Lei do Cinema Nacional</h4>
-                        <p>Lei 13.006/2014 obriga exibição de filmes nacionais nas escolas, fortalecendo o papel educativo dos cineclubes. <a href="https://www.planalto.gov.br/ccivil_03/_ato2011-2014/2014/lei/l13006.htm" target="_blank">Saiba mais</a>.</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- SEÇÃO CONEXÃO COM O PROJETO -->
-        <section class="content-section connection-section collapsible">
-            <h3 class="collapsible-header"><i class="fas fa-link"></i> Cineclubes e o Projeto Um Trem de Cinema <i class="fas fa-chevron-down toggle-icon"></i></h3>
-            <div class="collapsible-content">
+        <!-- SEÇÃO CONECTE-SE -->
+        <div class="capitulo" id="conecte-se">
+            <h3 class="capitulo-header" onclick="toggleCapitulo('conecte-se')"><i class="fas fa-handshake"></i> Conecte-se ao Movimento Cineclubista</h3>
+            <div class="capitulo-content">
                 <p>
-                    O Projeto Um Trem de Cinema do IFMG Sabará compartilha dos mesmos valores e objetivos dos cineclubes: 
-                    democratizar o acesso ao cinema brasileiro, formar plateia crítica e cumprir a Lei 13.006/2014. 
-                    Este catálogo de DVDs serve como ferramenta fundamental para cineclubes que buscam filmes nacionais 
-                    para suas programações.
+                    Seja você um entusiasta do cinema, um educador ou alguém que busca promover a cultura 
+                    em sua comunidade, o movimento cineclubista é um espaço acolhedor e transformador. 
+                    Explore nosso catálogo de DVDs para encontrar filmes inspiradores e junte-se a nós 
+                    nessa jornada!
                 </p>
                 <div class="connection-benefits">
                     <div class="benefit">
-                        <h4><i class="fas fa-film"></i> Catálogo de DVDs</h4>
-                        <p>Acesse nosso catálogo com filmes nacionais para suas sessões cineclubistas.</p>
-                        <a href="index.html" class="btn-primary">Explorar Catálogo</a>
+                        <i class="fas fa-film"></i>
+                        <h4>Explore o Catálogo</h4>
+                        <p>Descubra filmes brasileiros para suas sessões cineclubistas.</p>
+                        <a href="index.html" class="btn-primary">Ver Catálogo</a>
                     </div>
                     <div class="benefit">
-                        <h4><i class="fas fa-envelope"></i> Contato</h4>
-                        <p>Entre em contato para parcerias, dúvidas ou sugestões.</p>
-                        <a href="#" class="btn-primary" id="btnFaleConoscoCineclubes">Fale Conosco</a>
+                        <i class="fas fa-envelope"></i>
+                        <h4>Entre em Contato</h4>
+                        <p>Dúvidas, sugestões ou parcerias? Fale conosco!</p>
+                        <a href="mailto:contato@umtremdecinema.com.br" class="btn-primary">Enviar E-mail</a>
                     </div>
                 </div>
             </div>
-        </section>
-    </main>
-
-    <!-- MODAL DE FALE CONOSCO (REUTILIZADO DO INDEX.HTML) -->
-    <div id="modalFaleConosco" class="feedback-modal">
-        <div class="feedback-modal-content">
-            <span class="close">&times;</span>
-            <h2>Fale Conosco</h2>
-            <div class="form-container">
-                <iframe id="googleForm" 
-                        src="https://docs.google.com/forms/d/e/1FAIpQLSfaMr7-ermLAAO8S8zDk0WMcPrVX34mF2xhTrHiC1Z53GbIFQ/viewform?usp=sharing&ouid=101786859238464224020"
-                        frameborder="0" 
-                        marginheight="0" 
-                        marginwidth="0">
-                    Carregando…
-                </iframe>
-            </div>
         </div>
-    </div>
-
-    <!-- BOTÃO VOLTAR AO TOPO (REUTILIZADO DO INDEX.HTML) -->
-    <a href="#" class="voltar-topo" id="btnVoltarTopo">
-        <i class="fas fa-arrow-up"></i>
-    </a>
+    </main>
 
     <!-- RODAPÉ -->
     <footer>
         <div class="container">
-            <p>
-                Acervo doado pelo Ministério da Cultura ao Projeto de Extensão
-                <br>
-                <i class="fas fa-train"></i> UM TREM DE CINEMA IFMG SABARÁ 2019-2021
-            </p>
+            <p>&copy; 2024 Catálogo de DVDs - Projeto Um Trem de Cinema IFMG Sabará. Todos os direitos reservados.</p>
         </div>
     </footer>
 
     <!-- SCRIPTS -->
-    <script>
-        document.addEventListener("DOMContentLoaded", function() {
-            const collapsibleHeaders = document.querySelectorAll(".collapsible-header");
-
-            collapsibleHeaders.forEach(header => {
-                header.addEventListener("click", function() {
-                    const parentSection = this.closest(".collapsible");
-                    const content = this.nextElementSibling;
-                    const icon = this.querySelector(".toggle-icon");
-
-                    if (content.style.maxHeight) {
-                        content.style.maxHeight = null;
-                        parentSection.classList.remove("active");
-                        icon.classList.remove("fa-chevron-up");
-                        icon.classList.add("fa-chevron-down");
-                    } else {
-                        content.style.maxHeight = content.scrollHeight + "px";
-                        parentSection.classList.add("active");
-                        icon.classList.remove("fa-chevron-down");
-                        icon.classList.add("fa-chevron-up");
-                    }
-                });
-            });
-
-            // MODAL DE FALE CONOSCO
-            const btnFaleConosco = document.getElementById("btnFaleConoscoCineclubes");
-            const modalFaleConosco = document.getElementById("modalFaleConosco");
-            const closeFaleConosco = modalFaleConosco.querySelector(".close");
-
-            if (btnFaleConosco) {
-                btnFaleConosco.addEventListener("click", function(event) {
-                    event.preventDefault();
-                    modalFaleConosco.style.display = "block";
-                });
-            }
-
-            if (closeFaleConosco) {
-                closeFaleConosco.addEventListener("click", function() {
-                    modalFaleConosco.style.display = "none";
-                });
-            }
-
-            window.addEventListener("click", function(event) {
-                if (event.target == modalFaleConosco) {
-                    modalFaleConosco.style.display = "none";
-                }
-            });
-
-            // BOTÃO VOLTAR AO TOPO
-            const btnVoltarTopo = document.getElementById("btnVoltarTopo");
-
-            window.addEventListener("scroll", function() {
-                if (window.scrollY > 200) { // Mostra o botão após rolar 200px
-                    btnVoltarTopo.style.display = "block";
-                } else {
-                    btnVoltarTopo.style.display = "none";
-                }
-            });
-
-            btnVoltarTopo.addEventListener("click", function(e) {
-                e.preventDefault();
-                window.scrollTo({ top: 0, behavior: "smooth" });
-            });
-        });
-    </script>
+    <script src="js/cineclubes.js"></script>
 </body>
-</html>>
+</html>
+
