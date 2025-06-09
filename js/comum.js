@@ -1,117 +1,82 @@
 // ARQUIVO COMUM.JS - FUNÇÕES COMPARTILHADAS ENTRE PÁGINAS
-// CRIADO PARA CENTRALIZAR FUNCIONALIDADES DE EXPANDIR/RECOLHER E BOTÕES
 
 // FUNÇÃO PARA EXPANDIR/RECOLHER SEÇÕES
-function toggleExpandableSection(sectionId) {
-    const section = document.getElementById(sectionId);
-    if (!section) return;
+function toggleCapitulo(capituloId) {
+    // OBTÉM O ELEMENTO DO CAPÍTULO
+    const capitulo = document.getElementById(capituloId);
+    if (!capitulo) return;
     
-    const content = section.querySelector('.expandable-content');
-    const icon = section.querySelector('.expand-icon');
+    // OBTÉM O CONTEÚDO E O ÍCONE DO CAPÍTULO
+    const content = capitulo.querySelector('.capitulo-content');
+    const icon = capitulo.querySelector('.expand-icon');
+    const header = capitulo.querySelector('.capitulo-header');
     
-    if (!content || !icon) return;
+    if (!content || !icon || !header) return;
     
-    // ALTERNA A VISIBILIDADE DO CONTEÚDO
-    if (content.style.display === 'none' || content.style.display === '') {
+    // ALTERNA A CLASSE ACTIVE NO HEADER E NO CONTENT
+    content.classList.toggle('active');
+    header.classList.toggle('active');
+    
+    // ATUALIZA O DISPLAY DO CONTEÚDO
+    if (content.classList.contains('active')) {
         content.style.display = 'block';
         icon.classList.remove('fa-chevron-down');
         icon.classList.add('fa-chevron-up');
-        section.classList.add('expanded');
     } else {
         content.style.display = 'none';
         icon.classList.remove('fa-chevron-up');
         icon.classList.add('fa-chevron-down');
-        section.classList.remove('expanded');
     }
 }
 
-// FUNÇÃO PARA ABRIR CAPÍTULO ESPECÍFICO (COMPATIBILIDADE COM FACA-SEU-FILME)
-function abrirCapitulo(capituloId) {
-    toggleExpandableSection(capituloId);
-    
-    // ROLA PARA O CAPÍTULO
-    const elemento = document.getElementById(capituloId);
-    if (elemento) {
-        elemento.scrollIntoView({ behavior: 'smooth' });
-    }
-}
-
-// FUNÇÃO PARA INICIALIZAR OS EVENT LISTENERS DAS SEÇÕES EXPANSÍVEIS
+// FUNÇÃO PARA INICIALIZAR OS EVENT LISTENERS
 function initExpandableSections() {
-    // ADICIONA CLICK LISTENERS PARA TODOS OS TÍTULOS EXPANSÍVEIS
-    const expandableTitles = document.querySelectorAll('.expandable-title');
-    
-    expandableTitles.forEach(title => {
-        title.addEventListener('click', function() {
-            const section = this.closest('.expandable-section');
-            if (section && section.id) {
-                toggleExpandableSection(section.id);
-            }
-        });
-        
-        // ADICIONA CURSOR POINTER PARA INDICAR QUE É CLICÁVEL
-        title.style.cursor = 'pointer';
-    });
-    
-    // INICIALIZA TODAS AS SEÇÕES COMO FECHADAS
-    const expandableContents = document.querySelectorAll('.expandable-content');
-    expandableContents.forEach(content => {
+    // FECHA TODOS OS CAPÍTULOS INICIALMENTE
+    document.querySelectorAll('.capitulo-content').forEach(content => {
         content.style.display = 'none';
     });
-    
-    // ADICIONA CLICK LISTENERS PARA ETAPAS (COMPATIBILIDADE COM FACA-SEU-FILME)
-    const etapas = document.querySelectorAll('.etapa[data-target]');
-    etapas.forEach(etapa => {
-        etapa.addEventListener('click', function() {
-            const target = this.getAttribute('data-target');
-            if (target) {
-                abrirCapitulo(target);
-            }
-        });
-        
-        etapa.style.cursor = 'pointer';
-    });
 }
 
-// FUNÇÃO PARA INICIALIZAR O MODAL "FALE CONOSCO"
+// INICIALIZA QUANDO O DOM ESTIVER CARREGADO
+document.addEventListener('DOMContentLoaded', function() {
+    initExpandableSections();
+    initFaleConoscoModal();
+    initVoltarAoTopo();
+});
+
+// FUNÇÃO PARA O MODAL FALE CONOSCO
 function initFaleConoscoModal() {
-    const btnFaleConosco = document.getElementById('btnFaleConosco');
     const modal = document.getElementById('modalFaleConosco');
-    const closeBtn = modal ? modal.querySelector('.close') : null;
+    const btn = document.getElementById('btnFaleConosco');
+    const span = document.getElementsByClassName('close')[0];
     
-    if (!btnFaleConosco || !modal) return;
+    if (!modal || !btn || !span) return;
     
-    // ABRE O MODAL
-    btnFaleConosco.addEventListener('click', function() {
+    btn.onclick = function() {
         modal.style.display = 'block';
-        document.body.style.overflow = 'hidden'; // IMPEDE SCROLL DA PÁGINA
-    });
-    
-    // FECHA O MODAL
-    if (closeBtn) {
-        closeBtn.addEventListener('click', function() {
-            modal.style.display = 'none';
-            document.body.style.overflow = 'auto'; // RESTAURA SCROLL DA PÁGINA
-        });
+        document.body.style.overflow = 'hidden';
     }
     
-    // FECHA O MODAL CLICANDO FORA DELE
-    window.addEventListener('click', function(event) {
-        if (event.target === modal) {
+    span.onclick = function() {
+        modal.style.display = 'none';
+        document.body.style.overflow = 'auto';
+    }
+    
+    window.onclick = function(event) {
+        if (event.target == modal) {
             modal.style.display = 'none';
             document.body.style.overflow = 'auto';
         }
-    });
+    }
 }
 
-// FUNÇÃO PARA INICIALIZAR O BOTÃO "VOLTAR AO TOPO"
+// FUNÇÃO PARA O BOTÃO VOLTAR AO TOPO
 function initVoltarAoTopo() {
     const btnVoltarTopo = document.getElementById('btnVoltarTopo');
     
     if (!btnVoltarTopo) return;
     
-    // MOSTRA/ESCONDE O BOTÃO BASEADO NO SCROLL
-    window.addEventListener('scroll', function() {
+    window.onscroll = function() {
         if (window.pageYOffset > 300) {
             btnVoltarTopo.style.display = 'block';
             btnVoltarTopo.style.opacity = '1';
@@ -123,47 +88,22 @@ function initVoltarAoTopo() {
                 }
             }, 300);
         }
-    });
+    };
     
-    // AÇÃO DO CLIQUE - VOLTA AO TOPO
-    btnVoltarTopo.addEventListener('click', function(e) {
+    btnVoltarTopo.onclick = function(e) {
         e.preventDefault();
         window.scrollTo({
             top: 0,
             behavior: 'smooth'
         });
-    });
+    };
     
-    // INICIALIZA COMO OCULTO
     btnVoltarTopo.style.display = 'none';
     btnVoltarTopo.style.opacity = '0';
-    btnVoltarTopo.style.transition = 'opacity 0.3s ease';
 }
 
-// FUNÇÃO PRINCIPAL DE INICIALIZAÇÃO
-function initCommonFunctions() {
-    // AGUARDA O DOM ESTAR COMPLETAMENTE CARREGADO
-    if (document.readyState === 'loading') {
-        document.addEventListener('DOMContentLoaded', function() {
-            initExpandableSections();
-            initFaleConoscoModal();
-            initVoltarAoTopo();
-        });
-    } else {
-        // DOM JÁ ESTÁ CARREGADO
-        initExpandableSections();
-        initFaleConoscoModal();
-        initVoltarAoTopo();
-    }
-}
-
-// INICIALIZA AS FUNÇÕES COMUNS
-initCommonFunctions();
-
-// EXPORTA FUNÇÕES PARA USO GLOBAL (COMPATIBILIDADE)
-window.toggleExpandableSection = toggleExpandableSection;
-window.abrirCapitulo = abrirCapitulo;
+// EXPORTA AS FUNÇÕES PARA USO GLOBAL
+window.toggleCapitulo = toggleCapitulo;
 window.initExpandableSections = initExpandableSections;
 window.initFaleConoscoModal = initFaleConoscoModal;
 window.initVoltarAoTopo = initVoltarAoTopo;
-
