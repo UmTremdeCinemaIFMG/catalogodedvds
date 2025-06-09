@@ -1,37 +1,44 @@
- /* ==========================================
-                   8. RODAPÉ
-                   ========================================== */
-                
-                footer {
-                    background-color: var(--verde-escuro);
-                    color: var(--branco);
-                    text-align: center;
-                    padding: 20px;
-                    margin-top: 30px;
-                    box-shadow: 0 -2px 5px rgba(0,0,0,0.1);
-                    transition: var(--transicao);
-                    cursor: pointer;
-                }
-                
-                footer:hover {
-                    background-color: var(--vermelho);
-                    transform: scale(1.01);
-                }
-                
-                footer p {
-                    margin: 0;
-                    transition: var(--transicao);
-                }
-                
-                footer:hover p {
-                    transform: scale(1.02);
-                }
+/* DEFINIÇÃO DE VARIÁVEIS GLOBAIS */
+:root {
+    --verde-ifmg: #006335;
+    --verde-escuro: #00420c;
+    --branco: #ffffff;
+    --cinza-claro: #f5f5f5;
+    --cinza-medio: #666666;
+    --cinza-escuro: #333333;
+    --azul: #0066cc;
+    --vermelho: #cc0000;
+    --sombra: 0 2px 5px rgba(0,0,0,0.1);
+    --transicao: all 0.3s ease;
+}
 
-            /* ===========================
-               12. FALE CONOSCO
-               =========================== */
+/* ESTILOS DO RODAPÉ - COMUM A TODAS AS PÁGINAS */
+footer {
+    background-color: var(--verde-escuro);
+    color: var(--branco);
+    text-align: center;
+    padding: 20px;
+    margin-top: 30px;
+    box-shadow: 0 -2px 5px rgba(0,0,0,0.1);
+    transition: var(--transicao);
+    cursor: pointer;
+}
 
-/* Botão Fale Conosco */
+footer:hover {
+    background-color: var(--vermelho);
+    transform: scale(1.01);
+}
+
+footer p {
+    margin: 0;
+    transition: var(--transicao);
+}
+
+footer:hover p {
+    transform: scale(1.02);
+}
+
+/* ESTILOS DO BOTÃO FALE CONOSCO - COMUM A TODAS AS PÁGINAS */
 .feedback-button {
     position: fixed;
     bottom: 30px;
@@ -59,7 +66,7 @@
     transform: scale(1.05);
 }
 
-/* Modal do Fale Conosco */
+/* ESTILOS DO MODAL FALE CONOSCO */
 .feedback-modal {
     display: none;
     position: fixed;
@@ -79,10 +86,8 @@
     border-radius: 8px;
     width: 95%;
     max-width: 700px;
-    /*max-height: 90vh;
-    overflow-y: auto;*/
     position: relative;
-    height: calc(100vh - 40px); /* altura total menos as margens */
+    height: calc(100vh - 40px);
 }
 
 .feedback-modal .close {
@@ -98,32 +103,157 @@
     color: var(--cinza-escuro);
 }
 
-/* Container do Formulário */
+/* ESTILOS DO FORMULÁRIO NO MODAL */
 .form-container {
-    height: calc(100% - 60px); /* altura total menos o espaço do título e padding */
+    height: calc(100% - 60px);
     margin-top: 20px;
-  
-  /*position: relative;
-    padding-bottom: 56.25%;
-    height: 0;
-    overflow: hidden;*/
 }
 
-/* Iframe do Formulário */
 .form-container iframe {
-    /*position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    min-height: 500px;*/
-  
     width: 100%;
     height: 100%;
     border: none;
-    min-height: 600px; /* altura mínima para garantir visibilidade do formulário */
+    min-height: 600px;
 }
-/* Ajustes para Mobile */
+
+/* ESTILOS DO BOTÃO VOLTAR AO TOPO */
+.voltar-topo {
+    position: fixed;
+    bottom: 80px;
+    right: 20px;
+    background-color: var(--verde-ifmg);
+    color: var(--branco);
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    box-shadow: var(--sombra);
+    transition: var(--transicao);
+    z-index: 99;
+    opacity: 0.7;
+}
+
+.voltar-topo:hover {
+    opacity: 1;
+    background-color: var(--verde-escuro);
+    transform: translateY(-5px);
+}
+
+/* ESTILOS DOS CAPÍTULOS EXPANSÍVEIS - COMUM A VÁRIAS PÁGINAS */
+.capitulo {
+    background-color: var(--branco);
+    border-radius: 8px;
+    padding: 30px;
+    margin-bottom: 30px;
+    box-shadow: var(--sombra);
+}
+
+.capitulo-header {
+    color: var(--verde-escuro);
+    border-bottom: 2px solid var(--verde-ifmg);
+    padding-bottom: 10px;
+    margin-top: 0;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    cursor: pointer;
+    position: relative;
+}
+
+.capitulo-header::after {
+    content: '\f078';
+    font-family: 'Font Awesome 5 Free';
+    font-weight: 900;
+    position: absolute;
+    right: 10px;
+    transition: transform 0.3s ease;
+}
+
+.capitulo-header.active::after {
+    transform: rotate(180deg);
+}
+
+.capitulo-content {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease-out;
+    padding-top: 20px;
+}
+
+.capitulo-content.active {
+    max-height: fit-content;
+}
+
+/* ESTILOS DE TEXTO DENTRO DOS CAPÍTULOS */
+.capitulo h3 {
+    color: var(--verde-ifmg);
+    margin-top: 25px;
+    font-size: 1.3em;
+}
+
+.capitulo h4 {
+    color: var(--cinza-escuro);
+    margin-top: 20px;
+    font-size: 1.1em;
+}
+
+.capitulo p {
+    line-height: 1.7;
+    margin-bottom: 20px;
+}
+
+.capitulo ul, 
+.capitulo ol {
+    margin-bottom: 20px;
+    padding-left: 25px;
+}
+
+.capitulo li {
+    margin-bottom: 10px;
+    line-height: 1.6;
+}
+
+/* ESTILOS DOS BOTÕES PRIMÁRIO E SECUNDÁRIO */
+.btn-primary, 
+.btn-secondary {
+    padding: 15px 30px;
+    border-radius: 25px;
+    text-decoration: none;
+    font-weight: bold;
+    transition: var(--transicao);
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.btn-primary {
+    background: var(--verde-ifmg);
+    color: var(--branco);
+}
+
+.btn-primary:hover {
+    background: var(--verde-escuro);
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+}
+
+.btn-secondary {
+    background: transparent;
+    color: var(--verde-ifmg);
+    border: 2px solid var(--verde-ifmg);
+}
+
+.btn-secondary:hover {
+    background: var(--verde-ifmg);
+    color: var(--branco);
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+}
+
+/* RESPONSIVIDADE PARA DISPOSITIVOS MÓVEIS */
 @media (max-width: 768px) {
     .feedback-modal-content {
         margin: 10px;
@@ -143,11 +273,18 @@
     }
 
     .form-container iframe {
-        min-height: 700px; /* aumenta a altura mínima em mobile */
+        min-height: 700px;
+    }
+
+    .btn-primary, 
+    .btn-secondary {
+        width: 100%;
+        max-width: 300px;
+        justify-content: center;
     }
 }
 
-/* Ajustes para telas muito pequenas */
+/* AJUSTES PARA TELAS MUITO PEQUENAS */
 @media (max-width: 480px) {
     .feedback-modal-content {
         margin: 5px;
@@ -156,95 +293,6 @@
     }
 
     .form-container iframe {
-        min-height: 800px; /* aumenta ainda mais a altura mínima */
+        min-height: 800px;
     }
 }
-
-/* ESTILO PARA BOTÃO VOLTAR AO TOPO (ADICIONADO) */
-.voltar-topo {
-    position: fixed;
-    bottom: 80px; /* Ajustado para ficar acima do botão Fale Conosco */
-    right: 20px;
-    background-color: var(--verde-ifmg);
-    color: var(--branco);
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    display: none; /* Inicialmente oculto */
-    align-items: center;
-    justify-content: center;
-    text-decoration: none;
-    box-shadow: var(--sombra);
-    transition: var(--transicao);
-    z-index: 99;
-    opacity: 0.7;
-}
-
-.voltar-topo:hover {
-    opacity: 1;
-    background-color: var(--verde-escuro);
-    transform: translateY(-5px);
-}
-
-.voltar-topo.show {
-    display: flex; /* Mostra o botão */
-}
-
-
-/* ESTILOS PARA SEÇÕES RECOLHÍVEIS */
-.collapsible-header {
-    cursor: pointer;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 15px;
-    background-color: var(--verde-escuro);
-    color: var(--branco);
-    border-radius: 8px;
-    margin-bottom: 10px;
-    transition: background-color 0.3s ease;
-}
-
-.collapsible-header:hover {
-    background-color: #005f14;
-}
-
-.collapsible-header h2, .collapsible-header h3 {
-    margin: 0;
-    font-size: 1.5em;
-}
-
-.collapsible-header .toggle-icon {
-    transition: transform 0.3s ease;
-}
-
-.collapsible-header.active .toggle-icon {
-    transform: rotate(180deg);
-}
-
-.collapsible-content {
-    max-height: 0;
-    overflow: hidden;
-    transition: max-height 0.3s ease-out;
-    padding: 0 15px;
-}
-
-.collapsible-content.active {
-    max-height: fit-content; /* Ajusta a altura automaticamente */
-}
-
-.collapsible-content p {
-    margin-bottom: 10px;
-}
-
-.collapsible-content .content-grid, 
-.collapsible-content .importance-grid, 
-.collapsible-content .cineclube-grid, 
-.collapsible-content .cnc-features, 
-.collapsible-content .diversity-examples, 
-.collapsible-content .steps-grid, 
-.collapsible-content .resources-grid, 
-.collapsible-content .connection-benefits {
-    padding-top: 15px; /* Espaçamento para o conteúdo quando expandido */
-}
-
