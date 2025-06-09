@@ -33,6 +33,7 @@
                 <a href="sobre.html" style="color: var(--branco); text-decoration: none; font-size: 14px; padding: 5px 10px; transition: var(--transicao);">Sobre</a>
                 <a href="filmes-online-gratis.html" style="color: var(--branco); text-decoration: none; font-size: 14px; padding: 5px 10px; transition: var(--transicao);">Filmes Online Grátis</a>
 		<a href="mapa.html" style="color: var(--branco); text-decoration: none; font-size: 14px; padding: 5px 10px; transition: var(--transicao);">Mapa</a>
+		<a href="faca-seu-filme.html" style="color: var(--branco); text-decoration: none; font-size: 14px; padding: 5px 10px; transition: var(--transicao);">Faça seu Filme</a>
 		<a href="cineclubes.html" style="color: var(--branco); text-decoration: none; font-size: 14px; padding: 5px 10px; transition: var(--transicao);">Cineclubes</a>
                 </div>
     </div>
@@ -50,9 +51,10 @@
 
     <!-- CONTEÚDO PRINCIPAL -->
     <main class="container">
-        <div class="capitulo" id="intro-cineclubes">
-            <h2 class="capitulo-header" onclick="toggleCapitulo('intro-cineclubes')"><i class="fas fa-users"></i> Cineclubes no Brasil</h2>
-            <div class="capitulo-content">
+        <!-- SEÇÃO INTRODUÇÃO: CINECLUBES NO BRASIL (EXPANSÍVEL) -->
+        <div class="expandable-section" id="intro-cineclubes">
+            <h2 class="expandable-title"><i class="fas fa-users"></i> Cineclubes no Brasil <i class="fas fa-chevron-down expand-icon"></i></h2>
+            <div class="expandable-content">
                 <p class="intro-text">
                     Os cineclubes são espaços fundamentais para a democratização do cinema e a formação de plateia crítica. 
                     No Brasil, eles desempenham um papel essencial na difusão da cultura cinematográfica, especialmente do 
@@ -61,10 +63,10 @@
             </div>
         </div>
 
-        <!-- SEÇÃO O QUE SÃO CINECLUBES -->
-        <div class="capitulo" id="o-que-sao">
-            <h3 class="capitulo-header" onclick="toggleCapitulo('o-que-sao')"><i class="fas fa-question-circle"></i> O que são Cineclubes?</h3>
-            <div class="capitulo-content">
+        <!-- SEÇÃO O QUE SÃO CINECLUBES (EXPANSÍVEL) -->
+        <div class="expandable-section" id="o-que-sao">
+            <h3 class="expandable-title"><i class="fas fa-question-circle"></i> O que são Cineclubes? <i class="fas fa-chevron-down expand-icon"></i></h3>
+            <div class="expandable-content">
                 <div class="content-grid">
                     <div class="content-card">
                         <h4><i class="fas fa-film"></i> Definição</h4>
@@ -93,10 +95,10 @@
             </div>
         </div>
 
-        <!-- SEÇÃO IMPORTÂNCIA DOS CINECLUBES -->
-        <div class="capitulo" id="importancia">
-            <h3 class="capitulo-header" onclick="toggleCapitulo('importancia')"><i class="fas fa-star"></i> Importância dos Cineclubes</h3>
-            <div class="capitulo-content">
+        <!-- SEÇÃO IMPORTÂNCIA DOS CINECLUBES (EXPANSÍVEL) -->
+        <div class="expandable-section" id="importancia">
+            <h3 class="expandable-title"><i class="fas fa-star"></i> Importância dos Cineclubes <i class="fas fa-chevron-down expand-icon"></i></h3>
+            <div class="expandable-content">
                 <div class="importance-grid">
                     <div class="importance-item">
                         <i class="fas fa-graduation-cap"></i>
@@ -122,10 +124,10 @@
             </div>
         </div>
 
-        <!-- SEÇÃO CINECLUBES DESTACADOS -->
-        <div class="capitulo" id="destaques">
-            <h3 class="capitulo-header" onclick="toggleCapitulo('destaques')"><i class="fas fa-map-marker-alt"></i> Cineclubes em Destaque</h3>
-            <div class="capitulo-content">
+        <!-- SEÇÃO CINECLUBES DESTACADOS (EXPANSÍVEL) -->
+        <div class="expandable-section" id="destaques">
+            <h3 class="expandable-title"><i class="fas fa-map-marker-alt"></i> Cineclubes em Destaque <i class="fas fa-chevron-down expand-icon"></i></h3>
+            <div class="expandable-content">
                 <div class="cineclube-grid">
                     <div class="cineclube-card">
                         <h4>Cineclube Mário Gusmão</h4>
@@ -159,10 +161,10 @@
             </div>
         </div>
 
-        <!-- SEÇÃO CONSELHO NACIONAL DE CINECLUBES -->
-        <div class="capitulo" id="cnc">
-            <h3 class="capitulo-header" onclick="toggleCapitulo('cnc')"><i class="fas fa-network-wired"></i> Conselho Nacional de Cineclubes</h3>
-            <div class="capitulo-content">
+        <!-- SEÇÃO CONSELHO NACIONAL DE CINECLUBES (EXPANSÍVEL) -->
+        <div class="expandable-section" id="cnc">
+            <h3 class="expandable-title"><i class="fas fa-network-wired"></i> Conselho Nacional de Cineclubes <i class="fas fa-chevron-down expand-icon"></i></h3>
+            <div class="expandable-content">
                 <p>
                     O Conselho Nacional de Cineclubes (CNC) é a entidade que representa e articula o movimento 
                     cineclubista brasileiro. Fundado para fortalecer e organizar os cineclubes em todo o país, 
@@ -189,10 +191,10 @@
             </div>
         </div>
 
-        <!-- SEÇÃO CINEMA NEGRO E DIVERSIDADE -->
-        <div class="capitulo" id="cinema-negro">
-            <h3 class="capitulo-header" onclick="toggleCapitulo('cinema-negro')"><i class="fas fa-fist-raised"></i> Cinema Negro e Diversidade</h3>
-            <div class="capitulo-content">
+        <!-- SEÇÃO CINEMA NEGRO E DIVERSIDADE (EXPANSÍVEL) -->
+        <div class="expandable-section" id="cinema-negro">
+            <h3 class="expandable-title"><i class="fas fa-fist-raised"></i> Cinema Negro e Diversidade <i class="fas fa-chevron-down expand-icon"></i></h3>
+            <div class="expandable-content">
                 <p>
                     O movimento cineclubista brasileiro tem papel fundamental na promoção da diversidade 
                     e representatividade no cinema. Muitos cineclubes se dedicam especificamente à 
@@ -213,10 +215,10 @@
             </div>
         </div>
 
-        <!-- SEÇÃO COMO CRIAR UM CINECLUBE -->
-        <div class="capitulo" id="criar-cineclube">
-            <h3 class="capitulo-header" onclick="toggleCapitulo('criar-cineclube')"><i class="fas fa-plus-circle"></i> Como Criar um Cineclube</h3>
-            <div class="capitulo-content">
+        <!-- SEÇÃO COMO CRIAR UM CINECLUBE (EXPANSÍVEL) -->
+        <div class="expandable-section" id="criar-cineclube">
+            <h3 class="expandable-title"><i class="fas fa-plus-circle"></i> Como Criar um Cineclube <i class="fas fa-chevron-down expand-icon"></i></h3>
+            <div class="expandable-content">
                 <p>
                     Criar um cineclube é um processo que envolve paixão por cinema, organização e dedicação. 
                     Aqui estão os passos essenciais para tirar sua ideia do papel:
@@ -264,14 +266,8 @@
                         </div>
                         <div class="resource-card">
                             <h4>Mapa do Cinema Negro</h4>
-                            <p>Plataforma que mapeia e divulga cineclubes e iniciativas de cinema negro no Brasil.
-                                <a href="https://mapadocinemanegro.com/cineclubes/" target="_blank">Acesse o Mapa</a>
-                            </p>
-                        </div>
-                        <div class="resource-card">
-                            <h4>Lei do Cinema Nacional</h4>
-                            <p>Lei 13.006/2014 obriga exibição de filmes nacionais nas escolas, fortalecendo o papel educativo dos cineclubes.
-                                <a href="https://www.planalto.gov.br/ccivil_03/_ato2011-2014/2014/lei/l13006.htm" target="_blank">Saiba mais sobre a Lei</a>
+                            <p>Plataforma que mapeia cineclubes e iniciativas de cinema negro no Brasil.
+                                <a href="https://www.mapadocinemanegro.com.br/" target="_blank">Acessar Mapa</a>
                             </p>
                         </div>
                     </div>
@@ -279,22 +275,48 @@
             </div>
         </div>
 
-        <!-- SEÇÃO CONECTE-SE -->
-<!--        <div class="capitulo" id="conecte-se">
-            <h3 class="capitulo-header" onclick="toggleCapitulo('conecte-se')"><i class="fas fa-handshake"></i> Conecte-se ao Movimento Cineclubista</h3>
-            <div class="capitulo-content">
-                <p>
-                    Seja você um entusiasta do cinema, um educador ou alguém que busca promover a cultura 
-                    em sua comunidade, o movimento cineclubista é um espaço acolhedor e transformador. 
-                    Explore nosso catálogo de DVDs para encontrar filmes inspiradores e junte-se a nós 
-                    nessa jornada!
-                </p>
-                <div class="connection-benefits">
-                    <div class="benefit">
-                        <i class="fas fa-film"></i>
-                        <h4>Explore o Catálogo</h4>
-                        <p>Descubra filmes brasileiros para suas sessões cineclubistas.</p>
-                        <a href="index.html" class="btn-primary">Ver Catálogo</a>
+        <!-- FALE CONOSCO -->
+        <div class="feedback-button">
+            <button id="btnFaleConosco">
+                <i class="fas fa-comments"></i> Fale Conosco
+            </button>
+        </div>
+
+        <div id="modalFaleConosco" class="feedback-modal">
+            <div class="feedback-modal-content">
+                <span class="close">&times;</span>
+                <h2>Fale Conosco</h2>
+                <div class="form-container">
+                    <iframe id="googleForm" 
+                            src="https://docs.google.com/forms/d/e/1FAIpQLSfaMr7-ermLAAO8S8zDk0WMcPrVX34mF2xhTrHiC1Z53GbIFQ/viewform?usp=sharing&ouid=101786859238464224020"
+                            frameborder="0" 
+                            marginheight="0" 
+                            marginwidth="0">
+                        Carregando…
+                    </iframe>
+                </div>
+            </div>
+        </div>
+
+        <!-- BOTÃO VOLTAR AO TOPO -->
+        <a href="#" class="voltar-topo" id="btnVoltarTopo">
+            <i class="fas fa-arrow-up"></i>
+        </a>
+    </main>
+
+    <!-- RODAPÉ -->
+    <footer>
+        <div class="container">
+           <p>
+            Acervo doado pelo Ministério da Cultura ao Projeto de Extensão
+            <br>                
+           <i  class="fas fa-train"></i> UM TREM DE CINEMA IFMG SABARÁ 2019-2021
+           </p>
+        </div>
+    </footer>
+
+    <!-- SCRIPTS -->
+    <script src="js/comum.js"></script>index.html" class="btn-primary">Ver Catálogo</a>
                     </div>
                     <div class="benefit">
                         <i class="fas fa-envelope"></i>
@@ -318,10 +340,8 @@
            </p>
         </div>
     </footer>
-
     <!-- SCRIPTS -->
-    <script src="js/cineclubes.js"></script>
-	<script src="js/script.js"></script>
+    <script src="js/comum.js"></script>
 	
 	 <!-- FALE CONOSCO -->
     <div class="feedback-button">
