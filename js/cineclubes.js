@@ -19,7 +19,7 @@ document.addEventListener("DOMContentLoaded", function() {
         });
     });  */
 
-    // MODAL DE FALE CONOSCO (se houver)
+ /*    // MODAL DE FALE CONOSCO (se houver)
     const btnFaleConosco = document.getElementById("btnFaleConoscoCineclubes");
     const modalFaleConosco = document.getElementById("modalFaleConosco");
     const closeFaleConosco = modalFaleConosco ? modalFaleConosco.querySelector(".close") : null;
@@ -47,7 +47,7 @@ document.addEventListener("DOMContentLoaded", function() {
         }
     });
 
-    // BOTÃO VOLTAR AO TOPO (se houver)
+      // BOTÃO VOLTAR AO TOPO (se houver)
     const btnVoltarTopo = document.getElementById("btnVoltarTopo");
 
     window.addEventListener("scroll", function() {
@@ -66,7 +66,7 @@ document.addEventListener("DOMContentLoaded", function() {
             window.scrollTo({ top: 0, behavior: "smooth" });
         });
     }
-});
+});   */
 
 
 // FUNÇÃO QUE MOSTRA/ESCONDE O CONTEÚDO DE UMA SEÇÃO AO CLICAR NO CABEÇALHO
