@@ -175,6 +175,9 @@ footer:hover p {
 .capitulo-header.active::after {
     transform: rotate(180deg);
 }
+.capitulo-header.active .expand-icon {
+    transform: rotate(180deg);
+}
 
 .capitulo-content {
     max-height: 0;
@@ -184,7 +187,8 @@ footer:hover p {
 }
 
 .capitulo-content.active {
-    max-height: fit-content;
+    max-height: none;
+    display: block !important;
 }
 
 /* ESTILOS DE TEXTO DENTRO DOS CAPÍTULOS */
