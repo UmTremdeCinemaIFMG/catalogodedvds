@@ -68,7 +68,6 @@ document.addEventListener("DOMContentLoaded", function() {
     }
 });
 
-});
 
 // FUNÇÃO QUE MOSTRA/ESCONDE O CONTEÚDO DE UMA SEÇÃO AO CLICAR NO CABEÇALHO
 function toggleCapitulo(id) {
