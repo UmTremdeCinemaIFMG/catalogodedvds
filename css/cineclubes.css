@@ -161,6 +161,113 @@
     height: 100%;
 }
 
+/* ESTILOS ESPECÍFICOS PARA A PÁGINA DE CINECLUBES */
+
+/* SEÇÃO INTRODUTÓRIA */
+.intro-section {
+    text-align: center;
+    margin-bottom: 40px;
+    padding: 30px 20px;
+    background: linear-gradient(135deg, var(--verde-ifmg), var(--verde-escuro));
+    border-radius: 15px;
+    color: var(--branco);
+}
+
+.intro-section h2 {
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+}
+
+.intro-text {
+    font-size: 1.2rem;
+    line-height: 1.6;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+/* SEÇÕES DE CONTEÚDO */
+.content-section {
+    margin-bottom: 50px;
+    padding: 30px 0;
+}
+
+.content-section h3 {
+    font-size: 2rem;
+    color: var(--verde-ifmg);
+    margin-bottom: 30px;
+    text-align: center;
+    border-bottom: 3px solid var(--verde-ifmg);
+    padding-bottom: 10px;
+}
+
+/* GRID DE CONTEÚDO */
+.content-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+    margin-top: 30px;
+}
+
+.content-card {
+    background: var(--branco);
+    padding: 25px;
+    border-radius: 15px;
+    box-shadow: var(--sombra);
+    border-left: 5px solid var(--verde-ifmg);
+    transition: var(--transicao);
+}
+
+.content-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+}
+
+.content-card h4 {
+    color: var(--verde-ifmg);
+    font-size: 1.3rem;
+    margin-bottom: 15px;
+}
+
+.content-card i {
+    margin-right: 10px;
+    color: var(--verde-ifmg);
+}
+
+/* GRID DE IMPORTÂNCIA */
+.importance-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 25px;
+    margin-top: 30px;
+}
+
+.importance-item {
+    text-align: center;
+    padding: 25px;
+    background: var(--branco);
+    border-radius: 15px;
+    box-shadow: var(--sombra);
+    transition: var(--transicao);
+}
+
+.importance-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+}
+
+.importance-item i {
+    font-size: 3rem;
+    color: var(--verde-ifmg);
+    margin-bottom: 15px;
+}
+
+.importance-item h4 {
+    color: var(--verde-ifmg);
+    font-size: 1.2rem;
+    margin-bottom: 10px;
+}
+
 /* GRID DE CINECLUBES */
 .cineclube-grid {
     display: grid;
