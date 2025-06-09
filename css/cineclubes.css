@@ -1,7 +1,7 @@
 /* Estilos específicos para a página Cineclubes */
 
 /* ESTILOS PARA SEÇÕES RECOLHÍVEIS E CARDS */
-.capitulo {
+/* .capitulo {
     background-color: var(--branco);
     border-radius: 8px;
     padding: 30px;
@@ -23,7 +23,7 @@
 
 .capitulo-header::after {
     content: '\f078'; /* Ícone de seta para baixo */
-    font-family: 'Font Awesome 5 Free';
+/*    font-family: 'Font Awesome 5 Free';
     font-weight: 900;
     position: absolute;
     right: 10px;
@@ -44,8 +44,8 @@
 .capitulo-content.active {
     max-height: fit-content; /* Ajusta a altura automaticamente */
 }
-
-.capitulo h3 {
+/*
+ .capitulo h3 {
     color: var(--verde-ifmg);
     margin-top: 25px;
     font-size: 1.3em;
@@ -70,7 +70,7 @@
 .capitulo li {
     margin-bottom: 10px;
     line-height: 1.6;
-}
+}  */
 
 /* ESTILOS PARA GRIDS E CARDS */
 .content-grid, .importance-grid, .cineclube-grid, .cnc-features, .diversity-examples, .steps-grid, .resources-grid, .connection-benefits {
