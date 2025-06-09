@@ -14,34 +14,48 @@
 </head>
 <body>
     <!-- CABEÇALHO -->
-    <header>
-        <div class="container">
-            <h1><i class="fas fa-film"></i> CATÁLOGO DE DVDs</h1>
-            <h3>Filmes Brasileiros do Projeto Um Trem de Cinema do IFMG Sabará</h3>
-            <strong>LEI Nº 13.006, DE 26 DE JUNHO DE 2014:</strong>
-            <!-- TEXTO DA LEI -->
-            A exibição de filmes de produção nacional constituirá componente curricular complementar integrado à proposta pedagógica da escola, sendo a sua exibição obrigatória por, no mínimo, duas horas mensais.
-            <a href="https://www.planalto.gov.br/ccivil_03/_ato2011-2014/2014/lei/l13006.htm" target="_blank" style="margin-left: 8px; color: #ffffff; text-decoration: underline;">
-                Saiba mais
-            </a>
-        </div>
-        <!-- BARRA EXTRA -->
-        <div class="barra-extra" style="background-color: #00420c; padding: 0px 0; text-align: center; box-shadow: var(--sombra);">
+        <header>
+            <p>
+            <div class="container">
+                <h1><i class="fas fa-film"></i> CATÁLOGO DE DVDs</h1>
+                <h3>Filmes Brasileiros do Projeto Um Trem de Cinema do IFMG Sabará</h3>
+                <strong>LEI Nº 13.006, DE 26 DE JUNHO DE 2014:</strong>
+                  A exibição de filmes de produção nacional constituirá componente curricular complementar integrado à proposta pedagógica da escola, sendo a sua exibição obrigatória por, no mínimo, 2 (duas) horas mensais.
+                  <a href="https://www.planalto.gov.br/ccivil_03/_ato2011-2014/2014/lei/l13006.htm" target="_blank" style="margin-left: 8px; color: #ffffff; text-decoration: underline;">
+                    Saiba mais
+                  </a>
+            </div>
+        </p>
+             <!-- BARRA EXTRA -->
+    <div class="barra-extra" style="background-color: #00420c; padding: 0px 0; text-align: center; box-shadow: var(--sombra);">
             <div class="container" style="display: flex; justify-content: center; flex-wrap: wrap; gap: 20px;">
                 <a href="index.html" style="color: var(--branco); text-decoration: none; font-size: 14px; padding: 5px 10px; transition: var(--transicao);">Início</a>
                 <a href="sobre.html" style="color: var(--branco); text-decoration: none; font-size: 14px; padding: 5px 10px; transition: var(--transicao);">Sobre</a>
                 <a href="filmes-online-gratis.html" style="color: var(--branco); text-decoration: none; font-size: 14px; padding: 5px 10px; transition: var(--transicao);">Filmes Online Grátis</a>
-                <a href="mapa.html" style="color: var(--branco); text-decoration: none; font-size: 14px; padding: 5px 10px; transition: var(--transicao);">Mapa</a>
-            </div>
-        </div>
-    </header>
+		<a href="mapa.html" style="color: var(--branco); text-decoration: none; font-size: 14px; padding: 5px 10px; transition: var(--transicao);">Mapa</a>
+		<a href="faca-seu-filme.html" style="color: var(--branco); text-decoration: none; font-size: 14px; padding: 5px 10px; transition: var(--transicao);">Faça seu Filme</a>
+                <a href="cineclubes.html" style="color: var(--branco); text-decoration: none; font-size: 14px; padding: 5px 10px; transition: var(--transicao);">Cineclubes</a>
+                </div>
+    </div>
+        </header>
 
     <!-- CONTEÚDO PRINCIPAL -->
     <main class="container">
+        <!-- SEÇÃO MAPA - MANTEVE O MAPA ORIGINAL -->
+        <section>
+            <h2><i class="fas fa-map-marked-alt"></i> Mapa dos Cineclubes</h2>
+            <!-- MAPA INTERATIVO VIA IFRAME GOOGLE MAPS OU OUTRO SERVIÇO -->
+            <div class="mapa-container" style="width: 100%; height: 400px; margin-bottom: 30px;">
+                <!-- TROQUE O SRC PELO MAPA QUE VOCÊ QUISER, ESTE É UM EXEMPLO -->
+                <iframe src="https://www.google.com/maps/d/embed?mid=1yH0xIbw3J_jtL1IuZL1e7mV7m3uG9G1s&hl=pt-BR"
+                        width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+            </div>
+        </section>
+
         <!-- SEÇÃO INTRODUÇÃO -->
-        <div class="cineclube-intro">
-            <h2><i class="fas fa-users"></i> O QUE É UM CINECLUBE?</h2>
-            <div class="cineclube-content">
+        <div class="expandable-section" id="introducao-cineclube">
+            <h2 class="expandable-title"><i class="fas fa-users"></i> O QUE É UM CINECLUBE? <i class="fas fa-chevron-down expand-icon"></i></h2>
+            <div class="expandable-content">
                 <div class="content-card">
                     <h4><i class="fas fa-film"></i> Conceito</h4>
                     <p>
@@ -59,9 +73,58 @@
                 </div>
             </div>
         </div>
+    </main>
+
+    <!-- RODAPÉ -->
+
+    <footer>
+            <div class="container">
+               <p>
+                Acervo doado pelo Ministério da Cultura ao Projeto de Extensão
+                <br>                
+               <i  class="fas fa-train"></i> UM TREM DE CINEMA IFMG SABARÁ 2019-2021
+               </p>
+            </div>
+        </footer>
+
+    
+        <!-- SCRIPTS -->
+        <script src="js/comum.js"></script>   
+ 
+
+        <!-- FALE CONOSCO -->
+        <div class="feedback-button">
+            <button id="btnFaleConosco">
+                <i class="fas fa-comments"></i> Fale Conosco
+            </button>
+        </div>
+
+        <div id="modalFaleConosco" class="feedback-modal">
+            <div class="feedback-modal-content">
+                <span class="close">&times;</span>
+                <h2>Fale Conosco</h2>
+                <div class="form-container">
+                    <iframe id="googleForm" 
+                            src="https://docs.google.com/forms/d/e/1FAIpQLSfaMr7-ermLAAO8S8zDk0WMcPrVX34mF2xhTrHiC1Z53GbIFQ/viewform?usp=sharing&ouid=101786859238464224020"
+                            frameborder="0" 
+                            marginheight="0" 
+                            marginwidth="0">
+                        Carregando…
+                    </iframe>
+                </div>
+            </div>
+        </div>
+
+   <!-- BOTÃO VOLTAR AO TOPO -->
+    <a href="#" class="voltar-topo" id="btnVoltarTopo">
+        <i class="fas fa-arrow-up"></i>
+    </a>
+    
+    </body>
+</html>
 
         <!-- SEÇÃO IMPORTÂNCIA DOS CINECLUBES (EXPANSÍVEL) -->
-        <div class="expandable-section">
+        <div class="expandable-section" id="importancia">
             <h3 class="expandable-title">
                 <i class="fas fa-star"></i> Importância dos Cineclubes
                 <i class="fas fa-chevron-down expand-icon"></i>
@@ -92,120 +155,29 @@
             </div>
         </div>
 
-        <!-- SEÇÃO CINECLUBES EM DESTAQUE (EXPANSÍVEL) -->
-        <div class="expandable-section">
+
+
+        <!-- SEÇÃO COMO ORGANIZAR UM CINECLUBE (EXPANSÍVEL) -->
+        <div class="expandable-section" id="organizar">
             <h3 class="expandable-title">
-                <i class="fas fa-map-marker-alt"></i> Cineclubes em Destaque
+                <i class="fas fa-film"></i> Como Organizar um Cineclube
                 <i class="fas fa-chevron-down expand-icon"></i>
             </h3>
             <div class="expandable-content">
-                <div class="cineclube-grid">
-                    <div class="cineclube-card">
-                        <h4>Cineclube Mário Gusmão</h4>
-                        <p><strong>Local:</strong> Cachoeira, BA</p>
-                        <p><strong>Vinculação:</strong> Universidade Federal do Recôncavo da Bahia</p>
-                        <p>Projeto de pesquisa e extensão que incentiva a prática cineclubista e a formação de plateia, 
-                        com foco no cinema baiano e brasileiro.</p>
-                    </div>
-                    <div class="cineclube-card">
-                        <h4>Cineclube Mulungu</h4>
-                        <p><strong>Local:</strong> Maceió, AL</p>
-                        <p><strong>Vinculação:</strong> Movimento Quilombola em Alagoas</p>
-                        <p>Focado na valorização do cinema negro e das culturas afro-brasileiras, promovendo sessões itinerantes em comunidades quilombolas.</p>
-                    </div>
-                    <!-- ADICIONE MAIS CINECLUBES AQUI CASO DESEJE -->
+                <p>Organizar um cineclube pode ser uma experiência gratificante. Siga estes passos:</p>
+                <ul>
+                    <li><strong>Defina o Público e o Foco:</strong> Para quem é o cineclube? Qual tipo de filme será exibido?</li>
+                    <li><strong>Escolha um Local:</strong> Pode ser uma sala de aula, um auditório, um espaço comunitário.</li>
+                    <li><strong>Obtenha Equipamentos:</strong> Projetor, tela, sistema de som. Um computador ou notebook já ajuda!</li>
+                    <li><strong>Legalização (Opcional, mas recomendado):</strong> Para acesso a acervos e editais, considere formalizar o cineclube.</li>
+                    <li><strong>Programação:</strong> Escolha os filmes, defina a frequência das sessões e prepare os debates.</li>
+                    <li><strong>Divulgação:</strong> Use redes sociais, cartazes, boca a boca.</li>
+                    <li><strong>Parcerias:</strong> Busque apoio em escolas, universidades, prefeituras, associações.</li>
+                </ul>
+                <div class="recursos-box">
+                    <h4>Dica:</h4>
+                    <p>O livro "Cineclubismo e Educação" de Carlos Alberto de Mattos é uma excelente fonte para entender a relação entre cineclubes e o ambiente educacional.</p>
                 </div>
             </div>
         </div>
 
-        <!-- SEÇÃO COMO CRIAR UM CINECLUBE (EXPANSÍVEL) -->
-        <div class="expandable-section">
-            <h3 class="expandable-title">
-                <i class="fas fa-lightbulb"></i> Como Criar um Cineclube
-                <i class="fas fa-chevron-down expand-icon"></i>
-            </h3>
-            <div class="expandable-content">
-                <ol>
-                    <li><strong>Reúna um grupo interessado</strong>: Amigos, colegas, professores ou membros da comunidade.</li>
-                    <li><strong>Escolha um local</strong>: Escola, centro cultural, praça, biblioteca, etc.</li>
-                    <li><strong>Defina uma programação</strong>: Escolha filmes e organize sessões regulares.</li>
-                    <li><strong>Divulgue</strong>: Use redes sociais, cartazes e o boca a boca para atrair público.</li>
-                    <li><strong>Promova debates</strong>: Após as sessões, converse sobre os temas dos filmes.</li>
-                    <li><strong>Faça parcerias</strong>: Com escolas, ONGs, órgãos públicos ou cineclubes já existentes.</li>
-                </ol>
-                <p>
-                    Para mais informações, acesse o <a href="http://www.cnc.org.br/" target="_blank" class="link-externo">Conselho Nacional de Cineclubes</a>.
-                </p>
-            </div>
-        </div>
-
-        <!-- SEÇÃO MAPA - MANTEVE O MAPA ORIGINAL -->
-        <section>
-            <h2><i class="fas fa-map-marked-alt"></i> Mapa dos Cineclubes</h2>
-            <!-- MAPA INTERATIVO VIA IFRAME GOOGLE MAPS OU OUTRO SERVIÇO -->
-            <div class="mapa-container" style="width: 100%; height: 400px; margin-bottom: 30px;">
-                <!-- TROQUE O SRC PELO MAPA QUE VOCÊ QUISER, ESTE É UM EXEMPLO -->
-                <iframe src="https://www.google.com/maps/d/embed?mid=1yH0xIbw3J_jtL1IuZL1e7mV7m3uG9G1s&hl=pt-BR"
-                        width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-            </div>
-        </section>
-    </main>
-
-    <!-- RODAPÉ -->
-    <footer>
-        <div class="container">
-            <p>
-                Acervo doado pelo Ministério da Cultura ao Projeto de Extensão
-                <br>
-                <i class="fas fa-train"></i> UM TREM DE CINEMA IFMG SABARÁ 2019-2021
-            </p>
-        </div>
-    </footer>
-
-    <!-- BOTÃO FALE CONOSCO -->
-    <div class="feedback-button">
-        <button id="btnFaleConosco">
-            <i class="fas fa-comments"></i> Fale Conosco
-        </button>
-    </div>
-
-    <!-- MODAL FALE CONOSCO -->
-    <div id="modalFaleConosco" class="feedback-modal">
-        <div class="feedback-modal-content">
-            <span class="close">&times;</span>
-            <h2>Fale Conosco</h2>
-            <div class="form-container">
-                <iframe id="googleForm"
-                    src="https://docs.google.com/forms/d/e/1FAIpQLSfaMr7-ermLAAO8S8zDk0WMcPrVX34mF2xhTrHiC1Z53GbIFQ/viewform?usp=sharing&ouid=101786859238464224020"
-                    frameborder="0"
-                    marginheight="0"
-                    marginwidth="0">
-                    Carregando…
-                </iframe>
-            </div>
-        </div>
-    </div>
-
-    <!-- BOTÃO VOLTAR AO TOPO -->
-    <a href="#" class="voltar-topo" id="btnVoltarTopo">
-        <i class="fas fa-arrow-up"></i>
-    </a>
-
-    <!-- SCRIPTS -->
-    <!-- CARREGA O SCRIPT COMUM COM AS FUNÇÕES MODERNAS -->
-    <script src="js/comum.js"></script>
-    <script>
-        // ===========================
-        // INICIALIZA AS FUNÇÕES COMUNS QUANDO O DOM ESTIVER PRONTO
-        // ===========================
-        document.addEventListener("DOMContentLoaded", function () {
-            // INICIALIZA SEÇÕES EXPANDÍVEIS (SOMENTE UM ABERTO POR VEZ, ACESSÍVEL)
-            setupExpandableContent(); // FUNÇÃO DO JS/COMUM.JS
-            // INICIALIZA O MODAL DE FALE CONOSCO
-            setupFaleConoscoModal(); // FUNÇÃO DO JS/COMUM.JS
-            // INICIALIZA O BOTÃO VOLTAR AO TOPO
-            setupVoltarTopoButton(); // FUNÇÃO DO JS/COMUM.JS
-        });
-    </script>
-</body>
-</html>
