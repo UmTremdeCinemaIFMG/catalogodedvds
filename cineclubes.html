@@ -4,11 +4,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cineclubes - Catálogo de DVDs</title>
+    
     <!-- FONTS E ÍCONES -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+	
     <!-- FAVICON -->
     <link rel="icon" type="image/png" href="favicon.png" />
-    <!-- ESTILOS -->
+    
+	<!-- ESTILOS -->
     
 	<link rel="stylesheet" href="css/styles.css">
 	<link rel="stylesheet" href="css/comum.css">
@@ -41,6 +44,7 @@
 		<a href="cineclubes.html" style="color: var(--branco); text-decoration: none; font-size: 14px; padding: 5px 10px; transition: var(--transicao);">Cineclubes</a>
                 </div>
     </div>
+	    
     </header>
 
     <!-- MAPA DE CINECLUBES -->
@@ -56,9 +60,11 @@
     <!-- CONTEÚDO PRINCIPAL -->
     <main class="container">
         <!-- SEÇÃO INTRODUÇÃO: CINECLUBES NO BRASIL (EXPANSÍVEL) -->
-        <div class="expandable-section" id="intro-cineclubes">
-            <h2 class="expandable-title"><i class="fas fa-users"></i> Cineclubes no Brasil <i class="fas fa-chevron-down expand-icon"></i></h2>
-            <div class="expandable-content">
+        <div class="capitulo" id="intro-cineclubes">
+            <h2 class="capitulo-header" onclick="toggleCapitulo('introducao')">
+		    <i class="fas fa-users"></i> Cineclubes no Brasil <i class="fas fa-chevron-down expand-icon"></i></h2>
+            
+		<div class="capitulo-content">
                 <p class="intro-text">
                     Os cineclubes são espaços fundamentais para a democratização do cinema e a formação de plateia crítica. 
                     No Brasil, eles desempenham um papel essencial na difusão da cultura cinematográfica, especialmente do 
