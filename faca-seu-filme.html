@@ -60,33 +60,34 @@
             
             <!-- ETAPAS DO PROCESSO -->
             <div class="etapas-container">
-                <div class="etapa" data-target="capitulo1">
+                <div class="etapa" onclick="abrirCapitulo('capitulo1')">
                     <i class="fas fa-lightbulb"></i>
                     <h3>Ideia</h3>
                 </div>
-                <div class="etapa" data-target="capitulo2">
+                <div class="etapa" onclick="abrirCapitulo('capitulo2')">
                     <i class="fas fa-file-alt"></i>
                     <h3>Roteiro</h3>
                 </div>
-                <div class="etapa" data-target="capitulo3">
+                <div class="etapa" onclick="abrirCapitulo('capitulo3')">
                     <i class="fas fa-video"></i>
                     <h3>Gravação</h3>
                 </div>
-                <div class="etapa" data-target="capitulo4">
+                <div class="etapa" onclick="abrirCapitulo('capitulo4')">
                     <i class="fas fa-cut"></i>
                     <h3>Edição</h3>
                 </div>
-                <div class="etapa" data-target="capitulo5">
+                <div class="etapa" onclick="abrirCapitulo('capitulo5')">
                     <i class="fas fa-share-alt"></i>
                     <h3>Exibição</h3>
                 </div>
-            </div>/div>
+            </div>
+        </div>
         
         <!-- INTRODUÇÃO: POR QUE FAZER SEU FILME? -->
-        <div class="expandable-section" id="introducao">
-            <h2 class="expandable-title"><i class="fas fa-question-circle"></i> Introdução: Por que fazer seu filme? <i class="fas fa-chevron-down expand-icon"></i></h2>
+        <div class="capitulo" id="introducao">
+            <h2 class="capitulo-header" onclick="toggleCapitulo('introducao')"><i class="fas fa-question-circle"></i> Introdução: Por que fazer seu filme?</h2>
             
-            <div class="expandable-content">
+            <div class="capitulo-content">
                 <p>Fazer um filme é mais do que apenas ligar uma câmera. É uma forma poderosa de:</p>
                 
                 <ul>
@@ -104,10 +105,10 @@
         </div>
         
         <!-- CAPÍTULO 1 -->
-        <div class="expandable-section" id="capitulo1">
-            <h2 class="expandable-title"><i class="fas fa-lightbulb"></i> Capítulo 1: A Faísca Criativa - Da Ideia ao Argumento <i class="fas fa-chevron-down expand-icon"></i></h2>
+        <div class="capitulo" id="capitulo1">
+            <h2 class="capitulo-header" onclick="toggleCapitulo('capitulo1')"><i class="fas fa-lightbulb"></i> Capítulo 1: A Faísca Criativa - Da Ideia ao Argumento</h2>
             
-            <div class="expandable-content">
+            <div class="capitulo-content">
                 <p>Todo filme começa com uma ideia. Mas como encontrá-la e desenvolvê-la?</p>
                 
                 <h3 id="cap1-1">1.1. De Onde Vêm as Ideias?</h3>
@@ -160,10 +161,10 @@
         </div>
         
         <!-- CAPÍTULO 2 -->
-        <div class="expandable-section" id="capitulo2">
-            <h2 class="expandable-title"><i class="fas fa-file-alt"></i> Capítulo 2: O Projeto no Papel - Roteiro e Planejamento <i class="fas fa-chevron-down expand-icon"></i></h2>
+        <div class="capitulo" id="capitulo2">
+            <h2 class="capitulo-header" onclick="toggleCapitulo('capitulo2')"><i class="fas fa-file-alt"></i> Capítulo 2: O Projeto no Papel - Roteiro e Planejamento</h2>
             
-            <div class="expandable-content">
+            <div class="capitulo-content">
                 <p>Com a história clara, é hora de transformá-la em um roteiro e planejar a produção.</p>
                 
                 <h3 id="cap2-1">2.1. O que é um Roteiro? Formatação básica.</h3>
@@ -258,15 +259,17 @@
                 </div>
             </div>
         </div>
-                <!-- CAPÍ        <!-- CAPÍTULO 3 -->
-        <div class="expandable-section" id="capitulo3">
-            <h2 class="expandable-title"><i class="fas fa-video"></i> Capítulo 3: Luz, Câmera, Ação! - A Gravação (Produção) <i class="fas fa-chevron-down expand-icon"></i></h2>
+        
+        <!-- CAPÍTULO 3 -->
+        <div class="capitulo" id="capitulo3">
+            <h2 class="capitulo-header" onclick="toggleCapitulo('capitulo3')"><i class="fas fa-video"></i> Capítulo 3: Luz, Câmera, Ação! - A Gravação (Produção)</h2>
             
-            <div class="expandable-content">                <p>Chegou a hora de dar vida ao seu roteiro!</p>
+            <div class="capitulo-content">
+                <p>Chegou a hora de dar vida ao seu roteiro!</p>
                 
                 <h3 id="cap3-1">3.1. A Câmera: Seus Olhos no Mundo (Enquadramentos e Movimentos).</h3>
                 
-                <p>Os enquadramentos são como você "recorta" a realidade com sua câmera:</p></p>
+                <p>Os enquadramentos são como você "recorta" a realidade com sua câmera:</p>
                 
                 <div class="imagem-exemplo">
                     <figure>
@@ -350,10 +353,11 @@
         </div>
         
         <!-- CAPÍTULO 4 -->
-        <div class="expandable-section" id="capitulo4">
-            <h2 class="expandable-title"><i class="fas fa-cut"></i> Capítulo 4: A Mágica Acontece - Edição e Finalização (Pós-Produção) <i class="fas fa-chevron-down expand-icon"></i></h2>
+        <div class="capitulo" id="capitulo4">
+            <h2 class="capitulo-header" onclick="toggleCapitulo('capitulo4')"><i class="fas fa-cut"></i> Capítulo 4: A Mágica Acontece - Edição e Finalização (Pós-Produção)</h2>
             
-            <div class="expandable-content">               <p>Aqui você vai juntar todo o material gravado e transformar em um filme.</p>
+            <div class="capitulo-content">
+                <p>Aqui você vai juntar todo o material gravado e transformar em um filme.</p>
                 
                 <h3 id="cap4-1">4.1. O que é Edição? Contando a História na Montagem.</h3>
                 
@@ -429,11 +433,13 @@
                 </div>
             </div>
         </div>
-                <!-- CAPÍTULO 5 -->
-        <div class="expandable-section" id="capitulo5">
-            <h2 class="expandable-title"><i class="fas fa-share-alt"></i> Capítulo 5: Mostre ao Mundo! - Distribuição e Exibição <i class="fas fa-chevron-down expand-icon"></i></h2>
+        
+        <!-- CAPÍTULO 5 -->
+        <div class="capitulo" id="capitulo5">
+            <h2 class="capitulo-header" onclick="toggleCapitulo('capitulo5')"><i class="fas fa-share-alt"></i> Capítulo 5: Mostre ao Mundo! - Distribuição e Exibição</h2>
             
-            <div class="expandable-content">                <p>Seu filme está pronto! Agora é hora de compartilhá-lo.</p>
+            <div class="capitulo-content">
+                <p>Seu filme está pronto! Agora é hora de compartilhá-lo.</p>
                 
                 <h3 id="cap5-1">5.1. Onde Exibir? Encontrando seu Público.</h3>
                 
@@ -572,6 +578,98 @@
     </a>
     
     <!-- SCRIPTS -->
-    <script src="js/comum.js"></script>
+    <script>
+        // Script para o modal de Fale Conosco
+        document.addEventListener('DOMContentLoaded', function() {
+            var modal = document.getElementById('modalFaleConosco');
+            var btn = document.getElementById('btnFaleConosco');
+            var span = document.getElementsByClassName('close')[0];
+            
+            btn.onclick = function() {
+                modal.style.display = 'block';
+            }
+            
+            span.onclick = function() {
+                modal.style.display = 'none';
+            }
+            
+            window.onclick = function(event) {
+                if (event.target == modal) {
+                    modal.style.display = 'none';
+                }
+            }
+            
+            // Botão Voltar ao Topo
+            var btnTopo = document.getElementById('btnVoltarTopo');
+            
+            window.onscroll = function() {
+                if (document.body.scrollTop > 300 || document.documentElement.scrollTop > 300) {
+                    btnTopo.style.display = "flex";
+                } else {
+                    btnTopo.style.display = "none";
+                }
+            };
+            
+            btnTopo.onclick = function() {
+                document.body.scrollTop = 0; // Para Safari
+                document.documentElement.scrollTop = 0; // Para Chrome, Firefox, IE e Opera
+                return false;
+            };
+            
+            // Inicializa com todos os capítulos fechados
+            document.querySelectorAll('.capitulo-content').forEach(function(content) {
+                content.style.display = 'none';
+            });
+            
+            // Função para expandir/recolher capítulos
+            window.toggleCapitulo = function(id) {
+                var capitulo = document.getElementById(id);
+                var content = capitulo.querySelector('.capitulo-content');
+                var header = capitulo.querySelector('.capitulo-header');
+                
+                // Se o capítulo já está aberto, fecha
+                if (content.style.display === 'block') {
+                    content.style.display = 'none';
+                    header.classList.remove('active');
+                } else {
+                    // Fecha todos os outros capítulos
+                    document.querySelectorAll('.capitulo-content').forEach(function(item) {
+                        item.style.display = 'none';
+                    });
+                    
+                    document.querySelectorAll('.capitulo-header').forEach(function(item) {
+                        item.classList.remove('active');
+                    });
+                    
+                    // Abre o capítulo clicado
+                    content.style.display = 'block';
+                    header.classList.add('active');
+                }
+            }
+            
+            // Função para abrir um capítulo específico (usada pelos botões de etapas)
+            window.abrirCapitulo = function(id) {
+                var capitulo = document.getElementById(id);
+                var content = capitulo.querySelector('.capitulo-content');
+                var header = capitulo.querySelector('.capitulo-header');
+                
+                // Fecha todos os outros capítulos
+                document.querySelectorAll('.capitulo-content').forEach(function(item) {
+                    item.style.display = 'none';
+                });
+                
+                document.querySelectorAll('.capitulo-header').forEach(function(item) {
+                    item.classList.remove('active');
+                });
+                
+                // Abre o capítulo selecionado
+                content.style.display = 'block';
+                header.classList.add('active');
+                
+                // Rola a página até o capítulo
+                capitulo.scrollIntoView({behavior: 'smooth'});
+            }
+        });
+    </script>
 </body>
 </html>
