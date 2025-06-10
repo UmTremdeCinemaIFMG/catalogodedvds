@@ -216,6 +216,56 @@ body {
     margin-top: 25px;
 }
 
+
+
+
+/* ==========================================
+   GRID DE RECURSOS/FEATURES - COMUM A VÁRIAS PÁGINAS
+   ========================================== */
+
+/* CONTAINER DOS CARDS */
+.cnc-features {
+    display: grid;                          /* LAYOUT EM GRID */
+    grid-template-columns: repeat(3, 1fr);  /* TRÊS COLUNAS DE TAMANHO IGUAL */
+    gap: 20px;                             /* ESPAÇO ENTRE OS CARDS */
+    margin: 20px 0;                        /* MARGEM SUPERIOR E INFERIOR */
+}
+
+/* ESTILO DO CARD */
+.cnc-features .feature {
+    background-color: var(--branco);        /* FUNDO BRANCO */
+    border: 2px solid var(--verde-ifmg);    /* BORDA VERDE */
+    border-radius: 8px;                     /* CANTOS ARREDONDADOS */
+    padding: 20px;                          /* ESPAÇAMENTO INTERNO */
+    text-align: center;                     /* CENTRALIZA O CONTEÚDO */
+    transition: var(--transicao);           /* TRANSIÇÃO SUAVE */
+}
+
+/* TÍTULO DENTRO DO CARD */
+.cnc-features .feature h4 {
+    color: var(--verde-ifmg);               /* COR VERDE DO TÍTULO */
+    margin: 10px 0;                         /* MARGEM ACIMA E ABAIXO */
+    font-size: 1.2em;                       /* TAMANHO DA FONTE */
+}
+
+/* TEXTO DENTRO DO CARD */
+.cnc-features .feature p {
+    color: var(--cinza-escuro);             /* COR DO TEXTO */
+    line-height: 1.5;                       /* ALTURA DA LINHA */
+}
+
+/* RESPONSIVIDADE */
+@media (max-width: 768px) {
+    .cnc-features {
+        grid-template-columns: 1fr;         /* UMA COLUNA EM TELAS PEQUENAS */
+        gap: 15px;                          /* REDUZ O ESPAÇO ENTRE CARDS */
+    }
+}
+
+
+
+
+
 /* ESTILO DOS CARDS */
 .feature {
     text-align: center;                     /* CENTRALIZA O CONTEÚDO */
