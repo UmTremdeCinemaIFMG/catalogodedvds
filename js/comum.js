@@ -84,63 +84,105 @@ document.addEventListener('DOMContentLoaded', function() {
     initVoltarAoTopo();
 });
 
-// FUNÇÃO PARA O MODAL FALE CONOSCO
-function initFaleConoscoModal() {
-    const modal = document.getElementById('modalFaleConosco');
-    const btn = document.getElementById('btnFaleConosco');
-    const span = document.getElementsByClassName('close')[0];
-    
-    if (!modal || !btn || !span) return;
-    
-    btn.onclick = function() {
-        modal.style.display = 'block';
-        document.body.style.overflow = 'hidden';
+/* ==========================================
+   FUNÇÕES PARA ELEMENTOS FIXOS DA PÁGINA
+   ========================================== */
+
+// BOTÃO VOLTAR AO TOPO - HTML
+const BTN_VOLTAR_TOPO = `
+    <a href="#" id="btnVoltarTopo" class="btn-voltar-topo">
+        <i class="fas fa-arrow-up"></i>
+    </a>
+`;
+
+// BOTÃO FALE CONOSCO E MODAL - HTML
+const BTN_FALE_CONOSCO = `
+    <!-- BOTÃO FIXO -->
+    <button id="btnFaleConosco" class="btn-fale-conosco">
+        <i class="fas fa-comments"></i> Fale Conosco
+    </button>
+
+    <!-- MODAL -->
+    <div id="modalFaleConosco" class="modal-fale-conosco">
+        <div class="modal-conteudo">
+            <span class="fechar">&times;</span>
+            <h2>Fale Conosco</h2>
+            <iframe 
+                src="https://docs.google.com/forms/d/e/SUA_URL_DO_FORM/viewform"
+                width="100%" 
+                height="500px">
+                Carregando...
+            </iframe>
+        </div>
+    </div>
+`;
+
+/* ==========================================
+   FUNÇÃO PARA INICIALIZAR OS BOTÕES FIXOS
+   ========================================== */
+function inicializarBotoesFixos() {
+    // CRIA CONTAINER SE NÃO EXISTIR
+    let containerBotoes = document.getElementById('botoes-fixos');
+    if (!containerBotoes) {
+        containerBotoes = document.createElement('div');
+        containerBotoes.id = 'botoes-fixos';
+        document.body.appendChild(containerBotoes);
     }
-    
-    span.onclick = function() {
-        modal.style.display = 'none';
-        document.body.style.overflow = 'auto';
-    }
-    
-    window.onclick = function(event) {
-        if (event.target == modal) {
-            modal.style.display = 'none';
-            document.body.style.overflow = 'auto';
-        }
+
+    // ADICIONA OS BOTÕES AO CONTAINER
+    containerBotoes.innerHTML = BTN_VOLTAR_TOPO + BTN_FALE_CONOSCO;
+}
+
+/* ==========================================
+   FUNÇÃO PARA CONTROLAR VISIBILIDADE DO BOTÃO VOLTAR AO TOPO
+   ========================================== */
+function controlarBtnVoltarTopo() {
+    const btnTopo = document.getElementById('btnVoltarTopo');
+    if (btnTopo) {
+        // MOSTRA/ESCONDE BASEADO NO SCROLL
+        btnTopo.style.display = window.scrollY > 300 ? 'flex' : 'none';
     }
 }
 
-// FUNÇÃO PARA O BOTÃO VOLTAR AO TOPO
-function initVoltarAoTopo() {
-    const btnVoltarTopo = document.getElementById('btnVoltarTopo');
-    
-    if (!btnVoltarTopo) return;
-    
-    window.onscroll = function() {
-        if (window.pageYOffset > 300) {
-            btnVoltarTopo.style.display = 'flex';
-            btnVoltarTopo.style.opacity = '1';
-        } else {
-            btnVoltarTopo.style.opacity = '0';
-            setTimeout(() => {
-                if (window.pageYOffset <= 300) {
-                    btnVoltarTopo.style.display = 'none';
-                }
-            }, 300);
+/* ==========================================
+   FUNÇÃO PARA CONTROLAR O MODAL FALE CONOSCO
+   ========================================== */
+function controlarModalFaleConosco() {
+    const modal = document.getElementById('modalFaleConosco');
+    const btnAbrir = document.getElementById('btnFaleConosco');
+    const btnFechar = modal.querySelector('.fechar');
+
+    // ABRE O MODAL
+    btnAbrir.addEventListener('click', () => {
+        modal.style.display = 'block';
+    });
+
+    // FECHA NO X
+    btnFechar.addEventListener('click', () => {
+        modal.style.display = 'none';
+    });
+
+    // FECHA CLICANDO FORA
+    window.addEventListener('click', (e) => {
+        if (e.target === modal) {
+            modal.style.display = 'none';
         }
-    };
-    
-    btnVoltarTopo.onclick = function(e) {
-        e.preventDefault();
-        window.scrollTo({
-            top: 0,
-            behavior: 'smooth'
-        });
-    };
-    
-    btnVoltarTopo.style.display = 'none';
-    btnVoltarTopo.style.opacity = '0';
+    });
 }
+
+/* ==========================================
+   INICIALIZAÇÃO QUANDO A PÁGINA CARREGAR
+   ========================================== */
+document.addEventListener('DOMContentLoaded', () => {
+    // INICIALIZA OS BOTÕES
+    inicializarBotoesFixos();
+    
+    // CONFIGURA OS CONTROLES
+    controlarModalFaleConosco();
+    
+    // MONITORA O SCROLL PARA O BOTÃO VOLTAR AO TOPO
+    window.addEventListener('scroll', controlarBtnVoltarTopo);
+});
 
 // EXPORTA AS FUNÇÕES PARA USO GLOBAL
 window.toggleCapitulo = toggleCapitulo;
