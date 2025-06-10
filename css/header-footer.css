@@ -1,52 +1,51 @@
 /* ESTILOS DO CABEÇALHO E BARRA DE NAVEGAÇÃO - MANTENDO EXATAMENTE COMO ESTÁ */
-
-/* CABEÇALHO PRINCIPAL - AJUSTADO PARA NÃO TER ESPAÇO EXTRA NO FUNDO */
+/* CABEÇALHO PRINCIPAL - AJUSTADO PARA FICAR MAIS ESTREITO */
 header {
     background-color: var(--verde-ifmg);
     color: var(--branco);
-    padding: 20px 0 0 0; /* REMOVIDO PADDING INFERIOR */
+    padding: 10px 0 0 0;    /* REDUZIDO O PADDING SUPERIOR */
     box-shadow: 0 2px 5px rgba(0,0,0,0.2);
-    display: flex;           /* ADICIONADO DISPLAY FLEX */
-    flex-direction: column;  /* ORGANIZA OS ELEMENTOS EM COLUNA */
+    display: flex;
+    flex-direction: column;
 }
 
 header .container {
     text-align: center;
-    padding-bottom: 20px;    /* MOVIDO O ESPAÇAMENTO PARA O CONTAINER */
+    padding-bottom: 15px;    /* REDUZIDO O PADDING INFERIOR */
 }
 
 header h1 {
-    font-size: 2.5em;
+    font-size: 2.2em;       /* REDUZIDO UM POUCO O TAMANHO */
     margin: 0;
-    padding: 10px 0;
+    padding: 5px 0;         /* REDUZIDO O PADDING */
 }
 
 header h3 {
-    font-size: 1.2em;
-    margin: 10px 0;
+    font-size: 1.1em;       /* AJUSTADO O TAMANHO */
+    margin: 5px 0;          /* REDUZIDO A MARGEM */
     font-weight: normal;
 }
 
 header strong {
     display: block;
-    margin-top: 15px;
+    margin-top: 10px;       /* REDUZIDO A MARGEM */
 }
 
 header p {
-    margin: 10px 0;
+    margin: 8px 0;          /* REDUZIDO A MARGEM */
 }
 
 header a {
-    margin-left: 8px; 
-    color: #ffffff; 
+    margin-left: 8px;
+    color: #ffffff;
     text-decoration: underline;
 }
 
-/* BARRA DE NAVEGAÇÃO - AJUSTADA PARA FICAR RENTE AO CABEÇALHO */
+/* BARRA DE NAVEGAÇÃO - AJUSTADA COM SEPARADORES */
 .barra-extra {
     background-color: #00420c;
-    padding: 0;             /* REMOVIDO QUALQUER PADDING */
-    margin: 0;             /* REMOVIDO QUALQUER MARGEM */
+    padding: 0;
+    margin: 0;
     text-align: center;
     box-shadow: var(--sombra);
 }
@@ -55,14 +54,24 @@ header a {
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
-    gap: 20px;
-    padding: 5px 0;        /* ADICIONADO PADDING INTERNO NO CONTAINER */
+    gap: 0;                 /* REMOVIDO O GAP PARA USAR SEPARADORES */
+    padding: 5px 0;
 }
 
+/* NOVO ESTILO PARA OS LINKS COM SEPARADORES */
 .barra-extra a {
     color: var(--branco);
     text-decoration: none;
     font-size: 14px;
-    padding: 5px 10px;
+    padding: 5px 15px;      /* AUMENTADO O PADDING LATERAL */
     transition: var(--transicao);
+    position: relative;     /* PARA O SEPARADOR */
+}
+
+/* ADICIONANDO OS SEPARADORES */
+.barra-extra a:not(:last-child)::after {
+    content: '|';
+    position: absolute;
+    right: 0;
+    color: rgba(255, 255, 255, 0.5); /* SEPARADOR MAIS SUAVE */
 }
