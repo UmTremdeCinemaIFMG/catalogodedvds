@@ -170,6 +170,24 @@ function controlarModalFaleConosco() {
     });
 }
 
+// CONTEÚDO DO RODAPÉ PADRÃO
+const footerContent = `
+    <div class="container">
+        <p>
+            Acervo doado pelo Ministério da Cultura ao Projeto de Extensão
+            <br>                
+            <i class="fas fa-train"></i> UM TREM DE CINEMA IFMG SABARÁ 2019-2021
+        </p>
+    </div>
+`;
+// FUNÇÃO PARA CARREGAR O RODAPÉ
+function carregarRodape() {
+    const footer = document.querySelector('footer');
+    if (footer) {
+        footer.innerHTML = footerContent;
+    }
+}
+
 /* ==========================================
    INICIALIZAÇÃO QUANDO A PÁGINA CARREGAR
    ========================================== */
