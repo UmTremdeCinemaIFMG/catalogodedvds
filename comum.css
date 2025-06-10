@@ -65,7 +65,6 @@ body {
     box-shadow: var(--sombra);
 }
 
-/* CABEÇALHO DO CAPÍTULO COM TÍTULO E ÍCONE */
 .capitulo-header {
     color: var(--verde-escuro);
     border-bottom: 2px solid var(--verde-ifmg);
@@ -75,22 +74,23 @@ body {
     align-items: center;
     gap: 10px;
     cursor: pointer;
-    user-select: none;  /* IMPEDE SELEÇÃO DO TEXTO */
-}
-
-/* ÍCONE DE EXPANSÃO */
-.expand-icon {
-    margin-left: auto;  /* EMPURRA O ÍCONE PARA A DIREITA */
-    transition: transform 0.3s ease;  /* ANIMAÇÃO SUAVE */
-}
-
-/* ROTAÇÃO DO ÍCONE QUANDO ATIVO */
-.capitulo-header.active .expand-icon {
-    transform: rotate(180deg);
+    position: relative;
 }
 
 .capitulo-header::after {
-    content: content: none;  /* REMOVE A SETA DUPLICADA */
+    content: '\f078';
+    font-family: 'Font Awesome 5 Free';
+    font-weight: 900;
+    position: absolute;
+    right: 10px;
+    transition: transform 0.3s ease;
+}
+
+.capitulo-header.active::after {
+    transform: rotate(180deg);
+}
+.capitulo-header.active .expand-icon {
+    transform: rotate(180deg);
 }
 
 .capitulo-content {
@@ -171,88 +171,6 @@ body {
     box-shadow: 0 5px 15px rgba(0,0,0,0.2);
 }
 
-/* ==========================================
-   SEÇÃO DE INTRODUÇÃO - COMUM A VÁRIAS PÁGINAS
-   PODE SER USADO EM QUALQUER PÁGINA QUE PRECISE 
-   DE UMA INTRODUÇÃO DESTACADA
-   ========================================== */
-
-/* CONTAINER PRINCIPAL DA SEÇÃO DE INTRODUÇÃO */
-.intro-section {
-    background-color: var(--verde-ifmg);    /* COR DE FUNDO PADRÃO */
-    color: var(--branco);                   /* COR DO TEXTO */
-    padding: 30px;                          /* ESPAÇAMENTO INTERNO */
-    border-radius: 8px;                     /* BORDAS ARREDONDADAS */
-    margin-bottom: 30px;                    /* ESPAÇO ABAIXO DA SEÇÃO */
-    position: relative;                     /* PARA POSICIONAMENTO DE ELEMENTOS */
-    overflow: hidden;                       /* CONTROLE DE OVERFLOW */
-    box-shadow: var(--sombra);             /* SOMBRA PADRÃO */
-}
-
-/* TÍTULO DA SEÇÃO DE INTRODUÇÃO */
-.intro-section h2 {
-    font-size: 2.2em;                      /* TAMANHO DO TÍTULO */
-    margin-top: 0;                         /* REMOVE MARGEM SUPERIOR */
-    margin-bottom: 15px;                   /* ESPAÇO ABAIXO DO TÍTULO */
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);  /* SOMBRA NO TEXTO */
-}
-
-/* TEXTO DA SEÇÃO DE INTRODUÇÃO */
-.intro-section p {
-    font-size: 1.1em;                      /* TAMANHO DO TEXTO */
-    max-width: 80%;                        /* LARGURA MÁXIMA PARA MELHOR LEITURA */
-    line-height: 1.6;                      /* ALTURA DA LINHA */
-}
-
-/* ==========================================
-   ESTILO DE CARDS - COMUM A VÁRIAS PÁGINAS
-   ========================================== */
-
-/* GRID DE CARDS */
-.feature-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 25px;
-    margin-top: 25px;
-}
-
-/* ESTILO DOS CARDS */
-.feature {
-    text-align: center;                     /* CENTRALIZA O CONTEÚDO */
-    padding: 20px;                          /* ESPAÇAMENTO INTERNO */
-    background: var(--cinza-claro);         /* FUNDO PADRÃO */
-    border-radius: 10px;                    /* BORDAS ARREDONDADAS */
-    border: 2px solid var(--verde-ifmg);    /* BORDA VERDE */
-    transition: var(--transicao);           /* TRANSIÇÃO SUAVE */
-}
-
-/* ÍCONES NOS CARDS */
-.feature i {
-    font-size: 2.5rem;                      /* TAMANHO DO ÍCONE */
-    color: var(--verde-ifmg);               /* COR DO ÍCONE */
-    margin-bottom: 10px;                    /* ESPAÇO ABAIXO DO ÍCONE */
-}
-
-/* TÍTULOS NOS CARDS */
-.feature h4 {
-    color: var(--verde-ifmg);               /* COR DO TÍTULO */
-    margin-bottom: 10px;                    /* ESPAÇO ABAIXO DO TÍTULO */
-}
-
-/* RESPONSIVIDADE DOS CARDS */
-@media (max-width: 768px) {
-    .feature-grid {
-        grid-template-columns: 1fr;         /* UMA COLUNA EM TELAS PEQUENAS */
-    }
-}
-
-/* RESPONSIVIDADE DA SEÇÃO DE INTRODUÇÃO */
-@media (max-width: 768px) {
-    .intro-section p {
-        max-width: 100%;                   /* TEXTO OCUPA TODA LARGURA EM TELAS PEQUENAS */
-    }
-}
-
 /* RESPONSIVIDADE PARA DISPOSITIVOS MÓVEIS */
 @media (max-width: 768px) {
     .feedback-modal-content {
@@ -281,10 +199,6 @@ body {
         width: 100%;
         max-width: 300px;
         justify-content: center;
-    }
-   /* ADICIONAR ESTA PARTE NA SEÇÃO DE RESPONSIVIDADE */
-    .intro-section p {
-        max-width: 100%;                   /* TEXTO OCUPA TODA LARGURA EM TELAS PEQUENAS */
     }
 }
 
