@@ -1,7 +1,9 @@
 /* ESTILOS DO CABEÇALHO E BARRA DE NAVEGAÇÃO - MANTENDO EXATAMENTE COMO ESTÁ */
 /* CABEÇALHO PRINCIPAL - AJUSTADO PARA FICAR MAIS ESTREITO */
 header {
-    background-color: var(--verde-ifmg);
+    /* GRADIENTE DE FUNDO COM AS CORES DO IFMG */
+    background-image: radial-gradient(ellipse at center, #19882c 1%, #025310 100%);
+    /* CONFIGURAÇÕES BÁSICAS */
     color: var(--branco);
     padding: 10px 0 0 0;    /* REDUZIDO O PADDING SUPERIOR */
     box-shadow: 0 2px 5px rgba(0,0,0,0.2);
