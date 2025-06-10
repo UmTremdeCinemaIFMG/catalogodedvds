@@ -40,6 +40,10 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 });
 
+/* ==========================================
+   FUNÇÕES PARA EXPANDIR E RECOLHER SEÇÕES
+   ========================================== */
+
 // FUNÇÃO PARA EXPANDIR/RECOLHER SEÇÕES
 function toggleCapitulo(capituloId) {
     // OBTÉM O ELEMENTO DO CAPÍTULO
