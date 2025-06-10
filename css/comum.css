@@ -171,6 +171,46 @@ body {
     box-shadow: 0 5px 15px rgba(0,0,0,0.2);
 }
 
+/* ==========================================
+   SEÇÃO DE INTRODUÇÃO - COMUM A VÁRIAS PÁGINAS
+   PODE SER USADO EM QUALQUER PÁGINA QUE PRECISE 
+   DE UMA INTRODUÇÃO DESTACADA
+   ========================================== */
+
+/* CONTAINER PRINCIPAL DA SEÇÃO DE INTRODUÇÃO */
+.intro-section {
+    background-color: var(--verde-ifmg);    /* COR DE FUNDO PADRÃO */
+    color: var(--branco);                   /* COR DO TEXTO */
+    padding: 30px;                          /* ESPAÇAMENTO INTERNO */
+    border-radius: 8px;                     /* BORDAS ARREDONDADAS */
+    margin-bottom: 30px;                    /* ESPAÇO ABAIXO DA SEÇÃO */
+    position: relative;                     /* PARA POSICIONAMENTO DE ELEMENTOS */
+    overflow: hidden;                       /* CONTROLE DE OVERFLOW */
+    box-shadow: var(--sombra);             /* SOMBRA PADRÃO */
+}
+
+/* TÍTULO DA SEÇÃO DE INTRODUÇÃO */
+.intro-section h2 {
+    font-size: 2.2em;                      /* TAMANHO DO TÍTULO */
+    margin-top: 0;                         /* REMOVE MARGEM SUPERIOR */
+    margin-bottom: 15px;                   /* ESPAÇO ABAIXO DO TÍTULO */
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);  /* SOMBRA NO TEXTO */
+}
+
+/* TEXTO DA SEÇÃO DE INTRODUÇÃO */
+.intro-section p {
+    font-size: 1.1em;                      /* TAMANHO DO TEXTO */
+    max-width: 80%;                        /* LARGURA MÁXIMA PARA MELHOR LEITURA */
+    line-height: 1.6;                      /* ALTURA DA LINHA */
+}
+
+/* RESPONSIVIDADE DA SEÇÃO DE INTRODUÇÃO */
+@media (max-width: 768px) {
+    .intro-section p {
+        max-width: 100%;                   /* TEXTO OCUPA TODA LARGURA EM TELAS PEQUENAS */
+    }
+}
+
 /* RESPONSIVIDADE PARA DISPOSITIVOS MÓVEIS */
 @media (max-width: 768px) {
     .feedback-modal-content {
@@ -199,6 +239,10 @@ body {
         width: 100%;
         max-width: 300px;
         justify-content: center;
+    }
+   /* ADICIONAR ESTA PARTE NA SEÇÃO DE RESPONSIVIDADE */
+    .intro-section p {
+        max-width: 100%;                   /* TEXTO OCUPA TODA LARGURA EM TELAS PEQUENAS */
     }
 }
 
