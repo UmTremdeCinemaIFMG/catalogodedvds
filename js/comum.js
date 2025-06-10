@@ -48,7 +48,7 @@ const BTN_FALE_CONOSCO = `
             <span class="fechar">&times;</span>
             <h2>Fale Conosco</h2>
             <iframe 
-                src="https://docs.google.com/forms/d/e/SUA_URL_DO_FORM/viewform"
+                src="https://docs.google.com/forms/d/e/1FAIpQLSfaMr7-ermLAAO8S8zDk0WMcPrVX34mF2xhTrHiC1Z53GbIFQ/viewform?usp=sharing&ouid=101786859238464224020"
                 width="100%" 
                 height="500px">
                 Carregando...
@@ -122,12 +122,21 @@ function initExpandableSections() {
     });
 }
 
-// INICIALIZA QUANDO O DOM ESTIVER CARREGADO
-document.addEventListener('DOMContentLoaded', function() {
-    initExpandableSections();
-    initFaleConoscoModal();
-    initVoltarAoTopo();
-});
+/* ==========================================
+   FUNÇÃO PARA INICIALIZAR BOTÕES FIXOS
+   ========================================== */
+function inicializarBotoesFixos() {
+    // CRIA CONTAINER SE NÃO EXISTIR
+    let containerBotoes = document.getElementById('botoes-fixos');
+    if (!containerBotoes) {
+        containerBotoes = document.createElement('div');
+        containerBotoes.id = 'botoes-fixos';
+        document.body.appendChild(containerBotoes);
+    }
+
+    // ADICIONA OS BOTÕES
+    containerBotoes.innerHTML = BTN_VOLTAR_TOPO + BTN_FALE_CONOSCO;
+}
 
 /* ==========================================
    FUNÇÃO PARA CARREGAR O RODAPÉ E BOTÕES
@@ -188,14 +197,15 @@ document.addEventListener('DOMContentLoaded', function() {
     // CARREGA OS ELEMENTOS COMUNS
     carregarCabecalho();
     carregarRodape();
+   inicializarBotoesFixos();
     
     // INICIALIZA OS CONTROLES
     controlarModalFaleConosco();
     window.addEventListener('scroll', controlarBotaoVoltarTopo);
+     
+    // INICIALIZA AS SEÇÕES EXPANSÍVEIS
+    initExpandableSections();
 });
 
 // EXPORTA AS FUNÇÕES PARA USO GLOBAL
 window.toggleCapitulo = toggleCapitulo;
-window.initExpandableSections = initExpandableSections;
-window.initFaleConoscoModal = initFaleConoscoModal;
-window.initVoltarAoTopo = initVoltarAoTopo;
