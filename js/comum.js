@@ -130,60 +130,8 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 /* ==========================================
-   FUNÇÃO PARA INICIALIZAR OS BOTÕES FIXOS
+   FUNÇÃO PARA CARREGAR O RODAPÉ E BOTÕES
    ========================================== */
-function inicializarBotoesFixos() {
-    // CRIA CONTAINER SE NÃO EXISTIR
-    let containerBotoes = document.getElementById('botoes-fixos');
-    if (!containerBotoes) {
-        containerBotoes = document.createElement('div');
-        containerBotoes.id = 'botoes-fixos';
-        document.body.appendChild(containerBotoes);
-    }
-
-    // ADICIONA OS BOTÕES AO CONTAINER
-    containerBotoes.innerHTML = BTN_VOLTAR_TOPO + BTN_FALE_CONOSCO;
-}
-
-/* ==========================================
-   FUNÇÃO PARA CONTROLAR VISIBILIDADE DO BOTÃO VOLTAR AO TOPO
-   ========================================== */
-function controlarBtnVoltarTopo() {
-    const btnTopo = document.getElementById('btnVoltarTopo');
-    if (btnTopo) {
-        // MOSTRA/ESCONDE BASEADO NO SCROLL
-        btnTopo.style.display = window.scrollY > 300 ? 'flex' : 'none';
-    }
-}
-
-/* ==========================================
-   FUNÇÃO PARA CONTROLAR O MODAL FALE CONOSCO
-   ========================================== */
-function controlarModalFaleConosco() {
-    const modal = document.getElementById('modalFaleConosco');
-    const btnAbrir = document.getElementById('btnFaleConosco');
-    const btnFechar = modal.querySelector('.fechar');
-
-    // ABRE O MODAL
-    btnAbrir.addEventListener('click', () => {
-        modal.style.display = 'block';
-    });
-
-    // FECHA NO X
-    btnFechar.addEventListener('click', () => {
-        modal.style.display = 'none';
-    });
-
-    // FECHA CLICANDO FORA
-    window.addEventListener('click', (e) => {
-        if (e.target === modal) {
-            modal.style.display = 'none';
-        }
-    });
-}
-
-
-// FUNÇÃO PARA CARREGAR O RODAPÉ
 function carregarRodape() {
     const footer = document.querySelector('footer');
     if (footer) {
@@ -191,20 +139,59 @@ function carregarRodape() {
     }
 }
 
-
+/* ==========================================
+   FUNÇÃO PARA CONTROLAR O BOTÃO DE VOLTAR AO TOPO
+   ========================================== */
+function controlarBotaoVoltarTopo() {
+    const btnVoltarTopo = document.getElementById('btnVoltarTopo');
+    if (btnVoltarTopo) {
+        if (window.scrollY > 300) {
+            btnVoltarTopo.style.display = 'flex';
+        } else {
+            btnVoltarTopo.style.display = 'none';
+        }
+    }
+}
 
 /* ==========================================
-   INICIALIZAÇÃO QUANDO A PÁGINA CARREGAR
+   FUNÇÃO PARA CONTROLAR O MODAL DE FALE CONOSCO
    ========================================== */
-document.addEventListener('DOMContentLoaded', () => {
-    // INICIALIZA OS BOTÕES
-    inicializarBotoesFixos();
+function controlarModalFaleConosco() {
+    const modal = document.getElementById('modalFaleConosco');
+    const btn = document.getElementById('btnFaleConosco');
+    const span = document.getElementsByClassName('close')[0];
+
+    if (btn && modal && span) {
+        // ABRE O MODAL
+        btn.onclick = function() {
+            modal.style.display = "block";
+        }
+
+        // FECHA O MODAL NO X
+        span.onclick = function() {
+            modal.style.display = "none";
+        }
+
+        // FECHA O MODAL CLICANDO FORA
+        window.onclick = function(event) {
+            if (event.target == modal) {
+                modal.style.display = "none";
+            }
+        }
+    }
+}
+
+/* ==========================================
+   INICIALIZAÇÃO QUANDO O DOM ESTIVER CARREGADO
+   ========================================== */
+document.addEventListener('DOMContentLoaded', function() {
+    // CARREGA OS ELEMENTOS COMUNS
+    carregarCabecalho();
+    carregarRodape();
     
-    // CONFIGURA OS CONTROLES
+    // INICIALIZA OS CONTROLES
     controlarModalFaleConosco();
-    
-    // MONITORA O SCROLL PARA O BOTÃO VOLTAR AO TOPO
-    window.addEventListener('scroll', controlarBtnVoltarTopo);
+    window.addEventListener('scroll', controlarBotaoVoltarTopo);
 });
 
 // EXPORTA AS FUNÇÕES PARA USO GLOBAL
