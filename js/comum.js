@@ -78,7 +78,7 @@ function initVoltarAoTopo() {
     
     window.onscroll = function() {
         if (window.pageYOffset > 300) {
-            btnVoltarTopo.style.display = 'block';
+            btnVoltarTopo.style.display = 'flex';
             btnVoltarTopo.style.opacity = '1';
         } else {
             btnVoltarTopo.style.opacity = '0';
