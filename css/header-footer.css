@@ -1,0 +1,63 @@
+/* ESTILOS DO CABEÇALHO E BARRA DE NAVEGAÇÃO - MANTENDO EXATAMENTE COMO ESTÁ */
+
+/* CABEÇALHO PRINCIPAL */
+header {
+    background-color: var(--verde-ifmg);
+    color: var(--branco);
+    padding: 20px 0;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+}
+
+header .container {
+    text-align: center;
+}
+
+header h1 {
+    font-size: 2.5em;
+    margin: 0;
+    padding: 10px 0;
+}
+
+header h3 {
+    font-size: 1.2em;
+    margin: 10px 0;
+    font-weight: normal;
+}
+
+header strong {
+    display: block;
+    margin-top: 15px;
+}
+
+header p {
+    margin: 10px 0;
+}
+
+header a {
+    margin-left: 8px; 
+    color: #ffffff; 
+    text-decoration: underline;
+}
+
+/* BARRA DE NAVEGAÇÃO ABAIXO DO CABEÇALHO - MANTENDO ESTILO INLINE ORIGINAL */
+.barra-extra {
+    background-color: #00420c; 
+    padding: 0px 0; 
+    text-align: center; 
+    box-shadow: var(--sombra);
+}
+
+.barra-extra .container {
+    display: flex; 
+    justify-content: center; 
+    flex-wrap: wrap; 
+    gap: 20px;
+}
+
+.barra-extra a {
+    color: var(--branco); 
+    text-decoration: none; 
+    font-size: 14px; 
+    padding: 5px 10px; 
+    transition: var(--transicao);
+}
