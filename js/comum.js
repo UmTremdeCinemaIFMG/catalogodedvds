@@ -1,8 +1,7 @@
 // ARQUIVO COMUM.JS - FUNÇÕES COMPARTILHADAS ENTRE PÁGINAS
 
 /* ==========================================
-   ARQUIVO PARA GERENCIAR O CABEÇALHO
-   COMUM A TODAS AS PÁGINAS
+   HTML COMUM A TODAS AS PÁGINAS
    ========================================== */
 
 // CONTEÚDO DO CABEÇALHO
@@ -28,6 +27,48 @@ const headerContent = `
         </div>
     </div>
 `;
+
+// BOTÃO VOLTAR AO TOPO - HTML
+const BTN_VOLTAR_TOPO = `
+    <a href="#" id="btnVoltarTopo" class="btn-voltar-topo">
+        <i class="fas fa-arrow-up"></i>
+    </a>
+`;
+
+// BOTÃO FALE CONOSCO E MODAL - HTML
+const BTN_FALE_CONOSCO = `
+    <!-- BOTÃO FIXO -->
+    <button id="btnFaleConosco" class="btn-fale-conosco">
+        <i class="fas fa-comments"></i> Fale Conosco
+    </button>
+
+    <!-- MODAL -->
+    <div id="modalFaleConosco" class="modal-fale-conosco">
+        <div class="modal-conteudo">
+            <span class="fechar">&times;</span>
+            <h2>Fale Conosco</h2>
+            <iframe 
+                src="https://docs.google.com/forms/d/e/SUA_URL_DO_FORM/viewform"
+                width="100%" 
+                height="500px">
+                Carregando...
+            </iframe>
+        </div>
+    </div>
+`;
+
+// CONTEÚDO DO RODAPÉ PADRÃO
+const footerContent = `
+    <div class="container">
+        <p>                
+            <i class="fas fa-train"></i> UM TREM DE CINEMA IFMG SABARÁ 2019-2021
+        </p>
+    </div>
+`;
+
+/* ==========================================
+   FUNÇÕES COMUNS PARA TODAS AS PÁGINAS
+   ========================================== */
 
 // FUNÇÃO PARA CARREGAR O CABEÇALHO
 document.addEventListener('DOMContentLoaded', function() {
@@ -89,39 +130,6 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 /* ==========================================
-   FUNÇÕES PARA ELEMENTOS FIXOS DA PÁGINA
-   ========================================== */
-
-// BOTÃO VOLTAR AO TOPO - HTML
-const BTN_VOLTAR_TOPO = `
-    <a href="#" id="btnVoltarTopo" class="btn-voltar-topo">
-        <i class="fas fa-arrow-up"></i>
-    </a>
-`;
-
-// BOTÃO FALE CONOSCO E MODAL - HTML
-const BTN_FALE_CONOSCO = `
-    <!-- BOTÃO FIXO -->
-    <button id="btnFaleConosco" class="btn-fale-conosco">
-        <i class="fas fa-comments"></i> Fale Conosco
-    </button>
-
-    <!-- MODAL -->
-    <div id="modalFaleConosco" class="modal-fale-conosco">
-        <div class="modal-conteudo">
-            <span class="fechar">&times;</span>
-            <h2>Fale Conosco</h2>
-            <iframe 
-                src="https://docs.google.com/forms/d/e/SUA_URL_DO_FORM/viewform"
-                width="100%" 
-                height="500px">
-                Carregando...
-            </iframe>
-        </div>
-    </div>
-`;
-
-/* ==========================================
    FUNÇÃO PARA INICIALIZAR OS BOTÕES FIXOS
    ========================================== */
 function inicializarBotoesFixos() {
@@ -174,16 +182,7 @@ function controlarModalFaleConosco() {
     });
 }
 
-// CONTEÚDO DO RODAPÉ PADRÃO
-const footerContent = `
-    <div class="container">
-        <p>
-            Acervo doado pelo Ministério da Cultura ao Projeto de Extensão
-            <br>                
-            <i class="fas fa-train"></i> UM TREM DE CINEMA IFMG SABARÁ 2019-2021
-        </p>
-    </div>
-`;
+
 // FUNÇÃO PARA CARREGAR O RODAPÉ
 function carregarRodape() {
     const footer = document.querySelector('footer');
@@ -191,6 +190,8 @@ function carregarRodape() {
         footer.innerHTML = footerContent;
     }
 }
+
+
 
 /* ==========================================
    INICIALIZAÇÃO QUANDO A PÁGINA CARREGAR
