@@ -77,3 +77,133 @@ header a {
     right: 0;
     color: rgba(255, 255, 255, 0.5); /* SEPARADOR MAIS SUAVE */
 }
+/* ========================================== */
+
+/* ESTILOS DO BOTÃO VOLTAR AO TOPO */
+.voltar-topo {
+    position: fixed;
+    bottom: 80px;
+    right: 20px;
+    background-color: var(--verde-ifmg);
+    color: var(--branco);
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    box-shadow: var(--sombra);
+    /*opacity: 1;*/
+    transition: var(--transicao);
+    z-index: 99;
+    opacity: 0.7;
+}
+
+.voltar-topo:hover {
+    opacity: 1;
+    background-color: var(--verde-escuro);
+    transform: translateY(-5px);
+}
+
+/* ESTILOS DO BOTÃO FALE CONOSCO - COMUM A TODAS AS PÁGINAS */
+.feedback-button {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    z-index: 1000;
+}
+
+.feedback-button button {
+    background-color: var(--verde-ifmg);
+    color: var(--branco);
+    border: none;
+    padding: 15px 25px;
+    border-radius: 30px;
+    cursor: pointer;
+    font-size: 16px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    box-shadow: var(--sombra);
+    transition: var(--transicao);
+}
+
+.feedback-button button:hover {
+    background-color: var(--verde-escuro);
+    transform: scale(1.05);
+}
+
+/* ESTILOS DO MODAL FALE CONOSCO */
+.feedback-modal {
+    display: none;
+    position: fixed;
+    z-index: 1001;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.5);
+    overflow-y: auto;
+}
+
+.feedback-modal-content {
+    background-color: var(--branco);
+    margin: 20px auto;
+    padding: 20px;
+    border-radius: 8px;
+    width: 95%;
+    max-width: 700px;
+    position: relative;
+    height: calc(100vh - 40px);
+}
+
+.feedback-modal .close {
+    position: absolute;
+    right: 20px;
+    top: 10px;
+    font-size: 28px;
+    cursor: pointer;
+    color: var(--cinza-medio);
+}
+
+.feedback-modal .close:hover {
+    color: var(--cinza-escuro);
+}
+
+/* ESTILOS DO FORMULÁRIO NO MODAL */
+.form-container {
+    height: calc(100% - 60px);
+    margin-top: 20px;
+}
+
+.form-container iframe {
+    width: 100%;
+    height: 100%;
+    border: none;
+    min-height: 600px;
+}
+
+/* ========================================== */
+
+/* ESTILOS DO RODAPÉ - COMUM A TODAS AS PÁGINAS */
+footer {
+    /* ESTRUTURA BÁSICA */
+    background-color: var(--verde-escuro);     /* COR DE FUNDO VERDE ESCURO DO IFMG */
+    padding: 15px;                            /* ESPAÇAMENTO INTERNO */
+    margin-top: 30px;                         /* MARGEM SUPERIOR */
+    
+    /* TEXTO */
+    color: var(--branco);                     /* COR DO TEXTO BRANCO */
+    text-align: center;                       /* CENTRALIZA O TEXTO */
+    font-size: 14px;                         /* TAMANHO DA FONTE */
+    line-height: 1.5;                        /* ALTURA DA LINHA */
+    
+    /* SOMBRA SUTIL NA PARTE SUPERIOR */
+    box-shadow: 0 -2px 5px rgba(0,0,0,0.1);
+}
+
+/* REMOVE MARGEM DO PARÁGRAFO DENTRO DO FOOTER */
+footer p {
+    margin: 0;
+}
