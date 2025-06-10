@@ -1,170 +1,64 @@
-/* ESTILOS ESPECÍFICOS PARA A PÁGINA CINECLUBES */
-
-/* ESTILO DO BANNER PRINCIPAL DA PÁGINA */
-.intro-section {
-    background-color: var(--verde-ifmg);
-    color: var(--branco);
-    padding: 30px;
-    border-radius: 8px;
-    margin-bottom: 30px;
-    position: relative;
-    overflow: hidden;
-    box-shadow: var(--sombra);
-}
-
-.intro-section h2 {
-    font-size: 2.2em;
-    margin-top: 0;
-    margin-bottom: 15px;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
-}
-
-.intro-section p {
-    font-size: 1.1em;
-    max-width: 80%;
-    line-height: 1.6;
-}
+/* ==========================================
+   ARQUIVO: cineclubes.css
+   ESTILOS ESPECÍFICOS PARA A PÁGINA CINECLUBES
+   ========================================== */
 
 /* ESTILO DO MAPA DE CINECLUBES */
 .map-section {
-    background-color: var(--branco);
-    border-radius: 8px;
-    padding: 30px;
-    margin-bottom: 30px;
-    box-shadow: var(--sombra);
+    background-color: var(--branco);         /* COR DE FUNDO DA SEÇÃO */
+    border-radius: 8px;                      /* BORDAS ARREDONDADAS */
+    padding: 30px;                           /* ESPAÇAMENTO INTERNO */
+    margin-bottom: 30px;                     /* ESPAÇO ABAIXO DA SEÇÃO */
+    box-shadow: var(--sombra);               /* SOMBRA PADRÃO */
 }
 
+/* TÍTULO DA SEÇÃO DO MAPA */
 .map-section h2 {
-    color: var(--verde-escuro);
-    margin-top: 0;
-    margin-bottom: 20px;
-    display: flex;
-    align-items: center;
-    gap: 10px;
+    color: var(--verde-escuro);              /* COR DO TÍTULO */
+    margin-top: 0;                           /* REMOVE MARGEM SUPERIOR */
+    margin-bottom: 20px;                     /* ESPAÇO ABAIXO DO TÍTULO */
+    display: flex;                           /* LAYOUT FLEXÍVEL */
+    align-items: center;                     /* ALINHA ITENS VERTICALMENTE */
+    gap: 10px;                              /* ESPAÇO ENTRE ÍCONE E TEXTO */
 }
 
 /* CONTAINER RESPONSIVO PARA O MAPA DO GOOGLE */
 .map-container {
-    position: relative;
-    padding-bottom: 56.25%; /* PROPORÇÃO 16:9 PARA O MAPA */
-    height: 0;
-    overflow: hidden;
-    max-width: 100%;
-    background: #000;
+    position: relative;                      /* POSICIONAMENTO RELATIVO */
+    padding-bottom: 56.25%;                  /* PROPORÇÃO 16:9 PARA O MAPA */
+    height: 0;                               /* ALTURA ZERO PARA ASPECT RATIO */
+    overflow: hidden;                        /* ESCONDE CONTEÚDO EXCEDENTE */
+    max-width: 100%;                         /* LARGURA MÁXIMA */
+    background: var(--cinza-claro);          /* COR DE FUNDO ENQUANTO CARREGA */
 }
 
+/* IFRAME DO MAPA */
 .map-container iframe {
-    position: absolute;
+    position: absolute;                      /* POSICIONAMENTO ABSOLUTO */
     top: 0;
     left: 0;
-    width: 100%;
-    height: 100%;
-}
-
-/* GRID DE CARDS ESPECÍFICOS DA PÁGINA */
-.cineclube-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 25px;
-    margin-top: 30px;
-}
-
-/* ESTILO DOS CARDS DE CINECLUBES */
-.cineclube-card {
-    background: var(--branco);
-    padding: 25px;
-    border-radius: 15px;
-    box-shadow: var(--sombra);
-    border-top: 5px solid var(--verde-ifmg);
-    transition: var(--transicao);
-}
-
-.cineclube-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 10px 30px rgba(0,0,0,0.15);
-}
-
-.cineclube-card h4 {
-    color: var(--verde-ifmg);
-    font-size: 1.3rem;
-    margin-bottom: 15px;
-}
-
-.cineclube-card strong {
-    color: var(--verde-escuro);
-}
-
-/* SEÇÃO DE CARACTERÍSTICAS DO CNC */
-.cnc-features {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 25px;
-    margin-top: 25px;
-}
-
-.feature {
-    text-align: center;
-    padding: 20px;
-    background: #f8f9fa;
-    border-radius: 10px;
-    border: 2px solid var(--verde-ifmg);
-}
-
-.feature i {
-    font-size: 2.5rem;
-    color: var(--verde-ifmg);
-    margin-bottom: 10px;
-}
-
-.feature h4 {
-    color: var(--verde-ifmg);
-    margin-bottom: 10px;
-}
-
-/* SEÇÃO DE DIVERSIDADE DE CINECLUBES */
-.diversity-content {
-    background: var(--branco);
-    padding: 30px;
-    border-radius: 15px;
-    box-shadow: var(--sombra);
-    margin-top: 20px;
-}
-
-.diversity-examples {
-    margin-top: 25px;
+    width: 100%;                            /* OCUPA TODA A LARGURA */
+    height: 100%;                           /* OCUPA TODA A ALTURA */
 }
 
 /* LISTA DE EXEMPLOS COM ÍCONES */
 .example ul {
-    list-style: none;
-    padding: 0;
+    list-style: none;                        /* REMOVE MARCADORES PADRÃO */
+    padding: 0;                              /* REMOVE PADDING PADRÃO */
 }
 
+/* ITENS DA LISTA DE EXEMPLOS */
 .example li {
-    padding: 8px 0;
-    border-bottom: 1px solid #eee;
-    position: relative;
-    padding-left: 25px;
+    padding: 8px 0;                          /* ESPAÇAMENTO VERTICAL */
+    border-bottom: 1px solid var(--cinza-claro);  /* LINHA DIVISÓRIA */
+    position: relative;                      /* PARA POSICIONAR O ÍCONE */
+    padding-left: 25px;                      /* ESPAÇO PARA O ÍCONE */
 }
 
+/* ÍCONE ANTES DOS ITENS DA LISTA */
 .example li:before {
-    content: "▶";
-    color: var(--verde-ifmg);
-    position: absolute;
-    left: 0;
-}
-
-/* AJUSTES DE RESPONSIVIDADE ESPECÍFICOS */
-@media (max-width: 768px) {
-    .intro-section p {
-        max-width: 100%;
-    }
-    
-    .cineclube-card {
-        width: 100%;
-    }
-    
-    .cnc-features {
-        grid-template-columns: 1fr;
-    }
+    content: "▶";                            /* ÍCONE DE SETA */
+    color: var(--verde-ifmg);                /* COR DO ÍCONE */
+    position: absolute;                      /* POSICIONAMENTO ABSOLUTO */
+    left: 0;                                 /* ALINHA À ESQUERDA */
 }
