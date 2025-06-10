@@ -28,35 +28,6 @@ const headerContent = `
     </div>
 `;
 
-// BOTÃO VOLTAR AO TOPO - HTML
-const BTN_VOLTAR_TOPO = `
-    <a href="#" id="btnVoltarTopo" class="btn-voltar-topo">
-        <i class="fas fa-arrow-up"></i>
-    </a>
-`;
-
-// BOTÃO FALE CONOSCO E MODAL - HTML
-const BTN_FALE_CONOSCO = `
-    <!-- BOTÃO FIXO -->
-    <button id="btnFaleConosco" class="btn-fale-conosco">
-        <i class="fas fa-comments"></i> Fale Conosco
-    </button>
-
-    <!-- MODAL -->
-    <div id="modalFaleConosco" class="modal-fale-conosco">
-        <div class="modal-conteudo">
-            <span class="fechar">&times;</span>
-            <h2>Fale Conosco</h2>
-            <iframe 
-                src="https://docs.google.com/forms/d/e/1FAIpQLSfaMr7-ermLAAO8S8zDk0WMcPrVX34mF2xhTrHiC1Z53GbIFQ/viewform?usp=sharing&ouid=101786859238464224020"
-                width="100%" 
-                height="500px">
-                Carregando...
-            </iframe>
-        </div>
-    </div>
-`;
-
 // CONTEÚDO DO RODAPÉ PADRÃO
 const footerContent = `
     <div class="container">
@@ -64,22 +35,40 @@ const footerContent = `
             <i class="fas fa-train"></i> UM TREM DE CINEMA IFMG SABARÁ 2019-2021
         </p>
     </div>
+
+    <!-- BOTÃO FALE CONOSCO -->
+    <div class="feedback-button">
+        <button id="btnFaleConosco">
+            <i class="fas fa-comments"></i> Fale Conosco
+        </button>
+    </div>
+
+    <!-- MODAL FALE CONOSCO -->
+    <div id="modalFaleConosco" class="feedback-modal">
+        <div class="feedback-modal-content">
+            <span class="close">&times;</span>
+            <h2>Fale Conosco</h2>
+            <div class="form-container">
+                <iframe id="googleForm" 
+                    src="https://docs.google.com/forms/d/e/1FAIpQLSfaMr7-ermLAAO8S8zDk0WMcPrVX34mF2xhTrHiC1Z53GbIFQ/viewform?usp=sharing&ouid=101786859238464224020"
+                    frameborder="0" 
+                    marginheight="0" 
+                    marginwidth="0">
+                    Carregando…
+                </iframe>
+            </div>
+        </div>
+    </div>
+
+    <!-- BOTÃO VOLTAR AO TOPO -->
+    <a href="#" class="voltar-topo" id="btnVoltarTopo">
+        <i class="fas fa-arrow-up"></i>
+    </a>
 `;
 
 /* ==========================================
    FUNÇÕES COMUNS PARA TODAS AS PÁGINAS
    ========================================== */
-
-// FUNÇÃO PARA CARREGAR O CABEÇALHO
-document.addEventListener('DOMContentLoaded', function() {
-    // PROCURA O ELEMENTO HEADER NA PÁGINA
-    const header = document.querySelector('header');
-    
-    // SE ENCONTROU O HEADER, INSERE O CONTEÚDO
-    if (header) {
-        header.innerHTML = headerContent;
-    }
-});
 
 /* ==========================================
    FUNÇÕES PARA EXPANDIR E RECOLHER SEÇÕES
@@ -114,33 +103,19 @@ function toggleCapitulo(capituloId) {
     }
 }
 
-// FUNÇÃO PARA INICIALIZAR OS EVENT LISTENERS
-function initExpandableSections() {
-    // FECHA TODOS OS CAPÍTULOS INICIALMENTE
-    document.querySelectorAll('.capitulo-content').forEach(content => {
-        content.style.display = 'none';
-    });
-}
-
 /* ==========================================
-   FUNÇÃO PARA INICIALIZAR BOTÕES FIXOS
+   FUNÇÕES DE INICIALIZAÇÃO
    ========================================== */
-function inicializarBotoesFixos() {
-    // CRIA CONTAINER SE NÃO EXISTIR
-    let containerBotoes = document.getElementById('botoes-fixos');
-    if (!containerBotoes) {
-        containerBotoes = document.createElement('div');
-        containerBotoes.id = 'botoes-fixos';
-        document.body.appendChild(containerBotoes);
+
+// FUNÇÃO PARA CARREGAR O CABEÇALHO
+function carregarCabecalho() {
+    const header = document.querySelector('header');
+    if (header) {
+        header.innerHTML = headerContent;
     }
-
-    // ADICIONA OS BOTÕES
-    containerBotoes.innerHTML = BTN_VOLTAR_TOPO + BTN_FALE_CONOSCO;
 }
 
-/* ==========================================
-   FUNÇÃO PARA CARREGAR O RODAPÉ E BOTÕES
-   ========================================== */
+// FUNÇÃO PARA CARREGAR O RODAPÉ
 function carregarRodape() {
     const footer = document.querySelector('footer');
     if (footer) {
@@ -148,9 +123,38 @@ function carregarRodape() {
     }
 }
 
-/* ==========================================
-   FUNÇÃO PARA CONTROLAR O BOTÃO DE VOLTAR AO TOPO
-   ========================================== */
+// FUNÇÃO PARA INICIALIZAR AS SEÇÕES EXPANSÍVEIS
+function initExpandableSections() {
+    // FECHA TODOS OS CAPÍTULOS INICIALMENTE
+    document.querySelectorAll('.capitulo-content').forEach(content => {
+        content.style.display = 'none';
+    });
+}
+
+// FUNÇÃO PARA CONTROLAR O MODAL FALE CONOSCO
+function controlarModalFaleConosco() {
+    const modal = document.getElementById('modalFaleConosco');
+    const btn = document.getElementById('btnFaleConosco');
+    const span = document.getElementsByClassName('close')[0];
+
+    if (btn && modal && span) {
+        btn.onclick = function() {
+            modal.style.display = "block";
+        }
+
+        span.onclick = function() {
+            modal.style.display = "none";
+        }
+
+        window.onclick = function(event) {
+            if (event.target == modal) {
+                modal.style.display = "none";
+            }
+        }
+    }
+}
+
+// FUNÇÃO PARA CONTROLAR BOTÃO VOLTAR AO TOPO
 function controlarBotaoVoltarTopo() {
     const btnVoltarTopo = document.getElementById('btnVoltarTopo');
     if (btnVoltarTopo) {
@@ -163,41 +167,12 @@ function controlarBotaoVoltarTopo() {
 }
 
 /* ==========================================
-   FUNÇÃO PARA CONTROLAR O MODAL DE FALE CONOSCO
-   ========================================== */
-function controlarModalFaleConosco() {
-    const modal = document.getElementById('modalFaleConosco');
-    const btn = document.getElementById('btnFaleConosco');
-    const span = document.getElementsByClassName('close')[0];
-
-    if (btn && modal && span) {
-        // ABRE O MODAL
-        btn.onclick = function() {
-            modal.style.display = "block";
-        }
-
-        // FECHA O MODAL NO X
-        span.onclick = function() {
-            modal.style.display = "none";
-        }
-
-        // FECHA O MODAL CLICANDO FORA
-        window.onclick = function(event) {
-            if (event.target == modal) {
-                modal.style.display = "none";
-            }
-        }
-    }
-}
-
-/* ==========================================
    INICIALIZAÇÃO QUANDO O DOM ESTIVER CARREGADO
    ========================================== */
 document.addEventListener('DOMContentLoaded', function() {
     // CARREGA OS ELEMENTOS COMUNS
     carregarCabecalho();
     carregarRodape();
-   inicializarBotoesFixos();
     
     // INICIALIZA OS CONTROLES
     controlarModalFaleConosco();
