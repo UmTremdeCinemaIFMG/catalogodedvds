@@ -55,7 +55,7 @@ header a {
     justify-content: center;
     flex-wrap: wrap;
     gap: 0;                 /* REMOVIDO O GAP PARA USAR SEPARADORES */
-    padding: 5px 0;
+    padding: 2px 0;
 }
 
 /* NOVO ESTILO PARA OS LINKS COM SEPARADORES */
@@ -63,7 +63,7 @@ header a {
     color: var(--branco);
     text-decoration: none;
     font-size: 14px;
-    padding: 5px 15px;      /* AUMENTADO O PADDING LATERAL */
+    padding: 3px 15px;      /* AUMENTADO O PADDING LATERAL */
     transition: var(--transicao);
     position: relative;     /* PARA O SEPARADOR */
 }
