@@ -1,15 +1,57 @@
-/* DEFINIÇÃO DE VARIÁVEIS GLOBAIS */
+/* ==========================================
+   VARIÁVEIS GLOBAIS DO SISTEMA
+   ========================================== */
 :root {
-    --verde-ifmg: #006335;
-    --verde-escuro: #00420c;
-    --branco: #ffffff;
-    --cinza-claro: #f5f5f5;
-    --cinza-medio: #666666;
-    --cinza-escuro: #333333;
-    --azul: #0066cc;
-    --vermelho: #cc0000;
-    --sombra: 0 2px 5px rgba(0,0,0,0.1);
-    --transicao: all 0.3s ease;
+    /* CORES PRINCIPAIS */
+    --verde-ifmg: #009a44;        /* VERDE PRINCIPAL DO IFMG */
+    --verde-escuro: #007236;      /* VERDE MAIS ESCURO PARA CONTRASTES */
+    --cinza-escuro: #333333;      /* USADO PARA TEXTOS PRINCIPAIS */
+    --cinza-medio: #666666;       /* USADO PARA TEXTOS SECUNDÁRIOS */
+    --cinza-claro: #f2f2f2;       /* USADO PARA FUNDOS E DIVISÕES */
+    --branco: #ffffff;            /* USADO PARA TEXTOS SOBRE FUNDOS ESCUROS */
+    --azul: #0066cc;             /* USADO PARA LINKS E DESTAQUES */
+    --amarelo: #ffcc00;          /* USADO PARA ALERTAS E CLASSIFICAÇÕES */
+    --laranja: #ff9900;          /* USADO PARA AVISOS */
+    --vermelho: #cc0000;         /* USADO PARA ERROS E ALERTAS CRÍTICOS */
+    --preto: #000000;            /* USADO PARA CONTRASTE MÁXIMO */
+    
+    /* EFEITOS VISUAIS PADRÃO */
+    --sombra: 0 4px 6px rgba(0, 0, 0, 0.1);     /* SOMBRA PADRÃO PARA ELEMENTOS */
+    --transicao: all 0.3s ease;                  /* TRANSIÇÃO SUAVE PADRÃO */
+}
+
+/* ==========================================
+   ESTILOS BASE DO SISTEMA
+   ========================================== */
+
+/* CONFIGURAÇÕES BÁSICAS DO CORPO DA PÁGINA */
+body {
+    /* DEFINIÇÃO DA FONTE PRINCIPAL */
+    font-family: 'open_sansextrabold', Tahoma, Geneva, Verdana, sans-serif;
+    
+    /* RESET DE MARGENS E PREENCHIMENTOS */
+    margin: 0;
+    padding: 0;
+    
+    /* CONFIGURAÇÕES VISUAIS BÁSICAS */
+    background-color: var(--cinza-claro);    /* FUNDO PADRÃO DA PÁGINA */
+    color: var(--cinza-escuro);              /* COR PADRÃO DO TEXTO */
+    line-height: 1.6;                        /* ALTURA DA LINHA PARA MELHOR LEITURA */
+}
+
+/* CONTAINER PRINCIPAL - USADO EM TODAS AS PÁGINAS */
+.container {
+    max-width: 1200px;                       /* LARGURA MÁXIMA DO CONTEÚDO */
+    margin: 0 auto;                          /* CENTRALIZAÇÃO AUTOMÁTICA */
+    padding: 10px 20px;                      /* ESPAÇAMENTO INTERNO */
+}
+
+/* RESPONSIVIDADE BÁSICA */
+@media (max-width: 768px) {
+    /* AJUSTES PARA TELAS MENORES */
+    .container {
+        padding: 10px;                       /* REDUZ O PADDING EM TELAS PEQUENAS */
+    }
 }
 
 /* ========================================== */
