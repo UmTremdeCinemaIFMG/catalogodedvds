@@ -204,6 +204,48 @@ body {
     line-height: 1.6;                      /* ALTURA DA LINHA */
 }
 
+/* ==========================================
+   ESTILO DE CARDS - COMUM A VÁRIAS PÁGINAS
+   ========================================== */
+
+/* GRID DE CARDS */
+.feature-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 25px;
+    margin-top: 25px;
+}
+
+/* ESTILO DOS CARDS */
+.feature {
+    text-align: center;                     /* CENTRALIZA O CONTEÚDO */
+    padding: 20px;                          /* ESPAÇAMENTO INTERNO */
+    background: var(--cinza-claro);         /* FUNDO PADRÃO */
+    border-radius: 10px;                    /* BORDAS ARREDONDADAS */
+    border: 2px solid var(--verde-ifmg);    /* BORDA VERDE */
+    transition: var(--transicao);           /* TRANSIÇÃO SUAVE */
+}
+
+/* ÍCONES NOS CARDS */
+.feature i {
+    font-size: 2.5rem;                      /* TAMANHO DO ÍCONE */
+    color: var(--verde-ifmg);               /* COR DO ÍCONE */
+    margin-bottom: 10px;                    /* ESPAÇO ABAIXO DO ÍCONE */
+}
+
+/* TÍTULOS NOS CARDS */
+.feature h4 {
+    color: var(--verde-ifmg);               /* COR DO TÍTULO */
+    margin-bottom: 10px;                    /* ESPAÇO ABAIXO DO TÍTULO */
+}
+
+/* RESPONSIVIDADE DOS CARDS */
+@media (max-width: 768px) {
+    .feature-grid {
+        grid-template-columns: 1fr;         /* UMA COLUNA EM TELAS PEQUENAS */
+    }
+}
+
 /* RESPONSIVIDADE DA SEÇÃO DE INTRODUÇÃO */
 @media (max-width: 768px) {
     .intro-section p {
