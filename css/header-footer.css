@@ -22,6 +22,12 @@ header h1 {
     padding: 5px 0;         /* REDUZIDO O PADDING */
 }
 
+header h2 {
+    font-size: 1,6em;       /* REDUZIDO UM POUCO O TAMANHO */
+    margin: 0;
+    padding: 5px 0;         /* REDUZIDO O PADDING */
+}
+
 header h3 {
     font-size: 1.1em;       /* AJUSTADO O TAMANHO */
     margin: 5px 0;          /* REDUZIDO A MARGEM */
