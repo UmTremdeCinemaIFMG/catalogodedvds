@@ -22,15 +22,25 @@ class GerenciadorFormularios {
 
     // MÉTODO PARA CARREGAR O FORMULÁRIO FALE CONOSCO
     carregarFormularioFaleConosco() {
-        // PEGA O IFRAME JÁ EXISTENTE NO DOM
-        const iframe = document.getElementById('formFaleConosco');
-        if (iframe) {
-            // APENAS DEFINE A URL DO FORMULÁRIO
-            iframe.src = FORMULARIOS.FALE_CONOSCO;
-            // ADICIONA EVENTOS DO FORMULÁRIO
-            this.adicionarEventosFormulario(iframe, 'faleConosco');
-        }
+        // PEGA O CONTAINER DO FORMULÁRIO
+    const container = document.getElementById('formFaleConosco');
+    if (container) {
+        // CRIA O IFRAME
+        const iframe = document.createElement('iframe');
+        iframe.src = FORMULARIOS.FALE_CONOSCO;
+        iframe.style.width = '100%';
+        iframe.style.height = '100%';
+        iframe.style.minHeight = '600px';
+        iframe.style.border = 'none';
+        
+        // LIMPA O CONTAINER E ADICIONA O IFRAME
+        container.innerHTML = '';
+        container.appendChild(iframe);
+        
+        // ADICIONA EVENTOS DO FORMULÁRIO
+        this.adicionarEventosFormulario(iframe, 'faleConosco');
     }
+}
 
     // MÉTODO PARA CARREGAR O FORMULÁRIO DE PLANO DE AULA
     carregarFormularioPlanoAula(tituloFilme) {
@@ -64,25 +74,27 @@ class GerenciadorFormularios {
 
     // MÉTODO PARA ABRIR O MODAL FALE CONOSCO
     abrirModalFaleConosco() {
-        const modal = document.getElementById('modalFaleConosco');
-        if (modal) {
-            modal.style.display = 'block';
-            this.carregarFormularioFaleConosco();
-        }
+    const modal = document.getElementById('modalFaleConosco');
+    if (modal) {
+        modal.style.display = 'block';
+        // CARREGA O FORMULÁRIO DEPOIS QUE O MODAL ESTIVER VISÍVEL
+        setTimeout(() => this.carregarFormularioFaleConosco(), 100);
+    }
     }
 
     // MÉTODO PARA FECHAR O MODAL FALE CONOSCO
     fecharModalFaleConosco() {
-        const modal = document.getElementById('modalFaleConosco');
-        if (modal) {
-            modal.style.display = 'none';
-            // LIMPA O SRC DO IFRAME
-            const iframe = document.getElementById('formFaleConosco');
-            if (iframe) {
-                iframe.src = '';
-            }
+    const modal = document.getElementById('modalFaleConosco');
+    if (modal) {
+        modal.style.display = 'none';
+        // LIMPA O CONTAINER DO FORMULÁRIO
+        const container = document.getElementById('formFaleConosco');
+        if (container) {
+            container.innerHTML = '';
         }
     }
+    }
+    
 }
 
 // CRIA UMA INSTÂNCIA DO GERENCIADOR
