@@ -154,11 +154,11 @@ header a {
 
 .feedback-modal-content {
     background-color: var(--branco);
-    margin: 50px auto;
+    margin: 40px auto;
     padding: 20px;
     border-radius: 8px;
-    width: 95%;
-    max-width: 700px;
+    width: 90%;
+    max-width: 600px;
     position: relative;
     height: auto;                         /* ALTURA AUTOMÁTICA */
     max-height: 80vh;                     /* ALTURA MÁXIMA DE 80% DA TELA */
@@ -179,7 +179,8 @@ header a {
 
 /* ESTILOS DO FORMULÁRIO NO MODAL */
 .form-container {
-    height: 600px;                        /* ALTURA FIXA */
+    height: calc(100% - 60px);  
+    max-height: 100%
     margin-top: 20px;
     overflow: hidden;                     /* EVITA ROLAGEM DUPLA */
 }
