@@ -49,13 +49,8 @@ const footerContent = `
             <span class="close">&times;</span>
             <h2>Fale Conosco</h2>
             <div class="form-container">
-                <iframe id="googleForm" 
-                    src="https://docs.google.com/forms/d/e/1FAIpQLSfaMr7-ermLAAO8S8zDk0WMcPrVX34mF2xhTrHiC1Z53GbIFQ/viewform?usp=sharing&ouid=101786859238464224020"
-                    frameborder="0" 
-                    marginheight="0" 
-                    marginwidth="0">
-                    Carregando…
-                </iframe>
+                 <!-- IFRAME SERÁ CARREGADO DINAMICAMENTE PELO GERENCIADOR DE FORMULÁRIOS -->
+                <div id="formFaleConosco"></div>
             </div>
         </div>
     </div>
@@ -103,9 +98,35 @@ function toggleCapitulo(capituloId) {
     }
 }
 
+
+
 /* ==========================================
    FUNÇÕES DE INICIALIZAÇÃO
    ========================================== */
+
+// CARREGA O SCRIPT DE FORMULÁRIOS DINAMICAMENTE
+function carregarScriptFormularios() {
+    // VERIFICA SE O SCRIPT JÁ FOI CARREGADO
+    if (!document.getElementById('script-formularios')) {
+        // CRIA O ELEMENTO SCRIPT
+        const script = document.createElement('script');
+        script.id = 'script-formularios';
+        script.src = '/js/formularios.js';
+        script.async = true; // CARREGA DE FORMA ASSÍNCRONA
+        
+        // ADICIONA O SCRIPT AO FINAL DO BODY
+        document.body.appendChild(script);
+    }
+}
+
+// FUNÇÕES DE INICIALIZAÇÃO
+document.addEventListener('DOMContentLoaded', function() {
+    // CARREGA OS ELEMENTOS COMUNS
+    carregarCabecalho();
+    carregarRodape();
+    
+    // CARREGA O SCRIPT DE FORMULÁRIOS
+    carregarScriptFormularios();
 
 // FUNÇÃO PARA CARREGAR O CABEÇALHO
 function carregarCabecalho() {
