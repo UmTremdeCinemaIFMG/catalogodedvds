@@ -49,8 +49,13 @@ const footerContent = `
             <span class="close">&times;</span>
             <h2>Fale Conosco</h2>
             <div class="form-container">
-                <!-- IFRAME SERÁ CARREGADO DINAMICAMENTE PELO GERENCIADOR DE FORMULÁRIOS -->
-                <div id="formFaleConosco"></div>
+                <iframe id="googleForm" 
+                    src="https://docs.google.com/forms/d/e/1FAIpQLSfaMr7-ermLAAO8S8zDk0WMcPrVX34mF2xhTrHiC1Z53GbIFQ/viewform?usp=sharing&ouid=101786859238464224020"
+                    frameborder="0" 
+                    marginheight="0" 
+                    marginwidth="0">
+                    Carregando…
+                </iframe>
             </div>
         </div>
     </div>
@@ -65,21 +70,9 @@ const footerContent = `
    FUNÇÕES COMUNS PARA TODAS AS PÁGINAS
    ========================================== */
 
-// FUNÇÃO PARA CARREGAR O CABEÇALHO
-function carregarCabecalho() {
-    const header = document.querySelector('header');
-    if (header) {
-        header.innerHTML = headerContent;
-    }
-}
-
-// FUNÇÃO PARA CARREGAR O RODAPÉ
-function carregarRodape() {
-    const footer = document.querySelector('footer');
-    if (footer) {
-        footer.innerHTML = footerContent;
-    }
-}
+/* ==========================================
+   FUNÇÕES PARA EXPANDIR E RECOLHER SEÇÕES
+   ========================================== */
 
 // FUNÇÃO PARA EXPANDIR/RECOLHER SEÇÕES
 function toggleCapitulo(capituloId) {
@@ -110,19 +103,32 @@ function toggleCapitulo(capituloId) {
     }
 }
 
-// FUNÇÃO PARA CARREGAR O SCRIPT DE FORMULÁRIOS
-function carregarScriptFormularios() {
-    // VERIFICA SE O SCRIPT JÁ FOI CARREGADO
-    if (!document.getElementById('script-formularios')) {
-        // CRIA O ELEMENTO SCRIPT
-        const script = document.createElement('script');
-        script.id = 'script-formularios';
-        script.src = 'js/formularios.js'; // REMOVIDO O '/' INICIAL
-        script.async = true; // CARREGA DE FORMA ASSÍNCRONA
-        
-        // ADICIONA O SCRIPT AO FINAL DO BODY
-        document.body.appendChild(script);
+/* ==========================================
+   FUNÇÕES DE INICIALIZAÇÃO
+   ========================================== */
+
+// FUNÇÃO PARA CARREGAR O CABEÇALHO
+function carregarCabecalho() {
+    const header = document.querySelector('header');
+    if (header) {
+        header.innerHTML = headerContent;
     }
+}
+
+// FUNÇÃO PARA CARREGAR O RODAPÉ
+function carregarRodape() {
+    const footer = document.querySelector('footer');
+    if (footer) {
+        footer.innerHTML = footerContent;
+    }
+}
+
+// FUNÇÃO PARA INICIALIZAR AS SEÇÕES EXPANSÍVEIS
+function initExpandableSections() {
+    // FECHA TODOS OS CAPÍTULOS INICIALMENTE
+    document.querySelectorAll('.capitulo-content').forEach(content => {
+        content.style.display = 'none';
+    });
 }
 
 // FUNÇÃO PARA CONTROLAR O MODAL FALE CONOSCO
@@ -160,14 +166,6 @@ function controlarBotaoVoltarTopo() {
     }
 }
 
-// FUNÇÃO PARA INICIALIZAR AS SEÇÕES EXPANSÍVEIS
-function initExpandableSections() {
-    // FECHA TODOS OS CAPÍTULOS INICIALMENTE
-    document.querySelectorAll('.capitulo-content').forEach(content => {
-        content.style.display = 'none';
-    });
-}
-
 /* ==========================================
    INICIALIZAÇÃO QUANDO O DOM ESTIVER CARREGADO
    ========================================== */
@@ -175,9 +173,6 @@ document.addEventListener('DOMContentLoaded', function() {
     // CARREGA OS ELEMENTOS COMUNS
     carregarCabecalho();
     carregarRodape();
-    
-    // CARREGA O SCRIPT DE FORMULÁRIOS
-    carregarScriptFormularios();
     
     // INICIALIZA OS CONTROLES
     controlarModalFaleConosco();
