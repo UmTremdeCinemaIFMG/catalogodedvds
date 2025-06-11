@@ -154,13 +154,14 @@ header a {
 
 .feedback-modal-content {
     background-color: var(--branco);
-    margin: 20px auto;
+    margin: 50px auto;
     padding: 20px;
     border-radius: 8px;
     width: 95%;
     max-width: 700px;
     position: relative;
-    height: calc(100vh - 40px);
+    height: auto;                         /* ALTURA AUTOMÁTICA */
+    max-height: 80vh;                     /* ALTURA MÁXIMA DE 80% DA TELA */
 }
 
 .feedback-modal .close {
@@ -178,15 +179,16 @@ header a {
 
 /* ESTILOS DO FORMULÁRIO NO MODAL */
 .form-container {
-    height: calc(100% - 60px);
+    height: 600px;                        /* ALTURA FIXA */
     margin-top: 20px;
+    overflow: hidden;                     /* EVITA ROLAGEM DUPLA */
 }
 
 .form-container iframe {
     width: 100%;
     height: 100%;
     border: none;
-    min-height: 600px;
+    min-height: 0px;
 }
 
 /* ========================================== */
