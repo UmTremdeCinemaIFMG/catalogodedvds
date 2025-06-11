@@ -31,39 +31,7 @@
                     color: var(--cinza-escuro);
                     line-height: 1.6;
                 }
-                
-                /* CABEÇALHO */
-                header {
-                    background-image: radial-gradient(ellipse at center, #19882c 1%, #025310 100%);
-                    /*background-color: var(--verde-ifmg);*/
-                    color: var(--branco);
-                    padding: 0px 0;
-                    text-align: center;
-                    margin-bottom: 30px;
-                    box-shadow: var(--sombra);
-                    position: relative;
-                    overflow: hidden;
-                    transition: var(--transicao);
-                }
-                
-                header::after {
-                    content: '';
-                    position: absolute;
-                    bottom: 0;
-                    left: 0;
-                    width: 100%;
-                    height: 0px;
-                    background: linear-gradient(90deg, var(--verde-ifmg), var(--verde-escuro));
-                }
-                
-                h1 {
-                    margin: 0;
-                    font-size: 2.5em;
-                    font-weight: 700;
-                    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
-                    transition: var(--transicao);
-                }
-                
+                                
                 /* ==========================================
                    3. COMPONENTES DE CONTROLE
                    ========================================== */
@@ -760,35 +728,7 @@
                     align-items: center;
                 }
                         
-                /* ==========================================
-                   8. RODAPÉ
-                   ========================================== */
-                
-                footer {
-                    background-color: var(--verde-escuro);
-                    color: var(--branco);
-                    text-align: center;
-                    padding: 20px;
-                    margin-top: 30px;
-                    box-shadow: 0 -2px 5px rgba(0,0,0,0.1);
-                    transition: var(--transicao);
-                    cursor: pointer;
-                }
-                
-                footer:hover {
-                    background-color: var(--vermelho);
-                    transform: scale(1.01);
-                }
-                
-                footer p {
-                    margin: 0;
-                    transition: var(--transicao);
-                }
-                
-                footer:hover p {
-                    transform: scale(1.02);
-                }
-                
+                                
                 /* ==========================================
                    9. UTILITÁRIOS E ESTADOS
                    ========================================== */
@@ -991,127 +931,7 @@
     text-decoration: underline;
 }
 
-.voltar-topo {
-            position: fixed;
-            bottom: 80px;
-            right: 20px;
-            background-color: var(--verde-ifmg);
-            color: var(--branco);
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-decoration: none;
-            box-shadow: var(--sombra);
-            /*opacity: 1;*/
-            transition: var(--transicao);
-            z-index: 99;
-        }
-        
-        .voltar-topo:hover {
-            /*opacity: 1;*/
-          background-color: var(--verde-escuro);
-            transform: translateY(-5px);
-        }
 
-            /* ===========================
-               12. FALE CONOSCO
-               =========================== */
-
-/* Botão Fale Conosco */
-.feedback-button {
-    position: fixed;
-    bottom: 30px;
-    right: 30px;
-    z-index: 1000;
-}
-
-.feedback-button button {
-    background-color: var(--verde-ifmg);
-    color: var(--branco);
-    border: none;
-    padding: 15px 25px;
-    border-radius: 30px;
-    cursor: pointer;
-    font-size: 16px;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    box-shadow: var(--sombra);
-    transition: var(--transicao);
-}
-
-.feedback-button button:hover {
-    background-color: var(--verde-escuro);
-    transform: scale(1.05);
-}
-
-/* Modal do Fale Conosco */
-.feedback-modal {
-    display: none;
-    position: fixed;
-    z-index: 1001;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0,0,0,0.5);
-    overflow-y: auto;
-}
-
-.feedback-modal-content {
-    background-color: var(--branco);
-    margin: 20px auto;
-    padding: 20px;
-    border-radius: 8px;
-    width: 95%;
-    max-width: 700px;
-    /*max-height: 90vh;
-    overflow-y: auto;*/
-    position: relative;
-    height: calc(100vh - 40px); /* altura total menos as margens */
-}
-
-.feedback-modal .close {
-    position: absolute;
-    right: 20px;
-    top: 10px;
-    font-size: 28px;
-    cursor: pointer;
-    color: var(--cinza-medio);
-}
-
-.feedback-modal .close:hover {
-    color: var(--cinza-escuro);
-}
-
-/* Container do Formulário */
-.form-container {
-    height: calc(100% - 60px); /* altura total menos o espaço do título e padding */
-    margin-top: 20px;
-  
-  /*position: relative;
-    padding-bottom: 56.25%;
-    height: 0;
-    overflow: hidden;*/
-}
-
-/* Iframe do Formulário */
-.form-container iframe {
-    /*position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    min-height: 500px;*/
-  
-    width: 100%;
-    height: 100%;
-    border: none;
-    min-height: 600px; /* altura mínima para garantir visibilidade do formulário */
-}
 /* Ajustes para Mobile */
 @media (max-width: 768px) {
     .feedback-modal-content {
@@ -1149,20 +969,7 @@
     }
 }
 
-/* Adiciona estilos para padronizar links e ajustar botões do modal */
 
-/* Padroniza todos os links */
-a {
-    color: var(--azul); /* Cor azul padrão para links */
-    text-decoration: none; /* Remove sublinhado padrão */
-    font-weight: bold; /* Deixa links em negrito */
-    transition: var(--transicao);
-}
-
-a:hover {
-    color: var(--branco); /* Muda cor no hover */
-    text-decoration: none; /* Adiciona sublinhado no hover */
-}
 
 /* Ajusta botão 'Ver Mais' no modal */
 .btn-ver-mais {
@@ -1218,36 +1025,19 @@ a:hover {
 }
 
 
+/* Adiciona estilos para padronizar links e ajustar botões do modal */
 
-
-/* ESTILO PARA BOTÃO VOLTAR AO TOPO (ADICIONADO) */
-.voltar-topo {
-    position: fixed;
-    bottom: 80px; /* Ajustado para ficar acima do botão Fale Conosco */
-    right: 20px;
-    background-color: var(--verde-ifmg);
-    color: var(--branco);
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    display: none; /* Inicialmente oculto */
-    align-items: center;
-    justify-content: center;
-    text-decoration: none;
-    box-shadow: var(--sombra);
+/* Padroniza todos os links */
+a {
+    color: var(--azul); /* Cor azul padrão para links */
+    text-decoration: none; /* Remove sublinhado padrão */
+    font-weight: bold; /* Deixa links em negrito */
     transition: var(--transicao);
-    z-index: 99;
-    opacity: 0.7;
 }
 
-.voltar-topo:hover {
-    opacity: 1;
-    background-color: var(--verde-escuro);
-    transform: translateY(-5px);
-}
-
-.voltar-topo.show {
-    display: flex; /* Mostra o botão */
+a:hover {
+    color: var(--branco); /* Muda cor no hover */
+    text-decoration: none; /* Adiciona sublinhado no hover */
 }
 
 /* Links em textos normais */
@@ -1260,10 +1050,3 @@ a:hover {
 a:hover, a:focus {
     color: #0056b3; /* azul mais escuro, nunca branco */
 }  
-
-
-
-
-
-
-
