@@ -9,37 +9,63 @@ const FORMULARIOS = {
 // CLASSE PARA GERENCIAR OS FORMULÁRIOS
 class GerenciadorFormularios {
     constructor() {
-        // ARMAZENA O ÚLTIMO TEMPO DE SUBMISSÃO PARA CONTROLE DE SPAM
+        // DEFINIÇÕES DE TEMPO
+        this.MINUTO = 60 * 1000;
+        this.TEMPO_ESPERA = 5 * this.MINUTO;  // 5 MINUTOS
+        
+        // ARMAZENA O ÚLTIMO TEMPO DE SUBMISSÃO
         this.ultimaSubmissao = {
             faleConosco: 0,
             planoAula: 0
         };
-        
-        // TEMPO MÍNIMO ENTRE SUBMISSÕES (5 MINUTOS)
-        this.TEMPO_MINIMO_ENTRE_SUBMISSOES = 5 * 60 * 1000;
     }
 
     // MÉTODO PARA CARREGAR O FORMULÁRIO FALE CONOSCO
     carregarFormularioFaleConosco() {
-        const iframe = document.getElementById('formFaleConosco');
-        if (iframe) {
+        try {
+            const container = document.getElementById('formFaleConosco');
+            if (!container) {
+                throw new Error('CONTAINER DO FORMULÁRIO NÃO ENCONTRADO');
+            }
+
+            // ADICIONA MENSAGEM DE CARREGAMENTO
+            container.innerHTML = '<div class="loading">Carregando formulário...</div>';
+
+            // CRIA O IFRAME
+            const iframe = document.createElement('iframe');
             iframe.src = FORMULARIOS.FALE_CONOSCO;
+            iframe.frameBorder = "0";
+            iframe.style.width = "100%";
+            iframe.style.height = "500px";
+
+            // REMOVE LOADING QUANDO CARREGAR
+            iframe.onload = () => {
+                container.querySelector('.loading')?.remove();
+            };
+
+            // ADICIONA O IFRAME AO CONTAINER
+            container.appendChild(iframe);
+            
+            // ADICIONA EVENTOS DO FORMULÁRIO
             this.adicionarEventosFormulario(iframe, 'faleConosco');
+        } catch (erro) {
+            console.error('ERRO AO CARREGAR FORMULÁRIO:', erro);
+            alert('Não foi possível carregar o formulário. Tente novamente mais tarde.');
         }
     }
 
     // MÉTODO PARA CARREGAR O FORMULÁRIO DE PLANO DE AULA
     carregarFormularioPlanoAula(tituloFilme) {
-        // ADICIONA O TÍTULO DO FILME COMO PARÂMETRO NA URL
-        const urlComTitulo = `${FORMULARIOS.PLANO_AULA}?entry.filmeTitulo=${encodeURIComponent(tituloFilme)}`;
-        return urlComTitulo;
+        if (!tituloFilme) {
+            console.error('TÍTULO DO FILME NÃO FORNECIDO');
+            return FORMULARIOS.PLANO_AULA;
+        }
+        return `${FORMULARIOS.PLANO_AULA}?entry.filmeTitulo=${encodeURIComponent(tituloFilme)}`;
     }
 
     // MÉTODO PARA ADICIONAR EVENTOS AOS FORMULÁRIOS
     adicionarEventosFormulario(iframe, tipo) {
-        // ADICIONA LISTENER PARA MENSAGENS DO IFRAME
         window.addEventListener('message', (event) => {
-            // VERIFICA SE A MENSAGEM VEM DO GOOGLE FORMS
             if (event.origin === 'https://docs.google.com') {
                 this.tratarSubmissaoFormulario(tipo);
             }
@@ -48,17 +74,22 @@ class GerenciadorFormularios {
 
     // MÉTODO PARA TRATAR SUBMISSÃO DO FORMULÁRIO
     tratarSubmissaoFormulario(tipo) {
-        const tempoAtual = Date.now();
+        const tempoRestante = this.calcularTempoRestante(tipo);
         
-        // VERIFICA SE JÁ PASSOU O TEMPO MÍNIMO DESDE A ÚLTIMA SUBMISSÃO
-        if (tempoAtual - this.ultimaSubmissao[tipo] < this.TEMPO_MINIMO_ENTRE_SUBMISSOES) {
-            alert('Por favor, aguarde alguns minutos antes de enviar outro formulário.');
+        if (tempoRestante > 0) {
+            const minutos = Math.ceil(tempoRestante / this.MINUTO);
+            alert(`Por favor, aguarde ${minutos} minutos antes de enviar outro formulário.`);
             return false;
         }
 
-        // ATUALIZA O TEMPO DA ÚLTIMA SUBMISSÃO
-        this.ultimaSubmissao[tipo] = tempoAtual;
+        this.ultimaSubmissao[tipo] = Date.now();
         return true;
+    }
+
+    // MÉTODO PARA CALCULAR TEMPO RESTANTE
+    calcularTempoRestante(tipo) {
+        const tempoPassado = Date.now() - this.ultimaSubmissao[tipo];
+        return Math.max(0, this.TEMPO_ESPERA - tempoPassado);
     }
 
     // MÉTODO PARA ABRIR O MODAL FALE CONOSCO
@@ -75,6 +106,11 @@ class GerenciadorFormularios {
         const modal = document.getElementById('modalFaleConosco');
         if (modal) {
             modal.style.display = 'none';
+            // LIMPA O CONTAINER DO FORMULÁRIO
+            const container = document.getElementById('formFaleConosco');
+            if (container) {
+                container.innerHTML = '';
+            }
         }
     }
 }
