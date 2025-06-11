@@ -94,10 +94,9 @@ header a {
     justify-content: center;
     text-decoration: none;
     box-shadow: var(--sombra);
-    /*opacity: 1;*/
     transition: var(--transicao);
     z-index: 99;
-    opacity: 0.7;
+    opacity: 1;
 }
 
 .voltar-topo:hover {
