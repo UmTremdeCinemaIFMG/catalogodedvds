@@ -44,18 +44,14 @@ const footerContent = `
     </div>
 
     <!-- MODAL FALE CONOSCO -->
+    <!-- MODAL FALE CONOSCO -->
     <div id="modalFaleConosco" class="feedback-modal">
         <div class="feedback-modal-content">
             <span class="close">&times;</span>
             <h2>Fale Conosco</h2>
             <div class="form-container">
-                <iframe id="googleForm" 
-                    src="https://docs.google.com/forms/d/e/1FAIpQLSfaMr7-ermLAAO8S8zDk0WMcPrVX34mF2xhTrHiC1Z53GbIFQ/viewform?usp=sharing&ouid=101786859238464224020"
-                    frameborder="0" 
-                    marginheight="0" 
-                    marginwidth="0">
-                    Carregando…
-                </iframe>
+                <!-- O IFRAME SERÁ INSERIDO DINAMICAMENTE VIA JAVASCRIPT -->
+                <div id="formFaleConosco"></div>
             </div>
         </div>
     </div>
@@ -65,10 +61,6 @@ const footerContent = `
         <i class="fas fa-arrow-up"></i>
     </a>
 `;
-
-/* ==========================================
-   FUNÇÕES COMUNS PARA TODAS AS PÁGINAS
-   ========================================== */
 
 /* ==========================================
    FUNÇÕES PARA EXPANDIR E RECOLHER SEÇÕES
@@ -131,30 +123,70 @@ function initExpandableSections() {
     });
 }
 
+
+/* ==========================================
+   MODAL FALE CONOSCO - GOOGLE FORMS DINÂMICO
+   ========================================== */
+
+// FUNÇÃO PARA INSERIR O IFRAME DO GOOGLE FORMS QUANDO O MODAL É ABERTO
+function carregarFormularioFaleConosco() {
+    // O CONTAINER ONDE O IFRAME SERÁ INSERIDO
+    const container = document.getElementById('formFaleConosco');
+    if (container) {
+        // LIMPA QUALQUER CONTEÚDO ANTERIOR
+        container.innerHTML = '';
+        // CRIA O IFRAME
+        const iframe = document.createElement('iframe');
+        // DEFINA AQUI A URL DO FORMULÁRIO GOOGLE FORMS
+        iframe.src = 'https://docs.google.com/forms/d/e/1FAIpQLSfaMr7-ermLAAO8S8zDk0WMcPrVX34mF2xhTrHiC1Z53GbIFQ/viewform?usp=sf_link';
+        // DEIXE O TAMANHO PARA O CSS CONTROLAR (SEM WIDTH/HEIGHT INLINE)
+        iframe.setAttribute('title', 'Formulário de Contato');
+        iframe.setAttribute('aria-label', 'Formulário de Contato');
+        // ADICIONA O IFRAME AO CONTAINER
+        container.appendChild(iframe);
+    }
+}
+
+// FUNÇÃO PARA REMOVER O IFRAME AO FECHAR O MODAL
+function limparFormularioFaleConosco() {
+    const container = document.getElementById('formFaleConosco');
+    if (container) {
+        container.innerHTML = '';
+    }
+}
+
 // FUNÇÃO PARA CONTROLAR O MODAL FALE CONOSCO
 function controlarModalFaleConosco() {
     const modal = document.getElementById('modalFaleConosco');
     const btn = document.getElementById('btnFaleConosco');
-    const span = document.getElementsByClassName('close')[0];
+    const span = modal ? modal.querySelector('.close') : null;
 
     if (btn && modal && span) {
-        btn.onclick = function() {
+        // ABRIR O MODAL E INSERIR O FORMULÁRIO
+        btn.onclick = function () {
             modal.style.display = "block";
-        }
+            carregarFormularioFaleConosco();
+        };
 
-        span.onclick = function() {
+        // FECHAR MODAL CLICANDO NO X E LIMPAR FORMULÁRIO
+        span.onclick = function () {
             modal.style.display = "none";
-        }
+            limparFormularioFaleConosco();
+        };
 
-        window.onclick = function(event) {
-            if (event.target == modal) {
+        // FECHAR O MODAL AO CLICAR FORA DO CONTEÚDO E LIMPAR FORMULÁRIO
+        window.addEventListener('click', function (event) {
+            if (event.target === modal) {
                 modal.style.display = "none";
+                limparFormularioFaleConosco();
             }
-        }
+        });
     }
 }
 
-// FUNÇÃO PARA CONTROLAR BOTÃO VOLTAR AO TOPO
+/* ==========================================
+   FUNÇÃO PARA CONTROLAR BOTÃO VOLTAR AO TOPO
+   ========================================== */
 function controlarBotaoVoltarTopo() {
     const btnVoltarTopo = document.getElementById('btnVoltarTopo');
     if (btnVoltarTopo) {
