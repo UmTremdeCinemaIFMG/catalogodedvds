@@ -179,17 +179,16 @@ header a {
 
 /* ESTILOS DO FORMULÁRIO NO MODAL */
 .form-container {
-    height: calc(100% - 60px);  
+    height: calc(100% - 10px);  
     max-height: 100%
-    margin-top: 20px;
-    overflow: hidden;                     /* EVITA ROLAGEM DUPLA */
+    margin-top: 20px;                 
 }
 
 .form-container iframe {
     width: 100%;
     height: 100%;
     border: none;
-    min-height: 0px;
+    overflow: hidden;  /* EVITA ROLAGEM DUPLA */
 }
 
 /* ========================================== */
