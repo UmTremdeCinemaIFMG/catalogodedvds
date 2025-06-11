@@ -106,6 +106,12 @@ body {
 }
 
 /* ESTILOS DE TEXTO DENTRO DOS CAPÍTULOS */
+.capitulo h2 {
+    color: var(--verde-ifmg);
+    margin-top: 25px;
+    font-size: 1.5em;
+}
+
 .capitulo h3 {
     color: var(--verde-ifmg);
     margin-top: 25px;
