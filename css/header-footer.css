@@ -191,9 +191,17 @@ header a {
     display: block;
 }
 
+@media (max-width: 600px) {
+    .form-container,
+    .form-container iframe {
+        min-height: 900px;
+    }
+}
+
+/* ========================================== */
+/* ESTILOS DO RODAPÉ - COMUM A TODAS AS PÁGINAS */
 /* ========================================== */
 
-/* ESTILOS DO RODAPÉ - COMUM A TODAS AS PÁGINAS */
 footer {
     /* ESTRUTURA BÁSICA */
     background-color: var(--verde-escuro);     /* COR DE FUNDO VERDE ESCURO DO IFMG */
