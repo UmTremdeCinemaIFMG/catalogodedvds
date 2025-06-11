@@ -50,7 +50,10 @@ const footerContent = `
             <h2>Fale Conosco</h2>
             <div class="form-container">
                 <!-- IFRAME SERÁ CARREGADO DINAMICAMENTE PELO GERENCIADOR DE FORMULÁRIOS -->
-                <div id="formFaleConosco"></div>
+                <iframe 
+                    id="formFaleConosco"
+                    style="width:100%; height:500px; border:none;"
+                ></iframe>
             </div>
         </div>
     </div>
