@@ -28,14 +28,10 @@ class GerenciadorFormularios {
         const iframe = document.createElement('iframe');
         iframe.src = FORMULARIOS.FALE_CONOSCO;
         
-       
-        
         // LIMPA E ADICIONA O IFRAME
         container.innerHTML = '';
         container.appendChild(iframe);
         
-        // ADICIONA EVENTOS
-        this.adicionarEventosFormulario(iframe, 'faleConosco');
     }
 }
 
