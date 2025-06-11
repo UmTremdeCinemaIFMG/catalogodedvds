@@ -28,13 +28,7 @@ class GerenciadorFormularios {
         const iframe = document.createElement('iframe');
         iframe.src = FORMULARIOS.FALE_CONOSCO;
         
-        // CONFIGURAÇÕES DE ESTILO DO IFRAME
-        Object.assign(iframe.style, {
-            width: '100%',
-            height: '100%',
-            border: 'none',
-            overflow: 'hidden'            // EVITA BARRAS DE ROLAGEM DUPLICADAS
-        });
+       
         
         // LIMPA E ADICIONA O IFRAME
         container.innerHTML = '';
