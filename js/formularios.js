@@ -22,22 +22,25 @@ class GerenciadorFormularios {
 
     // MÉTODO PARA CARREGAR O FORMULÁRIO FALE CONOSCO
     carregarFormularioFaleConosco() {
-        // PEGA O CONTAINER DO FORMULÁRIO
-    const container = document.getElementById('formFaleConosco');
+        const container = document.getElementById('formFaleConosco');
     if (container) {
-        // CRIA O IFRAME
+        // CRIA O IFRAME COM TAMANHO CONTROLADO
         const iframe = document.createElement('iframe');
         iframe.src = FORMULARIOS.FALE_CONOSCO;
-        iframe.style.width = '100%';
-        iframe.style.height = '100%';
-        iframe.style.minHeight = '600px';
-        iframe.style.border = 'none';
         
-        // LIMPA O CONTAINER E ADICIONA O IFRAME
+        // CONFIGURAÇÕES DE ESTILO DO IFRAME
+        Object.assign(iframe.style, {
+            width: '100%',
+            height: '100%',
+            border: 'none',
+            overflow: 'hidden'            // EVITA BARRAS DE ROLAGEM DUPLICADAS
+        });
+        
+        // LIMPA E ADICIONA O IFRAME
         container.innerHTML = '';
         container.appendChild(iframe);
         
-        // ADICIONA EVENTOS DO FORMULÁRIO
+        // ADICIONA EVENTOS
         this.adicionarEventosFormulario(iframe, 'faleConosco');
     }
 }
