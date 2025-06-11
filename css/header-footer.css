@@ -161,9 +161,12 @@ header a {
     max-width: 600px;
     position: relative;
     height: 700px;                         
-    max-height: 80vh;                     /* ALTURA MÁXIMA DE 80% DA TELA */
 }
-
+/* TÍTULO DO MODAL */
+.feedback-modal-content h2 {
+    margin: 0 0 20px 0;                  /* ESPAÇO ABAIXO DO TÍTULO */
+    color: var(--verde-ifmg);
+}
 .feedback-modal .close {
     position: absolute;
     right: 20px;
@@ -179,9 +182,8 @@ header a {
 
 /* ESTILOS DO FORMULÁRIO NO MODAL */
 .form-container {
-    height: calc(100% - 10px);  
-    max-height: 100%
-    margin-top: 20px;                 
+    height: calc(100% - 60px);  
+    max-height: 100%                
 }
 
 .form-container iframe {
