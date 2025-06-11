@@ -173,7 +173,7 @@ function renderFilmData(film) {
                 ${film.classification ? `<p><strong><i class="fas fa-info-circle"></i> Classificação Indicativa:</strong> ${film.classification}</p>` : ""}
                 ${film.classificationDescription && film.classificationDescription.length > 0 ? 
                     film.classificationDescription.map(desc => 
-                        `<p><strong><i class="fas fa-info-circle"></i> Descrição:</strong> <a href="${desc.url || '#'}" target="_blank">${desc.Descrição || 'N/A'}</a></p>`
+                        `<p><strong><i class="fas fa-info-circle"></i> Descrição:</strong> <a href="${desc.url || '#'}" target="_blank" rel="noopener noreferrer">${desc.Descrição || 'N/A'}</a></p>`
                     ).join('') 
                     : ''
                 }
@@ -208,7 +208,7 @@ function renderFilmData(film) {
                         const link = `https://brasil.un.org/pt-br/sdgs/${odsNumber}`;
                         return `
                             <div class="ods-flip-container">
-                                <a href="${link}" target="_blank" class="ods-flipper-link" title="ODS ${ods} - Clique para saber mais">
+                                <a href="${link}" target="_blank" rel="noopener noreferrer" class="ods-flipper-link" title="ODS ${ods} - Clique para saber mais">
                                     <div class="ods-flipper">
                                         <div class="ods-front">
                                             <img src="ods_icons/ods_${odsNumber}.svg" alt="Ícone do ODS ${ods}" loading="lazy">
@@ -306,7 +306,7 @@ function renderFilmData(film) {
     }
     if (film.website) {
         const websiteUrl = film.website.startsWith("http") ? film.website : `https://${film.website}`;
-        otherDetailsContent += `<p><strong><i class="fas fa-globe"></i> Website:</strong> <a href="${websiteUrl}" target="_blank">${film.website}</a></p>`;
+        otherDetailsContent += `<p><strong><i class="fas fa-globe"></i> Website:</strong> <a href="${websiteUrl}" target="_blank" rel="noopener noreferrer">${film.website}</a></p>`;
         hasAnyAdditionalInfo = true;
     }
 
