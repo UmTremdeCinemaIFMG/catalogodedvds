@@ -19,6 +19,47 @@
     --transicao: all 0.3s ease;                  /* TRANSIÇÃO SUAVE PADRÃO */
 }
 
+/* ========================================================
+   CAIXA DESTAQUE HORIZONTAL REUTILIZÁVEL PARA AVISOS/LEIS
+   AGORA USANDO PADRÃO DE CARD COM BORDA VERDE, FUNDO CLARO
+   ======================================================== */
+.destaque-horizontal {
+    /* FUNDO CINZA CLARO PADRÃO DO SISTEMA */
+    background-color: #f9f9f9;
+    /* BORDA ESQUERDA VERDE PADRÃO DO IFMG */
+    border-left: 4px solid var(--verde-ifmg);
+    /* CANTOS ARREDONDADOS SUAVES */
+    border-radius: 8px;
+    /* ESPAÇAMENTO INTERNO DA CAIXA */
+    padding: 15px;
+    /* MARGEM INFERIOR ENTRE CAIXAS */
+    margin-bottom: 15px;
+    /* COR DE TEXTO PADRÃO */
+    color: var(--cinza-escuro);
+    /* ALINHAMENTO DE ITENS HORIZONTAL */
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    font-weight: 400;
+    font-size: 1.07em;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+}
+
+/* DESTAQUE EM NEGRITO PARA O TÍTULO, CASO EXISTA */
+.destaque-horizontal strong {
+    font-size: 1.1em;
+    letter-spacing: 1px;
+    color: var(--verde-escuro);
+}
+
+@media (max-width: 700px) {
+    .destaque-horizontal {
+        padding: 12px 8px;
+        font-size: 0.98em;
+        border-radius: 7px;
+    }
+}
+
 /* ==========================================
    ESTILOS BASE DO SISTEMA
    ========================================== */
