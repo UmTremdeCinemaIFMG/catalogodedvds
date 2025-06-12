@@ -94,6 +94,30 @@ li {
 }
 
 /* ==========================================
+   LINKS - PADRÃO GLOBAL
+   ========================================== */
+/* LINKS EM FUNDO CLARO */
+a, .link {
+    COLOR: VAR(--verde-ifmg);              /* VERDE PADRÃO */
+    TEXT-DECORATION: NONE;                 /* SEM SUBLINHADO */
+    TRANSITION: COLOR 0.2S;
+}
+a:HOVER, .link:HOVER {
+    COLOR: VAR(--verde-escuro);            /* MAIS ESCURO NO HOVER */
+    TEXT-DECORATION: NONE;
+}
+
+/* LINKS EM FUNDO ESCURO OU COLORIDO */
+.link-invertido {
+    COLOR: VAR(--branco) !IMPORTANT;       /* BRANCO NO FUNDO ESCURO */
+    TEXT-DECORATION: NONE;
+    TRANSITION: COLOR 0.2S;
+}
+.link-invertido:HOVER {
+    COLOR: VAR(--amarelo) !IMPORTANT;      /* AMARELO NO HOVER */
+}
+
+/* ==========================================
    ESTILOS BASE DO SISTEMA
    ========================================== */
 
@@ -139,6 +163,19 @@ body {
         font-size: 0.98em;
         border-radius: 7px;
     }
+}
+
+/* ==========================================
+   CARD ANIMADO - HERDA DE CARD-CONTEUDO
+   ========================================== */
+.card-animado {
+    /* HERDA TODA BASE DE .card-conteudo */
+    TRANSITION: BOX-SHADOW 0.3S, TRANSFORM 0.3S; /* SUAVIDADE NA ANIMAÇÃO */
+}
+.card-animado:HOVER {
+    /* EFEITO DE ELEVAÇÃO E CRESCIMENTO LEVE NO HOVER */
+    BOX-SHADOW: 0 8PX 24PX RGBA(0,0,0,0.18), 0 1.5PX 6PX RGBA(0,0,0,0.12);
+    TRANSFORM: TRANSLATEY(-3PX) SCALE(1.015);
 }
 
 /* ==========================================
@@ -305,6 +342,36 @@ body {
     color: var(--branco);
     transform: translateY(-3px);
     box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+}
+
+/* ==========================================
+   BOTÃO DE LINK ANIMADO
+   ========================================== */
+.btn-animado, .btn-primary.btn-animado {
+    BACKGROUND: VAR(--verde-ifmg);
+    COLOR: VAR(--branco);
+    BORDER: NONE;
+    BORDER-RADIUS: 7PX;
+    PADDING: 12PX 24PX;
+    FONT-WEIGHT: BOLD;
+    FONT-SIZE: 1EM;
+    DISPLAY: INLINE-FLEX;
+    ALIGN-ITEMS: CENTER;
+    GAP: 8PX;
+    CURSOR: POINTER;
+    BOX-SHADOW: 0 2PX 8PX RGBA(0,0,0,0.11);
+    TRANSITION: BACKGROUND 0.2S, TRANSFORM 0.15S, BOX-SHADOW 0.2S;
+    TEXT-DECORATION: NONE;
+}
+.btn-animado:HOVER, .btn-primary.btn-animado:HOVER {
+    BACKGROUND: VAR(--verde-escuro);
+    TRANSFORM: TRANSLATEY(-2PX) SCALE(1.03);
+    BOX-SHADOW: 0 6PX 18PX RGBA(0,0,0,0.16);
+    COLOR: VAR(--branco);
+    TEXT-DECORATION: NONE;
+}
+.btn-animado i {
+    MARGIN-RIGHT: 6PX;
 }
 
 /* ==========================================
