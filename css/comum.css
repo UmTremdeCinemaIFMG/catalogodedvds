@@ -54,6 +54,46 @@ body {
     }
 }
 
+/* ========================================================
+   CAIXA DESTAQUE HORIZONTAL REUTILIZÁVEL PARA AVISOS/LEIS
+   ======================================================== */
+.destaque-horizontal {
+    /* EXIBE O CONTEÚDO EM LINHA HORIZONTAL, ALINHADO AO CENTRO */
+    display: flex;
+    align-items: center;
+    background: linear-gradient(90deg, var(--verde-ifmg) 0%, var(--verde-escuro) 100%);
+    color: var(--branco);
+    padding: 18px 24px;
+    border-radius: 30px;
+    font-weight: bold;
+    margin: 28px 0;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+    gap: 18px;
+    font-size: 1.07em;
+}
+
+.destaque-horizontal strong {
+    /* DEIXA O TÍTULO DO AVISO MAIS DESTACADO */
+    font-size: 1.1em;
+    letter-spacing: 1px;
+}
+
+.destaque-horizontal span {
+    /* PERMITE QUE O TEXTO OCUPA O RESTANTE DO ESPAÇO DISPONÍVEL */
+    flex: 1;
+}
+
+/* AJUSTE RESPONSIVO PARA TELAS PEQUENAS */
+@media (max-width: 700px) {
+    .destaque-horizontal {
+        flex-direction: column;
+        padding: 12px 10px;
+        font-size: 0.98em;
+        text-align: center;
+        border-radius: 18px;
+    }
+}
+
 /* ========================================== */
 
 /* ESTILOS DOS CAPÍTULOS EXPANSÍVEIS - COMUM A VÁRIAS PÁGINAS */
