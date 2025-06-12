@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+	
+<head>
+	
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cineclubes - Catálogo de DVDs</title>
+    
+    <!-- FONTS E ÍCONES -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+	
+    <!-- FAVICON -->
+    <link rel="icon" type="image/png" href="favicon.png" />
+    
+    <!-- ESTILOS -->
+    <link rel="stylesheet" href="css/header-footer.css">
+    <link rel="stylesheet" href="css/comum.css">
+    <link rel="stylesheet" href="css/cineclubes.css">
+	
+</head>
+	
+<body>
+    <!-- CABEÇALHO - SERÁ PREENCHIDO PELO JAVASCRIPT -->
+<header></header>
+
+    <!-- MAPA DE CINECLUBES -->
+    <section class="map-section">
+        <div class="container">
+            <h2><i class="fas fa-map-marked-alt"></i> Mapa de Cineclubes no Brasil</h2>
+            <div class="map-container">
+                <iframe src="https://www.google.com/maps/d/embed?mid=13xzibrmYFhqi_-pTxykg0JTbsAdDbV8" 
+                        width="100%" 
+                        height="480" 
+                        style="border:0;" 
+                        allowfullscreen="" 
+                        loading="lazy" 
+                        referrerpolicy="no-referrer-when-downgrade">
+                </iframe>
+            </div>
+        </div>
+    </section>
+
+    <!-- CONTEÚDO PRINCIPAL -->
+    <main class="container">
+        <!-- SEÇÃO INTRODUÇÃO: CINECLUBES NO BRASIL (EXPANSÍVEL) -->
+        <div class="capitulo" id="intro-cineclubes">
+            <h2 class="capitulo-header" onclick="toggleCapitulo('intro-cineclubes')">
+                <i class="fas fa-users"></i> Cineclubes no Brasil 
+                <i class="fas fa-chevron-down expand-icon"></i>
+            </h2>
+            <div class="capitulo-content">
+    <p>
+        Os cineclubes são espaços fundamentais para a democratização do cinema e a formação de plateia crítica. 
+        No Brasil, eles desempenham um papel essencial na difusão da cultura cinematográfica, especialmente do 
+        cinema nacional, e na promoção do debate sobre questões sociais, culturais e artísticas.
+    </p>
+    <div class="cnc-features">
+        <div class="feature">
+            <i class="fas fa-theater-masks"></i>
+            <h4>Cultura</h4>
+            <p>Promovem a difusão cultural através do cinema</p>
+        </div>
+        <div class="feature">
+            <i class="fas fa-comments"></i>
+            <h4>Debate</h4>
+            <p>Estimulam discussões críticas sobre os filmes</p>
+        </div>
+        <div class="feature">
+            <i class="fas fa-users"></i>
+            <h4>Comunidade</h4>
+            <p>Fortalecem laços comunitários através da arte</p>
+        </div>
+    </div>
+</div>
+</div>
+        <!-- SEÇÃO O QUE SÃO CINECLUBES (EXPANSÍVEL) -->
+        <div class="capitulo" id="o-que-sao">
+            <h2 class="capitulo-header" onclick="toggleCapitulo('o-que-sao')">
+                <i class="fas fa-question-circle"></i> O que são Cineclubes? 
+                <i class="fas fa-chevron-down expand-icon"></i>
+            </h2>
+<div class="capitulo-content">
+    <p>
+        Cineclubes são organizações culturais dedicadas à exibição e discussão de filmes, 
+        funcionando como espaços alternativos ao circuito comercial de cinema. São fundamentais 
+        para a formação de público e desenvolvimento da cultura cinematográfica.
+    </p>
+    <div class="cnc-features">
+        <div class="feature">
+            <i class="fas fa-film"></i>
+            <h4>Definição</h4>
+            <p>Associações dedicadas ao estudo e difusão da arte cinematográfica</p>
+        </div>
+        <div class="feature">
+            <i class="fas fa-heart"></i>
+            <h4>Missão</h4>
+            <p>Democratizar o acesso ao cinema e formar público crítico</p>
+        </div>
+        <div class="feature">
+            <i class="fas fa-comments"></i>
+            <h4>Atividades</h4>
+            <p>Exibições, debates e oficinas sobre cinema</p>
+        </div>
+    </div>
+</div>
+        </div>
+
+        <!-- SEÇÃO IMPORTÂNCIA DOS CINECLUBES (EXPANSÍVEL) -->
+        <div class="capitulo" id="importancia">
+            <h2 class="capitulo-header" onclick="toggleCapitulo('importancia')">
+                <i class="fas fa-star"></i> Importância dos Cineclubes 
+                <i class="fas fa-chevron-down expand-icon"></i>
+            </h2>
+            <div class="capitulo-content">
+    <p>
+        Os cineclubes são pilares fundamentais na democratização do acesso ao cinema e na 
+        formação de um público crítico e engajado. Sua atuação vai além da simples exibição 
+        de filmes, contribuindo para o desenvolvimento cultural e social das comunidades.
+    </p>
+    <div class="cnc-features">
+        <div class="feature">
+            <i class="fas fa-graduation-cap"></i>
+            <h4>Formação</h4>
+            <p>Desenvolvimento do olhar crítico através do cinema</p>
+        </div>
+        <div class="feature">
+            <i class="fas fa-globe-americas"></i>
+            <h4>Diversidade</h4>
+            <p>Acesso a diferentes culturas e perspectivas</p>
+        </div>
+        <div class="feature">
+            <i class="fas fa-handshake"></i>
+            <h4>Inclusão</h4>
+            <p>Democratização do acesso à cultura audiovisual</p>
+        </div>
+        <div class="feature">
+            <i class="fas fa-flag"></i>
+            <h4>Nacional</h4>
+            <p>Fortalecimento do cinema brasileiro</p>
+        </div>
+    </div>
+</div>
+        </div>
+
+        <!-- SEÇÃO CINECLUBES DESTACADOS (EXPANSÍVEL) -->
+        <div class="capitulo" id="destaques">
+            <h2 class="capitulo-header" onclick="toggleCapitulo('destaques')">
+                <i class="fas fa-map-marker-alt"></i> Cineclubes em Destaque 
+                <i class="fas fa-chevron-down expand-icon"></i>
+            </h2>
+           <div class="capitulo-content">
+    <p>
+        O Brasil possui uma rica rede de cineclubes espalhados por todo o território nacional. 
+        Cada um com suas características próprias e focos específicos, contribuindo para a 
+        diversidade do movimento cineclubista brasileiro.
+    </p>
+    <div class="cnc-features">
+        <div class="feature">
+            <i class="fas fa-university"></i>
+            <h4>Cineclube Mário Gusmão</h4>
+            <p>UFBA - Cachoeira, BA<br>Foco em cinema baiano e brasileiro</p>
+        </div>
+        <div class="feature">
+            <i class="fas fa-film"></i>
+            <h4>Cineclube Mulungu</h4>
+            <p>Natal, RN<br>Difusão dos cinemas negros e indígenas</p>
+        </div>
+        <div class="feature">
+            <i class="fas fa-landmark"></i>
+            <h4>CEC-MG</h4>
+            <p>Belo Horizonte, MG<br>Tradição em estudos cinematográficos</p>
+        </div>
+        <div class="feature">
+            <i class="fas fa-video"></i>
+            <h4>Cine Adélia</h4>
+            <p>Curitiba, PR<br>Cinema negro e racializado</p>
+        </div>
+    </div>
+</div>
+        </div>
+
+        <!-- SEÇÃO CONSELHO NACIONAL DE CINECLUBES (EXPANSÍVEL) -->
+        <div class="capitulo" id="cnc">
+            <h2 class="capitulo-header" onclick="toggleCapitulo('cnc')">
+                <i class="fas fa-network-wired"></i> Conselho Nacional de Cineclubes 
+                <i class="fas fa-chevron-down expand-icon"></i>
+            </h2>
+            <div class="capitulo-content">
+                <p>
+                    O Conselho Nacional de Cineclubes (CNC) é a entidade que representa e articula o movimento 
+                    cineclubista brasileiro. Fundado para fortalecer e organizar os cineclubes em todo o país, 
+                    o CNC mantém um cadastro nacional de cineclubes filiados e promove ações de formação e intercâmbio.
+                </p>
+                <div class="cnc-features">
+                    <div class="feature">
+                        <i class="fas fa-database"></i>
+                        <h4>Cadastro Nacional</h4>
+                        <p>Mantém registro atualizado de cineclubes ativos em todo o Brasil</p>
+                    </div>
+                    <div class="feature">
+                        <i class="fas fa-users"></i>
+                        <h4>Articulação</h4>
+                        <p>Promove a integração e troca de experiências entre cineclubes</p>
+                    </div>
+                    <div class="feature">
+                        <i class="fas fa-book"></i>
+                        <h4>Formação</h4>
+                        <p>Oferece capacitação e orientação para novos cineclubes</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- SEÇÃO CINEMA NEGRO E DIVERSIDADE (EXPANSÍVEL) -->
+        <div class="capitulo" id="cinema-negro">
+            <h2 class="capitulo-header" onclick="toggleCapitulo('cinema-negro')">
+                <i class="fas fa-fist-raised"></i> Cinema Negro e Diversidade 
+                <i class="fas fa-chevron-down expand-icon"></i>
+            </h2>
+            <div class="capitulo-content">
+    <p>
+        A representatividade e a diversidade são pilares fundamentais do movimento cineclubista 
+        brasileiro. Diversos cineclubes se dedicam especialmente à difusão e discussão do 
+        cinema produzido por grupos historicamente marginalizados.
+    </p>
+    <div class="cnc-features">
+        <div class="feature">
+            <i class="fas fa-globe-africa"></i>
+            <h4>Cinema Africano</h4>
+            <p>Difusão de produções africanas e da diáspora</p>
+        </div>
+        <div class="feature">
+            <i class="fas fa-female"></i>
+            <h4>Mulheres no Cinema</h4>
+            <p>Obras dirigidas por mulheres negras</p>
+        </div>
+        <div class="feature">
+            <i class="fas fa-users"></i>
+            <h4>Cinema Indígena</h4>
+            <p>Produções de realizadores indígenas</p>
+        </div>
+        <div class="feature">
+            <i class="fas fa-film"></i>
+            <h4>Cinema Nacional</h4>
+            <p>Foco em produções brasileiras diversas</p>
+        </div>
+    </div>
+</div>
+        </div>
+	    
+<!-- SEÇÃO COMO CRIAR UM CINECLUBE (EXPANSÍVEL) -->
+<div class="capitulo" id="como-criar">
+    <h2 class="capitulo-header" onclick="toggleCapitulo('como-criar')">
+        <i class="fas fa-plus-circle"></i> Como Criar um Cineclube 
+        <i class="fas fa-chevron-down expand-icon"></i>
+    </h2>
+    <div class="capitulo-content">
+    <p>
+        Criar um cineclube é uma iniciativa importante para a democratização do cinema e o 
+        desenvolvimento cultural da comunidade. O processo requer planejamento e dedicação, 
+        mas é acessível a qualquer grupo interessado.
+    </p>
+    <div class="cnc-features">
+        <div class="feature">
+            <i class="fas fa-users"></i>
+            <h4>Forme um Grupo</h4>
+            <p>Reúna pessoas interessadas em cinema</p>
+        </div>
+        <div class="feature">
+            <i class="fas fa-map-marker-alt"></i>
+            <h4>Defina o Local</h4>
+            <p>Escolha um espaço adequado para exibições</p>
+        </div>
+        <div class="feature">
+            <i class="fas fa-project-diagram"></i>
+            <h4>Planeje</h4>
+            <p>Estabeleça objetivos e programação</p>
+        </div>
+        <div class="feature">
+            <i class="fas fa-tools"></i>
+            <h4>Equipamentos</h4>
+            <p>Organize a infraestrutura necessária</p>
+        </div>
+        <div class="feature">
+            <i class="fas fa-file-alt"></i>
+            <h4>Formalize</h4>
+            <p>Registre junto ao CNC</p>
+        </div>
+        <div class="feature">
+            <i class="fas fa-bullhorn"></i>
+            <h4>Divulgue</h4>
+            <p>Promova as atividades do cineclube</p>
+        </div>
+    </div>
+</div>
+</div>
+	    
+    </main>
+
+  <!-- RODAPÉ - SERÁ PREENCHIDO PELO JAVASCRIPT -->
+    <footer></footer>
+	
+    <!-- SCRIPTS -->
+    <script src="js/comum.js"></script>
+
+</body>
+</html>
