@@ -4,7 +4,7 @@ header {
     /* GRADIENTE DE FUNDO COM AS CORES DO IFMG */
     background-image: radial-gradient(ellipse at center, #19882c 1%, #025310 100%);
     /* CONFIGURAÇÕES BÁSICAS */
-    color: var(--branco);
+    color: var(--branco) !important;
     padding: 10px 0 0 0;    /* REDUZIDO O PADDING SUPERIOR */
     box-shadow: 0 2px 5px rgba(0,0,0,0.2);
     display: flex;
@@ -209,7 +209,7 @@ footer {
     margin-top: 30px;                         /* MARGEM SUPERIOR */
     
     /* TEXTO */
-    color: var(--branco);                     /* COR DO TEXTO BRANCO */
+    color: var(--branco) !important;                     /* COR DO TEXTO BRANCO */
     text-align: center;                       /* CENTRALIZA O TEXTO */
     font-size: 14px;                         /* TAMANHO DA FONTE */
     line-height: 1.5;                        /* ALTURA DA LINHA */
