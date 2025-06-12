@@ -194,7 +194,7 @@ body {
    ========================================== */
 .destaque-horizontal {
     
-    background-color: #f9f9f9;    /* FUNDO CINZA CLARO PADRÃO DO SISTEMA */
+    background-color: #e5fbe5;    /* FUNDO CINZA CLARO PADRÃO DO SISTEMA */
     border-left: 4px solid var(--verde-ifmg);  /* BORDA ESQUERDA VERDE PADRÃO DO IFMG */
     border-radius: 8px;   /* CANTOS ARREDONDADOS SUAVES */
     padding: 15px;  /* ESPAÇAMENTO INTERNO DA CAIXA */
