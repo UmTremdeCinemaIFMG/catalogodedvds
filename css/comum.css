@@ -56,41 +56,42 @@ body {
 
 /* ========================================================
    CAIXA DESTAQUE HORIZONTAL REUTILIZÁVEL PARA AVISOS/LEIS
+   AGORA USANDO PADRÃO DE CARD COM BORDA VERDE, FUNDO CLARO
    ======================================================== */
 .destaque-horizontal {
-    /* EXIBE O CONTEÚDO EM LINHA HORIZONTAL, ALINHADO AO CENTRO */
+    /* FUNDO CINZA CLARO PADRÃO DO SISTEMA */
+    background-color: #f9f9f9;
+    /* BORDA ESQUERDA VERDE PADRÃO DO IFMG */
+    border-left: 4px solid var(--verde-ifmg);
+    /* CANTOS ARREDONDADOS SUAVES */
+    border-radius: 8px;
+    /* ESPAÇAMENTO INTERNO DA CAIXA */
+    padding: 15px;
+    /* MARGEM INFERIOR ENTRE CAIXAS */
+    margin-bottom: 15px;
+    /* COR DE TEXTO PADRÃO */
+    color: var(--cinza-escuro);
+    /* ALINHAMENTO DE ITENS HORIZONTAL */
     display: flex;
-    align-items: center;
-    background: linear-gradient(90deg, var(--verde-ifmg) 0%, var(--verde-escuro) 100%);
-    color: var(--branco);
-    padding: 18px 24px;
-    border-radius: 30px;
-    font-weight: bold;
-    margin: 28px 0;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.07);
-    gap: 18px;
+    flex-direction: column;
+    gap: 5px;
+    font-weight: 400;
     font-size: 1.07em;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.04);
 }
 
+/* DESTAQUE EM NEGRITO PARA O TÍTULO, CASO EXISTA */
 .destaque-horizontal strong {
-    /* DEIXA O TÍTULO DO AVISO MAIS DESTACADO */
     font-size: 1.1em;
     letter-spacing: 1px;
+    color: var(--verde-escuro);
 }
 
-.destaque-horizontal span {
-    /* PERMITE QUE O TEXTO OCUPA O RESTANTE DO ESPAÇO DISPONÍVEL */
-    flex: 1;
-}
-
-/* AJUSTE RESPONSIVO PARA TELAS PEQUENAS */
 @media (max-width: 700px) {
     .destaque-horizontal {
-        flex-direction: column;
-        padding: 12px 10px;
+        padding: 12px 8px;
         font-size: 0.98em;
-        text-align: center;
-        border-radius: 18px;
+        border-radius: 7px;
     }
 }
 
