@@ -185,26 +185,26 @@ body {
    DESTAQUE HORIZONTAL PARA AVISOS/LEIS
    ========================================== */
 .destaque-horizontal {
-    display: flex;
-    align-items: center;
-    background: linear-gradient(90deg, var(--verde-ifmg) 0%, var(--verde-escuro) 100%);
-    color: var(--branco);
-    padding: 18px 24px;
-    border-radius: 30px;
-    font-weight: bold;
-    margin: 28px 0;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.07);
-    gap: 18px;
+    
+    background-color: #f9f9f9;    /* FUNDO CINZA CLARO PADRÃO DO SISTEMA */
+    border-left: 4px solid var(--verde-ifmg);  /* BORDA ESQUERDA VERDE PADRÃO DO IFMG */
+    border-radius: 8px;   /* CANTOS ARREDONDADOS SUAVES */
+    padding: 15px;  /* ESPAÇAMENTO INTERNO DA CAIXA */
+    margin-bottom: 15px;  /* MARGEM INFERIOR ENTRE CAIXAS */
+    color: var(--cinza-escuro);   /* COR DE TEXTO PADRÃO */
+    display: flex;   /* ALINHAMENTO DE ITENS HORIZONTAL */
+    flex-direction: column;
+    gap: 5px;
+    font-weight: 400;
     font-size: 1.07em;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.04);
 }
 
+/* DESTAQUE EM NEGRITO PARA O TÍTULO, CASO EXISTA */
 .destaque-horizontal strong {
     font-size: 1.1em;
     letter-spacing: 1px;
-}
-
-.destaque-horizontal span {
-    flex: 1;
+    color: var(--verde-escuro);
 }
 
 @media (max-width: 700px) {
