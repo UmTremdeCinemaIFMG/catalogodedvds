@@ -9,12 +9,11 @@
     --cinza-medio: #666666;       /* USADO PARA TEXTOS SECUNDÁRIOS */
     --cinza-claro: #f2f2f2;       /* USADO PARA FUNDOS E DIVISÕES */
     --branco: #ffffff;            /* USADO PARA TEXTOS SOBRE FUNDOS ESCUROS */
-    --azul: #0066cc;             /* USADO PARA LINKS E DESTAQUES */
-    --amarelo: #ffcc00;          /* USADO PARA ALERTAS E CLASSIFICAÇÕES */
-    --laranja: #ff9900;          /* USADO PARA AVISOS */
-    --vermelho: #cc0000;         /* USADO PARA ERROS E ALERTAS CRÍTICOS */
-    --preto: #000000;            /* USADO PARA CONTRASTE MÁXIMO */
-    
+    --azul: #0066cc;              /* USADO PARA LINKS E DESTAQUES */
+    --amarelo: #ffcc00;           /* USADO PARA ALERTAS E CLASSIFICAÇÕES */
+    --laranja: #ff9900;           /* USADO PARA AVISOS */
+    --vermelho: #cc0000;          /* USADO PARA ERROS E ALERTAS CRÍTICOS */
+    --preto: #000000;             /* USADO PARA CONTRASTE MÁXIMO */
     /* EFEITOS VISUAIS PADRÃO */
     --sombra: 0 4px 6px rgba(0, 0, 0, 0.1);     /* SOMBRA PADRÃO PARA ELEMENTOS */
     --transicao: all 0.3s ease;                  /* TRANSIÇÃO SUAVE PADRÃO */
@@ -26,377 +25,167 @@
 
 /* CONFIGURAÇÕES BÁSICAS DO CORPO DA PÁGINA */
 body {
-    /* DEFINIÇÃO DA FONTE PRINCIPAL */
-    font-family: 'open_sansextrabold', Tahoma, Geneva, Verdana, sans-serif;
-    
-    /* RESET DE MARGENS E PREENCHIMENTOS */
-    margin: 0;
-    padding: 0;
-    
-    /* CONFIGURAÇÕES VISUAIS BÁSICAS */
-    background-color: var(--cinza-claro);    /* FUNDO PADRÃO DA PÁGINA */
-    color: var(--cinza-escuro);              /* COR PADRÃO DO TEXTO */
-    line-height: 1.6;                        /* ALTURA DA LINHA PARA MELHOR LEITURA */
+    FONT-FAMILY: 'open_sansextrabold', TAHOMA, GENEVA, VERDANA, SANS-SERIF;
+    MARGIN: 0;
+    PADDING: 0;
+    BACKGROUND-COLOR: var(--cinza-claro);    /* FUNDO CINZA CLARO PADRÃO */
+    COLOR: var(--cinza-escuro);              /* COR PADRÃO DO TEXTO */
+    LINE-HEIGHT: 1.6;                        /* ALTURA DA LINHA PARA MELHOR LEITURA */
 }
 
 /* CONTAINER PRINCIPAL - USADO EM TODAS AS PÁGINAS */
 .container {
-    max-width: 1200px;                       /* LARGURA MÁXIMA DO CONTEÚDO */
-    margin: 0 auto;                          /* CENTRALIZAÇÃO AUTOMÁTICA */
-    padding: 10px 20px;                      /* ESPAÇAMENTO INTERNO */
+    MAX-WIDTH: 1200px;                       
+    MARGIN: 0 AUTO;                          
+    PADDING: 10px 20px;                      
 }
 
 /* RESPONSIVIDADE BÁSICA */
 @media (max-width: 768px) {
-    /* AJUSTES PARA TELAS MENORES */
     .container {
-        padding: 10px;                       /* REDUZ O PADDING EM TELAS PEQUENAS */
+        PADDING: 10px;                       
     }
 }
 
-/* ========================================================
-   CAIXA DESTAQUE HORIZONTAL REUTILIZÁVEL PARA AVISOS/LEIS
-   AGORA USANDO PADRÃO DE CARD COM BORDA VERDE, FUNDO CLARO
-   ======================================================== */
-.destaque-horizontal {
-    /* FUNDO CINZA CLARO PADRÃO DO SISTEMA */
-    background-color: #f9f9f9;
-    /* BORDA ESQUERDA VERDE PADRÃO DO IFMG */
-    border-left: 4px solid var(--verde-ifmg);
-    /* CANTOS ARREDONDADOS SUAVES */
-    border-radius: 8px;
-    /* ESPAÇAMENTO INTERNO DA CAIXA */
-    padding: 15px;
-    /* MARGEM INFERIOR ENTRE CAIXAS */
-    margin-bottom: 15px;
-    /* COR DE TEXTO PADRÃO */
-    color: var(--cinza-escuro);
-    /* ALINHAMENTO DE ITENS HORIZONTAL */
-    display: flex;
-    flex-direction: column;
-    gap: 5px;
-    font-weight: 400;
-    font-size: 1.07em;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+/* ===============================================
+   CARD DE CONTEÚDO PADRÃO REUTILIZÁVEL EM TODO SITE
+   =============================================== */
+.card-conteudo {
+    BACKGROUND-COLOR: var(--branco);          /* FUNDO BRANCO PARA DESTACAR O CONTEÚDO */
+    BORDER-RADIUS: 8px;                       /* BORDAS ARREDONDADAS PARA UM VISUAL MODERNO */
+    BOX-SHADOW: var(--sombra);                /* SOMBRA SUAVE PARA DESTACAR O CARD DO FUNDO */
+    PADDING: 20px;                            /* ESPAÇAMENTO INTERNO PADRÃO */
+    MARGIN-BOTTOM: 30px;                      /* MARGEM INFERIOR ENTRE CARDS OU SEÇÕES */
+    TRANSITION: var(--transicao);             /* TRANSIÇÃO SUAVE PARA EFEITOS DE HOVER */
 }
 
-/* DESTAQUE EM NEGRITO PARA O TÍTULO, CASO EXISTA */
-.destaque-horizontal strong {
-    font-size: 1.1em;
-    letter-spacing: 1px;
-    color: var(--verde-escuro);
-}
-
+/* RESPONSIVIDADE PARA TELAS PEQUENAS */
 @media (max-width: 700px) {
-    .destaque-horizontal {
-        padding: 12px 8px;
-        font-size: 0.98em;
-        border-radius: 7px;
+    .card-conteudo {
+        PADDING: 12px 8px;
+        FONT-SIZE: 0.98em;
+        BORDER-RADIUS: 7px;
     }
 }
 
-/* ========================================== */
-
-/* ESTILOS DOS CAPÍTULOS EXPANSÍVEIS - COMUM A VÁRIAS PÁGINAS */
-.capitulo {
-    background-color: var(--branco);
-    border-radius: 8px;
-    padding: 30px;
-    margin-bottom: 30px;
-    box-shadow: var(--sombra);
+/* ==========================================
+   ESTILOS DE TÍTULOS E TEXTO DENTRO DOS CARDS
+   ========================================== */
+.card-conteudo h1,
+.card-conteudo h2,
+.card-conteudo h3,
+.card-conteudo h4,
+.card-conteudo h5 {
+    COLOR: var(--verde-ifmg);         /* TÍTULOS EM VERDE IFMG */
+    MARGIN-TOP: 0;
 }
 
-/* CABEÇALHO DO CAPÍTULO COM TÍTULO E ÍCONE */
-.capitulo-header {
-    color: var(--verde-escuro);
-    border-bottom: 2px solid var(--verde-ifmg);
-    padding-bottom: 10px;
-    margin-top: 0;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    cursor: pointer;
-    user-select: none;  /* IMPEDE SELEÇÃO DO TEXTO */
+.card-conteudo p,
+.card-conteudo ul,
+.card-conteudo ol {
+    COLOR: var(--cinza-escuro);       /* TEXTO PADRÃO ESCURO */
+    LINE-HEIGHT: 1.7;
+    MARGIN-BOTTOM: 20px;
 }
 
-/* ÍCONE DE EXPANSÃO */
-.expand-icon {
-    margin-left: auto;  /* EMPURRA O ÍCONE PARA A DIREITA */
-    transition: transform 0.3s ease;  /* ANIMAÇÃO SUAVE */
+.card-conteudo a {
+    COLOR: var(--azul);
+    TEXT-DECORATION: underline;
+    TRANSITION: color 0.2s;
 }
 
-/* ROTAÇÃO DO ÍCONE QUANDO ATIVO */
-.capitulo-header.active .expand-icon {
-    transform: rotate(180deg);
+.card-conteudo a:hover {
+    COLOR: var(--verde-ifmg);
 }
 
-.capitulo-header::after {
-    content: content: none;  /* REMOVE A SETA DUPLICADA */
-}
-
-.capitulo-content {
-    max-height: 0;
-    overflow: hidden;
-    transition: max-height 0.3s ease-out;
-    padding-top: 20px;
-}
-
-.capitulo-content.active {
-    max-height: none;
-    display: block !important;
-}
-
-/* ESTILOS DE TEXTO DENTRO DOS CAPÍTULOS */
-.capitulo h2 {
-    color: var(--verde-ifmg);
-    margin-top: 25px;
-    font-size: 1.5em;
-}
-
-.capitulo h3 {
-    color: var(--verde-ifmg);
-    margin-top: 25px;
-    font-size: 1.3em;
-}
-
-.capitulo h4 {
-    color: var(--cinza-escuro);
-    margin-top: 20px;
-    font-size: 1.1em;
-}
-
-.capitulo p {
-    line-height: 1.7;
-    margin-bottom: 20px;
-}
-
-.capitulo ul, 
-.capitulo ol {
-    margin-bottom: 20px;
-    padding-left: 25px;
-}
-
-.capitulo li {
-    margin-bottom: 10px;
-    line-height: 1.6;
-}
-
-/* ESTILOS DOS BOTÕES PRIMÁRIO E SECUNDÁRIO */
+/* ==========================================
+   BOTÕES PRIMÁRIO E SECUNDÁRIO
+   ========================================== */
 .btn-primary, 
 .btn-secondary {
-    padding: 15px 30px;
-    border-radius: 25px;
-    text-decoration: none;
-    font-weight: bold;
-    transition: var(--transicao);
-    display: inline-flex;
-    align-items: center;
-    gap: 10px;
+    PADDING: 15px 30px;
+    BORDER-RADIUS: 25px;
+    TEXT-DECORATION: none;
+    FONT-WEIGHT: BOLD;
+    TRANSITION: var(--transicao);
+    DISPLAY: inline-flex;
+    ALIGN-ITEMS: center;
+    GAP: 10px;
 }
 
 .btn-primary {
-    background: var(--verde-ifmg);
-    color: var(--branco);
+    BACKGROUND: var(--verde-ifmg);
+    COLOR: var(--branco);
 }
 
 .btn-primary:hover {
-    background: var(--verde-escuro);
-    transform: translateY(-3px);
-    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+    BACKGROUND: var(--verde-escuro);
+    TRANSFORM: translateY(-3px);
+    BOX-SHADOW: 0 5px 15px rgba(0,0,0,0.2);
 }
 
 .btn-secondary {
-    background: transparent;
-    color: var(--verde-ifmg);
-    border: 2px solid var(--verde-ifmg);
+    BACKGROUND: transparent;
+    COLOR: var(--verde-ifmg);
+    BORDER: 2px solid var(--verde-ifmg);
 }
 
 .btn-secondary:hover {
-    background: var(--verde-ifmg);
-    color: var(--branco);
-    transform: translateY(-3px);
-    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+    BACKGROUND: var(--verde-ifmg);
+    COLOR: var(--branco);
+    TRANSFORM: translateY(-3px);
+    BOX-SHADOW: 0 5px 15px rgba(0,0,0,0.2);
 }
 
 /* ==========================================
-   SEÇÃO DE INTRODUÇÃO - COMUM A VÁRIAS PÁGINAS
-   PODE SER USADO EM QUALQUER PÁGINA QUE PRECISE 
-   DE UMA INTRODUÇÃO DESTACADA
+   SEÇÃO DE INTRODUÇÃO - PARA PÁGINAS QUE PRECISAM DESTAQUE
    ========================================== */
-
-/* CONTAINER PRINCIPAL DA SEÇÃO DE INTRODUÇÃO */
 .intro-section {
-    background-color: var(--verde-ifmg);    /* COR DE FUNDO PADRÃO */
-    color: var(--branco);                   /* COR DO TEXTO */
-    padding: 30px;                          /* ESPAÇAMENTO INTERNO */
-    border-radius: 8px;                     /* BORDAS ARREDONDADAS */
-    margin-bottom: 30px;                    /* ESPAÇO ABAIXO DA SEÇÃO */
-    position: relative;                     /* PARA POSICIONAMENTO DE ELEMENTOS */
-    overflow: hidden;                       /* CONTROLE DE OVERFLOW */
-    box-shadow: var(--sombra);             /* SOMBRA PADRÃO */
+    BACKGROUND-COLOR: var(--verde-ifmg);    
+    COLOR: var(--branco);                   
+    PADDING: 30px;                          
+    BORDER-RADIUS: 8px;                     
+    MARGIN-BOTTOM: 30px;                    
+    POSITION: relative;                     
+    OVERFLOW: hidden;                       
+    BOX-SHADOW: var(--sombra);             
 }
 
-/* TÍTULO DA SEÇÃO DE INTRODUÇÃO */
 .intro-section h2 {
-   color: var(--verde-escuro);
-    font-size: 2.2em;                      /* TAMANHO DO TÍTULO */
-    margin-top: 0;                         /* REMOVE MARGEM SUPERIOR */
-    margin-bottom: 15px;                   /* ESPAÇO ABAIXO DO TÍTULO */
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);  /* SOMBRA NO TEXTO */
+    COLOR: var(--verde-escuro);
+    FONT-SIZE: 2.2em;                      
+    MARGIN-TOP: 0;                         
+    MARGIN-BOTTOM: 15px;                   
+    TEXT-SHADOW: 2px 2px 4px rgba(0, 0, 0, 0.3);  
 }
 
-/* TEXTO DA SEÇÃO DE INTRODUÇÃO */
 .intro-section p {
-    font-size: 1.1em;                      /* TAMANHO DO TEXTO */
-    max-width: 80%;                        /* LARGURA MÁXIMA PARA MELHOR LEITURA */
-    line-height: 1.6;                      /* ALTURA DA LINHA */
+    FONT-SIZE: 1.1em;                      
+    MAX-WIDTH: 80%;                        
+    LINE-HEIGHT: 1.6;                      
+}
+
+@media (max-width: 768px) {
+    .intro-section p {
+        MAX-WIDTH: 100%;                   
+    }
 }
 
 /* ==========================================
-   ESTILO DE CARDS - COMUM A VÁRIAS PÁGINAS
+   AJUSTES PARA TELAS MUITO PEQUENAS
    ========================================== */
-
-/* GRID DE CARDS */
-.feature-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 25px;
-    margin-top: 25px;
-}
-
-
-
-
-/* ==========================================
-   GRID DE RECURSOS/FEATURES - COMUM A VÁRIAS PÁGINAS
-   ========================================== */
-
-/* CONTAINER DOS CARDS */
-.cnc-features {
-    display: grid;                          /* LAYOUT EM GRID */
-    grid-template-columns: repeat(3, 1fr);  /* TRÊS COLUNAS DE TAMANHO IGUAL */
-    gap: 20px;                             /* ESPAÇO ENTRE OS CARDS */
-    margin: 20px 0;                        /* MARGEM SUPERIOR E INFERIOR */
-}
-
-/* ESTILO DO CARD */
-.cnc-features .feature {
-    background-color: var(--branco);        /* FUNDO BRANCO */
-    border: 2px solid var(--verde-ifmg);    /* BORDA VERDE */
-    border-radius: 8px;                     /* CANTOS ARREDONDADOS */
-    padding: 20px;                          /* ESPAÇAMENTO INTERNO */
-    text-align: center;                     /* CENTRALIZA O CONTEÚDO */
-    transition: var(--transicao);           /* TRANSIÇÃO SUAVE */
-}
-
-/* TÍTULO DENTRO DO CARD */
-.cnc-features .feature h4 {
-    color: var(--verde-ifmg);               /* COR VERDE DO TÍTULO */
-    margin: 10px 0;                         /* MARGEM ACIMA E ABAIXO */
-    font-size: 1.2em;                       /* TAMANHO DA FONTE */
-}
-
-/* TEXTO DENTRO DO CARD */
-.cnc-features .feature p {
-    color: var(--cinza-escuro);             /* COR DO TEXTO */
-    line-height: 1.5;                       /* ALTURA DA LINHA */
-}
-
-/* RESPONSIVIDADE */
-@media (max-width: 768px) {
-    .cnc-features {
-        grid-template-columns: 1fr;         /* UMA COLUNA EM TELAS PEQUENAS */
-        gap: 15px;                          /* REDUZ O ESPAÇO ENTRE CARDS */
-    }
-}
-
-
-
-
-
-/* ESTILO DOS CARDS */
-.feature {
-    text-align: center;                     /* CENTRALIZA O CONTEÚDO */
-    padding: 20px;                          /* ESPAÇAMENTO INTERNO */
-    background: var(--cinza-claro);         /* FUNDO PADRÃO */
-    border-radius: 10px;                    /* BORDAS ARREDONDADAS */
-    border: 2px solid var(--verde-ifmg);    /* BORDA VERDE */
-    transition: var(--transicao);           /* TRANSIÇÃO SUAVE */
-}
-
-/* ÍCONES NOS CARDS */
-.feature i {
-    font-size: 2.5rem;                      /* TAMANHO DO ÍCONE */
-    color: var(--verde-ifmg);               /* COR DO ÍCONE */
-    margin-bottom: 10px;                    /* ESPAÇO ABAIXO DO ÍCONE */
-}
-
-/* TÍTULOS NOS CARDS */
-.feature h4 {
-    color: var(--verde-ifmg);               /* COR DO TÍTULO */
-    margin-bottom: 10px;                    /* ESPAÇO ABAIXO DO TÍTULO */
-}
-
-/* RESPONSIVIDADE DOS CARDS */
-@media (max-width: 768px) {
-    .feature-grid {
-        grid-template-columns: 1fr;         /* UMA COLUNA EM TELAS PEQUENAS */
-    }
-}
-
-/* RESPONSIVIDADE DA SEÇÃO DE INTRODUÇÃO */
-@media (max-width: 768px) {
-    .intro-section p {
-        max-width: 100%;                   /* TEXTO OCUPA TODA LARGURA EM TELAS PEQUENAS */
-    }
-}
-
-/* RESPONSIVIDADE PARA DISPOSITIVOS MÓVEIS */
-@media (max-width: 768px) {
-    .feedback-modal-content {
-        margin: 10px;
-        width: calc(100% - 20px);
-        height: calc(100vh - 20px);
-        padding: 15px;
-    }
-
-    .feedback-button {
-        bottom: 20px;
-        right: 20px;
-    }
-
-    .feedback-button button {
-        padding: 12px 20px;
-        font-size: 14px;
-    }
-
-    .form-container iframe {
-        min-height: 700px;
-    }
-
-    .btn-primary, 
-    .btn-secondary {
-        width: 100%;
-        max-width: 300px;
-        justify-content: center;
-    }
-   /* ADICIONAR ESTA PARTE NA SEÇÃO DE RESPONSIVIDADE */
-    .intro-section p {
-        max-width: 100%;                   /* TEXTO OCUPA TODA LARGURA EM TELAS PEQUENAS */
-    }
-}
-
-/* AJUSTES PARA TELAS MUITO PEQUENAS */
 @media (max-width: 480px) {
     .feedback-modal-content {
-        margin: 5px;
-        width: calc(100% - 10px);
-        padding: 10px;
+        MARGIN: 5px;
+        WIDTH: calc(100% - 10px);
+        PADDING: 10px;
     }
-
     .form-container iframe {
-        min-height: 800px;
+        MIN-HEIGHT: 800px;
     }
 }
 
-
+/* ==========================================
+   AJUSTES FINAIS E UTILITÁRIOS
+   ========================================== */
+/* OUTRAS CLASSES DE AJUSTES E UTILIDADE PODEM SER INSERIDAS AQUI */
