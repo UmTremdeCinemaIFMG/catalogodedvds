@@ -42,61 +42,10 @@ const footerContent = `
             <i class="fas fa-comments"></i> Fale Conosco
         </button>
     </div>
-
-    <!-- MODAL FALE CONOSCO -->
-    <!-- MODAL FALE CONOSCO -->
-    <div id="modalFaleConosco" class="feedback-modal">
-        <div class="feedback-modal-content">
-            <span class="close">&times;</span>
-            <h2>Fale Conosco</h2>
-            <div class="form-container">
-                <!-- O IFRAME SERÁ INSERIDO DINAMICAMENTE VIA JAVASCRIPT -->
-                <div id="formFaleConosco"></div>
-            </div>
-        </div>
-    </div>
-
-    <!-- BOTÃO VOLTAR AO TOPO -->
-    <a href="#" class="voltar-topo" id="btnVoltarTopo">
-        <i class="fas fa-arrow-up"></i>
-    </a>
-`;
+cnc-features
 
 /* ==========================================
-   FUNÇÕES PARA EXPANDIR E RECOLHER SEÇÕES
-   ========================================== */
-
-// FUNÇÃO PARA EXPANDIR/RECOLHER SEÇÕES
-function toggleCapitulo(capituloId) {
-    // OBTÉM O ELEMENTO DO CAPÍTULO
-    const capitulo = document.getElementById(capituloId);
-    if (!capitulo) return;
-    
-    // OBTÉM O CONTEÚDO E O ÍCONE DO CAPÍTULO
-    const content = capitulo.querySelector('.capitulo-content');
-    const icon = capitulo.querySelector('.expand-icon');
-    const header = capitulo.querySelector('.capitulo-header');
-    
-    if (!content || !icon || !header) return;
-    
-    // ALTERNA A CLASSE ACTIVE NO HEADER E NO CONTENT
-    content.classList.toggle('active');
-    header.classList.toggle('active');
-    
-    // ATUALIZA O DISPLAY DO CONTEÚDO
-    if (content.classList.contains('active')) {
-        content.style.display = 'block';
-        icon.classList.remove('fa-chevron-down');
-        icon.classList.add('fa-chevron-up');
-    } else {
-        content.style.display = 'none';
-        icon.classList.remove('fa-chevron-up');
-        icon.classList.add('fa-chevron-down');
-    }
-}
-
-/* ==========================================
-   FUNÇÕES DE INICIALIZAÇÃO
+   FUNÇÕES DE INICIALIZAÇÃO DE CABEÇALHO E RODAPÉ
    ========================================== */
 
 // FUNÇÃO PARA CARREGAR O CABEÇALHO
@@ -115,14 +64,6 @@ function carregarRodape() {
     }
 }
 
-// FUNÇÃO PARA INICIALIZAR AS SEÇÕES EXPANSÍVEIS
-function initExpandableSections() {
-    // FECHA TODOS OS CAPÍTULOS INICIALMENTE
-    document.querySelectorAll('.capitulo-content').forEach(content => {
-        content.style.display = 'none';
-    });
-}
-
 
 /* ==========================================
    MODAL FALE CONOSCO - GOOGLE FORMS DINÂMICO
@@ -132,18 +73,13 @@ function initExpandableSections() {
 function carregarFormularioFaleConosco() {
     // O CONTAINER ONDE O IFRAME SERÁ INSERIDO
     const container = document.getElementById('formFaleConosco');
-    if (container) {
-        // LIMPA QUALQUER CONTEÚDO ANTERIOR
-        container.innerHTML = '';
-        // CRIA O IFRAME
-        const iframe = document.createElement('iframe');
-        // DEFINA AQUI A URL DO FORMULÁRIO GOOGLE FORMS
-        iframe.src = 'https://docs.google.com/forms/d/e/1FAIpQLSfaMr7-ermLAAO8S8zDk0WMcPrVX34mF2xhTrHiC1Z53GbIFQ/viewform?usp=sf_link';
-        // DEIXE O TAMANHO PARA O CSS CONTROLAR (SEM WIDTH/HEIGHT INLINE)
-        iframe.setAttribute('title', 'Formulário de Contato');
-        iframe.setAttribute('aria-label', 'Formulário de Contato');
-        // ADICIONA O IFRAME AO CONTAINER
-        container.appendChild(iframe);
+    if (container) {        
+        container.innerHTML = '';   // LIMPA QUALQUER CONTEÚDO ANTERIOR       
+        const iframe = document.createElement('iframe');     // CRIA O IFRAME        
+        iframe.src = 'https://docs.google.com/forms/d/e/1FAIpQLSfaMr7-ermLAAO8S8zDk0WMcPrVX34mF2xhTrHiC1Z53GbIFQ/viewform?usp=sf_link';    // DEFINA AQUI A URL DO FORMULÁRIO GOOGLE FORMS
+        iframe.setAttribute('title', 'Formulário de Contato');    // DEIXE O TAMANHO PARA O CSS CONTROLAR (SEM WIDTH/HEIGHT INLINE)
+        iframe.setAttribute('aria-label', 'Formulário de Contato');       
+        container.appendChild(iframe);        // ADICIONA O IFRAME AO CONTAINER
     }
 }
 
