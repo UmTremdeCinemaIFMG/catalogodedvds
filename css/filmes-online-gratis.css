@@ -1,32 +1,3 @@
-/* Estilos específicos para a página de Filmes Online Grátis */
-.barra-extra {
-    background-color: #00420c;
-    padding: 0px 0;
-    text-align: center;
-    box-shadow: var(--sombra);
-}
-
-.barra-extra .container {
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
-    gap: 20px;
-}
-
-.barra-extra a {
-    color: var(--branco);
-    text-decoration: none;
-    font-size: 14px;
-    padding: 5px 10px;
-    transition: var(--transicao);
-}
-
-.barra-extra a:hover {
-    text-decoration: underline;
-    background-color: rgba(255, 255, 255, 0.1);
-    border-radius: 4px;
-}
-
 .plataforma {
     background-color: var(--branco);
     border-radius: 8px;
