@@ -330,7 +330,8 @@ function renderFilmData(film) {
         </div>
         `;
     }
-        
+
+    // ADICIONA O CONTEÚDO AO CONTAINER
     // MONTA O HTML FINAL COM A ESTRUTURA CORRETA
     filmContainer.innerHTML = `
         <!-- BANNER COM CARROSSEL -->
@@ -355,26 +356,6 @@ function renderFilmData(film) {
         ${filmContent}
     `;
     
-    // ADICIONA O CONTEÚDO AO CONTAINER
-    filmContainer.innerHTML = `
-        <!-- Banner com carrossel -->
-        <div class="banner-carrossel">
-            <div class="banner-slides" id="bannerSlides"></div>
-            <div class="banner-controls">
-                <button class="banner-control" id="prevSlide">
-                    <i class="fas fa-chevron-left"></i>
-                </button>
-                <button class="banner-control" id="nextSlide">
-                    <i class="fas fa-chevron-right"></i>
-                </button>
-            </div>
-            <div class="banner-indicators" id="bannerIndicators"></div>
-        </div>
-        
-        ${filmHeader.outerHTML}
-        ${filmContent}
-    `;
-
     // ADICIONA O BOTÃO "ASSISTIR ONLINE" SE EXISTIR O LINK
     const controlsContainer = document.querySelector(".filme-page-controls");
     if (controlsContainer && film.assistirOnline && film.assistirOnline.trim() !== "") {
