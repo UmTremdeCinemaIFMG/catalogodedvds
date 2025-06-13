@@ -333,28 +333,41 @@ function renderFilmData(film) {
 
     // ADICIONA O CONTEÚDO AO CONTAINER
     // MONTA O HTML FINAL COM A ESTRUTURA CORRETA
-    filmContainer.innerHTML = `
-        <!-- BANNER COM CARROSSEL -->
-        <div class="banner-carrossel">
-            <div class="banner-slides" id="bannerSlides"></div>
-            <div class="banner-controls">
-                <button class="banner-control" id="prevSlide">
-                    <i class="fas fa-chevron-left"></i>
-                </button>
-                <button class="banner-control" id="nextSlide">
-                    <i class="fas fa-chevron-right"></i>
-                </button>
+filmContainer.innerHTML = `
+        <!-- CONTAINER PRINCIPAL -->
+        <div class="filme-principal">
+            <!-- BANNER COM CARROSSEL -->
+            <div class="banner-carrossel">
+                <div class="banner-slides" id="bannerSlides"></div>
+                <div class="banner-controls">
+                    <button class="banner-control" id="prevSlide">
+                        <i class="fas fa-chevron-left"></i>
+                    </button>
+                    <button class="banner-control" id="nextSlide">
+                        <i class="fas fa-chevron-right"></i>
+                    </button>
+                </div>
+                <div class="banner-indicators" id="bannerIndicators"></div>
             </div>
-            <div class="banner-indicators" id="bannerIndicators"></div>
+            
+            <!-- HEADER DO FILME -->
+            ${filmHeader.outerHTML}
+
+            <!-- CONTAINER DE COMPARTILHAMENTO -->
+            <div class="social-share-container" style="margin: 20px 0;"></div>
+            
+            <!-- CONTEÚDO DO FILME -->
+            <div class="filme-content">
+                ${filmContent}
+            </div>
         </div>
-        
-        <!-- CONTAINER DE COMPARTILHAMENTO NO TOPO -->
-        <div class="social-share-container"></div>
-        
-        <!-- INFORMAÇÕES DO FILME -->
-        ${filmHeader.outerHTML}
-        ${filmContent}
     `;
+
+    // CONFIGURA O COMPARTILHAMENTO APÓS RENDERIZAR O CONTEÚDO
+    setTimeout(() => {
+        console.log("CONFIGURANDO COMPARTILHAMENTO PARA O FILME:", film.title);
+        setupSharingButtons(film);
+    }, 100);
     
     // ADICIONA O BOTÃO "ASSISTIR ONLINE" SE EXISTIR O LINK
     const controlsContainer = document.querySelector(".filme-page-controls");
