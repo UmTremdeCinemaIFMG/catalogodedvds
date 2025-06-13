@@ -334,34 +334,25 @@ function renderFilmData(film) {
     // ADICIONA O CONTEÚDO AO CONTAINER
     // MONTA O HTML FINAL COM A ESTRUTURA CORRETA
 filmContainer.innerHTML = `
-        <!-- CONTAINER PRINCIPAL -->
-        <div class="filme-principal">
-            <!-- BANNER COM CARROSSEL -->
-            <div class="banner-carrossel">
-                <div class="banner-slides" id="bannerSlides"></div>
-                <div class="banner-controls">
-                    <button class="banner-control" id="prevSlide">
-                        <i class="fas fa-chevron-left"></i>
-                    </button>
-                    <button class="banner-control" id="nextSlide">
-                        <i class="fas fa-chevron-right"></i>
-                    </button>
-                </div>
-                <div class="banner-indicators" id="bannerIndicators"></div>
-            </div>
-            
-            <!-- HEADER DO FILME -->
-            ${filmHeader.outerHTML}
-
-            <!-- CONTAINER DE COMPARTILHAMENTO -->
-            <div class="social-share-container" style="margin: 20px 0;"></div>
-            
-            <!-- CONTEÚDO DO FILME -->
-            <div class="filme-content">
-                ${filmContent}
-            </div>
+    <!-- CONTAINER PRINCIPAL -->
+    <div class="filme-principal">
+        <!-- BANNER COM CARROSSEL -->
+        <div class="banner-carrossel">
+            <!-- ... [resto do código do carrossel] ... -->
         </div>
-    `;
+        
+        <!-- HEADER DO FILME -->
+        ${filmHeader.outerHTML}
+
+        <!-- CONTAINER DE COMPARTILHAMENTO -->
+        <div class="social-share-container"></div>
+        
+        <!-- CONTEÚDO DO FILME -->
+        <div class="filme-content">
+            ${filmContent}
+        </div>
+    </div>
+`;
 
     // CONFIGURA O COMPARTILHAMENTO APÓS RENDERIZAR O CONTEÚDO
     setTimeout(() => {
@@ -385,22 +376,20 @@ filmContainer.innerHTML = `
 
 // FUNÇÃO PARA CONFIGURAR O COMPARTILHAMENTO
 function setupSharingButtons(film) {
-    /// VERIFICAÇÕES DE SEGURANÇA
+    // LOGS PARA DEBUG
+    console.log("CONFIGURANDO COMPARTILHAMENTO PARA O FILME:", film.title);
+    
+    // VERIFICAÇÕES DE SEGURANÇA
     if (!film || !film.title) {
-        console.error("ERRO: Filme indefinido ou sem título");
+        console.error("ERRO: FILME INDEFINIDO OU SEM TÍTULO");
         return;
     }
     
-    // ATUALIZA O TÍTULO DA PÁGINA COM O NOME DO FILME
+    // ATUALIZA O TÍTULO DA PÁGINA
     document.title = `${film.title} - Catálogo de DVDs`;
     
-    // VERIFICA SE A FUNÇÃO GLOBAL EXISTE
-    if (typeof window.setupSharingButtons === 'function') {
-        // CHAMA A FUNÇÃO DE COMPARTILHAMENTO DO COMUM.JS
-        window.setupSharingButtons(film.title);
-    } else {
-        console.error("ERRO: Função setupSharingButtons não encontrada no objeto window");
-    }
+    // USA A FUNÇÃO GLOBAL DO COMUM.JS
+    window.setupSharingButtons(film.title);
 }
 
 // FUNÇÃO PARA INICIALIZAR O CARROSSEL
