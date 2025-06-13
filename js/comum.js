@@ -6,9 +6,6 @@
    HTML COMUM A TODAS AS PÁGINAS
    ========================================== */
 
-    
-
-
 // CONTEÚDO DO CABEÇALHO (INSERIDO VIA JS)
 const headerContent = `
     <div class="container">
@@ -118,7 +115,70 @@ function initExpandableSections() {
     });
 }
 
+// ===================================
+// FUNÇÕES COMUNS DE COMPARTILHAMENTO
+// ===================================
 
+// FUNÇÃO PARA CONFIGURAR OS BOTÕES DE COMPARTILHAMENTO
+// PARÂMETROS:
+// - title: TÍTULO QUE SERÁ USADO NO COMPARTILHAMENTO
+// - customUrl: URL OPCIONAL PARA COMPARTILHAR (SE NÃO FORNECIDA, USA A URL ATUAL)
+function setupSharingButtons(title, customUrl) {
+    // DEFINE AS VARIÁVEIS GLOBAIS PARA COMPARTILHAMENTO
+    window.shareTitle = title || document.title;
+    window.shareUrl = customUrl || window.location.href;
+    
+    // INSERE OS BOTÕES DE COMPARTILHAMENTO NO CONTAINER
+    const container = document.querySelector('.social-share-bottom-container');
+    if (container) {
+        container.innerHTML = `
+            <h3><i class="fas fa-share-alt"></i> Compartilhar</h3>
+            <div class="social-share-buttons">
+                <button class="social-share-button whatsapp" title="Compartilhar no WhatsApp" onclick="shareOnWhatsApp()">
+                    <i class="fab fa-whatsapp"></i>
+                </button>
+                <button class="social-share-button facebook" title="Compartilhar no Facebook" onclick="shareOnFacebook()">
+                    <i class="fab fa-facebook-f"></i>
+                </button>
+                <button class="social-share-button twitter" title="Compartilhar no X (Twitter)" onclick="shareOnTwitter()">
+                    <i class="fab fa-twitter"></i>
+                </button>
+                <button class="social-share-button copy" title="Copiar link" onclick="copyToClipboard()">
+                    <i class="fas fa-link"></i>
+                </button>
+            </div>
+        `;
+    }
+}
+
+// FUNÇÃO PARA COMPARTILHAR NO WHATSAPP
+function shareOnWhatsApp() {
+    const text = encodeURIComponent(`Confira: ${window.shareTitle} - ${window.shareUrl}`);
+    window.open(`https://api.whatsapp.com/send?text=${text}`, "_blank");
+}
+
+// FUNÇÃO PARA COMPARTILHAR NO FACEBOOK
+function shareOnFacebook() {
+    const url = encodeURIComponent(window.shareUrl);
+    window.open(`https://www.facebook.com/sharer/sharer.php?u=${url}`, "_blank");
+}
+
+// FUNÇÃO PARA COMPARTILHAR NO TWITTER
+function shareOnTwitter() {
+    const text = encodeURIComponent(`Confira: ${window.shareTitle}`);
+    const url = encodeURIComponent(window.shareUrl);
+    window.open(`https://twitter.com/intent/tweet?url=${url}&text=${text}`, "_blank");
+}
+
+// FUNÇÃO PARA COPIAR LINK PARA A ÁREA DE TRANSFERÊNCIA
+function copyToClipboard() {
+    navigator.clipboard.writeText(window.shareUrl).then(() => {
+        alert("Link copiado para a área de transferência!");
+    }).catch(err => {
+        console.error("Erro ao copiar link: ", err);
+        alert("Erro ao copiar o link.");
+    });
+}
 
 /* ==========================================
    FUNÇÕES DE INICIALIZAÇÃO DE CABEÇALHO E RODAPÉ
