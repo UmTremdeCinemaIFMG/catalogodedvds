@@ -129,6 +129,10 @@ const paginasComCompartilhamento = [
         pagina: 'filme.html',
         // FILME.HTML USA SUA PRÓPRIA LÓGICA DE TÍTULO VIA FILME.JS
         titulo: null
+    },
+    { 
+       pagina: 'cineclubes.html', 
+       titulo: 'Cineclubes - Catálogo de DVDs' 
     }
     // ADICIONE MAIS PÁGINAS AQUI CONFORME NECESSÁRIO
 ];
