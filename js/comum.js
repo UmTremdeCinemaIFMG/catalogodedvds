@@ -322,3 +322,8 @@ document.addEventListener('DOMContentLoaded', function() {
 
 // EXPORTA AS FUNÇÕES PARA USO GLOBAL
 window.toggleExpansivel = toggleExpansivel;
+window.setupSharingButtons = setupSharingButtons;
+window.shareOnWhatsApp = shareOnWhatsApp;
+window.shareOnFacebook = shareOnFacebook;
+window.shareOnTwitter = shareOnTwitter;
+window.copyToClipboard = copyToClipboard;
