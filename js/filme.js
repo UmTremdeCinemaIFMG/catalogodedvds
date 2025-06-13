@@ -107,8 +107,8 @@ async function loadFilmData() {
         
         // INICIALIZA O CARROSSEL
         initializeCarousel(transformedFilm);
-
-        // CONFIGURA O COMPARTILHAMENTO
+        
+        // CONFIGURA COMPARTILHAMENTO
         setupSharingButtons(transformedFilm);
         
     } catch (error) {
@@ -173,7 +173,7 @@ function renderFilmData(film) {
                 ${film.classification ? `<p><strong><i class="fas fa-info-circle"></i> Classificação Indicativa:</strong> ${film.classification}</p>` : ""}
                 ${film.classificationDescription && film.classificationDescription.length > 0 ? 
                     film.classificationDescription.map(desc => 
-                        `<p><strong><i class="fas fa-info-circle"></i> Descrição:</strong> <a href="${desc.url || '#'}" target="_blank" rel="noopener noreferrer">${desc.Descrição || 'N/A'}</a></p>`
+                        `<p><strong><i class="fas fa-info-circle"></i> Descrição:</strong> <a href="${desc.url || '#'}" target="_blank">${desc.Descrição || 'N/A'}</a></p>`
                     ).join('') 
                     : ''
                 }
@@ -208,7 +208,7 @@ function renderFilmData(film) {
                         const link = `https://brasil.un.org/pt-br/sdgs/${odsNumber}`;
                         return `
                             <div class="ods-flip-container">
-                                <a href="${link}" target="_blank" rel="noopener noreferrer" class="ods-flipper-link" title="ODS ${ods} - Clique para saber mais">
+                                <a href="${link}" target="_blank" class="ods-flipper-link" title="ODS ${ods} - Clique para saber mais">
                                     <div class="ods-flipper">
                                         <div class="ods-front">
                                             <img src="ods_icons/ods_${odsNumber}.svg" alt="Ícone do ODS ${ods}" loading="lazy">
@@ -306,7 +306,7 @@ function renderFilmData(film) {
     }
     if (film.website) {
         const websiteUrl = film.website.startsWith("http") ? film.website : `https://${film.website}`;
-        otherDetailsContent += `<p><strong><i class="fas fa-globe"></i> Website:</strong> <a href="${websiteUrl}" target="_blank" rel="noopener noreferrer">${film.website}</a></p>`;
+        otherDetailsContent += `<p><strong><i class="fas fa-globe"></i> Website:</strong> <a href="${websiteUrl}" target="_blank">${film.website}</a></p>`;
         hasAnyAdditionalInfo = true;
     }
 
@@ -331,35 +331,47 @@ function renderFilmData(film) {
         `;
     }
 
-    // ADICIONA O CONTEÚDO AO CONTAINER
-    // MONTA O HTML FINAL COM A ESTRUTURA CORRETA
-filmContainer.innerHTML = `
-    <!-- CONTAINER PRINCIPAL -->
-    <div class="filme-principal">
-        <!-- BANNER COM CARROSSEL -->
-        <div class="banner-carrossel">
-            <!-- ... [resto do código do carrossel] ... -->
-        </div>
-        
-        <!-- HEADER DO FILME -->
-        ${filmHeader.outerHTML}
-
-        <!-- CONTAINER DE COMPARTILHAMENTO -->
-        <div class="social-share-container"></div>
-        
-        <!-- CONTEÚDO DO FILME -->
-        <div class="filme-content">
-            ${filmContent}
+    // BOTÕES DE COMPARTILHAMENTO (Movidos para o final)
+    filmContent += `
+    <div class="filme-section social-share-bottom-container">
+        <h3><i class="fas fa-share-alt"></i> Compartilhar</h3>
+        <div class="social-share-buttons">
+            <button class="social-share-button whatsapp" title="Compartilhar no WhatsApp" onclick="shareOnWhatsApp()">
+                <i class="fab fa-whatsapp"></i>
+            </button>
+            <button class="social-share-button facebook" title="Compartilhar no Facebook" onclick="shareOnFacebook()">
+                <i class="fab fa-facebook-f"></i>
+            </button>
+            <button class="social-share-button twitter" title="Compartilhar no X (Twitter)" onclick="shareOnTwitter()">
+                <i class="fab fa-twitter"></i>
+            </button>
+            <button class="social-share-button copy" title="Copiar link" onclick="copyToClipboard()">
+                <i class="fas fa-link"></i>
+            </button>
         </div>
     </div>
-`;
-
-    // CONFIGURA O COMPARTILHAMENTO APÓS RENDERIZAR O CONTEÚDO
-    setTimeout(() => {
-        console.log("CONFIGURANDO COMPARTILHAMENTO PARA O FILME:", film.title);
-        setupSharingButtons(film);
-    }, 100);
+    `;
     
+    // ADICIONA O CONTEÚDO AO CONTAINER
+    filmContainer.innerHTML = `
+        <!-- Banner com carrossel -->
+        <div class="banner-carrossel">
+            <div class="banner-slides" id="bannerSlides"></div>
+            <div class="banner-controls">
+                <button class="banner-control" id="prevSlide">
+                    <i class="fas fa-chevron-left"></i>
+                </button>
+                <button class="banner-control" id="nextSlide">
+                    <i class="fas fa-chevron-right"></i>
+                </button>
+            </div>
+            <div class="banner-indicators" id="bannerIndicators"></div>
+        </div>
+        
+        ${filmHeader.outerHTML}
+        ${filmContent}
+    `;
+
     // ADICIONA O BOTÃO "ASSISTIR ONLINE" SE EXISTIR O LINK
     const controlsContainer = document.querySelector(".filme-page-controls");
     if (controlsContainer && film.assistirOnline && film.assistirOnline.trim() !== "") {
@@ -373,24 +385,6 @@ filmContainer.innerHTML = `
         controlsContainer.insertBefore(assistirOnlineBtn, controlsContainer.firstChild);
     }
 } 
-
-// FUNÇÃO PARA CONFIGURAR O COMPARTILHAMENTO
-function setupSharingButtons(film) {
-    // LOGS PARA DEBUG
-    console.log("CONFIGURANDO COMPARTILHAMENTO PARA O FILME:", film.title);
-    
-    // VERIFICAÇÕES DE SEGURANÇA
-    if (!film || !film.title) {
-        console.error("ERRO: FILME INDEFINIDO OU SEM TÍTULO");
-        return;
-    }
-    
-    // ATUALIZA O TÍTULO DA PÁGINA
-    document.title = `${film.title} - Catálogo de DVDs`;
-    
-    // USA A FUNÇÃO GLOBAL DO COMUM.JS
-    window.setupSharingButtons(film.title);
-}
 
 // FUNÇÃO PARA INICIALIZAR O CARROSSEL
 function initializeCarousel(film) {
@@ -598,6 +592,42 @@ function setupExpandableContent() {
     });
 }
 
+// FUNÇÕES DE COMPARTILHAMENTO
+function setupSharingButtons(film) {
+    document.title = `${film.title} - Catálogo de DVDs`;
+    // As funções de compartilhamento individuais (shareOnWhatsApp, etc.) 
+    // usarão a URL atual e o título do filme.
+    // Não precisam de configuração extra aqui se já usam `window.location.href` e `document.title`
+    // ou se podemos passar `film.title` para elas.
+    // Vamos assumir que elas pegam da página ou definimos globalmente.
+    window.shareFilmTitle = film.title;
+    window.shareFilmUrl = window.location.href;
+}
+
+function shareOnWhatsApp() {
+    const text = encodeURIComponent(`Confira este filme: ${window.shareFilmTitle} - ${window.shareFilmUrl}`);
+    window.open(`https://api.whatsapp.com/send?text=${text}`, "_blank");
+}
+
+function shareOnFacebook() {
+    const url = encodeURIComponent(window.shareFilmUrl);
+    window.open(`https://www.facebook.com/sharer/sharer.php?u=${url}`, "_blank");
+}
+
+function shareOnTwitter() {
+    const text = encodeURIComponent(`Confira este filme: ${window.shareFilmTitle}`);
+    const url = encodeURIComponent(window.shareFilmUrl);
+    window.open(`https://twitter.com/intent/tweet?url=${url}&text=${text}`, "_blank");
+}
+
+function copyToClipboard() {
+    navigator.clipboard.writeText(window.shareFilmUrl).then(() => {
+        alert("Link copiado para a área de transferência!");
+    }).catch(err => {
+        console.error("Erro ao copiar link: ", err);
+        alert("Erro ao copiar o link.");
+    });
+}
 
 // EXTRAI ID DO YOUTUBE DE UMA URL
 function getYoutubeId(url) {
