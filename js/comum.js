@@ -134,18 +134,21 @@ const paginasComCompartilhamento = [
 ];
 
 // FUNÇÃO PARA INICIALIZAR COMPARTILHAMENTO AUTOMATICAMENTE
-function inicializarCompartilhamento() {
-    // OBTÉM O NOME DA PÁGINA ATUAL DA URL
+// OBTÉM O NOME DA PÁGINA ATUAL DA URL
     const paginaAtual = window.location.pathname.split('/').pop() || 'index.html';
+    
+    // NÃO INICIALIZA SE FOR A PÁGINA DO FILME
+    // POIS O FILME.JS CUIDA DISSO
+    if (paginaAtual === 'filme.html') {
+        return;
+    }
     
     // PROCURA A PÁGINA ATUAL NA LISTA DE PÁGINAS COM COMPARTILHAMENTO
     const configuracao = paginasComCompartilhamento.find(p => p.pagina === paginaAtual);
     
     // SE A PÁGINA ATUAL ESTÁ NA LISTA, INICIALIZA OS BOTÕES DE COMPARTILHAMENTO
-    if (configuracao) {
-        // SE O TÍTULO NÃO FOR NULL, USA ELE; SENÃO USA O TÍTULO DA PÁGINA
-        const titulo = configuracao.titulo || document.title;
-        setupSharingButtons(titulo);
+    if (configuracao && configuracao.titulo) {
+        setupSharingButtons(configuracao.titulo);
     }
 }
 
