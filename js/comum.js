@@ -134,7 +134,8 @@ const paginasComCompartilhamento = [
 ];
 
 // FUNÇÃO PARA INICIALIZAR COMPARTILHAMENTO AUTOMATICAMENTE
-// OBTÉM O NOME DA PÁGINA ATUAL DA URL
+function inicializarCompartilhamento() {
+   // OBTÉM O NOME DA PÁGINA ATUAL DA URL
     const paginaAtual = window.location.pathname.split('/').pop() || 'index.html';
     
     // NÃO INICIALIZA SE FOR A PÁGINA DO FILME
@@ -150,7 +151,8 @@ const paginasComCompartilhamento = [
     if (configuracao && configuracao.titulo) {
         setupSharingButtons(configuracao.titulo);
     }
-}
+} 
+    
 
 // FUNÇÃO PARA CONFIGURAR OS BOTÕES DE COMPARTILHAMENTO
 // PARÂMETROS:
