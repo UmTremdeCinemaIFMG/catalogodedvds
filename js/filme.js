@@ -328,8 +328,10 @@ function renderFilmData(film) {
         `;
     }
         
-    <!-- BOTÕES DE COMPARTILHAMENTO -->
-    <div class="social-share-container"></div>
+    // BOTÕES DE COMPARTILHAMENTO
+    filmContent += `
+        <div class="social-share-container"></div>
+    `;
     
     // ADICIONA O CONTEÚDO AO CONTAINER
     filmContainer.innerHTML = `
