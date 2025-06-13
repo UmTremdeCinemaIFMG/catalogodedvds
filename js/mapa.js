@@ -1,169 +1,377 @@
-// VARIÁVEIS GLOBAIS OU CONFIGURAÇÕES INICIAIS
-var map;
-var markers = [];
-var infoWindow;
-var locationSelect;
+// OBJETO COM AS COORDENADAS DAS CAPITAIS E CIDADES
+const coordenadas = {
+    // COORDENADAS DAS CAPITAIS DOS ESTADOS
+    capitais: {
+        'AC': [-9.9754, -67.8249],  // RIO BRANCO
+        'AL': [-9.6498, -35.7089],  // MACEIÓ
+        'AM': [-3.1190, -60.0217],  // MANAUS
+        'AP': [0.0344, -51.0665],   // MACAPÁ
+        'BA': [-12.9711, -38.5108], // SALVADOR
+        'CE': [-3.7172, -38.5433],  // FORTALEZA
+        'DF': [-15.7975, -47.8919], // BRASÍLIA
+        'ES': [-20.3222, -40.3381], // VITÓRIA
+        'GO': [-16.6869, -49.2648], // GOIÂNIA
+        'MA': [-2.5307, -44.3027],  // SÃO LUÍS
+        'MG': [-19.9167, -43.9345], // BELO HORIZONTE
+        'MS': [-20.4697, -54.6201], // CAMPO GRANDE
+        'MT': [-15.6014, -56.0979], // CUIABÁ
+        'PA': [-1.4558, -48.4902],  // BELÉM
+        'PB': [-7.1195, -34.8450],  // JOÃO PESSOA
+        'PE': [-8.0476, -34.8770],  // RECIFE
+        'PI': [-5.0892, -42.8019],  // TERESINA
+        'PR': [-25.4195, -49.2646], // CURITIBA
+        'RJ': [-22.9068, -43.1729], // RIO DE JANEIRO
+        'RN': [-5.7793, -35.2009],  // NATAL
+        'RO': [-8.7619, -63.9039],  // PORTO VELHO
+        'RR': [2.8235, -60.6758],   // BOA VISTA
+        'RS': [-30.0346, -51.2177], // PORTO ALEGRE
+        'SC': [-27.5945, -48.5477], // FLORIANÓPOLIS
+        'SE': [-10.9091, -37.0677], // ARACAJU
+        'SP': [-23.5505, -46.6333], // SÃO PAULO
+        'TO': [-10.2128, -48.3603]  // PALMAS
+    },
+    // COORDENADAS DAS OUTRAS CIDADES
+    cidades: {
+        'São Paulo': [-23.5505, -46.6333],
+        'Rio de Janeiro': [-22.9068, -43.1729],
+        'Salvador': [-12.9711, -38.5108],
+        'Brasília': [-15.7975, -47.8919],
+        'Fortaleza': [-3.7172, -38.5433],
+        'Belo Horizonte': [-19.9167, -43.9345],
+        'Manaus': [-3.1190, -60.0217],
+        'Curitiba': [-25.4195, -49.2646],
+        'Recife': [-8.0476, -34.8770],
+        'Porto Alegre': [-30.0346, -51.2177],
+        'Santos': [-23.9618, -46.3322],
+        'Campinas': [-22.9099, -47.0626],
+        'São José dos Campos': [-23.1791, -45.8872],
+        'Santo André': [-23.6639, -46.5383],
+        'Niterói': [-22.8832, -43.1036],
+        'Sabará': [-19.8889, -43.8054]
+    }
+};
 
-// FUNÇÃO DE INICIALIZAÇÃO DO MAPA
-function initMap() {
-    var brazil = { lat: -14.2350, lng: -51.9253 }; // CENTRO DO BRASIL
-    map = new google.maps.Map(document.getElementById('map'), {
-        center: brazil,
-        zoom: 4,
-        minZoom: 4,
-        maxZoom: 10,
-        streetViewControl: false,
-        mapTypeControl: false,
-        fullscreenControl: false,
-        zoomControl: true,
-        zoomControlOptions: {
-            position: google.maps.ControlPosition.RIGHT_BOTTOM
+// AGUARDA O CARREGAMENTO COMPLETO DA PÁGINA
+document.addEventListener('DOMContentLoaded', function() {
+    // INICIALIZAÇÃO DO MAPA COM CONFIGURAÇÕES OTIMIZADAS
+    const map = L.map('map', {
+        zoomControl: true,  // ATIVA O CONTROLE DE ZOOM
+        dragging: true,     // PERMITE ARRASTAR O MAPA
+        tap: true,         // PERMITE TOQUES
+        touchZoom: true,   // PERMITE ZOOM COM TOQUE
+        scrollWheelZoom: true // PERMITE ZOOM COM RODA DO MOUSE
+    }).setView([-15.7975, -47.8919], 4);
+
+    // ADICIONA A CAMADA DO MAPA (TILES)
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+        maxZoom: 18,
+        minZoom: 2
+    }).addTo(map);
+
+    // VARIÁVEIS GLOBAIS
+    let filmes = [];
+    let filmesOriginais = []; // ARMAZENA OS DADOS ORIGINAIS PARA FILTROS ENCADEADOS
+    
+    // INICIALIZA O CLUSTER DE MARCADORES
+    const marcadores = L.markerClusterGroup({
+        showCoverageOnHover: true,
+        zoomToBoundsOnClick: true,
+        spiderfyOnMaxZoom: true,
+        removeOutsideVisibleBounds: true,
+        disableClusteringAtZoom: 15, // DESATIVA CLUSTERING EM ZOOM MUITO PRÓXIMO
+        maxClusterRadius: 80, // RAIO MÁXIMO PARA AGRUPAR MARCADORES
+        iconCreateFunction: function(cluster) {
+            const count = cluster.getChildCount();
+            let size = 'small';
+            
+            if (count > 50) {
+                size = 'large';
+            } else if (count > 20) {
+                size = 'medium';
+            }
+            
+            return L.divIcon({
+                html: `<div><span>${count}</span></div>`,
+                className: `marker-cluster marker-cluster-${size}`,
+                iconSize: L.point(40, 40)
+            });
         }
     });
+    
+    // ADICIONA O CLUSTER AO MAPA
+    map.addLayer(marcadores);
 
-    infoWindow = new google.maps.InfoWindow();
+    // FUNÇÃO PARA SEPARAR UFs MÚLTIPLAS
+    function getUFs(ufString) {
+        if (!ufString) return [];
+        // DIVIDE POR VÍRGULA, BARRA OU ESPAÇO E FILTRA VALORES VAZIOS
+        return ufString.split(/[,/\s]+/).map(uf => uf.trim()).filter(Boolean);
+    }
 
-    // EVENT LISTENER PARA FECHAR INFOWINDOW AO CLICAR NO MAPA
-    map.addListener('click', function () {
-        infoWindow.close();
-    });
+    // FUNÇÃO PARA OBTER COORDENADAS DE UM FILME
+    function getCoordenadas(filme) {
+        if (filme.cidade && filme.cidade.trim() !== '') {
+            const coords = coordenadas.cidades[filme.cidade];
+            if (coords) return coords;
+        }
+        
+        if (filme.UF) {
+            const uf = filme.UF.trim();
+            return coordenadas.capitais[uf];
+        }
+        
+        return [-15.7975, -47.8919]; // BRASÍLIA COMO PONTO PADRÃO
+    }
 
-    locationSelect = document.getElementById('location-select');
-    locationSelect.onchange = function () {
-        clearMarkers();
-        showStoresMarkers(locationSelect.value);
-    };
+    // FUNÇÃO PARA CRIAR O CONTEÚDO DO POPUP ADAPTATIVO
+    function criarConteudoPopup(filme) {
+        const isMobile = window.innerWidth <= 768;
+        // CODIFICA O TÍTULO DO FILME PARA A URL (MESMO PADRÃO DA PÁGINA INICIAL)
+        const encodedTitle = encodeURIComponent(filme['Título do filme']);
+        
+        return `
+            <div class="filme-popup">
+                <h5>${filme['Título do filme']}</h5>
+                <p>
+                    <strong>Direção:</strong> ${filme.Direção}<br>
+                    <strong>Ano:</strong> ${filme.Ano}<br>
+                    ${isMobile ? `<strong>Local:</strong> ${filme.cidade || filme.UF}<br>` : 
+                               `<strong>Estado:</strong> ${filme.UF}<br>
+                                ${filme.cidade ? `<strong>Cidade:</strong> ${filme.cidade}<br>` : ''}`}
+                    <strong>Gênero:</strong> ${filme.Gênero || filme.GEN || 'Não informado'}<br>
+                    ${isMobile ? '' : `<strong>Duração:</strong> ${filme['Dur.(´)']} minutos`}
+                </p>
+                ${filme.Gênero ? `<span class="genero">${filme.Gênero}</span>` : ''}
+                <a href="filme.html?titulo=${encodedTitle}" class="ver-mais">Ver mais informações</a>
+            </div>
+        `;
+    }
 
-    // CARREGA OS DADOS DOS FILMES
-    loadStores();
-}
+    // FUNÇÃO PARA ATUALIZAR O MAPA
+    function atualizarMapa() {
+        marcadores.clearLayers();
 
-// FUNÇÃO PARA CARREGAR OS DADOS DOS FILMES (STORES)
-function loadStores() {
-    fetch('js/catalogo.json') // ASSUMINDO QUE OS DADOS ESTÃO EM catalogo.json
-        .then(response => response.json())
-        .then(data => {
-            // PROCESSA OS DADOS E POPULA O DROPDOWN
-            createMarkers(data.stores);
-            setLocations(data.stores); // ESTA FUNÇÃO PROVAVELMENTE POPULA O DROPDOWN
+        const ufSelecionada = document.getElementById('filterUF').value;
+        const cidadeSelecionada = document.getElementById('filterCity').value;
+        const anoSelecionado = document.getElementById('filterYear').value;
+
+        let filmesVisiveis = 0;
+
+        filmes.forEach(filme => {
+            // VERIFICA OS FILTROS SELECIONADOS
+            if ((!ufSelecionada || filme.UF === ufSelecionada) &&
+                (!cidadeSelecionada || filme.cidade === cidadeSelecionada) &&
+                (!anoSelecionado || filme.Ano.toString() === anoSelecionado)) {
+                
+                const coords = getCoordenadas(filme);
+                if (coords) {
+                    // ADICIONA UM PEQUENO DESLOCAMENTO ALEATÓRIO PARA EVITAR SOBREPOSIÇÃO TOTAL
+                    const jitter = 0.0005; // APROXIMADAMENTE 50 METROS
+                    const adjustedCoords = [
+                        coords[0] + (Math.random() - 0.5) * jitter,
+                        coords[1] + (Math.random() - 0.5) * jitter
+                    ];
+                    
+                    const marker = L.marker(adjustedCoords)
+                        .bindPopup(criarConteudoPopup(filme), {
+                            maxWidth: window.innerWidth <= 768 ? 200 : 300,
+                            autoPan: true,
+                            closeButton: true
+                        });
+                    
+                    // ADICIONA O MARCADOR AO CLUSTER
+                    marcadores.addLayer(marker);
+                    filmesVisiveis++;
+                }
+            }
+        });
+
+        document.getElementById('filmMapCount').textContent = filmesVisiveis;
+    }
+
+    // FUNÇÃO PARA ATUALIZAR FILTROS ENCADEADOS
+    function atualizarFiltrosEncadeados() {
+        const ufSelecionada = document.getElementById('filterUF').value;
+        const cidadeSelecionada = document.getElementById('filterCity').value;
+        
+        // FILTRA FILMES BASEADO NA UF SELECIONADA
+        let filmesFiltrados = filmesOriginais;
+        if (ufSelecionada) {
+            filmesFiltrados = filmesOriginais.filter(filme => filme.UF === ufSelecionada);
+        }
+        
+        // ATUALIZA O SELECT DE CIDADES
+        const selectCity = document.getElementById('filterCity');
+        const cidadeAtual = selectCity.value;
+        selectCity.innerHTML = '<option value="">Todas as Cidades</option>';
+        
+        const cidadesDisponiveis = new Set();
+        filmesFiltrados.forEach(filme => {
+            if (filme.cidade) cidadesDisponiveis.add(filme.cidade);
+        });
+        
+        Array.from(cidadesDisponiveis).sort().forEach(cidade => {
+            const option = document.createElement('option');
+            option.value = cidade;
+            option.textContent = cidade;
+            if (cidade === cidadeAtual) option.selected = true;
+            selectCity.appendChild(option);
+        });
+        
+        // FILTRA AINDA MAIS BASEADO NA CIDADE SELECIONADA
+        if (cidadeSelecionada) {
+            filmesFiltrados = filmesFiltrados.filter(filme => filme.cidade === cidadeSelecionada);
+        }
+        
+        // ATUALIZA O SELECT DE ANOS
+        const selectYear = document.getElementById('filterYear');
+        const anoAtual = selectYear.value;
+        selectYear.innerHTML = '<option value="">Todos os Anos</option>';
+        
+        const anosDisponiveis = new Set();
+        filmesFiltrados.forEach(filme => {
+            if (filme.Ano) anosDisponiveis.add(filme.Ano);
+        });
+        
+        Array.from(anosDisponiveis).sort((a, b) => b - a).forEach(ano => {
+            const option = document.createElement('option');
+            option.value = ano;
+            option.textContent = ano;
+            if (ano.toString() === anoAtual) option.selected = true;
+            selectYear.appendChild(option);
+        });
+    }
+
+    // FUNÇÃO PARA PREENCHER OS FILTROS INICIAIS
+    function preencherFiltros() {
+        const ufs = new Set();
+        const cidades = new Set();
+        const anos = new Set();
+
+        filmesOriginais.forEach(filme => {
+            if (filme.UF) ufs.add(filme.UF);
+            if (filme.cidade) cidades.add(filme.cidade);
+            if (filme.Ano) anos.add(filme.Ano);
+        });
+
+        // PREENCHE SELECT DE UF
+        const selectUF = document.getElementById('filterUF');
+        Array.from(ufs).sort().forEach(uf => {
+            const option = document.createElement('option');
+            option.value = uf;
+            option.textContent = uf;
+            selectUF.appendChild(option);
+        });
+
+        // PREENCHE SELECT DE CIDADE (INICIALMENTE COM TODAS AS CIDADES)
+        const selectCity = document.getElementById('filterCity');
+        Array.from(cidades).sort().forEach(cidade => {
+            const option = document.createElement('option');
+            option.value = cidade;
+            option.textContent = cidade;
+            selectCity.appendChild(option);
+        });
+
+        // PREENCHE SELECT DE ANO (INICIALMENTE COM TODOS OS ANOS)
+        const selectAno = document.getElementById('filterYear');
+        Array.from(anos).sort((a, b) => b - a).forEach(ano => {
+            const option = document.createElement('option');
+            option.value = ano;
+            option.textContent = ano;
+            selectAno.appendChild(option);
+        });
+
+        // ADICIONA LISTENERS PARA OS FILTROS COM LÓGICA ENCADEADA
+        document.getElementById('filterUF').addEventListener('change', function() {
+            atualizarFiltrosEncadeados();
+            atualizarMapa();
+        });
+        
+        document.getElementById('filterCity').addEventListener('change', function() {
+            atualizarFiltrosEncadeados();
+            atualizarMapa();
+        });
+        
+        document.getElementById('filterYear').addEventListener('change', atualizarMapa);
+    }
+
+    // FUNÇÃO PARA ATUALIZAR AS ESTATÍSTICAS
+    function atualizarEstatisticas() {
+        const totalFilmes = filmes.length;
+        const estados = new Set(filmes.map(f => f.UF));
+        const cidades = new Set(filmes.filter(f => f.cidade).map(f => f.cidade));
+        const generos = new Map();
+        
+        filmes.forEach(filme => {
+            const genero = filme.Gênero || filme.GEN || 'Não informado';
+            generos.set(genero, (generos.get(genero) || 0) + 1);
+        });
+
+        document.getElementById('stats').innerHTML = `
+            <p><strong>Total de Filmes:</strong> ${totalFilmes}</p>
+            <p><strong>Estados:</strong> ${estados.size}</p>
+            <p><strong>Cidades:</strong> ${cidades.size}</p>
+            <p><strong>Principais Gêneros:</strong></p>
+            <ul>
+                ${Array.from(generos)
+                    .sort((a, b) => b[1] - a[1])
+                    .slice(0, 5)
+                    .map(([genero, count]) => 
+                        `<li><span>${genero}</span> <span>${count} filme${count > 1 ? 's' : ''}</span></li>`)
+                    .join('')}
+            </ul>
+        `;
+    }
+
+    // CARREGA E PROCESSA OS DADOS DO CATÁLOGO
+    fetch('catalogo.json')
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('ERRO AO CARREGAR O CATÁLOGO');
+            }
+            return response.json();
         })
-        .catch(error => console.error('ERRO AO CARREGAR OS DADOS:', error));
-}
-
-// FUNÇÃO PARA CRIAR OS MARCADORES NO MAPA
-function createMarkers(stores) {
-    stores.forEach(function (store) {
-        // MODIFICAÇÃO 1: PRÉ-PROCESSAR A STRING DE ESTADOS EM UM ARRAY
-        if (store.state) {
-            // DIVIDE A STRING POR '/' OU ',' E REMOVE ESPAÇOS EM BRANCO
-            store.parsedStates = store.state.split(/[\/,]/).map(s => s.trim()).filter(s => s !== '');
-        } else {
-            store.parsedStates = []; // GARANTE QUE SEJA UM ARRAY MESMO SE 'STATE' ESTIVER AUSENTE
-        }
-
-        var latLng = { lat: store.coordinates.latitude, lng: store.coordinates.longitude };
-        var marker = new google.maps.Marker({
-            map: map,
-            position: latLng,
-            title: store.name,
-            icon: {
-                url: 'img/marker.png', // ÍCONE PERSONALIZADO
-                scaledSize: new google.maps.Size(30, 30)
-            }
+        .then(data => {
+            console.log('DADOS CARREGADOS COM SUCESSO:', data.length, 'FILMES');
+            
+            // ARMAZENA OS DADOS ORIGINAIS PARA FILTROS ENCADEADOS
+            filmesOriginais = data;
+            
+            // EXPANDE FILMES COM MÚLTIPLAS UFs
+            filmes = data.reduce((acc, filme) => {
+                const ufs = getUFs(filme.UF);
+                if (ufs.length > 0) {
+                    ufs.forEach(uf => {
+                        acc.push({...filme, UF: uf});
+                    });
+                } else {
+                    acc.push(filme);
+                }
+                return acc;
+            }, []);
+            
+            // INICIALIZA O MAPA E SEUS COMPONENTES
+            atualizarMapa();
+            preencherFiltros();
+            atualizarEstatisticas();
+        })
+        .catch(error => {
+            console.error('ERRO AO CARREGAR O CATÁLOGO:', error);
+            document.getElementById('map').innerHTML = `
+                <div style="text-align: center; padding: 20px;">
+                    <p>Erro ao carregar o mapa. Por favor, tente novamente.</p>
+                </div>
+            `;
         });
 
-        marker.storeInfo = store; // ARMAZENA AS INFORMAÇÕES DO FILME NO MARCADOR (AGORA COM PARSEDSTATES)
-        marker.addListener('click', function () {
-            displayStore(this.storeInfo);
-        });
-        markers.push(marker);
+    // FORÇA UMA ATUALIZAÇÃO DO MAPA APÓS O CARREGAMENTO
+    setTimeout(() => {
+        map.invalidateSize();
+    }, 100);
+    
+    // ADICIONA EVENTO DE REDIMENSIONAMENTO PARA GARANTIR QUE O MAPA SE AJUSTE
+    window.addEventListener('resize', function() {
+        map.invalidateSize();
     });
-}
-
-// FUNÇÃO PARA EXIBIR INFORMAÇÕES DO FILME NO INFOWINDOW
-function displayStore(store) {
-    var html = `
-        <div class="store-info-window">
-            <div class="store-info-name">${store.name}</div>
-            <div class="store-info-address">${store.addressLines[0]}</div>
-            <div class="store-info-address">${store.addressLines[1]}</div>
-            <div class="store-info-phone">${store.phoneNumber}</div>
-            <div class="store-info-state">Estado: ${store.state}</div>
-            <div class="store-info-genre">Gênero: ${store.genre}</div>
-            <div class="store-info-year">Ano: ${store.year}</div>
-            <div class="store-info-director">Diretor: ${store.director}</div>
-            <div class="store-info-cast">Elenco: ${store.cast}</div>
-            <div class="store-info-synopsis">Sinopse: ${store.synopsis}</div>
-        </div>
-    `;
-    infoWindow.setContent(html);
-    infoWindow.open(map, markers.find(m => m.storeInfo.name === store.name)); // ABRE NO MARCADOR CORRETO
-}
-
-// FUNÇÃO PARA LIMPAR OS MARCADORES EXISTENTES
-function clearMarkers() {
-    for (var i = 0; i < markers.length; i++) {
-        markers[i].setMap(null);
-    }
-    markers.length = 0; // LIMPA O ARRAY DE MARCADORES
-}
-
-// FUNÇÃO PARA MOSTRAR MARCADORES COM BASE NA SELEÇÃO DO DROPDOWN
-function showStoresMarkers(selectedState) { // RENOMEADO 'STATE' PARA 'SELECTEDSTATE' PARA CLAREZA
-    var bounds = new google.maps.LatLngBounds();
-    markers.forEach(function (marker) {
-        var shouldShow = false;
-        if (selectedState === "Todos os Estados") {
-            shouldShow = true;
-        } else {
-            // MODIFICAÇÃO 2: VERIFICAR SE O ESTADO SELECIONADO ESTÁ INCLUÍDO NO ARRAY PARSEDSTATES
-            if (marker.storeInfo.parsedStates && marker.storeInfo.parsedStates.includes(selectedState)) {
-                shouldShow = true;
-            }
-        }
-
-        if (shouldShow) {
-            marker.setMap(map);
-            bounds.extend(marker.getPosition());
-        } else {
-            marker.setMap(null);
-        }
-    });
-    if (selectedState !== "Todos os Estados") {
-        map.fitBounds(bounds);
-    }
-}
-
-// FUNÇÃO PARA POPULAR O DROPDOWN DE LOCAIS
-function setLocations(stores) {
-    var locationOptions = ["Todos os Estados"];
-    var uniqueStates = new Set(); // USAR UM SET PARA GARANTIR ESTADOS ÚNICOS
-
-    stores.forEach(function (store) {
-        // A PROPRIEDADE 'STATE' DO OBJETO 'STORE' É CRUCIAL AQUI.
-        // SE 'STORE.STATE' CONTIVER MÚLTIPLOS ESTADOS SEPARADOS POR '/' OU ',',
-        // PRECISAREMOS DIVIDI-LOS.
-        if (store.state) {
-            // SUPONDO QUE OS ESTADOS PODEM VIR COMO "AL", "AL/RJ", "BA, DF, MA"
-            // DIVIDIR POR '/' OU ',' E ADICIONAR CADA ESTADO INDIVIDUALMENTE
-            var statesInStore = store.state.split(/[\/,]/).map(s => s.trim()).filter(s => s !== '');
-            statesInStore.forEach(s => uniqueStates.add(s));
-        }
-    });
-
-    // ADICIONAR OS ESTADOS ÚNICOS E ORDENADOS AO ARRAY DE OPÇÕES
-    var sortedUniqueStates = Array.from(uniqueStates).sort();
-    locationOptions = locationOptions.concat(sortedUniqueStates);
-
-    // LIMPAR E POPULAR O SELECT
-    locationSelect.innerHTML = ''; // LIMPA AS OPÇÕES EXISTENTES
-    locationOptions.forEach(function (location) {
-        var option = document.createElement('option');
-        option.value = location;
-        option.textContent = location;
-        locationSelect.appendChild(option);
-    });
-}
-
-// ADICIONAR UM LISTENER PARA O EVENTO 'DOMCONTENTLOADED' PARA GARANTIR QUE O DOM ESTEJA PRONTO
-document.addEventListener('DOMContentLoaded', initMap);
+});
