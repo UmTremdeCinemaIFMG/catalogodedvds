@@ -6,6 +6,28 @@
    HTML COMUM A TODAS AS PÁGINAS
    ========================================== */
 
+    // BOTÕES DE COMPARTILHAMENTO (Movidos para o final)
+    filmContent += `
+    <div class="filme-section social-share-bottom-container">
+        <h3><i class="fas fa-share-alt"></i> Compartilhar</h3>
+        <div class="social-share-buttons">
+            <button class="social-share-button whatsapp" title="Compartilhar no WhatsApp" onclick="shareOnWhatsApp()">
+                <i class="fab fa-whatsapp"></i>
+            </button>
+            <button class="social-share-button facebook" title="Compartilhar no Facebook" onclick="shareOnFacebook()">
+                <i class="fab fa-facebook-f"></i>
+            </button>
+            <button class="social-share-button twitter" title="Compartilhar no X (Twitter)" onclick="shareOnTwitter()">
+                <i class="fab fa-twitter"></i>
+            </button>
+            <button class="social-share-button copy" title="Copiar link" onclick="copyToClipboard()">
+                <i class="fas fa-link"></i>
+            </button>
+        </div>
+    </div>
+    `;
+
+
 // CONTEÚDO DO CABEÇALHO (INSERIDO VIA JS)
 const headerContent = `
     <div class="container">
