@@ -107,6 +107,9 @@ async function loadFilmData() {
         
         // INICIALIZA O CARROSSEL
         initializeCarousel(transformedFilm);
+
+        // CONFIGURA O COMPARTILHAMENTO
+        setupSharingButtons(transformedFilm);
         
     } catch (error) {
         console.error("Erro:", error);
@@ -366,6 +369,15 @@ function renderFilmData(film) {
         controlsContainer.insertBefore(assistirOnlineBtn, controlsContainer.firstChild);
     }
 } 
+
+// FUNÇÃO PARA CONFIGURAR O COMPARTILHAMENTO
+function setupSharingButtons(film) {
+    // ATUALIZA O TÍTULO DA PÁGINA COM O NOME DO FILME
+    document.title = `${film.title} - Catálogo de DVDs`;
+    
+    // CHAMA A FUNÇÃO DE COMPARTILHAMENTO DO COMUM.JS
+    window.setupSharingButtons(film.title);
+}
 
 // FUNÇÃO PARA INICIALIZAR O CARROSSEL
 function initializeCarousel(film) {
