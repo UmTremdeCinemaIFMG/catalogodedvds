@@ -682,12 +682,6 @@ async function initializeApp() {
 document.addEventListener('DOMContentLoaded', () => {
     initializeApp();
     
-    document.getElementById('searchInput').addEventListener('input', filterAndRenderFilms);
-    document.getElementById('sortSelect').addEventListener('change', filterAndRenderFilms);
-    document.getElementById('classificationSelect').addEventListener('change', filterAndRenderFilms);
-    document.getElementById('genreSelect').addEventListener('change', filterAndRenderFilms);
-    document.getElementById('accessibilitySelect').addEventListener('change', filterAndRenderFilms);
-   
     // MODAL FALE CONOSCO
     const btnFaleConosco = document.getElementById('btnFaleConosco');
     const modalFaleConosco = document.getElementById('modalFaleConosco');
