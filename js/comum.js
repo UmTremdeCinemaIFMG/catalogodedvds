@@ -162,7 +162,7 @@ function setupSharingButtons(title, customUrl) {
     const container = document.querySelector('.social-share-container');
     if (container) {
         container.innerHTML = `
-            <h3 class="social-share-title"><i class="fas fa-share-alt"></i> Compartilhar</h3>
+            <h2 class="social-share-title"><i class="fas fa-share-alt"></i> Compartilhar</h2>
             <div class="social-share-buttons">
                 <button class="social-share-button whatsapp" title="Compartilhar no WhatsApp" onclick="shareOnWhatsApp()">
                     <i class="fab fa-whatsapp"></i>
