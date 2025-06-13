@@ -40,7 +40,7 @@ function initMap() {
 
 // FUNÇÃO PARA CARREGAR OS DADOS DOS FILMES (STORES)
 function loadStores() {
-    fetch('js/stores.json') // ASSUMINDO QUE OS DADOS ESTÃO EM STORES.JSON
+    fetch('js/catalogo.json') // ASSUMINDO QUE OS DADOS ESTÃO EM catalogo.json
         .then(response => response.json())
         .then(data => {
             // PROCESSA OS DADOS E POPULA O DROPDOWN
