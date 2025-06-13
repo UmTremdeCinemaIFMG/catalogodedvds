@@ -681,34 +681,6 @@ async function initializeApp() {
 
 document.addEventListener('DOMContentLoaded', () => {
     initializeApp();
-    
-    // MODAL FALE CONOSCO
-    const btnFaleConosco = document.getElementById('btnFaleConosco');
-    const modalFaleConosco = document.getElementById('modalFaleConosco');
-    const closeFaleConosco = modalFaleConosco.querySelector('.close');
-
-    btnFaleConosco.onclick = () => {
-        modalFaleConosco.style.display = 'block';
-        setTimeout(() => modalFaleConosco.classList.add('show'), 10);
-    }
-
-    closeFaleConosco.onclick = () => {
-        modalFaleConosco.classList.remove('show');
-        setTimeout(() => modalFaleConosco.style.display = 'none', 300);
-    }
-
-    window.onclick = (event) => {
-        // Fecha modal Fale Conosco se clicar fora
-        if (event.target == modalFaleConosco) {
-            modalFaleConosco.classList.remove('show');
-            setTimeout(() => modalFaleConosco.style.display = 'none', 300);
-        }
-        // Fecha modal do Filme se clicar fora (se estiver aberto)
-        const filmModal = document.getElementById('filmModal');
-        if (filmModal && event.target == filmModal) {
-            closeModal();
-        }
-    }
 });
 
 // CONTROLE DE ROLAGEM DAS CAPAS DOS FILMES
