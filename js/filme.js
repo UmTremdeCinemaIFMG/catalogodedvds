@@ -108,9 +108,6 @@ async function loadFilmData() {
         // INICIALIZA O CARROSSEL
         initializeCarousel(transformedFilm);
         
-        // CONFIGURA COMPARTILHAMENTO
-        setupSharingButtons(transformedFilm);
-        
     } catch (error) {
         console.error("Erro:", error);
         const filmContainer = document.getElementById("filmeContainer");
@@ -330,27 +327,9 @@ function renderFilmData(film) {
         </div>
         `;
     }
-
-    // BOTÕES DE COMPARTILHAMENTO (Movidos para o final)
-    filmContent += `
-    <div class="filme-section social-share-bottom-container">
-        <h3><i class="fas fa-share-alt"></i> Compartilhar</h3>
-        <div class="social-share-buttons">
-            <button class="social-share-button whatsapp" title="Compartilhar no WhatsApp" onclick="shareOnWhatsApp()">
-                <i class="fab fa-whatsapp"></i>
-            </button>
-            <button class="social-share-button facebook" title="Compartilhar no Facebook" onclick="shareOnFacebook()">
-                <i class="fab fa-facebook-f"></i>
-            </button>
-            <button class="social-share-button twitter" title="Compartilhar no X (Twitter)" onclick="shareOnTwitter()">
-                <i class="fab fa-twitter"></i>
-            </button>
-            <button class="social-share-button copy" title="Copiar link" onclick="copyToClipboard()">
-                <i class="fas fa-link"></i>
-            </button>
-        </div>
-    </div>
-    `;
+        
+    <!-- BOTÕES DE COMPARTILHAMENTO -->
+    <div class="social-share-container"></div>
     
     // ADICIONA O CONTEÚDO AO CONTAINER
     filmContainer.innerHTML = `
@@ -592,42 +571,6 @@ function setupExpandableContent() {
     });
 }
 
-// FUNÇÕES DE COMPARTILHAMENTO
-function setupSharingButtons(film) {
-    document.title = `${film.title} - Catálogo de DVDs`;
-    // As funções de compartilhamento individuais (shareOnWhatsApp, etc.) 
-    // usarão a URL atual e o título do filme.
-    // Não precisam de configuração extra aqui se já usam `window.location.href` e `document.title`
-    // ou se podemos passar `film.title` para elas.
-    // Vamos assumir que elas pegam da página ou definimos globalmente.
-    window.shareFilmTitle = film.title;
-    window.shareFilmUrl = window.location.href;
-}
-
-function shareOnWhatsApp() {
-    const text = encodeURIComponent(`Confira este filme: ${window.shareFilmTitle} - ${window.shareFilmUrl}`);
-    window.open(`https://api.whatsapp.com/send?text=${text}`, "_blank");
-}
-
-function shareOnFacebook() {
-    const url = encodeURIComponent(window.shareFilmUrl);
-    window.open(`https://www.facebook.com/sharer/sharer.php?u=${url}`, "_blank");
-}
-
-function shareOnTwitter() {
-    const text = encodeURIComponent(`Confira este filme: ${window.shareFilmTitle}`);
-    const url = encodeURIComponent(window.shareFilmUrl);
-    window.open(`https://twitter.com/intent/tweet?url=${url}&text=${text}`, "_blank");
-}
-
-function copyToClipboard() {
-    navigator.clipboard.writeText(window.shareFilmUrl).then(() => {
-        alert("Link copiado para a área de transferência!");
-    }).catch(err => {
-        console.error("Erro ao copiar link: ", err);
-        alert("Erro ao copiar o link.");
-    });
-}
 
 // EXTRAI ID DO YOUTUBE DE UMA URL
 function getYoutubeId(url) {
