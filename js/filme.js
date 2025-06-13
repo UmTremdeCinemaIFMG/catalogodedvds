@@ -331,9 +331,28 @@ function renderFilmData(film) {
         `;
     }
         
-    // BOTÕES DE COMPARTILHAMENTO
-    filmContent += `
+    // MONTA O HTML FINAL COM A ESTRUTURA CORRETA
+    filmContainer.innerHTML = `
+        <!-- BANNER COM CARROSSEL -->
+        <div class="banner-carrossel">
+            <div class="banner-slides" id="bannerSlides"></div>
+            <div class="banner-controls">
+                <button class="banner-control" id="prevSlide">
+                    <i class="fas fa-chevron-left"></i>
+                </button>
+                <button class="banner-control" id="nextSlide">
+                    <i class="fas fa-chevron-right"></i>
+                </button>
+            </div>
+            <div class="banner-indicators" id="bannerIndicators"></div>
+        </div>
+        
+        <!-- CONTAINER DE COMPARTILHAMENTO NO TOPO -->
         <div class="social-share-container"></div>
+        
+        <!-- INFORMAÇÕES DO FILME -->
+        ${filmHeader.outerHTML}
+        ${filmContent}
     `;
     
     // ADICIONA O CONTEÚDO AO CONTAINER
