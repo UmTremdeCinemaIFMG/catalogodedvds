@@ -7,11 +7,11 @@
     align-items: center;
 }
 
-.social-share-title {
+/* .social-share-title {
     font-size: 1.5rem;
     margin-right: 10px;
     color: var(--verde-ifmg);
-}
+} */
 
 .social-share-buttons {
     display: flex;
