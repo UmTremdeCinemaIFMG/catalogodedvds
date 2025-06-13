@@ -5,7 +5,6 @@ let allFilms = [];           // ARMAZENA TODOS OS FILMES DO CATÁLOGO
 let currentFilms = [];       // ARMAZENA OS FILMES FILTRADOS ATUALMENTE
 let currentPage = 1;         // PÁGINA ATUAL DA PAGINAÇÃO
 let allGenres = [];          // LISTA DE TODOS OS GÊNEROS ÚNICOS
-let selectedGenre = '';      // GÊNERO SELECIONADO ATUALMENTE
 let debounceTimer;          // TIMER PARA DEBOUNCE DA BUSCA
 const itemsPerPage = 20;     // QUANTIDADE DE FILMES POR PÁGINA
 
@@ -688,16 +687,6 @@ document.addEventListener('DOMContentLoaded', () => {
     document.getElementById('classificationSelect').addEventListener('change', filterAndRenderFilms);
     document.getElementById('genreSelect').addEventListener('change', filterAndRenderFilms);
     document.getElementById('accessibilitySelect').addEventListener('change', filterAndRenderFilms);
-
-            // Botão Voltar ao Topo
-            var btnTopo = document.getElementById('btnVoltarTopo');
-   window.onscroll = function() {
-    if (document.body.scrollTop > 300 || document.documentElement.scrollTop > 300) {
-        btnTopo.style.display = "flex";
-    } else {
-        btnTopo.style.display = "none";
-    }
-};
    
     // MODAL FALE CONOSCO
     const btnFaleConosco = document.getElementById('btnFaleConosco');
@@ -725,34 +714,6 @@ document.addEventListener('DOMContentLoaded', () => {
         if (filmModal && event.target == filmModal) {
             closeModal();
         }
-    }
-});
-
-
-
-
-/* ==========================================
-   10. FUNCIONALIDADE DO BOTÃO VOLTAR AO TOPO (ADICIONADO)
-   ========================================== */
-document.addEventListener('DOMContentLoaded', function() {
-    const btnVoltarTopo = document.getElementById('btnVoltarTopo');
-
-    if (btnVoltarTopo) { // Verifica se o botão existe na página atual
-        window.addEventListener('scroll', function() {
-            if (window.scrollY > 300) { // Mostra o botão após rolar 300px
-                btnVoltarTopo.classList.add('show');
-            } else {
-                btnVoltarTopo.classList.remove('show');
-            }
-        });
-
-        btnVoltarTopo.addEventListener('click', function(e) {
-            e.preventDefault(); // Previne o comportamento padrão do link #
-            window.scrollTo({
-                top: 0,
-                behavior: 'smooth'
-            });
-        });
     }
 });
 
