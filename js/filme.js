@@ -372,11 +372,22 @@ function renderFilmData(film) {
 
 // FUNÇÃO PARA CONFIGURAR O COMPARTILHAMENTO
 function setupSharingButtons(film) {
+    /// VERIFICAÇÕES DE SEGURANÇA
+    if (!film || !film.title) {
+        console.error("ERRO: Filme indefinido ou sem título");
+        return;
+    }
+    
     // ATUALIZA O TÍTULO DA PÁGINA COM O NOME DO FILME
     document.title = `${film.title} - Catálogo de DVDs`;
     
-    // CHAMA A FUNÇÃO DE COMPARTILHAMENTO DO COMUM.JS
-    window.setupSharingButtons(film.title);
+    // VERIFICA SE A FUNÇÃO GLOBAL EXISTE
+    if (typeof window.setupSharingButtons === 'function') {
+        // CHAMA A FUNÇÃO DE COMPARTILHAMENTO DO COMUM.JS
+        window.setupSharingButtons(film.title);
+    } else {
+        console.error("ERRO: Função setupSharingButtons não encontrada no objeto window");
+    }
 }
 
 // FUNÇÃO PARA INICIALIZAR O CARROSSEL
