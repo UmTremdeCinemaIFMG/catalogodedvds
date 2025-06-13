@@ -119,6 +119,36 @@ function initExpandableSections() {
 // FUNÇÕES COMUNS DE COMPARTILHAMENTO
 // ===================================
 
+// LISTA DE PÁGINAS QUE DEVEM TER BOTÕES DE COMPARTILHAMENTO
+const paginasComCompartilhamento = [
+    {
+        pagina: 'filmes-online-gratis.html',
+        titulo: 'Filmes Online Grátis - Catálogo de DVDs'
+    },
+    {
+        pagina: 'filme.html',
+        // FILME.HTML USA SUA PRÓPRIA LÓGICA DE TÍTULO VIA FILME.JS
+        titulo: null
+    }
+    // ADICIONE MAIS PÁGINAS AQUI CONFORME NECESSÁRIO
+];
+
+// FUNÇÃO PARA INICIALIZAR COMPARTILHAMENTO AUTOMATICAMENTE
+function inicializarCompartilhamento() {
+    // OBTÉM O NOME DA PÁGINA ATUAL DA URL
+    const paginaAtual = window.location.pathname.split('/').pop() || 'index.html';
+    
+    // PROCURA A PÁGINA ATUAL NA LISTA DE PÁGINAS COM COMPARTILHAMENTO
+    const configuracao = paginasComCompartilhamento.find(p => p.pagina === paginaAtual);
+    
+    // SE A PÁGINA ATUAL ESTÁ NA LISTA, INICIALIZA OS BOTÕES DE COMPARTILHAMENTO
+    if (configuracao) {
+        // SE O TÍTULO NÃO FOR NULL, USA ELE; SENÃO USA O TÍTULO DA PÁGINA
+        const titulo = configuracao.titulo || document.title;
+        setupSharingButtons(titulo);
+    }
+}
+
 // FUNÇÃO PARA CONFIGURAR OS BOTÕES DE COMPARTILHAMENTO
 // PARÂMETROS:
 // - title: TÍTULO QUE SERÁ USADO NO COMPARTILHAMENTO
@@ -129,10 +159,10 @@ function setupSharingButtons(title, customUrl) {
     window.shareUrl = customUrl || window.location.href;
     
     // INSERE OS BOTÕES DE COMPARTILHAMENTO NO CONTAINER
-    const container = document.querySelector('.social-share-bottom-container');
+    const container = document.querySelector('.social-share-container');
     if (container) {
         container.innerHTML = `
-            <h3><i class="fas fa-share-alt"></i> Compartilhar</h3>
+            <h3 class="social-share-title"><i class="fas fa-share-alt"></i> Compartilhar</h3>
             <div class="social-share-buttons">
                 <button class="social-share-button whatsapp" title="Compartilhar no WhatsApp" onclick="shareOnWhatsApp()">
                     <i class="fab fa-whatsapp"></i>
@@ -281,6 +311,8 @@ document.addEventListener('DOMContentLoaded', function() {
     window.addEventListener('scroll', controlarBotaoVoltarTopo);
     // INICIALIZA AS SEÇÕES EXPANSÍVEIS FECHADAS
     initExpandableSections();
+   // INICIALIZA O COMPARTILHAMENTO
+    inicializarCompartilhamento();
 });
 
 // EXPORTA AS FUNÇÕES PARA USO GLOBAL
