@@ -124,40 +124,4 @@
         font-size: 0.7rem;
     }
 }
-/* CONTAINER PARA AS JUSTIFICATIVAS DOS ODS */
-.ods-justificativas-container {
-    background-color: #f8f9fa;
-    border-radius: 8px;
-    padding: 20px;
-    margin-top: -15px; /* AJUSTA A DISTÂNCIA DA SEÇÃO DE ÍCONES */
-    border: 1px solid #e9ecef;
-}
 
-.ods-justificativas-container h4 {
-    margin-top: 0;
-    margin-bottom: 15px;
-    color: var(--verde-escuro);
-    font-size: 1.2rem;
-    border-bottom: 2px solid #dee2e6;
-    padding-bottom: 10px;
-}
-
-/* LISTA DE JUSTIFICATIVAS */
-.ods-justificativas-list {
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
-}
-
-/* ITEM INDIVIDUAL DA JUSTIFICATIVA */
-.ods-justificativa-item p {
-    margin: 0;
-    line-height: 1.6;
-    font-size: 1rem;
-    color: var(--cinza-escuro);
-}
-
-.ods-justificativa-item strong {
-    color: var(--verde-ifmg);
-    font-weight: bold;
-}
