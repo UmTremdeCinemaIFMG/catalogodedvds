@@ -247,6 +247,10 @@ function renderFilmData(film) {
             <h3 class="expandable-title"><i class="fas fa-chalkboard-teacher"></i> Planos de Aula <i class="fas fa-chevron-down expand-icon"></i></h3>
             <div class="expandable-content">
 
+
+            
+                ${renderTeachingPlans(film)} 
+
         <!-- ENVIE UM PLANO DE AULA -->
         <div class="modal-teaching-plans">
             <h3><i class="fas fa-chalkboard-teacher"></i> Planos de Aula</h3>
@@ -258,8 +262,7 @@ function renderFilmData(film) {
                 Você pode colaborar enviando um plano de aula para este filme. Ao clicar, você será direcionado a um formulário.
             </p>
         </div>
-            
-                ${renderTeachingPlans(film)} 
+                
             </div>
         </div>
         `;
