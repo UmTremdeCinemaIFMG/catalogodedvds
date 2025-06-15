@@ -232,7 +232,7 @@ function renderFilmData(film) {
 // RENDERIZA AS JUSTIFICATIVAS DOS ODS, SE EXISTIREM
 if (film.odsJustificados && film.odsJustificados.length > 0) {
     filmContent += `
-    <div class="filme-section ods-justificativas-container">
+    <div class="filme-section  expandable-section">
         <h4>Justificativas dos ODS</h4>
         <div class="ods-justificativas-list">
             ${film.odsJustificados.map(item => `
