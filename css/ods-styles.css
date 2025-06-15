@@ -31,11 +31,6 @@
     transform-style: preserve-3d; /* Mantém o efeito 3D durante a animação */
 }
 
-.ods-flip-container:hover {
-    transform: none !important; /* IMPEDE O AUMENTO DE TAMANHO (SCALE) */
-    box-shadow: 0 2px 2px rgba(0, 0, 0, 0.1); /* MANTÉM A SOMBRA ORIGINAL */
-}
-
 /* Aplica a rotação no hover */
 .ods-flip-container:hover .ods-flipper {
     transform: rotateY(180deg);
@@ -75,7 +70,6 @@
     padding: 8px; /* Espaçamento interno */
     text-align: center;
     line-height: 0.5; /* Espaçamento entre linhas */
-    transform: none !important; /* IMPEDE O AUMENTO DE TAMANHO (SCALE) */
 }
 
 /* Estilos para o título (h4) na parte de trás */
@@ -131,3 +125,13 @@
     }
 }
 
+/* SOBRESCREVE O EFEITO DE SCALE (ZOOM) NO HOVER, MANTENDO O FLIP */
+.ods-flip-container:hover {
+    transform: none !important; /* IMPEDE O AUMENTO DE TAMANHO (SCALE) */
+    box-shadow: 0 2px 2px rgba(0, 0, 0, 0.1); /* MANTÉM A SOMBRA ORIGINAL */
+}
+
+/* GARANTE QUE A ANIMAÇÃO DE GIRO CONTINUE FUNCIONANDO */
+.ods-flip-container:hover .ods-flipper {
+    transform: rotateY(180deg);
+}
