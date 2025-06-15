@@ -27,7 +27,7 @@
     position: relative;
     width: 100%;
     height: 100%;
-    transition: transform 1.6s; /* Duração da animação de flip */
+    transition: transform 0.6s; /* Duração da animação de flip */
     transform-style: preserve-3d; /* Mantém o efeito 3D durante a animação */
 }
 
@@ -48,7 +48,7 @@
     border-radius: 8px; /* Bordas arredondadas */
     box-shadow: 0 2px 2px rgba(0, 0, 0, 0.1); /* Sombra suave */
     overflow: hidden; /* Garante que o conteúdo não transborde */
-    box-sizing: border-box;
+    box-sizing: border-box; /* Garante que a imagem não aumente de tamanho ao girar */
 }
 
 .ods-front {
