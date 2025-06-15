@@ -187,6 +187,7 @@ function filterAndRenderFilms() {
                 (selectedAccessibility === 'audiodescricao' && film.audiodescricao) ||
                 (selectedAccessibility === 'closed_caption' && film.closedCaption) ||
                 (selectedAccessibility === 'trailer' && film.trailer && film.trailer.trim() !== '') ||
+               (selectedAccessibility === 'PGM' && film.PGM) ||
                 (selectedAccessibility === 'material_outros' && film.materialOutros && film.materialOutros.length > 0) ||
                 (selectedAccessibility === 'assistir_online' && film.assistirOnline && film.assistirOnline.trim() !== '')
             );
