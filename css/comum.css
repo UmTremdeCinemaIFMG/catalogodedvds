@@ -349,7 +349,7 @@ body {
    ========================================== */
 .btn-animado, .btn-primary.btn-animado {
     BACKGROUND: VAR(--verde-ifmg);
-    COLOR: VAR(--branco);
+    COLOR: VAR(--branco) !important;
     BORDER: NONE;
     BORDER-RADIUS: 7PX;
     PADDING: 12PX 24PX;
@@ -367,7 +367,7 @@ body {
     BACKGROUND: VAR(--verde-escuro);
     TRANSFORM: TRANSLATEY(-2PX) SCALE(1.03);
     BOX-SHADOW: 0 6PX 18PX RGBA(0,0,0,0.16);
-    COLOR: VAR(--branco);
+    COLOR: VAR(--branco) !important;
     TEXT-DECORATION: NONE;
 }
 .btn-animado i {
