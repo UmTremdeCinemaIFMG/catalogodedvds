@@ -75,6 +75,7 @@
     padding: 8px; /* Espaçamento interno */
     text-align: center;
     line-height: 0.5; /* Espaçamento entre linhas */
+    transform: none !important; /* IMPEDE O AUMENTO DE TAMANHO (SCALE) */
 }
 
 /* Estilos para o título (h4) na parte de trás */
