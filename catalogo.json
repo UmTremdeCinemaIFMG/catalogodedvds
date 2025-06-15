@@ -16,6 +16,17 @@
     "GEN.": "Documentário",
     "Ano": 2003,
     "ODS": "16, 10",
+    "ODS_Analisados": "10, 16",
+    "ODS_Justificados": [
+      {
+        "ods": "10",
+        "justificativa": "O filme aborda a vulnerabilidade de pessoas que não conhecem suas origens. A busca pela identidade é um direito fundamental, e a dificuldade em acessá-la pode ser vista como uma forma de desigualdade social e emocional."
+      },
+      {
+        "ods": "16",
+        "justificativa": "A jornada do diretor é uma busca pessoal por verdade e justiça. Ela expõe a eficiência (ou a falta dela) de instituições como cartórios e hospitais na preservação e acesso a registros vitais, essenciais para a garantia do direito à identidade."
+      }
+    ],
     "nota imdb": {
       "votantes": "",
       "url": ""
@@ -62,6 +73,37 @@
     "GEN.": "Ficção",
     "Ano": 2007,
     "ODS": "1,8,10,4,11,16",
+    "ODS_Analisados": "1, 4, 8, 10, 11, 16, 18",
+    "ODS_Justificados": [
+      {
+        "ods": "1",
+        "justificativa": "A condição do menino protagonista é um reflexo direto da pobreza extrema e da falta de uma rede de proteção social."
+      },
+      {
+        "ods": "4",
+        "justificativa": "O trabalho infantil, retratado no filme, é uma das principais barreiras que impedem o acesso à educação de qualidade e ao desenvolvimento pleno da criança."
+      },
+      {
+        "ods": "8",
+        "justificativa": "O filme denuncia a exploração do trabalho infantil e a precarização da vida nas ruas, condições que são o oposto do conceito de trabalho decente."
+      },
+      {
+        "ods": "10",
+        "justificativa": "Expõe o abismo social e a invisibilidade de crianças em situação de vulnerabilidade nas grandes cidades, destacando a profunda desigualdade social."
+      },
+      {
+        "ods": "11",
+        "justificativa": "Questiona a sustentabilidade e a inclusão de um espaço urbano que marginaliza e expõe seus cidadãos mais frágeis à violência e ao abandono."
+      },
+      {
+        "ods": "16",
+        "justificativa": "A tragédia do garoto por uma quantia irrisória evidencia a falha do Estado em garantir segurança, paz e justiça para todos, especialmente para os mais pobres."
+      },
+      {
+        "ods": "18",
+        "justificativa": "No Brasil, a pobreza e a população em situação de rua têm uma forte correlação com a questão racial. Ao abordar a exclusão, o filme dialoga diretamente com o racismo estrutural."
+      }
+    ],
     "nota imdb": {
       "votantes": "8,8/5",
       "url": ""
@@ -124,6 +166,13 @@
     "GEN.": "Ficção",
     "Ano": 1999,
     "ODS": "3",
+    "ODS_Analisados": "3",
+    "ODS_Justificados": [
+      {
+        "ods": "3",
+        "justificativa": "O filme aborda a saúde mental e o bem-estar emocional, focando na angústia e na pressão de tomar decisões de grande impacto sob a urgência do tempo."
+      }
+    ],
     "nota imdb": {
       "votantes": "6,4/44",
       "url": ""
@@ -153,7 +202,8 @@
     "Assistir Online": "https://portacurtas.org.br/filme/?name=3_minutos",
     "URL": "https://portacurtas.org.br/filme/?name=3_minutos",
     "busca": "Válido"
-  },
+  }
+],
   {
     "Classificação Indicativa POR PGM": 16,
     "Classificação Indicativa - Descrição": [
