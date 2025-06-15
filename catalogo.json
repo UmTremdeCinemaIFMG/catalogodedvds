@@ -15,7 +15,7 @@
     "Gênero": "Documentário",
     "GEN.": "Documentário",
     "Ano": 2003,
-    "ODS": "16, 10",
+    "ODS": "10, 16",
     "ODS_Analisados": "10, 16",
     "ODS_Justificados": [
       {
@@ -101,7 +101,7 @@
       },
       {
         "ods": "18",
-        "justificativa": "No Brasil, a pobreza e a população em situação de rua têm uma forte correlação com a questão racial. Ao abordar a exclusão, o filme dialoga diretamente com o racismo estrutural."
+        "justificativa": "No Brasil, a pobreza e a população em situação de rua têm uma forte correlação com a questão racial. Ao abordar a exclusão de um menino negro, o filme dialoga diretamente com o racismo estrutural."
       }
     ],
     "nota imdb": {
@@ -219,7 +219,21 @@
     "Gênero": "Esportes",
     "GEN.": "Ficção",
     "Ano": 2007,
-    "ODS": "16, 11, 10",
+    "ODS": "3, 10, 11",
+    "ODS_Justificados": [
+      {
+        "ods": "3",
+        "justificativa": "O filme celebra o esporte como uma ferramenta para a saúde física e mental, destacando a disciplina e a dedicação necessárias para alcançar a excelência atlética."
+      },
+      {
+        "ods": "10",
+        "justificativa": "Ao contextualizar a busca pela glória olímpica no cenário do 'morro' (favela), o filme aborda a desigualdade de oportunidades e o potencial do esporte como via de ascensão e inclusão social para jovens de comunidades marginalizadas."
+      },
+      {
+        "ods": "11",
+        "justificativa": "A narrativa, que une o sonho olímpico à realidade da favela carioca, explora as complexas dinâmicas sociais e espaciais da cidade, questionando a inclusão e as oportunidades disponíveis em diferentes partes do tecido urbano."
+      }
+    ],
     "nota imdb": {
       "votantes": "",
       "url": ""
@@ -266,7 +280,21 @@
     "Gênero": "",
     "GEN.": "Ficção",
     "Ano": 1998,
-    "ODS": "1,16,3",
+    "ODS": "1, 3, 10",
+    "ODS_Justificados": [
+      {
+        "ods": "1",
+        "justificativa": "O filme é uma alegoria direta sobre a pobreza, personificada na figura de D. Miséria e em seu ambiente, refletindo sobre a persistência e as raízes da miséria na sociedade."
+      },
+      {
+        "ods": "3",
+        "justificativa": "A trama aborda temas como envelhecimento, solidão e mortalidade (com a chegada da Morte), provocando reflexões sobre a saúde e o bem-estar, especialmente dos idosos em situação de vulnerabilidade."
+      },
+      {
+        "ods": "10",
+        "justificativa": "A história expõe a desigualdade social através da figura de uma idosa pobre e marginalizada, destacando a invisibilidade e o abandono de segmentos vulneráveis da população."
+      }
+    ],
     "nota imdb": {
       "votantes": "",
       "url": ""
@@ -313,7 +341,21 @@
     "Gênero": "",
     "GEN.": "Ficção",
     "Ano": 1957,
-    "ODS": "5,8,10",
+    "ODS": "5, 8, 10",
+    "ODS_Justificados": [
+      {
+        "ods": "5",
+        "justificativa": "A protagonista, uma mulher de classe trabalhadora, desafia os papéis de gênero da época ao herdar uma fortuna e se tornar uma produtora de cinema independente, exercendo sua autonomia e poder de decisão."
+      },
+      {
+        "ods": "8",
+        "justificativa": "O filme retrata a transição da personagem de um emprego como manicure para uma iniciativa empreendedora no campo da economia criativa, gerando trabalho e movimentando a indústria cultural."
+      },
+      {
+        "ods": "10",
+        "justificativa": "A trama é construída sobre o conflito de classes e o preconceito sofrido pela protagonista ao ascender socialmente, evidenciando as barreiras e desigualdades da sociedade."
+      }
+    ],
     "nota imdb": {
       "votantes": "6,2/25",
       "url": ""
@@ -359,7 +401,25 @@
     "Gênero": "",
     "GEN.": "Ficção",
     "Ano": 2001,
-    "ODS": "1,2,5,10,11",
+    "ODS": "1, 2, 6, 11",
+    "ODS_Justificados": [
+      {
+        "ods": "1",
+        "justificativa": "O filme retrata de forma crua a pobreza extrema de uma família no sertão, lutando pela sobrevivência em um ambiente de total escassez."
+      },
+      {
+        "ods": "2",
+        "justificativa": "A fome é o tema central e a força motriz da narrativa, mostrando as consequências devastadoras da insegurança alimentar."
+      },
+      {
+        "ods": "6",
+        "justificativa": "A ausência de água é um elemento opressor constante no filme, simbolizando a luta pela sobrevivência e a importância do acesso a recursos hídricos."
+      },
+      {
+        "ods": "11",
+        "justificativa": "A obra questiona a sustentabilidade e resiliência de comunidades rurais em regiões áridas, expostas a condições climáticas extremas e ao abandono."
+      }
+    ],
     "nota imdb": {
       "votantes": "",
       "url": ""
@@ -405,7 +465,25 @@
     "Gênero": "Drama",
     "GEN.": "Ficção",
     "Ano": 2007,
-    "ODS": "",
+    "ODS": "5, 8, 10, 11",
+    "ODS_Justificados": [
+      {
+        "ods": "5",
+        "justificativa": "O filme é centrado na perspectiva de Alice, uma mulher que busca autonomia, prazer e um espaço próprio em meio a uma estrutura familiar patriarcal e um cotidiano opressor."
+      },
+      {
+        "ods": "8",
+        "justificativa": "O trabalho de Alice como manicure é um elemento central, representando a realidade econômica de muitas mulheres na periferia urbana e sua luta por independência financeira através do trabalho informal."
+      },
+      {
+        "ods": "10",
+        "justificativa": "A narrativa aborda múltiplas formas de desigualdade, incluindo gênero, classe social e orientação sexual (através da história de um de seus filhos), pintando um retrato das complexas hierarquias sociais."
+      },
+      {
+        "ods": "11",
+        "justificativa": "O filme oferece um olhar realista sobre a vida na periferia de São Paulo, explorando as dinâmicas sociais, os desafios e a resiliência das comunidades em um grande centro urbano."
+      }
+    ],
     "nota imdb": {
       "votantes": "6,9/581",
       "url": ""
@@ -451,7 +529,21 @@
     "Gênero": "",
     "GEN.": "Ficção",
     "Ano": 1988,
-    "ODS": "",
+    "ODS": "5, 11, 16",
+    "ODS_Justificados": [
+      {
+        "ods": "5",
+        "justificativa": "O filme subverte o papel feminino tradicional através da figura da 'femme fatale', uma mulher poderosa e misteriosa que controla a narrativa e os homens ao seu redor, exercendo sua agência de forma radical."
+      },
+      {
+        "ods": "11",
+        "justificativa": "A paisagem urbana de São Paulo é um personagem central, retratada de forma estilizada e sombria, explorando a alienação, o perigo e o mistério da vida na metrópole, o que se relaciona com a segurança e a qualidade do ambiente urbano."
+      },
+      {
+        "ods": "16",
+        "justificativa": "Como um filme noir, a trama mergulha em um mundo de crime, engano e ambiguidade moral, questionando a eficácia da justiça e expondo a corrupção que permeia as relações humanas e institucionais."
+      }
+    ],
     "nota imdb": {
       "votantes": "6,5/211",
       "url": ""
@@ -498,7 +590,25 @@
     "Gênero": "Documentário",
     "GEN.": "Documentário",
     "Ano": 2011,
-    "ODS": "",
+    "ODS": "1, 3, 10, 11",
+    "ODS_Justificados": [
+      {
+        "ods": "1",
+        "justificativa": "O filme documenta a vida de uma mulher em situação de rua, abordando diretamente a realidade da pobreza extrema e da falta de moradia."
+      },
+      {
+        "ods": "3",
+        "justificativa": "A obra oferece um olhar sobre a saúde mental e o bem-estar de uma pessoa em condição de extrema vulnerabilidade social, destacando sua resiliência e os desafios psicológicos enfrentados."
+      },
+      {
+        "ods": "10",
+        "justificativa": "O tema central é a invisibilidade social. Ao focar em uma figura marginalizada dentro de um bairro de classe média, o filme expõe a profunda desigualdade e a exclusão social presentes no cotidiano urbano."
+      },
+      {
+        "ods": "11",
+        "justificativa": "O documentário examina a dinâmica de uma comunidade urbana e sua relação com os moradores de rua, questionando a inclusão, a segurança e a coesão social no espaço da cidade."
+      }
+    ],
     "nota imdb": {
       "votantes": "6,2/8",
       "url": ""
@@ -545,7 +655,25 @@
     "Gênero": "Documentário",
     "GEN.": "Documentário",
     "Ano": 2004,
-    "ODS": "",
+    "ODS": "10, 11, 16, 18",
+    "ODS_Justificados": [
+      {
+        "ods": "10",
+        "justificativa": "O filme é uma denúncia contundente da desigualdade racial e social, traçando uma linha direta entre a opressão histórica da escravidão e a marginalização contemporânea."
+      },
+      {
+        "ods": "11",
+        "justificativa": "Ao conectar a senzala à periferia urbana, o filme aborda a segregação espacial e as condições precárias de vida das populações negras nas cidades brasileiras, um tema central para a sustentabilidade e inclusão urbana."
+      },
+      {
+        "ods": "16",
+        "justificativa": "A obra é um manifesto que clama por justiça social e denuncia a violência e a negação de direitos que marcam a trajetória da população negra, apontando para a falha das instituições em garantir paz e igualdade."
+      },
+      {
+        "ods": "18",
+        "justificativa": "Este é o tema central do filme. Trata-se de um manifesto audiovisual sobre a identidade e a luta do povo negro no Brasil, confrontando diretamente o racismo estrutural e o legado da escravidão."
+      }
+    ],
     "nota imdb": {
       "votantes": "",
       "url": ""
@@ -592,7 +720,21 @@
     "Gênero": "",
     "GEN.": "Ficção",
     "Ano": 2009,
-    "ODS": "",
+    "ODS": "3, 4, 11",
+    "ODS_Justificados": [
+      {
+        "ods": "3",
+        "justificativa": "O filme foca no processo de amadurecimento e desenvolvimento emocional de um menino, abordando aspectos cruciais da saúde e bem-estar na infância."
+      },
+      {
+        "ods": "4",
+        "justificativa": "A narrativa retrata a socialização e o aprendizado informal que ocorrem fora da sala de aula, através de brincadeiras e conflitos, que são parte fundamental da educação integral de uma criança."
+      },
+      {
+        "ods": "11",
+        "justificativa": "Ao ambientar a história no subúrbio do Rio de Janeiro, o filme oferece um retrato da vida comunitária e do ambiente social que molda as experiências e o desenvolvimento das crianças na periferia urbana."
+      }
+    ],
     "nota imdb": {
       "votantes": "5,3/15",
       "url": ""
@@ -639,7 +781,17 @@
     "Gênero": "Documentário",
     "GEN.": "Documentário",
     "Ano": 1967,
-    "ODS": "",
+    "ODS": "5, 10",
+    "ODS_Justificados": [
+      {
+        "ods": "5",
+        "justificativa": "Como uma obra pioneira do cinema feminista no Brasil, o filme dá voz às mulheres e expõe as restrições e expectativas sociais impostas a elas na década de 1960, abordando temas como casamento, virgindade e carreira."
+      },
+      {
+        "ods": "10",
+        "justificativa": "O documentário revela a desigualdade de oportunidades e de liberdade entre homens e mulheres na sociedade da época, destacando as limitações de gênero como uma forma de exclusão social."
+      }
+    ],
     "nota imdb": {
       "votantes": "",
       "url": ""
@@ -686,7 +838,13 @@
     "Gênero": "",
     "GEN.": "Ficção",
     "Ano": 1996,
-    "ODS": "",
+    "ODS": "3",
+    "ODS_Justificados": [
+      {
+        "ods": "3",
+        "justificativa": "O filme é uma reflexão poética sobre o ciclo da vida, a percepção do tempo e o processo de envelhecimento, temas diretamente ligados à saúde existencial e ao bem-estar ao longo das diferentes fases da vida."
+      }
+    ],
     "nota imdb": {
       "votantes": "6,4/30",
       "url": ""
@@ -733,7 +891,21 @@
     "Gênero": "Animação",
     "GEN.": "Animação",
     "Ano": 2003,
-    "ODS": "",
+    "ODS": "3, 11, 12",
+    "ODS_Justificados": [
+      {
+        "ods": "3",
+        "justificativa": "A atmosfera do filme explora profundamente a saúde mental, abordando sentimentos de solidão, alienação e ansiedade existencial em um ambiente opressor."
+      },
+      {
+        "ods": "11",
+        "justificativa": "A paisagem desolada e industrial serve como uma crítica ao desenvolvimento urbano insustentável, que gera ambientes hostis e alienantes para seus habitantes."
+      },
+      {
+        "ods": "12",
+        "justificativa": "As imagens de decadência industrial podem ser interpretadas como uma alegoria sobre as consequências do consumo e da produção desenfreados, resultando em abandono e degradação ambiental."
+      }
+    ],
     "nota imdb": {
       "votantes": "",
       "url": ""
@@ -779,7 +951,13 @@
     "Gênero": "Animação, Ação",
     "GEN.": "Animação",
     "Ano": 2010,
-    "ODS": "",
+    "ODS": "16",
+    "ODS_Justificados": [
+      {
+        "ods": "16",
+        "justificativa": "Baseado na figura anárquica de 'Clara Crocodilo', o filme utiliza a alegoria da perseguição a um 'marginal' para satirizar e questionar as instituições de poder, a mídia e a própria noção de justiça e corrupção na sociedade."
+      }
+    ],
     "nota imdb": {
       "votantes": "",
       "url": ""
@@ -826,7 +1004,17 @@
     "Gênero": "Romance",
     "GEN.": "Ficção",
     "Ano": 1974,
-    "ODS": "",
+    "ODS": "11, 12",
+    "ODS_Justificados": [
+      {
+        "ods": "11",
+        "justificativa": "O filme documenta o Carnaval de Olinda, uma das mais importantes manifestações culturais do Brasil, contribuindo para a salvaguarda e valorização do patrimônio cultural imaterial da cidade."
+      },
+      {
+        "ods": "12",
+        "justificativa": "A obra destaca as formas de produção artesanal e tradicional das máscaras e fantasias do carnaval, valorizando um modelo de cultura popular e sustentável em contraponto à produção em massa."
+      }
+    ],
     "nota imdb": {
       "votantes": "",
       "url": ""
@@ -873,7 +1061,21 @@
     "Gênero": "",
     "GEN.": "Ficção",
     "Ano": 2003,
-    "ODS": "",
+    "ODS": "1, 10, 11",
+    "ODS_Justificados": [
+      {
+        "ods": "1",
+        "justificativa": "O filme, pelo seu título e direção coletiva de jovens da comunidade, certamente aborda as condições socioeconômicas e os desafios relacionados à pobreza em uma favela."
+      },
+      {
+        "ods": "10",
+        "justificativa": "A obra busca dar voz e representatividade a uma comunidade marginalizada, combatendo estereótipos e a desigualdade social ao apresentar uma perspectiva interna da vida na favela."
+      },
+      {
+        "ods": "11",
+        "justificativa": "O filme é um documento sobre a vida em assentamentos informais, explorando a cultura, os desafios de infraestrutura e a dinâmica social da comunidade, temas centrais para cidades mais inclusivas e sustentáveis."
+      }
+    ],
     "nota imdb": {
       "votantes": "",
       "url": ""
@@ -919,7 +1121,17 @@
     "Gênero": "",
     "GEN.": "Ficção",
     "Ano": 2008,
-    "ODS": "",
+    "ODS": "12, 15",
+    "ODS_Justificados": [
+      {
+        "ods": "12",
+        "justificativa": "De forma lúdica, a animação mostra o impacto de produtos de consumo humano (uma cesta de festa) em um ecossistema natural, gerando uma reflexão sobre lixo e os padrões de consumo e seu efeito no meio ambiente."
+      },
+      {
+        "ods": "15",
+        "justificativa": "A história é protagonizada por animais da fauna brasileira em seu habitat, promovendo junto ao público infantil a valorização da vida terrestre e a conscientização sobre a preservação das florestas."
+      }
+    ],
     "nota imdb": {
       "votantes": "",
       "url": ""
@@ -966,7 +1178,17 @@
     "Gênero": "Documentário, Drama",
     "GEN.": "Documentário",
     "Ano": 1993,
-    "ODS": "",
+    "ODS": "11, 16",
+    "ODS_Justificados": [
+      {
+        "ods": "11",
+        "justificativa": "A obra é um ensaio visual sobre a experiência urbana, a espera e a anonimidade nas grandes cidades, refletindo sobre a qualidade de vida e as interações sociais no espaço público."
+      },
+      {
+        "ods": "16",
+        "justificativa": "A imagem de uma fila interminável e sem propósito aparente serve como uma poderosa metáfora para a ineficiência da burocracia e a relação muitas vezes frustrante entre os cidadãos e as instituições públicas ou privadas."
+      }
+    ],
     "nota imdb": {
       "votantes": "",
       "url": ""
@@ -1013,7 +1235,17 @@
     "Gênero": "Animação",
     "GEN.": "Animação",
     "Ano": 2010,
-    "ODS": "",
+    "ODS": "4, 15",
+    "ODS_Justificados": [
+      {
+        "ods": "4",
+        "justificativa": "A animação, baseada em uma lenda indígena da Amazônia, serve como uma ferramenta educativa para a disseminação da cultura e do conhecimento tradicional dos povos originários, promovendo uma educação mais diversa."
+      },
+      {
+        "ods": "15",
+        "justificativa": "A narrativa é centrada na Samaúma, uma árvore sagrada da Amazônia, e em uma lenda da floresta, promovendo a valorização dos ecossistemas terrestres e a importância da conservação da biodiversidade."
+      }
+    ],
     "nota imdb": {
       "votantes": "",
       "url": ""
@@ -1060,7 +1292,17 @@
     "Gênero": "Animação",
     "GEN.": "Animação",
     "Ano": 2008,
-    "ODS": "",
+    "ODS": "2, 15",
+    "ODS_Justificados": [
+      {
+        "ods": "2",
+        "justificativa": "De forma simples e acessível para crianças, a história aborda a descoberta de alimento (a semente) e a importância de plantá-lo e compartilhá-lo, introduzindo conceitos básicos de segurança alimentar e cooperação."
+      },
+      {
+        "ods": "15",
+        "justificativa": "A animação apresenta animais de fazenda e o ciclo de plantio, promovendo uma conexão inicial das crianças com a natureza, a agricultura e a vida nos ecossistemas terrestres."
+      }
+    ],
     "nota imdb": {
       "votantes": "",
       "url": ""
@@ -1107,7 +1349,17 @@
     "Gênero": "Animação",
     "GEN.": "Animação",
     "Ano": 1988,
-    "ODS": "",
+    "ODS": "4, 9",
+    "ODS_Justificados": [
+      {
+        "ods": "4",
+        "justificativa": "O filme estimula a alfabetização midiática e o pensamento crítico ao explorar a relação entre o espectador e as imagens, questionando a influência da mídia na construção da realidade."
+      },
+      {
+        "ods": "9",
+        "justificativa": "Como uma obra de animação experimental dos anos 80, o filme representa a inovação na linguagem e na técnica audiovisual, contribuindo para o desenvolvimento da indústria criativa e da infraestrutura cultural."
+      }
+    ],
     "nota imdb": {
       "votantes": "6,1/21",
       "url": ""
@@ -1154,7 +1406,17 @@
     "Gênero": "",
     "GEN.": "Ficção",
     "Ano": 2009,
-    "ODS": "",
+    "ODS": "12, 16",
+    "ODS_Justificados": [
+      {
+        "ods": "12",
+        "justificativa": "O filme funciona como uma alegoria sobre os perigos do desejo de consumo ilimitado e da ganância. A garrafa que concede desejos a um custo terrível critica a busca por soluções fáceis e a mentalidade consumista que ignora as consequências."
+      },
+      {
+        "ods": "16",
+        "justificativa": "A narrativa explora temas de moralidade, pactos e consequências, funcionando como uma fábula sobre uma forma de justiça implacável e sobrenatural que pune a ganância e a falta de ética."
+      }
+    ],
     "nota imdb": {
       "votantes": "",
       "url": ""
@@ -1200,7 +1462,25 @@
     "Gênero": "",
     "GEN.": "Ficção",
     "Ano": 1961,
-    "ODS": "",
+    "ODS": "8, 10, 11, 18",
+    "ODS_Justificados": [
+      {
+        "ods": "8",
+        "justificativa": "O filme é um retrato do trabalho e da economia informal na Feira de Água de Meninos, em Salvador, documentando as condições de vida e as lutas dos trabalhadores do local."
+      },
+      {
+        "ods": "10",
+        "justificativa": "A obra expõe as tensões e desigualdades sociais e econômicas da época, dando visibilidade à vida da classe trabalhadora e de populações marginalizadas."
+      },
+      {
+        "ods": "11",
+        "justificativa": "O documentário registra um espaço urbano vital, a feira, como um centro de cultura, comércio e interação social, destacando sua importância para a identidade e a vida da cidade de Salvador."
+      },
+      {
+        "ods": "18",
+        "justificativa": "Filmado em Salvador e focado na vida popular, o filme inevitavelmente retrata a realidade da população majoritariamente negra da cidade, abordando suas expressões culturais e desafios socioeconômicos, o que o torna relevante para a discussão sobre igualdade racial."
+      }
+    ],
     "nota imdb": {
       "votantes": "7,5/44",
       "url": ""
@@ -1247,7 +1527,13 @@
     "Gênero": "",
     "GEN.": "Ficção",
     "Ano": 2011,
-    "ODS": "",
+    "ODS": "3",
+    "ODS_Justificados": [
+      {
+        "ods": "3",
+        "justificativa": "O filme aborda com sensibilidade a questão da saúde na terceira idade, especificamente o Mal de Alzheimer, e destaca a importância dos laços familiares e das relações intergeracionais para o bem-estar emocional tanto do idoso quanto da criança."
+      }
+    ],
     "nota imdb": {
       "votantes": "8,2/5",
       "url": ""
@@ -1294,7 +1580,17 @@
     "Gênero": "",
     "GEN.": "Ficção",
     "Ano": 2003,
-    "ODS": "",
+    "ODS": "3, 16",
+    "ODS_Justificados": [
+      {
+        "ods": "3",
+        "justificativa": "Ao explorar os 'instintos humanos' e a 'tragédia humana' de forma poética, o filme mergulha em questões existenciais e psicológicas profundas, relacionadas à saúde mental e ao bem-estar."
+      },
+      {
+        "ods": "16",
+        "justificativa": "A temática da 'eterna tragédia humana' e a representação de um 'amplo panorama da civilização ocidental' podem ser interpretadas como uma reflexão sobre os ciclos de violência, conflito e injustiça que marcam a história."
+      }
+    ],
     "nota imdb": {
       "votantes": "6,4/31",
       "url": ""
@@ -1341,7 +1637,21 @@
     "Gênero": "Documentário, Terror",
     "GEN.": "Documentário Ficcional",
     "Ano": 2009,
-    "ODS": "",
+    "ODS": "4, 10, 11",
+    "ODS_Justificados": [
+      {
+        "ods": "4",
+        "justificativa": "O filme é uma ferramenta de educação cultural, transmitindo a mitologia e a visão de mundo do povo Kisêdjê através de sua própria linguagem e estética, promovendo uma educação inclusiva e diversa."
+      },
+      {
+        "ods": "10",
+        "justificativa": "A produção, realizada por cineastas indígenas, é um ato de empoderamento e auto-representação, combatendo a desigualdade histórica que silenciou e marginalizou as vozes e narrativas dos povos originários."
+      },
+      {
+        "ods": "11",
+        "justificativa": "A obra contribui para a salvaguarda e promoção do patrimônio cultural imaterial indígena, registrando e compartilhando uma de suas histórias tradicionais para novas gerações e para o mundo."
+      }
+    ],
     "nota imdb": {
       "votantes": "",
       "url": ""
@@ -1388,7 +1698,29 @@
     "Gênero": "",
     "GEN.": "Ficção",
     "Ano": 1985,
-    "ODS": "",
+    "ODS": "1, 5, 8, 10, 11",
+    "ODS_Justificados": [
+      {
+        "ods": "1",
+        "justificativa": "O filme é um retrato contundente da vida de Macabéa em condição de pobreza extrema, mostrando suas dificuldades com moradia, alimentação e a luta pela sobrevivência."
+      },
+      {
+        "ods": "5",
+        "justificativa": "A obra oferece um mergulho profundo na subjetividade de uma mulher marginalizada, explorando seus desejos, sua solidão e a opressão que sofre em uma sociedade patriarcal e classista."
+      },
+      {
+        "ods": "8",
+        "justificativa": "O trabalho precário e alienante de Macabéa como datilógrafa ilustra as condições de exploração e a falta de oportunidades de trabalho decente para migrantes com baixa qualificação."
+      },
+      {
+        "ods": "10",
+        "justificativa": "O filme expõe a brutal desigualdade social, cultural e regional no Brasil, contrastando a vida miserável da migrante nordestina com a indiferença da metrópole de São Paulo."
+      },
+      {
+        "ods": "11",
+        "justificativa": "A narrativa mostra a experiência de alienação e invisibilidade de uma migrante em uma grande cidade, questionando a capacidade da metrópole de ser um espaço inclusivo e acolhedor."
+      }
+    ],
     "nota imdb": {
       "votantes": "",
       "url": ""
@@ -1442,7 +1774,17 @@
     "Gênero": "",
     "GEN.": "Ficção",
     "Ano": 1998,
-    "ODS": "",
+    "ODS": "4, 16",
+    "ODS_Justificados": [
+      {
+        "ods": "4",
+        "justificativa": "O filme aborda um momento crucial de aprendizado e desenvolvimento moral na infância: o confronto com a violência do mundo adulto e a perda da inocência, que são parte da educação para a vida."
+      },
+      {
+        "ods": "16",
+        "justificativa": "A trama gira em torno de um crime testemunhado por crianças, levantando questões sobre violência, justiça e impunidade no contexto de uma pequena comunidade, e o impacto desses eventos na formação dos jovens."
+      }
+    ],
     "nota imdb": {
       "votantes": "5,4/14",
       "url": ""
@@ -1489,7 +1831,17 @@
     "Gênero": "Animação",
     "GEN.": "Animação",
     "Ano": 2008,
-    "ODS": "",
+    "ODS": "3, 11",
+    "ODS_Justificados": [
+      {
+        "ods": "3",
+        "justificativa": "A animação utiliza o humor para abordar o estresse, a ansiedade e a alienação, desafios de saúde mental frequentemente associados à vida caótica nas grandes metrópoles."
+      },
+      {
+        "ods": "11",
+        "justificativa": "O filme é uma sátira sobre os problemas da vida urbana moderna, como congestionamentos, poluição sonora e isolamento social, questionando a sustentabilidade e a qualidade de vida nas cidades."
+      }
+    ],
     "nota imdb": {
       "votantes": "6,8/8",
       "url": ""
@@ -1536,7 +1888,29 @@
     "Gênero": "Documentário",
     "GEN.": "Documentário",
     "Ano": 2000,
-    "ODS": "",
+    "ODS": "1, 3, 4, 8, 10",
+    "ODS_Justificados": [
+      {
+        "ods": "1",
+        "justificativa": "O documentário mostra como a pobreza leva diretamente ao trabalho infantil, privando as crianças de seus direitos básicos e perpetuando o ciclo da miséria."
+      },
+      {
+        "ods": "3",
+        "justificativa": "A obra questiona o que constitui uma infância saudável, mostrando como tanto a falta de recursos quanto o excesso de pressão e atividades podem prejudicar o bem-estar mental e emocional das crianças."
+      },
+      {
+        "ods": "4",
+        "justificativa": "O filme evidencia como o trabalho infantil é uma barreira direta para o acesso à educação de qualidade, impedindo o pleno desenvolvimento cognitivo e social das crianças."
+      },
+      {
+        "ods": "8",
+        "justificativa": "A denúncia do trabalho infantil é um tema central, expondo uma grave violação dos direitos humanos e trabalhistas que se opõe diretamente ao conceito de trabalho decente."
+      },
+      {
+        "ods": "10",
+        "justificativa": "Ao contrastar as realidades de crianças de diferentes classes sociais, o filme expõe de forma contundente a profunda desigualdade de oportunidades e de experiências de vida que marca a sociedade brasileira."
+      }
+    ],
     "nota imdb": {
       "votantes": "7,7/26",
       "url": ""
@@ -1597,7 +1971,21 @@
     "Gênero": "Documentário",
     "GEN.": "Documentário",
     "Ano": 1973,
-    "ODS": "",
+    "ODS": "8, 11, 14",
+    "ODS_Justificados": [
+      {
+        "ods": "8",
+        "justificativa": "O filme documenta o trabalho artesanal e as práticas econômicas dos pescadores de jangada, um modo de vida tradicional que representa uma forma de trabalho decente e sustentável."
+      },
+      {
+        "ods": "11",
+        "justificativa": "Ao registrar o cotidiano e a cultura dos jangadeiros, o filme contribui para a preservação e valorização do patrimônio cultural imaterial de comunidades costeiras brasileiras."
+      },
+      {
+        "ods": "14",
+        "justificativa": "A obra é centrada na relação intrínseca entre o homem e o mar, destacando a pesca artesanal como uma prática de uso sustentável dos recursos marinhos e promovendo a conservação da vida na água."
+      }
+    ],
     "nota imdb": {
       "votantes": "",
       "url": ""
@@ -1643,7 +2031,17 @@
     "Gênero": "Documentário, Romance",
     "GEN.": "Documentário",
     "Ano": 1968,
-    "ODS": "",
+    "ODS": "4, 11",
+    "ODS_Justificados": [
+      {
+        "ods": "4",
+        "justificativa": "O filme funciona como um valioso material de apoio para a educação, promovendo a literatura brasileira ao criar uma ponte visual e poética entre a obra de Guimarães Rosa e o universo que a inspirou."
+      },
+      {
+        "ods": "11",
+        "justificativa": "Ao documentar a paisagem e os tipos humanos do sertão mineiro, o filme ajuda a preservar e valorizar o patrimônio cultural e natural de uma região emblemática do Brasil, intrinsecamente ligada à sua identidade literária."
+      }
+    ],
     "nota imdb": {
       "votantes": "",
       "url": ""
@@ -1690,7 +2088,13 @@
     "Gênero": "Animação",
     "GEN.": "Animação",
     "Ano": 2002,
-    "ODS": "",
+    "ODS": "12",
+    "ODS_Justificados": [
+      {
+        "ods": "12",
+        "justificativa": "De forma satírica e humorística, o filme transforma um produto alimentício comum em um monstro, podendo ser interpretado como uma crítica lúdica à cultura do consumo e aos alimentos processados."
+      }
+    ],
     "nota imdb": {
       "votantes": "6,2/33",
       "url": ""
@@ -1737,7 +2141,17 @@
     "Gênero": "Documentário, Drama, Romance, Suspense",
     "GEN.": "Documentário",
     "Ano": 1969,
-    "ODS": "",
+    "ODS": "8, 11",
+    "ODS_Justificados": [
+      {
+        "ods": "8",
+        "justificativa": "O filme documenta um trabalho perigoso e pouco conhecido, chamando a atenção para as condições de segurança e a natureza de ocupações especializadas, além de valorizar o trabalho de manutenção do patrimônio."
+      },
+      {
+        "ods": "11",
+        "justificativa": "A obra destaca a importância da manutenção e preservação de um ícone cultural e turístico mundial, o Cristo Redentor, essencial para a identidade e a economia da cidade do Rio de Janeiro."
+      }
+    ],
     "nota imdb": {
       "votantes": "",
       "url": ""
@@ -1784,7 +2198,21 @@
     "Gênero": "Drama, Romance",
     "GEN.": "Ficção",
     "Ano": 2005,
-    "ODS": "",
+    "ODS": "3, 5, 11",
+    "ODS_Justificados": [
+      {
+        "ods": "3",
+        "justificativa": "O filme aborda temas como solidão, obsessão e isolamento social no contexto urbano, questões diretamente relacionadas à saúde mental e ao bem-estar psicológico."
+      },
+      {
+        "ods": "5",
+        "justificativa": "A narrativa pode ser analisada sob a ótica da violência de gênero, especificamente o voyeurismo e a violação da privacidade da mulher, levantando debates sobre o 'male gaze' (olhar masculino) e a objetificação."
+      },
+      {
+        "ods": "11",
+        "justificativa": "A história é um produto da vida em alta densidade urbana, onde a proximidade física coexiste com o distanciamento social, explorando as complexas e por vezes perigosas dinâmicas de vizinhança na cidade."
+      }
+    ],
     "nota imdb": {
       "votantes": "",
       "url": ""
@@ -1831,7 +2259,13 @@
     "Gênero": "Animação, Romance",
     "GEN.": "Animação",
     "Ano": 2006,
-    "ODS": "",
+    "ODS": "4",
+    "ODS_Justificados": [
+      {
+        "ods": "4",
+        "justificativa": "A animação é uma ferramenta lúdica para a educação infantil, estimulando o interesse pela linguagem, pelos sons e pela comunicação de forma criativa e acessível, contribuindo para o desenvolvimento da literacia."
+      }
+    ],
     "nota imdb": {
       "votantes": "",
       "url": ""
@@ -1877,7 +2311,21 @@
     "Gênero": "Documentário",
     "GEN.": "Documentário",
     "Ano": 1970,
-    "ODS": "",
+    "ODS": "4, 12, 16",
+    "ODS_Justificados": [
+      {
+        "ods": "4",
+        "justificativa": "O filme é uma ferramenta essencial para a educação midiática, pois desconstrói as técnicas da publicidade, promovendo o pensamento crítico sobre a influência da mídia e do consumo."
+      },
+      {
+        "ods": "12",
+        "justificativa": "A obra é uma crítica direta aos mecanismos que impulsionam o consumismo, expondo como a linguagem da persuasão é usada para criar desejos e promover padrões de consumo insustentáveis."
+      },
+      {
+        "ods": "16",
+        "justificativa": "Realizado durante a ditadura militar, o filme utiliza a crítica à publicidade como uma metáfora para a propaganda política e o controle da informação, questionando as estruturas de poder e manipulação da época."
+      }
+    ],
     "nota imdb": {
       "votantes": "6,3/15",
       "url": ""
@@ -1924,7 +2372,17 @@
     "Gênero": "Documentário",
     "GEN.": "Documentário",
     "Ano": 1966,
-    "ODS": "",
+    "ODS": "4, 8",
+    "ODS_Justificados": [
+      {
+        "ods": "4",
+        "justificativa": "O filme funciona como um recurso de educação artística, apresentando os elementos fundamentais da linguagem teatral e sua importância social e cultural."
+      },
+      {
+        "ods": "8",
+        "justificativa": "Ao documentar o fazer teatral, o filme valoriza o trabalho dos artistas e técnicos, destacando o teatro como um setor importante da economia criativa e do crescimento cultural."
+      }
+    ],
     "nota imdb": {
       "votantes": "",
       "url": ""
@@ -1971,7 +2429,17 @@
     "Gênero": "",
     "GEN.": "Ficção",
     "Ano": 1978,
-    "ODS": "",
+    "ODS": "11, 16",
+    "ODS_Justificados": [
+      {
+        "ods": "11",
+        "justificativa": "O filme utiliza o Carnaval do Rio de Janeiro, um patrimônio cultural imaterial, como cenário e elemento central, explorando sua função como espaço de expressão artística, catarse social e transgressão."
+      },
+      {
+        "ods": "16",
+        "justificativa": "Produzido durante a ditadura militar, o filme usa uma narrativa delirante e caótica como alegoria para a repressão política e a desintegração social, questionando as noções de ordem, liberdade e justiça em um período autoritário."
+      }
+    ],
     "nota imdb": {
       "votantes": "6,6/101",
       "url": ""
@@ -2018,7 +2486,21 @@
     "Gênero": "Documentário, Guerra, Romance",
     "GEN.": "Ficção",
     "Ano": 1967,
-    "ODS": "",
+    "ODS": "1, 10, 11",
+    "ODS_Justificados": [
+      {
+        "ods": "1",
+        "justificativa": "O filme retrata a vida de personagens em situação de extrema pobreza, vivendo literalmente à margem da sociedade e de suas oportunidades."
+      },
+      {
+        "ods": "10",
+        "justificativa": "Como obra seminal do 'Cinema Marginal', o filme dá visibilidade aos excluídos e invisíveis da metrópole, denunciando a profunda desigualdade social gerada pelo 'milagre econômico'."
+      },
+      {
+        "ods": "11",
+        "justificativa": "A obra oferece uma crítica contundente ao modelo de desenvolvimento urbano que marginaliza pessoas e degrada o meio ambiente, tendo como cenário as margens poluídas do rio Tietê em São Paulo."
+      }
+    ],
     "nota imdb": {
       "votantes": "",
       "url": ""
