@@ -5309,53 +5309,72 @@
  "Assistir Online": "",
  "URL": ""
  },
-  {
-    "Classificação Indicativa POR PGM": 12,
-    "Classificação Indicativa - Descrição": [
-      {
-        "Descrição": "Pesquisar Classificação Indicativa no site do Ministério da Justiça",
-        "url": "https://classindportal.mj.gov.br/consulta-filmes"
-      }
-    ],
-    "Título do filme": "Abry",
-    "Direção": "Joel Pizzini",
-    "Curadoria": "",
-    "Elenco": "Depoimentos: Lúcia Rocha\n",
-    "Dur.(´)": 30,
-    "Gênero": "Documentário, Drama, Romance",
-    "GEN.": "Documentário",
-    "Ano": 2003,
-    "ODS": "",
-    "nota imdb": {
-      "votantes": "7,8/9",
-      "url": ""
-    },
-    "País": "Brasil",
-    "UF": "SP",
-    "cidade": "",
-    "Audiodescrição": "",
-    "Closed Caption": "",
-    "Sinopse": "Aos 84 anos de idade,  Lúcia Rocha interna-se num hospital em São Paulo para fazer exames no coração. Ao receber a notícia sobre o risco que corria sua vida, Lúcia lacônica, diz ao médico - então abre! É a segunda vez que ela submete-se a uma cirurgia de pontes de safena. A partir deste gesto, nasce o documentário Abry (com y, signo do inconsciente, de acordo com a nomenclatura inventada pelo filho Glauber Rocha). Para relatar suas memórias, ela convida o cineasta Joel Pizzini que oferece sua mini-câmera com instrumento amplificador do imaginário de Lúcia. Abry é um mergulho poético no universo fabulador de Lúcia Rocha, reconstruindo sua trajetória no cinema brasileiro através de sons imagens e personagens com quem conviveu de perto.",
-    "tema (Programadora Brasil)": "",
-    "tags": "",
-    "website": "",
-    "festivais": "",
-    "premios": "Prêmio Tatu de Ouro - XXX Jornada da Bahia\nMelhor Vídeo no X Vitória Cine Vídeo\nPrêmio de melhor curta no Festival É tudo Verdade, 2004\nPrêmio Margarida de Prata (CNBB) - Melhor filme documentário.",
-    "legendas_outras": "",
-    "material_outros": "",
-    "duracao FORMATO": "MÉDIA",
-    "PGM": 29,
-    "Filmes": 72,
-    "Nome do Programa": "Em Torno de Glauber",
-    "imageName": "em_torno_de_glauber",
-    "planos_de_aula": [],
-    "trailer": "",
-    "imagens_adicionais": [],
-    "videos": [],
-    "Assistir Online": "https://portacurtas.org.br/filme/?name=Abry",
-    "URL": "https://portacurtas.org.br/busca/?termo=Abry",
-    "busca": "Inválido (Redirecionamento Erro Tamandua)"
-  },
+{
+ "Classificação Indicativa POR PGM": 12,
+ "Classificação Indicativa - Descrição": [
+ {
+ "Descrição": "Pesquisar Classificação Indicativa no site do Ministério da Justiça",
+ "url": "https://classindportal.mj.gov.br/consulta-filmes"
+ }
+ ],
+ "Título do filme": "Abry",
+ "Direção": "Joel Pizzini",
+ "Curadoria": "",
+ "Elenco": "Depoimentos: Lúcia Rocha\n",
+ "Dur. (´)": 30,
+ "Gênero": "Documentário, Drama, Romance",
+ "GEN.": "Documentário",
+ "Ano": 2003,
+ "ODS": "3, 5, 10",
+ "ODS_Analisados": "3, 5, 10",
+ "ODS_Justificados": [
+ {
+ "ods": "3",
+ "justificativa": "O filme parte de uma cirurgia cardíaca de Lúcia Rocha, mãe de Glauber Rocha, para explorar suas memórias. A obra aborda diretamente a saúde na terceira idade, o bem-estar e a resiliência diante de procedimentos médicos complexos."
+ },
+ {
+ "ods": "5",
+ "justificativa": "O documentário dá protagonismo a uma mulher idosa, Lúcia Rocha, permitindo que ela conte sua própria história e sua trajetória no cinema brasileiro. É uma celebração da memória e da perspectiva feminina, combatendo o apagamento de mulheres na história."
+ },
+ {
+ "ods": "10",
+ "justificativa": "Ao focar em uma figura idosa e em sua memória, o filme contribui para reduzir a desigualdade de representação etária na mídia, valorizando a experiência e a sabedoria acumulada ao longo da vida."
+ }
+ ],
+ "nota imdb": {
+ "votantes": "7,8/9",
+ "url": ""
+ },
+ "País": "Brasil",
+ "UF": "SP",
+ "cidade": "",
+ "Audiodescrição": "",
+ "Closed Caption": "",
+ "Sinopse": "Aos 84 anos de idade, Lúcia Rocha interna-se num hospital em São Paulo para fazer exames no coração. Ao receber a notícia sobre o risco que corria sua vida, Lúcia lacônica, diz ao médico - então abre! É a segunda vez que ela submete-se a uma cirurgia de pontes de safena. A partir deste gesto, nasce o documentário Abry (com y, signo do inconsciente, de acordo com a nomenclatura inventada pelo filho Glauber Rocha). Para relatar suas memórias, ela convida o cineasta Joel Pizzini que oferece sua mini-câmera com instrumento amplificador do imaginário de Lúcia. Abry é um mergulho poético no universo fabulador de Lúcia Rocha, reconstruindo sua trajetória no cinema brasileiro através de sons imagens e personagens com quem conviveu de perto.",
+ "tema (Programadora Brasil)": "",
+ "tags": "",
+ "website": "",
+ "festivais": "",
+ "premios": "Prêmio Tatu de Ouro - XXX Jornada da Bahia\nMelhor Vídeo no X Vitória Cine Vídeo\nPrêmio de melhor curta no Festival É tudo Verdade, 2004\nPrêmio Margarida de Prata (CNBB) - Melhor filme documentário.",
+ "legendas_outras": "",
+ "material_outros": "",
+ "duracao FORMATO": "MÉDIA",
+ "PGM": 29,
+ "Filmes": 72,
+ "Nome do Programa": "Em Torno de Glauber",
+ "imageName": "em_torno_de_glauber",
+ "planos_de_aula": [],
+ "trailer": "",
+ "imagens_adicionais": [],
+ "videos": [],
+ "Assistir Online": "https://portacurtas.org.br/filme/?name=Abry",
+ "URL": "https://portacurtas.org.br/busca/?termo=Abry",
+ "busca": "Inválido (Redirecionamento Erro Tamandua)"
+ },
+
+
+
+
   {
     "Classificação Indicativa POR PGM": 12,
     "Classificação Indicativa - Descrição": [
@@ -5372,7 +5391,26 @@
     "Gênero": "",
     "GEN.": "Ficção",
     "Ano": 1967,
-    "ODS": "",
+    "ODS": "1, 8, 10, 16",
+    "ODS_Analisados": "1, 8, 10, 16",
+    "ODS_Justificados": [
+      {
+        "ods": "1",
+        "justificativa": "O protagonista, um linotipista de origem humilde, vê no concurso de TV a única chance de sair da pobreza e conseguir dinheiro para se casar, refletindo a luta contra a escassez de recursos."
+      },
+      {
+        "ods": "8",
+        "justificativa": "O filme contrapõe o trabalho honesto, mas mal remunerado, com a promessa de enriquecimento rápido e a influência da economia informal e criminosa (o 'bookmaker'), levantando questões sobre trabalho decente e crescimento econômico."
+      },
+      {
+        "ods": "10",
+        "justificativa": "A trama evidencia a desigualdade social e de oportunidades. A ascensão súbita do protagonista expõe o preconceito de classe e como a sociedade lida com a mobilidade social, mostrando a exploração do mais fraco pelo mais forte."
+      },
+      {
+        "ods": "16",
+        "justificativa": "A interferência de um criminoso e a manipulação em torno do concurso questionam a integridade de instituições como a mídia e a fragilidade do cidadão comum diante de sistemas corruptos, abordando a falta de justiça e instituições sólidas."
+      }
+    ],
     "nota imdb": {
       "votantes": "",
       "url": ""
@@ -5418,7 +5456,26 @@
     "Gênero": "",
     "GEN.": "Ficção",
     "Ano": 2006,
-    "ODS": "",
+    "ODS": "4, 8, 10, 11",
+    "ODS_Analisados": "4, 8, 10, 11",
+    "ODS_Justificados": [
+      {
+        "ods": "4",
+        "justificativa": "O projeto 'Nós do Morro' e a criação de uma escola de samba mirim são iniciativas de educação artística e cultural que oferecem formação e novas perspectivas para jovens de comunidades, promovendo educação de qualidade e inclusiva."
+      },
+      {
+        "ods": "8",
+        "justificativa": "A iniciativa cultural retratada pode ser vista como uma forma de economia criativa, gerando oportunidades e potencial de trabalho decente para os jovens da comunidade através da arte e da cultura."
+      },
+      {
+        "ods": "10",
+        "justificativa": "O filme destaca uma iniciativa que busca reduzir as desigualdades de oportunidades para jovens de favelas, utilizando a cultura como ferramenta de inclusão social e empoderamento."
+      },
+      {
+        "ods": "11",
+        "justificativa": "A obra valoriza a cultura e a produção artística de uma comunidade (favela), mostrando como a arte pode fortalecer a identidade local e tornar os assentamentos humanos mais inclusivos, seguros e resilientes."
+      }
+    ],
     "nota imdb": {
       "votantes": "",
       "url": ""
@@ -5464,7 +5521,26 @@
     "Gênero": "Animação",
     "GEN.": "Animação",
     "Ano": 2006,
-    "ODS": "",
+    "ODS": "4, 8, 10, 11",
+    "ODS_Analisados": "4, 8, 10, 11",
+    "ODS_Justificados": [
+      {
+        "ods": "4",
+        "justificativa": "A animação, produzida no contexto do projeto 'Nós do Morro', é um resultado direto de uma iniciativa de educação artística e cultural, oferecendo formação e expressão para jovens de comunidades e promovendo educação de qualidade."
+      },
+      {
+        "ods": "8",
+        "justificativa": "O projeto cultural retratado fomenta a economia criativa, gerando habilidades e potencial de trabalho decente para os jovens da comunidade através da arte, cultura e, neste caso, da animação."
+      },
+      {
+        "ods": "10",
+        "justificativa": "O filme é um produto de uma iniciativa que visa reduzir as desigualdades de oportunidades para jovens de favelas, usando a cultura e a arte como ferramentas de inclusão social, empoderamento e expressão."
+      },
+      {
+        "ods": "11",
+        "justificativa": "A obra valoriza a produção cultural e a identidade de uma comunidade (favela), mostrando como a arte pode fortalecer os laços locais e contribuir para a construção de assentamentos humanos mais inclusivos e resilientes."
+      }
+    ],
     "nota imdb": {
       "votantes": "",
       "url": ""
@@ -5510,7 +5586,22 @@
     "Gênero": "",
     "GEN.": "Ficção",
     "Ano": 2001,
-    "ODS": "",
+    "ODS": "8, 11, 12",
+    "ODS_Analisados": "8, 11, 12",
+    "ODS_Justificados": [
+      {
+        "ods": "8",
+        "justificativa": "O filme destaca um costume local que faz parte da cultura e da economia do turismo na região amazônica, valorizando tradições que podem impulsionar o crescimento econômico local."
+      },
+      {
+        "ods": "11",
+        "justificativa": "A obra celebra uma herança cultural específica (a gastronomia e os costumes sociais) de uma comunidade na Amazônia, contribuindo para a salvaguarda do patrimônio cultural imaterial e o fortalecimento da identidade local."
+      },
+      {
+        "ods": "12",
+        "justificativa": "O foco em alimentos regionais como o açaí e o jabá promove a valorização de produtos locais e cadeias de produção e consumo mais curtas e sustentáveis, alinhando-se a padrões de consumo responsáveis."
+      }
+    ],
     "nota imdb": {
       "votantes": "6,7/9",
       "url": ""
@@ -5557,7 +5648,22 @@
     "Gênero": "",
     "GEN.": "Ficção",
     "Ano": 2003,
-    "ODS": "",
+    "ODS": "8, 11, 12",
+    "ODS_Analisados": "8, 11, 12",
+    "ODS_Justificados": [
+      {
+        "ods": "8",
+        "justificativa": "O filme retrata uma jornada nômade e solitária, que pode ser interpretada como uma crítica à alienação no trabalho e à busca por um sentido de vida fora dos padrões econômicos tradicionais, tocando na ideia de crescimento econômico e suas alternativas."
+      },
+      {
+        "ods": "11",
+        "justificativa": "A obra explora a experiência de transitar por diferentes cidades e espaços, refletindo sobre a vida urbana, o deslocamento e a sensação de não-pertencimento nas comunidades modernas."
+      },
+      {
+        "ods": "12",
+        "justificativa": "A regra do protagonista de filmar tudo o que come e onde dorme, até o dinheiro acabar, transforma a jornada em um registro de consumo. É uma reflexão sobre o consumo de experiências, lugares e recursos de forma efêmera e descartável."
+      }
+    ],
     "nota imdb": {
       "votantes": "",
       "url": ""
@@ -5604,7 +5710,34 @@
     "Gênero": "Documentário",
     "GEN.": "Documentário",
     "Ano": 2010,
-    "ODS": "",
+    "ODS": "1, 2, 8, 10, 15, 16",
+    "ODS_Analisados": "1, 2, 8, 10, 15, 16",
+    "ODS_Justificados": [
+      {
+        "ods": "1",
+        "justificativa": "O filme documenta a expulsão de 15 mil famílias de suas terras, um evento que as empurra diretamente para a pobreza ao privá-las de seu meio de subsistência e moradia."
+      },
+      {
+        "ods": "2",
+        "justificativa": "A expulsão dos sítios, onde as famílias praticavam agricultura familiar, ameaça diretamente sua segurança alimentar, trocando a produção de alimentos pela monocultura da cana para etanol."
+      },
+      {
+        "ods": "8",
+        "justificativa": "A obra contrapõe o modelo do agronegócio, que gera concentração de riqueza, com o trabalho da agricultura familiar. A resistência de Maria Francisca é uma luta por um modelo de desenvolvimento econômico mais justo e inclusivo."
+      },
+      {
+        "ods": "10",
+        "justificativa": "Este é um caso explícito de desigualdade, onde pequenos agricultores são subjugados pelo poder econômico do latifúndio canavieiro, evidenciando a luta de classes no campo."
+      },
+      {
+        "ods": "15",
+        "justificativa": "A expansão da monocultura da cana-de-açúcar representa uma ameaça à biodiversidade e ao uso sustentável dos ecossistemas terrestres, tema central do conflito retratado."
+      },
+      {
+        "ods": "16",
+        "justificativa": "A resistência de Maria Francisca é uma luta por justiça e pelo direito à terra. O filme expõe a falha das instituições em proteger os mais fracos e a necessidade de fortalecer a justiça para garantir a paz social."
+      }
+    ],
     "nota imdb": {
       "votantes": "",
       "url": ""
@@ -5651,7 +5784,18 @@
     "Gênero": "",
     "GEN.": "Ficção",
     "Ano": 2006,
-    "ODS": "",
+    "ODS": "5, 16",
+    "ODS_Analisados": "5, 16",
+    "ODS_Justificados": [
+      {
+        "ods": "5",
+        "justificativa": "O filme retrata uma mulher em situação de perigo e perseguição por 'mafiosos', abordando a vulnerabilidade feminina e a violência de gênero em um contexto de suspense e crime."
+      },
+      {
+        "ods": "16",
+        "justificativa": "A trama se desenrola em um ambiente de criminalidade, onde a protagonista é 'acossada' por mafiosos. Isso reflete um cenário de ausência de paz, segurança e justiça, onde a lei do mais forte prevalece."
+      }
+    ],
     "nota imdb": {
       "votantes": "",
       "url": ""
@@ -5698,7 +5842,18 @@
     "Gênero": "Animação",
     "GEN.": "Animação",
     "Ano": 1988,
-    "ODS": "",
+    "ODS": "3, 10",
+    "ODS_Analisados": "3, 10",
+    "ODS_Justificados": [
+      {
+        "ods": "3",
+        "justificativa": "A animação, com o título 'Adeus', provavelmente explora temas como perda, luto e despedida, que são fundamentais para a discussão sobre saúde mental, bem-estar emocional e o ciclo da vida."
+      },
+      {
+        "ods": "10",
+        "justificativa": "O filme pode abordar a separação e o isolamento, sentimentos que podem ser intensificados por desigualdades sociais ou emocionais, refletindo sobre a exclusão e a dificuldade de manter laços."
+      }
+    ],
     "nota imdb": {
       "votantes": "",
       "url": ""
@@ -5744,7 +5899,26 @@
     "Gênero": "Animação",
     "GEN.": "Animação",
     "Ano": 1980,
-    "ODS": "",
+    "ODS": "8, 10, 16, 18",
+    "ODS_Analisados": "8, 10, 16, 18",
+    "ODS_Justificados": [
+      {
+        "ods": "8",
+        "justificativa": "O filme é uma crítica histórica às relações de trabalho no Brasil, desde a colonização, abordando a exploração e a luta por condições de trabalho mais justas, temas centrais para o trabalho decente."
+      },
+      {
+        "ods": "10",
+        "justificativa": "A animação expõe as estruturas de poder e a profunda desigualdade social que marcaram a história do Brasil, focando na opressão de diferentes grupos (indígenas, negros, imigrantes) ao longo do tempo."
+      },
+      {
+        "ods": "16",
+        "justificativa": "A obra critica as instituições de poder que historicamente perpetuaram a injustiça e a exploração no país, clamando por uma revisão histórica e por instituições mais justas e inclusivas."
+      },
+      {
+        "ods": "18",
+        "justificativa": "O filme aborda diretamente a exploração da mão de obra indígena e negra como base da 'Afundação do Brasil', sendo uma análise crítica do racismo estrutural e seu papel na formação socioeconômica do país."
+      }
+    ],
     "nota imdb": {
       "votantes": "",
       "url": ""
@@ -5791,7 +5965,26 @@
     "Gênero": "Drama",
     "GEN.": "Experimental",
     "Ano": 2005,
-    "ODS": "",
+    "ODS": "1, 4, 10, 16",
+    "ODS_Analisados": "1, 4, 10, 16",
+    "ODS_Justificados": [
+      {
+        "ods": "1",
+        "justificativa": "O filme contrasta a riqueza cultural do povo Maxakali com a sombra da miséria em que vivem, expondo a condição de pobreza enfrentada por muitas comunidades indígenas no Brasil."
+      },
+      {
+        "ods": "4",
+        "justificativa": "A obra valoriza e documenta a cultura, a língua e as formas de conhecimento do povo Maxakali ('Ãgtux' significa 'contar histórias'), promovendo uma educação intercultural e a preservação de saberes tradicionais."
+      },
+      {
+        "ods": "10",
+        "justificativa": "Ao focar na riqueza cultural em vez da miséria amplamente divulgada, o filme combate a representação estereotipada e busca reduzir a desigualdade de visibilidade, dando protagonismo à perspectiva e à arte indígena."
+      },
+      {
+        "ods": "16",
+        "justificativa": "O documentário dá voz a uma comunidade indígena, fortalecendo sua identidade e promovendo o reconhecimento de seus direitos culturais. É um ato de justiça simbólica contra o apagamento histórico e a marginalização institucional."
+      }
+    ],
     "nota imdb": {
       "votantes": "",
       "url": ""
@@ -5838,7 +6031,26 @@
     "Gênero": "",
     "GEN.": "Ficção",
     "Ano": 2002,
-    "ODS": "",
+    "ODS": "3, 6, 10, 15",
+    "ODS_Analisados": "3, 6, 10, 15",
+    "ODS_Justificados": [
+      {
+        "ods": "3",
+        "justificativa": "O filme aborda a saúde e o bem-estar em múltiplas facetas: o sonho da neta, que representa a saúde emocional e a esperança, e a condição da avó doente, que reflete a vulnerabilidade física na velhice."
+      },
+      {
+        "ods": "6",
+        "justificativa": "A trama é centrada no sonho de uma menina de conhecer a chuva, em pleno sertão. Isso aborda diretamente a questão da escassez de água, um recurso vital, e o impacto disso na vida e nos sonhos das pessoas."
+      },
+      {
+        "ods": "10",
+        "justificativa": "A história se passa no sertão nordestino, um cenário que simboliza a desigualdade regional e a luta contra as adversidades impostas pela natureza e pela falta de recursos, destacando a resiliência de populações marginalizadas."
+      },
+      {
+        "ods": "15",
+        "justificativa": "O sertão e a seca são elementos centrais da narrativa, colocando em foco o ecossistema da caatinga e os desafios da vida em um ambiente terrestre marcado pela aridez e pela desertificação."
+      }
+    ],
     "nota imdb": {
       "votantes": "",
       "url": ""
@@ -5885,7 +6097,22 @@
     "Gênero": "Animação",
     "GEN.": "Animação",
     "Ano": 2006,
-    "ODS": "",
+    "ODS": "4, 14, 15",
+    "ODS_Analisados": "4, 14, 15",
+    "ODS_Justificados": [
+      {
+        "ods": "4",
+        "justificativa": "A animação, produzida por um núcleo com foco em projetos socioambientais, serve como uma ferramenta de educação ambiental para crianças, ensinando sobre a fauna e a importância da conservação de forma lúdica e acessível."
+      },
+      {
+        "ods": "14",
+        "justificativa": "O Núcleo Animazul é conhecido por projetos que envolvem a vida marinha do Espírito Santo. O filme provavelmente aborda a fauna aquática, conscientizando sobre a proteção dos oceanos e seus habitantes."
+      },
+      {
+        "ods": "15",
+        "justificativa": "De forma mais ampla, o filme promove a conscientização sobre a vida terrestre e a biodiversidade, incentivando o respeito e o cuidado com os animais e seus habitats desde a infância."
+      }
+    ],
     "nota imdb": {
       "votantes": "",
       "url": ""
@@ -5931,7 +6158,22 @@
     "Gênero": "Documentário",
     "GEN.": "Documentário",
     "Ano": 1974,
-    "ODS": "",
+    "ODS": "4, 10, 18",
+    "ODS_Analisados": "4, 10, 18",
+    "ODS_Justificados": [
+      {
+        "ods": "4",
+        "justificativa": "O filme é um documento histórico e educacional sobre a música popular brasileira, preservando e disseminando o conhecimento sobre a obra de grandes mestres como Pixinguinha, Cartola e Ismael Silva para novas gerações."
+      },
+      {
+        "ods": "10",
+        "justificativa": "Ao destacar a importância de compositores negros e de origem popular, o filme ajuda a reduzir a desigualdade de reconhecimento na história da cultura brasileira, valorizando artistas que muitas vezes foram marginalizados."
+      },
+      {
+        "ods": "18",
+        "justificativa": "A obra celebra a genialidade de ícones da música afro-brasileira como Pixinguinha, Cartola e Nelson Cavaquinho. É uma afirmação da importância da cultura negra na formação da identidade musical do Brasil, promovendo a igualdade racial através da valorização artística."
+      }
+    ],
     "nota imdb": {
       "votantes": "",
       "url": ""
@@ -5978,7 +6220,22 @@
     "Gênero": "Drama, Guerra",
     "GEN.": "Ficção",
     "Ano": 1976,
-    "ODS": "",
+    "ODS": "5, 10, 16",
+    "ODS_Analisados": "5, 10, 16",
+    "ODS_Justificados": [
+      {
+        "ods": "5",
+        "justificativa": "O filme explora as dinâmicas de poder dentro de uma família patriarcal, onde as mulheres, apesar de fortes, são submetidas às decisões e ideologias dos homens, refletindo sobre os papéis de gênero em um contexto histórico de autoritarismo."
+      },
+      {
+        "ods": "10",
+        "justificativa": "A trama aborda a questão da imigração alemã e a persistência de ideologias nazistas e integralistas no Brasil, levantando discussões sobre xenofobia, preconceito e a desigualdade gerada por ideologias de supremacia."
+      },
+      {
+        "ods": "16",
+        "justificativa": "O filme se passa durante a Segunda Guerra Mundial e suas consequências, tratando de espionagem, conflitos ideológicos e a infiltração de ex-oficiais nazistas. É uma obra sobre a ausência de paz e a perpetuação da violência e de ideologias de guerra."
+      }
+    ],
     "nota imdb": {
       "votantes": "6,7/82",
       "url": ""
@@ -6024,7 +6281,22 @@
     "Gênero": "",
     "GEN.": "Ficção",
     "Ano": 2006,
-    "ODS": "",
+    "ODS": "3, 5, 10",
+    "ODS_Analisados": "3, 5, 10",
+    "ODS_Justificados": [
+      {
+        "ods": "3",
+        "justificativa": "O filme aborda o despertar da sexualidade e as angústias da adolescência, temas cruciais para a saúde mental e o bem-estar dos jovens, que confrontam seus sentimentos e identidades."
+      },
+      {
+        "ods": "5",
+        "justificativa": "A narrativa explora a amizade entre um rapaz e uma moça e as tensões sexuais e afetivas que surgem, incluindo a homossexualidade, contribuindo para a discussão sobre diversidade sexual e papéis de gênero."
+      },
+      {
+        "ods": "10",
+        "justificativa": "Ao tratar da homossexualidade na adolescência, o curta aborda a questão da aceitação e da desigualdade enfrentada por jovens LGBTQIA+, promovendo a redução do preconceito e da discriminação."
+      }
+    ],
     "nota imdb": {
       "votantes": "6/37",
       "url": ""
@@ -6071,7 +6343,18 @@
     "Gênero": "",
     "GEN.": "Experimental",
     "Ano": 1997,
-    "ODS": "",
+    "ODS": "3, 11",
+    "ODS_Analisados": "3, 11",
+    "ODS_Justificados": [
+      {
+        "ods": "3",
+        "justificativa": "O vídeo-poema explora sentimentos de desejo, desencontro e o fascínio pelo desconhecido, mergulhando em estados de angústia e anseio que são centrais para a discussão sobre saúde mental e bem-estar emocional."
+      },
+      {
+        "ods": "11",
+        "justificativa": "A obra utiliza paisagens e a experiência de deslocamento para construir sua narrativa poética, refletindo sobre como os espaços (urbanos ou não) e a sensação de pertencimento (ou a falta dele) moldam nossas emoções e relacionamentos."
+      }
+    ],
     "nota imdb": {
       "votantes": "",
       "url": ""
@@ -6118,7 +6401,18 @@
     "Gênero": "Romance",
     "GEN.": "Ficção",
     "Ano": 2005,
-    "ODS": "",
+    "ODS": "3, 11",
+    "ODS_Analisados": "3, 11",
+    "ODS_Justificados": [
+      {
+        "ods": "3",
+        "justificativa": "O filme explora os sentimentos de amor, perda e desencontro, temas que impactam diretamente a saúde mental e o bem-estar emocional dos personagens e do público."
+      },
+      {
+        "ods": "11",
+        "justificativa": "A cidade é um personagem central, com sua 'geografia sentimental' moldando os encontros e desencontros do casal. O curta reflete sobre como as dinâmicas urbanas influenciam as relações humanas e a vida em comunidade."
+      }
+    ],
     "nota imdb": {
       "votantes": "6,1/48",
       "url": ""
@@ -6165,7 +6459,22 @@
     "Gênero": "Animação",
     "GEN.": "Animação",
     "Ano": 2002,
-    "ODS": "",
+    "ODS": "4, 11, 18",
+    "ODS_Analisados": "4, 11, 18",
+    "ODS_Justificados": [
+      {
+        "ods": "4",
+        "justificativa": "A animação celebra o Choro, um gênero musical brasileiro, servindo como uma ferramenta de educação cultural e artística para crianças, apresentando a elas uma importante manifestação da música nacional."
+      },
+      {
+        "ods": "11",
+        "justificativa": "O filme exalta a 'Alma Carioca', valorizando a identidade e o patrimônio cultural imaterial da cidade do Rio de Janeiro através da música, contribuindo para o fortalecimento da cultura local."
+      },
+      {
+        "ods": "18",
+        "justificativa": "O Choro é um gênero musical com profundas raízes na cultura afro-brasileira. Ao celebrar o 'Choro de Menino', o filme, mesmo que indiretamente, valoriza essa herança cultural e promove a igualdade racial através da representação artística."
+      }
+    ],
     "nota imdb": {
       "votantes": "",
       "url": ""
@@ -6211,7 +6520,22 @@
     "Gênero": "",
     "GEN.": "Ficção",
     "Ano": 1993,
-    "ODS": "",
+    "ODS": "3, 10, 16",
+    "ODS_Analisados": "3, 10, 16",
+    "ODS_Justificados": [
+      {
+        "ods": "3",
+        "justificativa": "O filme atravessa décadas da história brasileira, abordando as angústias, os sonhos e as desilusões de uma geração, o que impacta diretamente a saúde mental e o bem-estar dos personagens, que buscam sentido em meio ao caos político e social."
+      },
+      {
+        "ods": "10",
+        "justificativa": "A obra retrata as tensões sociais e políticas do Brasil, incluindo a ditadura militar, um período de extrema desigualdade de direitos e liberdades. A amizade dos poetas serve como fio condutor para explorar essas fraturas sociais."
+      },
+      {
+        "ods": "16",
+        "justificativa": "O filme é um inventário de um período conturbado da história do Brasil, marcado pela repressão, pela falta de liberdade e pela luta por justiça e democracia. A 'alma corsária' é uma metáfora da resistência contra instituições opressoras."
+      }
+    ],
     "nota imdb": {
       "votantes": "7,1/146",
       "url": ""
@@ -6257,7 +6581,22 @@
     "Gênero": "",
     "GEN.": "Ficção",
     "Ano": 1996,
-    "ODS": "",
+    "ODS": "8, 12, 16",
+    "ODS_Analisados": "8, 12, 16",
+    "ODS_Justificados": [
+      {
+        "ods": "8",
+        "justificativa": "O filme satiriza o mundo da publicidade e as relações de trabalho dentro de uma agência, expondo a pressão, a competição e a ética questionável que podem caracterizar o ambiente corporativo, em contraste com o ideal de trabalho decente."
+      },
+      {
+        "ods": "12",
+        "justificativa": "A obra é uma crítica direta à indústria da publicidade e ao consumismo, mostrando como a criatividade é usada para vender produtos e ideias, muitas vezes de forma manipuladora. Levanta questões sobre consumo e produção responsáveis."
+      },
+      {
+        "ods": "16",
+        "justificativa": "A trama pode explorar a corrupção e a falta de ética no mundo dos negócios, onde a 'alma' é vendida em troca de sucesso. Isso se relaciona com a necessidade de instituições mais justas e transparentes, mesmo no setor privado."
+      }
+    ],
     "nota imdb": {
       "votantes": "6/59",
       "url": ""
@@ -6303,7 +6642,22 @@
     "Gênero": "Documentário",
     "GEN.": "Documentário",
     "Ano": 1974,
-    "ODS": "",
+    "ODS": "10, 16, 18",
+    "ODS_Analisados": "10, 16, 18",
+    "ODS_Justificados": [
+      {
+        "ods": "10",
+        "justificativa": "O filme é uma poderosa reflexão sobre a diáspora africana e a desigualdade histórica sofrida pela população negra, desde a escravidão até a luta por identidade e espaço na sociedade contemporânea."
+      },
+      {
+        "ods": "16",
+        "justificativa": "A jornada do personagem, da opressão à libertação, é uma busca por justiça e reconhecimento. O filme denuncia a injustiça histórica da escravidão e clama por uma sociedade onde a identidade negra seja plenamente reconhecida e respeitada."
+      },
+      {
+        "ods": "18",
+        "justificativa": "Este é um filme seminal do cinema negro brasileiro. 'Alma no Olho' é uma expressão artística e política sobre a identidade negra, o racismo e a busca pela libertação cultural e existencial, sendo um marco na luta pela igualdade racial no Brasil."
+      }
+    ],
     "nota imdb": {
       "votantes": "",
       "url": ""
@@ -6350,7 +6704,18 @@
     "Gênero": "",
     "GEN.": "Experimental",
     "Ano": 2003,
-    "ODS": "",
+    "ODS": "3, 5",
+    "ODS_Analisados": "3, 5",
+    "ODS_Justificados": [
+      {
+        "ods": "3",
+        "justificativa": "O filme experimental, ao propor uma 'sutil aproximação ao feminino', explora a intimidade e a percepção do corpo, temas que se conectam com a saúde e o bem-estar, especialmente no que tange à autoimagem e à saúde mental."
+      },
+      {
+        "ods": "5",
+        "justificativa": "A obra é centrada na representação do feminino, buscando uma abordagem poética e não-convencional. Ao fazê-lo, contribui para a diversidade de olhares sobre a mulher e seu corpo, promovendo a discussão sobre a igualdade de gênero na representação artística."
+      }
+    ],
     "nota imdb": {
       "votantes": "",
       "url": ""
@@ -6397,7 +6762,18 @@
     "Gênero": "Animação, Romance",
     "GEN.": "Animação",
     "Ano": 2000,
-    "ODS": "",
+    "ODS": "3, 5",
+    "ODS_Analisados": "3, 5",
+    "ODS_Justificados": [
+      {
+        "ods": "3",
+        "justificativa": "A animação utiliza a metáfora do fogo para representar a paixão e o desejo, explorando a intensidade das emoções humanas de uma forma que se conecta com a saúde e o bem-estar sexual e emocional."
+      },
+      {
+        "ods": "5",
+        "justificativa": "O filme retrata uma 'incendiária história de amor' com uma protagonista feminina forte (voz de Marisa Orth), abordando o desejo e a paixão de uma perspectiva que pode desafiar papéis de gênero tradicionais em narrativas românticas."
+      }
+    ],
     "nota imdb": {
       "votantes": "5,8/24",
       "url": ""
@@ -6444,7 +6820,22 @@
     "Gênero": "",
     "GEN.": "Ficção",
     "Ano": 1996,
-    "ODS": "",
+    "ODS": "3, 8, 16",
+    "ODS_Analisados": "3, 8, 16",
+    "ODS_Justificados": [
+      {
+        "ods": "3",
+        "justificativa": "O filme retrata a tensão e o mal-estar em um ambiente social supostamente corriqueiro, abordando a ansiedade e os conflitos latentes que afetam a saúde mental e o bem-estar dos personagens."
+      },
+      {
+        "ods": "8",
+        "justificativa": "O 'almoço executivo' é um símbolo do mundo corporativo. A trama satiriza as relações de trabalho e a pressão do ambiente profissional, que transbordam para momentos de lazer, questionando a qualidade de vida associada a esse estilo de trabalho."
+      },
+      {
+        "ods": "16",
+        "justificativa": "A tensão que culmina no desfecho abrupto do almoço pode ser vista como uma metáfora para a quebra da paz e da harmonia social, onde conflitos não resolvidos levam a uma ruptura violenta ou, no mínimo, desconfortável."
+      }
+    ],
     "nota imdb": {
       "votantes": "",
       "url": ""
@@ -6491,7 +6882,22 @@
     "Gênero": "",
     "GEN.": "Ficção",
     "Ano": 1978,
-    "ODS": "",
+    "ODS": "5, 10, 11",
+    "ODS_Analisados": "5, 10, 11",
+    "ODS_Justificados": [
+      {
+        "ods": "5",
+        "justificativa": "O filme retrata com humor a independência e a determinação de uma jovem mulher que, apesar dos contratempos, não desiste de seu objetivo. É uma representação da mulher moderna e autônoma dos anos 70."
+      },
+      {
+        "ods": "10",
+        "justificativa": "A comédia explora o contraste entre a 'garota da zona sul' e as 'trapalhadas' que ela enfrenta no transporte público, tocando sutilmente nas diferenças de classe e nas desigualdades de acesso e infraestrutura na cidade."
+      },
+      {
+        "ods": "11",
+        "justificativa": "A obra é um retrato da vida urbana no Rio de Janeiro, mostrando as dificuldades de mobilidade (carro que não pega, ônibus lotado) e a relação dos cidadãos com os espaços públicos, como a praia, tornando a cidade um personagem central."
+      }
+    ],
     "nota imdb": {
       "votantes": "",
       "url": ""
@@ -6538,7 +6944,22 @@
     "Gênero": "Documentário, Drama, Romance",
     "GEN.": "Documentário",
     "Ano": 2010,
-    "ODS": "",
+    "ODS": "3, 10, 14",
+    "ODS_Analisados": "3, 10, 14",
+    "ODS_Justificados": [
+      {
+        "ods": "3",
+        "justificativa": "O documentário mostra como o esporte (surf) é uma ferramenta poderosa para a saúde física e mental e o bem-estar de pessoas com deficiência, promovendo a superação de limites e a alegria de viver."
+      },
+      {
+        "ods": "10",
+        "justificativa": "Ao focar em surfistas com necessidades especiais e as tecnologias adaptativas, o filme combate a desigualdade e a exclusão, mostrando que o acesso ao esporte e ao lazer deve ser para todos, independentemente de suas condições físicas."
+      },
+      {
+        "ods": "14",
+        "justificativa": "O filme celebra a relação do homem com o mar. A paixão pelas ondas e a conexão com o oceano são centrais, promovendo o respeito e a valorização da vida marinha e dos ecossistemas costeiros."
+      }
+    ],
     "nota imdb": {
       "votantes": "",
       "url": ""
@@ -6585,7 +7006,14 @@
     "Gênero": "Comédia, Romance",
     "GEN.": "Ficção",
     "Ano": 1997,
-    "ODS": "",
+    "ODS": "3",
+    "ODS_Analisados": "3",
+    "ODS_Justificados": [
+      {
+        "ods": "3",
+        "justificativa": "O filme aborda de forma cômica a dor e a frustração do amor não correspondido, um tema universal que afeta diretamente a saúde mental e o bem-estar emocional das pessoas."
+      }
+    ],
     "nota imdb": {
       "votantes": "",
       "url": ""
@@ -6632,7 +7060,38 @@
     "Gênero": "",
     "GEN.": "Ficção",
     "Ano": 2002,
-    "ODS": "",
+    "ODS": "1, 3, 5, 8, 10, 11, 16",
+    "ODS_Analisados": "1, 3, 5, 8, 10, 11, 16",
+    "ODS_Justificados": [
+      {
+        "ods": "1",
+        "justificativa": "O filme retrata um universo de personagens que vivem em condições de pobreza e marginalidade na periferia de Recife, onde a luta pela sobrevivência é diária e brutal."
+      },
+      {
+        "ods": "3",
+        "justificativa": "A obra mergulha na angústia, no desejo reprimido e na violência que marcam a vida dos personagens, expondo a deterioração da saúde mental e do bem-estar em um ambiente de extrema pressão social e econômica."
+      },
+      {
+        "ods": "5",
+        "justificativa": "O filme aborda a sexualidade de forma crua e explora as dinâmicas de poder de gênero, incluindo a objetificação e a violência contra as mulheres em um ambiente machista."
+      },
+      {
+        "ods": "8",
+        "justificativa": "Os personagens exercem trabalhos precários e de baixa remuneração (cozinheiro, açougueiro, garçonete), refletindo a realidade de uma economia informal e a falta de trabalho decente para a população de baixa renda."
+      },
+      {
+        "ods": "10",
+        "justificativa": "A estética e a narrativa do filme expõem o abismo social e a desigualdade que definem a paisagem urbana e humana de Recife, contrastando a vida no centro e na periferia."
+      },
+      {
+        "ods": "11",
+        "justificativa": "O filme é um retrato visceral da vida em uma comunidade urbana marginalizada, questionando a sustentabilidade e a inclusão de uma cidade que gera tanta frustração e violência em seus habitantes."
+      },
+      {
+        "ods": "16",
+        "justificativa": "A violência permeia todas as relações no filme, seja ela física, verbal ou psicológica. A obra retrata um ambiente de ausência de paz e justiça, onde os conflitos são resolvidos de forma brutal."
+      }
+    ],
     "nota imdb": {
       "votantes": "",
       "url": ""
@@ -6678,7 +7137,18 @@
     "Gênero": "Terror",
     "GEN.": "Ficção",
     "Ano": 1998,
-    "ODS": "",
+    "ODS": "3, 5",
+    "ODS_Analisados": "3, 5",
+    "ODS_Justificados": [
+      {
+        "ods": "3",
+        "justificativa": "O filme aborda a solidão e o medo de relacionamentos reais, temas que se conectam diretamente com a saúde mental e o bem-estar emocional. A paixão por um ser inanimado (boneco de massa) é uma metáfora para a dificuldade de conexão humana."
+      },
+      {
+        "ods": "5",
+        "justificativa": "A protagonista feminina busca uma forma de relacionamento que lhe dê controle e segurança, fugindo das complexidades das relações com homens reais. O filme pode ser interpretado como uma crítica, ainda que bizarra, às dinâmicas de poder nos relacionamentos heterossexuais."
+      }
+    ],
     "nota imdb": {
       "votantes": "4,8/34",
       "url": ""
@@ -6725,7 +7195,26 @@
     "Gênero": "Documentário",
     "GEN.": "Documentário",
     "Ano": 1966,
-    "ODS": "",
+    "ODS": "8, 10, 11, 15",
+    "ODS_Analisados": "8, 10, 11, 15",
+    "ODS_Justificados": [
+      {
+        "ods": "8",
+        "justificativa": "O filme, ao estilo de Glauber, provavelmente retrata a vida e o trabalho das populações da Amazônia, expondo as relações econômicas e a exploração de recursos na região, temas ligados ao trabalho e crescimento econômico."
+      },
+      {
+        "ods": "10",
+        "justificativa": "A obra de Glauber Rocha é marcada pela denúncia das desigualdades sociais e regionais. Um filme sobre a Amazônia certamente aborda a marginalização de suas populações e a desigualdade em relação a outras partes do Brasil."
+      },
+      {
+        "ods": "11",
+        "justificativa": "O documentário é um registro da vida nas comunidades amazônicas, valorizando sua cultura, seu patrimônio e sua forma de viver, elementos essenciais para a sustentabilidade de assentamentos humanos na região."
+      },
+      {
+        "ods": "15",
+        "justificativa": "O filme tem como cenário a Floresta Amazônica, o maior ecossistema terrestre do Brasil. A obra documenta a vida em intrínseca relação com este bioma, sendo um registro importante sobre a vida na floresta e sua preservação."
+      }
+    ],
     "nota imdb": {
       "votantes": "",
       "url": ""
@@ -6755,6 +7244,8 @@
     "Assistir Online": "",
     "URL": ""
   },
+
+
   {
     "Classificação Indicativa POR PGM": 12,
     "Classificação Indicativa - Descrição": [
@@ -6771,7 +7262,30 @@
     "Gênero": "Ação, Drama, Esportes",
     "GEN.": "Ficção",
     "Ano": 1952,
-    "ODS": "",
+    "ODS": "1, 8, 10, 16, 18",
+    "ODS_Analisados": "1, 8, 10, 16, 18",
+    "ODS_Justificados": [
+      {
+        "ods": "1",
+        "justificativa": "A trama é impulsionada pela ambição do protagonista de escapar de sua condição de pobreza, um tema central que reflete a luta por uma vida melhor e a vulnerabilidade econômica."
+      },
+      {
+        "ods": "8",
+        "justificativa": "O filme contrapõe o trabalho formal com a economia informal e ilegal do 'jogo do bicho', explorando as motivações e consequências da busca por crescimento econômico fora das estruturas legais."
+      },
+      {
+        "ods": "10",
+        "justificativa": "A história aborda a desigualdade de oportunidades entre o campo e a cidade e as barreiras sociais enfrentadas por quem tenta ascender socialmente, expondo as tensões de classe da época."
+      },
+      {
+        "ods": "16",
+        "justificativa": "O envolvimento do protagonista com o crime, a prisão e a reincidência demonstram a fragilidade das instituições de justiça e a dificuldade de reintegração social, pintando um quadro de uma sociedade com falhas institucionais."
+      },
+      {
+        "ods": "18",
+        "justificativa": "A presença de Grande Otelo, um dos maiores atores negros do Brasil, em um filme da Atlântida, é significativa. A obra pode ser analisada pela forma como representa personagens negros no contexto urbano e na economia popular do Rio de Janeiro, dialogando com a questão da igualdade racial na mídia da época."
+      }
+    ],
     "nota imdb": {
       "votantes": "7/60",
       "url": ""
@@ -6817,7 +7331,22 @@
     "Gênero": "",
     "GEN.": "Experimental",
     "Ano": 1979,
-    "ODS": "",
+    "ODS": "10, 11, 16",
+    "ODS_Analisados": "10, 11, 16",
+    "ODS_Justificados": [
+      {
+        "ods": "10",
+        "justificativa": "Realizado com fotos de viagens pela América Latina nos anos 70, o filme é um ensaio visual sobre as profundas desigualdades sociais, políticas e econômicas que marcavam o continente, dando visibilidade a diferentes realidades."
+      },
+      {
+        "ods": "11",
+        "justificativa": "A obra funciona como um mosaico de diferentes comunidades e paisagens latino-americanas, documentando a vida em assentamentos humanos diversos e a riqueza de seu patrimônio cultural e social."
+      },
+      {
+        "ods": "16",
+        "justificativa": "Produzido durante o auge das ditaduras militares na América Latina, o filme é um testemunho silencioso de um período de intensa repressão, ausência de paz e violação de direitos, onde as instituições eram instrumentos de opressão."
+      }
+    ],
     "nota imdb": {
       "votantes": "",
       "url": ""
@@ -6864,7 +7393,22 @@
     "Gênero": "Comédia, Drama, Romance",
     "GEN.": "Ficção",
     "Ano": 1998,
-    "ODS": "",
+    "ODS": "3, 5, 8",
+    "ODS_Analisados": "3, 5, 8",
+    "ODS_Justificados": [
+      {
+        "ods": "3",
+        "justificativa": "O filme explora o tormento psicológico do protagonista após a traição, cujo mundo 'desaba' e se transforma 'num inferno', destacando o profundo impacto das relações e da honra na saúde mental."
+      },
+      {
+        "ods": "5",
+        "justificativa": "Baseado na obra de Eça de Queiroz e ambientado no século XIX, o filme expõe os rígidos códigos de conduta e a falta de autonomia das mulheres (Ludovina), cuja honra estava atrelada à do marido, criticando a desigualdade de gênero da época."
+      },
+      {
+        "ods": "8",
+        "justificativa": "A trama se desenrola no ambiente de negócios de um rico comerciante e seu sócio, retratando as relações de trabalho e a ética no mundo do comércio do final do século XIX."
+      }
+    ],
     "nota imdb": {
       "votantes": "7,1/173",
       "url": ""
@@ -6910,7 +7454,22 @@
     "Gênero": "Romance",
     "GEN.": "Ficção",
     "Ano": 2002,
-    "ODS": "",
+    "ODS": "3, 11, 16",
+    "ODS_Analisados": "3, 11, 16",
+    "ODS_Justificados": [
+      {
+        "ods": "3",
+        "justificativa": "O filme de horror explora o terror psicológico e a violência extrema, abordando o colapso da saúde mental e o trauma em um ambiente de medo e acontecimentos macabros."
+      },
+      {
+        "ods": "11",
+        "justificativa": "A trama se passa em uma aldeia de pescadores, uma comunidade isolada cujo tecido social é rompido pela violência, questionando a segurança e a resiliência de assentamentos humanos vulneráveis."
+      },
+      {
+        "ods": "16",
+        "justificativa": "A narrativa é marcada pela violência, morte e rituais satânicos, representando uma quebra total da paz, da segurança e da ordem social, onde a justiça é inexistente e o caos prevalece."
+      }
+    ],
     "nota imdb": {
       "votantes": "6,7/230",
       "url": ""
@@ -6957,7 +7516,14 @@
     "Gênero": "Romance",
     "GEN.": "Ficção",
     "Ano": 1994,
-    "ODS": "",
+    "ODS": "3",
+    "ODS_Analisados": "3",
+    "ODS_Justificados": [
+      {
+        "ods": "3",
+        "justificativa": "O filme explora as múltiplas facetas do amor, desde o sentimento sublime até a atração física, abordando de forma cômica e poética uma emoção fundamental para a saúde mental e o bem-estar humano."
+      }
+    ],
     "nota imdb": {
       "votantes": "6,5/35",
       "url": ""
@@ -7004,7 +7570,22 @@
     "Gênero": "Drama, Suspense",
     "GEN.": "Ficção",
     "Ano": 1998,
-    "ODS": "",
+    "ODS": "3, 5, 10",
+    "ODS_Analisados": "3, 5, 10",
+    "ODS_Justificados": [
+      {
+        "ods": "3",
+        "justificativa": "O filme aborda diretamente questões de saúde e bem-estar, como a infertilidade e seu impacto psicológico, a gravidez na adolescência e a crise do HIV/AIDS, temas de grande relevância para a saúde pública e mental."
+      },
+      {
+        "ods": "5",
+        "justificativa": "A obra apresenta um mosaico de personagens femininas complexas (a filha com liberdade sexual, a mulher que lida com a infertilidade, a atriz que se apaixona por um homem bissexual), explorando diversas facetas da experiência feminina e da luta por autonomia."
+      },
+      {
+        "ods": "10",
+        "justificativa": "Ao incluir um personagem bissexual e soropositivo, o filme aborda a discriminação e o estigma enfrentados pela comunidade LGBTQIA+ e por pessoas vivendo com HIV, contribuindo para a redução da desigualdade e do preconceito."
+      }
+    ],
     "nota imdb": {
       "votantes": "7,1/105",
       "url": ""
@@ -7050,7 +7631,26 @@
     "Gênero": "Guerra",
     "GEN.": "Ficção",
     "Ano": 1997,
-    "ODS": "",
+    "ODS": "1, 2, 5, 16",
+    "ODS_Analisados": "1, 2, 5, 16",
+    "ODS_Justificados": [
+      {
+        "ods": "1",
+        "justificativa": "O filme retrata a luta de uma família para sobreviver em meio à Guerra dos Farrapos, um contexto que agrava a pobreza e a escassez de recursos, forçando os personagens a uma luta diária pela subsistência."
+      },
+      {
+        "ods": "2",
+        "justificativa": "Em um cenário de guerra e deslocamento, a busca por alimento e a segurança alimentar se tornam desafios centrais para a sobrevivência da família, tema implícito na narrativa."
+      },
+      {
+        "ods": "5",
+        "justificativa": "A protagonista, Anahy, é uma mulher forte que lidera sua família em um ambiente de extrema violência e caos, dominado por homens. O filme destaca a resiliência, a força e a agência feminina em tempos de guerra."
+      },
+      {
+        "ods": "16",
+        "justificativa": "A Guerra dos Farrapos é o pano de fundo da história, representando a falência total da paz, da justiça e de instituições estáveis. O filme mostra o impacto devastador do conflito armado na vida de civis, especialmente mulheres e crianças."
+      }
+    ],
     "nota imdb": {
       "votantes": "7,1/112",
       "url": ""
@@ -7096,7 +7696,22 @@
     "Gênero": "",
     "GEN.": "Ficção",
     "Ano": 1997,
-    "ODS": "",
+    "ODS": "3, 11, 16",
+    "ODS_Analisados": "3, 11, 16",
+    "ODS_Justificados": [
+      {
+        "ods": "3",
+        "justificativa": "O filme aborda a solidão, a alienação e a dificuldade de manter conexões humanas em uma cidade grande, temas que afetam diretamente a saúde mental e o bem-estar dos indivíduos."
+      },
+      {
+        "ods": "11",
+        "justificativa": "A cidade é retratada como um 'labirinto de grades, cercas e muros', uma crítica ao modelo de urbanização que promove o isolamento e a fragmentação social, em vez de criar comunidades inclusivas e seguras."
+      },
+      {
+        "ods": "16",
+        "justificativa": "As barreiras físicas da cidade simbolizam a desconfiança e a falta de coesão social. O filme reflete uma sociedade onde o medo e a separação minam a paz e a construção de laços comunitários fortes."
+      }
+    ],
     "nota imdb": {
       "votantes": "6/50",
       "url": ""
@@ -7142,7 +7757,18 @@
     "Gênero": "Documentário",
     "GEN.": "Experimental",
     "Ano": 1990,
-    "ODS": "",
+    "ODS": "11, 18",
+    "ODS_Analisados": "11, 18",
+    "ODS_Justificados": [
+      {
+        "ods": "11",
+        "justificativa": "O documentário é um ensaio poético sobre a cidade de Salvador, utilizando um elemento do cotidiano (varais) para revelar a alma da comunidade, valorizando e salvaguardando o patrimônio cultural imaterial da cidade."
+      },
+      {
+        "ods": "18",
+        "justificativa": "A referência explícita aos orixás e suas cores conecta o filme diretamente à cultura e religiosidade afro-brasileira, que é central para a identidade de Salvador. A obra celebra essa herança, promovendo a igualdade racial através da valorização cultural."
+      }
+    ],
     "nota imdb": {
       "votantes": "",
       "url": ""
@@ -7189,7 +7815,22 @@
     "Gênero": "Animação, Drama",
     "GEN.": "Animação",
     "Ano": 2008,
-    "ODS": "",
+    "ODS": "3, 8, 10",
+    "ODS_Analisados": "3, 8, 10",
+    "ODS_Justificados": [
+      {
+        "ods": "3",
+        "justificativa": "O filme retrata a vida de um 'perdedor', um adolescente que trabalha como animador de festas, explorando sentimentos de frustração, baixa autoestima e alienação, temas diretamente ligados à saúde mental e ao bem-estar dos jovens."
+      },
+      {
+        "ods": "8",
+        "justificativa": "A animação mostra um trabalho precário e pouco gratificante, comum para muitos jovens no início da vida profissional. É uma crítica sutil à falta de oportunidades de trabalho decente e ao subemprego."
+      },
+      {
+        "ods": "10",
+        "justificativa": "O sentimento de ser um 'perdedor' muitas vezes está ligado a desigualdades sociais e econômicas, onde jovens de origens menos favorecidas têm acesso limitado a oportunidades, reforçando um ciclo de frustração."
+      }
+    ],
     "nota imdb": {
       "votantes": "",
       "url": ""
@@ -7236,7 +7877,18 @@
     "Gênero": "Drama",
     "GEN.": "Ficção",
     "Ano": 1999,
-    "ODS": "",
+    "ODS": "3, 16",
+    "ODS_Analisados": "3, 16",
+    "ODS_Justificados": [
+      {
+        "ods": "3",
+        "justificativa": "O filme aborda a mortalidade e a tomada de decisões em um momento existencial limite, temas que provocam uma profunda reflexão sobre a vida, a morte e o bem-estar psicológico."
+      },
+      {
+        "ods": "16",
+        "justificativa": "A decisão de 'encarar o destino' no último dia do ano pode envolver a resolução de conflitos, a busca por perdão ou a confrontação com injustiças passadas, relacionando-se com a busca por paz interior e justiça pessoal."
+      }
+    ],
     "nota imdb": {
       "votantes": "",
       "url": ""
@@ -7283,7 +7935,38 @@
     "Gênero": "Drama",
     "GEN.": "Ficção",
     "Ano": 2006,
-    "ODS": "",
+    "ODS": "1, 5, 8, 10, 11, 16, 18",
+    "ODS_Analisados": "1, 5, 8, 10, 11, 16, 18",
+    "ODS_Justificados": [
+      {
+        "ods": "1",
+        "justificativa": "A trama é ambientada na periferia de São Paulo, onde as protagonistas enfrentam um cotidiano de pobreza e usam a música como uma esperança para superar as dificuldades econômicas."
+      },
+      {
+        "ods": "5",
+        "justificativa": "O filme é centrado na luta de quatro mulheres para se afirmarem em um universo predominantemente masculino, o rap. Elas enfrentam machismo, violência doméstica e a pressão para abandonar seus sonhos, tornando a obra um poderoso manifesto sobre empoderamento feminino e sororidade."
+      },
+      {
+        "ods": "8",
+        "justificativa": "O sonho do grupo Antônia é viver de sua arte, transformando o talento musical em trabalho decente e uma fonte de crescimento econômico para elas e sua comunidade, inserindo-se na economia criativa."
+      },
+      {
+        "ods": "10",
+        "justificativa": "A história expõe as múltiplas camadas de desigualdade enfrentadas pelas personagens: de gênero, de classe social (por serem da periferia) e de raça, oferecendo um retrato contundente da exclusão social no Brasil."
+      },
+      {
+        "ods": "11",
+        "justificativa": "O filme se passa na Vila Brasilândia, mostrando a cultura, a violência e a resiliência das comunidades da periferia urbana. Valoriza a produção cultural local como parte fundamental da identidade da cidade."
+      },
+      {
+        "ods": "16",
+        "justificativa": "A violência é uma presença constante na vida das protagonistas, seja a violência doméstica, a urbana ou a institucional. A luta delas por seu espaço é também uma luta por paz e justiça em um ambiente hostil."
+      },
+      {
+        "ods": "18",
+        "justificativa": "O filme é protagonizado por quatro mulheres negras (interpretadas por cantoras como Negra Li e Leilah Moreno) e tem o rap, uma expressão cultural negra, como fio condutor. É uma obra fundamental sobre representatividade, identidade e a luta contra o racismo estrutural no Brasil."
+      }
+    ],
     "nota imdb": {
       "votantes": "6,4/383",
       "url": ""
@@ -7329,7 +8012,18 @@
     "Gênero": "Animação, Drama",
     "GEN.": "Animação",
     "Ano": 2003,
-    "ODS": "",
+    "ODS": "3, 4",
+    "ODS_Analisados": "3, 4",
+    "ODS_Justificados": [
+      {
+        "ods": "3",
+        "justificativa": "A animação é uma metáfora visual sobre o ciclo da vida, do nascimento à morte, convidando a uma reflexão poética sobre a finitude, a passagem do tempo e o bem-estar existencial."
+      },
+      {
+        "ods": "4",
+        "justificativa": "Baseado na icônica canção de Toquinho, o filme é uma ferramenta de educação cultural e artística, especialmente para crianças, transmitindo conceitos complexos como a passagem do tempo de forma lúdica e acessível."
+      }
+    ],
     "nota imdb": {
       "votantes": "5,1/15",
       "url": ""
@@ -7376,7 +8070,14 @@
     "Gênero": "",
     "GEN.": "Ficção",
     "Ano": 2004,
-    "ODS": "",
+    "ODS": "3",
+    "ODS_Analisados": "3",
+    "ODS_Justificados": [
+      {
+        "ods": "3",
+        "justificativa": "O filme narra uma história de amor através de um álbum de fotografias, explorando temas como memória, relacionamento e a passagem do tempo, que são centrais para a saúde emocional e o bem-estar."
+      }
+    ],
     "nota imdb": {
       "votantes": "",
       "url": ""
@@ -7423,7 +8124,18 @@
     "Gênero": "",
     "GEN.": "Ficção",
     "Ano": 1990,
-    "ODS": "",
+    "ODS": "3, 16",
+    "ODS_Analisados": "3, 16",
+    "ODS_Justificados": [
+      {
+        "ods": "3",
+        "justificativa": "O filme explora o subconsciente e o imaginário, mergulhando em situações absurdas que desafiam a lógica. Essa abordagem se conecta com a saúde mental, ao investigar como a psique humana reage ao desconhecido e ao ilógico."
+      },
+      {
+        "ods": "16",
+        "justificativa": "A premissa de um assalto, mesmo que a uma 'casa imaginária', toca no tema do crime e da transgressão. A narrativa surrealista questiona as noções de realidade, lei e ordem, e como os indivíduos respondem a uma quebra dessa ordem."
+      }
+    ],
     "nota imdb": {
       "votantes": "",
       "url": ""
@@ -7470,7 +8182,18 @@
     "Gênero": "",
     "GEN.": "Ficção",
     "Ano": 2008,
-    "ODS": "",
+    "ODS": "3, 14",
+    "ODS_Analisados": "3, 14",
+    "ODS_Justificados": [
+      {
+        "ods": "3",
+        "justificativa": "O curta é uma exploração sensorial e íntima de um encontro, focando em desejo, memória e conexão humana. Esses elementos são fundamentais para a saúde emocional e o bem-estar psicológico."
+      },
+      {
+        "ods": "14",
+        "justificativa": "O ambiente da praia, com a areia e o sal, é um elemento central e quase um personagem no filme, promovendo uma conexão poética e sensorial com o ecossistema costeiro e a vida marinha."
+      }
+    ],
     "nota imdb": {
       "votantes": "6/13",
       "url": ""
@@ -7517,7 +8240,18 @@
     "Gênero": "",
     "GEN.": "Experimental",
     "Ano": 2005,
-    "ODS": "",
+    "ODS": "11, 14",
+    "ODS_Analisados": "11, 14",
+    "ODS_Justificados": [
+      {
+        "ods": "11",
+        "justificativa": "O filme documenta fotograficamente um dia no Arpoador, um espaço público icônico do Rio de Janeiro, valorizando seu papel como ponto de encontro, lazer e cultura para a comunidade, e salvaguardando seu patrimônio cultural."
+      },
+      {
+        "ods": "14",
+        "justificativa": "Sendo um retrato de uma das praias mais famosas do Brasil, o curta celebra a beleza do ambiente costeiro e a relação das pessoas com o oceano, promovendo uma apreciação pela vida marinha e seus ecossistemas."
+      }
+    ],
     "nota imdb": {
       "votantes": "",
       "url": ""
@@ -7564,7 +8298,22 @@
     "Gênero": "Documentário",
     "GEN.": "Documentário",
     "Ano": 2008,
-    "ODS": "",
+    "ODS": "4, 9, 11",
+    "ODS_Analisados": "4, 9, 11",
+    "ODS_Justificados": [
+      {
+        "ods": "4",
+        "justificativa": "O filme trata da concepção e construção da Biblioteca Brasiliana, uma instituição fundamental para a educação, pesquisa e acesso ao conhecimento, destacando a importância de espaços dedicados à cultura e ao saber."
+      },
+      {
+        "ods": "9",
+        "justificativa": "A obra explora a inovação em arquitetura e engenharia por trás de um grande projeto de infraestrutura cultural, abordando o desenvolvimento de soluções de design e construção para abrigar um acervo tão importante."
+      },
+      {
+        "ods": "11",
+        "justificativa": "O documentário mostra como um edifício cultural de grande porte é concebido para se integrar à cidade e servir à comunidade, salvaguardando o patrimônio cultural (acervo de livros raros) e criando um espaço público inclusivo e sustentável."
+      }
+    ],
     "nota imdb": {
       "votantes": "",
       "url": ""
@@ -7611,7 +8360,26 @@
     "Gênero": "Documentário, Drama",
     "GEN.": "Documentário",
     "Ano": 1959,
-    "ODS": "",
+    "ODS": "8, 9, 11, 14",
+    "ODS_Analisados": "8, 9, 11, 14",
+    "ODS_Justificados": [
+      {
+        "ods": "8",
+        "justificativa": "O filme documenta a transição de uma economia baseada no trabalho tradicional da pesca para uma economia industrial, expondo a precarização e o deslocamento dos trabalhadores locais."
+      },
+      {
+        "ods": "9",
+        "justificativa": "A obra é uma crítica contundente ao modelo de industrialização que não considera os impactos sociais e ambientais, mostrando como a infraestrutura da fábrica (indústria de base) destrói o modo de vida local."
+      },
+      {
+        "ods": "11",
+        "justificativa": "O documentário retrata a desestruturação de uma comunidade pesqueira tradicional devido à industrialização, questionando a sustentabilidade de um desenvolvimento que apaga a cultura e o patrimônio local."
+      },
+      {
+        "ods": "14",
+        "justificativa": "Este é o tema central do filme. A poluição gerada pela Fábrica Nacional de Álcalis causa a morte dos peixes, destruindo o ecossistema marinho e a principal fonte de sustento da comunidade. É um dos primeiros e mais importantes registros cinematográficos sobre poluição marinha no Brasil."
+      }
+    ],
     "nota imdb": {
       "votantes": "7,4/28",
       "url": ""
@@ -7658,7 +8426,30 @@
     "Gênero": "Documentário",
     "GEN.": "Documentário",
     "Ano": 1960,
-    "ODS": "",
+    "ODS": "1, 8, 10, 11, 18",
+    "ODS_Analisados": "1, 8, 10, 11, 18",
+    "ODS_Justificados": [
+      {
+        "ods": "1",
+        "justificativa": "O filme documenta a vida em um quilombo isolado, preso a um 'ciclo econômico trágico', expondo as condições de pobreza e a luta pela subsistência de uma comunidade historicamente marginalizada."
+      },
+      {
+        "ods": "8",
+        "justificativa": "A obra mostra as atividades econômicas da comunidade, como o plantio de algodão e a cerâmica primitiva, destacando a precariedade do trabalho e a falta de oportunidades para o crescimento econômico."
+      },
+      {
+        "ods": "10",
+        "justificativa": "Ao focar em um quilombo, o filme aborda diretamente a herança da escravidão e a profunda desigualdade racial e social que isolou comunidades negras no sertão, longe das instituições e do desenvolvimento do país."
+      },
+      {
+        "ods": "11",
+        "justificativa": "Aruanda é um registro fundamental sobre um assentamento humano específico – o quilombo. O filme valoriza e salvaguarda a cultura e o modo de vida dessa comunidade, contribuindo para a preservação do patrimônio cultural afro-brasileiro."
+      },
+      {
+        "ods": "18",
+        "justificativa": "Considerado um precursor do Cinema Novo, o filme é um marco na representação de comunidades negras e quilombolas no cinema brasileiro. É uma obra essencial para entender a história, a resistência e a luta por igualdade racial no Brasil."
+      }
+    ],
     "nota imdb": {
       "votantes": "7,1/77",
       "url": ""
@@ -7705,7 +8496,22 @@
     "Gênero": "Animação, Guerra",
     "GEN.": "Animação",
     "Ano": 2005,
-    "ODS": "",
+    "ODS": "1, 4, 16",
+    "ODS_Analisados": "1, 4, 16",
+    "ODS_Justificados": [
+      {
+        "ods": "1",
+        "justificativa": "Baseado em contos populares, a história frequentemente envolve interações com os pobres e desvalidos, testando a caridade dos ricos e valorizando a generosidade, temas diretamente ligados à erradicação da pobreza."
+      },
+      {
+        "ods": "4",
+        "justificativa": "A animação adapta um conto do folclore brasileiro, servindo como uma ferramenta de educação cultural para crianças, transmitindo valores morais e preservando a tradição oral de forma lúdica."
+      },
+      {
+        "ods": "16",
+        "justificativa": "A narrativa é uma fábula sobre justiça divina, onde as ações boas são recompensadas e as más, punidas. Reflete um anseio popular por um mundo mais justo, pacífico e com instituições (mesmo que divinas) que funcionem."
+      }
+    ],
     "nota imdb": {
       "votantes": "",
       "url": ""
@@ -7751,7 +8557,18 @@
     "Gênero": "Suspense",
     "GEN.": "Ficção",
     "Ano": 2006,
-    "ODS": "",
+    "ODS": "4, 12",
+    "ODS_Analisados": "4, 12",
+    "ODS_Justificados": [
+      {
+        "ods": "4",
+        "justificativa": "O filme é voltado para o público infantil e tem como objetivo estimular a imaginação e a criatividade, incentivando as crianças a verem o mundo e os objetos ao seu redor de uma forma nova e poética, o que é um pilar da educação de qualidade."
+      },
+      {
+        "ods": "12",
+        "justificativa": "Ao dar vida e alma às 'coisas', o filme pode fomentar uma relação de maior cuidado e afeto com os objetos, promovendo uma cultura de menos descarte e mais valorização, que é a base para um consumo mais responsável."
+      }
+    ],
     "nota imdb": {
       "votantes": "",
       "url": ""
@@ -7798,7 +8615,22 @@
     "Gênero": "Animação",
     "GEN.": "Animação",
     "Ano": 2010,
-    "ODS": "",
+    "ODS": "4, 9, 11",
+    "ODS_Analisados": "4, 9, 11",
+    "ODS_Justificados": [
+      {
+        "ods": "4",
+        "justificativa": "O filme é um projeto de educação artística e cultural, realizado por 150 alunos da rede pública. Ele funciona tanto como processo quanto produto de uma educação de qualidade, inclusiva e que valoriza a arte e a história do Brasil."
+      },
+      {
+        "ods": "9",
+        "justificativa": "A obra celebra a arquitetura inovadora de Oscar Niemeyer, um ícone da engenharia e do design. O filme destaca a importância da inovação na construção de infraestruturas e edifícios que se tornaram marcos nacionais."
+      },
+      {
+        "ods": "11",
+        "justificativa": "Ao percorrer as obras de Niemeyer, o filme aborda o planejamento urbano, o modernismo e a criação de cidades como Brasília. É uma homenagem ao patrimônio arquitetônico e cultural brasileiro, fundamental para a identidade das cidades."
+      }
+    ],
     "nota imdb": {
       "votantes": "",
       "url": ""
@@ -7845,7 +8677,18 @@
     "Gênero": "Romance",
     "GEN.": "Ficção",
     "Ano": 2008,
-    "ODS": "",
+    "ODS": "4, 14",
+    "ODS_Analisados": "4, 14",
+    "ODS_Justificados": [
+      {
+        "ods": "4",
+        "justificativa": "Como um filme de fantasia para o público infantil, 'As Fadas da Areia' estimula a criatividade, a imaginação e a capacidade de construir narrativas, elementos essenciais para uma educação de qualidade na infância."
+      },
+      {
+        "ods": "14",
+        "justificativa": "A história, ambientada na areia, provavelmente na praia, conecta a fantasia infantil com o ambiente costeiro. Narrativas lúdicas como essa podem fomentar uma apreciação e um cuidado precoce com os ecossistemas marinhos e a vida abaixo da água."
+      }
+    ],
     "nota imdb": {
       "votantes": "",
       "url": ""
@@ -7892,7 +8735,18 @@
     "Gênero": "Guerra",
     "GEN.": "Ficção",
     "Ano": 2008,
-    "ODS": "",
+    "ODS": "3, 4",
+    "ODS_Analisados": "3, 4",
+    "ODS_Justificados": [
+      {
+        "ods": "3",
+        "justificativa": "O filme aborda o tema das férias, um período essencial para o lazer, o descanso e a brincadeira, elementos fundamentais para a saúde e o bem-estar, especialmente na infância."
+      },
+      {
+        "ods": "4",
+        "justificativa": "A narrativa de aventura e descoberta durante as férias pode ser uma ferramenta educativa, estimulando a curiosidade, a exploração e o aprendizado informal em crianças, contribuindo para uma educação mais ampla e de qualidade."
+      }
+    ],
     "nota imdb": {
       "votantes": "9,1/8",
       "url": ""
@@ -7939,7 +8793,18 @@
     "Gênero": "",
     "GEN.": "Ficção",
     "Ano": 1986,
-    "ODS": "",
+    "ODS": "5, 16",
+    "ODS_Analisados": "5, 16",
+    "ODS_Justificados": [
+      {
+        "ods": "5",
+        "justificativa": "O filme, um 'terrir' (terror com comédia), brinca com o arquétipo da 'vamp' e da mulher fatal. Ao satirizar o medo da sexualidade feminina, a obra pode ser analisada como um comentário sobre os papéis de gênero e a representação da mulher no cinema."
+      },
+      {
+        "ods": "16",
+        "justificativa": "A trama envolve assassinatos em série e a caça às vampiras, abordando de forma cômica e fantástica os temas da violência, do crime e da busca por restaurar a paz e a ordem na sociedade."
+      }
+    ],
     "nota imdb": {
       "votantes": "4,8/160",
       "url": ""
@@ -7986,7 +8851,22 @@
     "Gênero": "Documentário",
     "GEN.": "Documentário",
     "Ano": 1984,
-    "ODS": "",
+    "ODS": "4, 10, 16",
+    "ODS_Analisados": "4, 10, 16",
+    "ODS_Justificados": [
+      {
+        "ods": "4",
+        "justificativa": "O filme é um documento essencial sobre a 'poesia marginal' dos anos 70/80, funcionando como uma importante ferramenta de educação cultural e literária sobre um movimento de vanguarda brasileiro."
+      },
+      {
+        "ods": "10",
+        "justificativa": "A 'poesia marginal' deu voz a poetas que atuavam fora do sistema editorial tradicional. O filme valoriza essa produção cultural alternativa, ajudando a reduzir a desigualdade de acesso e reconhecimento no campo da literatura."
+      },
+      {
+        "ods": "16",
+        "justificativa": "Produzido no final da ditadura militar, o filme celebra poetas cuja obra era uma forma de resistência e de subversão da linguagem em um período de forte repressão. 'Assaltar a gramática' era um ato político pela liberdade de expressão e contra instituições autoritárias."
+      }
+    ],
     "nota imdb": {
       "votantes": "",
       "url": ""
@@ -8033,7 +8913,26 @@
     "Gênero": "Comédia, Documentário",
     "GEN.": "Documentário",
     "Ano": 1975,
-    "ODS": "",
+    "ODS": "4, 8, 11, 18",
+    "ODS_Analisados": "4, 8, 11, 18",
+    "ODS_Justificados": [
+      {
+        "ods": "4",
+        "justificativa": "O documentário é uma peça fundamental para a educação sobre a história do cinema brasileiro, preservando a memória de um de seus períodos mais populares e industrialmente relevantes, a era das chanchadas."
+      },
+      {
+        "ods": "8",
+        "justificativa": "O filme retrata a Atlântida como uma verdadeira indústria cinematográfica, que gerou empregos, criou um 'star system' nacional e impulsionou a economia criativa, mostrando um modelo de crescimento econômico no setor cultural."
+      },
+      {
+        "ods": "11",
+        "justificativa": "Ao resgatar e celebrar as chanchadas, o documentário salvaguarda um importante patrimônio cultural imaterial do Brasil, que marcou o imaginário de gerações e faz parte da identidade cultural do país."
+      },
+      {
+        "ods": "18",
+        "justificativa": "A obra destaca a figura de Grande Otelo, um dos maiores e mais importantes atores negros da história do Brasil, que foi um pilar do sucesso da Atlântida. O filme permite analisar seu papel, seu brilhantismo e os desafios da representatividade racial no cinema da época."
+      }
+    ],
     "nota imdb": {
       "votantes": "7,5/52",
       "url": ""
@@ -8079,7 +8978,22 @@
     "Gênero": "Documentário",
     "GEN.": "Documentário",
     "Ano": 1979,
-    "ODS": "",
+    "ODS": "10, 11, 16",
+    "ODS_Analisados": "10, 11, 16",
+    "ODS_Justificados": [
+      {
+        "ods": "10",
+        "justificativa": "O filme documenta a organização de moradores de uma comunidade, provavelmente uma favela, para lutar por seus direitos e por melhores condições de vida, uma ação direta para reduzir as desigualdades de acesso a serviços e infraestrutura."
+      },
+      {
+        "ods": "11",
+        "justificativa": "As associações de moradores são atores cruciais na construção de comunidades mais justas, seguras e resilientes. O filme mostra o processo de participação cidadã na melhoria de seu próprio assentamento humano."
+      },
+      {
+        "ods": "16",
+        "justificativa": "A obra retrata a formação e a atuação de uma instituição de base, popular e participativa. Essas associações são exemplos de instituições eficazes e inclusivas que surgem para preencher o vácuo deixado pelo Estado e para demandar justiça social."
+      }
+    ],
     "nota imdb": {
       "votantes": "",
       "url": ""
@@ -8125,7 +9039,26 @@
     "Gênero": "",
     "GEN.": "Ficção",
     "Ano": 2009,
-    "ODS": "",
+    "ODS": "3, 4, 10, 16",
+    "ODS_Analisados": "3, 4, 10, 16",
+    "ODS_Justificados": [
+      {
+        "ods": "3",
+        "justificativa": "O filme aborda a memória do Holocausto e o trauma intergeracional, temas que impactam profundamente a saúde mental e o bem-estar das famílias sobreviventes."
+      },
+      {
+        "ods": "4",
+        "justificativa": "A narrativa é um processo de educação para o protagonista, que aprende sobre a história de sua família e sobre eventos mundiais (Holocausto, escândalo Clinton) através de suas interações, destacando a importância da educação sobre a história para a tolerância."
+      },
+      {
+        "ods": "10",
+        "justificativa": "A referência aos números nos braços dos avós remete à perseguição e ao genocídio dos judeus, a mais extrema forma de desigualdade e discriminação. O filme serve como um lembrete para a luta contra o preconceito."
+      },
+      {
+        "ods": "16",
+        "justificativa": "O Holocausto, pano de fundo da história familiar, representa o colapso total da paz, da justiça e das instituições. O filme é uma lição sobre as consequências do ódio e da violência, e a importância de construir sociedades pacíficas e justas."
+      }
+    ],
     "nota imdb": {
       "votantes": "6,2/40",
       "url": ""
@@ -8172,7 +9105,22 @@
     "Gênero": "Documentário",
     "GEN.": "Documentário",
     "Ano": 2005,
-    "ODS": "",
+    "ODS": "3, 11, 18",
+    "ODS_Analisados": "3, 11, 18",
+    "ODS_Justificados": [
+      {
+        "ods": "3",
+        "justificativa": "O filme celebra a amizade e a memória de dois baluartes do samba, mostrando a importância dos laços sociais e da cultura para o bem-estar, especialmente na terceira idade."
+      },
+      {
+        "ods": "11",
+        "justificativa": "A obra é um registro precioso do patrimônio cultural imaterial do Brasil, o samba, através de dois de seus maiores expoentes. Preservar e celebrar a cultura da Mangueira é fundamental para a sustentabilidade cultural da comunidade e da cidade."
+      },
+      {
+        "ods": "18",
+        "justificativa": "O documentário dá protagonismo a Babaú da Mangueira e Carlos Cachaça, dois grandes artistas negros, fundadores de uma das mais importantes escolas de samba. É uma celebração da cultura afro-brasileira e uma afirmação da igualdade racial através da valorização de seus mestres."
+      }
+    ],
     "nota imdb": {
       "votantes": "",
       "url": ""
@@ -8219,7 +9167,30 @@
     "Gênero": "Drama",
     "GEN.": "Ficção",
     "Ano": 1960,
-    "ODS": "",
+    "ODS": "1, 8, 10, 16, 18",
+    "ODS_Analisados": "1, 8, 10, 16, 18",
+    "ODS_Justificados": [
+      {
+        "ods": "1",
+        "justificativa": "O protagonista Tonho vive de pequenos furtos, uma consequência direta de sua condição de pobreza e marginalização social em Salvador."
+      },
+      {
+        "ods": "8",
+        "justificativa": "O filme retrata o conflito entre grevistas e a polícia, abordando diretamente a luta dos trabalhadores por melhores condições e direitos em um contexto de repressão política (ditadura de Getúlio Vargas)."
+      },
+      {
+        "ods": "10",
+        "justificativa": "A trama explora as tensões de classe e raça. Tonho, um mulato, enfrenta o preconceito e a rejeição, e seu envolvimento com uma amante inglesa e com a greve expõe as profundas desigualdades da sociedade baiana."
+      },
+      {
+        "ods": "16",
+        "justificativa": "Ambientado durante a ditadura Vargas, o filme mostra a repressão policial contra grevistas e a perseguição política, retratando um período de ausência de paz, justiça e liberdade, com instituições a serviço da opressão."
+      },
+      {
+        "ods": "18",
+        "justificativa": "O protagonista é um homem mulato, e sua trajetória é marcada por conflitos sociais, políticos e religiosos que estão intrinsecamente ligados à sua identidade racial em uma cidade como Salvador. O filme aborda o racismo e a marginalização da população negra e mestiça."
+      }
+    ],
     "nota imdb": {
       "votantes": "7,5/20",
       "url": ""
@@ -8265,7 +9236,22 @@
     "Gênero": "Documentário, Drama",
     "GEN.": "Documentário",
     "Ano": 2009,
-    "ODS": "",
+    "ODS": "3, 10, 11",
+    "ODS_Analisados": "3, 10, 11",
+    "ODS_Justificados": [
+      {
+        "ods": "3",
+        "justificativa": "O filme retrata um baile da terceira idade, destacando a importância da socialização, da dança e da música para a saúde mental e o bem-estar de idosos, combatendo a solidão."
+      },
+      {
+        "ods": "10",
+        "justificativa": "A obra dá protagonismo a idosos, incluindo a comunidade LGBTQIA+, um grupo duplamente marginalizado. Ao mostrar suas histórias e afetos, o filme combate a desigualdade baseada em idade e orientação sexual."
+      },
+      {
+        "ods": "11",
+        "justificativa": "O 'Bailão' é um espaço cultural e de encontro que fortalece os laços comunitários, especialmente para a população idosa no centro de uma grande cidade, tornando o ambiente urbano mais inclusivo e acolhedor."
+      }
+    ],
     "nota imdb": {
       "votantes": "5,9/28",
       "url": ""
@@ -8312,7 +9298,18 @@
     "Gênero": "Animação",
     "GEN.": "Animação",
     "Ano": 2009,
-    "ODS": "",
+    "ODS": "9, 11",
+    "ODS_Analisados": "9, 11",
+    "ODS_Justificados": [
+      {
+        "ods": "9",
+        "justificativa": "A animação contrasta o bonde, uma antiga infraestrutura de transporte, com os 'ônibus barulhentos', provocando uma reflexão sobre a evolução da infraestrutura urbana, inovação e os impactos da modernização."
+      },
+      {
+        "ods": "11",
+        "justificativa": "O filme evoca a nostalgia de um tempo em que os bondes faziam parte da paisagem urbana, abordando a memória da cidade e a transformação das comunidades. É uma obra que valoriza o patrimônio histórico e cultural ligado ao transporte público."
+      }
+    ],
     "nota imdb": {
       "votantes": "",
       "url": ""
@@ -8359,7 +9356,22 @@
     "Gênero": "",
     "GEN.": "Ficção",
     "Ano": 1996,
-    "ODS": "",
+    "ODS": "8, 10, 16",
+    "ODS_Analisados": "8, 10, 16",
+    "ODS_Justificados": [
+      {
+        "ods": "8",
+        "justificativa": "O filme retrata a história de Benjamin Abrahão, um mascate que se torna fotógrafo e cinegrafista, mostrando o empreendedorismo e o trabalho na economia criativa do sertão nos anos 30, ainda que em um contexto de violência."
+      },
+      {
+        "ods": "10",
+        "justificativa": "A obra explora o universo do cangaço, um fenômeno social nascido da extrema desigualdade e do abandono do sertão nordestino. O filme contrapõe o poder dos cangaceiros com o dos coronéis, expondo as complexas relações de poder e a desigualdade social da região."
+      },
+      {
+        "ods": "16",
+        "justificativa": "O cangaço é o tema central, um período de intensa violência, ausência do Estado e a criação de códigos de justiça paralelos. O filme mergulha nesse universo de conflito, onde a paz é inexistente e a lei é ditada pela força."
+      }
+    ],
     "nota imdb": {
       "votantes": "",
       "url": ""
@@ -8405,7 +9417,26 @@
     "Gênero": "",
     "GEN.": "Ficção",
     "Ano": 2006,
-    "ODS": "",
+    "ODS": "3, 10, 11, 16",
+    "ODS_Analisados": "3, 10, 11, 16",
+    "ODS_Justificados": [
+      {
+        "ods": "3",
+        "justificativa": "O filme aborda o impacto da violência urbana na saúde física e mental da população. A iminência da morte por uma bala perdida gera um estado de medo e ansiedade que afeta o bem-estar de todos."
+      },
+      {
+        "ods": "10",
+        "justificativa": "A 'bala perdida' não escolhe classe social, mas a exposição à violência urbana é profundamente desigual. O filme, ao mostrar diferentes pessoas em uma praça, expõe como a violência afeta a todos, mas tem origem e consequências ligadas à desigualdade social."
+      },
+      {
+        "ods": "11",
+        "justificativa": "A obra é uma crítica contundente à falta de segurança nas cidades, mostrando como um espaço público de lazer pode se transformar instantaneamente em um cenário de perigo, questionando a sustentabilidade e segurança das comunidades urbanas."
+      },
+      {
+        "ods": "16",
+        "justificativa": "Este é o tema central. O filme é uma metáfora da falência da paz e da justiça nas grandes cidades brasileiras, onde a violência armada se torna um evento banal e a vida dos cidadãos está constantemente em risco, evidenciando a fragilidade das instituições de segurança."
+      }
+    ],
     "nota imdb": {
       "votantes": "",
       "url": ""
@@ -8452,7 +9483,22 @@
     "Gênero": "",
     "GEN.": "Ficção",
     "Ano": 2006,
-    "ODS": "",
+    "ODS": "3, 5, 10",
+    "ODS_Analisados": "3, 5, 10",
+    "ODS_Justificados": [
+      {
+        "ods": "3",
+        "justificativa": "A história, baseada em um poema de Vinicius de Moraes, aborda temas como amor, desejo, e possivelmente tragédia, que impactam profundamente a saúde mental e o bem-estar emocional das personagens."
+      },
+      {
+        "ods": "5",
+        "justificativa": "O filme é centrado na história de duas jovens mulheres, explorando suas vidas, desejos e o destino trágico que as une. A obra dá protagonismo à perspectiva feminina em uma narrativa poética e dramática."
+      },
+      {
+        "ods": "10",
+        "justificativa": "A 'Balada' de Vinicius frequentemente toca em temas de amor impossível e diferenças sociais. O filme pode explorar como as desigualdades de classe ou de oportunidades afetam a vida e os relacionamentos das duas mocinhas."
+      }
+    ],
     "nota imdb": {
       "votantes": "",
       "url": ""
@@ -8498,7 +9544,14 @@
     "Gênero": "",
     "GEN.": "Ficção",
     "Ano": 2004,
-    "ODS": "",
+    "ODS": "16",
+    "ODS_Analisados": "16",
+    "ODS_Justificados": [
+      {
+        "ods": "16",
+        "justificativa": "O filme retrata um 'confronto de olhares' em um clube, sugerindo um ambiente de tensão, rivalidade e violência iminente. A obra explora a fragilidade da paz e a facilidade com que o conflito pode eclodir em interações sociais."
+      }
+    ],
     "nota imdb": {
       "votantes": "6,4/16",
       "url": ""
@@ -8529,6 +9582,8 @@
     "URL": "https://portacurtas.org.br/busca/?termo=Balaio",
     "busca": "Inválido (Redirecionamento Erro Tamandua)"
   },
+
+
   {
     "Classificação Indicativa POR PGM": 12,
     "Classificação Indicativa - Descrição": [
