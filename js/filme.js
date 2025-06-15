@@ -227,6 +227,25 @@ function renderFilmData(film) {
         </div>
         `;
     }
+
+
+// RENDERIZA AS JUSTIFICATIVAS DOS ODS, SE EXISTIREM
+if (film.odsJustificados && film.odsJustificados.length > 0) {
+    filmContent += `
+    <div class="filme-section ods-justificativas-container">
+        <h4>Justificativas dos ODS</h4>
+        <div class="ods-justificativas-list">
+            ${film.odsJustificados.map(item => `
+                <div class="ods-justificativa-item">
+                    <p><strong>ODS ${item.ods}:</strong> ${item.justificativa}</p>
+                </div>
+            `).join('')}
+        </div>
+    </div>
+    `;
+}
+
+    
     
     // 3. SINOPSE (Expansível)
     if (film.synopsis) {
