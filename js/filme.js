@@ -236,7 +236,7 @@ if (film.odsJustificados && film.odsJustificados.length > 0) {
             <h3 class="expandable-title"><i class="fas fa-globe-americas"></i> Justificativa dos ODS <i class="fas fa-chevron-down expand-icon"></i></h3>
             <div class="expandable-content">
             ${film.odsJustificados.map(item => `
-                <div class="ods-justificativa-item">
+                <div class="destaque-horizontal">
                     <p><strong>ODS ${item.ods}:</strong> ${item.justificativa}</p>
                 </div>
             `).join('')}
