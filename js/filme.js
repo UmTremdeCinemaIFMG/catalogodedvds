@@ -260,22 +260,28 @@ if (film.odsJustificados && film.odsJustificados.length > 0) {
     }
     
     // 4. PLANOS DE AULA (Expansível)
-    if (film.planos_de_aula && film.planos_de_aula.length > 0) {
-        filmContent += `
-        <div class="filme-section expandable-section">
-            <h3 class="expandable-title"><i class="fas fa-chalkboard-teacher"></i> Planos de Aula <i class="fas fa-chevron-down expand-icon"></i></h3>
-            <div class="expandable-content">
-
-
-            
-                ${renderTeachingPlans(film)} 
-
-       
-                
-            </div>
+ filmContent += `
+<div class="filme-section expandable-section">
+    <h3 class="expandable-title"><i class="fas fa-chalkboard-teacher"></i> Planos de Aula <i class="fas fa-chevron-down expand-icon"></i></h3>
+    <div class="expandable-content">
+        ${
+            (film.planos_de_aula && film.planos_de_aula.length > 0)
+            ? renderTeachingPlans(film)
+            : '<p>Nenhum plano de aula disponível para este filme ainda.</p>'
+        }
+        
+        <!-- BOTÃO PARA ENVIAR PLANO DE AULA -->
+        <div class="enviar-plano-container">
+            <a href="https://docs.google.com/forms/d/e/1FAIpQLSdxQz8onMOFjxIqEPpo5v2I4CJdLQ9cN50I7zUhmnBwgUeGIQ/viewform" target="_blank" rel="noopener noreferrer" class="btn-enviar-plano">
+                <i class="fas fa-plus-circle"></i> Envie um plano de aula
+            </a>
+            <p class="enviar-plano-descricao">
+                CONTRIBUA COM A COMUNIDADE! SE VOCÊ TEM UM PLANO DE AULA PARA ESTE FILME, COMPARTILHE-O CONOSCO ATRAVÉS DO NOSSO FORMULÁRIO.
+            </p>
         </div>
-        `;
-    }
+    </div>
+</div>
+`;
     
     // 5. OUTROS MATERIAIS (Expansível)
     if (film.materialOutros && film.materialOutros.length > 0) {
