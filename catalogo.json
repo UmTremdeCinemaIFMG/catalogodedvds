@@ -16,15 +16,14 @@
     "GEN.": "Documentário",
     "Ano": 2003,
     "ODS": "10, 16",
-    "ODS_Analisados": "10, 16",
     "ODS_Justificados": [
       {
         "ods": "10",
-        "justificativa": "O filme aborda a vulnerabilidade de pessoas que não conhecem suas origens. A busca pela identidade é um direito fundamental, e a dificuldade em acessá-la pode ser vista como uma forma de desigualdade social e emocional."
+        "justificativa": "A busca do diretor por sua mãe biológica tangencia a questão da desigualdade de oportunidades e as pressões sociais que, historicamente, levaram muitas mulheres a entregar seus filhos para a adoção."
       },
       {
         "ods": "16",
-        "justificativa": "A jornada do diretor é uma busca pessoal por verdade e justiça. Ela expõe a eficiência (ou a falta dela) de instituições como cartórios e hospitais na preservação e acesso a registros vitais, essenciais para a garantia do direito à identidade."
+        "justificativa": "O filme aborda o direito fundamental à identidade e ao acesso à informação sobre as próprias origens, uma busca pessoal por verdade e justiça que muitas vezes envolve a navegação em sistemas burocráticos e institucionais."
       }
     ],
     "nota imdb": {
@@ -72,36 +71,31 @@
     "Gênero": "",
     "GEN.": "Ficção",
     "Ano": 2007,
-    "ODS": "1, 4, 8, 10, 11, 16, 18",
-    "ODS_Analisados": "1, 4, 8, 10, 11, 16, 18",
+    "ODS": "1, 4, 8, 10, 11, 16",
     "ODS_Justificados": [
       {
         "ods": "1",
-        "justificativa": "A condição do menino protagonista é um reflexo direto da pobreza extrema e da falta de uma rede de proteção social."
+        "justificativa": "O filme aborda o trabalho infantil, uma consequência direta da pobreza extrema que força crianças a trabalhar para ajudar no sustento da família."
       },
       {
         "ods": "4",
-        "justificativa": "O trabalho infantil, retratado no filme, é uma das principais barreiras que impedem o acesso à educação de qualidade e ao desenvolvimento pleno da criança."
+        "justificativa": "A condição de trabalho infantil impede o acesso à educação de qualidade, perpetuando o ciclo de pobreza e falta de oportunidades."
       },
       {
         "ods": "8",
-        "justificativa": "O filme denuncia a exploração do trabalho infantil e a precarização da vida nas ruas, condições que são o oposto do conceito de trabalho decente."
+        "justificativa": "A trama foca diretamente na meta 8.7 da ONU, que visa a erradicação do trabalho infantil em todas as suas formas, mostrando a exploração e a precariedade do trabalho informal."
       },
       {
         "ods": "10",
-        "justificativa": "Expõe o abismo social e a invisibilidade de crianças em situação de vulnerabilidade nas grandes cidades, destacando a profunda desigualdade social."
+        "justificativa": "Expõe a profunda desigualdade social e a vulnerabilidade de crianças em centros urbanos, destacando a exclusão e a falta de proteção social."
       },
       {
         "ods": "11",
-        "justificativa": "Questiona a sustentabilidade e a inclusão de um espaço urbano que marginaliza e expõe seus cidadãos mais frágeis à violência e ao abandono."
+        "justificativa": "Retrata a dura realidade da vida urbana para os mais pobres, a luta pela sobrevivência nas ruas e a insegurança em assentamentos informais."
       },
       {
         "ods": "16",
-        "justificativa": "A tragédia do garoto por uma quantia irrisória evidencia a falha do Estado em garantir segurança, paz e justiça para todos, especialmente para os mais pobres."
-      },
-      {
-        "ods": "18",
-        "justificativa": "No Brasil, a pobreza e a população em situação de rua têm uma forte correlação com a questão racial. Ao abordar a exclusão de um menino negro, o filme dialoga diretamente com o racismo estrutural."
+        "justificativa": "A tragédia que se desenrola no filme evidencia a ausência de paz, justiça e proteção para as populações mais vulneráveis, questionando a eficácia das instituições."
       }
     ],
     "nota imdb": {
@@ -165,12 +159,15 @@
     "Gênero": "Drama",
     "GEN.": "Ficção",
     "Ano": 1999,
-    "ODS": "3",
-    "ODS_Analisados": "3",
+    "ODS": "3, 5",
     "ODS_Justificados": [
       {
         "ods": "3",
-        "justificativa": "O filme aborda a saúde mental e o bem-estar emocional, focando na angústia e na pressão de tomar decisões de grande impacto sob a urgência do tempo."
+        "justificativa": "A trama gira em torno de uma decisão crítica que pode impactar a saúde física e mental da protagonista, abordando o bem-estar em um momento de alta tensão."
+      },
+      {
+        "ods": "5",
+        "justificativa": "O filme centra-se na autonomia de uma mulher diante de uma escolha que definirá sua vida, tocando em temas de poder de decisão e direitos reprodutivos."
       }
     ],
     "nota imdb": {
@@ -219,19 +216,23 @@
     "Gênero": "Esportes",
     "GEN.": "Ficção",
     "Ano": 2007,
-    "ODS": "3, 10, 11",
+    "ODS": "3, 10, 11, 16",
     "ODS_Justificados": [
       {
         "ods": "3",
-        "justificativa": "O filme celebra o esporte como uma ferramenta para a saúde física e mental, destacando a disciplina e a dedicação necessárias para alcançar a excelência atlética."
+        "justificativa": "O filme aborda o esporte de alto rendimento, que está intrinsecamente ligado à saúde e ao bem-estar físico e mental dos atletas."
       },
       {
         "ods": "10",
-        "justificativa": "Ao contextualizar a busca pela glória olímpica no cenário do 'morro' (favela), o filme aborda a desigualdade de oportunidades e o potencial do esporte como via de ascensão e inclusão social para jovens de comunidades marginalizadas."
+        "justificativa": "Ao focar no esporte amador, o filme pode tangenciar a questão da desigualdade de oportunidades e acesso a recursos para atletas de diferentes origens socioeconômicas."
       },
       {
         "ods": "11",
-        "justificativa": "A narrativa, que une o sonho olímpico à realidade da favela carioca, explora as complexas dinâmicas sociais e espaciais da cidade, questionando a inclusão e as oportunidades disponíveis em diferentes partes do tecido urbano."
+        "justificativa": "O filme se passa no contexto do morro carioca, explorando a realidade de comunidades urbanas e a importância do esporte como ferramenta de inclusão e desenvolvimento local."
+      },
+      {
+        "ods": "16",
+        "justificativa": "A busca pela glória olímpica em um ambiente de adversidades pode ser vista como uma metáfora para a busca por paz e justiça, mostrando como o esporte pode ser um caminho para superar a violência e a exclusão."
       }
     ],
     "nota imdb": {
@@ -280,19 +281,19 @@
     "Gênero": "",
     "GEN.": "Ficção",
     "Ano": 1998,
-    "ODS": "1, 3, 10",
+    "ODS": "1, 3, 16",
     "ODS_Justificados": [
       {
         "ods": "1",
-        "justificativa": "O filme é uma alegoria direta sobre a pobreza, personificada na figura de D. Miséria e em seu ambiente, refletindo sobre a persistência e as raízes da miséria na sociedade."
+        "justificativa": "O filme personifica a pobreza através da personagem D. Miséria, explorando de forma alegórica a condição de carência e suas implicações sociais e existenciais."
       },
       {
         "ods": "3",
-        "justificativa": "A trama aborda temas como envelhecimento, solidão e mortalidade (com a chegada da Morte), provocando reflexões sobre a saúde e o bem-estar, especialmente dos idosos em situação de vulnerabilidade."
+        "justificativa": "A trama lida diretamente com a finitude da vida e a chegada da Morte, provocando reflexões sobre saúde, envelhecimento e bem-estar."
       },
       {
-        "ods": "10",
-        "justificativa": "A história expõe a desigualdade social através da figura de uma idosa pobre e marginalizada, destacando a invisibilidade e o abandono de segmentos vulneráveis da população."
+        "ods": "16",
+        "justificativa": "Através de uma narrativa fabular, o filme aborda noções de justiça divina e terrena, e as consequências morais das ações humanas, como o egoísmo e a caridade."
       }
     ],
     "nota imdb": {
@@ -341,7 +342,7 @@
     "Gênero": "",
     "GEN.": "Ficção",
     "Ano": 1957,
-    "ODS": "5, 8, 10",
+    "ODS": "5, 8, 10, 18",
     "ODS_Justificados": [
       {
         "ods": "5",
@@ -354,6 +355,10 @@
       {
         "ods": "10",
         "justificativa": "A trama é construída sobre o conflito de classes e o preconceito sofrido pela protagonista ao ascender socialmente, evidenciando as barreiras e desigualdades da sociedade."
+      },
+      {
+        "ods": "18",
+        "justificativa": "A presença de Grande Otelo em um papel de destaque é um marco na representatividade racial no cinema brasileiro da época, abordando indiretamente a luta por igualdade de oportunidades para atores negros."
       }
     ],
     "nota imdb": {
@@ -401,23 +406,27 @@
     "Gênero": "",
     "GEN.": "Ficção",
     "Ano": 2001,
-    "ODS": "1, 2, 6, 11",
+    "ODS": "1, 2, 5, 10, 11",
     "ODS_Justificados": [
       {
         "ods": "1",
-        "justificativa": "O filme retrata de forma crua a pobreza extrema de uma família no sertão, lutando pela sobrevivência em um ambiente de total escassez."
+        "justificativa": "O filme retrata a vida em uma comunidade rural pobre, onde a luta pela sobrevivência e a escassez de recursos são centrais, abordando diretamente a erradicação da pobreza."
       },
       {
         "ods": "2",
-        "justificativa": "A fome é o tema central e a força motriz da narrativa, mostrando as consequências devastadoras da insegurança alimentar."
+        "justificativa": "A trama se desenvolve em um ambiente rural, tocando em questões de agricultura de subsistência e segurança alimentar em contextos de vulnerabilidade."
       },
       {
-        "ods": "6",
-        "justificativa": "A ausência de água é um elemento opressor constante no filme, simbolizando a luta pela sobrevivência e a importância do acesso a recursos hídricos."
+        "ods": "5",
+        "justificativa": "A narrativa explora as dinâmicas de gênero em uma sociedade patriarcal, destacando a opressão e a busca por autonomia das personagens femininas."
+      },
+      {
+        "ods": "10",
+        "justificativa": "O filme expõe as desigualdades sociais e econômicas presentes no campo, mostrando o abismo entre os que detêm o poder e os que são subjugados por ele."
       },
       {
         "ods": "11",
-        "justificativa": "A obra questiona a sustentabilidade e resiliência de comunidades rurais em regiões áridas, expostas a condições climáticas extremas e ao abandono."
+        "justificativa": "Aborda a vida em comunidades rurais isoladas, suas tradições, desafios e a necessidade de desenvolvimento sustentável e inclusivo."
       }
     ],
     "nota imdb": {
@@ -469,19 +478,19 @@
     "ODS_Justificados": [
       {
         "ods": "5",
-        "justificativa": "O filme é centrado na perspectiva de Alice, uma mulher que busca autonomia, prazer e um espaço próprio em meio a uma estrutura familiar patriarcal e um cotidiano opressor."
+        "justificativa": "O filme centra-se na perspectiva de Alice, uma mulher de 40 anos que lida com as complexidades de sua vida familiar e profissional, explorando sua autonomia, desejos e os desafios de gênero em um ambiente urbano popular."
       },
       {
         "ods": "8",
-        "justificativa": "O trabalho de Alice como manicure é um elemento central, representando a realidade econômica de muitas mulheres na periferia urbana e sua luta por independência financeira através do trabalho informal."
+        "justificativa": "A protagonista trabalha como manicure, um retrato do trabalho informal e da economia de serviços que sustenta muitas famílias, abordando a busca por dignidade e crescimento econômico."
       },
       {
         "ods": "10",
-        "justificativa": "A narrativa aborda múltiplas formas de desigualdade, incluindo gênero, classe social e orientação sexual (através da história de um de seus filhos), pintando um retrato das complexas hierarquias sociais."
+        "justificativa": "A trama se passa em um bairro popular de São Paulo, expondo as desigualdades sociais e as dificuldades enfrentadas pela classe trabalhadora para manter a estabilidade familiar e financeira."
       },
       {
         "ods": "11",
-        "justificativa": "O filme oferece um olhar realista sobre a vida na periferia de São Paulo, explorando as dinâmicas sociais, os desafios e a resiliência das comunidades em um grande centro urbano."
+        "justificativa": "O filme oferece um retrato da vida em uma grande metrópole, focando nas dinâmicas de uma comunidade urbana, nas relações de vizinhança e nos desafios da vida na periferia."
       }
     ],
     "nota imdb": {
@@ -533,15 +542,15 @@
     "ODS_Justificados": [
       {
         "ods": "5",
-        "justificativa": "O filme subverte o papel feminino tradicional através da figura da 'femme fatale', uma mulher poderosa e misteriosa que controla a narrativa e os homens ao seu redor, exercendo sua agência de forma radical."
+        "justificativa": "O filme é um marco do cinema noir brasileiro e gira em torno de uma 'femme fatale', explorando a sexualidade e o poder feminino, ainda que de forma estilizada e arquetípica, desafiando papéis tradicionais."
       },
       {
         "ods": "11",
-        "justificativa": "A paisagem urbana de São Paulo é um personagem central, retratada de forma estilizada e sombria, explorando a alienação, o perigo e o mistério da vida na metrópole, o que se relaciona com a segurança e a qualidade do ambiente urbano."
+        "justificativa": "A cidade de São Paulo é um personagem central, com sua atmosfera noturna, decadente e misteriosa, refletindo sobre a vida urbana, a solidão e os perigos das metrópoles."
       },
       {
         "ods": "16",
-        "justificativa": "Como um filme noir, a trama mergulha em um mundo de crime, engano e ambiguidade moral, questionando a eficácia da justiça e expondo a corrupção que permeia as relações humanas e institucionais."
+        "justificativa": "A trama de mistério e crime, envolvendo corrupção e violência, aborda a falibilidade da justiça e a fragilidade da paz em um ambiente urbano complexo."
       }
     ],
     "nota imdb": {
@@ -590,23 +599,19 @@
     "Gênero": "Documentário",
     "GEN.": "Documentário",
     "Ano": 2011,
-    "ODS": "1, 3, 10, 11",
+    "ODS": "1, 10, 11",
     "ODS_Justificados": [
       {
         "ods": "1",
-        "justificativa": "O filme documenta a vida de uma mulher em situação de rua, abordando diretamente a realidade da pobreza extrema e da falta de moradia."
-      },
-      {
-        "ods": "3",
-        "justificativa": "A obra oferece um olhar sobre a saúde mental e o bem-estar de uma pessoa em condição de extrema vulnerabilidade social, destacando sua resiliência e os desafios psicológicos enfrentados."
+        "justificativa": "O filme retrata a vida de uma moradora de rua, abordando diretamente a questão da pobreza e da exclusão social em um ambiente urbano."
       },
       {
         "ods": "10",
-        "justificativa": "O tema central é a invisibilidade social. Ao focar em uma figura marginalizada dentro de um bairro de classe média, o filme expõe a profunda desigualdade e a exclusão social presentes no cotidiano urbano."
+        "justificativa": "Ao dar voz a uma pessoa invisibilizada pela sociedade, o documentário combate a desigualdade e o preconceito, questionando a forma como diferentes classes sociais coexistem e se percebem."
       },
       {
         "ods": "11",
-        "justificativa": "O documentário examina a dinâmica de uma comunidade urbana e sua relação com os moradores de rua, questionando a inclusão, a segurança e a coesão social no espaço da cidade."
+        "justificativa": "A obra explora a dinâmica de uma comunidade urbana (Copacabana) e a relação de seus moradores com o espaço público e com as pessoas em situação de rua, promovendo uma reflexão sobre cidades mais inclusivas."
       }
     ],
     "nota imdb": {
@@ -659,19 +664,19 @@
     "ODS_Justificados": [
       {
         "ods": "10",
-        "justificativa": "O filme é uma denúncia contundente da desigualdade racial e social, traçando uma linha direta entre a opressão histórica da escravidão e a marginalização contemporânea."
+        "justificativa": "O filme traça uma linha histórica da desigualdade racial e social, da senzala à periferia, denunciando a persistência de estruturas que marginalizam a população negra."
       },
       {
         "ods": "11",
-        "justificativa": "Ao conectar a senzala à periferia urbana, o filme aborda a segregação espacial e as condições precárias de vida das populações negras nas cidades brasileiras, um tema central para a sustentabilidade e inclusão urbana."
+        "justificativa": "Ao abordar a transição da senzala para a periferia, o filme discute a formação de comunidades urbanas marginalizadas e a luta por espaço e dignidade nas cidades."
       },
       {
         "ods": "16",
-        "justificativa": "A obra é um manifesto que clama por justiça social e denuncia a violência e a negação de direitos que marcam a trajetória da população negra, apontando para a falha das instituições em garantir paz e igualdade."
+        "justificativa": "O manifesto audiovisual é um clamor por justiça e pelo fim da violência sistêmica contra a população negra, questionando a paz e a eficácia das instituições na proteção de seus cidadãos."
       },
       {
         "ods": "18",
-        "justificativa": "Este é o tema central do filme. Trata-se de um manifesto audiovisual sobre a identidade e a luta do povo negro no Brasil, confrontando diretamente o racismo estrutural e o legado da escravidão."
+        "justificativa": "O filme é centrado na trajetória histórica do negro no Brasil, sendo uma denúncia contundente do racismo estrutural e da violência racial, temas centrais para a igualdade racial."
       }
     ],
     "nota imdb": {
@@ -720,19 +725,27 @@
     "Gênero": "",
     "GEN.": "Ficção",
     "Ano": 2009,
-    "ODS": "3, 4, 11",
+    "ODS": "3, 4, 10, 11, 18",
     "ODS_Justificados": [
       {
         "ods": "3",
-        "justificativa": "O filme foca no processo de amadurecimento e desenvolvimento emocional de um menino, abordando aspectos cruciais da saúde e bem-estar na infância."
+        "justificativa": "O filme aborda o processo de amadurecimento e os desafios emocionais e psicológicos da infância e pré-adolescência, temas ligados à saúde e bem-estar."
       },
       {
         "ods": "4",
-        "justificativa": "A narrativa retrata a socialização e o aprendizado informal que ocorrem fora da sala de aula, através de brincadeiras e conflitos, que são parte fundamental da educação integral de uma criança."
+        "justificativa": "A narrativa sobre a infância no subúrbio tangencia a importância do ambiente social e familiar para o desenvolvimento e acesso à educação de qualidade."
+      },
+      {
+        "ods": "10",
+        "justificativa": "Retrata o cotidiano de um menino no subúrbio, um cenário que frequentemente reflete as desigualdades sociais e econômicas do país."
       },
       {
         "ods": "11",
-        "justificativa": "Ao ambientar a história no subúrbio do Rio de Janeiro, o filme oferece um retrato da vida comunitária e do ambiente social que molda as experiências e o desenvolvimento das crianças na periferia urbana."
+        "justificativa": "A história se passa no subúrbio do Rio de Janeiro, explorando as dinâmicas de uma comunidade urbana e a vida de seus jovens habitantes."
+      },
+      {
+        "ods": "18",
+        "justificativa": "Com um elenco majoritariamente negro e ambientado no subúrbio, o filme contribui para a representatividade racial e retrata uma realidade cultural específica, abordando a igualdade racial de forma implícita."
       }
     ],
     "nota imdb": {
@@ -785,11 +798,11 @@
     "ODS_Justificados": [
       {
         "ods": "5",
-        "justificativa": "Como uma obra pioneira do cinema feminista no Brasil, o filme dá voz às mulheres e expõe as restrições e expectativas sociais impostas a elas na década de 1960, abordando temas como casamento, virgindade e carreira."
+        "justificativa": "O documentário, ao entrevistar jovens mulheres de classe média em 1966, captura as expectativas, repressões e o papel social imposto a elas, refletindo sobre a condição feminina e a busca por autonomia em um período de transformações."
       },
       {
         "ods": "10",
-        "justificativa": "O documentário revela a desigualdade de oportunidades e de liberdade entre homens e mulheres na sociedade da época, destacando as limitações de gênero como uma forma de exclusão social."
+        "justificativa": "O filme expõe as desigualdades de gênero e de classe da época, mostrando como as aspirações e liberdades das mulheres eram moldadas e limitadas por convenções sociais."
       }
     ],
     "nota imdb": {
@@ -842,7 +855,7 @@
     "ODS_Justificados": [
       {
         "ods": "3",
-        "justificativa": "O filme é uma reflexão poética sobre o ciclo da vida, a percepção do tempo e o processo de envelhecimento, temas diretamente ligados à saúde existencial e ao bem-estar ao longo das diferentes fases da vida."
+        "justificativa": "O filme aborda de forma poética a percepção do envelhecimento e da passagem do tempo, temas diretamente ligados à saúde, bem-estar e ao ciclo da vida."
       }
     ],
     "nota imdb": {
@@ -891,19 +904,15 @@
     "Gênero": "Animação",
     "GEN.": "Animação",
     "Ano": 2003,
-    "ODS": "3, 11, 12",
+    "ODS": "3, 16",
     "ODS_Justificados": [
       {
         "ods": "3",
-        "justificativa": "A atmosfera do filme explora profundamente a saúde mental, abordando sentimentos de solidão, alienação e ansiedade existencial em um ambiente opressor."
+        "justificativa": "A animação aborda temas como solidão, angústia e a passagem do tempo, elementos que impactam diretamente a saúde mental e o bem-estar dos indivíduos."
       },
       {
-        "ods": "11",
-        "justificativa": "A paisagem desolada e industrial serve como uma crítica ao desenvolvimento urbano insustentável, que gera ambientes hostis e alienantes para seus habitantes."
-      },
-      {
-        "ods": "12",
-        "justificativa": "As imagens de decadência industrial podem ser interpretadas como uma alegoria sobre as consequências do consumo e da produção desenfreados, resultando em abandono e degradação ambiental."
+        "ods": "16",
+        "justificativa": "De forma metafórica, o filme pode ser interpretado como uma crítica à violência e à falta de paz, onde a 'espera' representa a busca por um fim para o sofrimento ou a chegada de uma justiça que tarda."
       }
     ],
     "nota imdb": {
@@ -955,7 +964,7 @@
     "ODS_Justificados": [
       {
         "ods": "16",
-        "justificativa": "Baseado na figura anárquica de 'Clara Crocodilo', o filme utiliza a alegoria da perseguição a um 'marginal' para satirizar e questionar as instituições de poder, a mídia e a própria noção de justiça e corrupção na sociedade."
+        "justificativa": "O filme utiliza a linguagem da fábula e da animação para criticar diretamente a corrupção, a criminalidade e a ineficácia das instituições de justiça, temas centrais do ODS 16."
       }
     ],
     "nota imdb": {
@@ -1004,15 +1013,15 @@
     "Gênero": "Romance",
     "GEN.": "Ficção",
     "Ano": 1974,
-    "ODS": "11, 12",
+    "ODS": "3, 11",
     "ODS_Justificados": [
       {
-        "ods": "11",
-        "justificativa": "O filme documenta o Carnaval de Olinda, uma das mais importantes manifestações culturais do Brasil, contribuindo para a salvaguarda e valorização do patrimônio cultural imaterial da cidade."
+        "ods": "3",
+        "justificativa": "O filme explora a busca por amor e amizade e as consequências tragicômicas das escolhas, abordando o bem-estar emocional e a saúde mental dos indivíduos em suas interações sociais."
       },
       {
-        "ods": "12",
-        "justificativa": "A obra destaca as formas de produção artesanal e tradicional das máscaras e fantasias do carnaval, valorizando um modelo de cultura popular e sustentável em contraponto à produção em massa."
+        "ods": "11",
+        "justificativa": "A narrativa se desenrola em um contexto urbano, retratando encontros casuais e a dinâmica das relações em uma grande cidade, refletindo sobre a vida em comunidades."
       }
     ],
     "nota imdb": {
@@ -1061,19 +1070,23 @@
     "Gênero": "",
     "GEN.": "Ficção",
     "Ano": 2003,
-    "ODS": "1, 10, 11",
+    "ODS": "1, 10, 11, 18",
     "ODS_Justificados": [
       {
         "ods": "1",
-        "justificativa": "O filme, pelo seu título e direção coletiva de jovens da comunidade, certamente aborda as condições socioeconômicas e os desafios relacionados à pobreza em uma favela."
+        "justificativa": "O filme, ao retratar a vida na favela, aborda implicitamente as condições de pobreza e a luta diária pela sobrevivência de seus moradores."
       },
       {
         "ods": "10",
-        "justificativa": "A obra busca dar voz e representatividade a uma comunidade marginalizada, combatendo estereótipos e a desigualdade social ao apresentar uma perspectiva interna da vida na favela."
+        "justificativa": "A obra expõe a realidade da desigualdade social e urbana, mostrando o contraste entre a vida na comunidade e o restante da cidade."
       },
       {
         "ods": "11",
-        "justificativa": "O filme é um documento sobre a vida em assentamentos informais, explorando a cultura, os desafios de infraestrutura e a dinâmica social da comunidade, temas centrais para cidades mais inclusivas e sustentáveis."
+        "justificativa": "O título e a direção coletiva de jovens da comunidade indicam um foco na vida em assentamentos informais, suas dinâmicas internas, desafios e a busca por comunidades mais inclusivas e seguras."
+      },
+      {
+        "ods": "18",
+        "justificativa": "Favelas no Brasil são majoritariamente compostas por populações negras e pardas. Filmes que retratam essa realidade, especialmente os produzidos por seus próprios moradores, são importantes para a representatividade e a discussão sobre igualdade racial."
       }
     ],
     "nota imdb": {
@@ -1121,15 +1134,19 @@
     "Gênero": "",
     "GEN.": "Ficção",
     "Ano": 2008,
-    "ODS": "12, 15",
+    "ODS": "3, 5, 16",
     "ODS_Justificados": [
       {
-        "ods": "12",
-        "justificativa": "De forma lúdica, a animação mostra o impacto de produtos de consumo humano (uma cesta de festa) em um ecossistema natural, gerando uma reflexão sobre lixo e os padrões de consumo e seu efeito no meio ambiente."
+        "ods": "3",
+        "justificativa": "A trama envolve um acidente (pé quebrado) e a agressão a uma mulher, abordando questões de saúde física e o bem-estar em situações de violência e emergência."
       },
       {
-        "ods": "15",
-        "justificativa": "A história é protagonizada por animais da fauna brasileira em seu habitat, promovendo junto ao público infantil a valorização da vida terrestre e a conscientização sobre a preservação das florestas."
+        "ods": "5",
+        "justificativa": "O filme retrata a violência contra a mulher, um tema central para a igualdade de gênero, ao mostrar Dalila sendo agredida e arrastada para uma floresta."
+      },
+      {
+        "ods": "16",
+        "justificativa": "A agressão e o sequestro da personagem feminina são atos de violência que atentam contra a paz e a segurança, destacando a necessidade de justiça e proteção contra a violência de gênero."
       }
     ],
     "nota imdb": {
@@ -1178,15 +1195,19 @@
     "Gênero": "Documentário, Drama",
     "GEN.": "Documentário",
     "Ano": 1993,
-    "ODS": "11, 16",
+    "ODS": "10, 11, 16",
     "ODS_Justificados": [
       {
+        "ods": "10",
+        "justificativa": "O filme explora a tênue linha entre o 'marginal' e o 'cidadão', questionando estereótipos e abordando a desigualdade social e a exclusão nas ruas da cidade."
+      },
+      {
         "ods": "11",
-        "justificativa": "A obra é um ensaio visual sobre a experiência urbana, a espera e a anonimidade nas grandes cidades, refletindo sobre a qualidade de vida e as interações sociais no espaço público."
+        "justificativa": "A obra é um ensaio sobre a vida urbana, a ocupação do espaço público e as complexas interações sociais que ocorrem nas ruas, refletindo sobre a dinâmica das comunidades."
       },
       {
         "ods": "16",
-        "justificativa": "A imagem de uma fila interminável e sem propósito aparente serve como uma poderosa metáfora para a ineficiência da burocracia e a relação muitas vezes frustrante entre os cidadãos e as instituições públicas ou privadas."
+        "justificativa": "Ao retratar a 'malandragem brasileira' e a dificuldade em distinguir o marginal do cidadão, o filme toca em questões de justiça, ordem e a percepção da lei em diferentes contextos sociais."
       }
     ],
     "nota imdb": {
@@ -1235,15 +1256,15 @@
     "Gênero": "Animação",
     "GEN.": "Animação",
     "Ano": 2010,
-    "ODS": "4, 15",
+    "ODS": "3, 10",
     "ODS_Justificados": [
       {
-        "ods": "4",
-        "justificativa": "A animação, baseada em uma lenda indígena da Amazônia, serve como uma ferramenta educativa para a disseminação da cultura e do conhecimento tradicional dos povos originários, promovendo uma educação mais diversa."
+        "ods": "3",
+        "justificativa": "A trama aborda temas como melancolia, amor e a possibilidade de 'morrer de amor', tocando em questões de saúde mental e bem-estar emocional."
       },
       {
-        "ods": "15",
-        "justificativa": "A narrativa é centrada na Samaúma, uma árvore sagrada da Amazônia, e em uma lenda da floresta, promovendo a valorização dos ecossistemas terrestres e a importância da conservação da biodiversidade."
+        "ods": "10",
+        "justificativa": "O filme apresenta um cupido anão como personagem central, promovendo a inclusão e a representatividade de pessoas com nanismo e combatendo o preconceito."
       }
     ],
     "nota imdb": {
@@ -1292,15 +1313,15 @@
     "Gênero": "Animação",
     "GEN.": "Animação",
     "Ano": 2008,
-    "ODS": "2, 15",
+    "ODS": "2, 12",
     "ODS_Justificados": [
       {
         "ods": "2",
-        "justificativa": "De forma simples e acessível para crianças, a história aborda a descoberta de alimento (a semente) e a importância de plantá-lo e compartilhá-lo, introduzindo conceitos básicos de segurança alimentar e cooperação."
+        "justificativa": "A animação, de forma lúdica, aborda a importância da agricultura e do ciclo de vida das plantas, temas relacionados à produção de alimentos e à fome zero."
       },
       {
-        "ods": "15",
-        "justificativa": "A animação apresenta animais de fazenda e o ciclo de plantio, promovendo uma conexão inicial das crianças com a natureza, a agricultura e a vida nos ecossistemas terrestres."
+        "ods": "12",
+        "justificativa": "O filme ensina sobre o ciclo da natureza e a importância de plantar para colher, promovendo uma consciência sobre consumo e produção responsáveis desde a infância."
       }
     ],
     "nota imdb": {
@@ -1349,15 +1370,15 @@
     "Gênero": "Animação",
     "GEN.": "Animação",
     "Ano": 1988,
-    "ODS": "4, 9",
+    "ODS": "5, 11",
     "ODS_Justificados": [
       {
-        "ods": "4",
-        "justificativa": "O filme estimula a alfabetização midiática e o pensamento crítico ao explorar a relação entre o espectador e as imagens, questionando a influência da mídia na construção da realidade."
+        "ods": "5",
+        "justificativa": "A animação explora a identidade e a expressão feminina em um contexto urbano e tecnológico, questionando os papéis de gênero e a representação da mulher na mídia."
       },
       {
-        "ods": "9",
-        "justificativa": "Como uma obra de animação experimental dos anos 80, o filme representa a inovação na linguagem e na técnica audiovisual, contribuindo para o desenvolvimento da indústria criativa e da infraestrutura cultural."
+        "ods": "11",
+        "justificativa": "O filme utiliza a cidade como cenário para a jornada da protagonista, refletindo sobre a vida urbana, a tecnologia e a comunicação nas comunidades modernas."
       }
     ],
     "nota imdb": {
@@ -1406,15 +1427,15 @@
     "Gênero": "",
     "GEN.": "Ficção",
     "Ano": 2009,
-    "ODS": "12, 16",
+    "ODS": "3, 10",
     "ODS_Justificados": [
       {
-        "ods": "12",
-        "justificativa": "O filme funciona como uma alegoria sobre os perigos do desejo de consumo ilimitado e da ganância. A garrafa que concede desejos a um custo terrível critica a busca por soluções fáceis e a mentalidade consumista que ignora as consequências."
+        "ods": "3",
+        "justificativa": "A história aborda a saúde mental e o bem-estar ao contrastar um mundo rigidamente programado com a liberdade e a alegria encontradas no circo, sugerindo a importância do lúdico e da espontaneidade para uma vida saudável."
       },
       {
-        "ods": "16",
-        "justificativa": "A narrativa explora temas de moralidade, pactos e consequências, funcionando como uma fábula sobre uma forma de justiça implacável e sobrenatural que pune a ganância e a falta de ética."
+        "ods": "10",
+        "justificativa": "O filme critica uma sociedade que busca homogeneizar as experiências, e a descoberta do circo representa a valorização da diversidade cultural e da liberdade individual, temas ligados à redução das desigualdades."
       }
     ],
     "nota imdb": {
@@ -1462,23 +1483,27 @@
     "Gênero": "",
     "GEN.": "Ficção",
     "Ano": 1961,
-    "ODS": "8, 10, 11, 18",
+    "ODS": "1, 8, 10, 11, 18",
     "ODS_Justificados": [
       {
+        "ods": "1",
+        "justificativa": "O filme retrata a vida de trabalhadores pobres em uma feira livre, expondo a luta diária pela sobrevivência e as condições de pobreza em um ambiente urbano."
+      },
+      {
         "ods": "8",
-        "justificativa": "O filme é um retrato do trabalho e da economia informal na Feira de Água de Meninos, em Salvador, documentando as condições de vida e as lutas dos trabalhadores do local."
+        "justificativa": "A feira é um microcosmo da economia informal, mostrando as relações de trabalho, a busca por sustento e a falta de trabalho decente para a população marginalizada."
       },
       {
         "ods": "10",
-        "justificativa": "A obra expõe as tensões e desigualdades sociais e econômicas da época, dando visibilidade à vida da classe trabalhadora e de populações marginalizadas."
+        "justificativa": "A obra evidencia as tensões e desigualdades sociais e raciais presentes na sociedade baiana da época, mostrando os conflitos entre diferentes grupos."
       },
       {
         "ods": "11",
-        "justificativa": "O documentário registra um espaço urbano vital, a feira, como um centro de cultura, comércio e interação social, destacando sua importância para a identidade e a vida da cidade de Salvador."
+        "justificativa": "O filme é um importante registro da vida urbana de Salvador, focando em um espaço público vital como a feira e as dinâmicas da comunidade que a frequenta."
       },
       {
         "ods": "18",
-        "justificativa": "Filmado em Salvador e focado na vida popular, o filme inevitavelmente retrata a realidade da população majoritariamente negra da cidade, abordando suas expressões culturais e desafios socioeconômicos, o que o torna relevante para a discussão sobre igualdade racial."
+        "justificativa": "Sendo um dos marcos do Cinema Novo baiano, o filme dá protagonismo a personagens e questões da cultura afro-brasileira, abordando o racismo e a luta por igualdade racial em um contexto de forte segregação."
       }
     ],
     "nota imdb": {
@@ -1531,7 +1556,7 @@
     "ODS_Justificados": [
       {
         "ods": "3",
-        "justificativa": "O filme aborda com sensibilidade a questão da saúde na terceira idade, especificamente o Mal de Alzheimer, e destaca a importância dos laços familiares e das relações intergeracionais para o bem-estar emocional tanto do idoso quanto da criança."
+        "justificativa": "O filme aborda de forma sensível a questão do envelhecimento e da perda de memória (possivelmente Alzheimer), destacando a importância do bem-estar, do afeto e das relações intergeracionais para a saúde mental na terceira idade."
       }
     ],
     "nota imdb": {
@@ -1580,15 +1605,11 @@
     "Gênero": "",
     "GEN.": "Ficção",
     "Ano": 2003,
-    "ODS": "3, 16",
+    "ODS": "16",
     "ODS_Justificados": [
       {
-        "ods": "3",
-        "justificativa": "Ao explorar os 'instintos humanos' e a 'tragédia humana' de forma poética, o filme mergulha em questões existenciais e psicológicas profundas, relacionadas à saúde mental e ao bem-estar."
-      },
-      {
         "ods": "16",
-        "justificativa": "A temática da 'eterna tragédia humana' e a representação de um 'amplo panorama da civilização ocidental' podem ser interpretadas como uma reflexão sobre os ciclos de violência, conflito e injustiça que marcam a história."
+        "justificativa": "O filme é um exercício cinematográfico que, através de um falso plano-sequência, expõe a 'eterna tragédia humana', abordando a violência e os instintos de forma crua, o que se conecta à busca por paz e justiça."
       }
     ],
     "nota imdb": {
@@ -1637,19 +1658,19 @@
     "Gênero": "Documentário, Terror",
     "GEN.": "Documentário Ficcional",
     "Ano": 2009,
-    "ODS": "4, 10, 11",
+    "ODS": "4, 10, 18",
     "ODS_Justificados": [
       {
         "ods": "4",
-        "justificativa": "O filme é uma ferramenta de educação cultural, transmitindo a mitologia e a visão de mundo do povo Kisêdjê através de sua própria linguagem e estética, promovendo uma educação inclusiva e diversa."
+        "justificativa": "O filme é um registro da tradição oral e da mitologia indígena, contribuindo para a educação intercultural e a valorização dos saberes dos povos originários."
       },
       {
         "ods": "10",
-        "justificativa": "A produção, realizada por cineastas indígenas, é um ato de empoderamento e auto-representação, combatendo a desigualdade histórica que silenciou e marginalizou as vozes e narrativas dos povos originários."
+        "justificativa": "Ao dar voz e protagonismo a cineastas indígenas para contarem suas próprias histórias, o filme combate a desigualdade e promove a inclusão de narrativas historicamente marginalizadas."
       },
       {
-        "ods": "11",
-        "justificativa": "A obra contribui para a salvaguarda e promoção do patrimônio cultural imaterial indígena, registrando e compartilhando uma de suas histórias tradicionais para novas gerações e para o mundo."
+        "ods": "18",
+        "justificativa": "A obra é uma expressão cultural autêntica dos povos Kisêdjê e Suyá, fundamental para a afirmação da identidade, a preservação da cultura e a luta por igualdade racial e de direitos dos povos indígenas no Brasil."
       }
     ],
     "nota imdb": {
@@ -1702,23 +1723,23 @@
     "ODS_Justificados": [
       {
         "ods": "1",
-        "justificativa": "O filme é um retrato contundente da vida de Macabéa em condição de pobreza extrema, mostrando suas dificuldades com moradia, alimentação e a luta pela sobrevivência."
+        "justificativa": "A protagonista Macabéa vive em condição de extrema pobreza, com dificuldades para se alimentar e morar, representando a luta pela sobrevivência em um contexto de miséria."
       },
       {
         "ods": "5",
-        "justificativa": "A obra oferece um mergulho profundo na subjetividade de uma mulher marginalizada, explorando seus desejos, sua solidão e a opressão que sofre em uma sociedade patriarcal e classista."
+        "justificativa": "O filme explora a vulnerabilidade e a opressão sofrida por uma mulher nordestina e pobre na cidade grande, abordando a desigualdade de gênero e a falta de autonomia."
       },
       {
         "ods": "8",
-        "justificativa": "O trabalho precário e alienante de Macabéa como datilógrafa ilustra as condições de exploração e a falta de oportunidades de trabalho decente para migrantes com baixa qualificação."
+        "justificativa": "A personagem trabalha como datilógrafa em condições precárias e com baixo salário, ilustrando a realidade do subemprego e a falta de trabalho decente para migrantes."
       },
       {
         "ods": "10",
-        "justificativa": "O filme expõe a brutal desigualdade social, cultural e regional no Brasil, contrastando a vida miserável da migrante nordestina com a indiferença da metrópole de São Paulo."
+        "justificativa": "A obra é um retrato contundente da desigualdade social, regional e de gênero, mostrando a marginalização de uma migrante nordestina em São Paulo."
       },
       {
         "ods": "11",
-        "justificativa": "A narrativa mostra a experiência de alienação e invisibilidade de uma migrante em uma grande cidade, questionando a capacidade da metrópole de ser um espaço inclusivo e acolhedor."
+        "justificativa": "O filme retrata a dura experiência da migração para uma grande metrópole, a solidão urbana e as dificuldades de adaptação e moradia em uma cidade excludente."
       }
     ],
     "nota imdb": {
@@ -1774,15 +1795,19 @@
     "Gênero": "",
     "GEN.": "Ficção",
     "Ano": 1998,
-    "ODS": "4, 16",
+    "ODS": "3, 11, 16",
     "ODS_Justificados": [
       {
-        "ods": "4",
-        "justificativa": "O filme aborda um momento crucial de aprendizado e desenvolvimento moral na infância: o confronto com a violência do mundo adulto e a perda da inocência, que são parte da educação para a vida."
+        "ods": "3",
+        "justificativa": "O filme aborda o ócio e a reflexão sobre o sentido da vida, elementos que se conectam ao bem-estar mental e à saúde psicológica dos indivíduos."
+      },
+      {
+        "ods": "11",
+        "justificativa": "A esquina, como espaço de encontro e sociabilidade, é o cenário central, refletindo sobre o uso dos espaços públicos e a vida em comunidade nas cidades."
       },
       {
         "ods": "16",
-        "justificativa": "A trama gira em torno de um crime testemunhado por crianças, levantando questões sobre violência, justiça e impunidade no contexto de uma pequena comunidade, e o impacto desses eventos na formação dos jovens."
+        "justificativa": "Ao retratar a esquina como um lugar de 'malandro' e também de 'criança', o filme explora as tensões sociais, a percepção de segurança e a convivência com a violência e o crime no ambiente urbano."
       }
     ],
     "nota imdb": {
@@ -1835,11 +1860,11 @@
     "ODS_Justificados": [
       {
         "ods": "3",
-        "justificativa": "A animação utiliza o humor para abordar o estresse, a ansiedade e a alienação, desafios de saúde mental frequentemente associados à vida caótica nas grandes metrópoles."
+        "justificativa": "O filme aborda de maneira bem-humorada o estresse e as dificuldades da vida em uma metrópole, tocando em questões de saúde mental e bem-estar em ambientes urbanos."
       },
       {
         "ods": "11",
-        "justificativa": "O filme é uma sátira sobre os problemas da vida urbana moderna, como congestionamentos, poluição sonora e isolamento social, questionando a sustentabilidade e a qualidade de vida nas cidades."
+        "justificativa": "A narrativa é uma crítica direta aos desafios de se viver em uma cidade grande, como o isolamento e a complexidade da vida urbana, promovendo uma reflexão sobre a sustentabilidade e a qualidade de vida nas cidades."
       }
     ],
     "nota imdb": {
@@ -1892,23 +1917,23 @@
     "ODS_Justificados": [
       {
         "ods": "1",
-        "justificativa": "O documentário mostra como a pobreza leva diretamente ao trabalho infantil, privando as crianças de seus direitos básicos e perpetuando o ciclo da miséria."
+        "justificativa": "O filme contrasta a infância de crianças de classe média com a de crianças que trabalham, como os cortadores de cana, evidenciando como a pobreza rouba a infância e o direito de ser criança."
       },
       {
         "ods": "3",
-        "justificativa": "A obra questiona o que constitui uma infância saudável, mostrando como tanto a falta de recursos quanto o excesso de pressão e atividades podem prejudicar o bem-estar mental e emocional das crianças."
+        "justificativa": "Aborda o bem-estar infantil, mostrando como a sobrecarga de deveres e o trabalho precoce afetam a saúde física e mental das crianças, além de tocar na questão da mortalidade infantil."
       },
       {
         "ods": "4",
-        "justificativa": "O filme evidencia como o trabalho infantil é uma barreira direta para o acesso à educação de qualidade, impedindo o pleno desenvolvimento cognitivo e social das crianças."
+        "justificativa": "O documentário critica a falta de acesso à educação de qualidade e ao tempo para brincar, elementos essenciais para o desenvolvimento infantil, que são negados a crianças em situação de trabalho."
       },
       {
         "ods": "8",
-        "justificativa": "A denúncia do trabalho infantil é um tema central, expondo uma grave violação dos direitos humanos e trabalhistas que se opõe diretamente ao conceito de trabalho decente."
+        "justificativa": "O filme é uma denúncia contundente do trabalho infantil, alinhando-se diretamente com a meta 8.7 da ONU de erradicar todas as formas de trabalho infantil."
       },
       {
         "ods": "10",
-        "justificativa": "Ao contrastar as realidades de crianças de diferentes classes sociais, o filme expõe de forma contundente a profunda desigualdade de oportunidades e de experiências de vida que marca a sociedade brasileira."
+        "justificativa": "Expõe a profunda desigualdade social no Brasil ao mostrar as diferentes realidades da infância, questionando o que significa 'ser criança' em contextos socioeconômicos distintos."
       }
     ],
     "nota imdb": {
@@ -1971,19 +1996,15 @@
     "Gênero": "Documentário",
     "GEN.": "Documentário",
     "Ano": 1973,
-    "ODS": "8, 11, 14",
+    "ODS": "8, 14",
     "ODS_Justificados": [
       {
         "ods": "8",
-        "justificativa": "O filme documenta o trabalho artesanal e as práticas econômicas dos pescadores de jangada, um modo de vida tradicional que representa uma forma de trabalho decente e sustentável."
-      },
-      {
-        "ods": "11",
-        "justificativa": "Ao registrar o cotidiano e a cultura dos jangadeiros, o filme contribui para a preservação e valorização do patrimônio cultural imaterial de comunidades costeiras brasileiras."
+        "justificativa": "O filme documenta o trabalho artesanal e arriscado dos jangadeiros, retratando uma forma de trabalho tradicional e as condições de vida de quem depende do mar para seu sustento."
       },
       {
         "ods": "14",
-        "justificativa": "A obra é centrada na relação intrínseca entre o homem e o mar, destacando a pesca artesanal como uma prática de uso sustentável dos recursos marinhos e promovendo a conservação da vida na água."
+        "justificativa": "A obra mostra a profunda relação entre os pescadores e o ecossistema marinho, destacando a dependência dos recursos do mar e a importância da vida aquática para as comunidades costeiras."
       }
     ],
     "nota imdb": {
@@ -2031,15 +2052,19 @@
     "Gênero": "Documentário, Romance",
     "GEN.": "Documentário",
     "Ano": 1968,
-    "ODS": "4, 11",
+    "ODS": "4, 11, 15",
     "ODS_Justificados": [
       {
         "ods": "4",
-        "justificativa": "O filme funciona como um valioso material de apoio para a educação, promovendo a literatura brasileira ao criar uma ponte visual e poética entre a obra de Guimarães Rosa e o universo que a inspirou."
+        "justificativa": "O filme é uma homenagem à obra de Guimarães Rosa, um dos maiores escritores brasileiros, promovendo a valorização da literatura e da cultura nacional como ferramenta de educação e conhecimento."
       },
       {
         "ods": "11",
-        "justificativa": "Ao documentar a paisagem e os tipos humanos do sertão mineiro, o filme ajuda a preservar e valorizar o patrimônio cultural e natural de uma região emblemática do Brasil, intrinsecamente ligada à sua identidade literária."
+        "justificativa": "Ao retratar o sertão mineiro, o filme documenta e valoriza o patrimônio cultural e natural de uma região específica do Brasil, destacando seus tipos humanos e paisagens."
+      },
+      {
+        "ods": "15",
+        "justificativa": "A obra exibe a paisagem e a vida no ecossistema do sertão, chamando a atenção para a importância da preservação da biodiversidade e dos modos de vida tradicionais ligados à terra."
       }
     ],
     "nota imdb": {
@@ -2088,11 +2113,15 @@
     "Gênero": "Animação",
     "GEN.": "Animação",
     "Ano": 2002,
-    "ODS": "12",
+    "ODS": "3, 12",
     "ODS_Justificados": [
       {
+        "ods": "3",
+        "justificativa": "A animação, de forma cômica e exagerada, pode ser vista como uma crítica aos maus hábitos alimentares e ao consumo de 'junk food', promovendo uma reflexão sobre saúde e bem-estar."
+      },
+      {
         "ods": "12",
-        "justificativa": "De forma satírica e humorística, o filme transforma um produto alimentício comum em um monstro, podendo ser interpretado como uma crítica lúdica à cultura do consumo e aos alimentos processados."
+        "justificativa": "O filme satiriza a cultura do consumo excessivo e a produção de alimentos industrializados, incentivando uma visão crítica sobre os padrões de consumo e produção."
       }
     ],
     "nota imdb": {
@@ -2145,11 +2174,11 @@
     "ODS_Justificados": [
       {
         "ods": "8",
-        "justificativa": "O filme documenta um trabalho perigoso e pouco conhecido, chamando a atenção para as condições de segurança e a natureza de ocupações especializadas, além de valorizar o trabalho de manutenção do patrimônio."
+        "justificativa": "O filme documenta o trabalho arriscado e especializado dos irmãos responsáveis pela manutenção do monumento, destacando uma profissão única e as condições de trabalho envolvidas."
       },
       {
         "ods": "11",
-        "justificativa": "A obra destaca a importância da manutenção e preservação de um ícone cultural e turístico mundial, o Cristo Redentor, essencial para a identidade e a economia da cidade do Rio de Janeiro."
+        "justificativa": "A obra celebra um dos mais importantes patrimônios culturais e marcos urbanos do Brasil, o Cristo Redentor, e a relação da cidade e de seus habitantes com o monumento, promovendo a valorização do patrimônio cultural."
       }
     ],
     "nota imdb": {
@@ -2198,19 +2227,15 @@
     "Gênero": "Drama, Romance",
     "GEN.": "Ficção",
     "Ano": 2005,
-    "ODS": "3, 5, 11",
+    "ODS": "3, 11",
     "ODS_Justificados": [
       {
         "ods": "3",
-        "justificativa": "O filme aborda temas como solidão, obsessão e isolamento social no contexto urbano, questões diretamente relacionadas à saúde mental e ao bem-estar psicológico."
-      },
-      {
-        "ods": "5",
-        "justificativa": "A narrativa pode ser analisada sob a ótica da violência de gênero, especificamente o voyeurismo e a violação da privacidade da mulher, levantando debates sobre o 'male gaze' (olhar masculino) e a objetificação."
+        "justificativa": "O filme explora a solidão, a busca por conexão e o bem-estar emocional dos personagens em um ambiente urbano, refletindo sobre a saúde mental e as relações humanas."
       },
       {
         "ods": "11",
-        "justificativa": "A história é um produto da vida em alta densidade urbana, onde a proximidade física coexiste com o distanciamento social, explorando as complexas e por vezes perigosas dinâmicas de vizinhança na cidade."
+        "justificativa": "A narrativa utiliza a paisagem urbana e a relação entre vizinhos (a 'janela') como elemento central para discutir a vida em comunidade, o isolamento e a observação mútua nas cidades."
       }
     ],
     "nota imdb": {
@@ -2259,11 +2284,15 @@
     "Gênero": "Animação, Romance",
     "GEN.": "Animação",
     "Ano": 2006,
-    "ODS": "4",
+    "ODS": "4, 10",
     "ODS_Justificados": [
       {
         "ods": "4",
-        "justificativa": "A animação é uma ferramenta lúdica para a educação infantil, estimulando o interesse pela linguagem, pelos sons e pela comunicação de forma criativa e acessível, contribuindo para o desenvolvimento da literacia."
+        "justificativa": "O filme celebra a diversidade e a riqueza da língua portuguesa, promovendo a educação intercultural e a valorização do patrimônio linguístico e cultural dos países lusófonos."
+      },
+      {
+        "ods": "10",
+        "justificativa": "Ao mostrar como a língua portuguesa foi apropriada e reinventada por diferentes povos, o filme aborda a redução das desigualdades culturais, dando voz e visibilidade à diversidade da lusofonia."
       }
     ],
     "nota imdb": {
@@ -2311,19 +2340,19 @@
     "Gênero": "Documentário",
     "GEN.": "Documentário",
     "Ano": 1970,
-    "ODS": "4, 12, 16",
+    "ODS": "4, 8, 12",
     "ODS_Justificados": [
       {
         "ods": "4",
-        "justificativa": "O filme é uma ferramenta essencial para a educação midiática, pois desconstrói as técnicas da publicidade, promovendo o pensamento crítico sobre a influência da mídia e do consumo."
+        "justificativa": "O filme, patrocinado pelo SENAC, aborda a comunicação como ferramenta de aperfeiçoamento profissional, ligando-se diretamente à educação de qualidade e à formação para o trabalho."
+      },
+      {
+        "ods": "8",
+        "justificativa": "Ao focar no aperfeiçoamento profissional, o documentário discute a qualificação da mão de obra e a busca por melhores condições no mercado de trabalho, temas do trabalho decente."
       },
       {
         "ods": "12",
-        "justificativa": "A obra é uma crítica direta aos mecanismos que impulsionam o consumismo, expondo como a linguagem da persuasão é usada para criar desejos e promover padrões de consumo insustentáveis."
-      },
-      {
-        "ods": "16",
-        "justificativa": "Realizado durante a ditadura militar, o filme utiliza a crítica à publicidade como uma metáfora para a propaganda política e o controle da informação, questionando as estruturas de poder e manipulação da época."
+        "justificativa": "A obra analisa os meios de comunicação e a linguagem da persuasão, que são ferramentas centrais da publicidade e do estímulo ao consumo, permitindo uma reflexão crítica sobre os padrões de consumo."
       }
     ],
     "nota imdb": {
@@ -2372,15 +2401,19 @@
     "Gênero": "Documentário",
     "GEN.": "Documentário",
     "Ano": 1966,
-    "ODS": "4, 8",
+    "ODS": "4, 11, 18",
     "ODS_Justificados": [
       {
         "ods": "4",
-        "justificativa": "O filme funciona como um recurso de educação artística, apresentando os elementos fundamentais da linguagem teatral e sua importância social e cultural."
+        "justificativa": "O filme funciona como um documento histórico e educacional sobre as transformações do teatro brasileiro, promovendo o conhecimento sobre a cultura e as artes cênicas do país."
       },
       {
-        "ods": "8",
-        "justificativa": "Ao documentar o fazer teatral, o filme valoriza o trabalho dos artistas e técnicos, destacando o teatro como um setor importante da economia criativa e do crescimento cultural."
+        "ods": "11",
+        "justificativa": "Ao abordar a história do teatro no Brasil, o documentário valoriza e ajuda a proteger o patrimônio cultural imaterial do país."
+      },
+      {
+        "ods": "18",
+        "justificativa": "A presença e o depoimento de Grande Otelo, um dos maiores atores negros do Brasil, são fundamentais para discutir a representatividade e a contribuição de artistas negros na história do teatro nacional."
       }
     ],
     "nota imdb": {
@@ -2429,15 +2462,23 @@
     "Gênero": "",
     "GEN.": "Ficção",
     "Ano": 1978,
-    "ODS": "11, 16",
+    "ODS": "10, 11, 16, 18",
     "ODS_Justificados": [
       {
+        "ods": "10",
+        "justificativa": "O filme retrata a vida de artistas e personagens da boemia e da marginalidade, expondo as desigualdades sociais e a luta pela sobrevivência em um ambiente de exclusão."
+      },
+      {
         "ods": "11",
-        "justificativa": "O filme utiliza o Carnaval do Rio de Janeiro, um patrimônio cultural imaterial, como cenário e elemento central, explorando sua função como espaço de expressão artística, catarse social e transgressão."
+        "justificativa": "A obra é um retrato do carnaval e da vida noturna do Rio de Janeiro, explorando a cultura e as dinâmicas de uma comunidade urbana vibrante e caótica."
       },
       {
         "ods": "16",
-        "justificativa": "Produzido durante a ditadura militar, o filme usa uma narrativa delirante e caótica como alegoria para a repressão política e a desintegração social, questionando as noções de ordem, liberdade e justiça em um período autoritário."
+        "justificativa": "A trama envolve repressão policial e conflitos sociais durante o carnaval, um período de suspensão das normas, abordando a violência e a busca por justiça em um contexto de desordem."
+      },
+      {
+        "ods": "18",
+        "justificativa": "Com a presença marcante de Anecy Rocha e outros atores negros, o filme dá visibilidade à cultura afro-brasileira, especialmente no contexto do carnaval, e aborda as tensões raciais da sociedade."
       }
     ],
     "nota imdb": {
@@ -2486,19 +2527,23 @@
     "Gênero": "Documentário, Guerra, Romance",
     "GEN.": "Ficção",
     "Ano": 1967,
-    "ODS": "1, 10, 11",
+    "ODS": "1, 10, 11, 16",
     "ODS_Justificados": [
       {
         "ods": "1",
-        "justificativa": "O filme retrata a vida de personagens em situação de extrema pobreza, vivendo literalmente à margem da sociedade e de suas oportunidades."
+        "justificativa": "O filme retrata a vida de personagens que vivem à margem da sociedade, em condições de pobreza e exclusão, nas margens do rio Tietê em São Paulo."
       },
       {
         "ods": "10",
-        "justificativa": "Como obra seminal do 'Cinema Marginal', o filme dá visibilidade aos excluídos e invisíveis da metrópole, denunciando a profunda desigualdade social gerada pelo 'milagre econômico'."
+        "justificativa": "A obra é um marco do cinema marginal e expõe a profunda desigualdade social, dando visibilidade a pessoas e realidades ignoradas pela sociedade hegemônica."
       },
       {
         "ods": "11",
-        "justificativa": "A obra oferece uma crítica contundente ao modelo de desenvolvimento urbano que marginaliza pessoas e degrada o meio ambiente, tendo como cenário as margens poluídas do rio Tietê em São Paulo."
+        "justificativa": "O filme documenta um espaço urbano marginalizado, a beira de um rio poluído, refletindo sobre a urbanização desordenada e a vida em assentamentos precários."
+      },
+      {
+        "ods": "16",
+        "justificativa": "A narrativa poética e fragmentada aborda a violência, a solidão e a busca por paz e sentido em um ambiente de desamparo e ausência de instituições eficazes."
       }
     ],
     "nota imdb": {
@@ -2543,7 +2588,7 @@
     "Direção": "Evaldo Mocarzel",
     "Curadoria": "",
     "Elenco": "..",
-    "Dur. (´)": 88,
+    "Dur.(´)": 88,
     "Gênero": "Documentário, Drama",
     "GEN.": "Documentário",
     "Ano": 2006,
@@ -2581,7 +2626,7 @@
     "tags": "..",
     "website": "www.superfilmes.com.br",
     "festivais": "Festival Internacional de Cine Documental, Equador 2007 \nMostra “Brésil em mouvements”, França 2007 \nLatin American Film Festival 2007 \nMuestra de cine Latino americano en Barcelona 2007 \nBologna Human Rights Nights 2007 \n10º Festival de Cinema Luso-Brasileiro de Santa Maria da Feira 2006. \n30º Mostra Internacional de Cinema de São Paulo 2006 \n13º Vitória Cine Vídeo 2006 \n16º Cine Ceará – Festival Ibero americano de Cinema 2006 \n11º Festival Internacional de Documentários 2006. \n\n",
-    "premios": "Melhor Filme Júri Popular e Melhor Edição de Som 38° Festival de Brasília de Cinema Brasileiro 2005, Prêmio OCIC/SIGNIS de Melhor Documentário na Jornada Internacional da Bahia 2006, Melhor Documentário no Festival do Rio BR 2006, Prêmio de Melhor documentário no Festival de Direito Humanos DerHumALC 2006, Melhor Documentário Festival de Belém do Cinema Brasileiro 2006,  Melhor Som no Festival de Miami 2007.",
+    "premios": "Melhor Filme Júri Popular e Melhor Edição de Som 38° Festival de Brasília de Cinema Brasileiro 2005, Prêmio OCIC/SIGNIS de Melhor Documentário na Jornada Internacional da Bahia 2006, Melhor Documentário no Festival do Rio BR 2006, Prêmio de Melhor documentário no Festival de Direito Humanos DerHumALC 2006, Melhor Documentário Festival de Belém do Cinema Brasileiro 2006, Melhor Som no Festival de Miami 2007.",
     "legendas_outras": "",
     "material_outros": "",
     "duracao FORMATO": "LONGA",
@@ -2608,7 +2653,7 @@
     "Direção": "André Klotzel",
     "Curadoria": "",
     "Elenco": "cientistas do Museu Nacional",
-    "Dur. (´)": 77,
+    "Dur.(´)": 77,
     "Gênero": "",
     "GEN.": "Ficção",
     "Ano": 1985,
@@ -2670,7 +2715,7 @@
     "Direção": "José Mojica Marins",
     "Curadoria": "",
     "Elenco": "Adilson Barros, Fernanda Torres,Dionísio Azevedo, Genny Prado,Regina Casé, Lucélia Machiavelli,Paco Sanches, Henrique Lisboa,Chiquinho Brandão, Tio Celso,Tonico e Tinoco",
-    "Dur. (´)": 82,
+    "Dur.(´)": 82,
     "Gênero": "Drama",
     "GEN.": "Ficção",
     "Ano": 1963,
@@ -2731,7 +2776,7 @@
     "Direção": "Kleber Mendonça",
     "Curadoria": "",
     "Elenco": "Não há",
-    "Dur. (´)": 7,
+    "Dur.(´)": 7,
     "Gênero": "",
     "GEN.": "Ficção",
     "Ano": 2002,
@@ -2793,7 +2838,7 @@
     "Direção": "Mauro D'Addio",
     "Curadoria": "",
     "Elenco": "Talita Olivieri, Cleyton Vieira, Bruno Autran e Francisco Américo",
-    "Dur. (´)": 14,
+    "Dur.(´)": 14,
     "Gênero": "",
     "GEN.": "Ficção",
     "Ano": 2010,
@@ -2851,7 +2896,7 @@
     "Direção": "Cássio Pereira dos Santos",
     "Curadoria": "",
     "Elenco": "Não há",
-    "Dur. (´)": 12,
+    "Dur.(´)": 12,
     "Gênero": "",
     "GEN.": "Ficção",
     "Ano": 2008,
@@ -2909,7 +2954,7 @@
     "Direção": "Italo Cajueiro",
     "Curadoria": "",
     "Elenco": "Vozes: Guilherme Briggs, Gustavo Pereira, Márcio Simões, Marco Ribeiro, Miriam Ficher",
-    "Dur. (´)": 11,
+    "Dur.(´)": 11,
     "Gênero": "Animação, Fantasia",
     "GEN.": "Animação",
     "Ano": 2003,
@@ -2994,7 +3039,7 @@
     "Direção": "Bruno Carvalho",
     "Curadoria": "",
     "Elenco": "",
-    "Dur. (´)": 13,
+    "Dur.(´)": 13,
     "Gênero": "Animação, Drama",
     "GEN.": "Ficção",
     "Ano": 2009,
@@ -3024,7 +3069,7 @@
     "tags": "",
     "website": "",
     "festivais": "",
-    "premios": "-Melhor Roteiro na Categoria Animação - Cine PE - Festival de Recife, PE - 2004\n-Melhor Trilha Sonora - I Festival de Cinema de Belém, PA - 2004\n-Melhor Filme - Prêmio UNESCO - 27º Festival Guarnicê de Cinema, MA - 2004\n-Melhor Trilha Sonora - Mostra ABCV - Associação Brasiliense de Cinema e Vídeo - 2004\n-Menção Honrosa do Júri, e Prêmio de Aquisição Canal Brasil - 32º Festival de Cinema de Gramado,  RS - 2004\n-Melhor Curta-Metragem de Animação - Academia Brasileira de Cinema - Grande Prêmio TAM de Cinema - 2004\n-Prêmio Glauber Rocha de Melhor Filme do Festival, Melhor Filme de Animação, e Melhor Música - XXXI Jornada Internacional de Cinema da Bahia\n-Melhor Filme - Júri Oficial - 4ª Goiânia Mostra Curta- 2004\n-Melhor Trilha Sonora - Júri Oficial - 11ª Vitória Cine e Vídeo - 2004\n-Melhor Animação - Festival Amazonas Filme - Curta Brasil 2004\n-Melhor Filme 35mm Júri Popular,  Melhor Animação 35mm Júri Oficial, e Melhor Filme 35mm com Temática Nordestina - Prêmio Banco do Nordeste - Curta SE - 5 Festival luso-brasileiro de curta-metragens de Sergipe-2005\n-Melhor Animação - Festival CineGate`s - Brasília 2006\n",
+    "premios": "-Melhor Roteiro na Categoria Animação - Cine PE - Festival de Recife, PE - 2004\n-Melhor Trilha Sonora - I Festival de Cinema de Belém, PA - 2004\n-Melhor Filme - Prêmio UNESCO - 27º Festival Guarnicê de Cinema, MA - 2004\n-Melhor Trilha Sonora - Mostra ABCV - Associação Brasiliense de Cinema e Vídeo - 2004\n-Menção Honrosa do Júri, e Prêmio de Aquisição Canal Brasil - 32º Festival de Cinema de Gramado, RS - 2004\n-Melhor  Curta-Metragem de Animação - Academia Brasileira de Cinema - Grande Prêmio TAM de Cinema - 2004\n-Prêmio Glauber Rocha de Melhor Filme do Festival, Melhor Filme de Animação, e Melhor Música - XXXI Jornada Internacional de Cinema da Bahia\n-Melhor Filme - Júri Oficial - 4ª Goiânia Mostra Curta- 2004\n-Melhor Trilha Sonora - Júri Oficial - 11ª Vitória Cine e Vídeo - 2004\n-Melhor Animação - Festival Amazonas Filme - Curta Brasil 2004\n-Melhor Filme 35mm Júri Popular, Melhor Animação 35mm Júri Oficial, e Melhor Filme 35mm com Temática Nordestina - Prêmio Banco do Nordeste - Curta SE - 5 Festival luso-brasileiro de curta-metragens de Sergipe-2005\n-Melhor Animação - Festival CineGate`s - Brasília 2006\n",
     "legendas_outras": "",
     "material_outros": "",
     "duracao FORMATO": "CURTA",
@@ -3051,7 +3096,7 @@
     "Direção": "Hélio Villela Nunes",
     "Curadoria": "",
     "Elenco": "",
-    "Dur. (´)": 15,
+    "Dur.(´)": 15,
     "Gênero": "",
     "GEN.": "Ficção",
     "Ano": 2010,
@@ -3108,7 +3153,7 @@
     "Direção": "Nilson Villas Boas",
     "Curadoria": "",
     "Elenco": "Kinho Lima, Edson Carlos, André Cojaque, Dom Jonatas, Tiago Desilho, Elielson Freitas, Flavia Souza, Aline Pimentel, Vinicius Martins, Michele Vieira, Viviane Paixão, Carlos Nascimento, Betinho Piranha, Nil Santos, Flay MT",
-    "Dur. (´)": 10,
+    "Dur.(´)": 10,
     "Gênero": "",
     "GEN.": "Ficção",
     "Ano": 1988,
@@ -3166,7 +3211,7 @@
     "Direção": "José Umberto",
     "Curadoria": "",
     "Elenco": "",
-    "Dur. (´)": 15,
+    "Dur.(´)": 15,
     "Gênero": "Documentário",
     "GEN.": "Documentário",
     "Ano": 1982,
@@ -3227,7 +3272,7 @@
     "Direção": "Braz Chediak",
     "Curadoria": "",
     "Elenco": "Jece Valadão, Glauce Rocha, Emiliano Queirós, Ricardo Maciel e Carlos Kroeber \n",
-    "Dur. (´)": 91,
+    "Dur.(´)": 91,
     "Gênero": "",
     "GEN.": "Ficção",
     "Ano": 1970,
@@ -3300,7 +3345,7 @@
     "Direção": "Joel Zito Araújo",
     "Curadoria": "",
     "Elenco": "não há",
-    "Dur. (´)": 90,
+    "Dur.(´)": 90,
     "Gênero": "Documentário",
     "GEN.": "Documentário",
     "Ano": 2000,
@@ -3321,7 +3366,7 @@
       },
       {
         "ods": "18",
-        "justificativa": "Este é o tema central do filme. ' A Negação do Brasil' é um estudo seminal sobre o racismo estrutural e institucional na televisão brasileira, analisando como a falta de papéis complexos e a prevalência de estereótipos afetam a identidade e a percepção da população negra no país."
+        "justificativa": "Este é o tema central do filme. 'A Negação do Brasil' é um estudo seminal sobre o racismo estrutural e institucional na televisão brasileira, analisando como a falta de papéis complexos e a prevalência de estereótipos afetam a identidade e a percepção da população negra no país."
       }
     ],
     "nota imdb": {
@@ -3337,8 +3382,8 @@
     "tema (Programadora Brasil)": "",
     "tags": "",
     "website": "www.ottodesenhos.com.br",
-    "festivais": "-Festival de Gramado 2004 : Prêmio de Melhor Curta Gaúcho na Mostra Paralela de Filmes Gaúchos;\n-Mostra Brasil Plural 2004: Participação na mostra de filmes brasileiros em 14 cidades da Europa. Na Suíça foi o terceiro mais votado pelo júri popular do evento;\n-Mostra competitiva do Festival Curta Cinema Petrobrás 2004 no Rio de Janeiro;\n-Participação no 1o. Festival Macapá de Cinema e Vídeo.\n-Participação noTehran Internacional Animation Festival 2005 - Iran 2005.\n-Participação no Anima 05 – III jornadas de animacion – Córdoba – Argentina – 2005\n-Vencedor na categoria melhor direção de arte no 12º festival de cinema e vídeo – Cuiabá – Mato Grosso - 2005\n-Participação no Curta-se 5 – Sergipe – Aracaju 2005\n-Melhor filme na 9ª Mostra de Curtas Mercosul – FAM2005\n-Selecionado para o Anima Mundi 2005\n-Vencedor, na categoria melhor curta brasileiro em animação, do Grande Prêmio Tam do Cinema Brasileiro – 2005.\n-Melhor curta metragem em animação e melhor trilha sonora no 28º Guarnicê cinema e vídeo – 2005\n-Participação no Anima Mundi – 2005\n-Participação no Festival de Curta de Belo horizonte – 2005\n-Participação no 2° Festival De Belém do Cinema Brasileiro\n-Participação no 16º Festival Internacional de Curtas-Metragens de São Paulo – 2005\n-Melhor filme em animação na XXXII Jornada Internacional de Cinema da Bahia - 2005\n-Participação no 5º Goiânia Mostra Curtas\n-Participação no 9º Festival de Cinema, Vídeo e Dcine de Curitiba\n-Participação no Amazonas Film Festival – 2005\n-Convidado para o Festival de Atibaia internacional do audiovisual - 2006.\n-Selecionado para o 4º festival de cinema de Ribeirão Preto – 2006.\n\n",
-    "premios": "Prêmio de Apoio à Produção para Curtas-Metragens - MinC - 2001\nMelhor Filme Gaúcho no Festival de Cinema de Gramado - 2004\nMelhor direção de arte no 12º festival de cinema e vídeo Cuiabá - 2005\nMelhor filme na 9ª Mostra de Curtas Mercosul – FAM - 2005\nMelhor curta brasileiro em animação, do Grande Prêmio Tam - 2005\nMelhor curta metragem em animação e melhor trilha sonora no 28º Guarnicê cinema e vídeo - 2005\n\n\n",
+    "festivais": "-Festival de Gramado 2004 : Prêmio de Melhor Curta Gaúcho na Mostra Paralela de Filmes Gaúchos;\n-Mostra Brasil Plural 2004: Participação na mostra de filmes brasileiros em 14 cidades da Europa. Na Suíça foi o terceiro mais votado pelo júri popular do evento;\n-Mostra competitiva do Festival Curta Cinema Petrobrás 2004 no Rio de Janeiro;\n-Participação no 1o. Festival Macapá de Cinema e Vídeo.\n-Participação noTehran Internacional Animation Festival 2005 -  Iran 2005.\n-Participação no Anima 05 – III jornadas de animacion – Córdoba – Argentina – 2005\n-Vencedor na categoria melhor direção de arte no 12º festival de cinema e vídeo – Cuiabá – Mato Grosso - 2005\n-Participação no Curta-se 5 – Sergipe – Aracaju 2005\n-Melhor filme na  9ª Mostra de Curtas Mercosul – FAM2005\n-Selecionado para o Anima Mundi 2005\n-Vencedor, na categoria melhor curta brasileiro em animação, do Grande Prêmio Tam do Cinema Brasileiro – 2005.\n-Melhor curta metragem em animação e melhor trilha sonora no 28º Guarnicê cinema e vídeo – 2005\n-Participação no Anima Mundi – 2005\n-Participação no Festival de Curta  de Belo horizonte – 2005\n-Participação no 2° Festival De Belém do Cinema Brasileiro\n-Participação no 16º Festival Internacional de Curtas-Metragens de São Paulo – 2005\n-Melhor filme em animação na XXXII Jornada Internacional de Cinema da Bahia - 2005\n-Participação no 5º Goiânia Mostra Curtas\n-Participação no 9º Festival de Cinema, Vídeo e Dcine de Curitiba\n-Participação no Amazonas Film Festival – 2005\n-Convidado para o Festival de Atibaia internacional do audiovisual - 2006.\n-Selecionado para o 4º festival de cinema de Ribeirão Preto – 2006.\n\n",
+    "premios": "Prêmio de Apoio à Produção para Curtas-Metragens -  MinC - 2001\nMelhor Filme Gaúcho no Festival de Cinema de Gramado - 2004\nMelhor direção de arte no 12º festival de cinema e vídeo Cuiabá - 2005\nMelhor filme na 9ª Mostra de Curtas Mercosul – FAM - 2005\nMelhor curta brasileiro em animação, do Grande Prêmio Tam - 2005\nMelhor curta metragem em animação e melhor trilha sonora no 28º Guarnicê cinema e vídeo - 2005\n\n\n",
     "legendas_outras": "",
     "material_outros": "",
     "duracao FORMATO": "CURTA",
@@ -3366,7 +3411,7 @@
     "Direção": "Alê Camargo",
     "Curadoria": "",
     "Elenco": "",
-    "Dur. (´)": 6,
+    "Dur.(´)": 6,
     "Gênero": "Animação",
     "GEN.": "Animação",
     "Ano": 2006,
@@ -3423,7 +3468,7 @@
     "Direção": "Arnaldo Jabor",
     "Curadoria": "",
     "Elenco": "Barbara de Castro, DJ Castro, Godô Quincas, Jards Macalé, Kid Morengueira, Nilson Primitivo, Petrus Ectorum, Poliana Paiva, Valdemar Madrugada\n",
-    "Dur. (´)": 72,
+    "Dur.(´)": 72,
     "Gênero": "Documentário",
     "GEN.": "Documentário",
     "Ano": 1967,
@@ -3489,7 +3534,7 @@
     "Direção": "Petrus Cariry",
     "Curadoria": "",
     "Elenco": "",
-    "Dur. (´)": 20,
+    "Dur.(´)": 20,
     "Gênero": "Documentário",
     "GEN.": "Documentário",
     "Ano": 2002,
@@ -3550,7 +3595,7 @@
     "Direção": "Anna Muylaert",
     "Curadoria": "",
     "Elenco": "-",
-    "Dur. (´)": 13,
+    "Dur.(´)": 13,
     "Gênero": "",
     "GEN.": "Ficção",
     "Ano": 1996,
@@ -3612,7 +3657,7 @@
     "Direção": "Walter Lima Jr.",
     "Curadoria": "",
     "Elenco": "Fernanda Farah",
-    "Dur. (´)": 116,
+    "Dur.(´)": 116,
     "Gênero": "",
     "GEN.": "Ficção",
     "Ano": 1997,
@@ -3674,7 +3719,7 @@
     "Direção": "Alê McHaddo",
     "Curadoria": "",
     "Elenco": "Ale McHaddo (vozes)",
-    "Dur. (´)": 5,
+    "Dur.(´)": 5,
     "Gênero": "Animação",
     "GEN.": "Animação",
     "Ano": 2010,
@@ -3732,7 +3777,7 @@
     "Direção": "Sandra Ribeiro",
     "Curadoria": "",
     "Elenco": "Por se tratar de obra documental, não há presença de atores.",
-    "Dur. (´)": 19,
+    "Dur.(´)": 19,
     "Gênero": "Esportes, Fantasia, Romance",
     "GEN.": "Ficção",
     "Ano": 2003,
@@ -3757,7 +3802,7 @@
     "cidade": "",
     "Audiodescrição": "",
     "Closed Caption": "",
-    "Sinopse": "Na cidade de Parintins, em pleno coração da floresta tropical Amazônica, o final do mês de junho se aproxima e com isto os três dias e três noites que celebram o Boi Bumbá, a música que simboliza a identidade amazônica e as lendas da região. Cerca de 100.000 pessoas virão dos quatro cantos da Amazônia para assistir a uma competição ancestral entre os dois Bois: o Azul (Caprichoso) e o Vermelho (Garantido). Ao longo do ano, tanto nas mais humildes cidades ribeirinhas como nos bairros mais elegantes da cidade de Manaus, cada habitante se prepara, ensaia as coreografias e se submete a uma rígida disciplina, necessária para a vitória do seu Boi.\nDurante os preparativos, as rivalidades, ciúmes e intrigas alimentam as fantasias dos partidários dos dois Bois, às vezes provocando dramas familiares épicos.\nMas o Boi é, acima de tudo, a celebração da música, da dança, do ritmo, das lendas da Amazônia e todos reencontram-se, unidos na magia da festa.\n",
+    "Sinopse": "Na cidade de Parintins,  em pleno coração da floresta tropical Amazônica, o final do mês de junho se aproxima e com isto os três dias e três noites que celebram o Boi Bumbá, a música que simboliza a identidade amazônica e as lendas da região. Cerca de 100.000 pessoas virão dos quatro cantos da Amazônia para assistir a uma competição ancestral entre os dois Bois: o Azul (Caprichoso) e o Vermelho (Garantido). Ao longo do ano, tanto nas mais humildes cidades ribeirinhas como nos bairros mais elegantes da cidade de Manaus, cada habitante se prepara, ensaia as coreografias e se submete a uma rígida disciplina, necessária para a vitória do seu Boi.\nDurante os preparativos, as rivalidades, ciúmes e intrigas alimentam as fantasias dos partidários dos dois Bois, às vezes provocando dramas familiares épicos.\nMas o Boi é, acima de tudo, a celebração da música, da dança, do ritmo, das lendas da Amazônia e todos reencontram-se, unidos na magia da festa.\n",
     "tema (Programadora Brasil)": "Boi Bumbá, folclore, música, identidade amazônica e lendas da região amazônica",
     "tags": "Parintins",
     "website": "",
@@ -3790,7 +3835,7 @@
     "Direção": "Vladimir Carvalho",
     "Curadoria": "",
     "Elenco": "Georgette Fadel e Amela Vucina",
-    "Dur. (´)": 16,
+    "Dur.(´)": 16,
     "Gênero": "Documentário, Guerra",
     "GEN.": "Documentário",
     "Ano": 1976,
@@ -3856,7 +3901,7 @@
     "Direção": "Roberto Berliner",
     "Curadoria": "",
     "Elenco": "Maria Aureliano de Souza (Lia), Francisca da Conceição Barbosa (Indaiá) e Regina Barbosa (Poroca)",
-    "Dur. (´)": 6,
+    "Dur.(´)": 6,
     "Gênero": "Documentário, Drama",
     "GEN.": "Documentário",
     "Ano": 1998,
@@ -3895,10 +3940,10 @@
     "Closed Caption": "",
     "Sinopse": "A vertigem da visão. A ausência que provoca excesso. Um filme sobre o compromisso com a sobrevivência, a experiência de vida através da falta. Três irmãs cegas cantam em troca de esmola em Campina Grande, Paraíba. Três irmãs que nada têm além da experiência. \n\n",
     "tema (Programadora Brasil)": "cegueira, Música Popular, Música de Rua",
-    "tags": "três irmãs cegas cegeuira música popular música de rua paraíba campina grande cegueira música Nordeste",
+    "tags": "três irmãs cegas cegeuira música popular música de rua paraíba campina grande cegueira música  Nordeste",
     "website": "www.tvzero.com",
-    "festivais": "No Brasil: \n\nProjeto Curta nas Telas - Prefeitura de Porto Alegre - (exibido durante duas semanas) - 1999 \n\nMostra Usina Brasil - Espaço Unibanco Savassi e Usina Unibanco de Cinema - Porto Alegre - 1999 \n\nFestival Nacional de Cinema de Recife - 1999 \n\nFestival Internacional de Gramado - 1999 \n\nFestival do Filme Documentário e Etnográfico de Belo Horizonte - 1999 \n\nFestival de Cinema e Vídeo de Cuiabá - 1999 \n\nFestival Internacional de Cinema e Vídeo Ambiental -  Goiânia - 1999 \n\nVitória Cine e Vídeo - 1999 \n\nCurtas no Estação – Exibido com outros dois Curtas – Rio de Janeiro - 1999 \n\nMostra Internacional do Filme Etnográfico - Rio de Janeiro - 1999 \n\nXXVI Jornada Internacional de Cinema da Bahia - 1999 \n\nFestival de Cinema de Tiradentes - (mostra em Homenagem ao Diretor Roberto Berliner com apresentação de diversos trabalhos) - Tiradentes – 1999\nII Festival Internacional de Cinema da Amazônia - Festival Fluvial - 1999 \n\nFestival do Rio -  1999 \n\nFestival Internacional de Documentários É Tudo Verdade - Rio e São Paulo -1999 \n\nFestival Internacional de Curtas Metragens de São Paulo - 1999 \n\nMostra Curta Cinema / CCBB - Rio de Janeiro – 1999 \n\nSala de Cinema - P.F Gastal (três semanas em cartaz - antes de Nós Que Aqui Estamos Por Vós Esperamos - Novembro / Dezembro – 1999 \n\nCurta o Rio – Espaço Unibanco SP e Instituto Moreira Salles,  Rio - 2000\nProjeto Curta às Seis - Espaço Unibanco de Cinema - São Paulo (exibido com outros curtas premiados por duas semanas) - 2000 \n\nFestival de Cinema e Vídeo de Curitiba - 2000 \n\nProjeto Cinema nas Ruas – Campina Grande - (exibido junto com filmes paraibanos) - 2000 \n\nIII Festival Latino Americano Campo Grande – 2002\n\n\nNo Exterior: \n\nIDFA - International Documentary Festival of Amsterdam - Holanda - 1999 \n\nShorts International Film Festival - Nova Iorque - EUA - 1999 \n\nFestival de Cinema Luso-Brasileiro - Santa Maria da Feira - Portugal - 1999\nFestival Internacional del Nuevo Cine Latino Americano - Havana – Cuba - 1999 \n\nFestival Internacional de Cine Documental y Cortometrage de Bilbao - Espanha - 1999 \n\nFestival de Cinema de Toulouse - França - 1999 \n\nMostra Betraying Amnesia: Latin American Video Portraiture - Exibida no Center for Photography , Woodstock e na Society for Cinema Studies Conference em Chicago - 1999 \n\nSan Antonio Cinefestival - EUA - 2000 \n\nSan Francisco International Film Festival - EUA – 2000\n\nInternational Film Festival Rotterdam - Convidado (não pode ir pois não era inédito na Holanda) - 2000 \n\nToronto International Film Festival - Canadá - 2000 \n\nTaiwan International Documentary Festival - 2000 \n\nUnited Nations Association Film Festival - Stanford Univesity - Califórnia - EUA - 2000 \n\nFestival de Lussas - França - 2000 – Convidado \n\nFestival Internacional du Film Vídeo de Gaillard - França - 2000.  \n\nJVC Tokyo Vídeo Festival - 1999. \n\nNew York Film Festival - 2000 \n\nFestival Internacional de Cinema de Biarritz – França – 2000 – (Filme indicado pelo Consulado francês no Rio de Janeiro) \n\nIncluído em 2000 como parte do Catálogo permanente do Video Data Bank, que se tornou nosso distribuidor nos EUA, sem exclusividade. Este banco de imagem atende ao circuito Universitário americano, ligado à School of The Art Institute, de Chicago - EUA \n\nSegundo Goiânia Mostra Curta - 2002\n\nPrograma Imagens Brasil Telecom – 2002\n\nJVC Tokyo Vídeo Festival - 2003.\n\n",
-    "premios": "Melhor Filme Latino Americano\nFestival Internacional de Bilbao / Espanha - 99\n\nMelhor Documentário Brasileiro\nFestival de documentários É Tudo Verdade / São Paulo, Brasil - 99\n\nMelhor Curta Metragem Brasileiro\nFestival do Rio / 99\n\nJúri Popular e Prêmio Especial do Júri para Curta Metragem\nFestival de Recife / Brasil -99\n\nCertificado de Mérito – Categoria Curta Documentário\nSan Francisco International Film Festival –2000\n\nMelhor Vídeo Documentário - III Festival Latino Americano Campo Grande – 2002\n\nMelhor Direção de Documentário - III Festival Latino Americano Campo Grande – 2002\n\nHonra ao mérito – JVC Tokyo Vídeo Festival – 2003\n\n",
+    "festivais": "No Brasil: \n\nProjeto Curta nas Telas - Prefeitura de Porto Alegre - (exibido durante duas semanas) - 1999 \n\nMostra Usina Brasil - Espaço Unibanco Savassi e Usina Unibanco de Cinema - Porto Alegre - 1999 \n\nFestival Nacional de Cinema de Recife - 1999 \n\nFestival Internacional de Gramado - 1999 \n\nFestival do Filme Documentário e Etnográfico de Belo Horizonte - 1999 \n\nFestival de Cinema e Vídeo de Cuiabá - 1999 \n\nFestival Internacional de Cinema e Vídeo Ambiental - Goiânia - 1999 \n\nVitória Cine e Vídeo - 1999 \n\nCurtas no Estação – Exibido com outros dois Curtas – Rio de Janeiro - 1999 \n\nMostra Internacional do Filme Etnográfico - Rio de Janeiro - 1999 \n\nXXVI Jornada Internacional de Cinema da Bahia - 1999 \n\nFestival de Cinema de Tiradentes - (mostra em Homenagem ao Diretor Roberto Berliner com apresentação de diversos trabalhos) - Tiradentes – 1999\nII Festival Internacional de Cinema da Amazônia - Festival Fluvial - 1999 \n\nFestival do Rio - 1999 \n\nFestival Internacional de Documentários É Tudo Verdade - Rio e São Paulo -1999 \n\nFestival Internacional de Curtas Metragens de São Paulo - 1999 \n\nMostra Curta Cinema / CCBB - Rio de Janeiro – 1999 \n\nSala de Cinema - P.F Gastal (três semanas em cartaz - antes de Nós Que Aqui Estamos Por Vós Esperamos - Novembro / Dezembro – 1999 \n\nCurta o Rio – Espaço Unibanco SP e Instituto Moreira Salles, Rio - 2000\nProjeto Curta às Seis - Espaço Unibanco de Cinema - São Paulo (exibido com outros curtas premiados por duas semanas) - 2000 \n\nFestival de Cinema e Vídeo de Curitiba - 2000 \n\nProjeto Cinema nas Ruas – Campina Grande - (exibido junto com filmes paraibanos) - 2000 \n\nIII Festival Latino Americano Campo Grande – 2002\n\n\nNo Exterior: \n\nIDFA - International Documentary Festival of Amsterdam - Holanda - 1999 \n\nShorts International Film Festival - Nova Iorque - EUA - 1999 \n\nFestival de Cinema Luso-Brasileiro - Santa Maria da Feira - Portugal - 1999\nFestival Internacional del Nuevo Cine Latino Americano - Havana – Cuba - 1999 \n\nFestival Internacional de Cine Documental y Cortometrage de Bilbao - Espanha - 1999 \n\nFestival de Cinema de Toulouse - França - 1999 \n\nMostra Betraying Amnesia: Latin American Video Portraiture - Exibida no Center for Photography , Woodstock e na Society for Cinema Studies Conference em Chicago - 1999 \n\nSan Antonio Cinefestival - EUA - 2000 \n\nSan Francisco International Film Festival - EUA – 2000\n\nInternational Film Festival Rotterdam - Convidado (não pode ir pois não era inédito na Holanda) - 2000 \n\nToronto International Film Festival - Canadá - 2000 \n\nTaiwan International Documentary Festival - 2000 \n\nUnited Nations Association Film Festival - Stanford Univesity - Califórnia - EUA - 2000 \n\nFestival de Lussas - França - 2000 – Convidado \n\nFestival Internacional du Film Vídeo de Gaillard - França - 2000. \n\nJVC Tokyo Vídeo Festival - 1999. \n\nNew York Film Festival - 2000 \n\nFestival Internacional de Cinema de Biarritz – França – 2000 – (Filme indicado pelo Consulado francês no Rio de Janeiro) \n\nIncluído em 2000 como parte do Catálogo permanente do Video Data Bank, que se tornou nosso distribuidor nos EUA, sem exclusividade. Este banco de imagem atende ao circuito Universitário americano, ligado à School of The Art Institute, de Chicago - EUA \n\nSegundo Goiânia Mostra Curta - 2002\n\nPrograma Imagens Brasil Telecom – 2002\n\nJVC Tokyo Vídeo Festival - 2003.\n\n",
+    "premios": "Melhor Filme Latino Americano\nFestival Internacional de Bilbao / Espanha - 99\n\nMelhor Documentário Brasileiro\nFestival de documentários É Tudo Verdade / São Paulo, Brasil - 99\n\nMelhor Curta Metragem Brasileiro\nFestival do Rio / 99\n\nJúri Popular e Prêmio Especial do Júri para Curta Metragem\nFestival de Recife / Brasil -99\n\nCertificado de Mérito – Categoria Curta Documentário\nSan Francisco International Film Festival –2000\n\nMelhor Vídeo Documentário  - III Festival Latino Americano Campo Grande – 2002\n\nMelhor Direção de Documentário  - III Festival Latino Americano Campo Grande – 2002\n\nHonra ao mérito – JVC Tokyo Vídeo Festival – 2003\n\n",
     "legendas_outras": "",
     "material_outros": "",
     "duracao FORMATO": "CURTA",
@@ -3926,7 +3971,7 @@
     "Direção": "Rafael Figueiredo",
     "Curadoria": "",
     "Elenco": "Caroline Abras (Gabi)\nRenata Gaspar (Júlia)\nRafael Losso (Tom)\nVictor Ribeiro (Rafa)\n",
-    "Dur. (´)": 15,
+    "Dur.(´)": 15,
     "Gênero": "Romance",
     "GEN.": "Ficção",
     "Ano": 2007,
@@ -3955,12 +4000,12 @@
     "cidade": "",
     "Audiodescrição": "",
     "Closed Caption": "",
-    "Sinopse": "Um filme delicado sobre o universo de descobertas e expectativas dos adolescentes quando se deparam com o amor.",
+    "Sinopse": "Um filme delicado sobre o universo de descobertas e expectativas dos adolescentes quando se deparam com  o amor.",
     "tema (Programadora Brasil)": "",
     "tags": "",
     "website": "",
     "festivais": "",
-    "premios": "- Melhor atriz (Caroline Abras) no 35º Festival de Gramado, 2007\n- Menção de honra Canal Brasil, 2007\n- Melhor atriz (Caroline Abras) no 7º Santa Maria Vídeo e Cinema, Brasil, 2008\n- Melhor Direção de Fotografia (Cláudio Leone) no 7º Santa Maria Vídeo e Cinema, Brasil, 2008\n- Melhor atriz (Caroline Abras e Renata Gaspar) na 2ª Mostra Internacional de Cinema em Língua Portuguesa – Mostralíngua,  Portugal, 2008\n- Melhor fotografia na 2ª Mostra Internacional de Cinema em Língua Portuguesa – Mostralíngua, Portugal, 2008 \n\n",
+    "premios": "- Melhor atriz (Caroline Abras) no 35º Festival de Gramado, 2007\n- Menção de honra Canal Brasil, 2007\n- Melhor atriz (Caroline Abras) no 7º Santa Maria Vídeo e Cinema, Brasil, 2008\n- Melhor Direção de Fotografia (Cláudio Leone) no 7º Santa Maria Vídeo e Cinema, Brasil, 2008\n- Melhor atriz (Caroline Abras e Renata Gaspar) na 2ª Mostra Internacional de Cinema em Língua Portuguesa – Mostralíngua, Portugal, 2008\n- Melhor fotografia na 2ª Mostra Internacional de Cinema em Língua Portuguesa – Mostralíngua, Portugal, 2008 \n\n",
     "legendas_outras": "",
     "material_outros": "",
     "duracao FORMATO": "MÉDIA",
@@ -3988,7 +4033,7 @@
     "Direção": "Marcos Pimentel",
     "Curadoria": "",
     "Elenco": "não possui",
-    "Dur. (´)": 18,
+    "Dur.(´)": 18,
     "Gênero": "Documentário",
     "GEN.": "Documentário",
     "Ano": 2011,
@@ -4021,7 +4066,7 @@
     "tema (Programadora Brasil)": "",
     "tags": "",
     "website": "",
-    "festivais": "“16° É Tudo Verdade - Festival Internacional de Documentários” (SP/RJ, 2011)\n“6ª Mostra de Cinema de Ouro Preto” (MG, 2011)\n “CINEFUTURO – 7° Seminário Internacional de Cinema de Salvador” (BA, 2011) \n“1° Festival LUME de Cinema” (MA, 2011) – filme de abertura\n“5° Curta Cabo Frio” (RJ, 2011) \n“13° Festival Internacional de Curtas de BH” (MG,  2011)\n“5° Mostra Cine BH” (MG, 2011) \n“15° Mostra Internacional do Filme Etnográfico” (RJ, 2011) \n“02° Cachoeira DOC - Festival Cinema Documentário de Cachoeira” (BA, 2011) \n “33° Festival del Nuevo Cine Latinoamericano” (Havana/Cuba, 2011) \n",
+    "festivais": "“16° É Tudo Verdade - Festival Internacional de Documentários” (SP/RJ, 2011)\n“6ª Mostra de Cinema de Ouro Preto” (MG, 2011)\n “CINEFUTURO – 7° Seminário Internacional de Cinema de Salvador” (BA, 2011) \n“1° Festival LUME de Cinema” (MA, 2011) – filme de abertura\n“5° Curta Cabo Frio” (RJ, 2011) \n“13° Festival Internacional de Curtas de BH” (MG, 2011)\n“5° Mostra Cine BH” (MG, 2011) \n“15° Mostra Internacional do Filme Etnográfico” (RJ, 2011) \n“02° Cachoeira DOC - Festival Cinema Documentário de Cachoeira” (BA, 2011) \n “33° Festival del Nuevo Cine Latinoamericano” (Havana/Cuba, 2011) \n",
     "premios": "Melhor Curta – “É TUDO VERDADE – Festival Internacional de Documentários” (Brasil, 2011)\nMelhor Fotografia - “5° Curta Cabo Frio” (Brasil, 2011) \n",
     "legendas_outras": "",
     "material_outros": "",
@@ -4050,7 +4095,7 @@
     "Direção": "Gutto Bozetti",
     "Curadoria": "",
     "Elenco": "",
-    "Dur. (´)": 10,
+    "Dur.(´)": 10,
     "Gênero": "Animação",
     "GEN.": "Animação",
     "Ano": 2008,
@@ -4108,7 +4153,7 @@
     "Direção": "Eduardo Kishimoto",
     "Curadoria": "",
     "Elenco": "",
-    "Dur. (´)": 16,
+    "Dur.(´)": 16,
     "Gênero": "",
     "GEN.": "Ficção",
     "Ano": 2006,
@@ -4165,7 +4210,7 @@
     "Direção": "Eliana Fonseca",
     "Curadoria": "",
     "Elenco": "José Rubens Chachá, Carlos Cappeletti, Eduardo Silva, Carlos Meceni, Nina Mancim, Francisco Cesar Filho, Neto Medeiros, Paolo Gregori, Guilherme Kwasinski, Augusto Pompêo, Clementino Pasqualini, Odete Pasqualini",
-    "Dur. (´)": 16,
+    "Dur.(´)": 16,
     "Gênero": "Esportes",
     "GEN.": "Ficção",
     "Ano": 1991,
@@ -4223,7 +4268,7 @@
     "Direção": "Ricardo Salles de Sá",
     "Curadoria": "",
     "Elenco": "Desenho Animado",
-    "Dur. (´)": 15,
+    "Dur.(´)": 15,
     "Gênero": "",
     "GEN.": "Ficção",
     "Ano": 2003,
@@ -4285,7 +4330,7 @@
     "Direção": "Lula Gonzaga de Oliveira",
     "Curadoria": "",
     "Elenco": "Desenho Animado",
-    "Dur. (´)": 7,
+    "Dur.(´)": 7,
     "Gênero": "Animação",
     "GEN.": "Animação",
     "Ano": 1981,
@@ -4347,7 +4392,7 @@
     "Direção": "Rosemberg Cariri",
     "Curadoria": "",
     "Elenco": "Desenho Animado",
-    "Dur. (´)": 79,
+    "Dur.(´)": 79,
     "Gênero": "Ação",
     "GEN.": "Ficção",
     "Ano": 1993,
@@ -4409,7 +4454,7 @@
     "Direção": "Flávia Thompson",
     "Curadoria": "",
     "Elenco": "",
-    "Dur. (´)": 14,
+    "Dur.(´)": 14,
     "Gênero": "",
     "GEN.": "Ficção",
     "Ano": 2011,
@@ -4465,8 +4510,8 @@
     "Título do filme": "A Super Fêmea",
     "Direção": "Anibal Massani Neto",
     "Curadoria": "",
-    "Elenco": "Vera Fischer, Perry Salles, Walter Stuart, Georgia Gomide, Libero Ripoli, Sergio Hingst, Renato Restier, Silvio Abreu, Elza Aguiar, Marlene Rodrigues, Ivete Bonfá, Cavagnolli Neto, Jorge Pires, Maneco Shapazian, Older Cazarré, Olney Cazarré, Ivete Bonfá, Clemente Viscaino, Oliver Perroy, Deive Rose, Wilson Ribaldo, Paulo Hesse, José Júlio Spiewak, Carlos Farah, Palito, Liba Frydman, Oswaldo Massaíni, Lino Sérgio,  Roberto Bolant, Diniz Machado, Cristina Andreotti, Rubens Moral, Juju Scheffer, Maria Izabel Ferreira, Wilson S. Louzada, Cláudio Francisco Cunha, Amauri Echeverria, Paulo Villar, Celso Karan, Chuvisco, Antonio Martins C. Filho, Jean Zaidner e Carlos Coelho. Participação especial: John Herbert, Adoniran Barbosa e Décio Piccinini",
-    "Dur. (´)": 101,
+    "Elenco": "Vera Fischer, Perry Salles, Walter Stuart, Georgia Gomide, Libero Ripoli, Sergio Hingst, Renato Restier, Silvio Abreu, Elza Aguiar, Marlene Rodrigues, Ivete Bonfá, Cavagnolli Neto, Jorge Pires, Maneco Shapazian, Older Cazarré, Olney Cazarré, Ivete Bonfá, Clemente Viscaino, Oliver Perroy, Deive Rose, Wilson Ribaldo, Paulo Hesse, José Júlio Spiewak, Carlos Farah, Palito, Liba Frydman, Oswaldo Massaíni, Lino Sérgio, Roberto Bolant, Diniz Machado, Cristina Andreotti, Rubens Moral, Juju Scheffer, Maria Izabel Ferreira, Wilson S. Louzada,  Cláudio Francisco Cunha, Amauri Echeverria, Paulo Villar, Celso Karan, Chuvisco, Antonio Martins C. Filho, Jean Zaidner e Carlos Coelho. Participação especial: John Herbert, Adoniran Barbosa e Décio Piccinini",
+    "Dur.(´)": 101,
     "Gênero": "",
     "GEN.": "Ficção",
     "Ano": 1973,
@@ -4527,7 +4572,7 @@
     "Direção": "Marcelo Caetano",
     "Curadoria": "",
     "Elenco": "documentário",
-    "Dur. (´)": 15,
+    "Dur.(´)": 15,
     "Gênero": "Documentário, Fantasia",
     "GEN.": "Documentário",
     "Ano": 2008,
@@ -4589,7 +4634,7 @@
     "Direção": "Cassia Mary Itamoto e Celina Kurihara",
     "Curadoria": "",
     "Elenco": "Paulo Cesar Pereio e Ezequias Marques",
-    "Dur. (´)": 6,
+    "Dur.(´)": 6,
     "Gênero": "Animação",
     "GEN.": "Animação",
     "Ano": 2009,
@@ -4622,8 +4667,8 @@
     "tema (Programadora Brasil)": "",
     "tags": "",
     "website": "www.leitefilmes.blogspot.com",
-    "festivais": "- II Festival de Cine Social y Antisocial de La Pintana – Santiago – Chile – 2008.\n- V Festival Internacional de Cortometrajes y Escuelas de Cine – El Espejo - Bogotá – Colômbia – 2008.\n- 16° Festival Internacional de Cortometrajes de Santiago – Chile – 2008.\n- Cero Latitud – 6° Festival de Cine de Quito – Ecuador – 2008\n- 30° Festival Internacional del Nuevo Cine Latinoamericano de Havana – Cuba – 2008.\n- FENAVID – Festival Internacional de Vídeo – Santa Cruz de la Sierra -  Bolívia – 2008.\n- V Festival Internacional de Cortometrajes de Cusco - FENACO - Peru – 2008.\n- 31th Clermont-Ferrand Short Film Festival – França – 2009.\n-12° Festival de Cinema Luso Brasileiro de Santa Maria da Feira – Portugal – 2008.\n- Los Angeles Brazilian Film Festival – USA – 2009.\n-39th Tampere International Film Festival – Finlândia – 2009.\n-Annecy 2009 – Festival Internacional do Filme de animação – França – 2009.\n- CAMERA MUNDO – 2º Festival de Filmes independentes – Rotterdan – Holanda – 2009.\n-2nd Brazilian Film Festival of Vancouver – Canadá – 2009.\n- Signes de Nuit – Festival Internacional de Création Audiovisuelle et Cinématographique – Paris – França – 2009.\n-Festival CINE / B – Santiago – Chile – 2009.\n\n-  11° FAM – Festival Audiovisual Mercosul – Florianópolis – SC – Brasil - 2008\n- 19° Festival Internacional de Curtas Metragens de São Paulo – Brasil -2008.\n- 4a Mostra de Cinema de Ourinhos – SP – Brasil - 2008.\n- 9º Festival de Penedo - AL – Brasil - 2008\n- Animará - Festival Internacional de Animação – Sabará – MG – Brasil - 2008.\n- 8° Goiânia Mostra Curtas – GO – Brasil – 2008\n-CineEsquemaNovo – Festival de Cinema de Porto Alegre – Brasil – 2008.\n- 5° Curta Votorantim – São Paulo –  Brasil – 2008.\n-3° GRANIMADO - Festival de Animação de Gramado – Brasil – 2008.\n-Curta Cinema 2008 – Festival Internacional de Curtas metragens do Rio de Janeiro – Brasil.\n- 10a Mostra Londrina de Cinema – Brasil – 2008.\n- 5° Amazonas Film Festival – Brasil – 2008.\n- Jornada Internacional de Cinema do Recife - Brasil - 2008.\n- Mostra CINE BH – 2008 – Brasil\n- 15° Vitória Cine Vídeo – 2008 – Brasil\n- VII Araribóia Cine - Festival de Cinema de Niterói – Brasil – 2008.\n- 16° FESTVÌDEO –  Festival Nacional de Vídeo de Teresina – PI – Brasil - 2008 \n- 1 Festival do Juri Popular – 19 capitais brasileiras – Brasil – 2009.\n- 9ª Mostra do Filme Livre – Rio de Janeiro – Brasil – 2009. \n-4ª Mostra Felco – Festival Latinoamericano da Classe Obrera – Belo Horizonte – Brasil – 2009.\n-4º Locomotiva – Festival Nacional de Animação – Garibaldi/RS – 2009.\n-4º CINEPORT – Festival de Cinema de Países de Língua Portuguesa – João Pessoa – Brasil – 2009.\n- ANIMA MUNDI – 17º Festival Internacional de Animação do Brasil – 2009.\n-4º CINE OP – 4ª Mostra de Cinema de Ouro Preto – MG – Brasil – 2009.\n- Curta-se – 9º Festival Ibero-americano de Cinema de Sergipe – Brasil – 2009.\n",
-    "premios": "-Melhor Filme Humano - Cachaça Cinema Clube - 19° Festival Internacional de Curtas Metragens de São Paulo – 2008.\n-Melhor Curta Mineiro - Festival Internacional de Cinema de Animação - Sabará - MG - Brasil - 2008.\n-Prêmio Especial do Júri - VII Araribóia Cine - Festival de Cinema de Niterói – Brasil – 2008.\n-Menção Honrosa - 9ª Mostra do Filme Livre – Rio de Janiero – Brasil – 2009.\n-Finalista do Grande Prêmio Vivo do Cinema Brasileiro – Academia Brasileira de Cinema – 2009.\n-  Prêmio Originalidade - 4º Locomotiva – Festival Nacional de Animação – Garibaldi/RS – 2009.\n- Indicado ao 14º Prêmio SESC/SATED como melhor curta metragem – Belo Horizonte – Brasil – 2009.\n- Melhor Animação – Festival do Júri Popular – Brasil – 2009\n- Melhor Animação - 4º CINEPORT – Festival de Cinema de Países de Língua Portuguesa – João Pessoa – Brasil – 2009.\n",
+    "festivais": "- II Festival de Cine Social y Antisocial de La Pintana – Santiago – Chile – 2008.\n- V Festival Internacional de Cortometrajes y Escuelas de Cine – El Espejo - Bogotá – Colômbia – 2008.\n- 16° Festival Internacional de Cortometrajes de Santiago – Chile – 2008.\n- Cero Latitud – 6° Festival de Cine de Quito – Ecuador – 2008\n- 30° Festival Internacional del Nuevo Cine Latinoamericano de Havana – Cuba – 2008.\n- FENAVID – Festival Internacional de Vídeo – Santa Cruz de la Sierra - Bolívia – 2008.\n- V Festival Internacional de Cortometrajes de Cusco - FENACO - Peru – 2008.\n- 31th Clermont-Ferrand Short Film Festival – França – 2009.\n-12° Festival de Cinema Luso Brasileiro de Santa Maria da Feira – Portugal – 2008.\n- Los Angeles Brazilian Film Festival – USA – 2009.\n-39th Tampere International Film Festival – Finlândia – 2009.\n-Annecy 2009 – Festival Internacional do Filme de animação – França – 2009.\n- CAMERA MUNDO – 2º Festival de Filmes independentes – Rotterdan – Holanda – 2009.\n-2nd Brazilian Film Festival of Vancouver – Canadá – 2009.\n- Signes de Nuit – Festival Internacional de Création Audiovisuelle  et Cinématographique – Paris – França – 2009.\n-Festival CINE / B – Santiago – Chile – 2009.\n\n- 11° FAM – Festival Audiovisual Mercosul – Florianópolis – SC – Brasil - 2008\n- 19° Festival Internacional de Curtas Metragens de São Paulo – Brasil -2008.\n- 4a Mostra de Cinema de Ourinhos – SP – Brasil - 2008.\n- 9º Festival de Penedo - AL – Brasil - 2008\n- Animará - Festival Internacional de Animação – Sabará – MG – Brasil - 2008.\n- 8° Goiânia Mostra Curtas – GO – Brasil – 2008\n-CineEsquemaNovo – Festival de Cinema de Porto Alegre – Brasil – 2008.\n- 5° Curta Votorantim – São Paulo – Brasil – 2008.\n-3° GRANIMADO - Festival de Animação de Gramado – Brasil – 2008.\n-Curta Cinema 2008 – Festival Internacional de Curtas metragens do Rio de Janeiro – Brasil.\n- 10a Mostra Londrina de Cinema – Brasil – 2008.\n- 5° Amazonas Film Festival – Brasil – 2008.\n- Jornada Internacional de Cinema do Recife - Brasil - 2008.\n- Mostra CINE BH – 2008 – Brasil\n- 15° Vitória Cine Vídeo – 2008 – Brasil\n- VII Araribóia Cine - Festival de Cinema de Niterói – Brasil – 2008.\n- 16° FESTVÌDEO – Festival Nacional de Vídeo de Teresina – PI – Brasil - 2008 \n- 1 Festival do Juri Popular – 19 capitais brasileiras – Brasil – 2009.\n- 9ª Mostra do Filme Livre – Rio de Janeiro – Brasil – 2009. \n-4ª Mostra Felco – Festival Latinoamericano da Classe Obrera – Belo Horizonte – Brasil – 2009.\n-4º Locomotiva – Festival Nacional de Animação – Garibaldi/RS – 2009.\n-4º CINEPORT – Festival de Cinema de Países de Língua Portuguesa – João Pessoa – Brasil – 2009.\n- ANIMA MUNDI – 17º Festival Internacional de Animação do Brasil – 2009.\n-4º CINE OP – 4ª Mostra de Cinema de Ouro Preto – MG – Brasil – 2009.\n- Curta-se – 9º Festival Ibero-americano de Cinema de Sergipe – Brasil – 2009.\n",
+    "premios": "-Melhor Filme Humano - Cachaça Cinema Clube - 19° Festival Internacional de Curtas Metragens de São Paulo – 2008.\n-Melhor Curta Mineiro - Festival Internacional de Cinema de Animação - Sabará - MG - Brasil - 2008.\n-Prêmio Especial do Júri - VII Araribóia Cine - Festival de Cinema de Niterói – Brasil – 2008.\n-Menção Honrosa - 9ª Mostra do Filme Livre – Rio de Janiero – Brasil – 2009.\n-Finalista do Grande Prêmio Vivo do Cinema Brasileiro – Academia Brasileira de Cinema – 2009.\n-     Prêmio Originalidade - 4º Locomotiva – Festival Nacional de Animação –             Garibaldi/RS – 2009.\n-     Indicado ao 14º Prêmio SESC/SATED como melhor curta metragem – Belo Horizonte – Brasil – 2009.\n- Melhor Animação – Festival do Júri Popular – Brasil – 2009\n- Melhor Animação - 4º CINEPORT – Festival de Cinema de Países de Língua Portuguesa – João Pessoa – Brasil – 2009.\n",
     "legendas_outras": "",
     "material_outros": "POSTAIS",
     "duracao FORMATO": "CURTA",
@@ -4651,7 +4696,7 @@
     "Direção": "Diego Doimo",
     "Curadoria": "",
     "Elenco": "",
-    "Dur. (´)": 8,
+    "Dur.(´)": 8,
     "Gênero": "Animação",
     "GEN.": "Animação",
     "Ano": 2002,
@@ -4708,7 +4753,7 @@
     "Direção": "Felipe Nepomuceno",
     "Curadoria": "",
     "Elenco": "documentário",
-    "Dur. (´)": 8,
+    "Dur.(´)": 8,
     "Gênero": "Documentário",
     "GEN.": "Documentário",
     "Ano": 2005,
@@ -4769,7 +4814,7 @@
     "Direção": "Humberto Mauro",
     "Curadoria": "",
     "Elenco": "Alberto Barollo\nDozolina Barollo\nAssunta Barollo",
-    "Dur. (´)": 6,
+    "Dur.(´)": 6,
     "Gênero": "Drama",
     "GEN.": "Ficção",
     "Ano": 1964,
@@ -4794,7 +4839,7 @@
     "cidade": "",
     "Audiodescrição": "",
     "Closed Caption": "",
-    "Sinopse": "Vencedor do Festival de Cascavel 2008 como melhor filme, Véio é uma história de Alberto Barollo, um homem de 93 anos, que nos diverte e emociona, relembrando e acompanhando momentos únicos de sua vida, tanto no baile da terceira idade, quanto a uma visita ao túmulo de seus pais.\nMomentos de intimidade e sabedoria surgem no encontro com as irmãs,  uma de 101 anos e a outra de 95, que nos transmitem uma enorme satisfação pela vida e nos faz repensar a nossa própria existência.\n",
+    "Sinopse": "Vencedor do Festival de Cascavel 2008 como melhor filme, Véio é uma história de Alberto Barollo, um homem de 93 anos, que nos diverte e emociona, relembrando e acompanhando momentos únicos de sua vida, tanto no baile da terceira idade, quanto a uma visita ao túmulo de seus pais.\nMomentos de intimidade e sabedoria surgem no encontro com as irmãs, uma de 101 anos e a outra de 95, que nos transmitem uma enorme satisfação pela vida e nos faz repensar a nossa própria existência.\n",
     "tema (Programadora Brasil)": "longevidade alegria terceira idade 100 anos centenário",
     "tags": "véio alberto barollo",
     "website": "",
@@ -4827,7 +4872,7 @@
     "Direção": "Márcio Emílio Zago",
     "Curadoria": "",
     "Elenco": "Alessandra Colasanti",
-    "Dur. (´)": 4,
+    "Dur.(´)": 4,
     "Gênero": "Animação, Documentário",
     "GEN.": "Animação",
     "Ano": 2010,
@@ -4885,7 +4930,7 @@
     "Direção": "Gustavo Galvão",
     "Curadoria": "",
     "Elenco": "Maria Gladys, Maria Thereza Maron, Hugo",
-    "Dur. (´)": 6,
+    "Dur.(´)": 6,
     "Gênero": "Drama, Esportes, Romance",
     "GEN.": "Ficção",
     "Ano": 2006,
@@ -4947,7 +4992,7 @@
     "Direção": "Santiago Dellape",
     "Curadoria": "",
     "Elenco": "",
-    "Dur. (´)": 5,
+    "Dur.(´)": 5,
     "Gênero": "",
     "GEN.": "Ficção",
     "Ano": 2005,
@@ -5009,7 +5054,7 @@
     "Direção": "Nelson Nadotti",
     "Curadoria": "",
     "Elenco": "MAITÊ PROENÇA, BUZA FERRAZ E PEDRO BRÍCIO",
-    "Dur. (´)": 10,
+    "Dur.(´)": 10,
     "Gênero": "",
     "GEN.": "Ficção",
     "Ano": 1987,
@@ -5071,7 +5116,7 @@
     "Direção": "Sergio Zeigler",
     "Curadoria": "",
     "Elenco": "MAITÊ PROENÇA, BUZA FERRAZ E PEDRO BRÍCIO",
-    "Dur. (´)": 13,
+    "Dur.(´)": 13,
     "Gênero": "Documentário",
     "GEN.": "Documentário",
     "Ano": 1993,
@@ -5133,7 +5178,7 @@
     "Direção": "Sérgio Péo, José Carlos Asbeg e Luiz Arnaldo Campos",
     "Curadoria": "",
     "Elenco": "Não se aplica",
-    "Dur. (´)": 18,
+    "Dur.(´)": 18,
     "Gênero": "Documentário",
     "GEN.": "Documentário",
     "Ano": 1981,
@@ -5195,7 +5240,7 @@
     "Direção": "Marília Rocha",
     "Curadoria": "",
     "Elenco": "-",
-    "Dur. (´)": 71,
+    "Dur.(´)": 71,
     "Gênero": "Documentário, Drama",
     "GEN.": "Documentário",
     "Ano": 2005,
@@ -5232,7 +5277,7 @@
     "tema (Programadora Brasil)": "",
     "tags": "",
     "website": "www.teia.art.br",
-    "festivais": "Documentary Fortnight (Mostra Internacional de Documentários do MoMA - The Museum of Modern Art) – Nova Iorque, EUA, 2005.\n\n10º É Tudo Verdade – Festival Internacional de Documentários – SP/RJ, 2005. \n\n9º CinePE – Recife, 2005 – prêmio de melhor trilha sonora e edição de som.\n\nFICA – Festival Internacional de Cinema Ambiental – Goiás, 2005. \n\n10o Mostra Internacional do Filme Etnográfico RJ, 2005.\n\nIndie2005 - Mostra de Cinema Mundial; \n\nFestival do Rio2005; \n\nFestCine Goiânia2005;\n\nMostra de Tiradentes 2006;\n\n21º Guadalajara International Film Festival, México, 2006.\n\n41º Festival Internacional de Karlovy Vary, 2006. \n",
+    "festivais": "Documentary Fortnight  (Mostra Internacional de Documentários do MoMA - The Museum of Modern Art) – Nova Iorque, EUA, 2005.\n\n10º É Tudo Verdade – Festival Internacional de Documentários – SP/RJ, 2005. \n\n9º CinePE – Recife, 2005 – prêmio de melhor trilha sonora e edição de som.\n\nFICA – Festival Internacional de Cinema Ambiental – Goiás, 2005. \n\n10o Mostra Internacional do Filme Etnográfico RJ, 2005.\n\nIndie2005 - Mostra de Cinema Mundial; \n\nFestival do Rio2005; \n\nFestCine Goiânia2005;\n\nMostra de Tiradentes 2006;\n\n21º Guadalajara International Film Festival, México, 2006.\n\n41º Festival Internacional de Karlovy Vary, 2006. \n",
     "premios": "Melhor longa-metragem brasileiro – 10º É Tudo Verdade – Festival Internacional de Documentários.\n\nMelhor trilha sonora e edição de som 9º CinePE.\n\nMenção honrosa do júri FICA – Festival Internacional de Cinema Ambiental.\n\nMelhor realização - 10o Mostra Internacional do Filme Etnográfico RJ.\n\n",
     "legendas_outras": "",
     "material_outros": "",
@@ -5260,7 +5305,7 @@
     "Direção": "Humberto Mauro",
     "Curadoria": "",
     "Elenco": "-",
-    "Dur. (´)": 10,
+    "Dur.(´)": 10,
     "Gênero": "Documentário, Drama",
     "GEN.": "Documentário",
     "Ano": 1954,
@@ -5293,7 +5338,7 @@
     "tema (Programadora Brasil)": "",
     "tags": "",
     "website": "www.teia.art.br",
-    "festivais": "Documentary Fortnight (Mostra Internacional de Documentários do MoMA - The Museum of Modern Art) – Nova Iorque, EUA, 2005.\n\n10º É Tudo Verdade – Festival Internacional de Documentários – SP/RJ, 2005. \n\n9º CinePE – Recife, 2005 – prêmio de melhor trilha sonora e edição de som.\n\nFICA – Festival Internacional de Cinema Ambiental – Goiás, 2005. \n\n10o Mostra Internacional do Filme Etnográfico RJ, 2005.\n\nIndie2005 - Mostra de Cinema Mundial; \n\nFestival do Rio2005; \n\nFestCine Goiânia2005;\n\nMostra de Tiradentes 2006;\n\n21º Guadalajara International Film Festival, México, 2006.\n\n41º Festival Internacional de Karlovy Vary, 2006. \n",
+    "festivais": "Documentary Fortnight  (Mostra Internacional de Documentários do MoMA - The Museum of Modern Art) – Nova Iorque, EUA, 2005.\n\n10º É Tudo Verdade – Festival Internacional de Documentários – SP/RJ, 2005. \n\n9º CinePE – Recife, 2005 – prêmio de melhor trilha sonora e edição de som.\n\nFICA – Festival Internacional de Cinema Ambiental – Goiás, 2005. \n\n10o Mostra Internacional do Filme Etnográfico RJ, 2005.\n\nIndie2005 - Mostra de Cinema Mundial; \n\nFestival do Rio2005; \n\nFestCine Goiânia2005;\n\nMostra de Tiradentes 2006;\n\n21º Guadalajara International Film Festival, México, 2006.\n\n41º Festival Internacional de Karlovy Vary, 2006. \n",
     "premios": "Melhor longa-metragem brasileiro – 10º É Tudo Verdade – Festival Internacional de Documentários.\n\nMelhor trilha sonora e edição de som 9º CinePE.\n\nMenção honrosa do júri FICA – Festival Internacional de Cinema Ambiental.\n\nMelhor realização - 10o Mostra Internacional do Filme Etnográfico RJ.\n\n",
     "legendas_outras": "",
     "material_outros": "",
@@ -5321,7 +5366,7 @@
     "Direção": "Joel Pizzini",
     "Curadoria": "",
     "Elenco": "Depoimentos: Lúcia Rocha\n",
-    "Dur. (´)": 30,
+    "Dur.(´)": 30,
     "Gênero": "Documentário, Drama, Romance",
     "GEN.": "Documentário",
     "Ano": 2003,
@@ -5350,7 +5395,7 @@
     "cidade": "",
     "Audiodescrição": "",
     "Closed Caption": "",
-    "Sinopse": "Aos 84 anos de idade, Lúcia Rocha interna-se num hospital em São Paulo para fazer exames no coração. Ao receber a notícia sobre o risco que corria sua vida, Lúcia lacônica, diz ao médico - então abre! É a segunda vez que ela submete-se a uma cirurgia de pontes de safena. A partir deste gesto, nasce o documentário Abry (com y, signo do inconsciente, de acordo com a nomenclatura inventada pelo filho Glauber Rocha). Para relatar suas memórias, ela convida o cineasta Joel Pizzini que oferece sua mini-câmera com instrumento amplificador do imaginário de Lúcia. Abry é um mergulho poético no universo fabulador de Lúcia Rocha, reconstruindo sua trajetória no cinema brasileiro através de sons imagens e personagens com quem conviveu de perto.",
+    "Sinopse": "Aos 84 anos de idade,  Lúcia Rocha interna-se num hospital em São Paulo para fazer exames no coração. Ao receber a notícia sobre o risco que corria sua vida, Lúcia lacônica, diz ao médico - então abre! É a segunda vez que ela submete-se a uma cirurgia de pontes de safena. A partir deste gesto, nasce o documentário Abry (com y, signo do inconsciente, de acordo com a nomenclatura inventada pelo filho Glauber Rocha). Para relatar suas memórias, ela convida o cineasta Joel Pizzini que oferece sua mini-câmera com instrumento amplificador do imaginário de Lúcia. Abry é um mergulho poético no universo fabulador de Lúcia Rocha, reconstruindo sua trajetória no cinema brasileiro através de sons imagens e personagens com quem conviveu de perto.",
     "tema (Programadora Brasil)": "",
     "tags": "",
     "website": "",
@@ -12363,65 +12408,54 @@
     "URL": ""
   },
   {
-    "Classificação Indicativa POR PGM": 12,
+    "Classificação Indicativa POR PGM": "Livre",
     "Classificação Indicativa - Descrição": [
       {
         "Descrição": "Pesquisar Classificação Indicativa no site do Ministério da Justiça",
         "url": "https://classindportal.mj.gov.br/consulta-filmes"
       }
     ],
-    "Título do filme": "Calma, Monga, Calma!",
-    "Direção": "Petrônio de Lorena",
+    "Título do filme": "Calango Lengo - morte e vida sem ver água",
+    "Direção": "Fernando Miller",
     "Curadoria": "",
-    "Elenco": "Germano Haiut, Marcélia Cartaxo, Nínive Caldas, TayLopez, Ceronha Pontes, Jones Melo, Olga Ferrario, Taveira Júnior, Marcondes Lima, Pascoal Filizola, Williams Sant’Anna, Pedro Souza, Alunos da Oficina de Atores do Recife",
-    "Dur.(´)": 16,
-    "Gênero": "Comédia, Fantasia, Terror",
-    "GEN.": "Ficção",
+    "Elenco": "Chica Xavier (voz)",
+    "Dur.(´)": 11,
+    "Gênero": "Animação, Drama",
+    "GEN.": "Animação",
     "Ano": 2009,
-    "ODS": "5, 11",
-    "ODS_Analisados": "5, 11",
-    "ODS_Justificados": [
-      {
-        "ods": "5",
-        "justificativa": "O filme subverte o arquétipo da 'mulher-monstro' (Monga) ao dar-lhe uma perspectiva cômica e humanizada. A obra brinca com os estereótipos de gênero associados ao terror, questionando a representação da mulher como uma figura monstruosa e irracional."
-      },
-      {
-        "ods": "11",
-        "justificativa": "A narrativa é inspirada na lendária atração de parques de diversões, um elemento do patrimônio cultural popular brasileiro. Ao recontar essa história, o filme ajuda a salvaguardar e celebrar uma parte da cultura e do entretenimento de comunidades."
-      }
-    ],
+    "ODS": "",
     "nota imdb": {
-      "votantes": "6,2/13",
+      "votantes": "8/6",
       "url": ""
     },
     "País": "Brasil",
-    "UF": "PE",
+    "UF": "SP",
     "cidade": "",
     "Audiodescrição": "",
     "Closed Caption": "",
-    "Sinopse": "Monga, a Mulher Gorila, lendária atração de parques de diversões, está em crise. Para voltar à cena, ela precisa vencer seus medos e superar os traumas do passado.",
+    "Sinopse": "Calango Lengo, nordestino, tem que cumprir seu destino sem ter o que pôr no prato. \nNa seca não há outra sorte: viver fugindo da morte como foge o rato do gato.",
     "tema (Programadora Brasil)": "",
     "tags": "",
     "website": "",
-    "festivais": "Festival de Brasília 2009\nMostra de Cinema de Tiradentes 2010\nCine PE 2010\nCurta-SE 10\nVitória Cine Vídeo 2010\nMostra de Cinema de Ouro Preto 2010\nCurta Cinema 2010\nMostra do Filme Livre 2010\nCurta-Canoa 2010\nMostra de Cinema de Maringá 2010\nFestival de Cinema de Triunfo 2010\nJampa Fest 2010\nFor Rainbow 2010\nMostra de Cinema e Direitos Humanos da América do Sul 2010\nCurta Taquary 2010\nComunicurtas 2010\nFestival de Cinema de Países de Língua Portuguesa 2010\nFestival de Cinema de Blumenau 2010\nFestival de Cinema de Varginha 2010\nFestival de Cinema de Teresina 2010\nFestival de Cinema de Juiz de Fora 2010\nFestival de Cinema de Marília 2010\nFestival de Cinema de Múrcia (Espanha) 2010\nFestival de Cinema de Huelva (Espanha) 2010\nFestival de Cinema de Havana (Cuba) 2010\nFestival de Cinema de Toulouse (França) 2011\nFestival de Cinema de Munique (Alemanha) 2011\nFestival de Cinema de Los Angeles (EUA) 2011\nFestival de Cinema de Nova York (EUA) 2011\nFestival de Cinema de Toronto (Canadá) 2011\nFestival de Cinema de Londres (Inglaterra) 2011\nFestival de Cinema de Berlim (Alemanha) 2011\nFestival de Cinema de Veneza (Itália) 2011\nFestival de Cinema de Cannes (França) 2011",
-    "premios": "Melhor Filme (Júri Popular) no Festival de Brasília 2009\nMelhor Atriz (Marcélia Cartaxo) no Cine PE 2010\nMelhor Roteiro no Curta-SE 10\nMelhor Direção de Arte no Vitória Cine Vídeo 2010\nMelhor Figurino no Curta Cinema 2010\nMelhor Maquiagem no Curta-Canoa 2010\nMelhor Trilha Sonora no Festival de Cinema de Maringá 2010\nMelhor Som no Festival de Cinema de Triunfo 2010\nMelhor Edição no Jampa Fest 2010\nMelhor Fotografia no For Rainbow 2010\nPrêmio Especial do Júri na Mostra de Cinema e Direitos Humanos da América do Sul 2010\nPrêmio da Crítica no Curta Taquary 2010\nPrêmio Aquisição Canal Brasil no Comunicurtas 2010\nPrêmio ABD-PE no Festival de Cinema de Países de Língua Portuguesa 2010\nPrêmio CTAv no Festival de Cinema de Blumenau 2010\nPrêmio Revelação no Festival de Cinema de Varginha 2010\nPrêmio Incentivo no Festival de Cinema de Teresina 2010\nPrêmio Estímulo no Festival de Cinema de Juiz de Fora 2010\nPrêmio Exibição no Festival de Cinema de Marília 2010",
-    "legendas_outras": "",
+    "festivais": "animamundi 2008, Granimado 2008, Tiradentes, Guarnicê, FICA, entre outros",
+    "premios": "melhor roteiro (festival de guarnicê 2009), melhor edição (festcine amazônia 2008), prêmio ABCA de qualidade técnica de animação (3o Granimado)",
+    "legendas_outras": "-",
     "material_outros": "",
     "duracao FORMATO": "CURTA",
-    "PGM": 280,
-    "Filmes": 49,
-    "Nome do Programa": "Comédias Contemorâneas 3",
-    "imageName": "comedias_contemoraneas_3",
+    "PGM": 198,
+    "Filmes": 83,
+    "Nome do Programa": "Animações infantis a partir de 5 anos",
+    "imageName": "animacoes_infantis_a_partir_de_5_anos",
     "planos_de_aula": [],
     "trailer": "",
     "imagens_adicionais": [],
     "videos": [],
-    "Assistir Online": "https://portacurtas.org.br/filme/?name=Calma,_Monga,_Calma!",
-    "URL": "https://portacurtas.org.br/busca/?termo=Calma,_Monga,_Calma!",
+    "Assistir Online": "https://portacurtas.org.br/filme/?name=Calango_Lengo_-_morte_e_vida_sem_ver_água",
+    "URL": "https://portacurtas.org.br/busca/?termo=Calango_Lengo_-_morte_e_vida_sem_ver_água",
     "busca": "Inválido (Redirecionamento Erro Tamandua)"
   },
   {
-    "Classificação Indicativa POR PGM": "Livre",
+    "Classificação Indicativa POR PGM": 12,
     "Classificação Indicativa - Descrição": [
       {
         "Descrição": "Pesquisar Classificação Indicativa no site do Ministério da Justiça",
@@ -12431,27 +12465,12 @@
     "Título do filme": "Câmara Viajante",
     "Direção": "Joe Pimentel",
     "Curadoria": "",
-    "Elenco": "Fotógrafo Lambe-lambe",
-    "Dur.(´)": 15,
+    "Elenco": "Júlio Francisco dos Santos, José Arimateia de Sousa, Isaias Amorim, Francisco Pereira Silva e Francisco Belo",
+    "Dur.(´)": 20,
     "Gênero": "Documentário",
     "GEN.": "Documentário",
-    "Ano": 2002,
-    "ODS": "8, 11, 15",
-    "ODS_Analisados": "8, 11, 15",
-    "ODS_Justificados": [
-      {
-        "ods": "8",
-        "justificativa": "O filme documenta o ofício do fotógrafo lambe-lambe, uma forma de trabalho tradicional e artesanal que resiste ao tempo, valorizando o trabalho autônomo e a economia criativa popular."
-      },
-      {
-        "ods": "11",
-        "justificativa": "A obra retrata a vida e a cultura de uma comunidade ribeirinha na Amazônia, mostrando como a fotografia serve para registrar a memória e fortalecer a identidade local, contribuindo para a salvaguarda do patrimônio cultural."
-      },
-      {
-        "ods": "15",
-        "justificativa": "Ambientado na Amazônia, o documentário mostra a profunda conexão da comunidade e do fotógrafo com o ecossistema da floresta, destacando a vida terrestre e a importância da natureza para a cultura local."
-      }
-    ],
+    "Ano": 2007,
+    "ODS": "",
     "nota imdb": {
       "votantes": "",
       "url": ""
@@ -12459,21 +12478,21 @@
     "País": "Brasil",
     "UF": "CE",
     "cidade": "",
-    "Audiodescrição": "",
-    "Closed Caption": "",
-    "Sinopse": "Um fotógrafo lambe-lambe viaja pelos rios da Amazônia registrando o cotidiano dos ribeirinhos.",
+    "Audiodescrição": "AD",
+    "Closed Caption": "CC",
+    "Sinopse": "Documentário sobre os fotógrafos populares, que atuam em festas e romarias no interior do Nordeste.",
     "tema (Programadora Brasil)": "",
     "tags": "",
     "website": "",
-    "festivais": "",
-    "premios": "",
+    "festivais": "18º Festival ibero Americano de Cinema e Vídeo-Cine Ceará/2007; 10ª Mostra Internacional de Curta de S.Paulo/2007; 14ª Vitória Cine e Vídeo/2007; 3º Festival Latino Americano de canoa Quebrada/Ce-2007; Mostra Internacional do Filme Etnográfico/2007; 7ª Goiania Mostra Curta/2007; 11ª Mostra de Cinema de tiradentes/2007; Cine Pe/2008; 31º Concurso Oficial de Filme - maranhão/2008; 6ª Edição Fest Cineamazônia/2008",
+    "premios": "Melhor documentário\nMelhor produção Cearense\nMelhor Trilha Sonora\nMelhor Fotografia\nMensão Honrosa",
     "legendas_outras": "",
     "material_outros": "",
-    "duracao FORMATO": "CURTA",
-    "PGM": 279,
-    "Filmes": 43,
-    "Nome do Programa": "Brasil Profundo",
-    "imageName": "brasil_profundo",
+    "duracao FORMATO": "MÉDIA",
+    "PGM": 247,
+    "Filmes": 41,
+    "Nome do Programa": "Cultura e Arte Popular",
+    "imageName": "cultura_e_arte_popular",
     "planos_de_aula": [],
     "trailer": "",
     "imagens_adicionais": [],
@@ -12483,470 +12502,24 @@
     "busca": "Inválido (Redirecionamento Erro Tamandua)"
   },
   {
-    "Classificação Indicativa POR PGM": 12,
+    "Classificação Indicativa POR PGM": 10,
     "Classificação Indicativa - Descrição": [
       {
         "Descrição": "Pesquisar Classificação Indicativa no site do Ministério da Justiça",
         "url": "https://classindportal.mj.gov.br/consulta-filmes"
       }
     ],
-    "Título do filme": "Caminho de volta",
-    "Direção": "Breno Kuperman",
+    "Título do filme": "Camila e o Espelho",
+    "Direção": "Amadeu Alban",
     "Curadoria": "",
-    "Elenco": "Paulo José",
-    "Dur.(´)": 15,
-    "Gênero": "Drama",
+    "Elenco": "Paula Ribeiro, Ícaro Vilanova, Thalita Chung, Felipe Soeiro e Caíque Chung",
+    "Dur.(´)": 14,
+    "Gênero": "Drama, Suspense",
     "GEN.": "Ficção",
-    "Ano": 2008,
-    "ODS": "3, 11",
-    "ODS_Analisados": "3, 11",
-    "ODS_Justificados": [
-      {
-        "ods": "3",
-        "justificativa": "O filme explora a memória, a nostalgia e o impacto da passagem do tempo na vida de um homem que retorna à sua cidade natal. A obra aborda a saúde emocional e o bem-estar ligados ao envelhecimento e à reflexão sobre o passado."
-      },
-      {
-        "ods": "11",
-        "justificativa": "A narrativa é centrada na relação do protagonista com sua cidade natal, mostrando as transformações da comunidade e do espaço urbano ao longo de 30 anos. É uma reflexão sobre identidade, pertencimento e a evolução dos assentamentos humanos."
-      }
-    ],
+    "Ano": 2010,
+    "ODS": "",
     "nota imdb": {
       "votantes": "",
-      "url": ""
-    },
-    "País": "Brasil",
-    "UF": "RJ",
-    "cidade": "",
-    "Audiodescrição": "",
-    "Closed Caption": "",
-    "Sinopse": "Após 30 anos, um homem volta à sua cidade natal.",
-    "tema (Programadora Brasil)": "",
-    "tags": "",
-    "website": "",
-    "festivais": "",
-    "premios": "",
-    "legendas_outras": "",
-    "material_outros": "",
-    "duracao FORMATO": "CURTA",
-    "PGM": 149,
-    "Filmes": 137,
-    "Nome do Programa": "MaiorIdade",
-    "imageName": "maioridade",
-    "planos_de_aula": [],
-    "trailer": "",
-    "imagens_adicionais": [],
-    "videos": [],
-    "Assistir Online": "https://portacurtas.org.br/filme/?name=Caminho_de_volta",
-    "URL": "https://portacurtas.org.br/busca/?termo=Caminho_de_volta",
-    "busca": "Inválido (Redirecionamento Erro Tamandua)"
-  },
-  {
-    "Classificação Indicativa POR PGM": "Livre",
-    "Classificação Indicativa - Descrição": [
-      {
-        "Descrição": "Pesquisar Classificação Indicativa no site do Ministério da Justiça",
-        "url": "https://classindportal.mj.gov.br/consulta-filmes"
-      }
-    ],
-    "Título do filme": "Caminho dos heróis",
-    "Direção": "Ricardo de Podestá",
-    "Curadoria": "",
-    "Elenco": "Tomé, o menino: Pedro Lucindo; Pai: Johnnas Oliva; Mãe: Lilian Terra; Pelé: ele mesmo",
-    "Dur.(´)": 15,
-    "Gênero": "Drama",
-    "GEN.": "Ficção",
-    "Ano": 2002,
-    "ODS": "3, 10",
-    "ODS_Analisados": "3, 10",
-    "ODS_Justificados": [
-      {
-        "ods": "3",
-        "justificativa": "O filme aborda a deficiência física do pai e a jornada do filho para lhe trazer alegria, destacando a importância do apoio familiar, do esporte e da esperança para a saúde e o bem-estar."
-      },
-      {
-        "ods": "10",
-        "justificativa": "A obra dá visibilidade à realidade de pessoas com deficiência e suas famílias, promovendo a empatia e a inclusão, e combatendo a desigualdade de representação e de oportunidades."
-      }
-    ],
-    "nota imdb": {
-      "votantes": "7,3/23",
-      "url": ""
-    },
-    "País": "Brasil",
-    "UF": "GO",
-    "cidade": "",
-    "Audiodescrição": "",
-    "Closed Caption": "",
-    "Sinopse": "Tomé é um menino que tem um grande sonho: conseguir um autógrafo de Pelé para seu pai, um ex-jogador de futebol que ficou paralítico.",
-    "tema (Programadora Brasil)": "",
-    "tags": "",
-    "website": "",
-    "festivais": "",
-    "premios": "",
-    "legendas_outras": "",
-    "material_outros": "",
-    "duracao FORMATO": "CURTA",
-    "PGM": 147,
-    "Filmes": 129,
-    "Nome do Programa": "Futebol, Paixão Nacional",
-    "imageName": "futebol_paixao_nacional",
-    "planos_de_aula": [],
-    "trailer": "",
-    "imagens_adicionais": [],
-    "videos": [],
-    "Assistir Online": "https://portacurtas.org.br/filme/?name=Caminho_dos_heróis",
-    "URL": "https://portacurtas.org.br/busca/?termo=Caminho_dos_heróis",
-    "busca": "Inválido (Redirecionamento Erro Tamandua)"
-  },
-  {
-    "Classificação Indicativa POR PGM": 12,
-    "Classificação Indicativa - Descrição": [
-      {
-        "Descrição": "Pesquisar Classificação Indicativa no site do Ministério da Justiça",
-        "url": "https://classindportal.mj.gov.br/consulta-filmes"
-      }
-    ],
-    "Título do filme": "Campo de Jogo",
-    "Direção": "Eryk Rocha",
-    "Curadoria": "",
-    "Elenco": "Jogadores e torcedores do Geração e do Juventude",
-    "Dur.(´)": 82,
-    "Gênero": "Documentário, Esportes",
-    "GEN.": "Documentário",
-    "Ano": 2014,
-    "ODS": "3, 10, 11, 16",
-    "ODS_Analisados": "3, 10, 11, 16",
-    "ODS_Justificados": [
-      {
-        "ods": "3",
-        "justificativa": "O filme celebra o futebol amador como uma paixão que promove a saúde física, o bem-estar emocional e a coesão social dentro da comunidade."
-      },
-      {
-        "ods": "10",
-        "justificativa": "Ao dar protagonismo a um campeonato de futebol de favela, o documentário valoriza a cultura e a vida de uma comunidade marginalizada, combatendo a desigualdade de representação e o preconceito."
-      },
-      {
-        "ods": "11",
-        "justificativa": "O campo de futebol é o coração da comunidade, um espaço de encontro, lazer e identidade. O filme mostra como o esporte fortalece os laços comunitários e torna o assentamento humano mais vibrante e resiliente."
-      },
-      {
-        "ods": "16",
-        "justificativa": "Em um ambiente muitas vezes marcado pela violência, o campeonato de futebol representa uma instituição de paz e organização social, onde regras são respeitadas e a rivalidade se resolve dentro de campo, promovendo a paz e a justiça."
-      }
-    ],
-    "nota imdb": {
-      "votantes": "7,1/56",
-      "url": ""
-    },
-    "País": "Brasil",
-    "UF": "RJ",
-    "cidade": "",
-    "Audiodescrição": "",
-    "Closed Caption": "",
-    "Sinopse": "No Rio de Janeiro, o futebol é jogado em todo lugar, da praia às favelas. Em Sampaio, subúrbio da Zona Norte, existe um dos maiores campeonatos de futebol amador do país. O filme acompanha a final do campeonato, revelando os sonhos, as paixões e as frustrações dos jogadores, dos torcedores e da comunidade.",
-    "tema (Programadora Brasil)": "",
-    "tags": "",
-    "website": "",
-    "festivais": "",
-    "premios": "",
-    "legendas_outras": "",
-    "material_outros": "",
-    "duracao FORMATO": "LONGA",
-    "PGM": 277,
-    "Filmes": 34,
-    "Nome do Programa": "Campo de Jogo",
-    "imageName": "campo_de_jogo",
-    "planos_de_aula": [],
-    "trailer": "",
-    "imagens_adicionais": [],
-    "videos": [],
-    "Assistir Online": "",
-    "URL": ""
-  },
-  {
-    "Classificação Indicativa POR PGM": 12,
-    "Classificação Indicativa - Descrição": [
-      {
-        "Descrição": "Pesquisar Classificação Indicativa no site do Ministério da Justiça",
-        "url": "https://classindportal.mj.gov.br/consulta-filmes"
-      }
-    ],
-    "Título do filme": "Cândido, o espião de Deus",
-    "Direção": "Ricardo Favilla",
-    "Curadoria": "",
-    "Elenco": "",
-    "Dur.(´)": 15,
-    "Gênero": "Documentário",
-    "GEN.": "Documentário",
-    "Ano": 2005,
-    "ODS": "10, 15, 16",
-    "ODS_Analisados": "10, 15, 16",
-    "ODS_Justificados": [
-      {
-        "ods": "10",
-        "justificativa": "O filme homenageia Cândido Rondon, uma figura histórica fundamental na luta pelos direitos e pela proteção dos povos indígenas no Brasil, combatendo a desigualdade e o genocídio."
-      },
-      {
-        "ods": "15",
-        "justificativa": "As expedições de Rondon desbravaram e documentaram vastas áreas do interior do Brasil, contribuindo para o conhecimento e a preservação dos ecossistemas terrestres, como a Amazônia e o Cerrado."
-      },
-      {
-        "ods": "16",
-        "justificativa": "O lema de Rondon, 'Morrer se preciso for, matar nunca', representa o mais alto ideal de paz. Seu trabalho na demarcação de terras e na criação de instituições de proteção ao indígena (como o SPI, precursor da FUNAI) foi crucial para a busca de justiça para os povos originários."
-      }
-    ],
-    "nota imdb": {
-      "votantes": "",
-      "url": ""
-    },
-    "País": "Brasil",
-    "UF": "RJ",
-    "cidade": "",
-    "Audiodescrição": "",
-    "Closed Caption": "",
-    "Sinopse": "Uma homenagem ao Marechal Cândido Rondon, o desbravador que percorreu mais de 50 mil quilômetros pelo sertão brasileiro, instalando linhas telegráficas e demarcando fronteiras. Um homem que lutou pela causa indígena e pela preservação da natureza.",
-    "tema (Programadora Brasil)": "",
-    "tags": "",
-    "website": "",
-    "festivais": "",
-    "premios": "",
-    "legendas_outras": "",
-    "material_outros": "",
-    "duracao FORMATO": "CURTA",
-    "PGM": 139,
-    "Filmes": 81,
-    "Nome do Programa": "Brasil indígena",
-    "imageName": "brasil_indigena",
-    "planos_de_aula": [],
-    "trailer": "",
-    "imagens_adicionais": [],
-    "videos": [],
-    "Assistir Online": "https://portacurtas.org.br/filme/?name=Cândido,_o_espião_de_Deus",
-    "URL": "https://portacurtas.org.br/busca/?termo=Cândido",
-    "busca": "Inválido (Redirecionamento Erro Tamandua)"
-  },
-  {
-    "Classificação Indicativa POR PGM": "Livre",
-    "Classificação Indicativa - Descrição": [
-      {
-        "Descrição": "Pesquisar Classificação Indicativa no site do Ministério da Justiça",
-        "url": "https://classindportal.mj.gov.br/consulta-filmes"
-      }
-    ],
-    "Título do filme": "Cão Guia",
-    "Direção": "Eder Santos e PC Ramos",
-    "Curadoria": "",
-    "Elenco": "Não há",
-    "Dur.(´)": 5,
-    "Gênero": "Animação",
-    "GEN.": "Animação",
-    "Ano": 2009,
-    "ODS": "3, 10",
-    "ODS_Analisados": "3, 10",
-    "ODS_Justificados": [
-      {
-        "ods": "3",
-        "justificativa": "A animação aborda a relação de dependência e afeto entre um cego e seu cão-guia, destacando a importância do animal para a saúde, a segurança e o bem-estar da pessoa com deficiência visual."
-      },
-      {
-        "ods": "10",
-        "justificativa": "O filme promove a conscientização sobre a deficiência visual e a importância dos cães-guia como ferramenta de inclusão e autonomia, contribuindo para a redução das desigualdades enfrentadas por pessoas com deficiência."
-      }
-    ],
-    "nota imdb": {
-      "votantes": "",
-      "url": ""
-    },
-    "País": "Brasil",
-    "UF": "MG",
-    "cidade": "",
-    "Audiodescrição": "",
-    "Closed Caption": "",
-    "Sinopse": "Um cego e seu cão-guia caminham pela cidade. Uma jornada de confiança e amizade.",
-    "tema (Programadora Brasil)": "",
-    "tags": "",
-    "website": "",
-    "festivais": "",
-    "premios": "",
-    "legendas_outras": "",
-    "material_outros": "",
-    "duracao FORMATO": "CURTA",
-    "PGM": 284,
-    "Filmes": 80,
-    "Nome do Programa": "Curtas Para a primeira Infância 2",
-    "imageName": "curtas_para_a_primeira_infancia_2",
-    "planos_de_aula": [],
-    "trailer": "",
-    "imagens_adicionais": [],
-    "videos": [],
-    "Assistir Online": "https://portacurtas.org.br/filme/?name=Cão_Guia",
-    "URL": "https://portacurtas.org.br/busca/?termo=Cão_Guia",
-    "busca": "Inválido (Redirecionamento Erro Tamandua)"
-  },
-  {
-    "Classificação Indicativa POR PGM": 16,
-    "Classificação Indicativa - Descrição": [
-      {
-        "Descrição": "Pesquisar Classificação Indicativa no site do Ministério da Justiça",
-        "url": "https://classindportal.mj.gov.br/consulta-filmes"
-      }
-    ],
-    "Título do filme": "Cão sem Dono",
-    "Direção": "Beto Brant e Renato Ciasca",
-    "Curadoria": "",
-    "Elenco": "Júlio Andrade, Tainá Müller, Luis Carlos V. Coelho, Marcos Contreras, Janaína Kremer, Roberto Oliveira",
-    "Dur.(´)": 82,
-    "Gênero": "Drama, Romance",
-    "GEN.": "Ficção",
-    "Ano": 2007,
-    "ODS": "3, 11",
-    "ODS_Analisados": "3, 11",
-    "ODS_Justificados": [
-      {
-        "ods": "3",
-        "justificativa": "O filme é um retrato da juventude e suas angústias, explorando a solidão, a depressão, o amor e a dificuldade de encontrar um propósito, temas diretamente ligados à saúde mental e ao bem-estar."
-      },
-      {
-        "ods": "11",
-        "justificativa": "A cidade de Porto Alegre é o cenário que reflete o estado de espírito dos personagens. O filme explora a vida urbana da juventude, seus espaços de encontro e a sensação de anonimato e pertencimento em uma grande comunidade."
-      }
-    ],
-    "nota imdb": {
-      "votantes": "7,1/1100",
-      "url": ""
-    },
-    "País": "Brasil",
-    "UF": "SP",
-    "cidade": "",
-    "Audiodescrição": "",
-    "Closed Caption": "",
-    "Sinopse": "Ciro é um jovem tradutor de textos técnicos que leva uma vida solitária e sem perspectivas. Um dia, ele conhece Marcela, uma modelo em início de carreira, e os dois iniciam um intenso relacionamento. Mas a paixão não é suficiente para aplacar a angústia existencial de ambos.",
-    "tema (Programadora Brasil)": "",
-    "tags": "",
-    "website": "",
-    "festivais": "",
-    "premios": "",
-    "legendas_outras": "",
-    "material_outros": "",
-    "duracao FORMATO": "LONGA",
-    "PGM": 261,
-    "Filmes": 10,
-    "Nome do Programa": "Cão sem Dono e Tapa na Pantera",
-    "imageName": "cao_sem_dono_e_tapa_na_pantera",
-    "planos_de_aula": [],
-    "trailer": "",
-    "imagens_adicionais": [],
-    "videos": [],
-    "Assistir Online": "",
-    "URL": ""
-  },
-  {
-    "Classificação Indicativa POR PGM": 16,
-    "Classificação Indicativa - Descrição": [
-      {
-        "Descrição": "Pesquisar Classificação Indicativa no site do Ministério da Justiça",
-        "url": "https://classindportal.mj.gov.br/consulta-filmes"
-      }
-    ],
-    "Título do filme": "Capitalismo Selvagem",
-    "Direção": "André Klotzel",
-    "Curadoria": "",
-    "Elenco": "Fernanda Torres, José Mayer, Marisa Orth, Cláudia Abreu, Miguel Falabella, Maria Sílvia, Italo Rossi, Grande Otelo, Angelita Feijó, Cláudio Mamberti, Ariclê Perez, Vera Holtz, Ernani Moraes, Goulart de Andrade, Jô Soares, Rita Lee",
-    "Dur.(´)": 82,
-    "Gênero": "Comédia, Drama",
-    "GEN.": "Ficção",
-    "Ano": 1993,
-    "ODS": "8, 10, 16",
-    "ODS_Analisados": "8, 10, 16",
-    "ODS_Justificados": [
-      {
-        "ods": "8",
-        "justificativa": "O filme satiriza as relações de trabalho e a ética no mundo dos negócios, onde uma família contrata um cineasta para forjar um documento, expondo a corrupção e a falta de escrúpulos na busca pelo crescimento econômico."
-      },
-      {
-        "ods": "10",
-        "justificativa": "A trama é centrada em um conflito de terras, um dos principais motores da desigualdade no Brasil. A atitude da família de latifundiários para garantir sua posse reflete a desigualdade de poder e a opressão sobre os sem-terra."
-      },
-      {
-        "ods": "16",
-        "justificativa": "A tentativa de fraudar um documento para garantir a posse da terra é um ato de corrupção que mina a justiça e as instituições. O filme critica a mentalidade do 'capitalismo selvagem', onde os fins justificam os meios e a lei é ignorada."
-      }
-    ],
-    "nota imdb": {
-      "votantes": "6,1/189",
-      "url": ""
-    },
-    "País": "Brasil",
-    "UF": "SP",
-    "cidade": "",
-    "Audiodescrição": "",
-    "Closed Caption": "",
-    "Sinopse": "Uma família de latifundiários contrata um cineasta para realizar um filme que sirva como prova de que eles são os donos de uma grande área de terra. Mas o diretor tem outros planos e a filmagem se transforma numa grande confusão.",
-    "tema (Programadora Brasil)": "",
-    "tags": "",
-    "website": "",
-    "festivais": "",
-    "premios": "",
-    "legendas_outras": "",
-    "material_outros": "",
-    "duracao FORMATO": "LONGA",
-    "PGM": 8,
-    "Filmes": 12,
-    "Nome do Programa": "Capitalismo Selvagem",
-    "imageName": "capitalismo_selvagem",
-    "planos_de_aula": [],
-    "trailer": "",
-    "imagens_adicionais": [],
-    "videos": [],
-    "Assistir Online": "",
-    "URL": ""
-  },
-  {
-    "Classificação Indicativa POR PGM": 14,
-    "Classificação Indicativa - Descrição": [
-      {
-        "Descrição": "Pesquisar Classificação Indicativa no site do Ministério da Justiça",
-        "url": "https://classindportal.mj.gov.br/consulta-filmes"
-      }
-    ],
-    "Título do filme": "Capitães da Areia",
-    "Direção": "Cecília Amado",
-    "Curadoria": "",
-    "Elenco": "Jean Luis Amorim, Ana Graciela, Robério Lima, Paulo Abade, Israel Gouvêa, Jordan Mateus",
-    "Dur.(´)": 96,
-    "Gênero": "Aventura, Drama",
-    "GEN.": "Ficção",
-    "Ano": 2011,
-    "ODS": "1, 4, 5, 10, 11, 16",
-    "ODS_Analisados": "1, 4, 5, 10, 11, 16",
-    "ODS_Justificados": [
-      {
-        "ods": "1",
-        "justificativa": "A história é um retrato contundente da pobreza extrema, mostrando a vida de crianças e adolescentes abandonados que vivem nas ruas e de pequenos furtos para sobreviver."
-      },
-      {
-        "ods": "4",
-        "justificativa": "Os 'Capitães da Areia' são crianças e jovens privados de qualquer acesso à educação formal, uma realidade que perpetua o ciclo de pobreza e exclusão social."
-      },
-      {
-        "ods": "5",
-        "justificativa": "A chegada de Dora, a única menina no grupo, introduz novas dinâmicas e desafia os papéis de gênero dentro da comunidade dos meninos de rua, mostrando sua força e resiliência em um ambiente hostil."
-      },
-      {
-        "ods": "10",
-        "justificativa": "A obra de Jorge Amado é uma denúncia da profunda desigualdade social no Brasil, expondo o abismo entre a sociedade estabelecida e as crianças marginalizadas, tratadas como 'o lixo da cidade'."
-      },
-      {
-        "ods": "11",
-        "justificativa": "O filme mostra a luta pela sobrevivência em um ambiente urbano hostil, onde as crianças criam sua própria comunidade em um trapiche abandonado, questionando a capacidade da cidade de ser inclusiva e segura para todos."
-      },
-      {
-        "ods": "16",
-        "justificativa": "Os 'Capitães da Areia' vivem à margem da lei e da proteção do Estado, sendo vítimas e, ao mesmo tempo, agentes de pequenos crimes. A obra expõe a falência das instituições de justiça e de proteção à infância."
-      }
-    ],
-    "nota imdb": {
-      "votantes": "7,1/1500",
       "url": ""
     },
     "País": "Brasil",
@@ -12954,86 +12527,26 @@
     "cidade": "",
     "Audiodescrição": "",
     "Closed Caption": "",
-    "Sinopse": "Na Salvador dos anos 30, um grupo de meninos de rua, os Capitães da Areia, aterroriza a cidade. Liderados por Pedro Bala, eles praticam uma série de assaltos. A chegada de Dora, uma menina órfã, ao grupo, muda a rotina dos garotos.",
+    "Sinopse": "Algo está causando uma reviravolta na vida de Camila. Ela se deu conta de que não é mais aquela menininha que adorava brincar de boneca. Algumas coisas diferentes estão acontecendo com o seu corpo e mexendo com ela. Por isso, tantas horas na frente do espelho, tantas horas tentando entender o que passa, já que ninguém a entende. Nem a mãe, nem as amigas e muito menos os meninos. Ah, os meninos...",
     "tema (Programadora Brasil)": "",
-    "tags": "",
+    "tags": "adolescência, família, amigos, namorado",
     "website": "",
-    "festivais": "",
+    "festivais": "9ª Mostra de Cinema Infantil de Florianópolis\nFICI - Rio de Janeiro ",
     "premios": "",
     "legendas_outras": "",
     "material_outros": "",
-    "duracao FORMATO": "LONGA",
-    "PGM": 276,
-    "Filmes": 33,
-    "Nome do Programa": "Capitães da Areia",
-    "imageName": "capitaes_da_areia",
+    "duracao FORMATO": "CURTA",
+    "PGM": 241,
+    "Filmes": 3,
+    "Nome do Programa": "Adolescer 2 (A partir de 10 anos)",
+    "imageName": "adolescer_2_a_partir_de_10_anos",
     "planos_de_aula": [],
     "trailer": "",
     "imagens_adicionais": [],
     "videos": [],
-    "Assistir Online": "",
-    "URL": ""
-  },
-  {
-    "Classificação Indicativa POR PGM": 12,
-    "Classificação Indicativa - Descrição": [
-      {
-        "Descrição": "Pesquisar Classificação Indicativa no site do Ministério da Justiça",
-        "url": "https://classindportal.mj.gov.br/consulta-filmes"
-      }
-    ],
-    "Título do filme": "Cara de Fogo",
-    "Direção": "Francisco Cavalcanti",
-    "Curadoria": "",
-    "Elenco": "Jece Valadão, Marlene França, Ana Maria Nabuco, Maurício do Valle, Milton Vilar, Roberto Bataglin, Rodolfo Arena, Jorge Murad, Wilson Viana, Átila Iório, Angelito Mello, José Policena, Mário Petráglia, Mozael Silveira, Francisco Dantas, Labanca, César de Alencar, César Ladeira, Arnaldo Montel, Carlos Imperial, Colé, Costinha, Grande Otelo, Oscarito, Virgínia Lane, Íris Bruzzi, Anilza Leoni, Dircinha Batista, Linda Batista, Emilinha Borba, Marlene, Dalva de Oliveira, Ângela Maria, Cauby Peixoto, Nelson Gonçalves, Francisco Carlos, Jorge Goulart, Nora Ney, Trio de Ouro, Quatro Ases e um Coringa, Blecaute, Bill Farr, Bené Nunes, Ivon Cury, Trio Irakitan, Zé e Zilda, Carmélia Alves, Zezé Gonzaga, Violeta Ferraz, Black-Out, Carlos Augusto, Heleninha Costa, Marion, Ademilde Fonseca, Albertinho Fortuna, Trio Madrigal, Trio Melodia, Os Cariocas, Ruy Rey, Jorge Veiga, Joel e Gaúcho, Nuno Roland, Augusto Calheiros, Gilberto Alves, Carlos Galhardo, Orlando Silva, Sílvio Caldas, Vicente Celestino, Francisco Alves, Mário Reis, Carmen Miranda",
-    "Dur.(´)": 100,
-    "Gênero": "Ação, Drama",
-    "GEN.": "Ficção",
-    "Ano": 1958,
-    "ODS": "3, 10, 16",
-    "ODS_Analisados": "3, 10, 16",
-    "ODS_Justificados": [
-      {
-        "ods": "3",
-        "justificativa": "O filme aborda o isolamento e o sofrimento psicológico de um homem com o rosto desfigurado, explorando o impacto da aparência física na saúde mental e no bem-estar."
-      },
-      {
-        "ods": "10",
-        "justificativa": "A condição do protagonista o torna um pária social, vítima de preconceito e exclusão. Sua história é uma metáfora sobre a desigualdade e a dificuldade de aceitação do que é considerado 'diferente'."
-      },
-      {
-        "ods": "16",
-        "justificativa": "A revolta do personagem contra a sociedade que o rejeita o leva a um caminho de violência e crime, transformando-o em um cangaceiro. O filme explora como a injustiça e a exclusão social podem ser um estopim para a quebra da paz."
-      }
-    ],
-    "nota imdb": {
-      "votantes": "6,4/28",
-      "url": ""
-    },
-    "País": "Brasil",
-    "UF": "RJ",
-    "cidade": "",
-    "Audiodescrição": "",
-    "Closed Caption": "",
-    "Sinopse": "Um homem tem o rosto desfigurado por um acidente e passa a viver isolado da sociedade. Revoltado, torna-se um cangaceiro temido e sanguinário.",
-    "tema (Programadora Brasil)": "",
-    "tags": "",
-    "website": "",
-    "festivais": "",
-    "premios": "",
-    "legendas_outras": "",
-    "material_outros": "",
-    "duracao FORMATO": "LONGA",
-    "PGM": 220,
-    "Filmes": 214,
-    "Nome do Programa": "Cara de Fogo",
-    "imageName": "cara_de_fogo",
-    "planos_de_aula": [],
-    "trailer": "",
-    "imagens_adicionais": [],
-    "videos": [],
-    "Assistir Online": "",
-    "URL": ""
+    "Assistir Online": "https://portacurtas.org.br/filme/?name=Camila_e_o_Espelho",
+    "URL": "https://portacurtas.org.br/busca/?termo=Camila_e_o_Espelho",
+    "busca": "Inválido (Redirecionamento Erro Tamandua)"
   },
   {
     "Classificação Indicativa POR PGM": "Livre",
@@ -13043,37 +12556,26 @@
         "url": "https://classindportal.mj.gov.br/consulta-filmes"
       }
     ],
-    "Título do filme": "Caramujo-flor",
-    "Direção": "Joel Pizzini",
+    "Título do filme": "Caminhos",
+    "Direção": "Fernand Boff e Vinícius Bock",
     "Curadoria": "",
-    "Elenco": "Manoel de Barros",
-    "Dur.(´)": 15,
-    "Gênero": "Documentário",
-    "GEN.": "Documentário",
-    "Ano": 1988,
-    "ODS": "4, 15",
-    "ODS_Analisados": "4, 15",
-    "ODS_Justificados": [
-      {
-        "ods": "4",
-        "justificativa": "O filme é uma adaptação visual da poesia de Manoel de Barros, um dos maiores poetas do Brasil. A obra funciona como uma poderosa ferramenta de educação literária e cultural, divulgando e celebrando a literatura nacional."
-      },
-      {
-        "ods": "15",
-        "justificativa": "A poesia de Manoel de Barros é profundamente conectada à natureza, ao Pantanal e às 'coisas insignificantes' da vida terrestre. O filme traduz em imagens essa valorização do meio ambiente, dos pequenos seres e dos ecossistemas."
-      }
-    ],
+    "Elenco": "Eduardo Sandagorda, Amanda Urnau, Giorgio Donatto, Caio Pereira e Zé Mário Storino",
+    "Dur.(´)": 9,
+    "Gênero": "Esportes",
+    "GEN.": "Ficção",
+    "Ano": 2009,
+    "ODS": "",
     "nota imdb": {
-      "votantes": "7,5/20",
+      "votantes": "",
       "url": ""
     },
     "País": "Brasil",
-    "UF": "MS",
+    "UF": "RJ",
     "cidade": "",
     "Audiodescrição": "",
     "Closed Caption": "",
-    "Sinopse": "Um ensaio poético sobre a obra do poeta Manoel de Barros, que recria o universo de sua poesia através de imagens e sons.",
-    "tema (Programadora Brasil)": "",
+    "Sinopse": "Francisco combina um piquenique com sua vizinha, Bianca, para fazer um trabalho de ciências. No caminho para o encontro, Francisco encontra dois amigos e, com vergonha de dizer que ia encontrar uma garota, acaba indo jogar futebol com os meninos. Quando Francisco decide ir ao encontro de Bianca, ela está decepcionada e ele tenta uma reconciliação.",
+    "tema (Programadora Brasil)": "Infantil",
     "tags": "",
     "website": "",
     "festivais": "",
@@ -13081,16 +12583,157 @@
     "legendas_outras": "",
     "material_outros": "",
     "duracao FORMATO": "CURTA",
-    "PGM": 143,
-    "Filmes": 99,
-    "Nome do Programa": "Cinema e Poesia 2",
-    "imageName": "cinema_e_poesia_2",
+    "PGM": 250,
+    "Filmes": 55,
+    "Nome do Programa": "Curtas Infantis 5",
+    "imageName": "curtas_infantis_5",
     "planos_de_aula": [],
     "trailer": "",
     "imagens_adicionais": [],
     "videos": [],
-    "Assistir Online": "https://portacurtas.org.br/filme/?name=Caramujo-flor",
-    "URL": "https://portacurtas.org.br/busca/?termo=Caramujo-flor",
+    "Assistir Online": "https://portacurtas.org.br/filme/?name=Caminhos",
+    "URL": "https://portacurtas.org.br/busca/?termo=Caminhos",
+    "busca": "Inválido (Redirecionamento Erro Tamandua)"
+  },
+  {
+    "Classificação Indicativa POR PGM": "Livre",
+    "Classificação Indicativa - Descrição": [
+      {
+        "Descrição": "Pesquisar Classificação Indicativa no site do Ministério da Justiça",
+        "url": "https://classindportal.mj.gov.br/consulta-filmes"
+      }
+    ],
+    "Título do filme": "Canções Populares (Azulão e O Pinhal)",
+    "Direção": "Humberto Mauro",
+    "Curadoria": "",
+    "Elenco": "Renata Martelli\nRenato Ferreira\nReinado Romero\n",
+    "Dur.(´)": 8,
+    "Gênero": "Documentário, Romance",
+    "GEN.": "Documentário",
+    "Ano": 1948,
+    "ODS": "",
+    "nota imdb": {
+      "votantes": "",
+      "url": ""
+    },
+    "País": "Brasil",
+    "UF": "RJ",
+    "cidade": "",
+    "Audiodescrição": "",
+    "Closed Caption": "",
+    "Sinopse": "Uma Homenagem ao cinema mudo brasileiro, em uma historia de amor, traiçao e culpa.",
+    "tema (Programadora Brasil)": "cinema mudo",
+    "tags": "cinema mudo",
+    "website": "",
+    "festivais": "Festival de Trieste Italia 2003\nFestival de cinema e video de Gramado 2004\nMostra Goiania Curtas 2003\nFestival Guarnice 2004\nFestival Luso Brasileiro de cinema 2004\n",
+    "premios": "Premio BNB de cinema 2004 - Festival Luso Brasileiro de ciema.\nPremio Melhor diretor Mostra Goiania 2003.\nPremio melhor video captado em super 8 - Mostra Super 8 Campinas SP 2003\nPremio Guarnice de cinema - Melhor video.",
+    "legendas_outras": "",
+    "material_outros": "",
+    "duracao FORMATO": "MÉDIA",
+    "PGM": 33,
+    "Filmes": 94,
+    "Nome do Programa": "Humberto Mauro - Brasilianas I",
+    "imageName": "humberto_mauro_brasilianas_i",
+    "planos_de_aula": [],
+    "trailer": "",
+    "imagens_adicionais": [],
+    "videos": [],
+    "Assistir Online": "https://portacurtas.org.br/filme/?name=Canções_Populares_(Azulão_e_O_Pinhal)",
+    "URL": "https://portacurtas.org.br/busca/?termo=Canções_Populares_(Azulão_e_O_Pinhal)",
+    "busca": "Inválido (Redirecionamento Erro Tamandua)"
+  },
+  {
+    "Classificação Indicativa POR PGM": "Livre",
+    "Classificação Indicativa - Descrição": [
+      {
+        "Descrição": "Pesquisar Classificação Indicativa no site do Ministério da Justiça",
+        "url": "https://classindportal.mj.gov.br/consulta-filmes"
+      }
+    ],
+    "Título do filme": "Canções populares (Chuá...Chuá...e A casinha Pequenina)",
+    "Direção": "Humberto Mauro",
+    "Curadoria": "",
+    "Elenco": "Renata Martelli\nRenato Ferreira\nReinado Romero\n",
+    "Dur.(´)": 7,
+    "Gênero": "Documentário, Romance",
+    "GEN.": "Documentário",
+    "Ano": 1945,
+    "ODS": "",
+    "nota imdb": {
+      "votantes": "",
+      "url": ""
+    },
+    "País": "Brasil",
+    "UF": "RJ",
+    "cidade": "",
+    "Audiodescrição": "",
+    "Closed Caption": "",
+    "Sinopse": "Uma Homenagem ao cinema mudo brasileiro, em uma historia de amor, traiçao e culpa.",
+    "tema (Programadora Brasil)": "cinema mudo",
+    "tags": "cinema mudo",
+    "website": "",
+    "festivais": "Festival de Trieste Italia 2003\nFestival de cinema e video de Gramado 2004\nMostra Goiania Curtas 2003\nFestival Guarnice 2004\nFestival Luso Brasileiro de cinema 2004\n",
+    "premios": "Premio BNB de cinema 2004 - Festival Luso Brasileiro de ciema.\nPremio Melhor diretor Mostra Goiania 2003.\nPremio melhor video captado em super 8 - Mostra Super 8 Campinas SP 2003\nPremio Guarnice de cinema - Melhor video.",
+    "legendas_outras": "",
+    "material_outros": "",
+    "duracao FORMATO": "MÉDIA",
+    "PGM": 33,
+    "Filmes": 92,
+    "Nome do Programa": "Humberto Mauro - Brasilianas I",
+    "imageName": "humberto_mauro_brasilianas_i",
+    "planos_de_aula": [],
+    "trailer": "",
+    "imagens_adicionais": [],
+    "videos": [],
+    "Assistir Online": "https://portacurtas.org.br/filme/?name=Canções_populares_(Chuá...Chuá...e_A_casinha_Pequenina)",
+    "URL": "https://portacurtas.org.br/busca/?termo=Canções_populares_(Chuá...Chuá...e_A_casinha_Pequenina)",
+    "busca": "Inválido (Redirecionamento Erro Tamandua)"
+  },
+  {
+    "Classificação Indicativa POR PGM": 16,
+    "Classificação Indicativa - Descrição": [
+      {
+        "Descrição": "Pesquisar Classificação Indicativa no site do Ministério da Justiça",
+        "url": "https://classindportal.mj.gov.br/consulta-filmes"
+      }
+    ],
+    "Título do filme": "Candeias: da Boca para Fora",
+    "Direção": "Celso Gonçalves",
+    "Curadoria": "",
+    "Elenco": "Renata Martelli\nRenato Ferreira\nReinado Romero\n",
+    "Dur.(´)": 17,
+    "Gênero": "Documentário, Romance",
+    "GEN.": "Documentário",
+    "Ano": 2002,
+    "ODS": "",
+    "nota imdb": {
+      "votantes": "",
+      "url": ""
+    },
+    "País": "Brasil",
+    "UF": "SP",
+    "cidade": "",
+    "Audiodescrição": "",
+    "Closed Caption": "",
+    "Sinopse": "Uma Homenagem ao cinema mudo brasileiro, em uma historia de amor, traiçao e culpa.",
+    "tema (Programadora Brasil)": "cinema mudo",
+    "tags": "cinema mudo",
+    "website": "",
+    "festivais": "Festival de Trieste Italia 2003\nFestival de cinema e video de Gramado 2004\nMostra Goiania Curtas 2003\nFestival Guarnice 2004\nFestival Luso Brasileiro de cinema 2004\n",
+    "premios": "Premio BNB de cinema 2004 - Festival Luso Brasileiro de ciema.\nPremio Melhor diretor Mostra Goiania 2003.\nPremio melhor video captado em super 8 - Mostra Super 8 Campinas SP 2003\nPremio Guarnice de cinema - Melhor video.",
+    "legendas_outras": "",
+    "material_outros": "",
+    "duracao FORMATO": "MÉDIA",
+    "PGM": 36,
+    "Filmes": 112,
+    "Nome do Programa": "Memórias da Boca-do-Lixo",
+    "imageName": "memorias_da_bocadolixo",
+    "planos_de_aula": [],
+    "trailer": "",
+    "imagens_adicionais": [],
+    "videos": [],
+    "Assistir Online": "https://portacurtas.org.br/filme/?name=Candeias:_da_Boca_para_Fora",
+    "URL": "https://portacurtas.org.br/busca/?termo=Candeias:_da_Boca_para_Fora",
     "busca": "Inválido (Redirecionamento Erro Tamandua)"
   },
   {
@@ -13101,40 +12744,25 @@
         "url": "https://classindportal.mj.gov.br/consulta-filmes"
       }
     ],
-    "Título do filme": "Carne e Osso",
-    "Direção": "Cao Hamburger e Fabrizia Pinto",
+    "Título do filme": "Canoa Veloz",
+    "Direção": "Joe Pimentel e Tibico Brasil",
     "Curadoria": "",
-    "Elenco": "Trabalhadores de frigoríficos",
-    "Dur.(´)": 65,
+    "Elenco": "",
+    "Dur.(´)": 13,
     "Gênero": "Documentário",
     "GEN.": "Documentário",
-    "Ano": 2011,
-    "ODS": "3, 8, 12",
-    "ODS_Analisados": "3, 8, 12",
-    "ODS_Justificados": [
-      {
-        "ods": "3",
-        "justificativa": "O documentário expõe os graves problemas de saúde física e mental enfrentados pelos trabalhadores de frigoríficos, como lesões por esforço repetitivo (LER) e estresse, denunciando o impacto do trabalho na saúde e bem-estar."
-      },
-      {
-        "ods": "8",
-        "justificativa": "A obra é uma denúncia contundente das condições de trabalho análogas à escravidão em frigoríficos, com jornadas exaustivas, ritmo acelerado e falta de segurança. É um filme essencial sobre a luta por trabalho decente."
-      },
-      {
-        "ods": "12",
-        "justificativa": "Ao mostrar o 'lado de dentro' da indústria da carne, o filme convida o espectador a refletir sobre a origem dos alimentos e o custo humano por trás da produção em massa, promovendo a conscientização para um consumo mais responsável."
-      }
-    ],
+    "Ano": 2005,
+    "ODS": "",
     "nota imdb": {
-      "votantes": "7,6/45",
+      "votantes": "",
       "url": ""
     },
-    "País": "Brasil",
-    "UF": "SP",
+    "País": "",
+    "UF": "CE",
     "cidade": "",
     "Audiodescrição": "",
     "Closed Caption": "",
-    "Sinopse": "Um retrato do dia a dia dos trabalhadores de frigoríficos no Brasil, que enfrentam condições de trabalho precárias e desumanas.",
+    "Sinopse": "",
     "tema (Programadora Brasil)": "",
     "tags": "",
     "website": "",
@@ -13142,7 +12770,7 @@
     "premios": "",
     "legendas_outras": "",
     "material_outros": "",
-    "duracao FORMATO": "LONGA",
+    "duracao FORMATO": "",
     "PGM": 292,
     "Filmes": 127,
     "Nome do Programa": "Trabalho: Nobreza do Homem?",
@@ -13155,6 +12783,53 @@
     "URL": ""
   },
   {
+    "Classificação Indicativa POR PGM": "Livre",
+    "Classificação Indicativa - Descrição": [
+      {
+        "Descrição": "Pesquisar Classificação Indicativa no site do Ministério da Justiça",
+        "url": "https://classindportal.mj.gov.br/consulta-filmes"
+      }
+    ],
+    "Título do filme": "Cantos de Trabalho - Música Folclórica Brasileira",
+    "Direção": "Humberto Mauro",
+    "Curadoria": "",
+    "Elenco": "",
+    "Dur.(´)": 10,
+    "Gênero": "Ação, Documentário",
+    "GEN.": "Documentário",
+    "Ano": 1955,
+    "ODS": "",
+    "nota imdb": {
+      "votantes": "",
+      "url": ""
+    },
+    "País": "Brasil",
+    "UF": "RJ",
+    "cidade": "",
+    "Audiodescrição": "",
+    "Closed Caption": "",
+    "Sinopse": "Ticumbi - encenação com mais de 200 anos, única na sua organização é realizada na passagem de ano pelos negros da Vila de Santana no município de Conceição da Barra, orla norte do Espírito Santo fronteira com a Bahia. Nessa região existiu o quilomdo do Nêgo Rugério um dos mais importantes da história. A apresentação do Ticumbi, com 05 quadros teatralizados, com estrutura dramática fechada, mantendo rígida marcação, retrata os problemas ou questionamentos da comunidade como um grande jornal a desfilar fazendo paradas estratégicas nas casas e espaços públicos afirmando a sua ocupação revolucionária da cidade, se fazendo poder amparado pela força em louvor de São Benedito na pregação da luta pela libertação.",
+    "tema (Programadora Brasil)": "",
+    "tags": "afro-brasileiro",
+    "website": "",
+    "festivais": "",
+    "premios": "",
+    "legendas_outras": "",
+    "material_outros": "",
+    "duracao FORMATO": "MÉDIA",
+    "PGM": 33,
+    "Filmes": 98,
+    "Nome do Programa": "Humberto Mauro - Brasilianas I",
+    "imageName": "humberto_mauro_brasilianas_i",
+    "planos_de_aula": [],
+    "trailer": "",
+    "imagens_adicionais": [],
+    "videos": [],
+    "Assistir Online": "https://portacurtas.org.br/filme/?name=Cantos_de_Trabalho_-_Música_Folclórica_Brasileira",
+    "URL": "https://portacurtas.org.br/busca/?termo=Cantos_de_Trabalho_-_Música_Folclórica_Brasileira",
+    "busca": "Inválido (Redirecionamento Erro Tamandua)"
+  },
+  {
     "Classificação Indicativa POR PGM": 12,
     "Classificação Indicativa - Descrição": [
       {
@@ -13162,52 +12837,165 @@
         "url": "https://classindportal.mj.gov.br/consulta-filmes"
       }
     ],
-    "Título do filme": "Carolina",
-    "Direção": "Jeferson De",
+    "Título do filme": "Cão Guia",
+    "Direção": "Gustavo Acioli",
     "Curadoria": "",
-    "Elenco": "Carolina Maria de Jesus (imagens de arquivo)",
-    "Dur.(´)": 15,
-    "Gênero": "Documentário",
-    "GEN.": "Documentário",
-    "Ano": 2003,
-    "ODS": "1, 4, 5, 10, 11, 18",
-    "ODS_Analisados": "1, 4, 5, 10, 11, 18",
-    "ODS_Justificados": [
-      {
-        "ods": "1",
-        "justificativa": "O filme retrata a vida de Carolina Maria de Jesus, cuja obra 'Quarto de Despejo' é um dos mais poderosos testemunhos sobre a pobreza, a fome e a luta pela sobrevivência em uma favela de São Paulo."
-      },
-      {
-        "ods": "4",
-        "justificativa": "Apesar de ter estudado apenas até o segundo ano primário, Carolina se tornou uma escritora canônica. Sua história valoriza a educação e a literatura como ferramentas de emancipação e denúncia social."
-      },
-      {
-        "ods": "5",
-        "justificativa": "O documentário celebra a vida de uma mulher forte, mãe solteira e escritora, que rompeu barreiras de gênero, classe e raça para ter sua voz ouvida, sendo um ícone do empoderamento feminino."
-      },
-      {
-        "ods": "10",
-        "justificativa": "A obra de Carolina é uma denúncia visceral da desigualdade social no Brasil. O filme, ao resgatar sua história, reforça a crítica à exclusão e à marginalização dos pobres e negros."
-      },
-      {
-        "ods": "11",
-        "justificativa": "O filme documenta a vida na favela do Canindé, um assentamento humano precário, e dá voz a uma de suas moradoras mais ilustres, valorizando a perspectiva de quem vive a realidade das comunidades marginalizadas."
-      },
-      {
-        "ods": "18",
-        "justificativa": "Carolina Maria de Jesus é uma das mais importantes escritoras negras da história do Brasil. Este documentário é fundamental para a promoção da igualdade racial, ao celebrar seu legado e denunciar o racismo e a exclusão que ela enfrentou."
-      }
-    ],
+    "Elenco": "Graciela Pozzobon e Bruce Gomlevsky. Participação: Luiz Furlanetto",
+    "Dur.(´)": 17,
+    "Gênero": "Drama",
+    "GEN.": "Ficção",
+    "Ano": 1999,
+    "ODS": "",
     "nota imdb": {
-      "votantes": "7,1/14",
+      "votantes": "",
       "url": ""
     },
     "País": "Brasil",
+    "UF": "RJ",
+    "cidade": "",
+    "Audiodescrição": "",
+    "Closed Caption": "",
+    "Sinopse": "Moça cega salva rapaz de atropelamento. Iniciam, assim, um conturbado relacionamento.",
+    "tema (Programadora Brasil)": "",
+    "tags": "",
+    "website": "www.lavoroproducoes.com.br",
+    "festivais": "Festival de Brasília 99, Festival do Rio 99, Festival do Recife 2000, FBCU 2000, Festival de Gramado 2000, Festival de Curitiba 2000, Vitória CineVídeo 2000, Mostra de Tiradentes 2000, Festival Guarnicê 2000, Festival de Montevidéu 2000, Festival Wie Wir Leben 2001, entre outros.",
+    "premios": "Melhor Atriz - Festival do Rio 99; Melhor Atriz, Melhor Ator e Melhor Roteiro - Festival de Brasília 99; Prêmio do Público - Festival Guarnicê 2000; Prêmio do Público e  Prêmio de Contribuição Técnica - FBCU 2000; Melhor Atriz e Prêmio Canal Brasil - Festival de Gramado 2000; Melhor Atriz e Prêmio da Crítica - Festival de Curitiba 2000; Melhor Filme e Melhor Diretor - Festival Universitário de Belo Horizonte 2000; Prêmio Especial do Júri - Festival de Montevidéu 2000.",
+    "legendas_outras": "",
+    "material_outros": "",
+    "duracao FORMATO": "MÉDIA",
+    "PGM": 252,
+    "Filmes": 68,
+    "Nome do Programa": "Encontros e Desencontros do Amor 3",
+    "imageName": "encontros_e_desencontros_do_amor_3",
+    "planos_de_aula": [],
+    "trailer": "",
+    "imagens_adicionais": [],
+    "videos": [],
+    "Assistir Online": "https://portacurtas.org.br/filme/?name=Cão_Guia",
+    "URL": "https://portacurtas.org.br/filme/?name=Cão_Guia",
+    "busca": "Válido"
+  },
+  {
+    "Classificação Indicativa POR PGM": 16,
+    "Classificação Indicativa - Descrição": [
+      {
+        "Descrição": "Pesquisar Classificação Indicativa no site do Ministério da Justiça",
+        "url": "https://classindportal.mj.gov.br/consulta-filmes"
+      }
+    ],
+    "Título do filme": "Capital Circulante",
+    "Direção": "Ricardo Mehedeff",
+    "Curadoria": "",
+    "Elenco": "Ricardo Blat, Fellipe Marques, Bruce Gomlevsky, Leona Cavalli, Thelmo Fernandes, Marcos Caruso e Flávio Bauraqui",
+    "Dur.(´)": 10,
+    "Gênero": "Ação",
+    "GEN.": "Ficção",
+    "Ano": 2004,
+    "ODS": "",
+    "nota imdb": {
+      "votantes": "6/25",
+      "url": ""
+    },
+    "País": "Brasil",
+    "UF": "RJ",
+    "cidade": "",
+    "Audiodescrição": "",
+    "Closed Caption": "",
+    "Sinopse": "História da luta pela sobrevivência nas ruas do Rio de Janeiro, que tem como personagem principal um carro importado esquentado. Seus breves proprietários são pessoas de todas as classes sociais que fazem de tudo para possuí-lo mesmo que por alguns minutos. ",
+    "tema (Programadora Brasil)": "",
+    "tags": "",
+    "website": "www.vfilmes.com",
+    "festivais": "Festival de Gramado 2004\nFestival Internacional de Curtas de São Paulo 2004\nFestival Internacional de Curtas do Rio de Janeiro - Curta Cinema 2004\nFestival de Biarritz Cinemas et Cultures d'Amerique 2005\nFestival Internacional de Guadalajara 2005\nToronto Latin Film Video Festival 2005\nWorldwide Short Film Festival - Canada 2005\nBrasil Noar 2005\nBrasil Plural 2005\nFenart - Festival Nacional de Artes da Paraíba 2004\nGoiânia Mostra Curtas 2004\nMostra do Filme Livre 2004\nMostra de Cinema de Tiradentes 2004\nFestival de Cinema de Belém 2005\nFestival Internacional de Curtas de Belo Horizonte 2005\nFestival Luso-brasileiro de Curtas de Sergipe 2005\nInternational Film Festival of Uruguay 2004",
+    "premios": "Melhor direção no Brazilian Film Festival of Miami 2005\nMelhor Música no Festival de Gramado 2004\nMelhor Fotografia no FAM - Florianópolis Audiovisual Mercosul 2005\nMelhor Música no FAM - Florianópolis Audiovisual Mercosul 2005\nMelhor direção no Festival Amazonas Filmes 2004 ",
+    "legendas_outras": "",
+    "material_outros": "",
+    "duracao FORMATO": "CURTA",
+    "PGM": 201,
+    "Filmes": 117,
+    "Nome do Programa": "Consumo e alienação",
+    "imageName": "consumo_e_alienacao",
+    "planos_de_aula": [],
+    "trailer": "",
+    "imagens_adicionais": [],
+    "videos": [],
+    "Assistir Online": "https://portacurtas.org.br/filme/?name=Capital_Circulante",
+    "URL": "https://portacurtas.org.br/filme/?name=Capital_Circulante",
+    "busca": "Válido"
+  },
+  {
+    "Classificação Indicativa POR PGM": "Livre",
+    "Classificação Indicativa - Descrição": [
+      {
+        "Descrição": "Pesquisar Classificação Indicativa no site do Ministério da Justiça",
+        "url": "https://classindportal.mj.gov.br/consulta-filmes"
+      }
+    ],
+    "Título do filme": "Caquinhas (a série)",
+    "Direção": "Cesar Cabral",
+    "Curadoria": "",
+    "Elenco": "",
+    "Dur.(´)": 5,
+    "Gênero": "Animação",
+    "GEN.": "Animação",
+    "Ano": 2003,
+    "ODS": "",
+    "nota imdb": {
+      "votantes": "",
+      "url": ""
+    },
+    "País": "",
     "UF": "SP",
     "cidade": "",
     "Audiodescrição": "",
     "Closed Caption": "",
-    "Sinopse": "Um documentário sobre a vida e a obra da escritora Carolina Maria de Jesus, autora do best-seller 'Quarto de Despejo'.",
+    "Sinopse": "",
+    "tema (Programadora Brasil)": "",
+    "tags": "",
+    "website": "",
+    "festivais": "",
+    "premios": "",
+    "legendas_outras": "",
+    "material_outros": "",
+    "duracao FORMATO": "",
+    "PGM": 94,
+    "Filmes": 144,
+    "Nome do Programa": "Animações para primeira infância",
+    "imageName": "animacoes_para_primeira_infancia",
+    "planos_de_aula": [],
+    "trailer": "",
+    "imagens_adicionais": [],
+    "videos": [],
+    "Assistir Online": "",
+    "URL": ""
+  },
+  {
+    "Classificação Indicativa POR PGM": 12,
+    "Classificação Indicativa - Descrição": [
+      {
+        "Descrição": "Pesquisar Classificação Indicativa no site do Ministério da Justiça",
+        "url": "https://classindportal.mj.gov.br/consulta-filmes"
+      }
+    ],
+    "Título do filme": "Caramujo Flor",
+    "Direção": "Joel Pizzini",
+    "Curadoria": "",
+    "Elenco": "",
+    "Dur.(´)": 20,
+    "Gênero": "",
+    "GEN.": "Experimental",
+    "Ano": 1998,
+    "ODS": "",
+    "nota imdb": {
+      "votantes": "5,9/19",
+      "url": ""
+    },
+    "País": "Brasil",
+    "UF": "SP/MS",
+    "cidade": "",
+    "Audiodescrição": "",
+    "Closed Caption": "",
+    "Sinopse": "De baixo de uma carteira, num cesto de lixo ou mesmo numa rua, revelam-se situações cômicas das “Caquinhas” espalhadas no dia-a-dia.",
     "tema (Programadora Brasil)": "",
     "tags": "",
     "website": "",
@@ -13216,8 +13004,288 @@
     "legendas_outras": "",
     "material_outros": "",
     "duracao FORMATO": "CURTA",
+    "PGM": 143,
+    "Filmes": 102,
+    "Nome do Programa": "Cinema e Poesia 2",
+    "imageName": "cinema_e_poesia_2",
+    "planos_de_aula": [],
+    "trailer": "",
+    "imagens_adicionais": [],
+    "videos": [],
+    "Assistir Online": "https://portacurtas.org.br/filme/?name=Caramujo_Flor",
+    "URL": "https://portacurtas.org.br/busca/?termo=Caramujo_Flor",
+    "busca": "Inválido (Redirecionamento Erro Tamandua)"
+  },
+  {
+    "Classificação Indicativa POR PGM": 12,
+    "Classificação Indicativa - Descrição": [
+      {
+        "Descrição": "Pesquisar Classificação Indicativa no site do Ministério da Justiça",
+        "url": "https://classindportal.mj.gov.br/consulta-filmes"
+      }
+    ],
+    "Título do filme": "Carioca, suburbano, mulato, mandro - João Nogueira",
+    "Direção": "Jom Tob Azulay",
+    "Curadoria": "",
+    "Elenco": "João Nogueira e Sergio Cabral",
+    "Dur.(´)": 13,
+    "Gênero": "Documentário",
+    "GEN.": "Documentário",
+    "Ano": 1979,
+    "ODS": "",
+    "nota imdb": {
+      "votantes": "",
+      "url": ""
+    },
+    "País": "Brasil",
+    "UF": "RJ",
+    "cidade": "",
+    "Audiodescrição": "",
+    "Closed Caption": "",
+    "Sinopse": "Documentário sobre o cantor e compositor popular do Rio de Janeiro, João Nogueira",
+    "tema (Programadora Brasil)": "música popular urbana",
+    "tags": "música",
+    "website": "www.jtazulay.com.br",
+    "festivais": "",
+    "premios": "",
+    "legendas_outras": "",
+    "material_outros": "",
+    "duracao FORMATO": "CURTA",
+    "PGM": 153,
+    "Filmes": 154,
+    "Nome do Programa": "Samba e bossa-nova: música do Brasil",
+    "imageName": "samba_e_bossanova_musica_do_brasil",
+    "planos_de_aula": [],
+    "trailer": "",
+    "imagens_adicionais": [],
+    "videos": [],
+    "Assistir Online": "https://portacurtas.org.br/filme/?name=Carioca,_suburbano,_mulato,_mandro_-_João_Nogueira",
+    "URL": "https://portacurtas.org.br/busca/?termo=Carioca",
+    "busca": "Inválido (Redirecionamento Erro Tamandua)"
+  },
+  {
+    "Classificação Indicativa POR PGM": "Livre",
+    "Classificação Indicativa - Descrição": [
+      {
+        "Descrição": "Pesquisar Classificação Indicativa no site do Ministério da Justiça",
+        "url": "https://classindportal.mj.gov.br/consulta-filmes"
+      }
+    ],
+    "Título do filme": "Carmen Miranda",
+    "Direção": "Jorge lleli",
+    "Curadoria": "",
+    "Elenco": "",
+    "Dur.(´)": 18,
+    "Gênero": "Documentário, Drama",
+    "GEN.": "Documentário",
+    "Ano": 1969,
+    "ODS": "",
+    "nota imdb": {
+      "votantes": "7,5/8",
+      "url": ""
+    },
+    "País": "Brasil",
+    "UF": "RJ",
+    "cidade": "",
+    "Audiodescrição": "AD",
+    "Closed Caption": "CC",
+    "Sinopse": "A morte de Carmen Miranda, em 1955, emocionou todo o Brasil. Carmen foi a primeira atriz de formação brasileira a se projetar no cinema internacional. Cenas de sua vida e de seus filmes, mostrando seus números musicais de maior sucesso.",
+    "tema (Programadora Brasil)": "carmen miranda",
+    "tags": "",
+    "website": "",
+    "festivais": "",
+    "premios": "",
+    "legendas_outras": "",
+    "material_outros": "",
+    "duracao FORMATO": "MÉDIA",
+    "PGM": 160,
+    "Filmes": 9,
+    "Nome do Programa": "Carmen Miranda: Bananas Is My Business - CC e AD e Carmen Miranda",
+    "imageName": "carmen_miranda_bananas_is_my_business_cc_e_ad_e_carmen_miranda",
+    "planos_de_aula": [],
+    "trailer": "",
+    "imagens_adicionais": [],
+    "videos": [],
+    "Assistir Online": "https://portacurtas.org.br/filme/?name=Carmen_Miranda",
+    "URL": "https://portacurtas.org.br/filme/?name=Carmen_Miranda",
+    "busca": "Válido"
+  },
+  {
+    "Classificação Indicativa POR PGM": "Livre",
+    "Classificação Indicativa - Descrição": [
+      {
+        "Descrição": "Pesquisar Classificação Indicativa no site do Ministério da Justiça",
+        "url": "https://classindportal.mj.gov.br/consulta-filmes"
+      }
+    ],
+    "Título do filme": "Carmen Miranda: Bananas Is My Business - CC e AD",
+    "Direção": "Helena Solberg",
+    "Curadoria": "",
+    "Elenco": "Cynthia Adler, Eric Barreto, Letícia Monte",
+    "Dur.(´)": 92,
+    "Gênero": "Documentário, Romance",
+    "GEN.": "Documentário Ficcional",
+    "Ano": 1995,
+    "ODS": "",
+    "nota imdb": {
+      "votantes": "7,9/235",
+      "url": ""
+    },
+    "País": "Brasil",
+    "UF": "RJ",
+    "cidade": "",
+    "Audiodescrição": "AD",
+    "Closed Caption": "CC",
+    "Sinopse": "O filme conta a extraordinária história da estrela brasileira que conquistou a imaginação e o coração do mundo. Carmen Miranda, nascida em Portugal e criada no Brasil, foi uma artista de imenso talento. Já famosa na América do Sul, em 1939 ela é descoberta por Lee Shubert que a leva para os EUA, onde tornou-se “The Brazilian Bombshell.” Carmen Miranda permanesce como a mais famosa brasileira a conquistar as telas do cinema. No entanto para os norte americanos era mais conhecida como uma figura caricata que carregava uma enorme pilha de bananas na cabeça. O filme tenta regatá-la dessa trama, devolvendo-a o que há de mais fundamental: sua identidade.",
+    "tema (Programadora Brasil)": "Música, Samba, política da boa-vizinhança, identidade cultural, relação Brasil/USA, imagem da mulher",
+    "tags": "Carmen Miranda; Identidade cultural",
+    "website": "www.radiantefilmes.com",
+    "festivais": "27th Brasília Festival of Brazilian Cinema, 1994, (AUDIENCE AWARD FOR BEST FILM, SPECIAL JURY PRIZE, FILM CRITIC'S PRIZE)\nMelbourne International Film Festival, Australia, 1995\nLocarno International Film Festival, Switzerland, 1995\nToronto International Film Festival, Canada, 1995\nChicago International Film Festival, USA, 1995 (WINNER BEST DOCUMENTARY)\nYamagata International Documentary Film Festival, Japan, 1995\nLondon Film Festival, United Kingdom, 1995\nHavana International Film Festival, Cuba, 1995 (WINNER BEST DOCUMENTARY)\nRotterdam International Film Festival, The Netherlands, 1996\nGöteborg Film Festival, Sweden, 1996\nMontevideo Film Festival, Uruguay, 1996 (WINNER BEST FILM)\nSanta Barbara Film Festival, USA, 1996\nR'encontres de Cinema d'amerique Latine, France, 1996\nFestival de Film de Femmes, Créteil, France, 1996\nHong Kong Film Festival, HK, 1996\nMostra Internacional de Films de Dones, Barcelona, 1996\nJerusalem Film Festival, Israel, 1996\nGalway Film Festival, Ireland, 1996\nWellington Film Festival, New Zealand, 1996\nLatin American Film Festival, London, 1996\nHelsinki Film Festival, Switzerland, 1996\nFilms From the South, Norway, 1996\nFestival de Cine Realizado por Mujeres, Madrid, 1996\nEncontros Internacionais de Cinema, Portugal, 1996 (AUDIENCE AWARD FOR BEST FILM)\nfemme totale Film Festival, France, 1999\nFlying Broom Women's Film Festival, Ankara, Turkey, 2000\n",
+    "premios": "Brasília 1994: Melhor Filme - Júri Popular, Prêmio da Crítica, Prêmio Especial do Júri.\nChicago International Film Festival 1995: Gold Hugo para Melhor Docudrama.\nFestival del Nuevo Cinema de America Latina, Havana 1995: Melhor Documentário.\nMontevideo 1996: Melhor Filme\nEncontros Internacionais de Cinema, Portugal 1996: Melhor Filmes pelo Júri Popular",
+    "legendas_outras": "",
+    "material_outros": "",
+    "duracao FORMATO": "LONGA",
+    "PGM": 160,
+    "Filmes": 8,
+    "Nome do Programa": "Carmen Miranda: Bananas Is My Business - CC e AD e Carmen Miranda",
+    "imageName": "carmen_miranda_bananas_is_my_business_cc_e_ad_e_carmen_miranda",
+    "planos_de_aula": [],
+    "trailer": "",
+    "imagens_adicionais": [],
+    "videos": [],
+    "Assistir Online": "",
+    "URL": ""
+  },
+  {
+    "Classificação Indicativa POR PGM": 10,
+    "Classificação Indicativa - Descrição": [
+      {
+        "Descrição": "Pesquisar Classificação Indicativa no site do Ministério da Justiça",
+        "url": "https://classindportal.mj.gov.br/consulta-filmes"
+      }
+    ],
+    "Título do filme": "Carnaval Atlântida",
+    "Direção": "José Carlos Burle",
+    "Curadoria": "",
+    "Elenco": "Oscarito, Grande Otelo, Cyll Farney, Eliana, José Lewgoy, Colé, Renato Restier, Wilson Grey, Iracema VItória, Carlos Alberto, Blecaute, Francisco Carlos, Bill Farney, Nora Ney, Dick Farney, Aurélio Teixeira, Jesus Ruas, Leonel Saraiva, Rosa Sandrini, Victor Binot, W. Hanner, Aurelina Lisboa, Argentina Della Torre, Edith Tremonte, Edmundo Carlo, Indrid Germer, Isaura Henriques, Marlene Barroso, Maurício Loyola, Moacir Ferreira, Núcia Miranda, Oscar B. Freitas Freitas. Participação especial: Maria Antonieta Pons",
+    "Dur.(´)": 92,
+    "Gênero": "Comédia",
+    "GEN.": "Ficção",
+    "Ano": 1952,
+    "ODS": "",
+    "nota imdb": {
+      "votantes": "7/86",
+      "url": ""
+    },
+    "País": "Brasil",
+    "UF": "RJ",
+    "cidade": "",
+    "Audiodescrição": "",
+    "Closed Caption": "",
+    "Sinopse": "Xenofontes, um sisudo professor de mitologia grega, é contratado pelo produtor Cecílio B. de Milho como consultor da adaptação do clássico Helena de Tróia para o cinema.  Ao mesmo tempo, dois empregados do estúdio, que trabalham como faxineiros, sonham em transformar o épico grego numa comédia carnavalesca. (Na base da CB tem uma sinopse bem mais extensa e confusa)",
+    "tema (Programadora Brasil)": "",
+    "tags": "",
+    "website": "",
+    "festivais": "",
+    "premios": "",
+    "legendas_outras": "",
+    "material_outros": "",
+    "duracao FORMATO": "LONGA",
+    "PGM": 261,
+    "Filmes": 10,
+    "Nome do Programa": "Carnaval Atlântida e O Que Foi o Carnaval de 1920!",
+    "imageName": "carnaval_atlantida_e_o_que_foi_o_carnaval_de_1920",
+    "planos_de_aula": [],
+    "trailer": "",
+    "imagens_adicionais": [],
+    "videos": [],
+    "Assistir Online": "",
+    "URL": ""
+  },
+  {
+    "Classificação Indicativa POR PGM": "Livre",
+    "Classificação Indicativa - Descrição": [
+      {
+        "Descrição": "Pesquisar Classificação Indicativa no site do Ministério da Justiça",
+        "url": "https://classindportal.mj.gov.br/consulta-filmes"
+      }
+    ],
+    "Título do filme": "Carnaval dos Deuses",
+    "Direção": "Tata Amaral",
+    "Curadoria": "",
+    "Elenco": "João Victor como Jacob\nKetheleyn Keys como Ana\nLeo Palhano  como Mairun\nHiyan Watanabe como João\nMarina Medeiros como Professora\n",
+    "Dur.(´)": 10,
+    "Gênero": "",
+    "GEN.": "Ficção",
+    "Ano": 2010,
+    "ODS": "",
+    "nota imdb": {
+      "votantes": "",
+      "url": ""
+    },
+    "País": "Brasil",
+    "UF": "SP",
+    "cidade": "",
+    "Audiodescrição": "",
+    "Closed Caption": "",
+    "Sinopse": "Jacob, Mairun e João têm seis anos e confeccionam suas fantasias de carnaval para a festa da escola. As crianças estão fazendo suas fantasias de carnaval, mas Ana não participa porque acha que carnaval é pecado. O impasse provoca uma conversa entre os amiguinhos sobre suas diferentes origens religiosas.",
+    "tema (Programadora Brasil)": "",
+    "tags": "",
+    "website": "",
+    "festivais": "",
+    "premios": "",
+    "legendas_outras": "",
+    "material_outros": "",
+    "duracao FORMATO": "CURTA",
+    "PGM": 282,
+    "Filmes": 60,
+    "Nome do Programa": "Curtas Infantis 7: Diversidade",
+    "imageName": "curtas_infantis_7_diversidade",
+    "planos_de_aula": [],
+    "trailer": "",
+    "imagens_adicionais": [],
+    "videos": [],
+    "Assistir Online": "https://portacurtas.org.br/filme/?name=Carnaval_dos_Deuses",
+    "URL": "https://portacurtas.org.br/busca/?termo=Carnaval_dos_Deuses",
+    "busca": "Inválido (Redirecionamento Erro Tamandua)"
+  },
+  {
+    "Classificação Indicativa POR PGM": 12,
+    "Classificação Indicativa - Descrição": [
+      {
+        "Descrição": "Pesquisar Classificação Indicativa no site do Ministério da Justiça",
+        "url": "https://classindportal.mj.gov.br/consulta-filmes"
+      }
+    ],
+    "Título do filme": "Carolina",
+    "Direção": "Jefferson De",
+    "Curadoria": "",
+    "Elenco": "Zezé Motta \ne \nGabrielly de Abreu",
+    "Dur.(´)": 14,
+    "Gênero": "Documentário",
+    "GEN.": "Documentário",
+    "Ano": 2003,
+    "ODS": "",
+    "nota imdb": {
+      "votantes": "5,4/17",
+      "url": ""
+    },
+    "País": "Brasil",
+    "UF": "SP",
+    "cidade": "",
+    "Audiodescrição": "",
+    "Closed Caption": "",
+    "Sinopse": "Brasil. Final dos anos 50. Carolina de Jesus escreve seu diário. Dentro de seu barraco ela denuncia a fome, o preconceito e a miséria. Publicada, torna-se um sucesso editorial, sendo editada em 13 línguas. Apesar do reconhecimento imediato e explosivo, a “exótica” mulher negra e ex-favelada falece pobre. Passadas algumas décadas, as palavras de Carolina continuam a ser uma denúncia contra a miséria em que se encontram milhões de pessoas.",
+    "tema (Programadora Brasil)": "Não disponível",
+    "tags": "",
+    "website": "",
+    "festivais": "",
+    "premios": "",
+    "legendas_outras": "",
+    "material_outros": "",
+    "duracao FORMATO": "CURTA",
     "PGM": 49,
-    "Filmes": 20,
+    "Filmes": 18,
     "Nome do Programa": "A negação do Brasil e Carolina",
     "imageName": "a_negacao_do_brasil_e_carolina",
     "planos_de_aula": [],
@@ -13236,40 +13304,33 @@
         "url": "https://classindportal.mj.gov.br/consulta-filmes"
       }
     ],
-    "Título do filme": "Carrego Comigo",
-    "Direção": "Arthur Lins",
+    "Título do filme": "Carrego comigo",
+    "Direção": "Chico Teixeira",
     "Curadoria": "",
-    "Elenco": "Fernando Teixeira",
-    "Dur.(´)": 15,
-    "Gênero": "Drama",
-    "GEN.": "Ficção",
-    "Ano": 2008,
-    "ODS": "3",
-    "ODS_Analisados": "3",
-    "ODS_Justificados": [
-      {
-        "ods": "3",
-        "justificativa": "O filme é uma metáfora sobre o peso das memórias, dos traumas e dos fardos emocionais que carregamos ao longo da vida. A jornada do homem com a caixa misteriosa é uma poderosa alegoria sobre saúde mental e o processo de lidar com o passado."
-      }
-    ],
+    "Elenco": "documentário",
+    "Dur.(´)": 65,
+    "Gênero": "Documentário, Mistério",
+    "GEN.": "Documentário",
+    "Ano": 2001,
+    "ODS": "",
     "nota imdb": {
-      "votantes": "7,1/11",
+      "votantes": "8,3/6",
       "url": ""
     },
     "País": "Brasil",
-    "UF": "PB",
+    "UF": "SP",
     "cidade": "",
     "Audiodescrição": "",
     "Closed Caption": "",
-    "Sinopse": "Um homem carrega uma caixa misteriosa por uma estrada de terra. O que há dentro dela?",
-    "tema (Programadora Brasil)": "",
+    "Sinopse": "Em Carrego comigo Chico Teixeira lança um olhar atento e terno sobre o universo dos gêmeos - como fizera antes com o dos anões, no premiado curta Criaturas que nascem em segredo (1996). A partir do cotidiano de treze pares de irmãos idênticos, revela-se se um complexo universo com regras próprias. Famosos ou não, os gêmeos elaboram respostas específicas para questões universais como a identidade de cada um, uma solidão de outro tipo, a morte como que multiplicada. Entre os personagens encontram-se os cartunistas Chico e Paulo Caruso e as cantoras Pepê e Neném\n",
+    "tema (Programadora Brasil)": "Gêmeos",
     "tags": "",
-    "website": "",
-    "festivais": "",
-    "premios": "",
+    "website": "www.superfilmes.com.br",
+    "festivais": "..",
+    "premios": "..",
     "legendas_outras": "",
     "material_outros": "",
-    "duracao FORMATO": "CURTA",
+    "duracao FORMATO": "MÉDIA",
     "PGM": 134,
     "Filmes": 47,
     "Nome do Programa": "Carrego comigo + A pessoa é para o que nasce",
@@ -13278,8 +13339,8 @@
     "trailer": "",
     "imagens_adicionais": [],
     "videos": [],
-    "Assistir Online": "https://portacurtas.org.br/filme/?name=Carrego_Comigo",
-    "URL": "https://portacurtas.org.br/busca/?termo=Carrego_Comigo",
+    "Assistir Online": "https://portacurtas.org.br/filme/?name=Carrego_comigo",
+    "URL": "https://portacurtas.org.br/busca/?termo=Carrego_comigo",
     "busca": "Inválido (Redirecionamento Erro Tamandua)"
   },
   {
@@ -13290,148 +13351,63 @@
         "url": "https://classindportal.mj.gov.br/consulta-filmes"
       }
     ],
-    "Título do filme": "Carro de Bois",
-    "Direção": "Humberto Mauro",
+    "Título do filme": "Carreto",
+    "Direção": "Cláudio Marques e Marília Hughes",
     "Curadoria": "",
     "Elenco": "",
-    "Dur.(´)": 10,
-    "Gênero": "Documentário",
-    "GEN.": "Documentário",
-    "Ano": 1974,
-    "ODS": "8, 9, 11",
-    "ODS_Analisados": "8, 9, 11",
-    "ODS_Justificados": [
-      {
-        "ods": "8",
-        "justificativa": "O filme documenta o carro de bois, uma forma de trabalho e transporte tradicional do meio rural brasileiro, valorizando o saber-fazer e a cultura associada a essa atividade econômica."
-      },
-      {
-        "ods": "9",
-        "justificativa": "A obra registra uma tecnologia e uma infraestrutura de transporte que foram fundamentais para o desenvolvimento do interior do Brasil, servindo como um documento histórico sobre a evolução da indústria e da logística no país."
-      },
-      {
-        "ods": "11",
-        "justificativa": "Ao focar no carro de bois, Humberto Mauro preserva e celebra um elemento central do patrimônio cultural imaterial das comunidades rurais, ajudando a salvaguardar a memória e a identidade do campo brasileiro."
-      }
-    ],
-    "nota imdb": {
-      "votantes": "7,1/63",
-      "url": ""
-    },
-    "País": "Brasil",
-    "UF": "RJ",
-    "cidade": "",
-    "Audiodescrição": "",
-    "Closed Caption": "",
-    "Sinopse": "Um documentário poético sobre o carro de bois, meio de transporte tradicional do interior do Brasil.",
-    "tema (Programadora Brasil)": "",
-    "tags": "",
-    "website": "",
-    "festivais": "",
-    "premios": "",
-    "legendas_outras": "",
-    "material_outros": "",
-    "duracao FORMATO": "CURTA",
-    "PGM": 33,
-    "Filmes": 94,
-    "Nome do Programa": "Humberto Mauro - Brasilianas I",
-    "imageName": "humberto_mauro_brasilianas_i",
-    "planos_de_aula": [],
-    "trailer": "",
-    "imagens_adicionais": [],
-    "videos": [],
-    "Assistir Online": "https://portacurtas.org.br/filme/?name=Carro_de_Bois",
-    "URL": "https://portacurtas.org.br/busca/?termo=Carro_de_Bois",
-    "busca": "Inválido (Redirecionamento Erro Tamandua)"
-  },
-  {
-    "Classificação Indicativa POR PGM": 12,
-    "Classificação Indicativa - Descrição": [
-      {
-        "Descrição": "Pesquisar Classificação Indicativa no site do Ministério da Justiça",
-        "url": "https://classindportal.mj.gov.br/consulta-filmes"
-      }
-    ],
-    "Título do filme": "Carta Branca",
-    "Direção": "Leandro HBL",
-    "Curadoria": "",
-    "Elenco": "Wagner Moura, Milhem Cortaz, Gregório Duvivier",
-    "Dur.(´)": 15,
-    "Gênero": "Comédia",
+    "Dur.(´)": 11,
+    "Gênero": "",
     "GEN.": "Ficção",
-    "Ano": 2013,
-    "ODS": "8, 16",
-    "ODS_Analisados": "8, 16",
-    "ODS_Justificados": [
-      {
-        "ods": "8",
-        "justificativa": "A obtenção da carteira de motorista é, para muitas pessoas, um passo crucial para o acesso a melhores oportunidades de trabalho. O filme aborda, de forma cômica, essa barreira para o crescimento econômico individual."
-      },
-      {
-        "ods": "16",
-        "justificativa": "O curta satiriza a burocracia, a ineficiência e a potencial corrupção das instituições responsáveis pela emissão de documentos, como o Detran. É uma crítica bem-humorada à fragilidade e à falta de transparência de certas instituições públicas."
-      }
-    ],
-    "nota imdb": {
-      "votantes": "6,8/104",
-      "url": ""
-    },
-    "País": "Brasil",
-    "UF": "RJ",
-    "cidade": "",
-    "Audiodescrição": "",
-    "Closed Caption": "",
-    "Sinopse": "Um homem tenta tirar sua carteira de motorista pela décima vez. Uma comédia sobre a burocracia e a perseverança.",
-    "tema (Programadora Brasil)": "",
-    "tags": "",
-    "website": "",
-    "festivais": "",
-    "premios": "",
-    "legendas_outras": "",
-    "material_outros": "",
-    "duracao FORMATO": "CURTA",
-    "PGM": 280,
-    "Filmes": 50,
-    "Nome do Programa": "Comédias Contemorâneas 3",
-    "imageName": "comedias_contemoraneas_3",
-    "planos_de_aula": [],
-    "trailer": "",
-    "imagens_adicionais": [],
-    "videos": [],
-    "Assistir Online": "https://portacurtas.org.br/filme/?name=Carta_Branca",
-    "URL": "https://portacurtas.org.br/busca/?termo=Carta_Branca",
-    "busca": "Inválido (Redirecionamento Erro Tamandua)"
-  },
-  {
-    "Classificação Indicativa POR PGM": 12,
-    "Classificação Indicativa - Descrição": [
-      {
-        "Descrição": "Pesquisar Classificação Indicativa no site do Ministério da Justiça",
-        "url": "https://classindportal.mj.gov.br/consulta-filmes"
-      }
-    ],
-    "Título do filme": "Cartas da Mãe",
-    "Direção": "Fernando Kinas e Marina Willer",
-    "Curadoria": "",
-    "Elenco": "Lélia Abramo",
-    "Dur.(´)": 15,
-    "Gênero": "Drama",
-    "GEN.": "Ficção",
-    "Ano": 1990,
-    "ODS": "3, 5",
-    "ODS_Analisados": "3, 5",
-    "ODS_Justificados": [
-      {
-        "ods": "3",
-        "justificativa": "O filme explora a solidão, a saudade e a necessidade de comunicação de uma mãe idosa, abordando o impacto do envelhecimento e do distanciamento familiar na saúde mental e no bem-estar."
-      },
-      {
-        "ods": "5",
-        "justificativa": "A obra é centrada na perspectiva de uma mulher idosa, dando voz aos seus sentimentos e à sua experiência. Ao focar na figura da mãe e em sua subjetividade, o filme contribui para a representação da mulher na terceira idade."
-      }
-    ],
+    "Ano": 2009,
+    "ODS": "",
     "nota imdb": {
       "votantes": "",
+      "url": ""
+    },
+    "País": "",
+    "UF": "BA",
+    "cidade": "",
+    "Audiodescrição": "",
+    "Closed Caption": "",
+    "Sinopse": "",
+    "tema (Programadora Brasil)": "",
+    "tags": "",
+    "website": "",
+    "festivais": "",
+    "premios": "",
+    "legendas_outras": "",
+    "material_outros": "",
+    "duracao FORMATO": "",
+    "PGM": 249,
+    "Filmes": 50,
+    "Nome do Programa": "Curta Criança 4",
+    "imageName": "curta_crianca_4",
+    "planos_de_aula": [],
+    "trailer": "",
+    "imagens_adicionais": [],
+    "videos": [],
+    "Assistir Online": "",
+    "URL": ""
+  },
+  {
+    "Classificação Indicativa POR PGM": 16,
+    "Classificação Indicativa - Descrição": [
+      {
+        "Descrição": "Pesquisar Classificação Indicativa no site do Ministério da Justiça",
+        "url": "https://classindportal.mj.gov.br/consulta-filmes"
+      }
+    ],
+    "Título do filme": "Cartão vermelho",
+    "Direção": "Laís Bodansky",
+    "Curadoria": "",
+    "Elenco": "Camila Kolber, Francisco Rojo, Danilo Clauber Ferreira, Guilherme Jayme de Carvalho, Rodrigo Foryan, Felipe Teixeira Azevedo, Reginaldo Oliveira Jr., Alexandre Soares Borges, Gabriel dos Reis Lisboa, Felipe Augusto Barbosa, Erick Maximiniano Silva, Renato Souza Recoder, Rubens Gibello Gatto Neto\n\nLocução: Orlando Viggiani Filho\n",
+    "Dur.(´)": 14,
+    "Gênero": "Esportes",
+    "GEN.": "Ficção",
+    "Ano": 1994,
+    "ODS": "",
+    "nota imdb": {
+      "votantes": "5,6/13",
       "url": ""
     },
     "País": "Brasil",
@@ -13439,7 +13415,7 @@
     "cidade": "",
     "Audiodescrição": "",
     "Closed Caption": "",
-    "Sinopse": "Uma mãe escreve cartas para o filho ausente, revelando seus sentimentos e sua solidão.",
+    "Sinopse": "Cartão Vermelho, este premiado curta-metragem da jovem diretora Laís Bodanzky, revela o mundo de Fernanda  uma adolescente que joga futebol com os meninos – no momento em que é surpreendida pelos desejos de mulher",
     "tema (Programadora Brasil)": "",
     "tags": "",
     "website": "",
@@ -13448,17 +13424,63 @@
     "legendas_outras": "",
     "material_outros": "",
     "duracao FORMATO": "CURTA",
-    "PGM": 149,
-    "Filmes": 138,
-    "Nome do Programa": "MaiorIdade",
-    "imageName": "maioridade",
+    "PGM": 102,
+    "Filmes": 192,
+    "Nome do Programa": "Olhares femininos",
+    "imageName": "olhares_femininos",
     "planos_de_aula": [],
     "trailer": "",
     "imagens_adicionais": [],
     "videos": [],
-    "Assistir Online": "https://portacurtas.org.br/filme/?name=Cartas_da_Mãe",
-    "URL": "https://portacurtas.org.br/busca/?termo=Cartas_da_Mãe",
-    "busca": "Inválido (Redirecionamento Erro Tamandua)"
+    "Assistir Online": "https://portacurtas.org.br/filme/?name=Cartão_vermelho",
+    "URL": "https://portacurtas.org.br/filme/?name=Cartão_vermelho",
+    "busca": "Válido"
+  },
+  {
+    "Classificação Indicativa POR PGM": 12,
+    "Classificação Indicativa - Descrição": [
+      {
+        "Descrição": "Pesquisar Classificação Indicativa no site do Ministério da Justiça",
+        "url": "https://classindportal.mj.gov.br/consulta-filmes"
+      }
+    ],
+    "Título do filme": "cartas da Mãe",
+    "Direção": "Fernando Kinas",
+    "Curadoria": "",
+    "Elenco": "",
+    "Dur.(´)": 28,
+    "Gênero": "Documentário",
+    "GEN.": "Documentário",
+    "Ano": 2003,
+    "ODS": "",
+    "nota imdb": {
+      "votantes": "",
+      "url": ""
+    },
+    "País": "",
+    "UF": "SP",
+    "cidade": "",
+    "Audiodescrição": "",
+    "Closed Caption": "",
+    "Sinopse": "",
+    "tema (Programadora Brasil)": "",
+    "tags": "",
+    "website": "",
+    "festivais": "",
+    "premios": "",
+    "legendas_outras": "",
+    "material_outros": "",
+    "duracao FORMATO": "",
+    "PGM": 243,
+    "Filmes": 16,
+    "Nome do Programa": "Anos de Chumbo 2",
+    "imageName": "anos_de_chumbo_2",
+    "planos_de_aula": [],
+    "trailer": "",
+    "imagens_adicionais": [],
+    "videos": [],
+    "Assistir Online": "",
+    "URL": ""
   },
   {
     "Classificação Indicativa POR PGM": 10,
@@ -23042,11 +23064,7 @@
     "Closed Caption": "",
     "Sinopse": "Ícarus é curta-metragem de animação em 3D, cujo visual é baseado em contos infantis. Fala sobre Ícarus, um garoto de 4 anos que vive numa grande cidade e se sente só, pois seus pais trabalham muito.",
     "tema (Programadora Brasil)": "solidão na infancia",
-    "tags": [
-      "animação",
-      "ícarus",
-      "solidão"
-    ],
+    "tags": ["animação", "ícarus", "solidão"],
     "website": "",
     "festivais": "Festival de Curtas de Sergipe – CURTA SE\nFestival de Curtas de Pernambuco – CINE PE\nFestival de Cinema Fantástico do Rio de Janeiro – RIOFAN\nFAM – Florianópolis Audiovisual Mercosul\nFestival Internacional de Huesca\nFestival Guarnicê de Cinema \n7ª Mostra de Cinema Infantil de Florianópolis\nAnimamundi\nFestival de Gramado\nGranimado\nFestival de Curtas-Metragens de São Paulo\nCentros de Atividade SESI (em 8 cidades do interior de SP)\nCurta Santos\n1º Festival de Animação do Equador\nGoiânia Mostra Curtas\nFestival de Cinema de Quito – Cero Latitud\nFilmini – Short Film Festival (Sofia – Bulgária)\nFestival Internacional de Cinema Infantil – CinemarK\nCurta Pará \nFestival Curtas Premiados – CCBB Brasília\nFajr International Film Festival – Tehran (Iran)\n1º. Brazilian Film Festival of Vancouver (Canadá)\n",
     "premios": "Prêmio de melhor Direção de Arte no FAM 2008;\nPrêmio de melhor Direção de Arte em Guarnicê 2008;\nPrêmio de melhor Direção de Arte no Granimado 2008.\n\n",
