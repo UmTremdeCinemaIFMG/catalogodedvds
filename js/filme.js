@@ -251,17 +251,7 @@ function renderFilmData(film) {
             
                 ${renderTeachingPlans(film)} 
 
-        <!-- ENVIE UM PLANO DE AULA -->
-        <div class="modal-teaching-plans">
-            <h3><i class="fas fa-chalkboard-teacher"></i> Planos de Aula</h3>
-            ${renderTeachingPlansModal(film, encodedTitle)} <!-- Chama a função correta -->
-            <a href="https://docs.google.com/forms/d/e/1FAIpQLSdxQz8onMOFjxIqEPpo5v2I4CJdLQ9cN50I7zUhmnBwgUeGIQ/viewform?usp=sharing&ouid=101786859238464224020" target="_blank" rel="noopener noreferrer" class="btn-enviar-plano" style="display:inline-block; margin-top:15px; background:#009a44; color:#fff; padding:10px 18px; border-radius:6px; text-decoration:none; font-weight:500;">
-                <i class="fas fa-plus"></i> Envie um plano de aula
-            </a>
-            <p style="font-size: 0.95em; color: #666; margin-top: 6px;">
-                Você pode colaborar enviando um plano de aula para este filme. Ao clicar, você será direcionado a um formulário.
-            </p>
-        </div>
+       
                 
             </div>
         </div>
