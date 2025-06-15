@@ -272,7 +272,7 @@ if (film.odsJustificados && film.odsJustificados.length > 0) {
         
         <!-- BOTÃO PARA ENVIAR PLANO DE AULA -->
         <div class="enviar-plano-container">
-            <a href="https://docs.google.com/forms/d/e/1FAIpQLSdxQz8onMOFjxIqEPpo5v2I4CJdLQ9cN50I7zUhmnBwgUeGIQ/viewform" target="_blank" rel="noopener noreferrer" class="btn-enviar-plano">
+            <a href="https://docs.google.com/forms/d/e/1FAIpQLSdxQz8onMOFjxIqEPpo5v2I4CJdLQ9cN50I7zUhmnBwgUeGIQ/viewform" target="_blank" rel="noopener noreferrer" class="btn-enviar-plano" style="display:inline-block; margin-top:15px; background:#009a44; color:#fff; padding:10px 18px; border-radius:6px; text-decoration:none; font-weight:500;">
                 <i class="fas fa-plus-circle"></i> Envie um plano de aula
             </a>
             <p class="enviar-plano-descricao">
