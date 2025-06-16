@@ -110,6 +110,7 @@ async function loadFilmData() {
         
         // CONFIGURA COMPARTILHAMENTO
         setupSharingButtons(transformedFilm);
+        renderBnccCompetencies(transformedFilm);
         
     } catch (error) {
         console.error("Erro:", error);
@@ -133,6 +134,61 @@ async function loadFilmData() {
         }
     }
 }
+
+
+// FUNÇÃO PARA RENDERIZAR OS ÍCONES DAS COMPETÊNCIAS DA BNCC
+async function renderBnccCompetencies(film) {
+    if (!film.bnccCompetencias || film.bnccCompetencias.length === 0) return;
+
+    const container = document.getElementById('bnccCompetenciesContainer');
+    if (!container) return;
+
+    try {
+        const response = await fetch('bncc_competencias.json');
+        if (!response.ok) throw new Error('Falha ao carregar bncc_competencias.json');
+        const todasCompetencias = await response.json();
+
+        const competenciasDoFilme = todasCompetencias.filter(comp =>
+            film.bnccCompetencias.includes(comp.id)
+        );
+
+        // DEFINE O LINK PADRÃO PARA TODOS OS ÍCONES DA BNCC
+        const bnccLink = "https://basenacionalcomum.mec.gov.br/abase/#introducao#competencias-gerais-da-base-nacional-comum-curricular:~:text=termos%20da%20LDB.-,COMPET%C3%8ANCIAS%20GERAIS%20DA%20EDUCA%C3%87%C3%83O%20B%C3%81SICA,-Valorizar%20e%20utilizar";
+
+        const competenciesHtml = competenciasDoFilme.map(comp => `
+            <a href="${bnccLink}" target="_blank" rel="noopener noreferrer" class="ods-flipper-link" title="Competência ${comp.id}: ${comp.titulo} - Saiba mais na BNCC">
+                <div class="ods-flip-container">
+                    <div class="ods-flipper">
+                        <div class="ods-front bncc-front bncc-card" data-bncc-number="${comp.id}">
+                            <div class="bncc-header">
+                                <span class="bncc-number">${comp.id}</span>
+                                <span class="bncc-title">${comp.titulo}</span>
+                            </div>
+                            <i class="${comp.icone}"></i>
+                        </div>
+                        <div class="ods-back bncc-card" data-bncc-number="${comp.id}">
+                            <p>${comp.descricao}</p>
+                        </div>
+                    </div>
+                </div>
+            </a>
+        `).join('');
+
+        container.innerHTML = `
+            <h3><i class="fas fa-book-reader"></i> Competências Gerais da BNCC</h3>
+            <div class="ods-container">
+                ${competenciesHtml}
+            </div>
+        `;
+
+    } catch (error) {
+        console.error("Erro ao renderizar competências da BNCC:", error);
+        container.innerHTML = '<p>Erro ao carregar dados da BNCC.</p>';
+    }
+}
+
+
+
 
 // FUNÇÃO PARA RENDERIZAR DADOS DO FILME
 function renderFilmData(film) {
@@ -246,37 +302,27 @@ if (film.odsJustificados && film.odsJustificados.length > 0) {
 }
 
     // RENDERIZA AS INFORMAÇÕES DA BNCC, SE EXISTIREM, USANDO A MESMA ESTRUTURA EXPANSÍVEL
-const hasBnccData = film.bnccJustificativa || (film.bnccEtapas && film.bnccEtapas.length > 0);
-if (hasBnccData) {
+// ADICIONA O CONTAINER PARA OS ÍCONES DAS COMPETÊNCIAS DA BNCC. ELE SERÁ PREENCHIDO PELA NOVA FUNÇÃO.
+filmContent += `
+    <div class="filme-section" id="bnccCompetenciesContainer"></div>
+`;
+
+// MANTÉM OS DETALHES PEDAGÓGICOS (ETAPAS, ÁREAS, ETC.) EM UMA SEÇÃO EXPANSÍVEL SEPARADA
+const hasOtherBnccData = (film.bnccEtapas && film.bnccEtapas.length > 0) ||
+                         (film.bnccAreas && film.bnccAreas.length > 0) ||
+                         (film.bnccTemas && film.bnccTemas.length > 0) ||
+                         film.bnccJustificativa;
+
+if (hasOtherBnccData) {
     filmContent += `
     <div class="filme-section expandable-section">
-        <h3 class="expandable-title"><i class="fas fa-book-reader"></i> Informações da BNCC <i class="fas fa-chevron-down expand-icon"></i></h3>
+        <h3 class="expandable-title"><i class="fas fa-info-circle"></i> Detalhes Pedagógicos (BNCC) <i class="fas fa-chevron-down expand-icon"></i></h3>
         <div class="expandable-content">
-            ${film.bnccEtapas && film.bnccEtapas.length > 0 ? `
-                <div class="destaque-horizontal">
-                    <p><strong>Etapas:</strong> ${film.bnccEtapas.join(', ')}</p>
-                </div>
-            ` : ''}
-            ${film.bnccAreas && film.bnccAreas.length > 0 ? `
-                <div class="destaque-horizontal">
-                    <p><strong>Áreas:</strong> ${film.bnccAreas.join(', ')}</p>
-                </div>
-            ` : ''}
-            ${film.bnccCompetencias && film.bnccCompetencias.length > 0 ? `
-                <div class="destaque-horizontal">
-                    <p><strong>Competências Gerais:</strong> ${film.bnccCompetencias.join(', ')}</p>
-                </div>
-            ` : ''}
-            ${film.bnccTemas && film.bnccTemas.length > 0 ? `
-                <div class="destaque-horizontal">
-                    <p><strong>Temas Transversais:</strong> ${film.bnccTemas.join(', ')}</p>
-                </div>
-            ` : ''}
-            ${film.bnccJustificativa ? `
-                <div class="destaque-horizontal">
-                    <p><strong>Justificativa Pedagógica:</strong> ${film.bnccJustificativa}</p>
-                </div>
-            ` : ''}
+            ${film.bnccEtapas && film.bnccEtapas.length > 0 ? `<div class="destaque-horizontal"><p><strong>Etapas:</strong> ${film.bnccEtapas.join(', ')}</p></div>` : ''}
+            ${film.bnccAreas && film.bnccAreas.length > 0 ? `<div class="destaque-horizontal"><p><strong>Áreas:</strong> ${film.bnccAreas.join(', ')}</p></div>` : ''}
+            ${film.bnccCompetencias && film.bnccCompetencias.length > 0 ? `<div class="destaque-horizontal"><p><strong>Competências Gerais:</strong> ${film.bnccCompetencias.join(', ')}</p></div>` : ''}
+            ${film.bnccTemas && film.bnccTemas.length > 0 ? `<div class="destaque-horizontal"><p><strong>Temas Transversais:</strong> ${film.bnccTemas.join(', ')}</p></div>` : ''}
+            ${film.bnccJustificativa ? `<div class="destaque-horizontal"><p><strong>Justificativa Pedagógica:</strong> ${film.bnccJustificativa}</p></div>` : ''}
         </div>
     </div>
     `;
