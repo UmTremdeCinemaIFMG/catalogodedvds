@@ -1,0 +1,62 @@
+[
+  {
+    "id": 1,
+    "titulo": "CONHECIMENTO",
+    "icone": "fas fa-brain",
+    "descricao": "Valorizar e utilizar os conhecimentos historicamente construídos sobre o mundo físico, social, cultural e digital."
+  },
+  {
+    "id": 2,
+    "titulo": "PENS. CRÍTICO E CRIATIVO",
+    "icone": "fas fa-lightbulb",
+    "descricao": "Exercitar a curiosidade intelectual e recorrer à abordagem própria das ciências, incluindo a investigação, a reflexão, a análise crítica, a imaginação e a criatividade."
+  },
+  {
+    "id": 3,
+    "titulo": "REPERTÓRIO CULTURAL",
+    "icone": "fas fa-palette",
+    "descricao": "Valorizar e fruir as diversas manifestações artísticas e culturais, das locais às mundiais, e também participar de práticas diversificadas da produção artístico-cultural."
+  },
+  {
+    "id": 4,
+    "titulo": "COMUNICAÇÃO",
+    "icone": "fas fa-comments",
+    "descricao": "Utilizar diferentes linguagens – verbal, corporal, visual, sonora e digital – para se expressar e partilhar informações, experiências, ideias e sentimentos."
+  },
+  {
+    "id": 5,
+    "titulo": "CULTURA DIGITAL",
+    "icone": "fas fa-laptop-code",
+    "descricao": "Compreender, utilizar e criar tecnologias digitais de informação e comunicação de forma crítica, significativa, reflexiva e ética."
+  },
+  {
+    "id": 6,
+    "titulo": "PROJETO DE VIDA",
+    "icone": "fas fa-briefcase",
+    "descricao": "Valorizar a diversidade de saberes e vivências culturais e apropriar-se de conhecimentos e experiências que lhe possibilitem entender as relações próprias do mundo do trabalho e fazer escolhas alinhadas ao exercício da cidadania e ao seu projeto de vida."
+  },
+  {
+    "id": 7,
+    "titulo": "ARGUMENTAÇÃO",
+    "icone": "fas fa-balance-scale",
+    "descricao": "Argumentar com base em fatos, dados e informações confiáveis, para formular, negociar e defender ideias, pontos de vista e decisões comuns."
+  },
+  {
+    "id": 8,
+    "titulo": "AUTOCONHECIMENTO",
+    "icone": "fas fa-heartbeat",
+    "descricao": "Conhecer-se, apreciar-se e cuidar de sua saúde física e emocional, compreendendo-se na diversidade humana e reconhecendo suas emoções e as dos outros."
+  },
+  {
+    "id": 9,
+    "titulo": "EMPATIA E COOPERAÇÃO",
+    "icone": "fas fa-handshake",
+    "descricao": "Exercitar a empatia, o diálogo, a resolução de conflitos e a cooperação, fazendo-se respeitar e promovendo o respeito ao outro e aos direitos humanos."
+  },
+  {
+    "id": 10,
+    "titulo": "CIDADANIA",
+    "icone": "fas fa-users",
+    "descricao": "Agir pessoal e coletivamente com autonomia, responsabilidade, flexibilidade, resiliência e determinação, tomando decisões com base em princípios éticos, democráticos, inclusivos, sustentáveis e solidários."
+  }
+]
