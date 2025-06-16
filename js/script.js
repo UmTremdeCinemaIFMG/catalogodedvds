@@ -105,7 +105,13 @@ function transformFilmData(originalFilm) {
         classification: parseInt(originalFilm["Classificação Indicativa POR PGM"]) || 0,
         classificationDescription: originalFilm["Classificação Indicativa - Descrição"] || [], // Adicionado novo campo
         planos_de_aula: originalFilm["planos_de_aula"] || [],
-        videos: originalFilm["videos"] || []
+        videos: originalFilm["videos"] || [],
+   bnccEtapas: originalFilm["BNCC_Etapas"] || [],
+        bnccAreas: originalFilm["BNCC_Areas"] || [],
+        bnccCompetencias: originalFilm["BNCC_Competencias_Gerais"] || [],
+        bnccTemas: originalFilm["BNCC_Temas_Transversais"] || [],
+        bnccJustificativa: cleanField(originalFilm["BNCC_Justificativa"])
+    
     };
 }
 
