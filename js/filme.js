@@ -245,7 +245,42 @@ if (film.odsJustificados && film.odsJustificados.length > 0) {
     `;
 }
 
-    
+    // RENDERIZA AS INFORMAÇÕES DA BNCC, SE EXISTIREM, USANDO A MESMA ESTRUTURA EXPANSÍVEL
+const hasBnccData = film.bnccJustificativa || (film.bnccEtapas && film.bnccEtapas.length > 0);
+if (hasBnccData) {
+    filmContent += `
+    <div class="filme-section expandable-section">
+        <h3 class="expandable-title"><i class="fas fa-book-reader"></i> Informações da BNCC <i class="fas fa-chevron-down expand-icon"></i></h3>
+        <div class="expandable-content">
+            ${film.bnccEtapas && film.bnccEtapas.length > 0 ? `
+                <div class="destaque-horizontal">
+                    <p><strong>Etapas:</strong> ${film.bnccEtapas.join(', ')}</p>
+                </div>
+            ` : ''}
+            ${film.bnccAreas && film.bnccAreas.length > 0 ? `
+                <div class="destaque-horizontal">
+                    <p><strong>Áreas:</strong> ${film.bnccAreas.join(', ')}</p>
+                </div>
+            ` : ''}
+            ${film.bnccCompetencias && film.bnccCompetencias.length > 0 ? `
+                <div class="destaque-horizontal">
+                    <p><strong>Competências Gerais:</strong> ${film.bnccCompetencias.join(', ')}</p>
+                </div>
+            ` : ''}
+            ${film.bnccTemas && film.bnccTemas.length > 0 ? `
+                <div class="destaque-horizontal">
+                    <p><strong>Temas Transversais:</strong> ${film.bnccTemas.join(', ')}</p>
+                </div>
+            ` : ''}
+            ${film.bnccJustificativa ? `
+                <div class="destaque-horizontal">
+                    <p><strong>Justificativa Pedagógica:</strong> ${film.bnccJustificativa}</p>
+                </div>
+            ` : ''}
+        </div>
+    </div>
+    `;
+}
     
     // 3. SINOPSE (Expansível)
     if (film.synopsis) {
