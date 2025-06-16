@@ -152,12 +152,12 @@ async function renderBnccCompetencies(film) {
             film.bnccCompetencias.includes(comp.id)
         );
 
-        // DEFINE O LINK PADRÃO PARA TODOS OS ÍCONES DA BNCC
         const bnccLink = "https://basenacionalcomum.mec.gov.br/abase/#introducao#competencias-gerais-da-base-nacional-comum-curricular:~:text=termos%20da%20LDB.-,COMPET%C3%8ANCIAS%20GERAIS%20DA%20EDUCA%C3%87%C3%83O%20B%C3%81SICA,-Valorizar%20e%20utilizar";
 
+        // A CORREÇÃO ESTÁ AQUI: A TAG <a> AGORA ESTÁ DENTRO DO .ods-flip-container
         const competenciesHtml = competenciasDoFilme.map(comp => `
-            <a href="${bnccLink}" target="_blank" rel="noopener noreferrer" class="ods-flipper-link" title="Competência ${comp.id}: ${comp.titulo} - Saiba mais na BNCC">
-                <div class="ods-flip-container">
+            <div class="ods-flip-container">
+                <a href="${bnccLink}" target="_blank" rel="noopener noreferrer" class="ods-flipper-link" title="Competência ${comp.id}: ${comp.titulo} - Saiba mais na BNCC">
                     <div class="ods-flipper">
                         <div class="ods-front bncc-front bncc-card" data-bncc-number="${comp.id}">
                             <div class="bncc-header">
@@ -170,8 +170,8 @@ async function renderBnccCompetencies(film) {
                             <p>${comp.descricao}</p>
                         </div>
                     </div>
-                </div>
-            </a>
+                </a>
+            </div>
         `).join('');
 
         container.innerHTML = `
