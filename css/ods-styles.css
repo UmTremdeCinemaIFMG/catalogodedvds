@@ -136,3 +136,56 @@
 .ods-flip-container:hover .ods-flipper {
     transform: rotateY(180deg);
 }
+/* AJUSTES GERAIS PARA AMBOS OS TIPOS DE CARD (ODS E BNCC) */
+.ods-front, .ods-back {
+    color: white; /* GARANTE QUE TEXTO E ÍCONES SEJAM BRANCOS */
+}
+.ods-back p {
+    font-family: 'Tahoma', sans-serif; /* FONTE MAIS LEGÍVEL PARA DESCRIÇÕES */
+}
+
+/* CORES DE FUNDO PARA OS CARDS DA BNCC */
+.bncc-card[data-bncc-number="1"] { background-color: rgb(229, 36, 59); }
+.bncc-card[data-bncc-number="2"] { background-color: rgb(197, 25, 45); }
+.bncc-card[data-bncc-number="3"] { background-color: rgb(253, 105, 37); }
+.bncc-card[data-bncc-number="4"] { background-color: rgb(38, 189, 226); }
+.bncc-card[data-bncc-number="5"] { background-color: rgb(0, 104, 157); }
+.bncc-card[data-bncc-number="6"] { background-color: rgb(162, 25, 66); }
+.bncc-card[data-bncc-number="7"] { background-color: rgb(191, 139, 46); }
+.bncc-card[data-bncc-number="8"] { background-color: rgb(76, 159, 56); }
+.bncc-card[data-bncc-number="9"] { background-color: rgb(221, 19, 103); }
+.bncc-card[data-bncc-number="10"] { background-color: rgb(25, 72, 106); }
+
+/* LAYOUT DA FRENTE DO CARD BNCC */
+.ods-front.bncc-front {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 12px;
+}
+
+/* LAYOUT DO HEADER (NÚMERO + TÍTULO) */
+.bncc-header {
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+    font-family: 'Oswald', sans-serif;
+    font-weight: 700;
+}
+.bncc-number {
+    font-size: 48px;
+    line-height: 0.85;
+}
+.bncc-title {
+    font-size: 16px;
+    line-height: 1.1;
+    text-transform: uppercase;
+    padding-top: 4px;
+}
+
+/* ESTILO DO ÍCONE (FONT AWESOME) DENTRO DO CARD BNCC */
+.ods-front.bncc-front i {
+    font-size: 72px;
+    opacity: 0.9;
+    align-self: center; /* CENTRALIZA O ÍCONE HORIZONTALMENTE */
+}
