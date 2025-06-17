@@ -192,7 +192,7 @@ function setupSharingButtons(title, customUrl) {
 
 // FUNÇÃO PARA COMPARTILHAR NO WHATSAPP
 function shareOnWhatsApp() {
-    const text = encodeURIComponent(`Confira: ${window.shareTitle} - ${window.shareUrl}`);
+    const text = encodeURIComponent(window.shareUrl);
     window.open(`https://api.whatsapp.com/send?text=${text}`, "_blank");
 }
 
