@@ -296,32 +296,163 @@ if (film.odsJustificados && film.odsJustificados.length > 0) {
     `;
 }
 
-    // RENDERIZA AS INFORMAÇÕES DA BNCC, SE EXISTIREM, USANDO A MESMA ESTRUTURA EXPANSÍVEL
-// ADICIONA O CONTAINER PARA OS ÍCONES DAS COMPETÊNCIAS DA BNCC. ELE SERÁ PREENCHIDO PELA NOVA FUNÇÃO.
-filmContent += `
-    <div class="filme-section" id="bnccCompetenciesContainer"></div>
-`;
+   Gemini 2.5 Pro Preview
+Chat Prompt
+ThinkingThoughts
+(experimental)
+Manual: 32768
+Expand to view model thoughts
 
-// MANTÉM OS DETALHES PEDAGÓGICOS (ETAPAS, ÁREAS, ETC.) EM UMA SEÇÃO EXPANSÍVEL SEPARADA
-const hasOtherBnccData = (film.bnccEtapas && film.bnccEtapas.length > 0) ||
-                         (film.bnccAreas && film.bnccAreas.length > 0) ||
-                         (film.bnccTemas && film.bnccTemas.length > 0) ||
-                         film.bnccJustificativa;
+chevron_right
+ThinkingThoughts
+(experimental)
+Auto
+Expand to view model thoughts
 
-if (hasOtherBnccData) {
-    filmContent += `
-    <div class="filme-section expandable-section">
-        <h3 class="expandable-title"><i class="fas fa-info-circle"></i> Detalhes Pedagógicos (BNCC) <i class="fas fa-chevron-down expand-icon"></i></h3>
-        <div class="expandable-content">
-            ${film.bnccEtapas && film.bnccEtapas.length > 0 ? `<div class="destaque-horizontal"><p><strong>Etapas:</strong> ${film.bnccEtapas.join(', ')}</p></div>` : ''}
-            ${film.bnccAreas && film.bnccAreas.length > 0 ? `<div class="destaque-horizontal"><p><strong>Áreas:</strong> ${film.bnccAreas.join(', ')}</p></div>` : ''}
-            ${film.bnccCompetencias && film.bnccCompetencias.length > 0 ? `<div class="destaque-horizontal"><p><strong>Competências Gerais:</strong> ${film.bnccCompetencias.join(', ')}</p></div>` : ''}
-            ${film.bnccTemas && film.bnccTemas.length > 0 ? `<div class="destaque-horizontal"><p><strong>Temas Transversais:</strong> ${film.bnccTemas.join(', ')}</p></div>` : ''}
-            ${film.bnccJustificativa ? `<div class="destaque-horizontal"><p><strong>Justificativa Pedagógica:</strong> ${film.bnccJustificativa}</p></div>` : ''}
-        </div>
-    </div>
-    `;
+chevron_right
+ThinkingThoughts
+(experimental)
+Auto
+Expand to view model thoughts
+
+chevron_right
+ThinkingThoughts
+(experimental)
+Auto
+Expand to view model thoughts
+
+chevron_right
+ThinkingThoughts
+(experimental)
+Auto
+Expand to view model thoughts
+
+chevron_right
+ThinkingThoughts
+(experimental)
+Auto
+Expand to view model thoughts
+
+chevron_right
+ThinkingThoughts
+(experimental)
+Auto
+Expand to view model thoughts
+
+chevron_right
+ThinkingThoughts
+(experimental)
+Auto
+Expand to view model thoughts
+
+chevron_right
+ThinkingThoughts
+(experimental)
+Auto
+Expand to view model thoughts
+
+chevron_right
+ThinkingThoughts
+(experimental)
+Auto
+Expand to view model thoughts
+
+chevron_right
+ThinkingThoughts
+(experimental)
+Auto
+Expand to view model thoughts
+
+chevron_right
+ThinkingThoughts
+(experimental)
+Auto
+Expand to view model thoughts
+
+chevron_right
+ThinkingThoughts
+(experimental)
+Auto
+Expand to view model thoughts
+
+chevron_right
+ThinkingThoughts
+(experimental)
+Auto
+Expand to view model thoughts
+
+chevron_right
+ThinkingThoughts
+(experimental)
+Auto
+Expand to view model thoughts
+
+chevron_right
+Compreendi perfeitamente! Peço desculpas pela confusão. A intenção era simplificar, mas acabamos perdendo a funcionalidade do "flip" que era essencial.
+Vamos restaurar o comportamento de "girar e mostrar a descrição" usando seus novos arquivos SVG. A abordagem correta é usar o SVG como fundo da parte da frente do card, em vez de uma tag <img>. Isso nos dá o melhor dos dois mundos: o layout perfeito do SVG e a interatividade do CSS.
+Você só precisará fazer uma alteração no JavaScript.
+Arquivo a ser Modificado: js/filme.js
+Onde: Dentro da função renderBnccCompetencies.
+Ação: Substitua a função renderBnccCompetencies inteira pela versão corrigida abaixo. Ela restaura a estrutura do "flip" e usa seus SVGs como imagem de fundo.
+Generated javascript
+//======================================================================================
+// INÍCIO DO CÓDIGO CORRIGIDO PARA RESTAURAR O FLIP
+//======================================================================================
+// FUNÇÃO PARA RENDERIZAR OS ÍCONES DAS COMPETÊNCIAS DA BNCC COM EFEITO FLIP E USANDO SVGS
+async function renderBnccCompetencies(film) {
+    if (!film.bnccCompetencias || film.bnccCompetencias.length === 0) return;
+
+    const container = document.getElementById('bnccCompetenciesContainer');
+    if (!container) return;
+
+    try {
+        // CARREGA O JSON PARA OBTER AS DESCRIÇÕES
+        const response = await fetch('bncc_competencias.json');
+        if (!response.ok) throw new Error('Falha ao carregar bncc_competencias.json');
+        const todasCompetencias = await response.json();
+
+        // O LINK É O MESMO PARA TODOS OS ÍCONES
+        const bnccLink = "https://basenacionalcomum.mec.gov.br/abase/#introducao#competencias-gerais-da-base-nacional-comum-curricular:~:text=termos%20da%20LDB.-,COMPET%C3%8ANCIAS%20GERAIS%20DA%20EDUCA%C3%87%C3%83O%20B%C3%81SICA,-Valorizar%20e%20utilizar";
+
+        // FILTRA APENAS AS COMPETÊNCIAS PRESENTES NO FILME
+        const competenciasDoFilme = todasCompetencias.filter(comp =>
+            film.bnccCompetencias.includes(comp.id)
+        );
+
+        // GERA O HTML RESTAURANDO A ESTRUTURA DO FLIP
+        const competenciesHtml = competenciasDoFilme.map(comp => `
+            <div class="ods-flip-container">
+                <a href="${bnccLink}" target="_blank" rel="noopener noreferrer" class="ods-flipper-link" title="Competência ${comp.id}: ${comp.titulo} - Saiba mais na BNCC">
+                    <div class="ods-flipper">
+                        <!-- FRENTE DO CARD: USA O SVG COMO IMAGEM DE FUNDO -->
+                        <div 
+                            class="ods-front" 
+                            style="background-image: url('bncc_icons/bncc_${comp.id}.svg'); background-size: cover; background-position: center;"
+                        >
+                            <!-- O CONTEÚDO VISUAL JÁ ESTÁ NO SVG, ENTÃO ESTE DIV FICA VAZIO -->
+                        </div>
+                        <!-- VERSO DO CARD: MOSTRA A DESCRIÇÃO -->
+                        <div class="ods-back bncc-card" data-bncc-number="${comp.id}">
+                            <p>${comp.descricao}</p>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        `).join('');
+
+        container.innerHTML = `
+            <h3><i class="fas fa-book-reader"></i> Competências Gerais da BNCC</h3>
+            <div class="ods-container">
+                ${competenciesHtml}
+            </div>
+        `;
+
+    } catch (error) {
+        console.error("Erro ao renderizar competências da BNCC:", error);
+        container.innerHTML = '<p>Erro ao carregar ícones da BNCC.</p>';
+    }
 }
+    
     
     // 3. SINOPSE (Expansível)
     if (film.synopsis) {
