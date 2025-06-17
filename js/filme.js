@@ -38,9 +38,6 @@ async function loadOdsDescriptions() {
     }
 }
 
-//======================================================================================
-// INÍCIO DA FUNÇÃO CORRIGIDA
-//======================================================================================
 // FUNÇÃO PARA RENDERIZAR OS ÍCONES DAS COMPETÊNCIAS DA BNCC COM EFEITO FLIP
 async function renderBnccCompetencies(film) {
     if (!film.bnccCompetencias || film.bnccCompetencias.length === 0) return;
@@ -85,9 +82,6 @@ async function renderBnccCompetencies(film) {
         container.innerHTML = '<p>Erro ao carregar ícones da BNCC.</p>';
     }
 }
-//======================================================================================
-// FIM DA FUNÇÃO CORRIGIDA
-//======================================================================================
 
 // FUNÇÃO PARA RENDERIZAR DADOS DO FILME
 function renderFilmData(film) {
@@ -185,10 +179,6 @@ function renderFilmData(film) {
         </div>`;
     }
 
-    //======================================================================================
-    // INÍCIO DA SEÇÃO CORRIGIDA
-    //======================================================================================
-    // ADICIONA O CONTAINER PARA OS ÍCONES DA BNCC E A SEÇÃO EXPANSÍVEL PARA OS DETALHES
     filmContent += `<div class="filme-section" id="bnccCompetenciesContainer"></div>`;
 
     const hasOtherBnccData = (film.bnccEtapas && film.bnccEtapas.length > 0) ||
@@ -209,9 +199,6 @@ function renderFilmData(film) {
             </div>
         </div>`;
     }
-    //======================================================================================
-    // FIM DA SEÇÃO CORRIGIDA
-    //======================================================================================
 
     if (film.synopsis) {
         filmContent += `
@@ -353,7 +340,7 @@ async function loadFilmData() {
         setupExpandableContent();
         initializeCarousel(transformedFilm);
         setupSharingButtons(transformedFilm);
-        renderBnccCompetencies(transformedFilm); // CHAMADA DA FUNÇÃO
+        renderBnccCompetencies(transformedFilm);
 
     } catch (error) {
         console.error("Erro:", error);
@@ -366,10 +353,172 @@ async function loadFilmData() {
     }
 }
 
-// O RESTANTE DO ARQUIVO (initializeCarousel, goToSlide, setupExpandableContent, etc.) PERMANECE O MESMO
-// ...
-// ...
-// ...
+// FUNÇÃO PARA INICIALIZAR O CARROSSEL
+function initializeCarousel(film) {
+    const slidesContainer = document.getElementById('bannerSlides');
+    const indicatorsContainer = document.getElementById('bannerIndicators');
+
+    if (!slidesContainer || !indicatorsContainer) {
+        console.error("Containers do carrossel não encontrados");
+        return;
+    }
+
+    mediaItems = [];
+
+    if (film.trailer && film.trailer.trim() !== '') {
+        mediaItems.push({ type: 'video', url: film.trailer, title: 'Trailer' });
+    }
+    if (film.videos && film.videos.length > 0) {
+        film.videos.forEach(video => {
+            mediaItems.push({ type: 'video', url: video.url, title: video.titulo || 'Vídeo' });
+        });
+    }
+    mediaItems.push({ type: 'image', url: `capas/${film.imageName || 'progbrasil'}.jpg`, title: 'Capa do filme' });
+    if (film.imagens_adicionais && film.imagens_adicionais.length > 0) {
+        film.imagens_adicionais.forEach(imagem => {
+            mediaItems.push({ type: 'image', url: imagem.url || imagem, title: imagem.titulo || 'Imagem' });
+        });
+    }
+
+    slidesContainer.innerHTML = '';
+    indicatorsContainer.innerHTML = '';
+
+    mediaItems.forEach((item, index) => {
+        const slide = document.createElement('div');
+        slide.className = 'banner-slide';
+
+        if (item.type === 'video') {
+            const youtubeId = getYoutubeId(item.url);
+            if (youtubeId) {
+                slide.innerHTML = `<iframe src="https://www.youtube.com/embed/${youtubeId}" title="${item.title}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>`;
+            } else {
+                slide.innerHTML = `<div class="youtube-placeholder"><i class="fab fa-youtube"></i><span>Vídeo não disponível</span></div>`;
+            }
+        } else {
+            slide.innerHTML = `<img src="${item.url}" alt="${item.title}" onerror="this.src='capas/progbrasil.jpg'">`;
+        }
+        slidesContainer.appendChild(slide);
+
+        const indicator = document.createElement('div');
+        indicator.className = 'banner-indicator';
+        indicator.dataset.index = index;
+        indicator.addEventListener('click', () => goToSlide(index));
+        indicatorsContainer.appendChild(indicator);
+    });
+
+    const prevButton = document.getElementById('prevSlide');
+    const nextButton = document.getElementById('nextSlide');
+    if (prevButton) prevButton.addEventListener('click', () => goToSlide(currentSlide - 1));
+    if (nextButton) nextButton.addEventListener('click', () => goToSlide(currentSlide + 1));
+
+    slides = document.querySelectorAll('.banner-slide');
+    goToSlide(0);
+}
+
+// FUNÇÃO PARA NAVEGAR ENTRE SLIDES
+function goToSlide(index) {
+    if (!slides || slides.length === 0) return;
+    currentSlide = (index + slides.length) % slides.length;
+    const slidesContainer = document.getElementById('bannerSlides');
+    if (slidesContainer) {
+        slidesContainer.style.transform = `translateX(-${currentSlide * 100}%)`;
+    }
+    const indicators = document.querySelectorAll('.banner-indicator');
+    indicators.forEach((indicator, i) => {
+        indicator.classList.toggle('active', i === currentSlide);
+    });
+}
+
+// FUNÇÃO PARA CONFIGURAR CONTEÚDO EXPANSÍVEL
+function setupExpandableContent() {
+    const expandableTitles = document.querySelectorAll(".expandable-title");
+    expandableTitles.forEach(clickedTitle => {
+        const initialContent = clickedTitle.nextElementSibling;
+        if (initialContent) {
+            clickedTitle.setAttribute("aria-expanded", "false");
+            initialContent.setAttribute("aria-hidden", "true");
+            clickedTitle.setAttribute("role", "button");
+            clickedTitle.setAttribute("tabindex", "0");
+            const clickOrKeyHandler = (event) => {
+                if (event.type === 'click' || (event.type === 'keydown' && (event.key === "Enter" || event.key === " "))) {
+                    event.preventDefault();
+                    const clickedSection = clickedTitle.closest(".expandable-section");
+                    const clickedContent = clickedTitle.nextElementSibling;
+                    const clickedIcon = clickedTitle.querySelector(".expand-icon");
+                    if (!clickedContent || !clickedSection || !clickedIcon) return;
+                    const isCurrentlyOpen = clickedSection.classList.contains("open");
+                    expandableTitles.forEach(otherTitle => {
+                        const otherSection = otherTitle.closest(".expandable-section");
+                        if (otherSection && otherSection !== clickedSection && otherSection.classList.contains("open")) {
+                            otherSection.classList.remove("open");
+                            const otherIcon = otherTitle.querySelector(".expand-icon");
+                            if (otherIcon) {
+                                otherIcon.classList.remove("fa-chevron-up");
+                                otherIcon.classList.add("fa-chevron-down");
+                            }
+                            otherTitle.setAttribute("aria-expanded", "false");
+                            otherTitle.nextElementSibling.setAttribute("aria-hidden", "true");
+                        }
+                    });
+                    clickedSection.classList.toggle("open", !isCurrentlyOpen);
+                    clickedIcon.classList.toggle("fa-chevron-up", !isCurrentlyOpen);
+                    clickedIcon.classList.toggle("fa-chevron-down", isCurrentlyOpen);
+                    clickedTitle.setAttribute("aria-expanded", !isCurrentlyOpen);
+                    clickedContent.setAttribute("aria-hidden", isCurrentlyOpen);
+                }
+            };
+            clickedTitle.addEventListener("click", clickOrKeyHandler);
+            clickedTitle.addEventListener("keydown", clickOrKeyHandler);
+        }
+    });
+}
+
+// FUNÇÕES DE COMPARTILHAMENTO
+function setupSharingButtons(film) {
+    document.title = `${film.title} - Catálogo de DVDs`;
+    window.shareFilmTitle = film.title;
+    window.shareFilmUrl = window.location.href;
+}
+
+function shareOnWhatsApp() {
+    const text = encodeURIComponent(`Confira este filme: ${window.shareFilmTitle} - ${window.shareFilmUrl}`);
+    window.open(`https://api.whatsapp.com/send?text=${text}`, "_blank");
+}
+
+function shareOnFacebook() {
+    const url = encodeURIComponent(window.shareFilmUrl);
+    window.open(`https://www.facebook.com/sharer/sharer.php?u=${url}`, "_blank");
+}
+
+function shareOnTwitter() {
+    const text = encodeURIComponent(`Confira este filme: ${window.shareFilmTitle}`);
+    const url = encodeURIComponent(window.shareFilmUrl);
+    window.open(`https://twitter.com/intent/tweet?url=${url}&text=${text}`, "_blank");
+}
+
+function copyToClipboard() {
+    navigator.clipboard.writeText(window.shareFilmUrl).then(() => {
+        alert("Link copiado para a área de transferência!");
+    }).catch(err => {
+        console.error("Erro ao copiar link: ", err);
+        alert("Erro ao copiar o link.");
+    });
+}
+
+// EXTRAI ID DO YOUTUBE DE UMA URL
+function getYoutubeId(url) {
+    if (!url) return null;
+    const patterns = [
+        /(?:https?:\/\/)?(?:www\.)?youtube\.com\/watch\?v=([^&]+)/i,
+        /(?:https?:\/\/)?(?:www\.)?youtu\.be\/([^?]+)/i,
+        /(?:https?:\/\/)?(?:www\.)?youtube\.com\/embed\/([^?]+)/i
+    ];
+    for (const pattern of patterns) {
+        const match = url.match(pattern);
+        if (match && match[1]) return match[1];
+    }
+    return null;
+}
 
 // INICIALIZAÇÃO QUANDO O DOM ESTIVER PRONTO
 document.addEventListener("DOMContentLoaded", loadFilmData);
