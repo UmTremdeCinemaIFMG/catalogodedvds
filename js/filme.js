@@ -138,41 +138,37 @@ async function loadFilmData() {
 
 // FUNÇÃO PARA RENDERIZAR OS ÍCONES DAS COMPETÊNCIAS DA BNCC
 async function renderBnccCompetencies(film) {
+    // VERIFICA SE O FILME TEM COMPETÊNCIAS ASSOCIADAS
     if (!film.bnccCompetencias || film.bnccCompetencias.length === 0) return;
 
     const container = document.getElementById('bnccCompetenciesContainer');
     if (!container) return;
 
     try {
+        // CARREGA O JSON APENAS PARA OBTER OS TÍTULOS PARA ACESSIBILIDADE (ALT E TITLE)
         const response = await fetch('bncc_competencias.json');
         if (!response.ok) throw new Error('Falha ao carregar bncc_competencias.json');
         const todasCompetencias = await response.json();
 
-        const competenciasDoFilme = todasCompetencias.filter(comp =>
-            film.bnccCompetencias.includes(comp.id)
-        );
-
+        // O LINK É O MESMO PARA TODOS OS ÍCONES
         const bnccLink = "https://basenacionalcomum.mec.gov.br/abase/#introducao#competencias-gerais-da-base-nacional-comum-curricular:~:text=termos%20da%20LDB.-,COMPET%C3%8ANCIAS%20GERAIS%20DA%20EDUCA%C3%87%C3%83O%20B%C3%81SICA,-Valorizar%20e%20utilizar";
 
-        // A CORREÇÃO ESTÁ AQUI: A TAG <a> AGORA ESTÁ DENTRO DO .ods-flip-container
-        const competenciesHtml = competenciasDoFilme.map(comp => `
-            <div class="ods-flip-container">
-                <a href="${bnccLink}" target="_blank" rel="noopener noreferrer" class="ods-flipper-link" title="Competência ${comp.id}: ${comp.titulo} - Saiba mais na BNCC">
-                    <div class="ods-flipper">
-                        <div class="ods-front bncc-front bncc-card" data-bncc-number="${comp.id}">
-                            <div class="bncc-header">
-                                <span class="bncc-number">${comp.id}</span>
-                                <span class="bncc-title">${comp.titulo}</span>
-                            </div>
-                            <i class="${comp.icone}"></i>
-                        </div>
-                        <div class="ods-back bncc-card" data-bncc-number="${comp.id}">
-                            <p>${comp.descricao}</p>
-                        </div>
-                    </div>
+        // GERA UMA TAG <img> SIMPLES PARA CADA COMPETÊNCIA DO FILME
+        const competenciesHtml = film.bnccCompetencias.map(id => {
+            // Encontra a competência para usar seu título no alt/title
+            const competencia = todasCompetencias.find(c => c.id === id);
+            const titleText = competencia ? competencia.titulo : `Competência ${id}`;
+
+            return `
+                <a href="${bnccLink}" target="_blank" rel="noopener noreferrer" title="${titleText} - Saiba mais na BNCC">
+                    <img 
+                        src="bncc_icons/bncc_${id}.svg" 
+                        alt="Ícone da ${titleText}" 
+                        style="width:150px; height:150px;"
+                    >
                 </a>
-            </div>
-        `).join('');
+            `;
+        }).join('');
 
         container.innerHTML = `
             <h3><i class="fas fa-book-reader"></i> Competências Gerais da BNCC</h3>
@@ -180,10 +176,9 @@ async function renderBnccCompetencies(film) {
                 ${competenciesHtml}
             </div>
         `;
-
     } catch (error) {
         console.error("Erro ao renderizar competências da BNCC:", error);
-        container.innerHTML = '<p>Erro ao carregar dados da BNCC.</p>';
+        container.innerHTML = '<p>Erro ao carregar ícones da BNCC.</p>';
     }
 }
 
