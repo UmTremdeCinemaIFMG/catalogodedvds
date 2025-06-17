@@ -83,6 +83,57 @@ async function renderBnccCompetencies(film) {
     }
 }
 
+
+// FUNÇÃO PARA ATUALIZAR AS META TAGS DA PÁGINA COM DADOS DO FILME
+function updateMetaTags(film) {
+    // CONSTRÓI O NOVO TÍTULO DA PÁGINA
+    const newTitle = `${film.title} - Catálogo de DVDs`;
+    
+    // CONSTRÓI A URL ABSOLUTA DA IMAGEM DE CAPA
+    // É ESSENCIAL USAR A URL COMPLETA PARA O COMPARTILHAMENTO FUNCIONAR
+    const imageUrl = `https://umtremdecinemaifmg.github.io/catalogodedvds/capas/${film.imageName}.jpg`;
+
+    // USA A SINOPSE COMO DESCRIÇÃO, OU UMA DESCRIÇÃO PADRÃO
+    const description = film.synopsis || `Saiba mais sobre o filme ${film.title} no catálogo do projeto Um Trem de Cinema.`;
+
+    // ATUALIZA A TAG <TITLE>
+    document.title = newTitle;
+    document.getElementById('page-title').textContent = newTitle;
+
+    // ATUALIZA A META DESCRIÇÃO PADRÃO
+    document.getElementById('meta-description').setAttribute('content', description);
+
+    // ATUALIZA AS META TAGS DO OPEN GRAPH (USADAS PELO FACEBOOK, WHATSAPP, ETC.)
+    document.getElementById('og-title').setAttribute('content', newTitle);
+    document.getElementById('og-description').setAttribute('content', description);
+    document.getElementById('og-image').setAttribute('content', imageUrl);
+    document.getElementById('og-url').setAttribute('content', window.location.href);
+
+    // ATUALIZA AS
+        // FUNÇÃO PARA ATUALIZAR AS META TAGS PARA UMA PRÉVIA RICA EM REDES SOCIAIS
+        function updateMetaTags(filmData) {
+            const pageTitle = `${filmData.title} - Catálogo de DVDs`;
+            const pageUrl = window.location.href;
+            // CRIA A URL COMPLETA E ABSOLUTA PARA A IMAGEM DA CAPA
+            const imageUrl = `https://umtremdecinemaifmg.github.io/catalogodedvds/capas/${filmData.imageName || 'progbrasil'}.jpg`;
+            const description = filmData.synopsis ? filmData.synopsis.substring(0, 160) + '...' : document.querySelector('meta[name="description"]').content;
+
+            // 1. ATUALIZA O TÍTULO DA PÁGINA (O QUE APARECE NA ABA DO NAVEGADOR)
+            document.title = pageTitle;
+
+            // 2. ATUALIZA AS META TAGS DO OPEN GRAPH
+            document.querySelector('meta[property="og:title"]').setAttribute('content', pageTitle);
+            document.querySelector('meta[property="og:url"]').setAttribute('content', pageUrl);
+            document.querySelector('meta[property="og:image"]').setAttribute('content', imageUrl);
+            document.querySelector('meta[property="og:description"]').setAttribute('content', description);
+        }
+
+        // CHAMA A FUNÇÃO PARA ATUALIZAR AS TAGS COM OS DADOS DO FILME CARREGADO
+        updateMetaTags(transformedFilm);
+
+
+
+
 // FUNÇÃO PARA RENDERIZAR DADOS DO FILME
 function renderFilmData(film) {
     const filmContainer = document.getElementById("filmeContainer");
