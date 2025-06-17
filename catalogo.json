@@ -34245,7 +34245,37 @@
     "Gênero": "Animação",
     "GEN.": "Animação",
     "Ano": 2013,
-    "ODS": "",
+    "ODS": "1, 8, 10, 11, 12, 15, 16",
+    "ODS_Justificados": [
+      {
+        "ods": "1",
+        "justificativa": "A jornada do menino Cuca começa quando seu pai parte para a cidade em busca de trabalho, um reflexo do êxodo rural motivado pela pobreza e pela falta de oportunidades no campo."
+      },
+      {
+        "ods": "8",
+        "justificativa": "O filme é uma poderosa crítica às condições de trabalho na era da globalização. Retrata a exploração da mão de obra nas lavouras de algodão e a alienação do trabalho repetitivo nas fábricas, contrastando com o ideal de trabalho decente."
+      },
+      {
+        "ods": "10",
+        "justificativa": "A obra expõe visualmente a profunda desigualdade social, contrastando a vida simples e colorida do campo com a opressão cinzenta e massificada da cidade industrial, e a disparidade entre a classe trabalhadora e as elites."
+      },
+      {
+        "ods": "11",
+        "justificativa": "O filme critica um modelo de urbanização predatório, que suprime a cultura local e a natureza em favor de uma cidade industrial caótica, poluída e desumanizada, levantando questões sobre o que torna uma comunidade sustentável."
+      },
+      {
+        "ods": "12",
+        "justificativa": "A animação faz uma crítica contundente aos padrões de produção e consumo insustentáveis, mostrando a transformação de recursos naturais em produtos descartáveis e a alienação gerada pelo consumismo."
+      },
+      {
+        "ods": "15",
+        "justificativa": "A narrativa visualiza a destruição de ecossistemas terrestres, com a natureza sendo suprimida pela agricultura mecanizada e pela expansão urbana, um alerta sobre a perda da biodiversidade."
+      },
+      {
+        "ods": "16",
+        "justificativa": "O filme retrata a repressão de manifestações populares e a presença de um poderio militar que sustenta a ordem de exploração, simbolizando a ausência de paz e justiça para a classe trabalhadora."
+      }
+    ],
     "nota imdb": {
       "votantes": "7,5/7900",
       "url": ""
@@ -34255,7 +34285,7 @@
     "cidade": "",
     "Audiodescrição": "",
     "Closed Caption": "",
-    "Sinopse": "",
+    "Sinopse": "Sofrendo com a falta do pai, um garoto deixa sua aldeia e descobre um mundo fantástico dominado por máquinas, bichos e seres estranhos. Uma inesquecível animação que retrata as questões do mundo moderno através do olhar de uma criança.",
     "tema (Programadora Brasil)": "",
     "tags": "",
     "website": "",
@@ -34341,7 +34371,41 @@
     "Gênero": "Animação",
     "GEN.": "Animação",
     "Ano": 2013,
-    "ODS": "",
+    "ODS": "1, 4, 8, 10, 11, 12, 15, 16",
+    "ODS_Justificados": [
+      {
+        "ods": "1",
+        "justificativa": "A jornada do menino Cuca começa quando seu pai parte para a cidade em busca de trabalho, um reflexo do êxodo rural motivado pela pobreza e pela falta de oportunidades no campo."
+      },
+      {
+        "ods": "4",
+        "justificativa": "Esta versão, com recursos de acessibilidade (Audiodescrição e LIBRAS), materializa o conceito de educação inclusiva, garantindo que pessoas com deficiência visual e auditiva possam ter acesso a uma obra cultural e educativa fundamental."
+      },
+      {
+        "ods": "8",
+        "justificativa": "O filme é uma poderosa crítica às condições de trabalho na era da globalização. Retrata a exploração da mão de obra nas lavouras de algodão e a alienação do trabalho repetitivo nas fábricas, contrastando com o ideal de trabalho decente."
+      },
+      {
+        "ods": "10",
+        "justificativa": "Além de abordar a desigualdade social e econômica, esta versão combate diretamente a desigualdade de acesso à cultura para pessoas com deficiência, promovendo a inclusão e a equidade."
+      },
+      {
+        "ods": "11",
+        "justificativa": "O filme critica um modelo de urbanização predatório, que suprime a cultura local e a natureza em favor de uma cidade industrial caótica, poluída e desumanizada, levantando questões sobre o que torna uma comunidade sustentável."
+      },
+      {
+        "ods": "12",
+        "justificativa": "A animação faz uma crítica contundente aos padrões de produção e consumo insustentáveis, mostrando a transformação de recursos naturais em produtos descartáveis e a alienação gerada pelo consumismo."
+      },
+      {
+        "ods": "15",
+        "justificativa": "A narrativa visualiza a destruição de ecossistemas terrestres, com a natureza sendo suprimida pela agricultura mecanizada e pela expansão urbana, um alerta sobre a perda da biodiversidade."
+      },
+      {
+        "ods": "16",
+        "justificativa": "O filme retrata a repressão de manifestações populares e a presença de um poderio militar que sustenta a ordem de exploração, simbolizando a ausência de paz e justiça para a classe trabalhadora."
+      }
+    ],
     "nota imdb": {
       "votantes": "7,5/7900",
       "url": ""
@@ -34351,7 +34415,7 @@
     "cidade": "",
     "Audiodescrição": "AD",
     "Closed Caption": "LIBRAS",
-    "Sinopse": "",
+    "Sinopse": "Sofrendo com a falta do pai, um garoto deixa sua aldeia e descobre um mundo fantástico dominado por máquinas, bichos e seres estranhos. Uma inesquecível animação que retrata as questões do mundo moderno através do olhar de uma criança.",
     "tema (Programadora Brasil)": "",
     "tags": "",
     "website": "",
