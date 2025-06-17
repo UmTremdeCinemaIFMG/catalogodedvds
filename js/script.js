@@ -6,7 +6,7 @@ let currentFilms = [];       // ARMAZENA OS FILMES FILTRADOS ATUALMENTE
 let currentPage = 1;         // PÁGINA ATUAL DA PAGINAÇÃO
 let allGenres = [];          // LISTA DE TODOS OS GÊNEROS ÚNICOS
 let debounceTimer;          // TIMER PARA DEBOUNCE DA BUSCA
-const itemsPerPage = 20;     // QUANTIDADE DE FILMES POR PÁGINA
+const itemsPerPage = 1000;     // QUANTIDADE DE FILMES POR PÁGINA
 
 /* ==========================================
    2. FUNÇÕES DE UTILIDADE E FORMATAÇÃO
