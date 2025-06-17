@@ -34299,7 +34299,31 @@
     ],
     "Assistir Online": "https://assista.itauculturalplay.com.br/ItemDetail/673b6ebd3a22b068ff820af4/63973436a2fa051d3a3fa407",
     "URL": "https://assista.itauculturalplay.com.br/ItemDetail/673b6ebd3a22b068ff820af4/63973436a2fa051d3a3fa407",
-    "busca": "Válido"
+    "busca": "Válido",
+    "BNCC_Etapas": [
+      "Ensino Fundamental",
+      "Ensino Médio"
+    ],
+    "BNCC_Areas": [
+      "Linguagens e suas Tecnologias",
+      "Ciências Humanas e Sociais Aplicadas",
+      "Ciências da Natureza e suas Tecnologias"
+    ],
+    "BNCC_Competencias_Gerais": [
+      1,
+      2,
+      3,
+      7,
+      9,
+      10
+    ],
+    "BNCC_Temas_Transversais": [
+      "Trabalho",
+      "Economia",
+      "Meio Ambiente",
+      "Cidadania e Civismo"
+    ],
+    "BNCC_Justificativa": "Esta animação, aclamada internacionalmente, é uma obra-prima que pode ser trabalhada em todas as etapas da Educação Básica, com diferentes níveis de profundidade. Na área de Linguagens, permite a análise da narrativa sem diálogos, da estética visual única e da poderosa trilha sonora (Competência 3). Em Ciências Humanas, o filme é um ponto de partida para discussões complexas sobre os TCTs de Trabalho (exploração, êxodo rural), Economia (globalização, consumismo), Meio Ambiente (degradação) e Cidadania e Civismo (desigualdade social). A jornada do menino Cuca desenvolve o Pensamento Crítico (Competência 2) sobre o mundo contemporâneo, a Argumentação (Competência 7) sobre os problemas sociais e, acima de tudo, a Empatia (Competência 9) com a perspectiva da criança diante de um mundo complexo e muitas vezes hostil."
   },
   {
     "Classificação Indicativa POR PGM": "L",
@@ -34371,7 +34395,33 @@
     ],
     "Assistir Online": "https://assista.itauculturalplay.com.br/ItemDetail/673b6ebd3a22b068ff820af4/6669b07fa3cf1567277b392f",
     "URL": "https://assista.itauculturalplay.com.br/ItemDetail/673b6ebd3a22b068ff820af4/6669b07fa3cf1567277b392f",
-    "busca": "Válido"
+    "busca": "Válido",
+    "BNCC_Etapas": [
+      "Ensino Fundamental",
+      "Ensino Médio"
+    ],
+    "BNCC_Areas": [
+      "Linguagens e suas Tecnologias",
+      "Ciências Humanas e Sociais Aplicadas",
+      "Ciências da Natureza e suas Tecnologias"
+    ],
+    "BNCC_Competencias_Gerais": [
+      1,
+      2,
+      3,
+      4,
+      7,
+      9,
+      10
+    ],
+    "BNCC_Temas_Transversais": [
+      "Trabalho",
+      "Economia",
+      "Meio Ambiente",
+      "Cidadania e Civismo",
+      "Multiculturalismo"
+    ],
+    "BNCC_Justificativa": "Esta versão do filme, com recursos de acessibilidade (Audiodescrição e LIBRAS), amplia ainda mais seu potencial pedagógico. Além de todas as conexões já mencionadas na análise da versão original, esta versão permite trabalhar de forma explícita o TCT Cidadania e Civismo na perspectiva da inclusão de pessoas com deficiência. Na área de Linguagens, possibilita o estudo e a valorização da Língua Brasileira de Sinais (LIBRAS) e da audiodescrição como modalidades de tradução e acessibilidade, desenvolvendo a Competência 4 (Comunicação) em sua plenitude. A utilização desta versão em sala de aula promove ativamente a Competência 10 (Responsabilidade e Cidadania) ao fomentar uma cultura de inclusão e respeito às diferenças."
   },
   {
     "Classificação Indicativa POR PGM": "Livre",
