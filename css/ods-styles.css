@@ -139,13 +139,13 @@
 
 
 /* CORES DE FUNDO PARA O VERSO DOS CARDS DA BNCC */
-.bncc-card[data-bncc-number="1"] { background-color: rgb(229, 36, 59); }
-.bncc-card[data-bncc-number="2"] { background-color: rgb(197, 25, 45); }
-.bncc-card[data-bncc-number="3"] { background-color: rgb(253, 105, 37); }
-.bncc-card[data-bncc-number="4"] { background-color: rgb(38, 189, 226); }
-.bncc-card[data-bncc-number="5"] { background-color: rgb(0, 104, 157); }
-.bncc-card[data-bncc-number="6"] { background-color: rgb(162, 25, 66); }
-.bncc-card[data-bncc-number="7"] { background-color: rgb(191, 139, 46); }
-.bncc-card[data-bncc-number="8"] { background-color: rgb(76, 159, 56); }
-.bncc-card[data-bncc-number="9"] { background-color: rgb(221, 19, 103); }
-.bncc-card[data-bncc-number="10"] { background-color: rgb(25, 72, 106); }
+.bncc-card[data-bncc-number="1"] { background-color: #e51d3c; }
+.bncc-card[data-bncc-number="2"] { background-color: #233dff; }
+.bncc-card[data-bncc-number="3"] { background-color: #ff671b; }
+.bncc-card[data-bncc-number="4"] { background-color: #0e7d00; }
+.bncc-card[data-bncc-number="5"] { background-color: #5e17eb; }
+.bncc-card[data-bncc-number="6"] { background-color: #ff20a9; }
+.bncc-card[data-bncc-number="7"] { background-color: #0097b2; }
+.bncc-card[data-bncc-number="8"] { background-color: #14ab02; }
+.bncc-card[data-bncc-number="9"] { background-color: #ec6964; }
+.bncc-card[data-bncc-number="10"] { background-color: #842000; }
