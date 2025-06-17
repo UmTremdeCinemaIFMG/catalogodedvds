@@ -334,6 +334,20 @@ async function loadFilmData() {
 
         const transformedFilm = transformFilmData(film);
         renderFilmData(transformedFilm);
+        console.log("Dados transformados:", transformedFilm);
+
+        //======================================================================================
+        // INÍCIO DO CÓDIGO A SER ADICIONADO - ATUALIZA AS META TAGS
+        //======================================================================================
+        :description" content="Detalhes completos do filme no catálogo de DVDs do Projeto Um Trem de Cinema do IFMG Sabará" />
+    <meta id="og-image" property="og:image" content="https://umtremdecinemaifmg.github.io/catalogodedvds/social-share-image.png" />
+    <meta id="og-url" property="og:url" content="https://umtremdecinemaifmg.github.io/catalogodedvds/" />
+    <meta property="og:type" content="website" />
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta id="twitter-title" name="twitter:title" content="Catálogo de DVDs - Um Trem de Cinema">
+    <meta id="twitter-description" name="twitter:description" content="Detalhes completos do filme no catálogo de DVDs do Projeto Um Trem de Cinema do IFMG Sabará">
+    <meta id="twitter-image" name="twitter:image" content="https://umtremdecinemaifmg.github.io/catalogodedvds/social-share-image.png">
 
         if (loadingElement) loadingElement.style.display = "none";
 
