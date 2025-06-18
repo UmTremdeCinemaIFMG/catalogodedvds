@@ -6,46 +6,22 @@ let currentFilms = [];
 let currentPage = 1;
 let allGenres = [];
 let debounceTimer;
-const itemsPerPage = 20; // VOLTEI PARA 20, AJUSTE SE NECESSÁRIO
-let currentView = 'grid'; // NOVA VARIÁVEL PARA CONTROLAR A VISUALIZAÇÃO
+const itemsPerPage = 20; // MANTIVE 20, AJUSTE SE NECESSÁRIO
+let currentView = 'grid'; // VARIÁVEL PARA CONTROLAR A VISUALIZAÇÃO
 
 /* ==========================================
    2. FUNÇÕES DE UTILIDADE E FORMATAÇÃO
    ========================================== */
-function cleanField(value) {
-    if (!value) return '';
-    return String(value).replace(/^"|"$/g, '').trim();
-}
-function getClassificationClass(age) {
-    if (!age || age <= 0) return 'L';
-    const ageNum = typeof age === 'string' ? parseInt(age) : age;
-    switch (ageNum) {
-        case 10: return 'ten';
-        case 12: return 'twelve';
-        case 14: return 'fourteen';
-        case 16: return 'sixteen';
-        case 18: return 'eighteen';
-        default: return 'L';
-    }
-}
-function getDvdCover(filmData) {
-    const DEFAULT_COVER = 'capas/progbrasil.png';
-    if (filmData.imageName) {
-        const baseName = filmData.imageName.replace(/\.(jpg|jpeg|png|gif)$/i, '');
-        return `capas/${baseName}.jpg`;
-    }
-    return DEFAULT_COVER;
-}
+function cleanField(value) { if (!value) return ''; return String(value).replace(/^"|"$/g, '').trim(); }
+function getClassificationClass(age) { if (!age || age <= 0) return 'L'; const ageNum = typeof age === 'string' ? parseInt(age) : age; switch (ageNum) { case 10: return 'ten'; case 12: return 'twelve'; case 14: return 'fourteen'; case 16: return 'sixteen'; case 18: return 'eighteen'; default: return 'L'; } }
+function getDvdCover(filmData) { const DEFAULT_COVER = 'capas/progbrasil.png'; if (filmData.imageName) { const baseName = filmData.imageName.replace(/\.(jpg|jpeg|png|gif)$/i, ''); return `capas/${baseName}.jpg`; } return DEFAULT_COVER; }
 
 /* ==========================================
    3. FUNÇÕES DE TRANSFORMAÇÃO E ORDENAÇÃO
    ========================================== */
 function transformFilmData(originalFilm) {
     let imdbData = { votantes: '' };
-    if (originalFilm["nota imdb/votantes"]) {
-        const [nota, votantes] = String(originalFilm["nota imdb/votantes"]).split('/');
-        imdbData = { votantes: `${nota}/${votantes || ''}`.trim() };
-    }
+    if (originalFilm["nota imdb/votantes"]) { const [nota, votantes] = String(originalFilm["nota imdb/votantes"]).split('/'); imdbData = { votantes: `${nota}/${votantes || ''}`.trim() }; }
     return {
         title: cleanField(originalFilm["Título do filme"]),
         director: cleanField(originalFilm["Direção"]),
@@ -135,7 +111,7 @@ function filterAndRenderFilms() {
         currentFilms = sortFilms(currentFilms, sortOption);
         currentPage = 1;
         renderPagination();
-        renderResults(); // CHAMA A NOVA FUNÇÃO MESTRA
+        renderResults();
     }, 300);
 }
 
@@ -148,13 +124,8 @@ function updateFilmsCounter() {
     countElement.classList.add('updated');
     setTimeout(() => { countElement.classList.remove('updated'); }, 300);
     countElement.textContent = currentFilms.length;
-    if (currentFilms.length === 0) {
-        counterContainer.classList.add('sem-resultados');
-        counterContainer.classList.remove('com-resultados');
-    } else {
-        counterContainer.classList.add('com-resultados');
-        counterContainer.classList.remove('sem-resultados');
-    }
+    if (currentFilms.length === 0) { counterContainer.classList.add('sem-resultados'); counterContainer.classList.remove('com-resultados'); }
+    else { counterContainer.classList.add('com-resultados'); counterContainer.classList.remove('sem-resultados'); }
 }
 function initializeFilters() {
     const genreSelect = document.getElementById('genreSelect');
@@ -194,36 +165,26 @@ function renderOtherMaterialsModal(film, encodedTitle) { if (!film.materialOutro
 /* ==========================================
    6. FUNÇÕES DE RENDERIZAÇÃO DOS FILMES E PAGINAÇÃO
    ========================================== */
-
-// NOVA FUNÇÃO MESTRA PARA RENDERIZAR OS RESULTADOS
 function renderResults() {
     const loadingMessage = document.getElementById('loadingMessage');
     loadingMessage.style.display = 'none';
-
     if (currentView === 'grid') {
         document.getElementById('filmGrid').style.display = 'grid';
         document.getElementById('filmList').style.display = 'none';
         renderGridView();
     } else {
         document.getElementById('filmGrid').style.display = 'none';
-        document.getElementById('filmList').style.display = 'flex';
+        document.getElementById('filmList').style.display = 'block'; // MUDADO PARA 'block'
         renderListView();
     }
 }
-
-// RENDERIZA OS FILMES NA GRADE (ANTIGA renderFilms)
 function renderGridView() {
     const filmGrid = document.getElementById('filmGrid');
     filmGrid.innerHTML = '';
     const startIndex = (currentPage - 1) * itemsPerPage;
     const endIndex = startIndex + itemsPerPage;
     const filmsToRender = currentFilms.slice(startIndex, endIndex);
-
-    if (filmsToRender.length === 0) {
-        filmGrid.innerHTML = '<p class="no-results">Nenhum filme encontrado com os critérios selecionados.</p>';
-        return;
-    }
-
+    if (filmsToRender.length === 0) { filmGrid.innerHTML = '<p class="no-results">Nenhum filme encontrado com os critérios selecionados.</p>'; return; }
     filmsToRender.forEach(film => {
         const filmCard = document.createElement('div');
         filmCard.className = 'film-card';
@@ -236,19 +197,24 @@ function renderGridView() {
     });
     initializePosterControls();
 }
-
-// NOVA FUNÇÃO PARA RENDERIZAR OS FILMES EM LISTA
 function renderListView() {
     const filmList = document.getElementById('filmList');
     filmList.innerHTML = '';
     const startIndex = (currentPage - 1) * itemsPerPage;
     const endIndex = startIndex + itemsPerPage;
     const filmsToRender = currentFilms.slice(startIndex, endIndex);
-
-    if (filmsToRender.length === 0) {
-        filmList.innerHTML = '<p class="no-results">Nenhum filme encontrado com os critérios selecionados.</p>';
-        return;
-    }
+    if (filmsToRender.length === 0) { filmList.innerHTML = '<p class="no-results">Nenhum filme encontrado com os critérios selecionados.</p>'; return; }
+    
+    // CRIA O CABEÇALHO DA LISTA
+    filmList.innerHTML = `
+        <div class="list-header">
+            <div class="list-col col-title">Título</div>
+            <div class="list-col col-year">Ano</div>
+            <div class="list-col col-genre">Gênero</div>
+            <div class="list-col col-duration">Duração</div>
+            <div class="list-col col-class">Class.</div>
+        </div>
+    `;
 
     filmsToRender.forEach(film => {
         const listItem = document.createElement('div');
@@ -257,16 +223,17 @@ function renderListView() {
         const classificationText = film.classification <= 0 ? 'L' : film.classification;
         const coverPath = getDvdCover(film);
         listItem.innerHTML = `
-            <img src="${coverPath}" alt="Capa de ${film.title}" class="list-item-poster" onerror="this.onerror=null; this.src='capas/progbrasil.png';">
-            <div class="list-item-info">
-                <h4>${film.title}</h4>
-                <p>${film.director || 'Direção não informada'}</p>
-                <div class="list-item-meta">
-                    <span><i class="fas fa-calendar-alt"></i> ${film.year || '?'}</span>
-                    <span><i class="fas fa-clock"></i> ${film.duration || '?'} min</span>
+            <div class="list-col col-title">
+                <img src="${coverPath}" alt="Capa de ${film.title}" class="list-item-poster" onerror="this.onerror=null; this.src='capas/progbrasil.png';">
+                <div class="list-item-info">
+                    <h4>${film.title}</h4>
+                    <p>${film.director || 'Direção não informada'}</p>
                 </div>
             </div>
-            <div class="list-item-details">
+            <div class="list-col col-year">${film.year || '?'}</div>
+            <div class="list-col col-genre">${film.genres.join(', ') || 'N/A'}</div>
+            <div class="list-col col-duration">${film.duration || '?'} min</div>
+            <div class="list-col col-class">
                 <span class="classification ${classificationClass}">${classificationText}</span>
             </div>
         `;
@@ -274,8 +241,6 @@ function renderListView() {
         filmList.appendChild(listItem);
     });
 }
-
-// RENDERIZA A PAGINAÇÃO
 function renderPagination() {
     const paginationContainer = document.getElementById('pagination');
     paginationContainer.innerHTML = '';
@@ -291,8 +256,6 @@ function renderPagination() {
     if (currentPage < totalPages) { paginationContainer.appendChild(createPageButton('<i class="fas fa-angle-right"></i>', currentPage + 1, 'Próxima Página')); }
     if (currentPage < totalPages) { paginationContainer.appendChild(createPageButton('<i class="fas fa-angle-double-right"></i>', totalPages, 'Última Página')); }
 }
-
-// Função auxiliar para criar botões de paginação
 function createPageButton(content, pageNumber, title = '') {
     const button = document.createElement('button');
     button.innerHTML = content;
@@ -300,7 +263,7 @@ function createPageButton(content, pageNumber, title = '') {
     if (pageNumber === currentPage && typeof content === 'number') { button.classList.add('active'); }
     button.addEventListener('click', () => {
         currentPage = pageNumber;
-        renderResults(); // CHAMA A FUNÇÃO MESTRA
+        renderResults();
         renderPagination();
         window.scrollTo(0, 0);
     });
@@ -365,25 +328,20 @@ async function initializeApp() {
 document.addEventListener('DOMContentLoaded', () => {
     initializeApp();
 
-    // LÓGICA PARA OS BOTÕES DE VISUALIZAÇÃO
     const viewGridBtn = document.getElementById('viewGridBtn');
     const viewListBtn = document.getElementById('viewListBtn');
 
-    // FUNÇÃO PARA MUDAR DE VISUALIZAÇÃO
     function setView(view) {
         currentView = view;
-        localStorage.setItem('preferredView', view); // SALVA A PREFERÊNCIA
-
+        localStorage.setItem('preferredView', view);
         viewGridBtn.classList.toggle('active', view === 'grid');
         viewListBtn.classList.toggle('active', view === 'list');
-
         renderResults();
     }
 
     viewGridBtn.addEventListener('click', () => setView('grid'));
     viewListBtn.addEventListener('click', () => setView('list'));
 
-    // CARREGA A VISUALIZAÇÃO PREFERIDA DO USUÁRIO
     const savedView = localStorage.getItem('preferredView');
     if (savedView) {
         setView(savedView);
@@ -392,41 +350,22 @@ document.addEventListener('DOMContentLoaded', () => {
 
 // CONTROLE DE ROLAGEM DAS CAPAS DOS FILMES
 function initializePosterControls() {
-    // Para cards na página principal
     document.querySelectorAll('.film-poster-container').forEach(container => {
         const img = container.querySelector('.film-poster');
         const prev = container.querySelector('.film-poster-control.prev');
         const next = container.querySelector('.film-poster-control.next');
-        
         if (prev && next) {
-            prev.addEventListener('click', (e) => {
-                e.stopPropagation(); // Previne que o modal abra
-                img.style.transform = 'translateX(50%)';
-            });
-            
-            next.addEventListener('click', (e) => {
-                e.stopPropagation(); // Previne que o modal abra
-                img.style.transform = 'translateX(0)';
-            });
+            prev.addEventListener('click', (e) => { e.stopPropagation(); img.style.transform = 'translateX(50%)'; });
+            next.addEventListener('click', (e) => { e.stopPropagation(); img.style.transform = 'translateX(0)'; });
         }
     });
-
-    // Para o modal
     document.querySelectorAll('.modal-poster-container').forEach(container => {
         const img = container.querySelector('.modal-poster');
         const prev = container.querySelector('.modal-poster-control.prev');
         const next = container.querySelector('.modal-poster-control.next');
-        
-     if (prev && next) {
-            prev.addEventListener('click', (e) => {
-                e.stopPropagation(); // Previne que o modal abra
-                img.style.transform = 'translateX(50%)';
-            });
-            
-            next.addEventListener('click', (e) => {
-                e.stopPropagation(); // Previne que o modal abra
-                img.style.transform = 'translateX(0)';
-            });
+        if (prev && next) {
+            prev.addEventListener('click', (e) => { e.stopPropagation(); img.style.transform = 'translateX(50%)'; });
+            next.addEventListener('click', (e) => { e.stopPropagation(); img.style.transform = 'translateX(0)'; });
         }
     });
 }
