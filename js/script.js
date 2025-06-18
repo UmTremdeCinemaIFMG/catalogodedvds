@@ -31,11 +31,10 @@ function transformFilmData(originalFilm) {
     let imdbData = { votantes: '' };
     if (originalFilm["nota imdb/votantes"]) { const [nota, votantes] = String(originalFilm["nota imdb/votantes"]).split('/'); imdbData = { votantes: `${nota}/${votantes || ''}`.trim() }; }
     
-    // LÓGICA CORRIGIDA: AGORA LIDAMOS COM UF E CIDADE COMO ARRAYS
-    // AQUI, PEGAMOS O PRIMEIRO ITEM DO ARRAY PARA EXIBIÇÃO SIMPLES NAS LISTAS E GRADES.
-    // A LÓGICA DE EXPANSÃO EM 'initializeApp' CUIDA DE CRIAR UMA CÓPIA PARA CADA LOCALIZAÇÃO.
-    const state = Array.isArray(originalFilm.UF) ? (originalFilm.UF[0] || '') : (originalFilm.UF || '');
-    const city = Array.isArray(originalFilm.cidade) ? (originalFilm.cidade[0] || '') : (originalFilm.cidade || '');
+    // AQUI, A LÓGICA DE TRANSFORMAÇÃO É SIMPLES. PEGAMOS O VALOR COMO ESTÁ.
+    // A LÓGICA DE EXPANSÃO EM 'initializeApp' CUIDARÁ DE CRIAR AS CÓPIAS.
+    const state = originalFilm.UF || '';
+    const city = originalFilm.cidade || '';
 
     return {
         title: cleanField(originalFilm["Título do filme"]),
@@ -47,11 +46,10 @@ function transformFilmData(originalFilm) {
         year: parseInt(originalFilm["Ano"]) || 0,
         imdb: imdbData,
         country: cleanField(originalFilm["País"]),
-        state: state, // USA A VARIÁVEL CORRIGIDA
-        city: city,   // USA A VARIÁVEL CORRIGIDA
-        // Mantém os arrays originais para a lógica de expansão
-        originalUF: originalFilm.UF || [],
-        originalCidades: originalFilm.cidade || [],
+        state: state,
+        city: city,
+        originalUF: Array.isArray(originalFilm.UF) ? originalFilm.UF : (originalFilm.UF ? [originalFilm.UF] : []),
+        originalCidades: Array.isArray(originalFilm.cidade) ? originalFilm.cidade : (originalFilm.cidade ? [originalFilm.cidade] : []),
         ods: originalFilm["ODS"] ? String(originalFilm["ODS"]).split(',').map(s => s.trim()).filter(s => s) : [],
         odsJustificados: originalFilm["ODS_Justificados"] || [],
         audiodescricao: cleanField(originalFilm["Audiodescrição"]),
@@ -81,6 +79,18 @@ function transformFilmData(originalFilm) {
         bnccTemas: originalFilm["BNCC_Temas_Transversais"] || [],
         bnccJustificativa: cleanField(originalFilm["BNCC_Justificativa"])
     };
+}
+function sortFilms(films, sortOption) {
+    const sortedFilms = [...films];
+    switch (sortOption) {
+        case 'title-asc': sortedFilms.sort((a, b) => a.title.localeCompare(b.title)); break;
+        case 'title-desc': sortedFilms.sort((a, b) => b.title.localeCompare(a.title)); break;
+        case 'year-asc': sortedFilms.sort((a, b) => a.year - b.year); break;
+        case 'year-desc': sortedFilms.sort((a, b) => b.year - a.year); break;
+        case 'duration-asc': sortedFilms.sort((a, b) => a.duration - b.duration); break;
+        case 'duration-desc': sortedFilms.sort((a, b) => b.duration - b.duration); break;
+    }
+    return sortedFilms;
 }
 
 /* ==========================================
@@ -232,31 +242,34 @@ function renderListView() {
 }
 function renderMapView() {
     const mapContainer = document.getElementById('map');
-    mapContainer.style.display = 'block'; // GARANTE QUE O MAPA ESTEJA VISÍVEL ANTES DE INICIALIZAR
+    mapContainer.style.display = 'block';
 
     if (!mapInstance) {
         initializeMap();
-    } else {
-        // FORÇA O MAPA A RECALCULAR SEU TAMANHO CASO A JANELA TENHA MUDADO
+    }
+    
+    // FORÇA O MAPA A RECALCULAR SEU TAMANHO DEPOIS DE FICAR VISÍVEL
+    // USA O SETTIMEOUT PARA GARANTIR QUE O DOM FOI ATUALIZADO
+    setTimeout(() => {
         mapInstance.invalidateSize();
-    }
+        
+        markersCluster.clearLayers();
+        const filmsOnMap = currentFilms.filter(film => film.state || film.city);
 
-    markersCluster.clearLayers();
-    const filmsOnMap = currentFilms.filter(film => film.state || film.city);
+        filmsOnMap.forEach(film => {
+            const coords = getCoordenadas(film);
+            if (coords) {
+                const jitter = 0.0005;
+                const adjustedCoords = [coords[0] + (Math.random() - 0.5) * jitter, coords[1] + (Math.random() - 0.5) * jitter];
+                const marker = L.marker(adjustedCoords).bindPopup(criarConteudoPopup(film), { maxWidth: window.innerWidth <= 768 ? 200 : 300, autoPan: true, closeButton: true });
+                markersCluster.addLayer(marker);
+            }
+        });
 
-    filmsOnMap.forEach(film => {
-        const coords = getCoordenadas(film);
-        if (coords) {
-            const jitter = 0.0005;
-            const adjustedCoords = [coords[0] + (Math.random() - 0.5) * jitter, coords[1] + (Math.random() - 0.5) * jitter];
-            const marker = L.marker(adjustedCoords).bindPopup(criarConteudoPopup(film), { maxWidth: window.innerWidth <= 768 ? 200 : 300, autoPan: true, closeButton: true });
-            markersCluster.addLayer(marker);
+        if (filmsOnMap.length > 0) {
+            mapInstance.fitBounds(markersCluster.getBounds(), { padding: [50, 50] });
         }
-    });
-
-    if (filmsOnMap.length > 0) {
-        mapInstance.fitBounds(markersCluster.getBounds(), { padding: [50, 50] });
-    }
+    }, 10); // UM PEQUENO ATRASO É SUFICIENTE
 }
 function renderPagination() {
     const paginationContainer = document.getElementById('pagination');
@@ -344,7 +357,6 @@ function handleKeyDown(e) { if (e.key === 'Escape') { closeModal(); } }
 /* ==========================================
    9. FUNÇÕES DE CARREGAMENTO INICIAL
    ========================================== */
-
 async function initializeApp() {
     const loadingMessage = document.getElementById('loadingMessage');
     loadingMessage.style.display = 'flex';
@@ -353,24 +365,22 @@ async function initializeApp() {
         if (!response.ok) { throw new Error(`Erro ao carregar catalogo.json: ${response.statusText}`); }
         const data = await response.json();
 
-        // MAPEIA PARA O FORMATO INTERNO ANTES DE EXPANDIR
         const transformedData = data.map(transformFilmData);
 
-        // LÓGICA DE EXPANSÃO DE FILMES PARA O MAPA
         const expandedForMap = transformedData.reduce((acc, film) => {
             const ufs = film.originalUF;
             const cidades = film.originalCidades;
 
             if (cidades.length > 0) {
                 cidades.forEach(cidade => {
-                    acc.push({ ...film, city: cidade, state: ufs[0] || '' }); // Cria uma cópia para cada cidade
+                    acc.push({ ...film, city: cidade, state: ufs[0] || '' }); 
                 });
             } else if (ufs.length > 0) {
                 ufs.forEach(uf => {
-                    acc.push({ ...film, state: uf, city: '' }); // Cria uma cópia para cada UF
+                    acc.push({ ...film, state: uf, city: '' }); 
                 });
             } else {
-                acc.push(film); // Adiciona filmes sem localização
+                acc.push(film); 
             }
             return acc;
         }, []);
