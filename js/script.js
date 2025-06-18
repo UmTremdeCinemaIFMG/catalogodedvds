@@ -40,8 +40,8 @@ function transformFilmData(originalFilm) {
         year: parseInt(originalFilm["Ano"]) || 0,
         imdb: imdbData,
         country: cleanField(originalFilm["País"]),
-        state: Array.isArray(originalFilm.UF) ? originalFilm.UF : [],
-        city: Array.isArray(originalFilm.cidade) ? originalFilm.cidade : [],
+        state: originalFilm.UF || [],
+        city: originalFilm.cidade || [],
         ods: originalFilm["ODS"] ? String(originalFilm["ODS"]).split(',').map(s => s.trim()).filter(s => s) : [],
         odsJustificados: originalFilm["ODS_Justificados"] || [],
         audiodescricao: cleanField(originalFilm["Audiodescrição"]),
@@ -135,15 +135,12 @@ function updateFilmsCounter() {
     setTimeout(() => { countElement.classList.remove('updated'); }, 300);
 
     let count = 0;
-    let label = "filmes encontrados";
+    let label = "";
 
     if (currentView === 'map') {
         count = currentFilms.reduce((total, film) => {
             const locations = film.city.length > 0 ? film.city : film.state;
-            if (locations.length > 0) {
-                return total + locations.length;
-            }
-            return total;
+            return total + (locations.length || 0);
         }, 0);
         label = count === 1 ? "marcador no mapa" : "marcadores no mapa";
     } else {
@@ -166,7 +163,7 @@ function initializeFilters() {
     const ufSelect = document.getElementById('ufSelect');
     ufSelect.innerHTML = '<option value="">Todos os Estados</option>';
     const allUfs = [...new Set(allFilms.flatMap(film => film.state))].sort();
-    allUfs.forEach(uf => { if (uf) { const option = document.createElement('option'); option.value = uf; option.textContent = uf; ufSelect.appendChild(option); } });
+    allUfs.forEach(uf => { if(uf) { const option = document.createElement('option'); option.value = uf; option.textContent = uf; ufSelect.appendChild(option); }});
 
     const genreSelect = document.getElementById('genreSelect');
     const odsSelect = document.getElementById('odsSelect');
@@ -201,10 +198,10 @@ function initializeFilters() {
     document.getElementById('temaSelect').addEventListener('change', filterAndRenderFilms);
 }
 function createThemesList(film) { const themes = [film.tema, ...(film.tags ? film.tags.split(' ') : [])]; return [...new Set(themes.filter(t => t))]; }
-function renderTeachingPlansModal(film, encodedTitle) { if (!film.planos_de_aula || film.planos_de_aula.length === 0) { return '<p><i class="fas fa-info-circle"></i> Nenhum plano de aula disponível.</p>'; } const firstPlan = film.planos_de_aula[0]; let html = `<div class="teaching-plan-card"><p><strong><i class="fas fa-graduation-cap"></i> Nível de Ensino:</strong> ${firstPlan.nivel_ensino || ''}</p><p><strong><i class="fas fa-book"></i> Área de Conhecimento:</strong> ${firstPlan.area_conhecimento || ''}</p><p><strong><i class="fas fa-globe"></i> Site:</strong> <a href="${firstPlan.url}" target="_blank" rel="noopener noreferrer">${firstPlan.site}</a></p><p><strong><i class="fas fa-info-circle"></i> Descrição:</strong> ${firstPlan.descricao || ''}</p></div>`; if (film.planos_de_aula.length > 1) { const remainingCount = film.planos_de_aula.length - 1; html += `<a href="filme.html?titulo=${encodedTitle}" class="btn-ver-mais">+${remainingCount} Resultados</a>`; } return html; }
-function renderOtherMaterialsModal(film, encodedTitle) { if (!film.materialOutros || film.materialOutros.length === 0) { return '<p><i class="fas fa-info-circle"></i> Nenhum material adicional disponível.</p>'; } const firstMaterial = film.materialOutros[0]; let html = `<div class="other-material-card"><p><strong><i class="fas fa-bookmark"></i> Tipo:</strong> ${firstMaterial.tipo || ''}</p><p><strong><i class="fas fa-file-alt"></i> Título:</strong> <a href="${firstMaterial.url}" target="_blank" rel="noopener noreferrer">${firstMaterial.titulo}</a></p></div>`; if (film.materialOutros.length > 1) { const remainingCount = film.materialOutros.length - 1; html += `<a href="filme.html?titulo=${encodedTitle}" class="btn-ver-mais">+${remainingCount} Resultados</a>`; } return html; }
 function renderTeachingPlans(film) { if (!film.planos_de_aula || film.planos_de_aula.length === 0) { return '<p>Nenhum plano de aula disponível para este filme ainda.</p>'; } return film.planos_de_aula.map(plano => `<div class="teaching-plan-card"><p><strong><i class="fas fa-graduation-cap"></i> Nível de Ensino:</strong> ${plano.nivel_ensino || ''}</p><p><strong><i class="fas fa-book"></i> Área de Conhecimento:</strong> ${plano.area_conhecimento || ''}</p><p><strong><i class="fas fa-globe"></i> Site:</strong> <a href="${plano.url}" target="_blank" rel="noopener noreferrer">${plano.site}</a></p><p><strong><i class="fas fa-info-circle"></i> Descrição:</strong> ${plano.descricao || ''}</p></div>`).join(''); }
 function renderOtherMaterials(film) { if (!film.materialOutros || film.materialOutros.length === 0) { return '<p>Nenhum material adicional disponível.</p>'; } return film.materialOutros.map(material => `<div class="other-material-card"><p><strong><i class="fas fa-bookmark"></i> Tipo:</strong> ${material.tipo || ''}</p><p><strong><i class="fas fa-file-alt"></i> Título:</strong> <a href="${material.url}" target="_blank" rel="noopener noreferrer">${material.titulo}</a></p></div>`).join(''); }
+function renderTeachingPlansModal(film, encodedTitle) { if (!film.planos_de_aula || film.planos_de_aula.length === 0) { return '<p><i class="fas fa-info-circle"></i> Nenhum plano de aula disponível.</p>'; } const firstPlan = film.planos_de_aula[0]; let html = `<div class="teaching-plan-card"><p><strong><i class="fas fa-graduation-cap"></i> Nível de Ensino:</strong> ${firstPlan.nivel_ensino || ''}</p><p><strong><i class="fas fa-book"></i> Área de Conhecimento:</strong> ${firstPlan.area_conhecimento || ''}</p><p><strong><i class="fas fa-globe"></i> Site:</strong> <a href="${firstPlan.url}" target="_blank" rel="noopener noreferrer">${firstPlan.site}</a></p><p><strong><i class="fas fa-info-circle"></i> Descrição:</strong> ${firstPlan.descricao || ''}</p></div>`; if (film.planos_de_aula.length > 1) { const remainingCount = film.planos_de_aula.length - 1; html += `<a href="filme.html?titulo=${encodedTitle}" class="btn-ver-mais">+${remainingCount} Resultados</a>`; } return html; }
+function renderOtherMaterialsModal(film, encodedTitle) { if (!film.materialOutros || film.materialOutros.length === 0) { return '<p><i class="fas fa-info-circle"></i> Nenhum material adicional disponível.</p>'; } const firstMaterial = film.materialOutros[0]; let html = `<div class="other-material-card"><p><strong><i class="fas fa-bookmark"></i> Tipo:</strong> ${firstMaterial.tipo || ''}</p><p><strong><i class="fas fa-file-alt"></i> Título:</strong> <a href="${firstMaterial.url}" target="_blank" rel="noopener noreferrer">${firstMaterial.titulo}</a></p></div>`; if (film.materialOutros.length > 1) { const remainingCount = film.materialOutros.length - 1; html += `<a href="filme.html?titulo=${encodedTitle}" class="btn-ver-mais">+${remainingCount} Resultados</a>`; } return html; }
 
 /* ==========================================
    6. FUNÇÕES DE RENDERIZAÇÃO E VISUALIZAÇÃO
@@ -217,14 +214,13 @@ function renderResults() {
     document.getElementById('filmGrid').style.display = 'none';
     document.getElementById('filmList').style.display = 'none';
     document.getElementById('map').style.display = 'none';
+    paginationContainer.style.display = 'flex';
 
     if (currentView === 'grid') {
         document.getElementById('filmGrid').style.display = 'grid';
-        paginationContainer.style.display = 'flex';
         renderGridView();
     } else if (currentView === 'list') {
         document.getElementById('filmList').style.display = 'block';
-        paginationContainer.style.display = 'flex';
         renderListView();
     } else if (currentView === 'map') {
         document.getElementById('map').style.display = 'block';
@@ -245,6 +241,7 @@ function renderGridView() {
         const classificationClass = getClassificationClass(film.classification);
         const classificationText = film.classification <= 0 ? 'L' : film.classification;
         const coverPath = getDvdCover(film);
+        const filmObjectString = JSON.stringify(film).replace(/'/g, "'");
         filmCard.innerHTML = `<div class="film-poster-container"><img src="${coverPath}" alt="Capa do filme ${film.title}" class="film-poster" onerror="this.onerror=null; this.src='capas/progbrasil.png';"><div class="film-poster-controls"><button class="film-poster-control prev"><i class="fas fa-chevron-left"></i></button><button class="film-poster-control next"><i class="fas fa-chevron-right"></i></button></div><span class="classification ${classificationClass}">${classificationText}</span></div><div class="film-info"><h3 class="film-title">${film.title}</h3><p class="film-director">${film.director || 'Direção não informada'}</p><div class="film-details"><span><i class="fas fa-clock"></i> ${film.duration || '?'} min</span><span><i class="fas fa-calendar-alt"></i> ${film.year || '?'}</span></div><div class="film-genres">${film.genres ? film.genres.map(genre => `<span class="genre-tag">${genre}</span>`).join('') : ''}</div></div>`;
         filmCard.addEventListener('click', () => openModal(film));
         filmGrid.appendChild(filmCard);
@@ -269,9 +266,6 @@ function renderListView() {
     filmList.innerHTML = headerHTML + itemsHTML;
 }
 function renderMapView() {
-    const mapContainer = document.getElementById('map');
-    mapContainer.style.display = 'block';
-
     if (!mapInstance) {
         initializeMap();
     }
@@ -285,7 +279,7 @@ function renderMapView() {
             const cidades = film.city;
             const ufs = film.state;
 
-            if (cidades && cidades.length > 0) {
+            if (cidades.length > 0) {
                 cidades.forEach(cidadeNome => {
                     const coords = coordenadas.cidades[cidadeNome];
                     if (coords) {
@@ -294,7 +288,7 @@ function renderMapView() {
                         markers.push(L.marker(adjustedCoords).bindPopup(criarConteudoPopup(film)));
                     }
                 });
-            } else if (ufs && ufs.length > 0) {
+            } else if (ufs.length > 0) {
                 ufs.forEach(ufNome => {
                     const coords = coordenadas.capitais[ufNome];
                     if (coords) {
@@ -308,11 +302,15 @@ function renderMapView() {
         
         if (markers.length > 0) {
             markersCluster.addLayers(markers);
-            mapInstance.fitBounds(markersCluster.getBounds(), { padding: [50, 50], maxZoom: 12 });
+            if (markers.length > 1) {
+                mapInstance.fitBounds(markersCluster.getBounds(), { padding: [50, 50], maxZoom: 12 });
+            } else {
+                mapInstance.setView(markers[0].getLatLng(), 8);
+            }
         } else {
              mapInstance.setView([-15.7975, -47.8919], 4);
         }
-    }, 10);
+    }, 100); 
 }
 function renderPagination() {
     const paginationContainer = document.getElementById('pagination');
@@ -344,7 +342,7 @@ function createPageButton(content, pageNumber, title = '') {
 }
 
 /* ==========================================
-   7. FUNÇÕES DO MAPA (MIGRADAS DE mapa.js)
+   7. FUNÇÕES DO MAPA
    ========================================== */
 function initializeMap() {
     if (mapInstance) return;
@@ -356,11 +354,6 @@ function initializeMap() {
     }).addTo(mapInstance);
     markersCluster = L.markerClusterGroup();
     mapInstance.addLayer(markersCluster);
-}
-function getCoordenadas(filme) {
-    if (filme.city && Array.isArray(filme.city) && filme.city.length > 0 && coordenadas.cidades[film.city[0]]) { return coordenadas.cidades[film.city[0]]; }
-    if (filme.state && Array.isArray(filme.state) && filme.state.length > 0 && coordenadas.capitais[film.state[0]]) { return coordenadas.capitais[film.state[0]]; }
-    return null;
 }
 function criarConteudoPopup(filme) {
     const encodedTitle = encodeURIComponent(film.title);
@@ -380,7 +373,7 @@ function openModal(film) {
     const themes = createThemesList(film);
     const hasThemes = themes.length > 0;
     const hasAdditionalInfo = film.audiodescricao || film.closedCaption || film.website || film.festivais || film.premios || film.legendasOutras;
-    modalContent.innerHTML = `<div class="modal-header"><div class="modal-poster-container"><img src="${coverPath}" alt="Capa do filme ${film.title}" class="modal-poster" onerror="this.onerror=null; this.src='capas/progbrasil.png';"><div class="modal-poster-controls"><button class="modal-poster-control prev"><i class="fas fa-chevron-left"></i></button><button class="modal-poster-control next"><i class="fas fa-chevron-right"></i></button></div><span class="classification ${classificationClass}">${classificationText}</span></div></div><h2 class="modal-title">${film.title}</h2><div class="modal-details">${film.director?`<p><strong><i class="fas fa-user"></i> Direção:</strong> ${film.director}</p>`:""}${film.cast?`<p><strong><i class="fas fa-users"></i> Elenco:</strong> ${film.cast}</p>`:""}${film.duration?`<p><strong><i class="fas fa-clock"></i> Duração:</strong> ${film.duration} min</p>`:""}${film.genre?`<p><strong><i class="fas fa-tag"></i> Gênero:</strong> ${film.genre}</p>`:""}${film.year?`<p><strong><i class="fas fa-calendar-alt"></i> Ano:</strong> ${film.year}</p>`:""}${film.imdb.votantes?`<p><strong><i class="fab fa-imdb"></i> IMDb:</strong> ${film.imdb.votantes}</p>`:""}${film.country?`<p><strong><i class="fas fa-globe-americas"></i> País:</strong> ${film.country}</p>`:""}${film.state?`<p><strong><i class="fas fa-map-marker-alt"></i> UF:</strong> ${film.state.join(", ")}</p>`:""}${film.dvd?`<p><strong><i class="fas fa-compact-disc"></i> DVD:</strong> ${film.dvd}</p>`:""}</div>${hasThemes?`<div class="modal-themes"><h3><i class="fas fa-tags"></i> Temas</h3>${themes.map(theme=>`<span class="theme-tag">${theme}</span>`).join("")}</div>`:""}${film.synopsis?`<div class="modal-synopsis"><h3><i class="fas fa-align-left"></i> Sinopse</h3><p>${film.synopsis}</p></div>`:""}${hasAdditionalInfo?`<div class="modal-additional"><h3><i class="fas fa-info-circle"></i> Informações Adicionais</h3>${film.audiodescricao?`<p><strong><i class="fas fa-assistive-listening-systems"></i> Audiodescrição:</strong> ${film.audiodescricao}</p>`:""}${film.closedCaption?`<p><strong><i class="fas fa-closed-captioning"></i> Closed Caption:</strong> ${film.closedCaption}</p>`:""}${film.website?`<p><strong><i class="fas fa-globe"></i> Website:</strong> <a href="${film.website.startsWith("http")?film.website:"https://"+film.website}" target="_blank" rel="noopener noreferrer">${film.website}</a></p>`:""}${film.festivais?`<p><strong><i class="fas fa-trophy"></i> Festivais:</strong> ${film.festivais}</p>`:""}${film.premios?`<p><strong><i class="fas fa-award"></i> Prêmios:</strong> ${film.premios}</p>`:""}${film.legendasOutras?`<p><strong><i class="fas fa-language"></i> Outras Legendas:</strong> ${film.legendasOutras}</p>`:""}</div>`:""}<div class="modal-other-materials"><h3><i class="fas fa-box-open"></i> Outros Materiais</h3>${renderOtherMaterialsModal(film,encodedTitle)}</div><div class="modal-teaching-plans"><h3><i class="fas fa-chalkboard-teacher"></i> Planos de Aula</h3>${renderTeachingPlansModal(film,encodedTitle)}<a href="https://docs.google.com/forms/d/e/1FAIpQLSdxQz8onMOFjxIqEPpo5v2I4CJdLQ9cN50I7zUhmnBwgUeGIQ/viewform?usp=sharing&ouid=101786859238464224020" target="_blank" rel="noopener noreferrer" class="btn-enviar-plano" style="display:inline-block; margin-top:15px; background:#009a44; color:#fff; padding:10px 18px; border-radius:6px; text-decoration:none; font-weight:500;"><i class="fas fa-plus"></i> Envie um plano de aula</a><p style="font-size: 0.95em; color: #666; margin-top: 6px;">Você pode colaborar enviando um plano de aula para este filme. Ao clicar, você será direcionado a um formulário.</p></div><div style="text-align: center; margin-top: 20px;"><a href="filme.html?titulo=${encodedTitle}" class="btn-enviar-plano" style="display:inline-block; background:#009a44; color:#fff; padding:12px 25px; border-radius:6px; text-decoration:none; font-weight:500;"><i class="fas fa-external-link-alt"></i> Ver página completa do filme</a></div>`;
+    modalContent.innerHTML = `<div class="modal-header"><div class="modal-poster-container"><img src="${coverPath}" alt="Capa do filme ${film.title}" class="modal-poster" onerror="this.onerror=null; this.src='capas/progbrasil.png';"><div class="modal-poster-controls"><button class="modal-poster-control prev"><i class="fas fa-chevron-left"></i></button><button class="modal-poster-control next"><i class="fas fa-chevron-right"></i></button></div><span class="classification ${classificationClass}">${classificationText}</span></div></div><h2 class="modal-title">${film.title}</h2><div class="modal-details">${film.director?`<p><strong><i class="fas fa-user"></i> Direção:</strong> ${film.director}</p>`:""}${film.cast?`<p><strong><i class="fas fa-users"></i> Elenco:</strong> ${film.cast}</p>`:""}${film.duration?`<p><strong><i class="fas fa-clock"></i> Duração:</strong> ${film.duration} min</p>`:""}${film.genre?`<p><strong><i class="fas fa-tag"></i> Gênero:</strong> ${film.genre}</p>`:""}${film.year?`<p><strong><i class="fas fa-calendar-alt"></i> Ano:</strong> ${film.year}</p>`:""}${film.imdb && film.imdb.votantes?`<p><strong><i class="fab fa-imdb"></i> IMDb:</strong> ${film.imdb.votantes}</p>`:""}${film.country?`<p><strong><i class="fas fa-globe-americas"></i> País:</strong> ${film.country}</p>`:""}${film.state && film.state.length > 0 ?`<p><strong><i class="fas fa-map-marker-alt"></i> UF:</strong> ${film.state.join(", ")}</p>`:""}${film.dvd?`<p><strong><i class="fas fa-compact-disc"></i> DVD:</strong> ${film.dvd}</p>`:""}</div>${hasThemes?`<div class="modal-themes"><h3><i class="fas fa-tags"></i> Temas</h3>${themes.map(theme=>`<span class="theme-tag">${theme}</span>`).join("")}</div>`:""}${film.synopsis?`<div class="modal-synopsis"><h3><i class="fas fa-align-left"></i> Sinopse</h3><p>${film.synopsis}</p></div>`:""}${hasAdditionalInfo?`<div class="modal-additional"><h3><i class="fas fa-info-circle"></i> Informações Adicionais</h3>${film.audiodescricao?`<p><strong><i class="fas fa-assistive-listening-systems"></i> Audiodescrição:</strong> ${film.audiodescricao}</p>`:""}${film.closedCaption?`<p><strong><i class="fas fa-closed-captioning"></i> Closed Caption:</strong> ${film.closedCaption}</p>`:""}${film.website?`<p><strong><i class="fas fa-globe"></i> Website:</strong> <a href="${film.website.startsWith("http")?film.website:"https://"+film.website}" target="_blank" rel="noopener noreferrer">${film.website}</a></p>`:""}${film.festivais?`<p><strong><i class="fas fa-trophy"></i> Festivais:</strong> ${film.festivais}</p>`:""}${film.premios?`<p><strong><i class="fas fa-award"></i> Prêmios:</strong> ${film.premios}</p>`:""}${film.legendasOutras?`<p><strong><i class="fas fa-language"></i> Outras Legendas:</strong> ${film.legendasOutras}</p>`:""}</div>`:""}<div class="modal-other-materials"><h3><i class="fas fa-box-open"></i> Outros Materiais</h3>${renderOtherMaterialsModal(film,encodedTitle)}</div><div class="modal-teaching-plans"><h3><i class="fas fa-chalkboard-teacher"></i> Planos de Aula</h3>${renderTeachingPlansModal(film,encodedTitle)}<a href="https://docs.google.com/forms/d/e/1FAIpQLSdxQz8onMOFjxIqEPpo5v2I4CJdLQ9cN50I7zUhmnBwgUeGIQ/viewform?usp=sharing&ouid=101786859238464224020" target="_blank" rel="noopener noreferrer" class="btn-enviar-plano" style="display:inline-block; margin-top:15px; background:#009a44; color:#fff; padding:10px 18px; border-radius:6px; text-decoration:none; font-weight:500;"><i class="fas fa-plus"></i> Envie um plano de aula</a><p style="font-size: 0.95em; color: #666; margin-top: 6px;">Você pode colaborar enviando um plano de aula para este filme. Ao clicar, você será direcionado a um formulário.</p></div><div style="text-align: center; margin-top: 20px;"><a href="filme.html?titulo=${encodedTitle}" class="btn-enviar-plano" style="display:inline-block; background:#009a44; color:#fff; padding:12px 25px; border-radius:6px; text-decoration:none; font-weight:500;"><i class="fas fa-external-link-alt"></i> Ver página completa do filme</a></div>`;
     const closeButton = modalContent.parentNode.querySelector('.close');
     if (closeButton) { closeButton.onclick = closeModal; }
     modal.style.display = 'block';
@@ -398,7 +391,7 @@ function closeModal() {
 function handleKeyDown(e) { if (e.key === 'Escape') { closeModal(); } }
 
 /* ==========================================
-   9. FUNÇÕES DE CARREGAMENTO INICIAL
+   9. FUNÇÃO DE CARREGAMENTO INICIAL
    ========================================== */
 async function initializeApp() {
     const loadingMessage = document.getElementById('loadingMessage');
@@ -407,13 +400,9 @@ async function initializeApp() {
         const response = await fetch('catalogo.json');
         if (!response.ok) { throw new Error(`Erro ao carregar catalogo.json: ${response.statusText}`); }
         const data = await response.json();
-        
-        // A TRANSFORMAÇÃO AGORA ACONTECE PRIMEIRO, MANTENDO A ESTRUTURA DE ARRAY
         allFilms = data.map(transformFilmData);
-        
         initializeFilters();
         filterAndRenderFilms();
-
     } catch (error) {
         console.error("Erro ao inicializar:", error);
         const filmGrid = document.getElementById('filmGrid');
@@ -438,8 +427,8 @@ document.addEventListener('DOMContentLoaded', () => {
         viewGridBtn.classList.toggle('active', view === 'grid');
         viewListBtn.classList.toggle('active', view === 'list');
         viewMapBtn.classList.toggle('active', view === 'map');
-        updateFilmsCounter(); // ATUALIZA A CONTAGEM AO MUDAR DE VISÃO
         renderResults();
+        updateFilmsCounter();
     }
 
     viewGridBtn.addEventListener('click', () => setView('grid'));
