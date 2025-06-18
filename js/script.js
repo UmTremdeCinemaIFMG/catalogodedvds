@@ -20,7 +20,6 @@ const coordenadas = {
 /* ==========================================
    2. FUNÇÕES DE UTILIDADE E FORMATAÇÃO
    ========================================== */
-// ... (Suas funções cleanField, getClassificationClass, getDvdCover permanecem aqui) ...
 function cleanField(value) { if (!value) return ''; return String(value).replace(/^"|"$/g, '').trim(); }
 function getClassificationClass(age) { if (!age || age <= 0) return 'L'; const ageNum = typeof age === 'string' ? parseInt(age) : age; switch (ageNum) { case 10: return 'ten'; case 12: return 'twelve'; case 14: return 'fourteen'; case 16: return 'sixteen'; case 18: return 'eighteen'; default: return 'L'; } }
 function getDvdCover(filmData) { const DEFAULT_COVER = 'capas/progbrasil.png'; if (filmData.imageName) { const baseName = filmData.imageName.replace(/\.(jpg|jpeg|png|gif)$/i, ''); return `capas/${baseName}.jpg`; } return DEFAULT_COVER; }
@@ -28,7 +27,6 @@ function getDvdCover(filmData) { const DEFAULT_COVER = 'capas/progbrasil.png'; i
 /* ==========================================
    3. FUNÇÕES DE TRANSFORMAÇÃO E ORDENAÇÃO
    ========================================== */
-// ... (Suas funções transformFilmData e sortFilms permanecem aqui) ...
 function transformFilmData(originalFilm) {
     let imdbData = { votantes: '' };
     if (originalFilm["nota imdb/votantes"]) { const [nota, votantes] = String(originalFilm["nota imdb/votantes"]).split('/'); imdbData = { votantes: `${nota}/${votantes || ''}`.trim() }; }
@@ -128,7 +126,6 @@ function filterAndRenderFilms() {
 /* ==========================================
    5. FUNÇÕES DE RENDERIZAÇÃO DA INTERFACE
    ========================================== */
-// ... (Suas funções updateFilmsCounter, initializeFilters, etc. permanecem aqui) ...
 function updateFilmsCounter() {
     const countElement = document.getElementById('filmsCount');
     const counterContainer = document.querySelector('.results-counter');
@@ -183,7 +180,6 @@ function renderResults() {
     const paginationContainer = document.getElementById('pagination');
     loadingMessage.style.display = 'none';
 
-    // ESCONDE TODOS OS CONTAINERS DE VISUALIZAÇÃO
     document.getElementById('filmGrid').style.display = 'none';
     document.getElementById('filmList').style.display = 'none';
     document.getElementById('map').style.display = 'none';
@@ -197,8 +193,7 @@ function renderResults() {
         paginationContainer.style.display = 'flex';
         renderListView();
     } else if (currentView === 'map') {
-        document.getElementById('map').style.display = 'block';
-        paginationContainer.style.display = 'none'; // ESCONDE PAGINAÇÃO NO MAPA
+        paginationContainer.style.display = 'none';
         renderMapView();
     }
 }
@@ -238,11 +233,19 @@ function renderListView() {
     filmList.innerHTML = headerHTML + itemsHTML;
 }
 function renderMapView() {
+    const mapContainer = document.getElementById('map');
+    mapContainer.style.display = 'block'; // GARANTE QUE O MAPA ESTEJA VISÍVEL ANTES DE INICIALIZAR
+
     if (!mapInstance) {
         initializeMap();
+    } else {
+        // FORÇA O MAPA A RECALCULAR SEU TAMANHO CASO A JANELA TENHA MUDADO
+        mapInstance.invalidateSize();
     }
+
     markersCluster.clearLayers();
     const filmsOnMap = currentFilms.filter(film => film.state || film.city);
+
     filmsOnMap.forEach(film => {
         const coords = getCoordenadas(film);
         if (coords) {
@@ -252,7 +255,7 @@ function renderMapView() {
             markersCluster.addLayer(marker);
         }
     });
-    // AJUSTA O ZOOM PARA MOSTRAR TODOS OS MARCADORES FILTRADOS
+
     if (filmsOnMap.length > 0) {
         mapInstance.fitBounds(markersCluster.getBounds(), { padding: [50, 50] });
     }
@@ -303,7 +306,7 @@ function initializeMap() {
 function getCoordenadas(filme) {
     if (filme.city && coordenadas.cidades[filme.city]) { return coordenadas.cidades[filme.city]; }
     if (filme.state && coordenadas.capitais[filme.state]) { return coordenadas.capitais[filme.state]; }
-    return null; // RETORNA NULL SE NÃO ENCONTRAR COORDENADAS
+    return null;
 }
 function criarConteudoPopup(filme) {
     const encodedTitle = encodeURIComponent(film.title);
