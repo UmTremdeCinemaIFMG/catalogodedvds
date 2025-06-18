@@ -162,6 +162,33 @@ function createThemesList(film) { const themes = [film.tema, ...(film.tags ? fil
 function renderTeachingPlansModal(film, encodedTitle) { if (!film.planos_de_aula || film.planos_de_aula.length === 0) { return '<p><i class="fas fa-info-circle"></i> Nenhum plano de aula disponível.</p>'; } const firstPlan = film.planos_de_aula[0]; let html = `<div class="teaching-plan-card"><p><strong><i class="fas fa-graduation-cap"></i> Nível de Ensino:</strong> ${firstPlan.nivel_ensino || ''}</p><p><strong><i class="fas fa-book"></i> Área de Conhecimento:</strong> ${firstPlan.area_conhecimento || ''}</p><p><strong><i class="fas fa-globe"></i> Site:</strong> <a href="${firstPlan.url}" target="_blank" rel="noopener noreferrer">${firstPlan.site}</a></p><p><strong><i class="fas fa-info-circle"></i> Descrição:</strong> ${firstPlan.descricao || ''}</p></div>`; if (film.planos_de_aula.length > 1) { const remainingCount = film.planos_de_aula.length - 1; html += `<a href="filme.html?titulo=${encodedTitle}" class="btn-ver-mais">+${remainingCount} Resultados</a>`; } return html; }
 function renderOtherMaterialsModal(film, encodedTitle) { if (!film.materialOutros || film.materialOutros.length === 0) { return '<p><i class="fas fa-info-circle"></i> Nenhum material adicional disponível.</p>'; } const firstMaterial = film.materialOutros[0]; let html = `<div class="other-material-card"><p><strong><i class="fas fa-bookmark"></i> Tipo:</strong> ${firstMaterial.tipo || ''}</p><p><strong><i class="fas fa-file-alt"></i> Título:</strong> <a href="${firstMaterial.url}" target="_blank" rel="noopener noreferrer">${firstMaterial.titulo}</a></p></div>`; if (film.materialOutros.length > 1) { const remainingCount = film.materialOutros.length - 1; html += `<a href="filme.html?titulo=${encodedTitle}" class="btn-ver-mais">+${remainingCount} Resultados</a>`; } return html; }
 
+// ESTAS FUNÇÕES SÃO USADAS PELA PÁGINA 'filme.html' PARA RENDERIZAR SEÇÕES ESPECÍFICAS
+function renderTeachingPlans(film) {
+    if (!film.planos_de_aula || film.planos_de_aula.length === 0) {
+        return '<p>Nenhum plano de aula disponível para este filme ainda.</p>';
+    }
+    return film.planos_de_aula.map(plano => `
+        <div class="teaching-plan-card">
+            <p><strong><i class="fas fa-graduation-cap"></i> Nível de Ensino:</strong> ${plano.nivel_ensino || ''}</p>
+            <p><strong><i class="fas fa-book"></i> Área de Conhecimento:</strong> ${plano.area_conhecimento || ''}</p>
+            <p><strong><i class="fas fa-globe"></i> Site:</strong> <a href="${plano.url}" target="_blank" rel="noopener noreferrer">${plano.site}</a></p>
+            <p><strong><i class="fas fa-info-circle"></i> Descrição:</strong> ${plano.descricao || ''}</p>
+        </div>
+    `).join('');
+}
+
+function renderOtherMaterials(film) {
+    if (!film.materialOutros || film.materialOutros.length === 0) {
+        return '<p>Nenhum material adicional disponível.</p>';
+    }
+    return film.materialOutros.map(material => `
+        <div class="other-material-card">
+            <p><strong><i class="fas fa-bookmark"></i> Tipo:</strong> ${material.tipo || ''}</p>
+            <p><strong><i class="fas fa-file-alt"></i> Título:</strong> <a href="${material.url}" target="_blank" rel="noopener noreferrer">${material.titulo}</a></p>
+        </div>
+    `).join('');
+}
+
 /* ==========================================
    6. FUNÇÕES DE RENDERIZAÇÃO DOS FILMES E PAGINAÇÃO
    ========================================== */
