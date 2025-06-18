@@ -91,33 +91,40 @@ function sortFilms(films, sortOption) {
 function filterAndRenderFilms() {
     clearTimeout(debounceTimer);
     debounceTimer = setTimeout(() => {
-        const searchTerm = document.getElementById('searchInput').value.toLowerCase();
-        const sortOption = document.getElementById('sortSelect').value;
-        const selectedUf = document.getElementById('ufSelect').value;
-        const selectedClassification = document.getElementById('classificationSelect').value;
-        const selectedGenre = document.getElementById('genreSelect').value;
-        const selectedAccessibility = document.getElementById('accessibilitySelect').value;
-        const selectedOds = document.getElementById('odsSelect').value;
-        const selectedBncc = document.getElementById('bnccSelect').value;
-        const selectedEtapa = document.getElementById('etapaSelect').value;
-        const selectedArea = document.getElementById('areaSelect').value;
-        const selectedTema = document.getElementById('temaSelect').value;
+        let filmsToFilter = allFilms;
+        
+        // VERIFICA QUAL CONJUNTO DE FILTROS ESTÁ ATIVO
+        if (currentView === 'map') {
+            const selectedUf = document.getElementById('ufMapSelect').value;
+            if (selectedUf) {
+                filmsToFilter = allFilms.filter(film => film.state.includes(selectedUf));
+            }
+        } else {
+            const searchTerm = document.getElementById('searchInput').value.toLowerCase();
+            const selectedClassification = document.getElementById('classificationSelect').value;
+            const selectedGenre = document.getElementById('genreSelect').value;
+            const selectedAccessibility = document.getElementById('accessibilitySelect').value;
+            const selectedOds = document.getElementById('odsSelect').value;
+            const selectedBncc = document.getElementById('bnccSelect').value;
+            const selectedEtapa = document.getElementById('etapaSelect').value;
+            const selectedArea = document.getElementById('areaSelect').value;
+            const selectedTema = document.getElementById('temaSelect').value;
 
-        currentFilms = allFilms.filter(film => {
-            const matchesSearch = film.title.toLowerCase().includes(searchTerm) || (film.director && film.director.toLowerCase().includes(searchTerm)) || (film.cast && film.cast.toLowerCase().includes(searchTerm)) || (film.synopsis && film.synopsis.toLowerCase().includes(searchTerm)) || (film.tema && film.tema.toLowerCase().includes(searchTerm)) || (film.tags && film.tags.toLowerCase().includes(searchTerm)) || (film.dvd && film.dvd.toLowerCase().includes(searchTerm));
-            const matchesGenre = !selectedGenre || (film.genres && film.genres.includes(selectedGenre)) || film.genre === selectedGenre;
-            const matchesUf = !selectedUf || film.state.includes(selectedUf);
-            const matchesClassification = !selectedClassification || film.classification === parseInt(selectedClassification) || (selectedClassification === 'L' && film.classification <= 0);
-            const matchesAccessibility = !selectedAccessibility || ((selectedAccessibility === 'planos_de_aula' && film.planos_de_aula && film.planos_de_aula.length > 0) || (selectedAccessibility === 'audiodescricao' && film.audiodescricao) || (selectedAccessibility === 'closed_caption' && film.closedCaption) || (selectedAccessibility === 'trailer' && film.trailer && film.trailer.trim() !== '') || (selectedAccessibility === 'pgm' && film.pgm) || (selectedAccessibility === 'material_outros' && film.materialOutros && film.materialOutros.length > 0) || (selectedAccessibility === 'assistir_online' && film.assistirOnline && film.assistirOnline.trim() !== ''));
-            const matchesOds = !selectedOds || (film.ods && film.ods.includes(selectedOds));
-            const matchesBncc = !selectedBncc || (film.bnccCompetencias && film.bnccCompetencias.includes(parseInt(selectedBncc)));
-            const matchesEtapa = !selectedEtapa || (film.bnccEtapas && film.bnccEtapas.includes(selectedEtapa));
-            const matchesArea = !selectedArea || (film.bnccAreas && film.bnccAreas.includes(selectedArea));
-            const matchesTema = !selectedTema || (film.bnccTemas && film.bnccTemas.includes(selectedTema));
-            return matchesSearch && matchesGenre && matchesClassification && matchesAccessibility && matchesOds && matchesBncc && matchesEtapa && matchesArea && matchesTema && matchesUf;
-        });
-
-        currentFilms = sortFilms(currentFilms, sortOption);
+            filmsToFilter = allFilms.filter(film => {
+                const matchesSearch = film.title.toLowerCase().includes(searchTerm) || (film.director && film.director.toLowerCase().includes(searchTerm)) || (film.cast && film.cast.toLowerCase().includes(searchTerm)) || (film.synopsis && film.synopsis.toLowerCase().includes(searchTerm)) || (film.tema && film.tema.toLowerCase().includes(searchTerm)) || (film.tags && film.tags.toLowerCase().includes(searchTerm)) || (film.dvd && film.dvd.toLowerCase().includes(searchTerm));
+                const matchesGenre = !selectedGenre || (film.genres && film.genres.includes(selectedGenre)) || film.genre === selectedGenre;
+                const matchesClassification = !selectedClassification || film.classification === parseInt(selectedClassification) || (selectedClassification === 'L' && film.classification <= 0);
+                const matchesAccessibility = !selectedAccessibility || ((selectedAccessibility === 'planos_de_aula' && film.planos_de_aula && film.planos_de_aula.length > 0) || (selectedAccessibility === 'audiodescricao' && film.audiodescricao) || (selectedAccessibility === 'closed_caption' && film.closedCaption) || (selectedAccessibility === 'trailer' && film.trailer && film.trailer.trim() !== '') || (selectedAccessibility === 'pgm' && film.pgm) || (selectedAccessibility === 'material_outros' && film.materialOutros && film.materialOutros.length > 0) || (selectedAccessibility === 'assistir_online' && film.assistirOnline && film.assistirOnline.trim() !== ''));
+                const matchesOds = !selectedOds || (film.ods && film.ods.includes(selectedOds));
+                const matchesBncc = !selectedBncc || (film.bnccCompetencias && film.bnccCompetencias.includes(parseInt(selectedBncc)));
+                const matchesEtapa = !selectedEtapa || (film.bnccEtapas && film.bnccEtapas.includes(selectedEtapa));
+                const matchesArea = !selectedArea || (film.bnccAreas && film.bnccAreas.includes(selectedArea));
+                const matchesTema = !selectedTema || (film.bnccTemas && film.bnccTemas.includes(selectedTema));
+                return matchesSearch && matchesGenre && matchesClassification && matchesAccessibility && matchesOds && matchesBncc && matchesEtapa && matchesArea && matchesTema;
+            });
+        }
+        
+        currentFilms = sortFilms(filmsToFilter, document.getElementById('sortSelect').value);
         currentPage = 1;
         updateFilmsCounter();
         renderResults();
@@ -151,20 +158,15 @@ function updateFilmsCounter() {
     countElement.textContent = count;
     counterContainer.lastChild.textContent = ` ${label}`;
 
-    if (count === 0) {
-        counterContainer.classList.add('sem-resultados');
-        counterContainer.classList.remove('com-resultados');
-    } else {
-        counterContainer.classList.add('com-resultados');
-        counterContainer.classList.remove('sem-resultados');
-    }
+    if (count === 0) { counterContainer.classList.add('sem-resultados'); counterContainer.classList.remove('com-resultados'); }
+    else { counterContainer.classList.add('com-resultados'); counterContainer.classList.remove('sem-resultados'); }
 }
 function initializeFilters() {
-    const ufSelect = document.getElementById('ufSelect');
-    ufSelect.innerHTML = '<option value="">Todos os Estados</option>';
+    const ufMapSelect = document.getElementById('ufMapSelect');
+    ufMapSelect.innerHTML = '<option value="">Todos os Estados</option>';
     const allUfs = [...new Set(allFilms.flatMap(film => film.state))].sort();
-    allUfs.forEach(uf => { if(uf) { const option = document.createElement('option'); option.value = uf; option.textContent = uf; ufSelect.appendChild(option); }});
-    
+    allUfs.forEach(uf => { if(uf) { const option = document.createElement('option'); option.value = uf; option.textContent = uf; ufMapSelect.appendChild(option); }});
+
     const genreSelect = document.getElementById('genreSelect');
     const odsSelect = document.getElementById('odsSelect');
     genreSelect.innerHTML = '<option value="">Todos os Gêneros</option>';
@@ -187,7 +189,7 @@ function initializeFilters() {
     
     document.getElementById('searchInput').addEventListener('input', filterAndRenderFilms);
     document.getElementById('sortSelect').addEventListener('change', filterAndRenderFilms);
-    document.getElementById('ufSelect').addEventListener('change', filterAndRenderFilms);
+    document.getElementById('ufMapSelect').addEventListener('change', filterAndRenderFilms);
     document.getElementById('classificationSelect').addEventListener('change', filterAndRenderFilms);
     document.getElementById('genreSelect').addEventListener('change', filterAndRenderFilms);
     document.getElementById('accessibilitySelect').addEventListener('change', filterAndRenderFilms);
@@ -304,8 +306,8 @@ function renderMapView() {
             } else if (markers.length === 1) {
                 mapInstance.setView(markers[0].getLatLng(), 8);
             }
-        } else if (currentFilms.length > 0) {
-            mapInstance.setView([-15.7975, -47.8919], 4);
+        } else {
+             mapInstance.setView([-15.7975, -47.8919], 4);
         }
     }, 100); 
 }
@@ -403,13 +405,9 @@ async function initializeApp() {
         const response = await fetch('catalogo.json');
         if (!response.ok) { throw new Error(`Erro ao carregar catalogo.json: ${response.statusText}`); }
         const data = await response.json();
-        
-        // A TRANSFORMAÇÃO AGORA ACONTECE PRIMEIRO, MANTENDO A ESTRUTURA DE ARRAY
         allFilms = data.map(transformFilmData);
-        
         initializeFilters();
         filterAndRenderFilms();
-
     } catch (error) {
         console.error("Erro ao inicializar:", error);
         const filmGrid = document.getElementById('filmGrid');
