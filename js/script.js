@@ -357,34 +357,45 @@ async function initializeApp() {
         const data = await response.json();
 
         // LÓGICA DE EXPANSÃO DE FILMES PARA MÚLTIPLAS LOCALIDADES
-        // AGORA TRABALHANDO COM ARRAYS, O QUE É MAIS LIMPO E SEGURO
         const expandedData = data.reduce((acc, filmeJson) => {
-            const ufs = filmeJson.UF || []; // AGORA "UF" JÁ É UM ARRAY
-            const cidades = filmeJson.cidade || []; // "cidade" TAMBÉM PODE SER UM ARRAY
+            // AGORA USANDO A VARIÁVEL CORRETA: "filmeJson"
+            const ufs = filmeJson.UF || [];
+            const cidades = filmeJson.cidade || [];
 
-            // SE HOUVER CIDADES ESPECÍFICAS, CRIA UM FILME PARA CADA CIDADE
+            // PRIORIZA CIDADES, POIS SÃO MAIS ESPECÍFICAS
             if (cidades.length > 0) {
                 cidades.forEach(cidade => {
-                    // CRIA UMA CÓPIA DO FILME COM UMA ÚNICA CIDADE
-                    acc.push({ ...filmeJson, cidade: cidade, UF: ufs }); // Mantém as UFs para referência se necessário
+                    // PARA CADA CIDADE, ENCONTRA A UF CORRESPONDENTE SE POSSÍVEL
+                    // (ESTA PARTE É UM REFINAMENTO PARA MELHORAR A PRECISÃO)
+                    let ufAssociada = '';
+                    for (const estado in coordenadas.cidades) {
+                        if (coordenadas.cidades[estado] === coordenadas.cidades[cidade]) {
+                             ufAssociada = Object.keys(coordenadas.capitais).find(key => coordenadas.capitais[key] === coordenadas.cidades[estado]);
+                             break;
+                        }
+                    }
+                    // SE A CIDADE NÃO É UMA CAPITAL, USA A PRIMEIRA UF DA LISTA COMO REFERÊNCIA
+                    if (!ufAssociada && ufs.length > 0) {
+                        ufAssociada = ufs[0];
+                    }
+                    
+                    acc.push({ ...filmeJson, cidade: cidade, UF: ufAssociada });
                 });
-            // SE NÃO HOUVER CIDADES, MAS HOUVER UFS, CRIA UM FILME PARA CADA UF
             } else if (ufs.length > 0) {
+                // SE NÃO HÁ CIDADES, EXPANDE PELAS UFS
                 ufs.forEach(uf => {
-                    // CRIA UMA CÓPIA DO FILME COM UMA ÚNICA UF
-                    acc.push({ ...filmeJson, UF: uf, cidade: [] }); // Garante que cidade seja um array vazio
+                    acc.push({ ...filmeJson, UF: uf, cidade: '' }); // cidade vira string vazia
                 });
             } else {
-                // SE NÃO TIVER NEM CIDADE NEM UF, ADICIONA O FILME MESMO ASSIM
+                // SE NÃO TEM LOCALIZAÇÃO, APENAS ADICIONA
                 acc.push(filmeJson);
             }
             return acc;
         }, []);
 
-        // AGORA, A TRANSFORMAÇÃO É FEITA NOS DADOS JÁ EXPANDIDOS E NORMALIZADOS
+        // AGORA, A TRANSFORMAÇÃO É FEITA NOS DADOS JÁ EXPANDIDOS
         allFilms = expandedData.map(transformFilmData);
         
-        // O RESTANTE DA INICIALIZAÇÃO CONTINUA NORMAL
         allGenres = [...new Set(allFilms.flatMap(film => film.genres))].sort();
         initializeFilters();
         filterAndRenderFilms();
