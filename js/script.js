@@ -164,6 +164,7 @@ function filterAndRenderFilms() {
         const selectedGenre = document.getElementById('genreSelect').value;
         const selectedAccessibility = document.getElementById('accessibilitySelect').value;
         const selectedOds = document.getElementById('odsSelect').value; // OBTÉM O ODS SELECIONADO
+       const selectedBncc = document.getElementById('bnccSelect').value;
 
         // FILTRA A LISTA DE FILMES
         currentFilms = allFilms.filter(film => {
@@ -200,9 +201,13 @@ function filterAndRenderFilms() {
 
             // VERIFICA CORRESPONDÊNCIA COM ODS (NOVA LÓGICA)
             const matchesOds = !selectedOds || (film.ods && film.ods.includes(selectedOds));
+
+           // VERIFICA CORRESPONDÊNCIA COM A COMPETÊNCIA DA BNCC
+            // USA PARSEINT PORQUE O VALOR DO SELECT É STRING E NO OBJETO É NÚMERO
+            const matchesBncc = !selectedBncc || (film.bnccCompetencias && film.bnccCompetencias.includes(parseInt(selectedBncc)));
             
             // RETORNA TRUE SE O FILME CORRESPONDE A TODOS OS CRITÉRIOS
-            return matchesSearch && matchesGenre && matchesClassification && matchesAccessibility && matchesOds;
+            return matchesSearch && matchesGenre && matchesClassification && matchesAccessibility && matchesOds && matchesBncc;
         });
 
         // ATUALIZA CONTADOR, ORDENA E RENDERIZA
@@ -297,7 +302,8 @@ function initializeFilters() {
     document.getElementById('genreSelect').addEventListener('change', filterAndRenderFilms);
     document.getElementById('accessibilitySelect').addEventListener('change', filterAndRenderFilms);
     document.getElementById('odsSelect').addEventListener('change', filterAndRenderFilms); // ADICIONA LISTENER PARA ODS
-
+    document.getElementById('bnccSelect').addEventListener('change', filterAndRenderFilms);
+   
     // Os outros selects (classification, accessibility) são estáticos no HTML
 }
 
