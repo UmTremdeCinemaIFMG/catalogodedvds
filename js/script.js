@@ -135,7 +135,7 @@ function updateFilmsCounter() {
     setTimeout(() => { countElement.classList.remove('updated'); }, 300);
 
     let count = 0;
-    let label = "";
+    let label = "filmes encontrados";
 
     if (currentView === 'map') {
         count = currentFilms.reduce((total, film) => {
@@ -164,7 +164,7 @@ function initializeFilters() {
     ufSelect.innerHTML = '<option value="">Todos os Estados</option>';
     const allUfs = [...new Set(allFilms.flatMap(film => film.state))].sort();
     allUfs.forEach(uf => { if(uf) { const option = document.createElement('option'); option.value = uf; option.textContent = uf; ufSelect.appendChild(option); }});
-
+    
     const genreSelect = document.getElementById('genreSelect');
     const odsSelect = document.getElementById('odsSelect');
     genreSelect.innerHTML = '<option value="">Todos os Gêneros</option>';
@@ -207,10 +207,7 @@ function renderOtherMaterialsModal(film, encodedTitle) { if (!film.materialOutro
    6. FUNÇÕES DE RENDERIZAÇÃO E VISUALIZAÇÃO
    ========================================== */
 function renderResults() {
-    const loadingMessage = document.getElementById('loadingMessage');
     const paginationContainer = document.getElementById('pagination');
-    loadingMessage.style.display = 'none';
-
     document.getElementById('filmGrid').style.display = 'none';
     document.getElementById('filmList').style.display = 'none';
     document.getElementById('map').style.display = 'none';
@@ -279,7 +276,7 @@ function renderMapView() {
             const cidades = film.city;
             const ufs = film.state;
 
-            if (cidades.length > 0) {
+            if (cidades && cidades.length > 0) {
                 cidades.forEach(cidadeNome => {
                     const coords = coordenadas.cidades[cidadeNome];
                     if (coords) {
@@ -288,7 +285,7 @@ function renderMapView() {
                         markers.push(L.marker(adjustedCoords).bindPopup(criarConteudoPopup(film)));
                     }
                 });
-            } else if (ufs.length > 0) {
+            } else if (ufs && ufs.length > 0) {
                 ufs.forEach(ufNome => {
                     const coords = coordenadas.capitais[ufNome];
                     if (coords) {
@@ -357,7 +354,8 @@ function initializeMap() {
 }
 function criarConteudoPopup(filme) {
     const encodedTitle = encodeURIComponent(film.title);
-    return `<div class="filme-popup"><h5>${film.title}</h5><p><strong>Direção:</strong> ${film.director}<br><strong>Ano:</strong> ${film.year}<br><strong>Gênero:</strong> ${film.genres.join(', ')}</p><a href="filme.html?titulo=${encodedTitle}" class="ver-mais">Ver mais informações</a></div>`;
+    const filmObjectString = JSON.stringify(film).replace(/'/g, "'");
+    return `<div class="filme-popup"><h5>${film.title}</h5><p><strong>Direção:</strong> ${film.director}<br><strong>Ano:</strong> ${film.year}</p><a href="javascript:void(0)" onclick='openModal(${filmObjectString})' class="ver-mais">Ver mais informações</a></div>`;
 }
 
 /* ==========================================
