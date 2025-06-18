@@ -161,7 +161,17 @@
                     </div>
                 </div>
             </div>
-    
+
+<!-- SELETOR DE MODO DE VISUALIZAÇÃO -->
+            <div class="view-switcher">
+                <button id="viewGridBtn" class="active" title="Visualização em Grade">
+                    <i class="fas fa-th"></i> Grade
+                </button>
+                <button id="viewListBtn" title="Visualização em Lista">
+                    <i class="fas fa-list"></i> Lista
+                </button>
+            </div>
+		
             <!-- LOADING STATE -->
             <div id="loadingMessage" class="loading">
                 <div class="skeleton" style="width: 100%; height: 300px; margin-bottom: 20px;"></div>
@@ -171,6 +181,9 @@
     
             <!-- GRID DE FILMES -->
             <div class="film-grid" id="filmGrid"></div>
+
+	<!-- LISTA DE FILMES (INICIALMENTE OCULTA) -->
+            <div class="film-list" id="filmList" style="display: none;"></div>	
     
             <!-- PAGINAÇÃO -->
             <div class="pagination" id="pagination"></div>
