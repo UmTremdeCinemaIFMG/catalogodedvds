@@ -30,11 +30,14 @@ function getDvdCover(filmData) { const DEFAULT_COVER = 'capas/progbrasil.png'; i
 function transformFilmData(originalFilm) {
     let imdbData = { votantes: '' };
     if (originalFilm["nota imdb/votantes"]) { const [nota, votantes] = String(originalFilm["nota imdb/votantes"]).split('/'); imdbData = { votantes: `${nota}/${votantes || ''}`.trim() }; }
-
-   const state = Array.isArray(originalFilm.UF) ? (originalFilm.UF[0] || '') : (originalFilm.UF || '');
+    
+    // LÓGICA CORRIGIDA: AGORA LIDAMOS COM UF E CIDADE COMO ARRAYS
+    // AQUI, PEGAMOS O PRIMEIRO ITEM DO ARRAY PARA EXIBIÇÃO SIMPLES NAS LISTAS E GRADES.
+    // A LÓGICA DE EXPANSÃO EM 'initializeApp' CUIDA DE CRIAR UMA CÓPIA PARA CADA LOCALIZAÇÃO.
+    const state = Array.isArray(originalFilm.UF) ? (originalFilm.UF[0] || '') : (originalFilm.UF || '');
     const city = Array.isArray(originalFilm.cidade) ? (originalFilm.cidade[0] || '') : (originalFilm.cidade || '');
-   
-   return {
+
+    return {
         title: cleanField(originalFilm["Título do filme"]),
         director: cleanField(originalFilm["Direção"]),
         cast: cleanField(originalFilm["Elenco"]),
@@ -47,6 +50,8 @@ function transformFilmData(originalFilm) {
         state: state, // USA A VARIÁVEL CORRIGIDA
         city: city,   // USA A VARIÁVEL CORRIGIDA
         // Mantém os arrays originais para a lógica de expansão
+        originalUF: originalFilm.UF || [],
+        originalCidades: originalFilm.cidade || [],
         ods: originalFilm["ODS"] ? String(originalFilm["ODS"]).split(',').map(s => s.trim()).filter(s => s) : [],
         odsJustificados: originalFilm["ODS_Justificados"] || [],
         audiodescricao: cleanField(originalFilm["Audiodescrição"]),
@@ -76,18 +81,6 @@ function transformFilmData(originalFilm) {
         bnccTemas: originalFilm["BNCC_Temas_Transversais"] || [],
         bnccJustificativa: cleanField(originalFilm["BNCC_Justificativa"])
     };
-}
-function sortFilms(films, sortOption) {
-    const sortedFilms = [...films];
-    switch (sortOption) {
-        case 'title-asc': sortedFilms.sort((a, b) => a.title.localeCompare(b.title)); break;
-        case 'title-desc': sortedFilms.sort((a, b) => b.title.localeCompare(a.title)); break;
-        case 'year-asc': sortedFilms.sort((a, b) => a.year - b.year); break;
-        case 'year-desc': sortedFilms.sort((a, b) => b.year - a.year); break;
-        case 'duration-asc': sortedFilms.sort((a, b) => a.duration - b.duration); break;
-        case 'duration-desc': sortedFilms.sort((a, b) => b.duration - b.duration); break;
-    }
-    return sortedFilms;
 }
 
 /* ==========================================
