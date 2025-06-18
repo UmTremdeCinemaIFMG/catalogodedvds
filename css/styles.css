@@ -1103,10 +1103,10 @@ a:hover, a:focus {
 /* CABEÇALHO DA LISTA */
 .list-header {
     display: flex;
-    background-color: var(--cinza-claro);
+    background-color: var(--verde-ifmg);
     padding: 12px 15px;
     font-weight: bold;
-    color: var(--cinza-escuro);
+    color: var(--branco);
     border-bottom: 2px solid #ddd;
     font-size: 0.9em;
 }
