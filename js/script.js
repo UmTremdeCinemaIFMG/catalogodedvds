@@ -28,6 +28,8 @@ function getDvdCover(filmData) { const DEFAULT_COVER = 'capas/progbrasil.png'; i
    3. FUNÇÕES DE TRANSFORMAÇÃO E ORDENAÇÃO
    ========================================== */
 function transformFilmData(originalFilm) {
+    let imdbData = { votantes: '' };
+    if (originalFilm["nota imdb/votantes"]) { const [nota, votantes] = String(originalFilm["nota imdb/votantes"]).split('/'); imdbData = { votantes: `${nota}/${votantes || ''}`.trim() }; }
     return {
         title: cleanField(originalFilm["Título do filme"]),
         director: cleanField(originalFilm["Direção"]),
@@ -36,16 +38,38 @@ function transformFilmData(originalFilm) {
         genre: cleanField(originalFilm["GEN."]),
         genres: [...new Set([...(cleanField(originalFilm["GEN."]) ? [cleanField(originalFilm["GEN."])] : []), ...(cleanField(originalFilm["Gênero"]) ? cleanField(originalFilm["Gênero"]).split(',').map(g => g.trim()) : [])])].filter(g => g),
         year: parseInt(originalFilm["Ano"]) || 0,
+        imdb: imdbData,
         country: cleanField(originalFilm["País"]),
         state: originalFilm.UF || [],
         city: originalFilm.cidade || [],
         ods: originalFilm["ODS"] ? String(originalFilm["ODS"]).split(',').map(s => s.trim()).filter(s => s) : [],
-        imdb: (() => { let imdbData = { votantes: '' }; if (originalFilm["nota imdb/votantes"]) { const [nota, votantes] = String(originalFilm["nota imdb/votantes"]).split('/'); imdbData = { votantes: `${nota}/${votantes || ''}`.trim() }; } return imdbData; })(),
+        odsJustificados: originalFilm["ODS_Justificados"] || [],
+        audiodescricao: cleanField(originalFilm["Audiodescrição"]),
+        closedCaption: cleanField(originalFilm["Closed Caption"]),
+        trailer: cleanField(originalFilm["trailer"] || ''),
+        synopsis: cleanField(originalFilm["Sinopse"]),
+        tema: cleanField(originalFilm["tema (Programadora Brasil)"]),
+        tags: cleanField(originalFilm["tags"]),
+        website: cleanField(originalFilm["website"]),
+        assistirOnline: cleanField(originalFilm["Assistir Online"] || ''),
+        festivais: cleanField(originalFilm["festivais"]),
+        premios: cleanField(originalFilm["premios"]),
+        legendasOutras: cleanField(originalFilm["legendas_outras"]),
+        materialOutros: (() => { const material = originalFilm["material_outros"]; if (!material) return []; if (typeof material === 'string') { return [{ tipo: material, titulo: material, url: '#' }]; } return Array.isArray(material) ? material : []; })(),
+        duracaoFormato: cleanField(originalFilm["duracao FORMATO"]),
+        pgm: parseInt(originalFilm["PGM"]) || 0,
+        filmes: parseInt(originalFilm["Filmes"]) || 0,
+        dvd: cleanField(originalFilm["Nome do Programa"]),
         imageName: cleanField(originalFilm["imageName"]),
         classification: parseInt(originalFilm["Classificação Indicativa POR PGM"]) || 0,
-        synopsis: cleanField(originalFilm["Sinopse"]),
+        classificationDescription: originalFilm["Classificação Indicativa - Descrição"] || [],
         planos_de_aula: originalFilm["planos_de_aula"] || [],
-        //... e todos os outros campos que você precisa.
+        videos: originalFilm["videos"] || [],
+        bnccEtapas: originalFilm["BNCC_Etapas"] || [],
+        bnccAreas: originalFilm["BNCC_Areas"] || [],
+        bnccCompetencias: originalFilm["BNCC_Competencias_Gerais"] || [],
+        bnccTemas: originalFilm["BNCC_Temas_Transversais"] || [],
+        bnccJustificativa: cleanField(originalFilm["BNCC_Justificativa"])
     };
 }
 function sortFilms(films, sortOption) {
@@ -53,7 +77,10 @@ function sortFilms(films, sortOption) {
     switch (sortOption) {
         case 'title-asc': sortedFilms.sort((a, b) => a.title.localeCompare(b.title)); break;
         case 'title-desc': sortedFilms.sort((a, b) => b.title.localeCompare(a.title)); break;
-        // ... outras ordenações
+        case 'year-asc': sortedFilms.sort((a, b) => a.year - b.year); break;
+        case 'year-desc': sortedFilms.sort((a, b) => b.year - a.year); break;
+        case 'duration-asc': sortedFilms.sort((a, b) => a.duration - b.duration); break;
+        case 'duration-desc': sortedFilms.sort((a, b) => b.duration - b.duration); break;
     }
     return sortedFilms;
 }
@@ -77,17 +104,17 @@ function filterAndRenderFilms() {
         const selectedTema = document.getElementById('temaSelect').value;
 
         currentFilms = allFilms.filter(film => {
-            const matchesSearch = film.title.toLowerCase().includes(searchTerm) || (film.director && film.director.toLowerCase().includes(searchTerm));
+            const matchesSearch = film.title.toLowerCase().includes(searchTerm) || (film.director && film.director.toLowerCase().includes(searchTerm)) || (film.cast && film.cast.toLowerCase().includes(searchTerm)) || (film.synopsis && film.synopsis.toLowerCase().includes(searchTerm)) || (film.tema && film.tema.toLowerCase().includes(searchTerm)) || (film.tags && film.tags.toLowerCase().includes(searchTerm)) || (film.dvd && film.dvd.toLowerCase().includes(searchTerm));
+            const matchesGenre = !selectedGenre || (film.genres && film.genres.includes(selectedGenre)) || film.genre === selectedGenre;
             const matchesUf = !selectedUf || film.state.includes(selectedUf);
-            const matchesGenre = !selectedGenre || film.genres.includes(selectedGenre);
-            const matchesClassification = !selectedClassification || film.classification.toString() === selectedClassification || (selectedClassification === 'L' && film.classification <= 0);
-            const matchesAccessibility = !selectedAccessibility || (film[selectedAccessibility] && (!Array.isArray(film[selectedAccessibility]) || film[selectedAccessibility].length > 0));
-            const matchesOds = !selectedOds || film.ods.includes(selectedOds);
-            const matchesBncc = !selectedBncc || film.bnccCompetencias.includes(parseInt(selectedBncc));
-            const matchesEtapa = !selectedEtapa || film.bnccEtapas.includes(selectedEtapa);
-            const matchesArea = !selectedArea || film.bnccAreas.includes(selectedArea);
-            const matchesTema = !selectedTema || film.bnccTemas.includes(selectedTema);
-            return matchesSearch && matchesUf && matchesGenre && matchesClassification && matchesAccessibility && matchesOds && matchesBncc && matchesEtapa && matchesArea && matchesTema;
+            const matchesClassification = !selectedClassification || film.classification === parseInt(selectedClassification) || (selectedClassification === 'L' && film.classification <= 0);
+            const matchesAccessibility = !selectedAccessibility || ((selectedAccessibility === 'planos_de_aula' && film.planos_de_aula && film.planos_de_aula.length > 0) || (selectedAccessibility === 'audiodescricao' && film.audiodescricao) || (selectedAccessibility === 'closed_caption' && film.closedCaption) || (selectedAccessibility === 'trailer' && film.trailer && film.trailer.trim() !== '') || (selectedAccessibility === 'pgm' && film.pgm) || (selectedAccessibility === 'material_outros' && film.materialOutros && film.materialOutros.length > 0) || (selectedAccessibility === 'assistir_online' && film.assistirOnline && film.assistirOnline.trim() !== ''));
+            const matchesOds = !selectedOds || (film.ods && film.ods.includes(selectedOds));
+            const matchesBncc = !selectedBncc || (film.bnccCompetencias && film.bnccCompetencias.includes(parseInt(selectedBncc)));
+            const matchesEtapa = !selectedEtapa || (film.bnccEtapas && film.bnccEtapas.includes(selectedEtapa));
+            const matchesArea = !selectedArea || (film.bnccAreas && film.bnccAreas.includes(selectedArea));
+            const matchesTema = !selectedTema || (film.bnccTemas && film.bnccTemas.includes(selectedTema));
+            return matchesSearch && matchesGenre && matchesClassification && matchesAccessibility && matchesOds && matchesBncc && matchesEtapa && matchesArea && matchesTema && matchesUf;
         });
 
         currentFilms = sortFilms(currentFilms, sortOption);
@@ -124,8 +151,13 @@ function updateFilmsCounter() {
     countElement.textContent = count;
     counterContainer.lastChild.textContent = ` ${label}`;
 
-    if (count === 0) { counterContainer.classList.add('sem-resultados'); counterContainer.classList.remove('com-resultados'); }
-    else { counterContainer.classList.remove('com-resultados'); counterContainer.classList.add('com-resultados'); }
+    if (count === 0) {
+        counterContainer.classList.add('sem-resultados');
+        counterContainer.classList.remove('com-resultados');
+    } else {
+        counterContainer.classList.add('com-resultados');
+        counterContainer.classList.remove('sem-resultados');
+    }
 }
 function initializeFilters() {
     const ufSelect = document.getElementById('ufSelect');
@@ -133,7 +165,6 @@ function initializeFilters() {
     const allUfs = [...new Set(allFilms.flatMap(film => film.state))].sort();
     allUfs.forEach(uf => { if(uf) { const option = document.createElement('option'); option.value = uf; option.textContent = uf; ufSelect.appendChild(option); }});
     
-    // ... restante da sua função de inicializar filtros ...
     const genreSelect = document.getElementById('genreSelect');
     const odsSelect = document.getElementById('odsSelect');
     genreSelect.innerHTML = '<option value="">Todos os Gêneros</option>';
@@ -166,7 +197,6 @@ function initializeFilters() {
     document.getElementById('areaSelect').addEventListener('change', filterAndRenderFilms);
     document.getElementById('temaSelect').addEventListener('change', filterAndRenderFilms);
 }
-// ... (outras funções auxiliares como createThemesList, renderModals, etc.) ...
 function createThemesList(film) { const themes = [film.tema, ...(film.tags ? film.tags.split(' ') : [])]; return [...new Set(themes.filter(t => t))]; }
 function renderTeachingPlans(film) { if (!film.planos_de_aula || film.planos_de_aula.length === 0) { return '<p>Nenhum plano de aula disponível para este filme ainda.</p>'; } return film.planos_de_aula.map(plano => `<div class="teaching-plan-card"><p><strong><i class="fas fa-graduation-cap"></i> Nível de Ensino:</strong> ${plano.nivel_ensino || ''}</p><p><strong><i class="fas fa-book"></i> Área de Conhecimento:</strong> ${plano.area_conhecimento || ''}</p><p><strong><i class="fas fa-globe"></i> Site:</strong> <a href="${plano.url}" target="_blank" rel="noopener noreferrer">${plano.site}</a></p><p><strong><i class="fas fa-info-circle"></i> Descrição:</strong> ${plano.descricao || ''}</p></div>`).join(''); }
 function renderOtherMaterials(film) { if (!film.materialOutros || film.materialOutros.length === 0) { return '<p>Nenhum material adicional disponível.</p>'; } return film.materialOutros.map(material => `<div class="other-material-card"><p><strong><i class="fas fa-bookmark"></i> Tipo:</strong> ${material.tipo || ''}</p><p><strong><i class="fas fa-file-alt"></i> Título:</strong> <a href="${material.url}" target="_blank" rel="noopener noreferrer">${material.titulo}</a></p></div>`).join(''); }
@@ -246,19 +276,19 @@ function renderMapView() {
             const cidades = film.city;
             const ufs = film.state;
 
-            if (cidades && cidades.length > 0) {
+            if (cidades.length > 0) {
                 cidades.forEach(cidadeNome => {
-                    if (coordenadas.cidades[cidadeNome]) {
-                        const coords = coordenadas.cidades[cidadeNome];
+                    const coords = coordenadas.cidades[cidadeNome];
+                    if (coords) {
                         const jitter = 0.001;
                         const adjustedCoords = [coords[0] + (Math.random() - 0.5) * jitter, coords[1] + (Math.random() - 0.5) * jitter];
                         markers.push(L.marker(adjustedCoords).bindPopup(criarConteudoPopup(film)));
                     }
                 });
-            } else if (ufs && ufs.length > 0) {
+            } else if (ufs.length > 0) {
                 ufs.forEach(ufNome => {
-                    if (coordenadas.capitais[ufNome]) {
-                        const coords = coordenadas.capitais[ufNome];
+                    const coords = coordenadas.capitais[ufNome];
+                    if (coords) {
                         const jitter = 0.001;
                         const adjustedCoords = [coords[0] + (Math.random() - 0.5) * jitter, coords[1] + (Math.random() - 0.5) * jitter];
                         markers.push(L.marker(adjustedCoords).bindPopup(criarConteudoPopup(film)));
@@ -269,13 +299,13 @@ function renderMapView() {
         
         if (markers.length > 0) {
             markersCluster.addLayers(markers);
-            if (markers.length > 1) {
+            if (markers.length > 1 || markersCluster.getLayers().length > 1) {
                 mapInstance.fitBounds(markersCluster.getBounds(), { padding: [50, 50], maxZoom: 12 });
-            } else {
+            } else if (markers.length === 1) {
                 mapInstance.setView(markers[0].getLatLng(), 8);
             }
-        } else {
-             mapInstance.setView([-15.7975, -47.8919], 4);
+        } else if (currentFilms.length > 0) {
+            mapInstance.setView([-15.7975, -47.8919], 4);
         }
     }, 100); 
 }
@@ -373,9 +403,13 @@ async function initializeApp() {
         const response = await fetch('catalogo.json');
         if (!response.ok) { throw new Error(`Erro ao carregar catalogo.json: ${response.statusText}`); }
         const data = await response.json();
+        
+        // A TRANSFORMAÇÃO AGORA ACONTECE PRIMEIRO, MANTENDO A ESTRUTURA DE ARRAY
         allFilms = data.map(transformFilmData);
+        
         initializeFilters();
         filterAndRenderFilms();
+
     } catch (error) {
         console.error("Erro ao inicializar:", error);
         const filmGrid = document.getElementById('filmGrid');
