@@ -46,22 +46,17 @@
                 <!-- LINHA DE FILTROS -->
                 <div class="filters-row">
 
-			<!-- GRUPO DE FILTROS GEOGRÁFICOS (PARA O MAPA) -->
-                    <div id="geoFilters" style="display: none; gap: 15px; width: 100%;">
-                        <!-- FILTRO DE UF -->
-                        <div class="filter-container">
-                            <div class="filter-box">
-                                <i class="fas fa-map-marker-alt"></i>
-                                <select id="ufMapSelect"> <!-- ID DIFERENTE PARA NÃO CONFLITAR -->
-                                    <option value="">Todos os Estados</option>
-                                </select>
-                            </div>
+			<!-- FILTRO DE UF -->
+                    <div class="filter-container">
+                        <div class="filter-box">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <select id="ufSelect">
+                                <option value="">Todos os Estados</option>
+                                <!-- OPÇÕES SERÃO POPULADAS VIA JAVASCRIPT -->
+                            </select>
                         </div>
-                         <!-- Adicione um filtro de cidade para o mapa aqui se desejar no futuro -->
                     </div>
-
-	<!-- GRUPO DE FILTROS PRINCIPAIS (PARA GRADE/LISTA) -->
-<div id="mainFilters" style="display: flex; flex-wrap: wrap; gap: 15px; width: 100%;">		
+			
                     <!-- FILTRO DE GÊNERO -->
                     <div class="filter-container">
                         <div class="filter-box">

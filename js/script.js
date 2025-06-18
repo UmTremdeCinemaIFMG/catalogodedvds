@@ -91,44 +91,37 @@ function sortFilms(films, sortOption) {
 function filterAndRenderFilms() {
     clearTimeout(debounceTimer);
     debounceTimer = setTimeout(() => {
-        let filmsToFilter = allFilms;
-        
-        // VERIFICA QUAL CONJUNTO DE FILTROS ESTÁ ATIVO
-        if (currentView === 'map') {
-            const selectedUf = document.getElementById('ufMapSelect').value;
-            if (selectedUf) {
-                filmsToFilter = allFilms.filter(film => film.state.includes(selectedUf));
-            }
-        } else {
-            const searchTerm = document.getElementById('searchInput').value.toLowerCase();
-            const selectedClassification = document.getElementById('classificationSelect').value;
-            const selectedGenre = document.getElementById('genreSelect').value;
-            const selectedAccessibility = document.getElementById('accessibilitySelect').value;
-            const selectedOds = document.getElementById('odsSelect').value;
-            const selectedBncc = document.getElementById('bnccSelect').value;
-            const selectedEtapa = document.getElementById('etapaSelect').value;
-            const selectedArea = document.getElementById('areaSelect').value;
-            const selectedTema = document.getElementById('temaSelect').value;
+        const searchTerm = document.getElementById('searchInput').value.toLowerCase();
+        const sortOption = document.getElementById('sortSelect').value;
+        const selectedUf = document.getElementById('ufSelect').value;
+        const selectedClassification = document.getElementById('classificationSelect').value;
+        const selectedGenre = document.getElementById('genreSelect').value;
+        const selectedAccessibility = document.getElementById('accessibilitySelect').value;
+        const selectedOds = document.getElementById('odsSelect').value;
+        const selectedBncc = document.getElementById('bnccSelect').value;
+        const selectedEtapa = document.getElementById('etapaSelect').value;
+        const selectedArea = document.getElementById('areaSelect').value;
+        const selectedTema = document.getElementById('temaSelect').value;
 
-            filmsToFilter = allFilms.filter(film => {
-                const matchesSearch = film.title.toLowerCase().includes(searchTerm) || (film.director && film.director.toLowerCase().includes(searchTerm)) || (film.cast && film.cast.toLowerCase().includes(searchTerm)) || (film.synopsis && film.synopsis.toLowerCase().includes(searchTerm)) || (film.tema && film.tema.toLowerCase().includes(searchTerm)) || (film.tags && film.tags.toLowerCase().includes(searchTerm)) || (film.dvd && film.dvd.toLowerCase().includes(searchTerm));
-                const matchesGenre = !selectedGenre || (film.genres && film.genres.includes(selectedGenre)) || film.genre === selectedGenre;
-                const matchesClassification = !selectedClassification || film.classification === parseInt(selectedClassification) || (selectedClassification === 'L' && film.classification <= 0);
-                const matchesAccessibility = !selectedAccessibility || ((selectedAccessibility === 'planos_de_aula' && film.planos_de_aula && film.planos_de_aula.length > 0) || (selectedAccessibility === 'audiodescricao' && film.audiodescricao) || (selectedAccessibility === 'closed_caption' && film.closedCaption) || (selectedAccessibility === 'trailer' && film.trailer && film.trailer.trim() !== '') || (selectedAccessibility === 'pgm' && film.pgm) || (selectedAccessibility === 'material_outros' && film.materialOutros && film.materialOutros.length > 0) || (selectedAccessibility === 'assistir_online' && film.assistirOnline && film.assistirOnline.trim() !== ''));
-                const matchesOds = !selectedOds || (film.ods && film.ods.includes(selectedOds));
-                const matchesBncc = !selectedBncc || (film.bnccCompetencias && film.bnccCompetencias.includes(parseInt(selectedBncc)));
-                const matchesEtapa = !selectedEtapa || (film.bnccEtapas && film.bnccEtapas.includes(selectedEtapa));
-                const matchesArea = !selectedArea || (film.bnccAreas && film.bnccAreas.includes(selectedArea));
-                const matchesTema = !selectedTema || (film.bnccTemas && film.bnccTemas.includes(selectedTema));
-                return matchesSearch && matchesGenre && matchesClassification && matchesAccessibility && matchesOds && matchesBncc && matchesEtapa && matchesArea && matchesTema;
-            });
-        }
-        
-        currentFilms = sortFilms(filmsToFilter, document.getElementById('sortSelect').value);
+        currentFilms = allFilms.filter(film => {
+            const matchesSearch = film.title.toLowerCase().includes(searchTerm) || (film.director && film.director.toLowerCase().includes(searchTerm)) || (film.cast && film.cast.toLowerCase().includes(searchTerm)) || (film.synopsis && film.synopsis.toLowerCase().includes(searchTerm)) || (film.tema && film.tema.toLowerCase().includes(searchTerm)) || (film.tags && film.tags.toLowerCase().includes(searchTerm)) || (film.dvd && film.dvd.toLowerCase().includes(searchTerm));
+            const matchesGenre = !selectedGenre || (film.genres && film.genres.includes(selectedGenre)) || film.genre === selectedGenre;
+            const matchesUf = !selectedUf || film.state.includes(selectedUf);
+            const matchesClassification = !selectedClassification || film.classification === parseInt(selectedClassification) || (selectedClassification === 'L' && film.classification <= 0);
+            const matchesAccessibility = !selectedAccessibility || ((selectedAccessibility === 'planos_de_aula' && film.planos_de_aula && film.planos_de_aula.length > 0) || (selectedAccessibility === 'audiodescricao' && film.audiodescricao) || (selectedAccessibility === 'closed_caption' && film.closedCaption) || (selectedAccessibility === 'trailer' && film.trailer && film.trailer.trim() !== '') || (selectedAccessibility === 'pgm' && film.pgm) || (selectedAccessibility === 'material_outros' && film.materialOutros && film.materialOutros.length > 0) || (selectedAccessibility === 'assistir_online' && film.assistirOnline && film.assistirOnline.trim() !== ''));
+            const matchesOds = !selectedOds || (film.ods && film.ods.includes(selectedOds));
+            const matchesBncc = !selectedBncc || (film.bnccCompetencias && film.bnccCompetencias.includes(parseInt(selectedBncc)));
+            const matchesEtapa = !selectedEtapa || (film.bnccEtapas && film.bnccEtapas.includes(selectedEtapa));
+            const matchesArea = !selectedArea || (film.bnccAreas && film.bnccAreas.includes(selectedArea));
+            const matchesTema = !selectedTema || (film.bnccTemas && film.bnccTemas.includes(selectedTema));
+            return matchesSearch && matchesGenre && matchesClassification && matchesAccessibility && matchesOds && matchesBncc && matchesEtapa && matchesArea && matchesTema && matchesUf;
+        });
+
+        currentFilms = sortFilms(currentFilms, sortOption);
         currentPage = 1;
-        updateFilmsCounter();
         renderResults();
         renderPagination();
+        updateFilmsCounter();
     }, 300);
 }
 
@@ -142,7 +135,7 @@ function updateFilmsCounter() {
     setTimeout(() => { countElement.classList.remove('updated'); }, 300);
 
     let count = 0;
-    let label = "filmes encontrados";
+    let label = "";
 
     if (currentView === 'map') {
         count = currentFilms.reduce((total, film) => {
@@ -158,14 +151,19 @@ function updateFilmsCounter() {
     countElement.textContent = count;
     counterContainer.lastChild.textContent = ` ${label}`;
 
-    if (count === 0) { counterContainer.classList.add('sem-resultados'); counterContainer.classList.remove('com-resultados'); }
-    else { counterContainer.classList.add('com-resultados'); counterContainer.classList.remove('sem-resultados'); }
+    if (count === 0) {
+        counterContainer.classList.add('sem-resultados');
+        counterContainer.classList.remove('com-resultados');
+    } else {
+        counterContainer.classList.add('com-resultados');
+        counterContainer.classList.remove('sem-resultados');
+    }
 }
 function initializeFilters() {
-    const ufMapSelect = document.getElementById('ufMapSelect');
-    ufMapSelect.innerHTML = '<option value="">Todos os Estados</option>';
+    const ufSelect = document.getElementById('ufSelect');
+    ufSelect.innerHTML = '<option value="">Todos os Estados</option>';
     const allUfs = [...new Set(allFilms.flatMap(film => film.state))].sort();
-    allUfs.forEach(uf => { if(uf) { const option = document.createElement('option'); option.value = uf; option.textContent = uf; ufMapSelect.appendChild(option); }});
+    allUfs.forEach(uf => { if(uf) { const option = document.createElement('option'); option.value = uf; option.textContent = uf; ufSelect.appendChild(option); }});
 
     const genreSelect = document.getElementById('genreSelect');
     const odsSelect = document.getElementById('odsSelect');
@@ -189,7 +187,7 @@ function initializeFilters() {
     
     document.getElementById('searchInput').addEventListener('input', filterAndRenderFilms);
     document.getElementById('sortSelect').addEventListener('change', filterAndRenderFilms);
-    document.getElementById('ufMapSelect').addEventListener('change', filterAndRenderFilms);
+    document.getElementById('ufSelect').addEventListener('change', filterAndRenderFilms);
     document.getElementById('classificationSelect').addEventListener('change', filterAndRenderFilms);
     document.getElementById('genreSelect').addEventListener('change', filterAndRenderFilms);
     document.getElementById('accessibilitySelect').addEventListener('change', filterAndRenderFilms);
@@ -209,7 +207,10 @@ function renderOtherMaterialsModal(film, encodedTitle) { if (!film.materialOutro
    6. FUNÇÕES DE RENDERIZAÇÃO E VISUALIZAÇÃO
    ========================================== */
 function renderResults() {
+    const loadingMessage = document.getElementById('loadingMessage');
     const paginationContainer = document.getElementById('pagination');
+    loadingMessage.style.display = 'none';
+
     document.getElementById('filmGrid').style.display = 'none';
     document.getElementById('filmList').style.display = 'none';
     document.getElementById('map').style.display = 'none';
@@ -237,12 +238,12 @@ function renderGridView() {
     filmsToRender.forEach(film => {
         const filmCard = document.createElement('div');
         filmCard.className = 'film-card';
-        const filmTitleEscaped = film.title.replace(/'/g, "'");
-        filmCard.setAttribute('onclick', `openModalByTitle('${filmTitleEscaped}')`);
         const classificationClass = getClassificationClass(film.classification);
         const classificationText = film.classification <= 0 ? 'L' : film.classification;
         const coverPath = getDvdCover(film);
+        const filmObjectString = JSON.stringify(film).replace(/'/g, "'");
         filmCard.innerHTML = `<div class="film-poster-container"><img src="${coverPath}" alt="Capa do filme ${film.title}" class="film-poster" onerror="this.onerror=null; this.src='capas/progbrasil.png';"><div class="film-poster-controls"><button class="film-poster-control prev"><i class="fas fa-chevron-left"></i></button><button class="film-poster-control next"><i class="fas fa-chevron-right"></i></button></div><span class="classification ${classificationClass}">${classificationText}</span></div><div class="film-info"><h3 class="film-title">${film.title}</h3><p class="film-director">${film.director || 'Direção não informada'}</p><div class="film-details"><span><i class="fas fa-clock"></i> ${film.duration || '?'} min</span><span><i class="fas fa-calendar-alt"></i> ${film.year || '?'}</span></div><div class="film-genres">${film.genres ? film.genres.map(genre => `<span class="genre-tag">${genre}</span>`).join('') : ''}</div></div>`;
+        filmCard.addEventListener('click', () => openModal(film));
         filmGrid.appendChild(filmCard);
     });
     initializePosterControls();
@@ -259,8 +260,8 @@ function renderListView() {
         const classificationClass = getClassificationClass(film.classification);
         const classificationText = film.classification <= 0 ? 'L' : film.classification;
         const coverPath = getDvdCover(film);
-        const filmTitleEscaped = film.title.replace(/'/g, "'");
-        return `<div class="list-item" onclick="openModalByTitle('${filmTitleEscaped}')"><div class="list-col col-title"><img src="${coverPath}" alt="Capa de ${film.title}" class="list-item-poster" onerror="this.onerror=null; this.src='capas/progbrasil.png';"><div class="list-item-info"><h4>${film.title}</h4><p>${film.director || 'Direção não informada'}</p></div></div><div class="list-col col-year">${film.year || '?'}</div><div class="list-col col-genre">${film.genres.slice(0, 2).map(g => `<span class="genre-tag">${g}</span>`).join('') || 'N/A'}</div><div class="list-col col-duration">${film.duration || '?'} min</div><div class="list-col col-class"><span class="classification ${classificationClass}">${classificationText}</span></div></div>`;
+        const filmObjectString = JSON.stringify(film).replace(/'/g, "'");
+        return `<div class="list-item" onclick='openModal(${filmObjectString})'><div class="list-col col-title"><img src="${coverPath}" alt="Capa de ${film.title}" class="list-item-poster" onerror="this.onerror=null; this.src='capas/progbrasil.png';"><div class="list-item-info"><h4>${film.title}</h4><p>${film.director || 'Direção não informada'}</p></div></div><div class="list-col col-year">${film.year || '?'}</div><div class="list-col col-genre">${film.genres.slice(0, 2).map(g => `<span class="genre-tag">${g}</span>`).join('') || 'N/A'}</div><div class="list-col col-duration">${film.duration || '?'} min</div><div class="list-col col-class"><span class="classification ${classificationClass}">${classificationText}</span></div></div>`;
     }).join('');
     filmList.innerHTML = headerHTML + itemsHTML;
 }
@@ -301,9 +302,9 @@ function renderMapView() {
         
         if (markers.length > 0) {
             markersCluster.addLayers(markers);
-            if (markers.length > 1 || markersCluster.getLayers().length > 1) {
+            if (markers.length > 1) {
                 mapInstance.fitBounds(markersCluster.getBounds(), { padding: [50, 50], maxZoom: 12 });
-            } else if (markers.length === 1) {
+            } else {
                 mapInstance.setView(markers[0].getLatLng(), 8);
             }
         } else {
@@ -355,19 +356,13 @@ function initializeMap() {
     mapInstance.addLayer(markersCluster);
 }
 function criarConteudoPopup(filme) {
-    const filmTitleEscaped = filme.title.replace(/'/g, "'");
-    return `<div class="filme-popup"><h5>${filme.title}</h5><p><strong>Direção:</strong> ${filme.director}<br><strong>Ano:</strong> ${film.year}</p><a href="javascript:void(0)" onclick="openModalByTitle('${filmTitleEscaped}')" class="ver-mais">Ver mais informações</a></div>`;
+    const encodedTitle = encodeURIComponent(film.title);
+    return `<div class="filme-popup"><h5>${film.title}</h5><p><strong>Direção:</strong> ${film.director}<br><strong>Ano:</strong> ${film.year}<br><strong>Gênero:</strong> ${film.genres.join(', ')}</p><a href="filme.html?titulo=${encodedTitle}" class="ver-mais">Ver mais informações</a></div>`;
 }
 
 /* ==========================================
    8. FUNÇÕES DO MODAL
    ========================================== */
-function openModalByTitle(title) {
-    const film = allFilms.find(f => f.title === title);
-    if (film) {
-        openModal(film);
-    }
-}
 function openModal(film) {
     const modal = document.getElementById('filmModal');
     const modalContent = document.getElementById('modalContent');
@@ -432,8 +427,8 @@ document.addEventListener('DOMContentLoaded', () => {
         viewGridBtn.classList.toggle('active', view === 'grid');
         viewListBtn.classList.toggle('active', view === 'list');
         viewMapBtn.classList.toggle('active', view === 'map');
-        updateFilmsCounter();
         renderResults();
+        updateFilmsCounter();
     }
 
     viewGridBtn.addEventListener('click', () => setView('grid'));
