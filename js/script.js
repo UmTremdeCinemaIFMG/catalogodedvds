@@ -6,12 +6,21 @@ let currentFilms = [];
 let currentPage = 1;
 let allGenres = [];
 let debounceTimer;
-const itemsPerPage = 20; // MANTIVE 20, AJUSTE SE NECESSÁRIO
-let currentView = 'grid'; // VARIÁVEL PARA CONTROLAR A VISUALIZAÇÃO
+const itemsPerPage = 20;
+let currentView = 'grid';
+
+// VARIÁVEIS GLOBAIS PARA O MAPA
+let mapInstance = null;
+let markersCluster = null;
+const coordenadas = {
+    capitais: { 'AC': [-9.9754, -67.8249], 'AL': [-9.6498, -35.7089], 'AM': [-3.1190, -60.0217], 'AP': [0.0344, -51.0665], 'BA': [-12.9711, -38.5108], 'CE': [-3.7172, -38.5433], 'DF': [-15.7975, -47.8919], 'ES': [-20.3222, -40.3381], 'GO': [-16.6869, -49.2648], 'MA': [-2.5307, -44.3027], 'MG': [-19.9167, -43.9345], 'MS': [-20.4697, -54.6201], 'MT': [-15.6014, -56.0979], 'PA': [-1.4558, -48.4902], 'PB': [-7.1195, -34.8450], 'PE': [-8.0476, -34.8770], 'PI': [-5.0892, -42.8019], 'PR': [-25.4195, -49.2646], 'RJ': [-22.9068, -43.1729], 'RN': [-5.7793, -35.2009], 'RO': [-8.7619, -63.9039], 'RR': [2.8235, -60.6758], 'RS': [-30.0346, -51.2177], 'SC': [-27.5945, -48.5477], 'SE': [-10.9091, -37.0677], 'SP': [-23.5505, -46.6333], 'TO': [-10.2128, -48.3603] },
+    cidades: { 'São Paulo': [-23.5505, -46.6333], 'Rio de Janeiro': [-22.9068, -43.1729], 'Salvador': [-12.9711, -38.5108], 'Brasília': [-15.7975, -47.8919], 'Fortaleza': [-3.7172, -38.5433], 'Belo Horizonte': [-19.9167, -43.9345], 'Manaus': [-3.1190, -60.0217], 'Curitiba': [-25.4195, -49.2646], 'Recife': [-8.0476, -34.8770], 'Porto Alegre': [-30.0346, -51.2177], 'Santos': [-23.9618, -46.3322], 'Campinas': [-22.9099, -47.0626], 'São José dos Campos': [-23.1791, -45.8872], 'Santo André': [-23.6639, -46.5383], 'Niterói': [-22.8832, -43.1036], 'Sabará': [-19.8889, -43.8054] }
+};
 
 /* ==========================================
    2. FUNÇÕES DE UTILIDADE E FORMATAÇÃO
    ========================================== */
+// ... (Suas funções cleanField, getClassificationClass, getDvdCover permanecem aqui) ...
 function cleanField(value) { if (!value) return ''; return String(value).replace(/^"|"$/g, '').trim(); }
 function getClassificationClass(age) { if (!age || age <= 0) return 'L'; const ageNum = typeof age === 'string' ? parseInt(age) : age; switch (ageNum) { case 10: return 'ten'; case 12: return 'twelve'; case 14: return 'fourteen'; case 16: return 'sixteen'; case 18: return 'eighteen'; default: return 'L'; } }
 function getDvdCover(filmData) { const DEFAULT_COVER = 'capas/progbrasil.png'; if (filmData.imageName) { const baseName = filmData.imageName.replace(/\.(jpg|jpeg|png|gif)$/i, ''); return `capas/${baseName}.jpg`; } return DEFAULT_COVER; }
@@ -19,6 +28,7 @@ function getDvdCover(filmData) { const DEFAULT_COVER = 'capas/progbrasil.png'; i
 /* ==========================================
    3. FUNÇÕES DE TRANSFORMAÇÃO E ORDENAÇÃO
    ========================================== */
+// ... (Suas funções transformFilmData e sortFilms permanecem aqui) ...
 function transformFilmData(originalFilm) {
     let imdbData = { votantes: '' };
     if (originalFilm["nota imdb/votantes"]) { const [nota, votantes] = String(originalFilm["nota imdb/votantes"]).split('/'); imdbData = { votantes: `${nota}/${votantes || ''}`.trim() }; }
@@ -118,6 +128,7 @@ function filterAndRenderFilms() {
 /* ==========================================
    5. FUNÇÕES DE RENDERIZAÇÃO DA INTERFACE
    ========================================== */
+// ... (Suas funções updateFilmsCounter, initializeFilters, etc. permanecem aqui) ...
 function updateFilmsCounter() {
     const countElement = document.getElementById('filmsCount');
     const counterContainer = document.querySelector('.results-counter');
@@ -161,48 +172,34 @@ function initializeFilters() {
 function createThemesList(film) { const themes = [film.tema, ...(film.tags ? film.tags.split(' ') : [])]; return [...new Set(themes.filter(t => t))]; }
 function renderTeachingPlansModal(film, encodedTitle) { if (!film.planos_de_aula || film.planos_de_aula.length === 0) { return '<p><i class="fas fa-info-circle"></i> Nenhum plano de aula disponível.</p>'; } const firstPlan = film.planos_de_aula[0]; let html = `<div class="teaching-plan-card"><p><strong><i class="fas fa-graduation-cap"></i> Nível de Ensino:</strong> ${firstPlan.nivel_ensino || ''}</p><p><strong><i class="fas fa-book"></i> Área de Conhecimento:</strong> ${firstPlan.area_conhecimento || ''}</p><p><strong><i class="fas fa-globe"></i> Site:</strong> <a href="${firstPlan.url}" target="_blank" rel="noopener noreferrer">${firstPlan.site}</a></p><p><strong><i class="fas fa-info-circle"></i> Descrição:</strong> ${firstPlan.descricao || ''}</p></div>`; if (film.planos_de_aula.length > 1) { const remainingCount = film.planos_de_aula.length - 1; html += `<a href="filme.html?titulo=${encodedTitle}" class="btn-ver-mais">+${remainingCount} Resultados</a>`; } return html; }
 function renderOtherMaterialsModal(film, encodedTitle) { if (!film.materialOutros || film.materialOutros.length === 0) { return '<p><i class="fas fa-info-circle"></i> Nenhum material adicional disponível.</p>'; } const firstMaterial = film.materialOutros[0]; let html = `<div class="other-material-card"><p><strong><i class="fas fa-bookmark"></i> Tipo:</strong> ${firstMaterial.tipo || ''}</p><p><strong><i class="fas fa-file-alt"></i> Título:</strong> <a href="${firstMaterial.url}" target="_blank" rel="noopener noreferrer">${firstMaterial.titulo}</a></p></div>`; if (film.materialOutros.length > 1) { const remainingCount = film.materialOutros.length - 1; html += `<a href="filme.html?titulo=${encodedTitle}" class="btn-ver-mais">+${remainingCount} Resultados</a>`; } return html; }
-
-// ESTAS FUNÇÕES SÃO USADAS PELA PÁGINA 'filme.html' PARA RENDERIZAR SEÇÕES ESPECÍFICAS
-function renderTeachingPlans(film) {
-    if (!film.planos_de_aula || film.planos_de_aula.length === 0) {
-        return '<p>Nenhum plano de aula disponível para este filme ainda.</p>';
-    }
-    return film.planos_de_aula.map(plano => `
-        <div class="teaching-plan-card">
-            <p><strong><i class="fas fa-graduation-cap"></i> Nível de Ensino:</strong> ${plano.nivel_ensino || ''}</p>
-            <p><strong><i class="fas fa-book"></i> Área de Conhecimento:</strong> ${plano.area_conhecimento || ''}</p>
-            <p><strong><i class="fas fa-globe"></i> Site:</strong> <a href="${plano.url}" target="_blank" rel="noopener noreferrer">${plano.site}</a></p>
-            <p><strong><i class="fas fa-info-circle"></i> Descrição:</strong> ${plano.descricao || ''}</p>
-        </div>
-    `).join('');
-}
-
-function renderOtherMaterials(film) {
-    if (!film.materialOutros || film.materialOutros.length === 0) {
-        return '<p>Nenhum material adicional disponível.</p>';
-    }
-    return film.materialOutros.map(material => `
-        <div class="other-material-card">
-            <p><strong><i class="fas fa-bookmark"></i> Tipo:</strong> ${material.tipo || ''}</p>
-            <p><strong><i class="fas fa-file-alt"></i> Título:</strong> <a href="${material.url}" target="_blank" rel="noopener noreferrer">${material.titulo}</a></p>
-        </div>
-    `).join('');
-}
+function renderTeachingPlans(film) { if (!film.planos_de_aula || film.planos_de_aula.length === 0) { return '<p>Nenhum plano de aula disponível para este filme ainda.</p>'; } return film.planos_de_aula.map(plano => `<div class="teaching-plan-card"><p><strong><i class="fas fa-graduation-cap"></i> Nível de Ensino:</strong> ${plano.nivel_ensino || ''}</p><p><strong><i class="fas fa-book"></i> Área de Conhecimento:</strong> ${plano.area_conhecimento || ''}</p><p><strong><i class="fas fa-globe"></i> Site:</strong> <a href="${plano.url}" target="_blank" rel="noopener noreferrer">${plano.site}</a></p><p><strong><i class="fas fa-info-circle"></i> Descrição:</strong> ${plano.descricao || ''}</p></div>`).join(''); }
+function renderOtherMaterials(film) { if (!film.materialOutros || film.materialOutros.length === 0) { return '<p>Nenhum material adicional disponível.</p>'; } return film.materialOutros.map(material => `<div class="other-material-card"><p><strong><i class="fas fa-bookmark"></i> Tipo:</strong> ${material.tipo || ''}</p><p><strong><i class="fas fa-file-alt"></i> Título:</strong> <a href="${material.url}" target="_blank" rel="noopener noreferrer">${material.titulo}</a></p></div>`).join(''); }
 
 /* ==========================================
-   6. FUNÇÕES DE RENDERIZAÇÃO DOS FILMES E PAGINAÇÃO
+   6. FUNÇÕES DE RENDERIZAÇÃO E VISUALIZAÇÃO
    ========================================== */
 function renderResults() {
     const loadingMessage = document.getElementById('loadingMessage');
+    const paginationContainer = document.getElementById('pagination');
     loadingMessage.style.display = 'none';
+
+    // ESCONDE TODOS OS CONTAINERS DE VISUALIZAÇÃO
+    document.getElementById('filmGrid').style.display = 'none';
+    document.getElementById('filmList').style.display = 'none';
+    document.getElementById('map').style.display = 'none';
+
     if (currentView === 'grid') {
         document.getElementById('filmGrid').style.display = 'grid';
-        document.getElementById('filmList').style.display = 'none';
+        paginationContainer.style.display = 'flex';
         renderGridView();
-    } else {
-        document.getElementById('filmGrid').style.display = 'none';
-        document.getElementById('filmList').style.display = 'block'; // MUDADO PARA 'block'
+    } else if (currentView === 'list') {
+        document.getElementById('filmList').style.display = 'block';
+        paginationContainer.style.display = 'flex';
         renderListView();
+    } else if (currentView === 'map') {
+        document.getElementById('map').style.display = 'block';
+        paginationContainer.style.display = 'none'; // ESCONDE PAGINAÇÃO NO MAPA
+        renderMapView();
     }
 }
 function renderGridView() {
@@ -224,62 +221,42 @@ function renderGridView() {
     });
     initializePosterControls();
 }
-
 function renderListView() {
     const filmList = document.getElementById('filmList');
-    filmList.innerHTML = ''; // LIMPA A LISTA ANTERIOR
+    filmList.innerHTML = '';
     const startIndex = (currentPage - 1) * itemsPerPage;
     const endIndex = startIndex + itemsPerPage;
     const filmsToRender = currentFilms.slice(startIndex, endIndex);
-
-    if (filmsToRender.length === 0) {
-        // MOSTRA MENSAGEM DE "NÃO ENCONTRADO" DENTRO DO CONTAINER DA LISTA
-        filmList.innerHTML = '<p class="no-results" style="margin: 0;">Nenhum filme encontrado com os critérios selecionados.</p>';
-        return;
-    }
-    
-    // CRIA O CABEÇALHO DA LISTA
-    const headerHTML = `
-        <div class="list-header">
-            <div class="list-col col-title">Título</div>
-            <div class="list-col col-year">Ano</div>
-            <div class="list-col col-genre">Gênero</div>
-            <div class="list-col col-duration">Duração</div>
-            <div class="list-col col-class">Class.</div>
-        </div>
-    `;
-
-    // CRIA O HTML PARA CADA ITEM DA LISTA
+    if (filmsToRender.length === 0) { filmList.innerHTML = '<p class="no-results" style="margin: 0;">Nenhum filme encontrado com os critérios selecionados.</p>'; return; }
+    const headerHTML = `<div class="list-header"><div class="list-col col-title">Título</div><div class="list-col col-year">Ano</div><div class="list-col col-genre">Gênero</div><div class="list-col col-duration">Duração</div><div class="list-col col-class">Class.</div></div>`;
     const itemsHTML = filmsToRender.map(film => {
         const classificationClass = getClassificationClass(film.classification);
         const classificationText = film.classification <= 0 ? 'L' : film.classification;
         const coverPath = getDvdCover(film);
-        
-        return `
-            <div class="list-item" onclick="openModal(allFilms.find(f => f.title === '${film.title.replace(/'/g, "\\'")}'))">
-                <div class="list-col col-title">
-                    <img src="${coverPath}" alt="Capa de ${film.title}" class="list-item-poster" onerror="this.onerror=null; this.src='capas/progbrasil.png';">
-                    <div class="list-item-info">
-                        <h4>${film.title}</h4>
-                        <p>${film.director || 'Direção não informada'}</p>
-                    </div>
-                </div>
-                <div class="list-col col-year">${film.year || '?'}</div>
-                <div class="list-col col-genre">
-                    ${film.genres.slice(0, 2).map(g => `<span class="genre-tag">${g}</span>`).join('') || 'N/A'}
-                </div>
-                <div class="list-col col-duration">${film.duration || '?'} min</div>
-                <div class="list-col col-class">
-                    <span class="classification ${classificationClass}">${classificationText}</span>
-                </div>
-            </div>
-        `;
+        return `<div class="list-item" onclick="openModal(allFilms.find(f => f.title === '${film.title.replace(/'/g, "\\'")}'))"><div class="list-col col-title"><img src="${coverPath}" alt="Capa de ${film.title}" class="list-item-poster" onerror="this.onerror=null; this.src='capas/progbrasil.png';"><div class="list-item-info"><h4>${film.title}</h4><p>${film.director || 'Direção não informada'}</p></div></div><div class="list-col col-year">${film.year || '?'}</div><div class="list-col col-genre">${film.genres.slice(0, 2).map(g => `<span class="genre-tag">${g}</span>`).join('') || 'N/A'}</div><div class="list-col col-duration">${film.duration || '?'} min</div><div class="list-col col-class"><span class="classification ${classificationClass}">${classificationText}</span></div></div>`;
     }).join('');
-
-    // COMBINA CABEÇALHO E ITENS E INSERE NO DOM
     filmList.innerHTML = headerHTML + itemsHTML;
 }
-   
+function renderMapView() {
+    if (!mapInstance) {
+        initializeMap();
+    }
+    markersCluster.clearLayers();
+    const filmsOnMap = currentFilms.filter(film => film.state || film.city);
+    filmsOnMap.forEach(film => {
+        const coords = getCoordenadas(film);
+        if (coords) {
+            const jitter = 0.0005;
+            const adjustedCoords = [coords[0] + (Math.random() - 0.5) * jitter, coords[1] + (Math.random() - 0.5) * jitter];
+            const marker = L.marker(adjustedCoords).bindPopup(criarConteudoPopup(film), { maxWidth: window.innerWidth <= 768 ? 200 : 300, autoPan: true, closeButton: true });
+            markersCluster.addLayer(marker);
+        }
+    });
+    // AJUSTA O ZOOM PARA MOSTRAR TODOS OS MARCADORES FILTRADOS
+    if (filmsOnMap.length > 0) {
+        mapInstance.fitBounds(markersCluster.getBounds(), { padding: [50, 50] });
+    }
+}
 function renderPagination() {
     const paginationContainer = document.getElementById('pagination');
     paginationContainer.innerHTML = '';
@@ -310,7 +287,31 @@ function createPageButton(content, pageNumber, title = '') {
 }
 
 /* ==========================================
-   7. FUNÇÕES DO MODAL
+   7. FUNÇÕES DO MAPA (MIGRADAS DE mapa.js)
+   ========================================== */
+function initializeMap() {
+    if (mapInstance) return;
+    mapInstance = L.map('map').setView([-15.7975, -47.8919], 4);
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        attribution: '© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+        maxZoom: 18,
+        minZoom: 3
+    }).addTo(mapInstance);
+    markersCluster = L.markerClusterGroup();
+    mapInstance.addLayer(markersCluster);
+}
+function getCoordenadas(filme) {
+    if (filme.city && coordenadas.cidades[filme.city]) { return coordenadas.cidades[filme.city]; }
+    if (filme.state && coordenadas.capitais[filme.state]) { return coordenadas.capitais[filme.state]; }
+    return null; // RETORNA NULL SE NÃO ENCONTRAR COORDENADAS
+}
+function criarConteudoPopup(filme) {
+    const encodedTitle = encodeURIComponent(film.title);
+    return `<div class="filme-popup"><h5>${film.title}</h5><p><strong>Direção:</strong> ${film.director}<br><strong>Ano:</strong> ${film.year}<br><strong>Gênero:</strong> ${film.genres.join(', ')}</p><a href="filme.html?titulo=${encodedTitle}" class="ver-mais">Ver mais informações</a></div>`;
+}
+
+/* ==========================================
+   8. FUNÇÕES DO MODAL
    ========================================== */
 function openModal(film) {
     const modal = document.getElementById('filmModal');
@@ -340,7 +341,7 @@ function closeModal() {
 function handleKeyDown(e) { if (e.key === 'Escape') { closeModal(); } }
 
 /* ==========================================
-   8. FUNÇÕES DE CARREGAMENTO INICIAL
+   9. FUNÇÕES DE CARREGAMENTO INICIAL
    ========================================== */
 async function initializeApp() {
     const loadingMessage = document.getElementById('loadingMessage');
@@ -362,24 +363,27 @@ async function initializeApp() {
 }
 
 /* ==========================================
-   9. EVENT LISTENERS
+   10. EVENT LISTENERS
    ========================================== */
 document.addEventListener('DOMContentLoaded', () => {
     initializeApp();
 
     const viewGridBtn = document.getElementById('viewGridBtn');
     const viewListBtn = document.getElementById('viewListBtn');
+    const viewMapBtn = document.getElementById('viewMapBtn');
 
     function setView(view) {
         currentView = view;
         localStorage.setItem('preferredView', view);
         viewGridBtn.classList.toggle('active', view === 'grid');
         viewListBtn.classList.toggle('active', view === 'list');
+        viewMapBtn.classList.toggle('active', view === 'map');
         renderResults();
     }
 
     viewGridBtn.addEventListener('click', () => setView('grid'));
     viewListBtn.addEventListener('click', () => setView('list'));
+    viewMapBtn.addEventListener('click', () => setView('map'));
 
     const savedView = localStorage.getItem('preferredView');
     if (savedView) {
