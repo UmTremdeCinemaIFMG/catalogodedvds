@@ -197,16 +197,22 @@ function renderGridView() {
     });
     initializePosterControls();
 }
+
 function renderListView() {
     const filmList = document.getElementById('filmList');
-    filmList.innerHTML = '';
+    filmList.innerHTML = ''; // LIMPA A LISTA ANTERIOR
     const startIndex = (currentPage - 1) * itemsPerPage;
     const endIndex = startIndex + itemsPerPage;
     const filmsToRender = currentFilms.slice(startIndex, endIndex);
-    if (filmsToRender.length === 0) { filmList.innerHTML = '<p class="no-results">Nenhum filme encontrado com os critérios selecionados.</p>'; return; }
+
+    if (filmsToRender.length === 0) {
+        // MOSTRA MENSAGEM DE "NÃO ENCONTRADO" DENTRO DO CONTAINER DA LISTA
+        filmList.innerHTML = '<p class="no-results" style="margin: 0;">Nenhum filme encontrado com os critérios selecionados.</p>';
+        return;
+    }
     
     // CRIA O CABEÇALHO DA LISTA
-    filmList.innerHTML = `
+    const headerHTML = `
         <div class="list-header">
             <div class="list-col col-title">Título</div>
             <div class="list-col col-year">Ano</div>
@@ -216,31 +222,37 @@ function renderListView() {
         </div>
     `;
 
-    filmsToRender.forEach(film => {
-        const listItem = document.createElement('div');
-        listItem.className = 'list-item';
+    // CRIA O HTML PARA CADA ITEM DA LISTA
+    const itemsHTML = filmsToRender.map(film => {
         const classificationClass = getClassificationClass(film.classification);
         const classificationText = film.classification <= 0 ? 'L' : film.classification;
         const coverPath = getDvdCover(film);
-        listItem.innerHTML = `
-            <div class="list-col col-title">
-                <img src="${coverPath}" alt="Capa de ${film.title}" class="list-item-poster" onerror="this.onerror=null; this.src='capas/progbrasil.png';">
-                <div class="list-item-info">
-                    <h4>${film.title}</h4>
-                    <p>${film.director || 'Direção não informada'}</p>
+        
+        return `
+            <div class="list-item" onclick="openModal(allFilms.find(f => f.title === '${film.title.replace(/'/g, "\\'")}'))">
+                <div class="list-col col-title">
+                    <img src="${coverPath}" alt="Capa de ${film.title}" class="list-item-poster" onerror="this.onerror=null; this.src='capas/progbrasil.png';">
+                    <div class="list-item-info">
+                        <h4>${film.title}</h4>
+                        <p>${film.director || 'Direção não informada'}</p>
+                    </div>
+                </div>
+                <div class="list-col col-year">${film.year || '?'}</div>
+                <div class="list-col col-genre">
+                    ${film.genres.slice(0, 2).map(g => `<span class="genre-tag">${g}</span>`).join('') || 'N/A'}
+                </div>
+                <div class="list-col col-duration">${film.duration || '?'} min</div>
+                <div class="list-col col-class">
+                    <span class="classification ${classificationClass}">${classificationText}</span>
                 </div>
             </div>
-            <div class="list-col col-year">${film.year || '?'}</div>
-            <div class="list-col col-genre">${film.genres.join(', ') || 'N/A'}</div>
-            <div class="list-col col-duration">${film.duration || '?'} min</div>
-            <div class="list-col col-class">
-                <span class="classification ${classificationClass}">${classificationText}</span>
-            </div>
         `;
-        listItem.addEventListener('click', () => openModal(film));
-        filmList.appendChild(listItem);
-    });
+    }).join('');
+
+    // COMBINA CABEÇALHO E ITENS E INSERE NO DOM
+    filmList.innerHTML = headerHTML + itemsHTML;
 }
+   
 function renderPagination() {
     const paginationContainer = document.getElementById('pagination');
     paginationContainer.innerHTML = '';
