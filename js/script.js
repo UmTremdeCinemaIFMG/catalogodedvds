@@ -348,16 +348,47 @@ function handleKeyDown(e) { if (e.key === 'Escape') { closeModal(); } }
    ========================================== */
 
 async function initializeApp() {
+    async function initializeApp() {
     const loadingMessage = document.getElementById('loadingMessage');
     loadingMessage.style.display = 'flex';
     try {
         const response = await fetch('catalogo.json');
         if (!response.ok) { throw new Error(`Erro ao carregar catalogo.json: ${response.statusText}`); }
         const data = await response.json();
-        allFilms = data.map(transformFilmData); // AQUI ESTÁ O PROBLEMA
+
+        // LÓGICA DE EXPANSÃO DE FILMES PARA MÚLTIPLAS LOCALIDADES
+        // AGORA TRABALHANDO COM ARRAYS, O QUE É MAIS LIMPO E SEGURO
+        const expandedData = data.reduce((acc, filmeJson) => {
+            const ufs = filmeJson.UF || []; // AGORA "UF" JÁ É UM ARRAY
+            const cidades = filmeJson.cidade || []; // "cidade" TAMBÉM PODE SER UM ARRAY
+
+            // SE HOUVER CIDADES ESPECÍFICAS, CRIA UM FILME PARA CADA CIDADE
+            if (cidades.length > 0) {
+                cidades.forEach(cidade => {
+                    // CRIA UMA CÓPIA DO FILME COM UMA ÚNICA CIDADE
+                    acc.push({ ...filmeJson, cidade: cidade, UF: ufs }); // Mantém as UFs para referência se necessário
+                });
+            // SE NÃO HOUVER CIDADES, MAS HOUVER UFS, CRIA UM FILME PARA CADA UF
+            } else if (ufs.length > 0) {
+                ufs.forEach(uf => {
+                    // CRIA UMA CÓPIA DO FILME COM UMA ÚNICA UF
+                    acc.push({ ...filmeJson, UF: uf, cidade: [] }); // Garante que cidade seja um array vazio
+                });
+            } else {
+                // SE NÃO TIVER NEM CIDADE NEM UF, ADICIONA O FILME MESMO ASSIM
+                acc.push(filmeJson);
+            }
+            return acc;
+        }, []);
+
+        // AGORA, A TRANSFORMAÇÃO É FEITA NOS DADOS JÁ EXPANDIDOS E NORMALIZADOS
+        allFilms = expandedData.map(transformFilmData);
+        
+        // O RESTANTE DA INICIALIZAÇÃO CONTINUA NORMAL
         allGenres = [...new Set(allFilms.flatMap(film => film.genres))].sort();
         initializeFilters();
         filterAndRenderFilms();
+
     } catch (error) {
         console.error("Erro ao inicializar:", error);
         const filmGrid = document.getElementById('filmGrid');
