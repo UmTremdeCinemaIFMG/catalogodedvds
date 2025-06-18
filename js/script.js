@@ -354,29 +354,10 @@ async function initializeApp() {
         const response = await fetch('catalogo.json');
         if (!response.ok) { throw new Error(`Erro ao carregar catalogo.json: ${response.statusText}`); }
         const data = await response.json();
-
-        // LÓGICA DE EXPANSÃO DE UFS REINTEGRADA
-        const expandedData = data.reduce((acc, filmeJson) => {
-            const ufs = filmeJson.UF ? String(filmJson.UF).split(/[,/\s]+/).map(uf => uf.trim()).filter(Boolean) : [];
-            if (ufs.length > 0) {
-                ufs.forEach(uf => {
-                    // CRIA UMA CÓPIA DO FILME PARA CADA UF
-                    acc.push({ ...filmeJson, UF: uf });
-                });
-            } else {
-                // SE NÃO TIVER UF, ADICIONA O FILME MESMO ASSIM (PARA APARECER NA LISTA/GRADE)
-                acc.push(filmeJson);
-            }
-            return acc;
-        }, []);
-
-        // AGORA, A TRANSFORMAÇÃO É FEITA NOS DADOS JÁ EXPANDIDOS
-        allFilms = expandedData.map(transformFilmData);
-        
+        allFilms = data.map(transformFilmData); // AQUI ESTÁ O PROBLEMA
         allGenres = [...new Set(allFilms.flatMap(film => film.genres))].sort();
         initializeFilters();
         filterAndRenderFilms();
-
     } catch (error) {
         console.error("Erro ao inicializar:", error);
         const filmGrid = document.getElementById('filmGrid');
