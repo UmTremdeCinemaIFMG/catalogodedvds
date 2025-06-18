@@ -275,6 +275,21 @@ function initializeFilters() {
         odsSelect.appendChild(option);
     });
 
+   // POPULA O NOVO FILTRO DE COMPETÊNCIAS DA BNCC
+    const bnccSelect = document.getElementById('bnccSelect');
+    fetch('bncc_competencias.json')
+        .then(response => response.json())
+        .then(competencias => {
+            competencias.forEach(comp => {
+                const option = document.createElement('option');
+                option.value = comp.id;
+                // CRIA UM TEXTO AMIGÁVEL PARA A OPÇÃO
+                option.textContent = `Comp. ${comp.id}: ${comp.titulo}`;
+                bnccSelect.appendChild(option);
+            });
+        })
+        .catch(error => console.error('Erro ao carregar competências da BNCC:', error));
+
     // ADICIONA EVENT LISTENERS AOS FILTROS (INCLUINDO O NOVO FILTRO ODS)
     document.getElementById('searchInput').addEventListener('input', filterAndRenderFilms);
     document.getElementById('sortSelect').addEventListener('change', filterAndRenderFilms);
