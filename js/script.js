@@ -165,6 +165,9 @@ function filterAndRenderFilms() {
         const selectedAccessibility = document.getElementById('accessibilitySelect').value;
         const selectedOds = document.getElementById('odsSelect').value; // OBTÉM O ODS SELECIONADO
        const selectedBncc = document.getElementById('bnccSelect').value;
+       const selectedEtapa = document.getElementById('etapaSelect').value;
+       const selectedArea = document.getElementById('areaSelect').value;
+        const selectedTema = document.getElementById('temaSelect').value;
 
         // FILTRA A LISTA DE FILMES
         currentFilms = allFilms.filter(film => {
@@ -205,9 +208,18 @@ function filterAndRenderFilms() {
            // VERIFICA CORRESPONDÊNCIA COM A COMPETÊNCIA DA BNCC
             // USA PARSEINT PORQUE O VALOR DO SELECT É STRING E NO OBJETO É NÚMERO
             const matchesBncc = !selectedBncc || (film.bnccCompetencias && film.bnccCompetencias.includes(parseInt(selectedBncc)));
-            
+
+           // VERIFICA CORRESPONDÊNCIA COM A ETAPA DE ENSINO
+            const matchesEtapa = !selectedEtapa || (film.bnccEtapas && film.bnccEtapas.includes(selectedEtapa));
+
+            // VERIFICA CORRESPONDÊNCIA COM A ÁREA DO CONHECIMENTO
+            const matchesArea = !selectedArea || (film.bnccAreas && film.bnccAreas.includes(selectedArea));
+
+           // VERIFICA CORRESPONDÊNCIA COM O TEMA TRANSVERSAL
+            const matchesTema = !selectedTema || (film.bnccTemas && film.bnccTemas.includes(selectedTema));
+           
             // RETORNA TRUE SE O FILME CORRESPONDE A TODOS OS CRITÉRIOS
-            return matchesSearch && matchesGenre && matchesClassification && matchesAccessibility && matchesOds && matchesBncc;
+            return matchesSearch && matchesGenre && matchesClassification && matchesAccessibility && matchesOds && matchesBncc && matchesEtapa && matchesArea && matchesTema; 
         });
 
         // ATUALIZA CONTADOR, ORDENA E RENDERIZA
@@ -295,6 +307,42 @@ function initializeFilters() {
         })
         .catch(error => console.error('Erro ao carregar competências da BNCC:', error));
 
+   // POPULA O NOVO FILTRO DE ETAPAS DE ENSINO
+    const etapaSelect = document.getElementById('etapaSelect');
+    // USA FLATMAP PARA PEGAR TODAS AS ETAPAS, E SET PARA GARANTIR VALORES ÚNICOS
+    const allEtapas = [...new Set(allFilms.flatMap(film => film.bnccEtapas || []))].sort();
+
+    allEtapas.forEach(etapa => {
+        const option = document.createElement('option');
+        option.value = etapa;
+        option.textContent = etapa;
+        etapaSelect.appendChild(option);
+    });
+
+ // POPULA O NOVO FILTRO DE ÁREA DO CONHECIMENTO
+    const areaSelect = document.getElementById('areaSelect');
+    // USA FLATMAP PARA PEGAR TODAS AS ÁREAS, E SET PARA GARANTIR VALORES ÚNICOS
+    const allAreas = [...new Set(allFilms.flatMap(film => film.bnccAreas || []))].sort();
+
+    allAreas.forEach(area => {
+        const option = document.createElement('option');
+        option.value = area;
+        option.textContent = area;
+        areaSelect.appendChild(option);
+    });
+
+   // POPULA O NOVO FILTRO DE TEMAS TRANSVERSAIS
+    const temaSelect = document.getElementById('temaSelect');
+    // USA FLATMAP PARA PEGAR TODOS OS TEMAS, E SET PARA GARANTIR VALORES ÚNICOS
+    const allTemas = [...new Set(allFilms.flatMap(film => film.bnccTemas || []))].sort();
+
+    allTemas.forEach(tema => {
+        const option = document.createElement('option');
+        option.value = tema;
+        option.textContent = tema;
+        temaSelect.appendChild(option);
+    });
+   
     // ADICIONA EVENT LISTENERS AOS FILTROS (INCLUINDO O NOVO FILTRO ODS)
     document.getElementById('searchInput').addEventListener('input', filterAndRenderFilms);
     document.getElementById('sortSelect').addEventListener('change', filterAndRenderFilms);
@@ -303,6 +351,9 @@ function initializeFilters() {
     document.getElementById('accessibilitySelect').addEventListener('change', filterAndRenderFilms);
     document.getElementById('odsSelect').addEventListener('change', filterAndRenderFilms); // ADICIONA LISTENER PARA ODS
     document.getElementById('bnccSelect').addEventListener('change', filterAndRenderFilms);
+    document.getElementById('etapaSelect').addEventListener('change', filterAndRenderFilms);  
+    document.getElementById('areaSelect').addEventListener('change', filterAndRenderFilms);
+    document.getElementById('temaSelect').addEventListener('change', filterAndRenderFilms);
    
     // Os outros selects (classification, accessibility) são estáticos no HTML
 }
