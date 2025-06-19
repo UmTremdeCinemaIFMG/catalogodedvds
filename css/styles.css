@@ -1263,7 +1263,9 @@ a:hover, a:focus {
     transform: translateY(-2px);
 }
 
-/* ESTILOS PARA CLUSTER DE MARCADORES */
+
+
+/* ESTILOS PARA CLUSTER DE MARCADORES 
 .marker-cluster {
     background-color: rgba(0, 154, 68, 0.6);
     border-radius: 50%;
@@ -1281,7 +1283,10 @@ a:hover, a:focus {
     justify-content: center;
     font-size: 12px;
     color: white;
-    font-weight: bold;
+    font-weight: bold;*/
+
+
+
 }
 /* 14. AJUSTES NA LINHA DE CONTROLES DE VISUALIZAÇÃO */
 /* ==================================================================== */
@@ -1307,7 +1312,48 @@ a:hover, a:focus {
 /* 15. AJUSTES NOS MARCADORES DO MAPA */
 /* ==================================================================== */
 
-/* ALTERA A COR DO MARCADOR PADRÃO DO LEAFLET */
-.leaflet-marker-icon {
-    filter: hue-rotate(230deg) brightness(0.8) saturate(3); /* TRUQUE DE CSS PARA TORNAR O ÍCONE AZUL EM VERDE */
+/* REMOVEMOS A REGRA ANTIGA COM 'filter' */
+/* O ÍCONE SERÁ DEFINIDO VIA JAVASCRIPT */
+
+/* ESTILOS PARA CLUSTER DE MARCADORES */
+.marker-cluster {
+    background-clip: padding-box;
+    border-radius: 50%;
+}
+.marker-cluster div {
+    width: 30px;
+    height: 30px;
+    margin-left: 5px;
+    margin-top: 5px;
+    color: var(--branco);
+    font-weight: bold;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+}
+
+/* CLUSTER PEQUENO */
+.marker-cluster-small {
+    background-color: rgba(0, 154, 68, 0.6); /* VERDE IFMG COM TRANSPARÊNCIA */
+}
+.marker-cluster-small div {
+    background-color: rgba(0, 154, 68, 0.8); /* VERDE IFMG MAIS SÓLIDO */
+}
+
+/* CLUSTER MÉDIO */
+.marker-cluster-medium {
+    background-color: rgba(0, 114, 54, 0.6); /* VERDE ESCURO COM TRANSPARÊNCIA */
+}
+.marker-cluster-medium div {
+    background-color: rgba(0, 114, 54, 0.8); /* VERDE ESCURO MAIS SÓLIDO */
+}
+
+/* CLUSTER GRANDE */
+.marker-cluster-large {
+    background-color: rgba(2, 83, 16, 0.6); /* VERDE AINDA MAIS ESCURO COM TRANSPARÊNCIA */
+}
+.marker-cluster-large div {
+    background-color: rgba(2, 83, 16, 0.8); /* VERDE AINDA MAIS ESCURO SÓLIDO */
 }
