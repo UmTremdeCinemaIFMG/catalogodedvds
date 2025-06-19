@@ -265,50 +265,100 @@ function renderListView() {
     }).join('');
     filmList.innerHTML = headerHTML + itemsHTML;
 }
+/* ==========================================
+   6. FUNÇÃO DE RENDERIZAÇÃO DO MAPA
+   ========================================== */
 function renderMapView() {
+    // INICIALIZA O MAPA SE AINDA NÃO FOI CRIADO
     if (!mapInstance) {
         initializeMap();
     }
     
+    // AGUARDA UM PEQUENO DELAY PARA GARANTIR QUE O MAPA ESTEJA VISÍVEL
     setTimeout(() => {
+        // FORÇA A ATUALIZAÇÃO DO TAMANHO DO MAPA APÓS TORNÁ-LO VISÍVEL
         mapInstance.invalidateSize();
+        
+        // LIMPA TODOS OS MARCADORES EXISTENTES DO CLUSTER
         markersCluster.clearLayers();
         const markers = [];
 
+        // PROCESSA CADA FILME DOS RESULTADOS FILTRADOS
         currentFilms.forEach(film => {
-            const cidades = film.city;
-            const ufs = film.state;
+            // OBTÉM AS LOCALIZAÇÕES DO FILME (CIDADES E ESTADOS)
+            const cidades = Array.isArray(film.city) ? film.city : (film.city ? [film.city] : []);
+            const ufs = Array.isArray(film.state) ? film.state : (film.state ? [film.state] : []);
 
+            // PRIORIDADE 1: SE TEM CIDADES DEFINIDAS, USA AS COORDENADAS DAS CIDADES
             if (cidades.length > 0) {
                 cidades.forEach(cidadeNome => {
+                    // BUSCA AS COORDENADAS DA CIDADE NO OBJETO DE COORDENADAS
                     const coords = coordenadas.cidades[cidadeNome];
                     if (coords) {
-                        const jitter = 0.001;
-                        const adjustedCoords = [coords[0] + (Math.random() - 0.5) * jitter, coords[1] + (Math.random() - 0.5) * jitter];
-                        markers.push(L.marker(adjustedCoords).bindPopup(criarConteudoPopup(film)));
+                        // ADICIONA UM PEQUENO DESLOCAMENTO ALEATÓRIO PARA EVITAR SOBREPOSIÇÃO TOTAL
+                        const jitter = 0.0005; // APROXIMADAMENTE 50 METROS
+                        const adjustedCoords = [
+                            coords[0] + (Math.random() - 0.5) * jitter,
+                            coords[1] + (Math.random() - 0.5) * jitter
+                        ];
+                        
+                        // CRIA O MARCADOR COM POPUP INFORMATIVO
+                        const marker = L.marker(adjustedCoords)
+                            .bindPopup(criarConteudoPopupMelhorado(film, cidadeNome), {
+                                maxWidth: window.innerWidth <= 768 ? 250 : 350,
+                                autoPan: true,
+                                closeButton: true
+                            });
+                        
+                        markers.push(marker);
                     }
                 });
-            } else if (ufs.length > 0) {
+            } 
+            // PRIORIDADE 2: SE NÃO TEM CIDADES, USA AS COORDENADAS DAS CAPITAIS DOS ESTADOS
+            else if (ufs.length > 0) {
                 ufs.forEach(ufNome => {
+                    // BUSCA AS COORDENADAS DA CAPITAL DO ESTADO
                     const coords = coordenadas.capitais[ufNome];
                     if (coords) {
-                        const jitter = 0.001;
-                        const adjustedCoords = [coords[0] + (Math.random() - 0.5) * jitter, coords[1] + (Math.random() - 0.5) * jitter];
-                        markers.push(L.marker(adjustedCoords).bindPopup(criarConteudoPopup(film)));
+                        // ADICIONA UM PEQUENO DESLOCAMENTO ALEATÓRIO
+                        const jitter = 0.0005;
+                        const adjustedCoords = [
+                            coords[0] + (Math.random() - 0.5) * jitter,
+                            coords[1] + (Math.random() - 0.5) * jitter
+                        ];
+                        
+                        // CRIA O MARCADOR COM POPUP INFORMATIVO
+                        const marker = L.marker(adjustedCoords)
+                            .bindPopup(criarConteudoPopupMelhorado(film, null, ufNome), {
+                                maxWidth: window.innerWidth <= 768 ? 250 : 350,
+                                autoPan: true,
+                                closeButton: true
+                            });
+                        
+                        markers.push(marker);
                     }
                 });
             }
         });
         
+        // ADICIONA TODOS OS MARCADORES AO CLUSTER
         if (markers.length > 0) {
             markersCluster.addLayers(markers);
+            
+            // AJUSTA A VISUALIZAÇÃO DO MAPA BASEADO NA QUANTIDADE DE MARCADORES
             if (markers.length > 1) {
-                mapInstance.fitBounds(markersCluster.getBounds(), { padding: [50, 50], maxZoom: 12 });
+                // MÚLTIPLOS MARCADORES: AJUSTA O ZOOM PARA MOSTRAR TODOS
+                mapInstance.fitBounds(markersCluster.getBounds(), { 
+                    padding: [50, 50], 
+                    maxZoom: 12 
+                });
             } else {
+                // UM ÚNICO MARCADOR: CENTRALIZA NELE COM ZOOM ADEQUADO
                 mapInstance.setView(markers[0].getLatLng(), 8);
             }
         } else {
-             mapInstance.setView([-15.7975, -47.8919], 4);
+            // NENHUM MARCADOR: VOLTA PARA A VISUALIZAÇÃO PADRÃO DO BRASIL
+            mapInstance.setView([-15.7975, -47.8919], 4);
         }
     }, 100); 
 }
@@ -340,24 +390,106 @@ function createPageButton(content, pageNumber, title = '') {
     });
     return button;
 }
-
 /* ==========================================
    7. FUNÇÕES DO MAPA
    ========================================== */
 function initializeMap() {
+    // VERIFICA SE O MAPA JÁ FOI INICIALIZADO PARA EVITAR DUPLICAÇÃO
     if (mapInstance) return;
-    mapInstance = L.map('map').setView([-15.7975, -47.8919], 4);
+    
+    // CRIA A INSTÂNCIA DO MAPA COM CONFIGURAÇÕES OTIMIZADAS
+    mapInstance = L.map('map', {
+        zoomControl: true,      // ATIVA O CONTROLE DE ZOOM
+        dragging: true,         // PERMITE ARRASTAR O MAPA
+        tap: true,             // PERMITE TOQUES EM DISPOSITIVOS MÓVEIS
+        touchZoom: true,       // PERMITE ZOOM COM TOQUE
+        scrollWheelZoom: true  // PERMITE ZOOM COM RODA DO MOUSE
+    }).setView([-15.7975, -47.8919], 4); // CENTRALIZA NO BRASIL
+    
+    // ADICIONA A CAMADA DE TILES DO OPENSTREETMAP
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-        attribution: '© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
         maxZoom: 18,
-        minZoom: 3
+        minZoom: 2
     }).addTo(mapInstance);
-    markersCluster = L.markerClusterGroup();
+    
+    // INICIALIZA O CLUSTER DE MARCADORES COM CONFIGURAÇÕES PERSONALIZADAS
+    markersCluster = L.markerClusterGroup({
+        showCoverageOnHover: true,           // MOSTRA A ÁREA DE COBERTURA AO PASSAR O MOUSE
+        zoomToBoundsOnClick: true,           // ZOOM AUTOMÁTICO AO CLICAR NO CLUSTER
+        spiderfyOnMaxZoom: true,            // ESPALHA OS MARCADORES EM ZOOM MÁXIMO
+        removeOutsideVisibleBounds: true,    // REMOVE MARCADORES FORA DA ÁREA VISÍVEL
+        disableClusteringAtZoom: 15,        // DESATIVA CLUSTERING EM ZOOM MUITO PRÓXIMO
+        maxClusterRadius: 80,               // RAIO MÁXIMO PARA AGRUPAR MARCADORES
+        iconCreateFunction: function(cluster) {
+            // FUNÇÃO PERSONALIZADA PARA CRIAR ÍCONES DOS CLUSTERS
+            const count = cluster.getChildCount();
+            let size = 'small';
+            
+            // DEFINE O TAMANHO DO CLUSTER BASEADO NA QUANTIDADE DE MARCADORES
+            if (count > 50) {
+                size = 'large';
+            } else if (count > 20) {
+                size = 'medium';
+            }
+            
+            // RETORNA O ÍCONE PERSONALIZADO DO CLUSTER
+            return L.divIcon({
+                html: `<div><span>${count}</span></div>`,
+                className: `marker-cluster marker-cluster-${size}`,
+                iconSize: L.point(40, 40)
+            });
+        }
+    });
+    
+    // ADICIONA O CLUSTER AO MAPA
     mapInstance.addLayer(markersCluster);
 }
+
+function criarConteudoPopupMelhorado(filme, cidade, uf) {
+    // DETERMINA SE É DISPOSITIVO MÓVEL PARA AJUSTAR O LAYOUT
+    const isMobile = window.innerWidth <= 768;
+    
+    // CODIFICA O TÍTULO DO FILME PARA A URL (MESMO PADRÃO DA PÁGINA INICIAL)
+    const encodedTitle = encodeURIComponent(filme.title);
+    
+    // DETERMINA A LOCALIZAÇÃO A SER EXIBIDA (CIDADE TEM PRIORIDADE SOBRE UF)
+    let localizacao = '';
+    if (cidade) {
+        localizacao = `<strong>Cidade:</strong> ${cidade}<br>`;
+        if (filme.state && filme.state.length > 0) {
+            localizacao += `<strong>Estado:</strong> ${Array.isArray(filme.state) ? filme.state.join(', ') : filme.state}<br>`;
+        }
+    } else if (uf) {
+        localizacao = `<strong>Estado:</strong> ${uf}<br>`;
+    }
+    
+    // CRIA O CONTEÚDO DO POPUP ADAPTATIVO PARA MOBILE E DESKTOP
+    return `
+        <div class="filme-popup">
+            <h5>${filme.title}</h5>
+            <p>
+                <strong>Direção:</strong> ${filme.director || 'Não informado'}<br>
+                <strong>Ano:</strong> ${filme.year || 'Não informado'}<br>
+                ${localizacao}
+                <strong>Gênero:</strong> ${filme.genres && filme.genres.length > 0 ? filme.genres.join(', ') : filme.genre || 'Não informado'}<br>
+                ${!isMobile ? `<strong>Duração:</strong> ${filme.duration || '?'} minutos<br>` : ''}
+                ${filme.classification ? `<strong>Classificação:</strong> ${filme.classification <= 0 ? 'Livre' : filme.classification + ' anos'}<br>` : ''}
+            </p>
+            ${filme.genres && filme.genres.length > 0 ? `<div class="popup-genres">${filme.genres.slice(0, 3).map(genre => `<span class="genero-tag">${genre}</span>`).join('')}</div>` : ''}
+            <div class="popup-actions">
+                <a href="filme.html?titulo=${encodedTitle}" class="ver-mais" target="_blank">
+                    <i class="fas fa-external-link-alt"></i> Ver mais informações
+                </a>
+            </div>
+        </div>
+    `;
+}
+
+// MANTÉM A FUNÇÃO ORIGINAL PARA COMPATIBILIDADE
 function criarConteudoPopup(filme) {
-    const encodedTitle = encodeURIComponent(film.title);
-    return `<div class="filme-popup"><h5>${film.title}</h5><p><strong>Direção:</strong> ${film.director}<br><strong>Ano:</strong> ${film.year}<br><strong>Gênero:</strong> ${film.genres.join(', ')}</p><a href="filme.html?titulo=${encodedTitle}" class="ver-mais">Ver mais informações</a></div>`;
+    const encodedTitle = encodeURIComponent(filme.title);
+    return `<div class="filme-popup"><h5>${filme.title}</h5><p><strong>Direção:</strong> ${filme.director}<br><strong>Ano:</strong> ${filme.year}<br><strong>Gênero:</strong> ${filme.genres.join(', ')}</p><a href="filme.html?titulo=${encodedTitle}" class="ver-mais">Ver mais informações</a></div>`;
 }
 
 /* ==========================================
