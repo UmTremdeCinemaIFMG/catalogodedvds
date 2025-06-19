@@ -172,26 +172,32 @@
                         </div>
                     </div>
     
-                    <!-- CONTADOR DE RESULTADOS -->
-                    <div class="results-counter">
-                        <span id="filmsCount">0</span> filmes encontrados
-                    </div>
+<!-- CONTADOR DE RESULTADOS (MOVENDO PARA A NOVA LINHA) -->
+                    <!-- O ELEMENTO ANTIGO É REMOVIDO DAQUI -->
                 </div>
             </div>
 
-<!-- SELETOR DE MODO DE VISUALIZAÇÃO -->
-            <div class="view-switcher">
-                <button id="viewGridBtn" class="active" title="Visualização em Grade">
-                    <i class="fas fa-th"></i> Grade
-                </button>
-                <button id="viewListBtn" title="Visualização em Lista">
-                    <i class="fas fa-list"></i> Lista
-                </button>
-
-<button id="viewMapBtn" title="Visualização em Mapa">
-                    <i class="fas fa-map-marked-alt"></i> Mapa
-                </button>
-		    
+            <!--======================================================================================
+            // INÍCIO DO CÓDIGO CORRIGIDO
+            //======================================================================================-->
+            <!-- LINHA DE CONTROLE DE VISUALIZAÇÃO E RESULTADOS -->
+            <div class="view-controls-row">
+                <!-- SELETOR DE MODO DE VISUALIZAÇÃO -->
+                <div class="view-switcher">
+                    <button id="viewGridBtn" class="active" title="Visualização em Grade">
+                        <i class="fas fa-th"></i> Grade
+                    </button>
+                    <button id="viewListBtn" title="Visualização em Lista">
+                        <i class="fas fa-list"></i> Lista
+                    </button>
+                    <button id="viewMapBtn" title="Visualização em Mapa">
+                        <i class="fas fa-map-marked-alt"></i> Mapa
+                    </button>
+                </div>
+                <!-- CONTADOR DE RESULTADOS -->
+                <div class="results-counter">
+                    <span id="filmsCount">0</span> filmes encontrados
+                </div>
             </div>
 		
             <!-- LOADING STATE -->
