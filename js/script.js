@@ -8,6 +8,15 @@ let allGenres = [];
 let debounceTimer;
 const itemsPerPage = 20;
 let currentView = 'grid';
+let markersCluster = null;
+
+// DEFINIÇÃO DO ÍCONE VERDE PERSONALIZADO PARA O MAPA
+const greenIcon = L.icon({
+    iconUrl: 'img/marker-icon-green.svg',
+    iconSize:     [25, 41], // TAMANHO DO ÍCONE
+    iconAnchor:   [12, 41], // PONTO DO ÍCONE QUE CORRESPONDE À LOCALIZAÇÃO DO MARCADOR
+    popupAnchor:  [1, -34]  // PONTO A PARTIR DO QUAL O POPUP DEVE ABRIR
+});
 
 // VARIÁVEIS GLOBAIS PARA O MAPA
 let mapInstance = null;
@@ -303,12 +312,12 @@ function renderMapView() {
                         ];
                         
                         // CRIA O MARCADOR COM POPUP INFORMATIVO
-                        const marker = L.marker(adjustedCoords)
-                            .bindPopup(criarConteudoPopupMelhorado(film, cidadeNome), {
-                                maxWidth: window.innerWidth <= 768 ? 250 : 350,
-                                autoPan: true,
-                                closeButton: true
-                            });
+                        const marker = L.marker(adjustedCoords, { icon: greenIcon })
+    .bindPopup(criarConteudoPopupMelhorado(film, cidadeNome, null), { // Adicionado null para o parâmetro uf
+        maxWidth: window.innerWidth <= 768 ? 250 : 350,
+        autoPan: true,
+        closeButton: true
+    });
                         
                         markers.push(marker);
                     }
@@ -328,12 +337,12 @@ function renderMapView() {
                         ];
                         
                         // CRIA O MARCADOR COM POPUP INFORMATIVO
-                        const marker = L.marker(adjustedCoords)
-                            .bindPopup(criarConteudoPopupMelhorado(film, null, ufNome), {
-                                maxWidth: window.innerWidth <= 768 ? 250 : 350,
-                                autoPan: true,
-                                closeButton: true
-                            });
+                        const marker = L.marker(adjustedCoords, { icon: greenIcon })
+    .bindPopup(criarConteudoPopupMelhorado(film, null, ufNome), {
+        maxWidth: window.innerWidth <= 768 ? 250 : 350,
+        autoPan: true,
+        closeButton: true
+    });
                         
                         markers.push(marker);
                     }
