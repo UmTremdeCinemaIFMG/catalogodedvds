@@ -1283,3 +1283,31 @@ a:hover, a:focus {
     color: white;
     font-weight: bold;
 }
+/* 14. AJUSTES NA LINHA DE CONTROLES DE VISUALIZAÇÃO */
+/* ==================================================================== */
+.view-controls-row {
+    display: flex;
+    justify-content: space-between; /* ALINHA OS ITENS NAS EXTREMIDADES */
+    align-items: center;
+    margin-bottom: 20px;
+    flex-wrap: wrap; /* PERMITE QUEBRA DE LINHA EM TELAS MENORES */
+    gap: 15px;
+}
+
+/* REMOVE A MARGEM DO CONTADOR QUANDO ESTÁ NESTA LINHA */
+.view-controls-row .results-counter {
+    margin-left: 0;
+}
+
+/* AJUSTA O SELETOR DE VISUALIZAÇÃO PARA NÃO TER MARGEM EXTRA */
+.view-switcher {
+    margin-bottom: 0;
+}
+
+/* 15. AJUSTES NOS MARCADORES DO MAPA */
+/* ==================================================================== */
+
+/* ALTERA A COR DO MARCADOR PADRÃO DO LEAFLET */
+.leaflet-marker-icon {
+    filter: hue-rotate(230deg) brightness(0.8) saturate(3); /* TRUQUE DE CSS PARA TORNAR O ÍCONE AZUL EM VERDE */
+}
