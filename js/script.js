@@ -8,7 +8,6 @@ let allGenres = [];
 let debounceTimer;
 const itemsPerPage = 20;
 let currentView = 'grid';
-let markersCluster = null;
 
 // DEFINIÇÃO DO ÍCONE VERDE PERSONALIZADO PARA O MAPA
 const greenIcon = L.icon({
@@ -115,7 +114,7 @@ function filterAndRenderFilms() {
         currentFilms = allFilms.filter(film => {
             const matchesSearch = film.title.toLowerCase().includes(searchTerm) || (film.director && film.director.toLowerCase().includes(searchTerm)) || (film.cast && film.cast.toLowerCase().includes(searchTerm)) || (film.synopsis && film.synopsis.toLowerCase().includes(searchTerm)) || (film.tema && film.tema.toLowerCase().includes(searchTerm)) || (film.tags && film.tags.toLowerCase().includes(searchTerm)) || (film.dvd && film.dvd.toLowerCase().includes(searchTerm));
             const matchesGenre = !selectedGenre || (film.genres && film.genres.includes(selectedGenre)) || film.genre === selectedGenre;
-            const matchesUf = !selectedUf || film.state.includes(selectedUf);
+            const matchesUf = !selectedUf || (Array.isArray(film.state) && film.state.includes(selectedUf));
             const matchesClassification = !selectedClassification || film.classification === parseInt(selectedClassification) || (selectedClassification === 'L' && film.classification <= 0);
             const matchesAccessibility = !selectedAccessibility || ((selectedAccessibility === 'planos_de_aula' && film.planos_de_aula && film.planos_de_aula.length > 0) || (selectedAccessibility === 'audiodescricao' && film.audiodescricao) || (selectedAccessibility === 'closed_caption' && film.closedCaption) || (selectedAccessibility === 'trailer' && film.trailer && film.trailer.trim() !== '') || (selectedAccessibility === 'pgm' && film.pgm) || (selectedAccessibility === 'material_outros' && film.materialOutros && film.materialOutros.length > 0) || (selectedAccessibility === 'assistir_online' && film.assistirOnline && film.assistirOnline.trim() !== ''));
             const matchesOds = !selectedOds || (film.ods && film.ods.includes(selectedOds));
