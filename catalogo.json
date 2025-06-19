@@ -7406,7 +7406,7 @@
     },
     "País": "Brasil",
     "UF": [
-      "MG / DF"
+      "MG","DF"
     ],
     "cidade": [
       "Belo Horizonte / Brasília"
@@ -14602,7 +14602,7 @@
     },
     "País": "Brasil",
     "UF": [
-      "SP/MS"
+      "SP","MS"
     ],
     "cidade": [],
     "Audiodescrição": "",
@@ -17033,7 +17033,7 @@
     },
     "País": "Brasil",
     "UF": [
-      "RJ/SP"
+      "RJ","SP"
     ],
     "cidade": [],
     "Audiodescrição": "",
@@ -17568,7 +17568,7 @@
     },
     "País": "Brasil",
     "UF": [
-      "RJ/SP"
+      "RJ","SP"
     ],
     "cidade": [],
     "Audiodescrição": "",
@@ -28606,7 +28606,7 @@
     },
     "País": "Brasil",
     "UF": [
-      "RJ / PE"
+      "RJ","PE"
     ],
     "cidade": [
       "Rio de Janeiro / Recife"
@@ -32761,7 +32761,7 @@
     },
     "País": "Brasil",
     "UF": [
-      "RJ/SP"
+      "RJ","SP"
     ],
     "cidade": [],
     "Audiodescrição": "",
@@ -33637,7 +33637,7 @@
     },
     "País": "Brasil",
     "UF": [
-      "AM/SP"
+      "AM","SP"
     ],
     "cidade": [],
     "Audiodescrição": "",
@@ -40699,7 +40699,7 @@
     },
     "País": "Brasil",
     "UF": [
-      "RJ/SP"
+      "RJ","SP"
     ],
     "cidade": [],
     "Audiodescrição": "",
@@ -44749,7 +44749,8 @@
     },
     "País": "Brasil",
     "UF": [
-      "AM/RJ"
+      "AM",
+"RJ"
     ],
     "cidade": [],
     "Audiodescrição": "",
@@ -44847,7 +44848,8 @@
     },
     "País": "Brasil",
     "UF": [
-      "AL/RJ"
+      "AL",
+"RJ"
     ],
     "cidade": [
       "Recife"
