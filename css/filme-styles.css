@@ -511,3 +511,143 @@
 
 /* Rotação do ícone é feita pelo JS ao trocar as classes fa-chevron-down/up, não precisa de CSS extra aqui se o JS já faz isso */
 
+
+/* ESTILOS PARA O MODAL DE ASSISTIR ONLINE */
+.modal {
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(5px);
+}
+
+.modal-content {
+    background-color: #fff;
+    margin: 5% auto;
+    padding: 0;
+    border-radius: 12px;
+    width: 90%;
+    max-width: 500px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    animation: modalSlideIn 0.3s ease-out;
+}
+
+@keyframes modalSlideIn {
+    from {
+        opacity: 0;
+        transform: translateY(-50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.modal-header {
+    background: linear-gradient(135deg, #009a44, #00b851);
+    color: white;
+    padding: 20px;
+    border-radius: 12px 12px 0 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.modal-header h2 {
+    margin: 0;
+    font-size: 1.4rem;
+    font-weight: 600;
+}
+
+.modal-header h2 i {
+    margin-right: 10px;
+}
+
+.close {
+    color: white;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: color 0.3s ease;
+}
+
+.close:hover,
+.close:focus {
+    color: #ffeb3b;
+}
+
+.modal-body {
+    padding: 25px;
+}
+
+.modal-body p {
+    margin: 0 0 20px 0;
+    color: #555;
+    font-size: 1rem;
+}
+
+.links-container {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.link-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 15px 20px;
+    background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+    border: 2px solid #dee2e6;
+    border-radius: 8px;
+    text-decoration: none;
+    color: #495057;
+    font-weight: 500;
+    transition: all 0.3s ease;
+}
+
+.link-item:hover {
+    background: linear-gradient(135deg, #009a44, #00b851);
+    color: white;
+    border-color: #009a44;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0, 154, 68, 0.3);
+}
+
+.link-item i {
+    margin-left: 10px;
+    opacity: 0.7;
+}
+
+.link-item:hover i {
+    opacity: 1;
+}
+
+/* RESPONSIVIDADE PARA DISPOSITIVOS MÓVEIS */
+@media (max-width: 768px) {
+    .modal-content {
+        margin: 10% auto;
+        width: 95%;
+    }
+    
+    .modal-header {
+        padding: 15px;
+    }
+    
+    .modal-header h2 {
+        font-size: 1.2rem;
+    }
+    
+    .modal-body {
+        padding: 20px;
+    }
+    
+    .link-item {
+        padding: 12px 15px;
+        font-size: 0.9rem;
+    }
+}
+
