@@ -184,9 +184,7 @@
       "Economia"
     ],
     "BNCC_Justificativa": "O curta-metragem '10 Centavos' é uma obra de forte impacto social, adequada para o Ensino Fundamental II e Médio. Na área de Ciências Humanas e Sociais Aplicadas, permite a análise crítica de problemas sociais como o trabalho infantil e a extrema pobreza, abordando os TCTs de Cidadania e Civismo (direitos da criança e do adolescente) e Economia. Desenvolve a Competência Geral 1 (Conhecimento) e 2 (Pensamento Crítico) ao expor as causas e consequências da desigualdade social. Na área de Linguagens, o filme se destaca pelo uso inovador da fotografia (fotos still) para construir a narrativa, possibilitando uma rica discussão sobre diferentes linguagens artísticas (Competência 3) e o poder da imagem para comunicar e sensibilizar (Competência 4). O debate sobre o filme promove a Empatia (Competência 9) e a Responsabilidade e Cidadania (Competência 10).",
-    "Assistir Online - Alternativas": [
-      ""
-    ]
+    "Assistir Online - Alternativas": []
   },
   {
     "Classificação Indicativa POR PGM": 16,
@@ -1062,14 +1060,14 @@
     "URL": "https://portacurtas.org.br/busca/?termo=A_entrevista",
     "busca": "Inválido (Redirecionamento Erro Tamandua)",
     "Assistir Online - Alternativas": [],
-"FontesDeExibicao": [
+FontesDeExibicao: [
   {
-    "fonte": "Porta Curtas",
-    "url": "https://portacurtas.org.br/filme/?name=A_entrevista"
+    fonte: "Porta Curtas",
+    url: "https://portacurtas.org.br/filme/?name=A_entrevista"
   },
   {
-    "fonte": "", 
-    "url": ""
+    fonte: "", 
+    url: ""
   }
 ]
   },
@@ -1128,14 +1126,14 @@
     "URL": "https://portacurtas.org.br/busca/?termo=A_escada",
     "busca": "Inválido (Redirecionamento Erro Tamandua)",
     "Assistir Online - Alternativas": [],
-"FontesDeExibicao": [
+FontesDeExibicao: [
   {
-    "fonte": "Principal",
-    "url": "https://portacurtas.org.br/filme/?name=A_escada"
+    fonte: "Principal",
+    url: "https://portacurtas.org.br/filme/?name=A_escada"
   },
   {
-    "fonte": "", 
-    "url": ""
+    fonte: "", 
+    url: ""
   }
 ]
   },
