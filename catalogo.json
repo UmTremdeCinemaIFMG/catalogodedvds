@@ -1062,8 +1062,8 @@
     "Assistir Online - Alternativas": [],
 "FontesDeExibicao": [
   {
-    "fonte": "Porta Curtas",
-    "url": "https://portacurtas.org.br/filme/?name=A_entrevista"
+    "fonte": "Prime Video",
+    "url": "https://www.primevideo.com/detail/0PLSO6JG7SRVIVQXBQAKODVQNV/ref=atv_sr_fle_c_Tn74RA_1_1_1?sr=1-1&pageTypeIdSource=ASIN&pageTypeId=B0F16CZZYR&qid=1750404104648"
   }
 ]
   },
@@ -35775,6 +35775,12 @@
     "Assistir Online": "https://assista.itauculturalplay.com.br/ItemDetail/673b6ebd3a22b068ff820af4/63973436a2fa051d3a3fa407",
     "URL": "https://assista.itauculturalplay.com.br/ItemDetail/673b6ebd3a22b068ff820af4/63973436a2fa051d3a3fa407",
     "busca": "Válido",
+"FontesDeExibicao": [
+  {
+    "fonte": "Prime Video",
+    "url": "https://www.primevideo.com/detail/0PLSO6JG7SRVIVQXBQAKODVQNV/ref=atv_sr_fle_c_Tn74RA_1_1_1?sr=1-1&pageTypeIdSource=ASIN&pageTypeId=B0F16CZZYR&qid=1750404104648"
+  }
+],
     "BNCC_Etapas": [
       "Ensino Fundamental",
       "Ensino Médio"
