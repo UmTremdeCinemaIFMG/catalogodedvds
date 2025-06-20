@@ -60,6 +60,38 @@ function transformFilmData(originalFilm) {
         tags: cleanField(originalFilm["tags"]),
         website: cleanField(originalFilm["website"]),
         assistirOnline: cleanField(originalFilm["Assistir Online"] || ''),
+        FontesDeExibicao: (() => {
+            const assistirOnline = cleanField(originalFilm["Assistir Online"] || '');
+            const alternativas = originalFilm["Assistir Online - Alternativas"] || [];
+            const fontes = [];
+            
+            // ADICIONA A FONTE PRINCIPAL SE EXISTIR
+            if (assistirOnline) {
+                fontes.push({
+                    fonte: "Principal",
+                    url: assistirOnline
+                });
+            }
+            
+            // ADICIONA AS FONTES ALTERNATIVAS SE EXISTIREM
+            if (Array.isArray(alternativas) && alternativas.length > 0) {
+                alternativas.forEach((alt, index) => {
+                    if (alt && typeof alt === 'object' && alt.url) {
+                        fontes.push({
+                            fonte: alt.nome || `Alternativa ${index + 1}`,
+                            url: alt.url
+                        });
+                    } else if (typeof alt === 'string' && alt.trim()) {
+                        fontes.push({
+                            fonte: `Alternativa ${index + 1}`,
+                            url: alt.trim()
+                        });
+                    }
+                });
+            }
+            
+            return fontes;
+        })(),
         festivais: cleanField(originalFilm["festivais"]),
         premios: cleanField(originalFilm["premios"]),
         legendasOutras: cleanField(originalFilm["legendas_outras"]),

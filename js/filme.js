@@ -132,8 +132,21 @@ function renderFilmData(film) {
     if(hasAnyAdditionalInfo){filmContent+=`<div class="filme-section expandable-section"><h3 class="expandable-title"><i class="fas fa-info-circle"></i> Informações Adicionais <i class="fas fa-chevron-down expand-icon"></i></h3><div class="expandable-content">${additionalInfoContent}</div></div>`}
     filmContent+=`<div class="filme-section social-share-bottom-container"><h3><i class="fas fa-share-alt"></i> Compartilhar</h3><div class="social-share-buttons"><button class="social-share-button whatsapp" title="Compartilhar no WhatsApp" onclick="shareOnWhatsApp()"><i class="fab fa-whatsapp"></i></button><button class="social-share-button facebook" title="Compartilhar no Facebook" onclick="shareOnFacebook()"><i class="fab fa-facebook-f"></i></button><button class="social-share-button twitter" title="Compartilhar no X (Twitter)" onclick="shareOnTwitter()"><i class="fab fa-twitter"></i></button><button class="social-share-button copy" title="Copiar link" onclick="copyToClipboard()"><i class="fas fa-link"></i></button></div></div>`;
     filmContainer.innerHTML=`<div class="banner-carrossel"><div class="banner-slides" id="bannerSlides"></div><div class="banner-controls"><button class="banner-control" id="prevSlide"><i class="fas fa-chevron-left"></i></button><button class="banner-control" id="nextSlide"><i class="fas fa-chevron-right"></i></button></div><div class="banner-indicators" id="bannerIndicators"></div></div>${filmHeader.outerHTML}${filmContent}`;
-    const controlsContainer=document.querySelector(".filme-page-controls");
-    if(controlsContainer&&film.assistirOnline&&film.assistirOnline.trim()!==""){const onlineUrl=film.assistirOnline.startsWith("http")?film.assistirOnline:`https://${film.assistirOnline}`;const assistirOnlineBtn=document.createElement("a");assistirOnlineBtn.href=onlineUrl;assistirOnlineBtn.target="_blank";assistirOnlineBtn.className="btn-assistir-online";assistirOnlineBtn.innerHTML='Assistir Online <i class="fas fa-external-link-alt"></i>';controlsContainer.insertBefore(assistirOnlineBtn,controlsContainer.firstChild)}
+    // INÍCIO DA MODIFICAÇÃO: LÓGICA DO BOTÃO "ASSISTIR ONLINE"
+    const controlsContainer = document.querySelector(".filme-page-controls");
+    // VERIFICA SE O CAMPO "FontesDeExibicao" EXISTE E NÃO ESTÁ VAZIO
+    if (controlsContainer && film.FontesDeExibicao && film.FontesDeExibicao.length > 0) {
+        const assistirOnlineBtn = document.createElement("button"); // MUDA DE <a> PARA <button>
+        assistirOnlineBtn.id = "btnAssistirOnline"; // ADICIONA UM ID PARA FACILITAR A SELEÇÃO
+        assistirOnlineBtn.className = "btn-assistir-online";
+        assistirOnlineBtn.innerHTML = 'Assistir Online <i class="fas fa-play-circle"></i>';
+        
+        // ADICIONA O EVENTO DE CLIQUE PARA ABRIR O MODAL
+        assistirOnlineBtn.addEventListener('click', () => abrirModalDeLinks(film.FontesDeExibicao));
+        
+        controlsContainer.insertBefore(assistirOnlineBtn, controlsContainer.firstChild);
+    }
+    // FIM DA MODIFICAÇÃO
 }
 
 // FUNÇÃO PARA CARREGAR DADOS DO FILME
@@ -324,3 +337,57 @@ function getYoutubeId(url) {
 
 // INICIALIZAÇÃO QUANDO O DOM ESTIVER PRONTO
 document.addEventListener("DOMContentLoaded", loadFilmData);
+
+
+// INÍCIO DO CÓDIGO NOVO: FUNÇÕES PARA CONTROLAR O MODAL DE LINKS DE EXIBIÇÃO
+
+/**
+ * ABRE O MODAL E POPULA COM OS LINKS DE EXIBIÇÃO DO FILME.
+ * @param {Array} fontes - A LISTA DE OBJETOS DE FONTES DO FILME.
+ */
+function abrirModalDeLinks(fontes) {
+    const modal = document.getElementById('modalAssistirOnline');
+    const linksContainer = document.getElementById('linksContainer');
+    const closeModalBtn = document.getElementById('closeModalAssistir');
+
+    if (!modal || !linksContainer || !closeModalBtn) return;
+
+    // LIMPA O CONTEÚDO ANTERIOR
+    linksContainer.innerHTML = '';
+
+    // CRIA E ADICIONA UM LINK PARA CADA FONTE DISPONÍVEL
+    fontes.forEach(fonte => {
+        const linkElement = document.createElement('a');
+        linkElement.href = fonte.url;
+        linkElement.textContent = fonte.fonte;
+        linkElement.className = 'link-item';
+        linkElement.target = '_blank'; // ABRE EM NOVA ABA
+        linkElement.rel = 'noopener noreferrer';
+        linkElement.innerHTML += ' <i class="fas fa-external-link-alt"></i>';
+        linksContainer.appendChild(linkElement);
+    });
+
+    // EXIBE O MODAL
+    modal.style.display = 'block';
+
+    // FUNÇÃO PARA FECHAR O MODAL
+    const fecharModal = () => {
+        modal.style.display = 'none';
+    };
+
+    // ADICIONA EVENTOS PARA FECHAR O MODAL
+    closeModalBtn.onclick = fecharModal;
+    window.addEventListener('click', (event) => {
+        if (event.target === modal) {
+            fecharModal();
+        }
+    });
+    // ADICIONA EVENTO PARA FECHAR COM A TECLA 'ESC'
+    document.addEventListener('keydown', function(event) {
+        if (event.key === "Escape") {
+            fecharModal();
+        }
+    }, { once: true }); // 'once: true' REMOVE O EVENTO APÓS SER USADO
+}
+// FIM DO CÓDIGO NOVO
+
