@@ -265,9 +265,7 @@
       "Cidadania e Civismo"
     ],
     "BNCC_Justificativa": "Este curta-metragem é ideal para o Ensino Médio, dada a complexidade do tema subjacente. A obra explora a tomada de uma decisão crítica em um curto espaço de tempo, sendo um excelente gatilho para discussões nas áreas de Ciências Humanas (Filosofia/Sociologia) sobre ética e autonomia, e Ciências da Natureza (Biologia) sobre direitos reprodutivos, alinhado ao TCT Saúde. A narrativa concisa e a construção da tensão são objetos de análise para a área de Linguagens. O filme mobiliza fortemente a Competência Geral 8 (Autoconhecimento e Cuidado de Si), ao tratar de uma escolha pessoal de grande impacto; a Competência 6 (Projeto de Vida), pois a decisão definirá o futuro da personagem; e a Competência 10 (Responsabilidade e Cidadania), ao abordar a responsabilidade sobre as próprias escolhas.",
-    "Assistir Online - Alternativas": [
-      ""
-    ]
+    "Assistir Online - Alternativas": []
   },
   {
     "Classificação Indicativa POR PGM": 16,
@@ -863,9 +861,7 @@
       "Economia"
     ],
     "BNCC_Justificativa": "Este documentário é uma ferramenta pedagógica potente para discutir a invisibilidade social e a questão da população em situação de rua, temas alinhados aos TCTs de Cidadania e Civismo e Economia (pobreza). Na área de Ciências Humanas, permite analisar a dinâmica dos espaços urbanos e as formas de exclusão social. Na área de Linguagens, o filme possibilita a discussão sobre o gênero documentário e o papel do cinema como instrumento de denúncia e sensibilização. A obra é um convite direto ao exercício da Empatia (Competência 9) e da Responsabilidade e Cidadania (Competência 10), incentivando os alunos a se posicionarem criticamente (Competência 7) sobre a realidade social apresentada.",
-    "Assistir Online - Alternativas": [
-      ""
-    ]
+    "Assistir Online - Alternativas": []
   },
   {
     "Classificação Indicativa POR PGM": 12,
@@ -1065,9 +1061,17 @@
     "Assistir Online": "",
     "URL": "https://portacurtas.org.br/busca/?termo=A_entrevista",
     "busca": "Inválido (Redirecionamento Erro Tamandua)",
-    "Assistir Online - Alternativas": [
-      "https://portacurtas.org.br/filme/?name=A_entrevista"
-    ]
+    "Assistir Online - Alternativas": [],
+"FontesDeExibicao": [
+  {
+    "fonte": "Porta Curtas",
+    "url": "https://portacurtas.org.br/filme/?name=A_entrevista"
+  },
+  {
+    "fonte": "", 
+    "url": ""
+  }
+]
   },
   {
     "Classificação Indicativa POR PGM": 12,
@@ -1123,9 +1127,17 @@
     "Assistir Online": "",
     "URL": "https://portacurtas.org.br/busca/?termo=A_escada",
     "busca": "Inválido (Redirecionamento Erro Tamandua)",
-    "Assistir Online - Alternativas": [
-      "https://portacurtas.org.br/filme/?name=A_escada"
-    ]
+    "Assistir Online - Alternativas": [],
+"FontesDeExibicao": [
+  {
+    "fonte": "Principal",
+    "url": "https://portacurtas.org.br/filme/?name=A_escada"
+  },
+  {
+    "fonte": "", 
+    "url": ""
+  }
+]
   },
   {
     "Classificação Indicativa POR PGM": 14,
