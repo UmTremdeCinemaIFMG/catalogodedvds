@@ -1060,14 +1060,10 @@
     "URL": "https://portacurtas.org.br/busca/?termo=A_entrevista",
     "busca": "Inválido (Redirecionamento Erro Tamandua)",
     "Assistir Online - Alternativas": [],
-FontesDeExibicao: [
+"FontesDeExibicao": [
   {
-    fonte: "Porta Curtas",
-    url: "https://portacurtas.org.br/filme/?name=A_entrevista"
-  },
-  {
-    fonte: "", 
-    url: ""
+    "fonte": "Porta Curtas",
+    "url": "https://portacurtas.org.br/filme/?name=A_entrevista"
   }
 ]
   },
@@ -1126,14 +1122,10 @@ FontesDeExibicao: [
     "URL": "https://portacurtas.org.br/busca/?termo=A_escada",
     "busca": "Inválido (Redirecionamento Erro Tamandua)",
     "Assistir Online - Alternativas": [],
-FontesDeExibicao: [
+"FontesDeExibicao": [
   {
-    fonte: "Principal",
-    url: "https://portacurtas.org.br/filme/?name=A_escada"
-  },
-  {
-    fonte: "", 
-    url: ""
+    "fonte": "Principal",
+    "url": "https://portacurtas.org.br/filme/?name=A_escada"
   }
 ]
   },
