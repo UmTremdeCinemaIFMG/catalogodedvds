@@ -411,7 +411,7 @@
     "trailer": "",
     "imagens_adicionais": [],
     "videos": [],
-    "Assistir Online": "",
+    "Assistir Online": "https://www.aruandaplay.com.br/film/a-arvore-da-miseria/",
     "URL": "https://portacurtas.org.br/busca/?termo=A_árvore_da_Miséria",
     "busca": "Inválido (Redirecionamento Erro Tamandua)",
     "BNCC_Etapas": [
@@ -10141,7 +10141,12 @@
     "Assistir Online": "https://portacurtas.org.br/filme/?name=Aruanda",
     "URL": "https://portacurtas.org.br/filme/?name=Aruanda",
     "busca": "Válido",
-    "Assistir Online - Alternativas": []
+    "Assistir Online - Alternativas": [
+	{
+         "fonte":"Aruanda Play",
+	 "url":"https://www.aruandaplay.com.br/film/aruanda/"
+	}
+]
   },
   {
     "Classificação Indicativa POR PGM": 10,
