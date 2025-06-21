@@ -1,0 +1,37 @@
+[
+    {
+        "Fonte": "Porta Curtas",
+        "url": "https://portacurtas.org.br/",
+        "Tipo de acesso": "Conteúdo Pago",
+        "Organização": "IBCA com patrocínio da Petrobras",
+        "Foco": "Curtas-metragens brasileiros"
+    },
+    {
+        "Fonte": "LGBTFlix",
+        "url": "https://flix.votelgbt.org/",
+        "Tipo de acesso": "Gratuito sem cadastro",
+        "Organização": "ONG Vote LGBT+",
+        "Foco": "Produções com temáticas LGBTQIA+"
+    },
+    {
+        "Fonte": "Maricá Filmes",
+        "url": "https://mff.com.br/exibicoes-publicas/",
+        "Tipo de acesso": "Gratuito mediante cadastro",
+        "Organização": "Prefeitura de Maricá (Rio de Janeiro)",
+        "Foco": "Produções que destacam a diversidade do Brasil"
+    },
+    {
+        "Fonte": "Embaúba Play",
+        "url": "https://embaubaplay.com/",
+        "Tipo de acesso": "Misto (gratuito e locação)",
+        "Organização": "Embaúba Filmes",
+        "Foco": "Cinema brasileiro independente"
+    },
+    {
+        "Fonte": "Maria Farinha Filmes",
+        "url": "https://mff.com.br/exibicoes-publicas/",
+        "Tipo de acesso": "Gratuito mediante solicitação",
+        "Organização": "Maria Farinha Filmes",
+        "Foco": "Documentários de impacto social"
+    }
+]
