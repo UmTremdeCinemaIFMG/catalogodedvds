@@ -511,3 +511,108 @@
 
 /* Rotação do ícone é feita pelo JS ao trocar as classes fa-chevron-down/up, não precisa de CSS extra aqui se o JS já faz isso */
 
+/* 16. ESTILOS DO MODAL DE SELEÇÃO DE LINKS */
+/* ==================================================================== */
+
+/* FUNDO ESCURO DO MODAL */
+.link-selection-modal {
+    position: fixed;
+    z-index: 1001; /* ACIMA DE OUTROS ELEMENTOS */
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.6);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+}
+
+.link-selection-modal.show {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+/* CONTEÚDO DO MODAL */
+.link-selection-content {
+    background-color: var(--branco);
+    padding: 25px;
+    border-radius: 8px;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.3);
+    width: 90%;
+    max-width: 500px;
+    position: relative;
+    text-align: center;
+    transform: scale(0.95);
+    transition: transform 0.3s ease;
+}
+
+.link-selection-modal.show .link-selection-content {
+    transform: scale(1);
+}
+
+/* TÍTULO DO MODAL */
+.link-selection-content h4 {
+    margin-top: 0;
+    margin-bottom: 20px;
+    color: var(--verde-escuro);
+    font-size: 1.4em;
+}
+
+/* BOTÃO DE FECHAR */
+.link-selection-content .close-modal-btn {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    font-size: 28px;
+    color: var(--cinza-medio);
+    cursor: pointer;
+    transition: color 0.2s;
+}
+
+.link-selection-content .close-modal-btn:hover {
+    color: var(--cinza-escuro);
+}
+
+/* CONTAINER DOS BOTÕES DE LINK */
+#assistirOnlineLinks {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+/* CONTAINER PARA CADA OPÇÃO DE LINK */
+.link-option {
+    text-align: left;
+}
+
+/* BOTÃO DE LINK INDIVIDUAL */
+.link-option-btn {
+    display: block;
+    width: 100%;
+    padding: 12px;
+    background-color: var(--verde-ifmg);
+    color: var(--branco) !important;
+    text-decoration: none;
+    border-radius: 6px;
+    font-weight: 500;
+    transition: var(--transicao);
+    border: 1px solid var(--verde-escuro);
+}
+
+.link-option-btn:hover {
+    background-color: var(--verde-escuro);
+    transform: translateY(-2px);
+    box-shadow: var(--sombra);
+}
+
+/* MENSAGEM DE AVISO SOBRE O TIPO DE ACESSO */
+.link-access-info {
+    font-size: 0.85em;
+    color: var(--cinza-medio);
+    margin-top: 5px;
+    padding-left: 5px;
+}
