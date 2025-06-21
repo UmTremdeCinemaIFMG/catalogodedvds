@@ -147,8 +147,10 @@ function filterAndRenderFilms() {
             const matchesGenre = !selectedGenre || (film.genres && film.genres.includes(selectedGenre)) || film.genre === selectedGenre;
             const matchesUf = !selectedUf || (Array.isArray(film.state) && film.state.includes(selectedUf));
             const matchesClassification = !selectedClassification || film.classification === parseInt(selectedClassification) || (selectedClassification === 'L' && film.classification <= 0);
-            const matchesAccessibility = !selectedAccessibility || ((selectedAccessibility === 'planos_de_aula' && film.planos_de_aula && film.planos_de_aula.length > 0) || (selectedAccessibility === 'audiodescricao' && film.audiodescricao) || (selectedAccessibility === 'closed_caption' && film.closedCaption) || (selectedAccessibility === 'trailer' && film.trailer && film.trailer.trim() !== '') || (selectedAccessibility === 'pgm' && film.pgm) || (selectedAccessibility === 'material_outros' && film.materialOutros && film.materialOutros.length > 0) || (selectedAccessibility === 'assistir_online' && film.assistirOnline && film.assistirOnline.trim() !== ''));
-            const matchesOds = !selectedOds || (film.ods && film.ods.includes(selectedOds));
+            
+           const matchesAccessibility = !selectedAccessibility || ((selectedAccessibility === 'planos_de_aula' && film.planos_de_aula && film.planos_de_aula.length > 0) || (selectedAccessibility === 'audiodescricao' && film.audiodescricao) || (selectedAccessibility === 'closed_caption' && film.closedCaption) || (selectedAccessibility === 'trailer' && film.trailer && film.trailer.trim() !== '') || (selectedAccessibility === 'pgm' && film.pgm) || (selectedAccessibility === 'material_outros' && film.materialOutros && film.materialOutros.length > 0) || (selectedAccessibility === 'assistir_online' && film.assistirOnline && film.assistirOnline.length > 0));
+           
+           const matchesOds = !selectedOds || (film.ods && film.ods.includes(selectedOds));
             const matchesBncc = !selectedBncc || (film.bnccCompetencias && film.bnccCompetencias.includes(parseInt(selectedBncc)));
             const matchesEtapa = !selectedEtapa || (film.bnccEtapas && film.bnccEtapas.includes(selectedEtapa));
             const matchesArea = !selectedArea || (film.bnccAreas && film.bnccAreas.includes(selectedArea));
