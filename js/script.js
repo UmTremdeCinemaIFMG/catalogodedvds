@@ -59,7 +59,38 @@ function transformFilmData(originalFilm) {
         tema: cleanField(originalFilm["tema (Programadora Brasil)"]),
         tags: cleanField(originalFilm["tags"]),
         website: cleanField(originalFilm["website"]),
-        assistirOnline: cleanField(originalFilm["Assistir Online"] || ''),
+          // UNIFICA OS LINKS DE "ASSISTIR ONLINE" EM UM ÚNICO ARRAY
+        assistirOnline: (() => {
+            const links = [];
+            const principal = originalFilm["Assistir Online"];
+            const alternativas = originalFilm["Assistir Online - Alternativas"];
+
+            // ADICIONA OS LINKS PRINCIPAIS (SE FOR UM ARRAY)
+            if (Array.isArray(principal)) {
+                principal.forEach(link => {
+                    if (link && link.url) {
+                        links.push({
+                            plataforma: link.fonte || 'Link Principal',
+                            url: link.url.trim()
+                        });
+                    }
+                });
+            }
+
+            // ADICIONA OS LINKS ALTERNATIVOS (SE FOR UM ARRAY)
+            if (Array.isArray(alternativas)) {
+                alternativas.forEach(alt => {
+                    if (alt && alt.url) {
+                        links.push({
+                            plataforma: alt.fonte || 'Opção Alternativa',
+                            url: alt.url.trim()
+                        });
+                    }
+                });
+            }
+            
+            return links;
+        })(),
         festivais: cleanField(originalFilm["festivais"]),
         premios: cleanField(originalFilm["premios"]),
         legendasOutras: cleanField(originalFilm["legendas_outras"]),
