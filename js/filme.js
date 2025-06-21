@@ -158,16 +158,17 @@ function renderFilmPage(film) {
     
     filmContainer.innerHTML = `<div class="banner-carrossel"><div class="banner-slides" id="bannerSlides"></div><div class="banner-controls"><button class="banner-control" id="prevSlide"><i class="fas fa-chevron-left"></i></button><button class="banner-control" id="nextSlide"><i class="fas fa-chevron-right"></i></button></div><div class="banner-indicators" id="bannerIndicators"></div></div>${filmHeader}${filmContent}`;
     
-    const controlsContainer = document.querySelector(".filme-page-controls");
+const controlsContainer = document.querySelector(".filme-page-controls");
     if (controlsContainer && film.assistirOnline && film.assistirOnline.length > 0) {
         const assistirOnlineBtn = document.createElement("button");
         assistirOnlineBtn.className = "btn-assistir-online";
         assistirOnlineBtn.innerHTML = "Assistir Online <i class=\"fas fa-external-link-alt\"></i>";
-        if (film.assistirOnline.length === 1) {
-            assistirOnlineBtn.addEventListener('click', () => { window.open(film.assistirOnline[0].url, '_blank'); });
-        } else {
-            assistirOnlineBtn.addEventListener('click', () => { abrirModalDeLinks(film.assistirOnline); });
-        }
+
+        // AGORA, O BOTÃO SEMPRE CHAMA A FUNÇÃO DO MODAL
+        assistirOnlineBtn.addEventListener('click', () => {
+            abrirModalDeLinks(film.assistirOnline);
+        });
+        
         controlsContainer.insertBefore(assistirOnlineBtn, controlsContainer.firstChild);
     }
 }
