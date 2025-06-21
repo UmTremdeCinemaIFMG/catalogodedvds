@@ -7,6 +7,20 @@
         "Foco": "Curtas-metragens brasileiros"
     },
     {
+        "Fonte": "Itaú Cultural Play",
+        "url": "https://www.itauculturalplay.com.br/",
+        "Tipo de acesso": "Gratuito mediante cadastro",
+        "Organização": "Itaú Cultural",
+        "Foco": "Cinema brasileiro e produções culturais"
+    },
+    {
+        "Fonte": "Prime Video",
+        "url": "https://www.primevideo.com/",
+        "Tipo de acesso": "Conteúdo Pago",
+        "Organização": "Amazon",
+        "Foco": "Produções Comerciais"
+    },
+    {
         "Fonte": "LGBTFlix",
         "url": "https://flix.votelgbt.org/",
         "Tipo de acesso": "Gratuito sem cadastro",
