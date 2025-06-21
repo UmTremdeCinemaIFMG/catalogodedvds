@@ -517,7 +517,7 @@
 /* FUNDO ESCURO DO MODAL */
 .link-selection-modal {
     position: fixed;
-    z-index: 1001; /* ACIMA DE OUTROS ELEMENTOS */
+    z-index: 1001;
     left: 0;
     top: 0;
     width: 100%;
@@ -529,6 +529,8 @@
     opacity: 0;
     pointer-events: none;
     transition: opacity 0.3s ease;
+    padding: 20px; /* ADICIONA UM PADDING EXTERNO PARA EVITAR QUE O MODAL ENCOSTE NAS BORDAS DA TELA */
+    box-sizing: border-box;
 }
 
 .link-selection-modal.show {
@@ -539,16 +541,15 @@
 /* CONTEÚDO DO MODAL */
 .link-selection-content {
     background-color: var(--branco);
-    padding: 25px;
+    padding: 25px 30px; /* AUMENTA O PADDING LATERAL */
     border-radius: 8px;
     box-shadow: 0 5px 20px rgba(0,0,0,0.3);
-    width: 90%;
+    width: 100%; /* OCUPA A LARGURA DO PADDING EXTERNO */
     max-width: 500px;
     position: relative;
     text-align: center;
     transform: scale(0.95);
     transition: transform 0.3s ease;
-   box-sizing: border-box;
 }
 
 .link-selection-modal.show .link-selection-content {
@@ -602,6 +603,7 @@
     font-weight: 500;
     transition: var(--transicao);
     border: 1px solid var(--verde-escuro);
+    box-sizing: border-box; /* GARANTE QUE O PADDING NÃO AUMENTE O TAMANHO */
 }
 
 .link-option-btn:hover {
