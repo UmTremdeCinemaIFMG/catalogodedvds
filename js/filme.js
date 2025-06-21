@@ -135,6 +135,26 @@ function renderFilmPage(film) {
     if (film.synopsis) { filmContent += `<div class="filme-section expandable-section"><h3 class="expandable-title"><i class="fas fa-align-left"></i> Sinopse <i class="fas fa-chevron-down expand-icon"></i></h3><div class="expandable-content"><p>${film.synopsis}</p></div></div>`; }
     filmContent += `<div class="filme-section expandable-section"><h3 class="expandable-title"><i class="fas fa-chalkboard-teacher"></i> Planos de Aula <i class="fas fa-chevron-down expand-icon"></i></h3><div class="expandable-content"><div class="enviar-plano-container"><a href="https://docs.google.com/forms/d/e/1FAIpQLSdxQz8onMOFjxIqEPpo5v2I4CJdLQ9cN50I7zUhmnBwgUeGIQ/viewform" target="_blank" rel="noopener noreferrer" class="btn-enviar-plano" style="display:inline-block; margin-top:15px; background:#009a44; color:#fff; padding:10px 18px; border-radius:6px; text-decoration:none; font-weight:500;"><i class="fas fa-plus-circle"></i> Envie um plano de aula</a><p class="enviar-plano-descricao">Você pode colaborar enviando um plano de aula para este filme. Ao clicar, você será direcionado a um formulário.</p></div>${film.planos_de_aula && film.planos_de_aula.length > 0 ? renderTeachingPlans(film) : "<p>Nenhum plano de aula disponível para este filme ainda.</p>"}</div></div>`;
     if (film.materialOutros && film.materialOutros.length > 0) { filmContent += `<div class="filme-section expandable-section"><h3 class="expandable-title"><i class="fas fa-file-alt"></i> Outros Materiais <i class="fas fa-chevron-down expand-icon"></i></h3><div class="expandable-content">${renderOtherMaterials(film)}</div></div>`; }
+
+// RESTAURA A SEÇÃO DE BOTÕES DE COMPARTILHAMENTO
+    filmContent += `
+    <div class="filme-section social-share-bottom-container">
+        <h3><i class="fas fa-share-alt"></i> Compartilhar</h3>
+        <div class="social-share-buttons">
+            <button class="social-share-button whatsapp" title="Compartilhar no WhatsApp" onclick="shareOnWhatsApp()">
+                <i class="fab fa-whatsapp"></i>
+            </button>
+            <button class="social-share-button facebook" title="Compartilhar no Facebook" onclick="shareOnFacebook()">
+                <i class="fab fa-facebook-f"></i>
+            </button>
+            <button class="social-share-button twitter" title="Compartilhar no X (Twitter)" onclick="shareOnTwitter()">
+                <i class="fab fa-twitter"></i>
+            </button>
+            <button class="social-share-button copy" title="Copiar link" onclick="copyToClipboard()">
+                <i class="fas fa-link"></i>
+            </button>
+        </div>
+    </div>`;
     
     filmContainer.innerHTML = `<div class="banner-carrossel"><div class="banner-slides" id="bannerSlides"></div><div class="banner-controls"><button class="banner-control" id="prevSlide"><i class="fas fa-chevron-left"></i></button><button class="banner-control" id="nextSlide"><i class="fas fa-chevron-right"></i></button></div><div class="banner-indicators" id="bannerIndicators"></div></div>${filmHeader}${filmContent}`;
     
