@@ -21,10 +21,10 @@ const headerContent = `
     <div class="barra-extra">
         <div class="container">
             <a href="index.html">Início</a>
-            <a href="sobre.html">Sobre</a>
+            <!--<a href="sobre.html">Sobre</a>-->
             <a href="filmes-online-gratis.html">Filmes Online Grátis</a>
-           <!-- <a href="mapa.html">Mapa</a> -->
-            <a href="faca-seu-filme.html">Faça seu Filme</a>
+           <!--<a href="mapa.html">Mapa</a>-->
+            <!--<a href="faca-seu-filme.html">Faça seu Filme</a>-->
             <a href="cineclubes.html">Cineclubes</a>
         </div>
     </div>
