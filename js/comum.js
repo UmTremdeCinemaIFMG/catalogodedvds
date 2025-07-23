@@ -10,7 +10,7 @@
 const headerContent = `
     <div class="container">
         <h1><i class="fas fa-film"></i> CATÁLOGO DE DVDs</h1>
-        <h3>Filmes Brasileiros do Projeto Um Trem de Cinema do IFMG Sabará</h3>
+        <h3>Filmes Brasileiros disponíveis para empréstimo na Biblioteca do IFMG Sabará</h3>
         LEI Nº 13.006, DE 26 DE JUNHO DE 2014: A exibição de filmes de produção nacional constituirá componente curricular complementar integrado à proposta pedagógica da escola, sendo a sua exibição obrigatória, no mínimo, duas horas por mês.
         <a href="https://www.planalto.gov.br/ccivil_03/_ato2011-2014/2014/lei/l13006.htm" target="_blank" rel="noopener noreferrer">
             Saiba mais
